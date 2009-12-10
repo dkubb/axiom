@@ -2,6 +2,65 @@
 
 Simplifies querying of structured data using relational algebra
 
+== Usage
+
+  # Relational Operators
+
+  # union
+  new_relation = relation.union(other)         # OR relation | other OR relation + other
+
+  #intersection
+  new_relation = relation.intersection(other)  # OR relation & other
+
+  # difference
+  new_relation = relation.difference(other)    # OR relation - other
+
+  # restriction
+  new_relation = relation.restrict { |r| r.name.eq('other').and(r.age.gte(21)) }
+
+  # projection
+  new_relation = relation.project(:a, :b, :c)  # new_relation has only attributes a, b and c    # perhaps alias to only?
+
+  # removal
+  new_relation = relation.remove(:a, :b, :c)   # new_relation has attributes except a, b and c  # perhaps alias to except?
+
+  # product
+  new_relation = relation.product(other)  # OR relation * other
+
+  # theta-join
+  new_relation = relation.join(other) { |r,o| r.name.eq(o.name.eq) }
+
+  # natural join
+  new_relation = relation.join(other)
+
+  # rename
+  new_relation = relation.rename(:a => :b, :c => :d)
+
+  # Non-Relational Operators
+
+  # sort by specific attributes
+  new_relation = relation.sort_by { |r| [ -r.age, r.name ] }
+
+  # limiting  (should generally be disallowed if not sorted, or if restriction uses a candidate key in an eq match)
+  new_relation = relation.limit(10)
+
+  # offset
+  new_relation = relation.offset(0)
+
+  relation = relation.each { |tuple| ... }  # each tuple is read-only (and Struct-like or Hash-like? if Hash-like is the key a Symbol or an Attribute object?)
+
+  # NOTE: a relation is Enumerable
+
+  # returns read-only Set that represents attributes of the relation
+  attributes = relation.attributes
+
+  # NOTE: each attribute is an object representing the name, type object, and possibly other constraints
+
+  # can only modify relations that project all candidate keys for the base relations
+  new_relation = relation.create(:a => 'test', :b => 'other', :c => 'yet another')
+  new_relation = relation.update(:a => 'test', :b => 'other', :c => 'yet another')
+  new_relation = relation.delete
+
 == Note on Patches/Pull Requests
 
 * Fork the project.
