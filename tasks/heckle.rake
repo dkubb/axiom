@@ -1,3 +1,8 @@
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'veritas'
+require 'active_support'
+
 # original code by Ashley Moran:
 # http://aviewfromafar.net/2007/11/1/rake-task-for-heckling-your-specs
 desc 'Heckle each module and class'
@@ -5,23 +10,29 @@ task :heckle => :verify_rcov do
   require 'heckle'  # make sure heckle is available
 
   root_module = 'Veritas'
-  spec_files  = FileList['spec/**/*_spec.rb']
-
-  current_module = nil
-  current_method = nil
 
   heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }
   unhandled_mutations = 0
 
-  IO.popen("spec --heckle #{root_module} #{spec_files} 2>/dev/null") do |pipe|
-    while line = pipe.gets
-      case line = line.chomp
-        when /\A\*\*\*\s+(#{root_module}(?:::)?(?:\w+(?:::)?)*)#(\S+)/
-          current_module, current_method = $1, $2
-        when "The following mutations didn't cause test failures:"
-          heckle_caught_modules[current_module] << current_method
-        when '+++ mutation'
-          unhandled_mutations += 1
+  ObjectSpace.each_object(Module) do |mod|
+    next unless mod.name =~ /\A#{root_module}(?::|\z)/
+
+    spec_file = "spec/unit/#{mod.name.underscore}_spec.rb"
+
+    methods = mod.public_instance_methods(false)    |
+              mod.protected_instance_methods(false) |
+              mod.private_instance_methods(false)
+
+    methods.each do |method|
+      IO.popen("spec --heckle #{mod}##{method} #{spec_file} 2>/dev/null") do |pipe|
+        while line = pipe.gets
+          case line = line.chomp
+            when "The following mutations didn't cause test failures:"
+              heckle_caught_modules[mod.name] << method
+            when '+++ mutation'
+              unhandled_mutations += 1
+          end
+        end
       end
     end
   end
