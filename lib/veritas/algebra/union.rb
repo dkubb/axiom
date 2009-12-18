@@ -16,5 +16,5 @@ module Veritas
         @body   = @left.body | @right.body
       end
     end # class Union
-  end # module # Algebra
+  end # module Algebra
 end # module Veritas

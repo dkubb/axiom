@@ -39,6 +39,12 @@ describe Relation do
     end
   end
 
+  describe '#intersect' do
+    subject { @relation.intersect(@other) }
+
+    it { should be_kind_of(Algebra::Intersection) }
+  end
+
   describe '#union' do
     subject { @relation.union(@other) }
 

@@ -12,7 +12,7 @@ Simplifies querying of structured data using relational algebra
   new_relation = relation.union(other)         # OR relation | other
 
   #intersection
-  new_relation = relation.intersection(other)  # OR relation & other
+  new_relation = relation.intersect(other)     # OR relation & other
 
   # difference
   new_relation = relation.difference(other)    # OR relation - other

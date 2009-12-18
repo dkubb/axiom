@@ -12,6 +12,10 @@ module Veritas
 
     alias | union
 
+    def intersect(other)
+      Algebra::Intersection.new(self, other)
+    end
+
     def ==(other)
       header == other.header &&
       body   == other.body
