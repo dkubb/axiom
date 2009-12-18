@@ -2,6 +2,8 @@
 # http://aviewfromafar.net/2007/11/1/rake-task-for-heckling-your-specs
 desc 'Heckle each module and class'
 task :heckle => :verify_rcov do
+  require 'heckle'  # make sure heckle is available
+
   root_module = 'Veritas'
   spec_files  = FileList['spec/**/*_spec.rb']
 
@@ -21,8 +23,6 @@ task :heckle => :verify_rcov do
         when '+++ mutation'
           unhandled_mutations += 1
       end
-
-      puts line
     end
   end
 
