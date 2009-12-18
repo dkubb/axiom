@@ -5,5 +5,7 @@ require 'veritas'
 require 'spec'
 require 'spec/autorun'
 
+include Veritas
+
 Spec::Runner.configure do |config|
 end
