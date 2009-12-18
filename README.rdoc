@@ -4,6 +4,8 @@ Simplifies querying of structured data using relational algebra
 
 == Usage
 
+  relation = Veritas::Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+
   # Relational Operators
 
   # union

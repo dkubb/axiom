@@ -1,4 +1,2 @@
+require 'veritas/relation'
 require 'veritas/version'
-
-module Veritas
-end # module Veritas
