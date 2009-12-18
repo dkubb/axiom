@@ -1,0 +1,1 @@
+require 'veritas/algebra/union'
