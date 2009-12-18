@@ -1,16 +1,19 @@
 module Veritas
   module Algebra
     class Union < Relation
+      def self.new(left, right)
+        unless left.header == right.header
+          raise HeaderMismatchError, 'the headers must be equivalent to be unioned'
+        end
+
+        super
+      end
+
       def initialize(left, right)
         @left, @right = left, right
-      end
 
-      def header
-        @header ||= @left.header
-      end
-
-      def body
-        @body ||= @left.body | @right.body
+        @header = @left.header
+        @body   = @left.body | @right.body
       end
     end # class Union
   end # module # Algebra

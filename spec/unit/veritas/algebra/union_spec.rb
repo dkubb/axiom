@@ -21,8 +21,20 @@ describe Algebra::Union do
   end
 
   describe '.new' do
-    subject { Algebra::Union.new(@left, @right) }
+    describe 'with relations having the same header' do
+      subject { Algebra::Union.new(@left, @right) }
 
-    it { should be_kind_of(Algebra::Union) }
+      it { should be_kind_of(Algebra::Union) }
+    end
+
+    describe 'with relations having a different header' do
+      before do
+        @right = Relation.new([ [ :name, String ] ], [ [ 'John Doe' ] ])
+      end
+
+      subject { Algebra::Union.new(@left, @right) }
+
+      it { method(:subject).should raise_error(HeaderMismatchError) }
+    end
   end
 end
