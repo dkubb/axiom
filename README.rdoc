@@ -9,7 +9,7 @@ Simplifies querying of structured data using relational algebra
   # Relational Operators
 
   # union
-  new_relation = relation.union(other)         # OR relation | other OR relation + other
+  new_relation = relation.union(other)         # OR relation | other
 
   #intersection
   new_relation = relation.intersection(other)  # OR relation & other
