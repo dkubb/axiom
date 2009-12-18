@@ -4,13 +4,21 @@ include Veritas
 
 describe Algebra::Union do
   before do
-    header = [ [ :id, Integer ] ]
+    @header = [ [ :id, Integer ] ]
 
-    @left  = Relation.new(header, [ [ 1 ] ])
-    @right = Relation.new(header, [ [ 2 ] ])
+    @left  = Relation.new(@header, [ [ 1 ] ])
+    @right = Relation.new(@header, [ [ 2 ] ])
   end
 
   it { Algebra::Union.new(@left, @right).should be_kind_of(Relation) }
+
+  it 'should union different relations' do
+    Algebra::Union.new(@left, @right).should == Relation.new(@header, [ [ 1 ], [ 2 ] ])
+  end
+
+  it 'should union similar relations' do
+    Algebra::Union.new(@left, @left.dup).should == Relation.new(@header, [ [ 1 ] ])
+  end
 
   describe '.new' do
     subject { Algebra::Union.new(@left, @right) }
