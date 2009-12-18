@@ -20,6 +20,30 @@ describe Relation do
     end
   end
 
+  describe '#==' do
+    describe 'with equivalent relations' do
+      before do
+        @relation = Relation.new(@header, @body)
+        @other    = Relation.new(@header, @body)
+      end
+
+      subject { @relation == @other }
+
+      it { should be_true }
+    end
+
+    describe 'with different relations' do
+      before do
+        @relation = Relation.new(@header, @body)
+        @other    = Relation.new(@header, [ [ 2 ] ])
+      end
+
+      subject { @relation == @other }
+
+      it { should be_false }
+    end
+  end
+
   describe '#union' do
     before do
       @relation = Relation.new(@header, @body)
