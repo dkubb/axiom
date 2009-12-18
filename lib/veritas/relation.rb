@@ -6,5 +6,7 @@ module Veritas
     def union(other)
       Algebra::Union.new(self, other)
     end
+
+    alias | union
   end # class Relation
 end # module Veritas
