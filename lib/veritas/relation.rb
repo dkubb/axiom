@@ -6,6 +6,11 @@ module Veritas
       @header, @body = header, body
     end
 
+    def each(&block)
+      @body.each(&block)
+      self
+    end
+
     def union(other)
       Algebra::Union.new(self, other)
     end
