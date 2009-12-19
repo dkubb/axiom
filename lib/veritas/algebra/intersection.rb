@@ -3,8 +3,8 @@ module Veritas
     class Intersection < Relation
       include SetOperation
 
-      def body
-        @body ||= @left.body & @right.body
+      def self.operation
+        :&
       end
     end # class Intersection
   end # module Algebra

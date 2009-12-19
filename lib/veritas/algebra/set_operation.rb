@@ -15,6 +15,10 @@ module Veritas
         @header ||= @left.header
       end
 
+      def body
+        @body ||= @left.body.send(self.class.operation, @right.body)
+      end
+
       module ClassMethods
         def new(left, right)
           unless left.header == right.header
@@ -22,6 +26,10 @@ module Veritas
           end
 
           super
+        end
+
+        def operation
+          raise NotImplementedError, "#{self}.operation must be implemented"
         end
       end
     end # module SetOperation

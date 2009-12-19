@@ -5,8 +5,8 @@ describe 'Veritas::Algebra::SetOperation#left' do
   before do
     header = [ [ :id, Integer ] ]
 
-    @left  = Relation.new(@header, [ [ 1 ] ])
-    @right = Relation.new(@header, [ [ 2 ] ])
+    @left  = Relation.new(header, [ [ 1 ] ])
+    @right = Relation.new(header, [ [ 2 ] ])
   end
 
   subject { SetOperationSpecs::Object.new(@left, @right).left }

@@ -3,8 +3,8 @@ module Veritas
     class Union < Relation
       include SetOperation
 
-      def body
-        @body ||= @left.body | @right.body
+      def self.operation
+        :|
       end
     end # class Union
   end # module Algebra
