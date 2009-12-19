@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::SetOperation#initialize' do
     @right = Relation.new(header, [ [ 2 ] ])
   end
 
-  subject { SetOperationSpecs::BasicObject.new(@left, @right) }
+  subject { SetOperationSpecs::Object.new(@left, @right) }
 
   it 'should set the left' do
     subject.left.should equal(@left)

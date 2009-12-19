@@ -1,5 +1,5 @@
 module SetOperationSpecs
-  class BasicObject
+  class Object
     include Veritas::Algebra::SetOperation
   end
 end

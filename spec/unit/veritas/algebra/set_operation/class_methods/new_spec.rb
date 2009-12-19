@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::SetOperation.new' do
     @left = Relation.new(@header, [ [ 1 ] ])
   end
 
-  subject { SetOperationSpecs::BasicObject.new(@left, @right) }
+  subject { SetOperationSpecs::Object.new(@left, @right) }
 
   describe 'with relations having a similar header' do
     before do
@@ -23,6 +23,6 @@ describe 'Veritas::Algebra::SetOperation.new' do
       @right = Relation.new([ [ :number, Integer ] ], [ [ 2 ] ])
     end
 
-    it { method(:subject).should raise_error(HeaderMismatchError, 'the headers must be equivalent for SetOperationSpecs::BasicObject.new') }
+    it { method(:subject).should raise_error(HeaderMismatchError, 'the headers must be equivalent for SetOperationSpecs::Object.new') }
   end
 end

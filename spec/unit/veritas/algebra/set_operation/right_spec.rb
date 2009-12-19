@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::SetOperation#right' do
     @right = Relation.new(@header, [ [ 2 ] ])
   end
 
-  subject { SetOperationSpecs::BasicObject.new(@left, @right).right }
+  subject { SetOperationSpecs::Object.new(@left, @right).right }
 
   it { should be_kind_of(Relation)  }
 

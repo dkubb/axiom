@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::SetOperation#header' do
     @right = Relation.new(@header, [ [ 2 ] ])
   end
 
-  subject { SetOperationSpecs::BasicObject.new(@left, @right).header }
+  subject { SetOperationSpecs::Object.new(@left, @right).header }
 
   it "should equal either relation's header" do
     should == @header
