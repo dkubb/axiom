@@ -16,8 +16,11 @@ task :heckle => :verify_rcov do
 
   spec_dir = Pathname('spec/unit')
 
-  NameMap::MAP['&']["#{root_module}::Relation"] = 'intersect'
-  NameMap::MAP['|']["#{root_module}::Relation"] = 'union'
+  NameMap::MAP['-'] = { :default => NameMap::MAP['-'] }
+
+  NameMap::MAP['-']['Relation'] = 'difference'
+  NameMap::MAP['&']['Relation'] = 'intersect'
+  NameMap::MAP['|']['Relation'] = 'union'
 
   map = NameMap.new
 
@@ -35,7 +38,7 @@ task :heckle => :verify_rcov do
 
     instance_methods.each do |method|
       spec_file = spec_prefix.join(map.file_name(method, mod.name))
-      raise "#{spec_file} does not exist" unless spec_file.file?
+      raise "No spec file #{spec_file} for #{mod}##{method}" unless spec_file.file?
 
       IO.popen("spec --heckle #{mod}##{method} #{spec_file} 2>/dev/null") do |pipe|
         while line = pipe.gets

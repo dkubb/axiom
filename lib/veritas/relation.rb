@@ -16,6 +16,10 @@ module Veritas
       Algebra::Intersection.new(self, other)
     end
 
+    def difference(other)
+      Algebra::Difference.new(self, other)
+    end
+
     def ==(other)
       header == other.header &&
       body   == other.body
