@@ -2,13 +2,12 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#union' do
   before do
-    header = [ [ :id, Integer ] ]
+    @header = [ [ :id, Integer ] ]
 
-    @relation = Relation.new(header, [ [ 1 ] ])
-    @other    = Relation.new(header, [ [ 2 ] ])
+    @other = Relation.new(@header, [ [ 2 ] ])
   end
 
-  subject { @relation.union(@other) }
+  subject { Relation.new(@header, [ [ 1 ] ]).union(@other) }
 
   it { should be_kind_of(Algebra::Union) }
 end

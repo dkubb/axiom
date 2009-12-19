@@ -1,13 +1,14 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
+require File.expand_path('../../fixtures/classes', __FILE__)
 
-describe 'Veritas::Algebra::Union.new' do
+describe 'Veritas::Algebra::SetOperation.new' do
   before do
     @header = [ [ :id, Integer ] ]
 
     @left = Relation.new(@header, [ [ 1 ] ])
   end
 
-  subject { Algebra::Union.new(@left, @right) }
+  subject { SetOperationSpecs::BasicObject.new(@left, @right) }
 
   describe 'with relations having a similar header' do
     before do
@@ -22,6 +23,6 @@ describe 'Veritas::Algebra::Union.new' do
       @right = Relation.new([ [ :number, Integer ] ], [ [ 2 ] ])
     end
 
-    it { method(:subject).should raise_error(HeaderMismatchError) }
+    it { method(:subject).should raise_error(HeaderMismatchError, 'the headers must be equivalent for SetOperationSpecs::BasicObject.new') }
   end
 end

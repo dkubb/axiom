@@ -10,8 +10,11 @@ task :heckle => :verify_rcov do
   require 'heckle'  # make sure heckle is available
   require 'mspec'
   require 'mspec/utils/name_map'
+  require 'active_support'
 
   root_module = 'Veritas'
+
+  spec_dir = Pathname('spec/unit')
 
   NameMap::MAP['&'][:default] = 'intersection'
   NameMap::MAP['|'][:default] = 'union'
@@ -24,7 +27,7 @@ task :heckle => :verify_rcov do
   ObjectSpace.each_object(Module) do |mod|
     next unless mod.name =~ /\A#{root_module}(?::|\z)/
 
-    spec_prefix = Pathname(map.dir_name(mod.name, 'spec/unit'))
+    spec_prefix = spec_dir.join(mod.name.underscore)
 
     instance_methods = mod.public_instance_methods(false)    |
                        mod.protected_instance_methods(false) |
