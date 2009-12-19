@@ -1,14 +1,10 @@
 module Veritas
   module Algebra
     module SetOperation
-      attr_reader :left, :right
+      include BinaryOperation
 
       def self.included(klass)
         klass.extend ClassMethods
-      end
-
-      def initialize(left, right)
-        @left, @right = left, right
       end
 
       def header

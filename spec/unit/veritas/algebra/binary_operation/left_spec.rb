@@ -1,7 +1,7 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Algebra::SetOperation#initialize' do
+describe 'Veritas::Algebra::BinaryOperation#left' do
   before do
     header = [ [ :id, Integer ] ]
 
@@ -9,13 +9,9 @@ describe 'Veritas::Algebra::SetOperation#initialize' do
     @right = Relation.new(header, [ [ 2 ] ])
   end
 
-  subject { SetOperationSpecs::Object.new(@left, @right) }
+  subject { BinaryOperationSpecs::Object.new(@left, @right).left }
 
-  it 'should set the left' do
-    subject.left.should equal(@left)
-  end
+  it { should be_kind_of(Relation)  }
 
-  it 'should set the right' do
-    subject.right.should equal(@right)
-  end
+  it { should equal(@left) }
 end
