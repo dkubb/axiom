@@ -11,3 +11,9 @@ describe 'Veritas::Relation#intersect' do
 
   it { should be_kind_of(Algebra::Intersection) }
 end
+
+describe 'Veritas::Relation#&' do
+  it 'is an alias to #intersect' do
+    Relation.instance_method(:&).should == Relation.instance_method(:intersect)
+  end
+end

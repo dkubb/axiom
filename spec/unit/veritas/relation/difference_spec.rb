@@ -11,3 +11,9 @@ describe 'Veritas::Relation#difference' do
 
   it { should be_kind_of(Algebra::Difference) }
 end
+
+describe 'Veritas::Relation#-' do
+  it 'is an alias to #difference' do
+    Relation.instance_method(:-).should == Relation.instance_method(:difference)
+  end
+end

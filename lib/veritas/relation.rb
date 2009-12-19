@@ -16,9 +16,13 @@ module Veritas
       Algebra::Intersection.new(self, other)
     end
 
+    alias & intersect
+
     def difference(other)
       Algebra::Difference.new(self, other)
     end
+
+    alias - difference
 
     def ==(other)
       header == other.header &&
