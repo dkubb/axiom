@@ -16,8 +16,8 @@ task :heckle => :verify_rcov do
 
   spec_dir = Pathname('spec/unit')
 
-  NameMap::MAP['&'][:default] = 'intersection'
-  NameMap::MAP['|'][:default] = 'union'
+  NameMap::MAP['&']["#{root_module}::Relation"] = 'intersect'
+  NameMap::MAP['|']["#{root_module}::Relation"] = 'union'
 
   map = NameMap.new
 

@@ -12,7 +12,7 @@ module Veritas
 
     alias | union
 
-    def intersection(other)
+    def intersect(other)
       Algebra::Intersection.new(self, other)
     end
 
