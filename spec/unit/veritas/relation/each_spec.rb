@@ -1,5 +1,15 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
+describe 'Veritas::Relation' do
+  subject { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+
+  it { should be_kind_of(Enumerable) }
+
+  it 'should case match Enumerable' do
+    (Enumerable === subject).should be_true
+  end
+end
+
 describe 'Veritas::Relation#each' do
   before do
     @tuples = []

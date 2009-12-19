@@ -1,5 +1,7 @@
 module Veritas
   class Relation
+    include Enumerable
+
     attr_reader :header, :body
 
     def initialize(header, body)
