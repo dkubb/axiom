@@ -9,7 +9,7 @@ module Veritas
     end
 
     def each(&block)
-      @body.each(&block)
+      body.each(&block)
       self
     end
 

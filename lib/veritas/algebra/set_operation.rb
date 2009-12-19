@@ -8,11 +8,11 @@ module Veritas
       end
 
       def header
-        @header ||= @left.header
+        @header ||= left.header
       end
 
       def body
-        @body ||= @left.body.send(self.class.operation, @right.body)
+        @body ||= left.body.send(self.class.operation, right.body)
       end
 
       module ClassMethods
