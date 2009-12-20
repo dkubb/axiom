@@ -4,8 +4,8 @@ module Veritas
       include BinaryOperation
 
       def self.new(left, right)
-        if left.header == right.header
-          raise InvalidHeaderError, "the headers must be different for #{self}.new"
+        unless (left.header & right.header).empty?
+          raise InvalidHeaderError, "the headers must be disjointed for #{self}.new"
         end
 
         super
