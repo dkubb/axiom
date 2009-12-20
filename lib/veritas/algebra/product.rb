@@ -11,6 +11,10 @@ module Veritas
         super
       end
 
+      def header
+        @header ||= left.header + right.header
+      end
+
       def body
         @body ||= multiply_bodies
       end
