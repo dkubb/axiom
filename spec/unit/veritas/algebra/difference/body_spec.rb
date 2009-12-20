@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::Difference#body' do
 
   subject { Algebra::Difference.new(@left, @right).body }
 
-  describe 'with similar relations' do
+  describe 'with relations having similar bodies' do
     before do
       @right = @left.dup
     end
@@ -19,7 +19,7 @@ describe 'Veritas::Algebra::Difference#body' do
     end
   end
 
-  describe 'with different relations' do
+  describe 'with relations having different bodies' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
     end

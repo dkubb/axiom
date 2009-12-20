@@ -36,15 +36,30 @@ task :heckle => :verify_rcov do
 
     spec_prefix = spec_dir.join(mod.name.underscore)
 
-    instance_methods = mod.public_instance_methods(false)    |
-                       mod.protected_instance_methods(false) |
-                       mod.private_instance_methods(false)
+    specs = []
 
-    instance_methods.each do |method|
+    spec_methods = mod.public_instance_methods(false)
+
+    other_methods = mod.protected_instance_methods(false) |
+                    mod.private_instance_methods(false)
+
+    if other_methods.include?('initialize')
+      other_methods -= %w[ initialize ]
+      spec_methods << 'initialize'
+    end
+
+    spec_methods.each do |method|
       spec_file = spec_prefix.join(map.file_name(method, mod.name))
       raise "No spec file #{spec_file} for #{mod}##{method}" unless spec_file.file?
+      specs << [ method, [ spec_file ] ]
+    end
 
-      IO.popen("spec --heckle #{mod}##{method} #{spec_file} 2>/dev/null") do |pipe|
+    other_methods.each do |method|
+      specs << [ method, FileList[spec_prefix.join('*_spec.rb')] ]
+    end
+
+    specs.each do |(method, spec_files)|
+      IO.popen("spec --heckle #{mod}##{method} #{spec_files.join(' ')} 2>/dev/null") do |pipe|
         while line = pipe.gets
           case line = line.chomp
             when "The following mutations didn't cause test failures:"
