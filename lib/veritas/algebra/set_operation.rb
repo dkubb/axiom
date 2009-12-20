@@ -18,7 +18,7 @@ module Veritas
       module ClassMethods
         def new(left, right)
           unless left.header == right.header
-            raise HeaderMismatchError, "the headers must be equivalent for #{self}.new"
+            raise InvalidHeaderError, "the headers must be equivalent for #{self}.new"
           end
 
           super
