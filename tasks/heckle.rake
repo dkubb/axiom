@@ -16,10 +16,14 @@ task :heckle => :verify_rcov do
 
   spec_dir = Pathname('spec/unit')
 
-  NameMap::MAP['-'] = { :default => NameMap::MAP['-'] }
+  NameMap::MAP.each do |op, method|
+    next if method.kind_of?(Hash)
+    NameMap::MAP[op] = { :default => method }
+  end
 
   NameMap::MAP['-']['Relation'] = 'difference'
   NameMap::MAP['&']['Relation'] = 'intersect'
+  NameMap::MAP['*']['Relation'] = 'product'
   NameMap::MAP['|']['Relation'] = 'union'
 
   map = NameMap.new

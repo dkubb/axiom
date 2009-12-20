@@ -31,6 +31,12 @@ module Veritas
 
     alias - difference
 
+    def product(other)
+      Algebra::Product.new(self, other)
+    end
+
+    alias * product
+
     def ==(other)
       header == other.header &&
       body   == other.body
