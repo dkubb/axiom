@@ -12,7 +12,7 @@ module Veritas
       end
 
       def header
-        @header ||= left.header + right.header
+        @header ||= left.header | right.header
       end
 
       def body

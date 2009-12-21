@@ -4,14 +4,14 @@ describe 'Veritas::Algebra::Join.new' do
   before do
     @header = [ [ :id, Integer ] ]
 
-    @left = Relation.new(@header, [ [ 1 ] ])
+    @left = Relation.new(@header, [ [ 1 ], [ 2 ] ])
   end
 
   subject { Algebra::Join.new(@left, @right) }
 
-  describe 'with relations having similar headers' do
+  describe 'with relations having headers with common attributes' do
     before do
-      @right = Relation.new(@header, [ [ 2 ] ])
+      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
     end
 
     it { method(:subject).should_not raise_error }
