@@ -37,6 +37,12 @@ module Veritas
 
     alias * product
 
+    def join(other)
+      Algebra::Join.new(self, other)
+    end
+
+    alias + join
+
     def ==(other)
       header == other.header &&
       body   == other.body

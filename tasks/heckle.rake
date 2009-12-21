@@ -23,6 +23,7 @@ task :heckle => :verify_rcov do
 
   NameMap::MAP['-']['Relation'] = 'difference'
   NameMap::MAP['&']['Relation'] = 'intersect'
+  NameMap::MAP['+']['Relation'] = 'join'
   NameMap::MAP['*']['Relation'] = 'product'
   NameMap::MAP['|']['Relation'] = 'union'
 
