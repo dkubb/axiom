@@ -7,7 +7,7 @@ describe 'Veritas::Algebra::Product.new' do
     @left = Relation.new(@header, [ [ 1 ] ])
   end
 
-  subject { Veritas::Algebra::Product.new(@left, @right) }
+  subject { Algebra::Product.new(@left, @right) }
 
   describe 'with relations having similar headers' do
     before do
