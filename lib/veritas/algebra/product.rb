@@ -24,8 +24,8 @@ module Veritas
       def join_bodies
         body = []
 
-        left.body.each do |left_tuple|
-          right.body.each do |right_tuple|
+        left.each do |left_tuple|
+          right.each do |right_tuple|
             body << left_tuple + right_tuple
           end
         end
