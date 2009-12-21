@@ -16,12 +16,12 @@ module Veritas
       end
 
       def body
-        @body ||= multiply_bodies
+        @body ||= join_bodies
       end
 
       private
 
-      def multiply_bodies
+      def join_bodies
         body = []
 
         left.body.each do |left_tuple|
