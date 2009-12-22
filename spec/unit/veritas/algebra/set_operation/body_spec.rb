@@ -9,7 +9,15 @@ describe 'Veritas::Algebra::SetOperation#body' do
     @right = Relation.new(header, [ [ 2 ] ])
   end
 
-  subject { SetOperationSpecs::Object.new(@left, @right).body }
+  describe 'without operation defined' do
+    subject { SetOperationSpecs::Object.new(@left, @right).body }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'SetOperationSpecs::Object.operation must be implemented') }
+    it { method(:subject).should raise_error(NotImplementedError, 'SetOperationSpecs::Object.operation must be implemented') }
+  end
+
+  describe 'with operation defined' do
+    subject { SetOperationSpecs::Union.new(@left, @right).body }
+
+    it { should == [ [ 1 ], [ 2 ] ] }
+  end
 end
