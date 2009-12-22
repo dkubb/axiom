@@ -16,6 +16,7 @@ module Veritas
       def combine_bodies
         body = []
 
+        right     = self.right
         index     = left_index
         offsets   = right_offsets
         remainder = (0..right.header.size-1).to_a - offsets
@@ -25,10 +26,7 @@ module Veritas
           next unless index.key?(key)
 
           join_tuple = right_tuple.values_at(*remainder)
-
-          index[key].each do |left_tuple|
-            body << left_tuple + join_tuple
-          end
+          body.concat self.class.combine_tuples(index[key], join_tuple)
         end
 
         body
@@ -59,6 +57,12 @@ module Veritas
         end
 
         index
+      end
+
+      def self.combine_tuples(left_tuples, join_tuple)
+        left_tuples.map do |left_tuple|
+          left_tuple + join_tuple
+        end
       end
     end # class Product
   end # module Algebra
