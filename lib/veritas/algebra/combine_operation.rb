@@ -11,7 +11,7 @@ module Veritas
         @body ||= combine_bodies
       end
 
-      private
+    private
 
       def combine_bodies
         raise NotImplementedError, "#{self.class.name}#combine_bodies must be implemented"

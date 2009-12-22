@@ -11,7 +11,7 @@ module Veritas
         super
       end
 
-      private
+    private
 
       def combine_bodies
         body = []
