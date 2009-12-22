@@ -5,7 +5,7 @@ module Veritas
 
       def self.new(left, right)
         if (left.header & right.header).empty?
-          raise InvalidHeaderError, "the headers must have common attributes for #{self}.new"
+          raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
         end
 
         super

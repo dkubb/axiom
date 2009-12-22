@@ -5,7 +5,7 @@ module Veritas
 
       def self.new(left, right)
         unless (left.header & right.header).empty?
-          raise InvalidHeaderError, "the headers must be disjointed for #{self}.new"
+          raise InvalidHeaderError, "the headers must be disjointed for #{name}.new"
         end
 
         super

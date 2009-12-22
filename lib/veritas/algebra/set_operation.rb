@@ -18,14 +18,14 @@ module Veritas
       module ClassMethods
         def new(left, right)
           unless left.header == right.header
-            raise InvalidHeaderError, "the headers must be equivalent for #{self}.new"
+            raise InvalidHeaderError, "the headers must be equivalent for #{name}.new"
           end
 
           super
         end
 
         def operation
-          raise NotImplementedError, "#{self}.operation must be implemented"
+          raise NotImplementedError, "#{name}.operation must be implemented"
         end
       end
     end # module SetOperation
