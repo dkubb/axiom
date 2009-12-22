@@ -19,7 +19,7 @@ describe 'Veritas::Algebra::Join.new' do
 
   describe 'with relations having different headers' do
     before do
-      @right = Relation.new([ [ :number, Integer ] ], [ [ 2 ] ])
+      @right = Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ])
     end
 
     it { method(:subject).should raise_error(InvalidHeaderError, 'the headers must have common attributes for Veritas::Algebra::Join.new') }
