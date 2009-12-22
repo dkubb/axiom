@@ -13,23 +13,11 @@ module Veritas
       self
     end
 
-    def union(other)
-      Algebra::Union.new(self, other)
+    def join(other)
+      Algebra::Join.new(self, other)
     end
 
-    alias | union
-
-    def intersect(other)
-      Algebra::Intersection.new(self, other)
-    end
-
-    alias & intersect
-
-    def difference(other)
-      Algebra::Difference.new(self, other)
-    end
-
-    alias - difference
+    alias + join
 
     def product(other)
       Algebra::Product.new(self, other)
@@ -37,11 +25,23 @@ module Veritas
 
     alias * product
 
-    def join(other)
-      Algebra::Join.new(self, other)
+    def intersect(other)
+      Algebra::Intersection.new(self, other)
     end
 
-    alias + join
+    alias & intersect
+
+    def union(other)
+      Algebra::Union.new(self, other)
+    end
+
+    alias | union
+
+    def difference(other)
+      Algebra::Difference.new(self, other)
+    end
+
+    alias - difference
 
     def ==(other)
       header == other.header &&
