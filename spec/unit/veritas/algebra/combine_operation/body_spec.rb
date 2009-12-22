@@ -1,7 +1,7 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Algebra::SetOperation#body' do
+describe 'Veritas::Algebra::CombineOperation#body' do
   before do
     header = [ [ :id, Integer ] ]
 
@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::SetOperation#body' do
     @right = Relation.new(header, [ [ 2 ] ])
   end
 
-  subject { SetOperationSpecs::Object.new(@left, @right).body }
+  subject { CombineOperationSpecs::Object.new(@left, @right).body }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'SetOperationSpecs::Object.operation must be implemented') }
+  it { method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#combine_bodies must be implemented') }
 end

@@ -1,4 +1,5 @@
 require 'veritas/algebra/binary_operation'
+require 'veritas/algebra/combine_operation'
 require 'veritas/algebra/set_operation'
 
 require 'veritas/algebra/difference'

@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Product < Relation
-      include BinaryOperation
+      include CombineOperation
 
       def self.new(left, right)
         unless (left.header & right.header).empty?
@@ -11,17 +11,9 @@ module Veritas
         super
       end
 
-      def header
-        @header ||= left.header | right.header
-      end
-
-      def body
-        @body ||= join_bodies
-      end
-
       private
 
-      def join_bodies
+      def combine_bodies
         body = []
 
         left.each do |left_tuple|
