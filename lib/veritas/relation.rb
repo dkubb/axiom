@@ -47,5 +47,11 @@ module Veritas
       header == other.header &&
       body   == other.body
     end
+
+    def eql?(other)
+      instance_of?(other.class) &&
+      header.eql?(other.header) &&
+      body.eql?(other.body)
+    end
   end # class Relation
 end # module Veritas
