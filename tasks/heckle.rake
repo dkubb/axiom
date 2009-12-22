@@ -61,7 +61,7 @@ task :heckle => :verify_rcov do
 
     specs.sort.each do |(method, spec_files)|
       puts "Heckling #{mod}##{method}"
-      IO.popen("spec --heckle #{mod}##{method} #{spec_files.join(' ')} 2>/dev/null") do |pipe|
+      IO.popen("spec --heckle '#{mod}##{method}' #{spec_files.join(' ')}") do |pipe|
         while line = pipe.gets
           case line = line.chomp
             when "The following mutations didn't cause test failures:"
