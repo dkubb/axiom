@@ -59,7 +59,7 @@ task :heckle => :verify_rcov do
       specs << [ method, FileList[spec_prefix.join('*_spec.rb')] ]
     end
 
-    specs.each do |(method, spec_files)|
+    specs.sort.each do |(method, spec_files)|
       puts "Heckling #{mod}##{method}"
       IO.popen("spec --heckle #{mod}##{method} #{spec_files.join(' ')} 2>/dev/null") do |pipe|
         while line = pipe.gets
