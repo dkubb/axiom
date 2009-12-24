@@ -9,13 +9,13 @@ describe 'Veritas::Relation#==' do
 
   subject { @relation == @other }
 
-  describe 'with equivalent relations' do
+  describe 'with an equivalent relation' do
     before { @other = @relation.dup }
 
     it { should be_true }
   end
 
-  describe 'with different relations' do
+  describe 'with a different relation' do
     before { @other = Relation.new(@header, [ [ 2 ] ]) }
 
     it { should be_false }

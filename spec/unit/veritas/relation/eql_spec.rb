@@ -9,19 +9,19 @@ describe 'Veritas::Relation#eql?' do
 
   subject { @relation.eql?(@other) }
 
-  describe 'with equivalent relations' do
+  describe 'with an equivalent relation' do
     before { @other = @relation.dup }
 
     it { should be_true }
   end
 
-  describe 'with different relations' do
+  describe 'with a different relation' do
     before { @other = Relation.new(@header, [ [ 2 ] ]) }
 
     it { should be_false }
   end
 
-  describe 'with equivalent relations of different classes' do
+  describe 'with an equivalent relation of different classes' do
     before do
       @other = @relation.join(@relation)
     end
@@ -32,5 +32,4 @@ describe 'Veritas::Relation#eql?' do
       @relation.should == @other
     end
   end
-
 end
