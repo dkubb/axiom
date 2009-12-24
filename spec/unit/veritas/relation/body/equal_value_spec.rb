@@ -27,9 +27,23 @@ describe 'Veritas::Relation::Body#==' do
 
   describe 'with a different header' do
     before do
-      @header.should_receive(:==).at_least(:once).and_return(false)
+      @other = Relation::Body.new(mock('Different Header'), @body)
+    end
 
-      @other = Relation::Body.new(@header, @body)
+    it { should be_false }
+  end
+
+  describe 'with an equivalent object responding to #to_set' do
+    before do
+      @other = Set[ [ 1 ] ]
+    end
+
+    it { should be_true }
+  end
+
+  describe 'with a different object responding to #to_set' do
+    before do
+      @other = Set[ [ 2 ] ]
     end
 
     it { should be_false }

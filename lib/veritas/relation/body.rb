@@ -39,7 +39,7 @@ module Veritas
       end
 
       def ==(other)
-        other = new(other)
+        other = new(other) unless kind_of?(other.class)
         header  == other.header &&
         @tuples == other.to_set
       end
