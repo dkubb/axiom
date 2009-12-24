@@ -1,3 +1,5 @@
+require 'veritas/relation/body'
+
 module Veritas
   class Relation
     include Enumerable
@@ -5,7 +7,7 @@ module Veritas
     attr_reader :header, :body
 
     def initialize(header, body)
-      @header, @body = header, body
+      @header, @body = header, Body.new(header, body)
     end
 
     def each(&block)

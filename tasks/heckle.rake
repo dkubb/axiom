@@ -21,11 +21,13 @@ task :heckle => :verify_rcov do
     NameMap::MAP[op] = { :default => method }
   end
 
-  NameMap::MAP['-']['Relation'] = 'difference'
-  NameMap::MAP['&']['Relation'] = 'intersect'
-  NameMap::MAP['+']['Relation'] = 'join'
-  NameMap::MAP['*']['Relation'] = 'product'
-  NameMap::MAP['|']['Relation'] = 'union'
+  %w[ Relation Body ].each do |suffix|
+    NameMap::MAP['-'][suffix] = 'difference'
+    NameMap::MAP['&'][suffix] = 'intersect'
+    NameMap::MAP['+'][suffix] = 'join'
+    NameMap::MAP['*'][suffix] = 'product'
+    NameMap::MAP['|'][suffix] = 'union'
+  end
 
   map = NameMap.new
 
