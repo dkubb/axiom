@@ -8,7 +8,9 @@ describe 'Veritas::Relation::Header#intersect' do
 
   subject { @body.intersect(@other) }
 
-  it { subject.to_ary.should be_empty }
+  it { should be_kind_of(Relation::Header) }
+
+  it { subject.should be_empty }
 end
 
 describe 'Veritas::Relation::Header#&' do

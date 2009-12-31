@@ -10,9 +10,11 @@ describe 'Veritas::Relation::Body#intersect' do
 
   subject { @body.intersect(@other) }
 
+  it { should be_kind_of(Relation::Body) }
+
   it { subject.header.should equal(@header) }
 
-  it { subject.to_set.should == Set[] }
+  it { subject.should == Set[] }
 end
 
 describe 'Veritas::Relation::Body#&' do

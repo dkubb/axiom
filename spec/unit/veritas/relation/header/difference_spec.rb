@@ -11,7 +11,9 @@ describe 'Veritas::Relation::Header#difference' do
 
   subject { @body.difference(@other) }
 
-  it { subject.to_ary.should == [ @attribute1 ] }
+  it { should be_kind_of(Relation::Header) }
+
+  it { subject.should == [ @attribute1 ] }
 end
 
 describe 'Veritas::Relation::Header#-' do

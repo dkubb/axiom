@@ -12,9 +12,11 @@ describe 'Veritas::Relation::Body#difference' do
 
   subject { @body.difference(@other) }
 
+  it { should be_kind_of(Relation::Body) }
+
   it { subject.header.should equal(@header) }
 
-  it { subject.to_set.should == Set[ @tuple1 ] }
+  it { subject.should == Set[ @tuple1 ] }
 end
 
 describe 'Veritas::Relation::Body#-' do

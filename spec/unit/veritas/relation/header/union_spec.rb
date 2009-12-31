@@ -11,7 +11,9 @@ describe 'Veritas::Relation::Header#union' do
 
   subject { @body.union(@other) }
 
-  it { subject.to_ary.should == [ @attribute1, @attribute2 ] }
+  it { should be_kind_of(Relation::Header) }
+
+  it { subject.should == [ @attribute1, @attribute2 ] }
 end
 
 describe 'Veritas::Relation::Header#|' do
