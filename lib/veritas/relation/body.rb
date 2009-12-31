@@ -52,8 +52,8 @@ module Veritas
 
     private
 
-      def new(other)
-        self.class.new(header, other)
+      def new(tuples)
+        self.class.new(header, tuples)
       end
     end
   end
