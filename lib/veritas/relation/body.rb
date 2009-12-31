@@ -39,7 +39,7 @@ module Veritas
       end
 
       def ==(other)
-        other = new(other) unless kind_of?(other.class)
+        other = coerce(other)
         header == other.header &&
         to_set == other.to_set
       end
@@ -54,6 +54,10 @@ module Veritas
 
       def new(tuples)
         self.class.new(header, tuples)
+      end
+
+      def coerce(other)
+        kind_of?(other.class) ? other : new(other)
       end
     end
   end
