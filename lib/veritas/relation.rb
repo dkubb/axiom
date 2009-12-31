@@ -1,4 +1,5 @@
 require 'veritas/relation/body'
+require 'veritas/relation/header'
 
 module Veritas
   class Relation
