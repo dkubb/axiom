@@ -8,7 +8,8 @@ module Veritas
     attr_reader :header, :body
 
     def initialize(header, body)
-      @header, @body = header, Body.new(header, body)
+      @header = Header.new(header)
+      @body   = Body.new(@header, body)
     end
 
     def each(&block)

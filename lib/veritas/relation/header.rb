@@ -12,6 +12,32 @@ module Veritas
         self
       end
 
+      def index(attribute)
+        to_ary.index(attribute)
+      end
+
+      def size
+        to_ary.size
+      end
+
+      def intersect(other)
+        new(to_ary & other.to_ary)
+      end
+
+      alias & intersect
+
+      def union(other)
+        new(to_ary | other.to_ary)
+      end
+
+      alias | union
+
+      def difference(other)
+        new(to_ary - other.to_ary)
+      end
+
+      alias - difference
+
       def to_ary
         @attributes
       end
@@ -23,6 +49,16 @@ module Veritas
       def eql?(other)
         instance_of?(other.class) &&
         to_ary.eql?(other.to_ary)
+      end
+
+      def empty?
+        to_ary.empty?
+      end
+
+    private
+
+      def new(attributes)
+        self.class.new(attributes)
       end
     end
   end
