@@ -7,7 +7,7 @@ module Veritas
 
       attr_reader :header
 
-      def initialize(header, tuples = [])
+      def initialize(header, tuples = Set.new)
         @header, @tuples = header, tuples.to_set
       end
 
