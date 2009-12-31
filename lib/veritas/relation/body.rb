@@ -12,24 +12,24 @@ module Veritas
       end
 
       def each(&block)
-        @tuples.each(&block)
+        to_set.each(&block)
         self
       end
 
       def intersect(other)
-        new(@tuples & other.to_set)
+        new(to_set & other.to_set)
       end
 
       alias & intersect
 
       def union(other)
-        new(@tuples | other.to_set)
+        new(to_set | other.to_set)
       end
 
       alias | union
 
       def difference(other)
-        new(@tuples - other.to_set)
+        new(to_set - other.to_set)
       end
 
       alias - difference
@@ -40,14 +40,14 @@ module Veritas
 
       def ==(other)
         other = new(other) unless kind_of?(other.class)
-        header  == other.header &&
-        @tuples == other.to_set
+        header == other.header &&
+        to_set == other.to_set
       end
 
       def eql?(other)
         instance_of?(other.class) &&
         header.eql?(other.header) &&
-        @tuples.eql?(other.to_set)
+        to_set.eql?(other.to_set)
       end
 
     private
