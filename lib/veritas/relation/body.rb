@@ -17,19 +17,19 @@ module Veritas
       end
 
       def intersect(other)
-        new(to_set & other.to_set)
+        new(to_set & other)
       end
 
       alias & intersect
 
       def union(other)
-        new(to_set | other.to_set)
+        new(to_set | other)
       end
 
       alias | union
 
       def difference(other)
-        new(to_set - other.to_set)
+        new(to_set - other)
       end
 
       alias - difference
