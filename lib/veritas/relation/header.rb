@@ -43,12 +43,12 @@ module Veritas
       end
 
       def ==(other)
-        to_ary == other.to_ary
+        to_set == other.to_set
       end
 
       def eql?(other)
         instance_of?(other.class) &&
-        to_ary.eql?(other.to_ary)
+        self == other
       end
 
       def empty?

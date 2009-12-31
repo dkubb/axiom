@@ -40,4 +40,16 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_false }
   end
+
+  describe 'with equivalent attributes in a different order' do
+    before do
+      @attribute1 = mock('Attribute 1')
+      @attribute2 = mock('Attribute 2')
+
+      @header = Relation::Header.new([ @attribute1, @attribute2 ])
+      @other  = Relation::Header.new([ @attribute2, @attribute1 ])
+    end
+
+    it { should be_true }
+  end
 end
