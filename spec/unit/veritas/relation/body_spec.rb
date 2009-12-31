@@ -9,5 +9,7 @@ describe 'Veritas::Relation#body' do
 
   subject { @relation.body }
 
+  it { should be_kind_of(Relation::Body) }
+
   it { should == @body }
 end

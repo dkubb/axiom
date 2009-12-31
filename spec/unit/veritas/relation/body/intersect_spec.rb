@@ -4,8 +4,8 @@ describe 'Veritas::Relation::Body#intersect' do
   before do
     @header = mock('Header')
 
-    @body  = Relation::Body.new(@header, [ [ 1 ] ])
-    @other = Relation::Body.new(@header, [ [ 2 ] ])
+    @body  = Relation::Body.new(@header, [ mock('Tuple 1') ])
+    @other = Relation::Body.new(@header, [ mock('Tuple 2') ])
   end
 
   subject { @body.intersect(@other) }

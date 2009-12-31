@@ -4,12 +4,13 @@ describe 'Veritas::Relation::Body#to_set' do
   before do
     header = mock('Header')
 
-    @body  = Relation::Body.new(header, [ [ 1 ] ])
+    @tuple = mock('Tuple')
+    @body  = Relation::Body.new(header, [ @tuple ])
   end
 
   subject { @body.to_set }
 
   it { should be_kind_of(Set) }
 
-  it { should == Set[ [ 1 ] ] }
+  it { should == Set[ @tuple ] }
 end

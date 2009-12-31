@@ -24,13 +24,17 @@ describe 'Veritas::Relation::Body#eql?' do
   end
 
   describe 'with an equivalent body' do
-    before { @other = Relation::Body.new(@header, @body) }
+    before do
+      @other = Relation::Body.new(@header, @body)
+    end
 
     it { should be_true }
   end
 
   describe 'with a different body' do
-    before { @other = Relation::Body.new(@header, [ [ 2 ] ]) }
+    before do
+      @other = Relation::Body.new(@header, [ [ 2 ] ])
+    end
 
     it { should be_false }
   end
