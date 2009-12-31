@@ -21,10 +21,10 @@ Simplifies querying of structured data using relational algebra
   new_relation = relation.restrict { |r| r.name.eq('other').and(r.age.gte(21)) }
 
   # projection
-  new_relation = relation.project(:a, :b, :c)  # new_relation has only attributes a, b and c    # perhaps alias to only?
+  new_relation = relation.project(:a, :b, :c)  # new_relation has only attributes a, b and c    # perhaps alias to #only ?
 
   # removal
-  new_relation = relation.remove(:a, :b, :c)   # new_relation has attributes except a, b and c  # perhaps alias to except?
+  new_relation = relation.remove(:a, :b, :c)   # new_relation has attributes except a, b and c  # perhaps alias to #except ?
 
   # product
   new_relation = relation.product(other)  # OR relation * other
