@@ -17,16 +17,11 @@ begin
 
     gem.version = Veritas::VERSION
 
-    gem.rubyforge_project = 'veritas'
-
     gem.add_development_dependency 'rspec', '~> 1.2.9'
     gem.add_development_dependency 'yard',  '~> 0.4.0'
   end
 
   Jeweler::GemcutterTasks.new
-  Jeweler::RubyforgeTasks.new do |rubyforge|
-    rubyforge.doc_task = 'yardoc'
-  end
 
   FileList['tasks/**/*.rake'].each { |task| import task }
 rescue LoadError
