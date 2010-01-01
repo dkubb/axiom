@@ -2,8 +2,8 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#difference' do
   before do
-    @attribute1 = mock('Attribute 1')
-    @attribute2 = mock('Attribute 2')
+    @attribute1 = [ :id,   Integer ]
+    @attribute2 = [ :name, String  ]
 
     @body  = Relation::Header.new([ @attribute1 ])
     @other = Relation::Header.new([ @attribute2 ])

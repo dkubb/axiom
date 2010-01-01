@@ -9,9 +9,9 @@ describe 'Veritas::Relation::Body#==' do
 
   subject { @body == @other }
 
-  describe 'with an equivalent header and equivalent tuples' do
+  describe 'with an equivalent header and tuples' do
     before do
-      @other = Relation::Body.new(@header, @body)
+      @other = @body.dup
     end
 
     it { should be_true }

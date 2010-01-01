@@ -12,7 +12,7 @@ end
 
 describe 'Veritas::Relation::Header#each' do
   before do
-    @attribute = mock('Attribute')
+    @attribute = Attribute.new(:id, Integer)
 
     @tuples = []
     @header = Relation::Header.new([ @attribute ])

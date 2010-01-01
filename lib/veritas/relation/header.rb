@@ -4,7 +4,9 @@ module Veritas
       include Enumerable
 
       def initialize(attributes = [])
-        @attributes = attributes.to_ary
+        @attributes = attributes.to_ary.map do |attribute|
+          Attribute.coerce(attribute)
+        end
       end
 
       def each(&block)
@@ -13,6 +15,7 @@ module Veritas
       end
 
       def index(attribute)
+        attribute = Attribute.coerce(attribute)
         to_ary.index(attribute)
       end
 
@@ -43,7 +46,7 @@ module Veritas
       end
 
       def ==(other)
-        to_set == other.to_set
+        to_set == self.class.coerce(other).to_set
       end
 
       def eql?(other)
@@ -59,6 +62,16 @@ module Veritas
 
       def new(attributes)
         self.class.new(attributes)
+      end
+
+      def self.coerce(header)
+        if self === header
+          header
+        elsif header.respond_to?(:to_ary)
+          new(header)
+        else
+          raise ArgumentError, "object much be either #{self} or respond to #to_ary, but was #{header.class}"
+        end
       end
     end
   end

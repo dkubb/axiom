@@ -3,7 +3,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation::Header#initialize' do
   describe 'with attributes' do
     before do
-      @attribute = mock('Attribute')
+      @attribute = [ :id, Integer ]
     end
 
     subject { Relation::Header.new([ @attribute ]) }

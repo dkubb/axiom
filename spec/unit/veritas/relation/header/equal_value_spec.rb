@@ -2,24 +2,24 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#==' do
   before do
-    @attribute = mock('Attribute')
+    @attribute = [ :id, Integer ]
 
     @header = Relation::Header.new([ @attribute ])
   end
 
   subject { @header == @other }
 
-  describe 'with equivalent attributes' do
+  describe 'with equivalent header' do
     before do
-      @other = Relation::Header.new([ @attribute ])
+      @other = @header.dup
     end
 
     it { should be_true }
   end
 
-  describe 'with different attributes' do
+  describe 'with different header' do
     before do
-      @other = Relation::Header.new([ mock('Different Attribute') ])
+      @other = Relation::Header.new([ [ :name, String ] ])
     end
 
     it { should be_false }
@@ -35,7 +35,7 @@ describe 'Veritas::Relation::Header#==' do
 
   describe 'with a different object responding to #to_ary' do
     before do
-      @other = [ mock('Different Attribute') ]
+      @other = [ [ :name, String ] ]
     end
 
     it { should be_false }
@@ -43,8 +43,8 @@ describe 'Veritas::Relation::Header#==' do
 
   describe 'with equivalent attributes in a different order' do
     before do
-      @attribute1 = mock('Attribute 1')
-      @attribute2 = mock('Attribute 2')
+      @attribute1 = [ :id,   Integer ]
+      @attribute2 = [ :name, String  ]
 
       @header = Relation::Header.new([ @attribute1, @attribute2 ])
       @other  = Relation::Header.new([ @attribute2, @attribute1 ])

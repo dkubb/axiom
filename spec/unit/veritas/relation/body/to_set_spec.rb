@@ -2,10 +2,8 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#to_set' do
   before do
-    header = mock('Header')
-
     @tuple = mock('Tuple')
-    @body  = Relation::Body.new(header, [ @tuple ])
+    @body  = Relation::Body.new(mock('Header'), [ @tuple ])
   end
 
   subject { @body.to_set }

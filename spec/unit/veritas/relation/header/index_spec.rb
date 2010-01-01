@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#index' do
   before do
-    @attribute = mock('Attribute')
+    @attribute = [ :id, Integer ]
     @header    = Relation::Header.new([ @attribute ])
   end
 
@@ -18,7 +18,7 @@ describe 'Veritas::Relation::Header#index' do
 
   describe 'with invalid index' do
     before do
-      @object = mock('Different Attribute')
+      @object = [ :name, String ]
     end
 
     it { should be_nil }

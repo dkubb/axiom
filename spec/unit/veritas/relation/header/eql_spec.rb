@@ -2,12 +2,28 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#eql?' do
   before do
-    @attribute = mock('Attribute')
+    @attribute = [ :id, Integer ]
 
     @header = Relation::Header.new([ @attribute ])
   end
 
   subject { @header.eql?(@other) }
+
+  describe 'with equivalent attributes' do
+    before do
+      @other = @header.dup
+    end
+
+    it { should be_true }
+  end
+
+  describe 'with different attributes' do
+    before do
+      @other = Relation::Header.new([ [ :name, String ] ])
+    end
+
+    it { should be_false }
+  end
 
   describe 'with an equivalent header of different classes' do
     before do
@@ -23,26 +39,10 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with equivalent attributes' do
-    before do
-      @other = Relation::Header.new([ @attribute ])
-    end
-
-    it { should be_true }
-  end
-
-  describe 'with different attributes' do
-    before do
-      @other = Relation::Header.new([ mock('Different Attribute') ])
-    end
-
-    it { should be_false }
-  end
-
   describe 'with equivalent attributes in a different order' do
     before do
-      @attribute1 = mock('Attribute 1')
-      @attribute2 = mock('Attribute 2')
+      @attribute1 = [ :id,   Integer ]
+      @attribute2 = [ :name, String  ]
 
       @header = Relation::Header.new([ @attribute1, @attribute2 ])
       @other  = Relation::Header.new([ @attribute2, @attribute1 ])

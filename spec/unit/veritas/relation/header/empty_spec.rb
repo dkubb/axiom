@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Header#empty?' do
 
   describe 'with attributes' do
     before do
-      @header = Relation::Header.new([ mock('Attribute') ])
+      @header = Relation::Header.new([ [ :id, Integer ] ])
     end
 
     it { should be_false }

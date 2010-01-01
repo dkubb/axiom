@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#to_ary' do
   before do
-    @attribute = mock('Attribute')
+    @attribute = [ :id, Integer ]
     @header    = Relation::Header.new([ @attribute ])
   end
 
