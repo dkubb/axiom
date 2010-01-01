@@ -2,10 +2,10 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#intersect' do
   before do
-    @header = mock('Header')
+    @header = [ [ :id, Integer ] ]
 
-    @body  = Relation::Body.new(@header, [ mock('Tuple 1') ])
-    @other = Relation::Body.new(@header, [ mock('Tuple 2') ])
+    @body  = Relation::Body.new(@header, [ [ 1 ] ])
+    @other = Relation::Body.new(@header, [ [ 2 ] ])
   end
 
   subject { @body.intersect(@other) }

@@ -14,6 +14,8 @@ describe 'Veritas::Algebra::Difference#body' do
       @right = @left.dup
     end
 
+    it { should be_kind_of(Relation::Body) }
+
     it 'should subtract the bodies' do
       should == []
     end
@@ -23,6 +25,8 @@ describe 'Veritas::Algebra::Difference#body' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
     end
+
+    it { should be_kind_of(Relation::Body) }
 
     it 'should subtract the bodies' do
       should == [ [ 1 ] ]

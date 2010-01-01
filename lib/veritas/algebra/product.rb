@@ -22,7 +22,7 @@ module Veritas
           end
         end
 
-        body
+        Body.new(header, body)
       end
     end # class Product
   end # module Algebra

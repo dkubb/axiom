@@ -8,9 +8,7 @@ describe 'Veritas::Algebra::Product' do
     end
 
     it 'should not matter which order the relations are multiplied in' do
-      pending 'Relation should be comparable even if the header order is different' do
-        @left.product(@right).should eql(@right.product(@left))
-      end
+      @left.product(@right).should eql(@right.product(@left))
     end
   end
 end

@@ -18,6 +18,8 @@ describe 'Veritas::Algebra::SetOperation#body' do
   describe 'with operation defined' do
     subject { SetOperationSpecs::Union.new(@left, @right).body }
 
+    it { should be_kind_of(Relation::Body) }
+
     it { should == [ [ 1 ], [ 2 ] ] }
   end
 end

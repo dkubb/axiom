@@ -29,7 +29,7 @@ module Veritas
           body.concat self.class.combine_tuples(index[key], join_tuple)
         end
 
-        body
+        Body.new(header, body)
       end
 
       def left_offsets

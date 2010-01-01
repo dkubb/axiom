@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#==' do
   before do
-    @header = mock('Header')
+    @header = [ [ :id, Integer ] ]
 
     @body = Relation::Body.new(@header, [ [ 1 ] ])
   end
@@ -48,4 +48,20 @@ describe 'Veritas::Relation::Body#==' do
 
     it { should be_false }
   end
+
+  describe 'with an equivalent header and equivalent tuples with attributes in a different order' do
+    before do
+      attribute1 = [ :id,   Integer ]
+      attribute2 = [ :name, String  ]
+
+      header1 = Relation::Header.new([ attribute1, attribute2 ])
+      header2 = Relation::Header.new([ attribute2, attribute1 ])
+
+      @body  = Relation::Body.new(header1, [ [ 1, 'Dan Kubb' ] ])
+      @other = Relation::Body.new(header2, [ [ 'Dan Kubb', 1 ] ])
+    end
+
+    it { should be_true }
+  end
+
 end

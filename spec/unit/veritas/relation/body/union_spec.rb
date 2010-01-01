@@ -2,9 +2,9 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#union' do
   before do
-    @header = mock('Header')
-    @tuple1 = mock('Tuple 1')
-    @tuple2 = mock('Tuple 2')
+    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
+    @tuple1 = [ 1, 'Dan Kubb' ]
+    @tuple2 = [ 2, 'John Doe' ]
 
     @body  = Relation::Body.new(@header, [ @tuple1 ])
     @other = Relation::Body.new(@header, [ @tuple2 ])

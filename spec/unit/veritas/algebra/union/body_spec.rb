@@ -14,6 +14,8 @@ describe 'Veritas::Algebra::Union#body' do
       @right = @left.dup
     end
 
+    it { should be_kind_of(Relation::Body) }
+
     it 'should union the bodies' do
       should == [ [ 1 ] ]
     end
@@ -23,6 +25,8 @@ describe 'Veritas::Algebra::Union#body' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
     end
+
+    it { should be_kind_of(Relation::Body) }
 
     it 'should union the bodies' do
       should == [ [ 1 ], [ 2 ] ]

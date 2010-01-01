@@ -40,14 +40,20 @@ module Veritas
 
       def ==(other)
         other = coerce(other)
-        header == other.header &&
-        to_set == other.to_set
+        header    == other.header &&
+        normalize == other.normalize
       end
 
       def eql?(other)
         instance_of?(other.class) &&
         header.eql?(other.header) &&
-        to_set.eql?(other.to_set)
+        normalize.eql?(other.normalize)
+      end
+
+      def normalize
+        header  = self.header
+        indexes = header.sort.map { |attribute| header.index(attribute) }
+        map { |tuple| tuple.values_at(*indexes) }.to_set
       end
 
     private
