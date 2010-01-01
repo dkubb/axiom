@@ -29,7 +29,7 @@ module Veritas
       elsif attribute.respond_to?(:to_ary)
         new(*attribute)
       else
-        raise ArgumentError, "object much be either #{self} or respond to #to_ary, but was #{attribute.class}"
+        raise ArgumentError, "object must be either #{self} or respond to #to_ary, but was #{attribute.class}"
       end
     end
   end

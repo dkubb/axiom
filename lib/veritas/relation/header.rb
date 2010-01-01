@@ -70,7 +70,7 @@ module Veritas
         elsif header.respond_to?(:to_ary)
           new(header)
         else
-          raise ArgumentError, "object much be either #{self} or respond to #to_ary, but was #{header.class}"
+          raise ArgumentError, "object must be either #{self} or respond to #to_ary, but was #{header.class}"
         end
       end
     end
