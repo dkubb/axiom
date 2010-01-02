@@ -40,20 +40,21 @@ module Veritas
 
       def ==(other)
         other = coerce(other)
-        header    == other.header &&
-        normalize == other.normalize
+        header == other.header &&
+        to_set == other.project(header).to_set
       end
 
       def eql?(other)
         instance_of?(other.class) &&
         header.eql?(other.header) &&
-        normalize.eql?(other.normalize)
+        to_set.eql?(other.project(header).to_set)
       end
 
-      def normalize
-        header  = self.header
-        indexes = header.sort.map { |attribute| header.index(attribute) }
-        map { |tuple| tuple.values_at(*indexes) }.to_set
+      def project(header)
+        original = self.header
+        indexes  = header.map { |attribute| original.index(attribute) }
+        tuples   = map { |tuple| tuple.values_at(*indexes) }
+        self.class.new(header, tuples)
       end
 
     private
