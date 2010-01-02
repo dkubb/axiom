@@ -24,13 +24,7 @@ module Veritas
     end
 
     def self.coerce(attribute)
-      if Attribute === attribute
-        attribute
-      elsif attribute.respond_to?(:to_ary)
-        new(*attribute)
-      else
-        raise ArgumentError, "object must be either #{self} or respond to #to_ary, but was #{attribute.class}"
-      end
+      attribute.kind_of?(Attribute) ? attribute : new(*attribute)
     end
   end # class Attribute
 end # module Veritas

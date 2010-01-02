@@ -24,6 +24,6 @@ describe 'Veritas::Attribute.coerce' do
       @object = { :id => Integer }
     end
 
-    it { method(:subject).should raise_error(ArgumentError, 'object must be either Veritas::Attribute or respond to #to_ary, but was Hash') }
+    it { method(:subject).should raise_error(ArgumentError) }
   end
 end

@@ -65,13 +65,7 @@ module Veritas
       end
 
       def self.coerce(header)
-        if Header === header
-          header
-        elsif header.respond_to?(:to_ary)
-          new(header)
-        else
-          raise ArgumentError, "object must be either #{self} or respond to #to_ary, but was #{header.class}"
-        end
+        header.kind_of?(Header) ? header : new(header)
       end
     end # class Header
   end # class Relation
