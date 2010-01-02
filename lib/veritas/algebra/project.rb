@@ -8,6 +8,10 @@ module Veritas
         @header   = Header.new(@relation.header.values_at(*attributes))
       end
 
+      def body
+        @body ||= relation.body.project(header)
+      end
+
     end # class Project
   end # module Algebra
 end # module Veritas
