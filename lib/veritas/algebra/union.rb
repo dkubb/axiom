@@ -4,7 +4,7 @@ module Veritas
       include SetOperation
 
       def self.operation
-        :|
+        :union
       end
 
     end # class Union
