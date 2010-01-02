@@ -4,8 +4,11 @@ module Veritas
       attr_reader :relation
 
       def initialize(relation, attributes)
-        @relation = relation
-        @header   = Header.new(@relation.header.values_at(*attributes))
+        @relation, @attributes = relation, attributes.to_ary
+      end
+
+      def header
+        @header ||= Header.new(@relation.header.values_at(*@attributes))
       end
 
       def body
