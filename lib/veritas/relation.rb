@@ -17,6 +17,10 @@ module Veritas
       self
     end
 
+    def project(attributes)
+      Algebra::Project.new(self, attributes)
+    end
+
     def join(other)
       Algebra::Join.new(self, other)
     end
