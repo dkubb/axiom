@@ -9,20 +9,54 @@ describe 'Veritas::Relation::Header#==' do
 
   subject { @header == @other }
 
-  describe 'with equivalent header' do
+  describe 'with the same header' do
+    before do
+      @other = @header
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
+  end
+
+  describe 'with an equivalent header' do
     before do
       @other = @header.dup
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
   end
 
-  describe 'with different header' do
+  describe 'with a different header' do
     before do
       @other = Relation::Header.new([ [ :name, String ] ])
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
+  end
+
+  describe 'with an equivalent header of different classes' do
+    before do
+      klass = Class.new(Relation::Header)
+
+      @other = klass.new([ @attribute ])
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
   end
 
   describe 'with an equivalent object responding to #to_ary' do
@@ -31,6 +65,10 @@ describe 'Veritas::Relation::Header#==' do
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
   end
 
   describe 'with a different object responding to #to_ary' do
@@ -39,6 +77,10 @@ describe 'Veritas::Relation::Header#==' do
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
   end
 
   describe 'with equivalent attributes in a different order' do
@@ -51,5 +93,9 @@ describe 'Veritas::Relation::Header#==' do
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @header)
+    end
   end
 end

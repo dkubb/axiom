@@ -24,7 +24,7 @@ module Veritas
     end
 
     def self.coerce(attribute)
-      if self === attribute
+      if Attribute === attribute
         attribute
       elsif attribute.respond_to?(:to_ary)
         new(*attribute)

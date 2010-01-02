@@ -2,24 +2,61 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#==' do
   before do
-    @attribute = Attribute.new(:id, Integer)
+    @name = :id
+    @type = Integer
+
+    @attribute = Attribute.new(@name, @type)
   end
 
   subject { @attribute == @other }
 
-  describe 'with an equivalent relation' do
+  describe 'with the same attribute' do
+    before do
+      @other = @attribute
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @attribute)
+    end
+  end
+
+  describe 'with an equivalent attribute' do
     before do
       @other = @attribute.dup
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @attribute)
+    end
   end
 
-  describe 'with a different relation' do
+  describe 'with a different attribute' do
     before do
       @other = Attribute.new(:name, String)
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == (@other == @attribute)
+    end
+  end
+
+  describe 'with an equivalent attribute of a different class' do
+    before do
+      klass = Class.new(Attribute)
+
+      @other = klass.new(@name, @type)
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @attribute)
+    end
   end
 end

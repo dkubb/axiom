@@ -65,7 +65,7 @@ module Veritas
       end
 
       def self.coerce(header)
-        if self === header
+        if Header === header
           header
         elsif header.respond_to?(:to_ary)
           new(header)

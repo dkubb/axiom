@@ -9,12 +9,28 @@ describe 'Veritas::Relation::Body#==' do
 
   subject { @body == @other }
 
-  describe 'with an equivalent header and tuples' do
+  describe 'with the same body' do
+    before do
+      @other = @body
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @body)
+    end
+  end
+
+  describe 'with an equivalent body' do
     before do
       @other = @body.dup
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      should == (@other == @body)
+    end
   end
 
   describe 'with an equivalent header and different tuples' do
@@ -23,6 +39,10 @@ describe 'Veritas::Relation::Body#==' do
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == (@other == @body)
+    end
   end
 
   describe 'with a different header' do
@@ -31,6 +51,10 @@ describe 'Veritas::Relation::Body#==' do
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == (@other == @body)
+    end
   end
 
   describe 'with an equivalent object responding to #to_set' do
@@ -39,6 +63,12 @@ describe 'Veritas::Relation::Body#==' do
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      pending 'Set#== should call to_set on other' do
+        should == (@other == @body)
+      end
+    end
   end
 
   describe 'with a different object responding to #to_set' do
@@ -47,6 +77,10 @@ describe 'Veritas::Relation::Body#==' do
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == (@other == @body)
+    end
   end
 
   describe 'with an equivalent header and equivalent tuples with attributes in a different order' do
@@ -62,6 +96,9 @@ describe 'Veritas::Relation::Body#==' do
     end
 
     it { should be_true }
-  end
 
+    it 'should be symmetric' do
+      should == (@other == @body)
+    end
+  end
 end

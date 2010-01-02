@@ -10,12 +10,28 @@ describe 'Veritas::Relation#eql?' do
 
   subject { @relation.eql?(@other) }
 
+  describe 'with the same relation' do
+    before do
+      @other = @relation
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@relation)
+    end
+  end
+
   describe 'with an equivalent relation' do
     before do
       @other = @relation.dup
     end
 
     it { should be_true }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@relation)
+    end
   end
 
   describe 'with a different relation' do
@@ -24,6 +40,10 @@ describe 'Veritas::Relation#eql?' do
     end
 
     it { should be_false }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@relation)
+    end
   end
 
   describe 'with an equivalent relation of a different class' do
@@ -35,8 +55,8 @@ describe 'Veritas::Relation#eql?' do
 
     it { should be_false }
 
-    it 'should otherwise be equivalent' do
-      @relation.should == @other
+    it 'should be symmetric' do
+      should == @other.eql?(@relation)
     end
   end
 end
