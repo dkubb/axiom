@@ -22,6 +22,7 @@ module Veritas
           end
         end
       end
+
     end # class Project
   end # module Algebra
 end # module Veritas

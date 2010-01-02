@@ -64,6 +64,7 @@ module Veritas
           left_tuple + join_tuple
         end
       end
+
     end # class Join
   end # module Algebra
 end # module Veritas

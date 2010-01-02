@@ -28,6 +28,7 @@ module Veritas
           raise NotImplementedError, "#{name}.operation must be implemented"
         end
       end
+
     end # module SetOperation
   end # module Algebra
 end # module Veritas

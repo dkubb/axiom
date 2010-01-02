@@ -6,6 +6,7 @@ module Veritas
       def self.operation
         :-
       end
+
     end # class Difference
   end # module Algebra
 end # module Veritas

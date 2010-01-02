@@ -24,6 +24,7 @@ module Veritas
 
         Body.new(header, body)
       end
+
     end # class Product
   end # module Algebra
 end # module Veritas

@@ -26,5 +26,6 @@ module Veritas
     def self.coerce(attribute)
       attribute.kind_of?(Attribute) ? attribute : new(*attribute)
     end
+
   end # class Attribute
 end # module Veritas

@@ -67,6 +67,7 @@ module Veritas
       def self.coerce(header)
         header.kind_of?(Header) ? header : new(header)
       end
+
     end # class Header
   end # class Relation
 end # module Veritas

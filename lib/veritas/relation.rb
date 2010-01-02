@@ -61,5 +61,6 @@ module Veritas
       header.eql?(other.header) &&
       body.eql?(other.body)
     end
+
   end # class Relation
 end # module Veritas
