@@ -46,12 +46,14 @@ module Veritas
       end
 
       def ==(other)
-        other = coerce(other)
+        other  = coerce(other)
+        header = self.header
         header == other.header &&
         to_set == other.project(header).to_set
       end
 
       def eql?(other)
+        header = self.header
         instance_of?(other.class) &&
         header.eql?(other.header) &&
         to_set.eql?(other.project(header).to_set)
