@@ -27,5 +27,15 @@ module Veritas
       attribute.kind_of?(Attribute) ? attribute : new(*attribute)
     end
 
+    def self.name_from(attribute)
+      if attribute.kind_of?(Attribute)
+        attribute.name
+      elsif attribute.respond_to?(:to_ary)
+        attribute.to_ary.first
+      else
+        attribute.to_sym
+      end
+    end
+
   end # class Attribute
 end # module Veritas

@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Header#index' do
 
   subject { @header.index(@object) }
 
-  describe 'with valid index' do
+  describe 'with a known attribute' do
     before do
       @object = @attribute
     end
@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Header#index' do
     it { should == 0 }
   end
 
-  describe 'with invalid index' do
+  describe 'with an unknown attribute' do
     before do
       @object = [ :name, String ]
     end

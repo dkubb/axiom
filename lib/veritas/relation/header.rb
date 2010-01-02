@@ -19,6 +19,15 @@ module Veritas
         to_ary.index(attribute)
       end
 
+      def [](name)
+        name = Attribute.name_from(name)
+        detect { |attribute| attribute.name == name }
+      end
+
+      def values_at(*attributes)
+        attributes.map { |attribute| self[attribute] }
+      end
+
       def size
         to_ary.size
       end
