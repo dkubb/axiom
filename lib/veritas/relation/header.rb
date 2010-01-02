@@ -73,6 +73,6 @@ module Veritas
           raise ArgumentError, "object must be either #{self} or respond to #to_ary, but was #{header.class}"
         end
       end
-    end
-  end
-end
+    end # class Header
+  end # class Relation
+end # module Veritas

@@ -16,6 +16,6 @@ module Veritas
       def combine_bodies
         raise NotImplementedError, "#{self.class.name}#combine_bodies must be implemented"
       end
-    end # module BinaryOperation
+    end # module CombineOperation
   end # module Algebra
 end # module Veritas

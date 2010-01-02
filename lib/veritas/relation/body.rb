@@ -66,6 +66,6 @@ module Veritas
       def coerce(other)
         kind_of?(other.class) ? other : new(other)
       end
-    end
-  end
-end
+    end # class Body
+  end # class Relation
+end # module Veritas

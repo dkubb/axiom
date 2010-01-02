@@ -32,5 +32,5 @@ module Veritas
         raise ArgumentError, "object must be either #{self} or respond to #to_ary, but was #{attribute.class}"
       end
     end
-  end
-end
+  end # class Attribute
+end # module Veritas
