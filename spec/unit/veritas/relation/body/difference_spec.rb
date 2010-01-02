@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Body#difference' do
 
   it { subject.header.should equal(@header) }
 
-  it { subject.should == Set[ @tuple1 ] }
+  it { subject.to_set.should == Set[ @tuple1 ] }
 end
 
 describe 'Veritas::Relation::Body#-' do

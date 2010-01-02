@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Body#intersect' do
 
   it { subject.header.should equal(@header) }
 
-  it { subject.should == Set[] }
+  it { subject.to_set.should == Set[] }
 end
 
 describe 'Veritas::Relation::Body#&' do
