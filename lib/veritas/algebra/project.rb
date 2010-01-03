@@ -8,7 +8,7 @@ module Veritas
       end
 
       def header
-        @header ||= Header.new(@relation.header.values_at(*@attributes))
+        @header ||= relation.header.class.new(relation.header.values_at(*@attributes))
       end
 
       def body
