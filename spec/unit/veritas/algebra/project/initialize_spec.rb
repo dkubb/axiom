@@ -52,10 +52,6 @@ describe 'Veritas::Algebra::Project#initialize' do
   describe 'with no attributes' do
     subject { Algebra::Project.new(@relation) }
 
-    before do
-      @attributes = [ :id ]
-    end
-
     it 'should set the relation' do
       subject.relation.should equal(@relation)
     end
