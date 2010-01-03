@@ -8,6 +8,10 @@ module Veritas
       @name, @type = name.to_sym, type
     end
 
+    def rename(name)
+      self.class.new(name, type)
+    end
+
     def <=>(other)
       other = self.class.coerce(other)
       [ name.to_s, type ] <=> [ other.name.to_s, other.type ]

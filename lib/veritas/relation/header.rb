@@ -32,6 +32,13 @@ module Veritas
         to_ary.size
       end
 
+      def rename(aliases)
+        new map { |attribute|
+          name = aliases[attribute.name]
+          name ? attribute.rename(name) : attribute
+        }
+      end
+
       def intersect(other)
         new(to_ary & other)
       end

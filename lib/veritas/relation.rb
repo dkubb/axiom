@@ -21,6 +21,10 @@ module Veritas
       Algebra::Project.new(self, attributes)
     end
 
+    def rename(aliases)
+      Algebra::Rename.new(self, aliases)
+    end
+
     def join(other)
       Algebra::Join.new(self, other)
     end
