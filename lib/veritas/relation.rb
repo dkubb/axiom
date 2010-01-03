@@ -21,6 +21,10 @@ module Veritas
       Algebra::Project.new(self, attributes)
     end
 
+    def remove(attributes)
+      Algebra::Project.new(self, header - header.values_at(*attributes))
+    end
+
     def rename(aliases)
       Algebra::Rename.new(self, aliases)
     end
