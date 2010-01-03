@@ -20,7 +20,7 @@ describe 'Veritas::Relation::Header#each' do
 
   subject { @header.each { |tuple| @tuples << tuple } }
 
-  it { should be_equal(@header) }
+  it { should equal(@header) }
 
   it 'should yield each tuple in the body' do
     method(:subject).should change { @tuples.dup }.from([]).to([ @attribute ])

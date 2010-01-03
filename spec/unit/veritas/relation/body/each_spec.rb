@@ -24,7 +24,7 @@ describe 'Veritas::Relation::Body#each' do
 
   subject { @body.each { |tuple| @tuples << tuple } }
 
-  it { should be_equal(@body) }
+  it { should equal(@body) }
 
   it 'should yield each tuple in the body' do
     method(:subject).should change { @tuples.dup }.from([]).to([ [ 1 ] ])
