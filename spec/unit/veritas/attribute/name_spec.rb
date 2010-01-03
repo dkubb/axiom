@@ -4,7 +4,7 @@ describe 'Veritas::Attribute#name' do
   before do
     @name = :id
 
-    @attribute = Veritas::Attribute.new(@name, Integer)
+    @attribute = Attribute.new(@name, Integer)
   end
 
   subject { @attribute.name }
