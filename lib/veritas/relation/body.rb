@@ -56,7 +56,7 @@ module Veritas
         header = self.header
         instance_of?(other.class) &&
         header.eql?(other.header) &&
-        to_set.eql?(other.project(header).to_set)
+        to_set == other.project(header).to_set
       end
 
     private

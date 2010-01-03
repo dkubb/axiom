@@ -67,7 +67,7 @@ module Veritas
 
       def eql?(other)
         instance_of?(other.class) &&
-        to_set.eql?(other.to_set)
+        to_set == other.to_set
       end
 
       def empty?
