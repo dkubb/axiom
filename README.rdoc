@@ -53,8 +53,8 @@ Simplifies querying of structured data using relational algebra
 
   # NOTE: a relation is Enumerable
 
-  # returns read-only Set that represents attributes of the relation
-  attributes = relation.attributes
+  # returns read-only Set that represents header of the relation
+  header = relation.header
 
   # NOTE: each attribute is an object representing the name, type object, and possibly other constraints
 
