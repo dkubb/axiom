@@ -55,10 +55,10 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   # sort by specific attributes
   new_relation = relation.sort_by { |r| [ -r.age, r.name ] }
 
-  # limiting  (should generally be disallowed if not sorted, or if restriction uses a candidate key in an eq match)
+  # limiting  (only allowed if ordered)
   new_relation = relation.limit(10)
 
-  # offset
+  # offset    (only allowed if ordered)
   new_relation = relation.offset(0)
 
   relation = relation.each { |tuple| ... }  # each tuple is read-only (and Struct-like or Hash-like? if Hash-like is the key a Symbol or an Attribute object?)
