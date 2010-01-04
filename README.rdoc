@@ -12,7 +12,7 @@ The first phase of this project will be to implement all the operations listed b
 
 The second phase of this project will be to add an RDBMS based engine, and move the in-memory matching to it's own engine.  I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching.  I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
 
-The third phase of this project will be to add a few NoSQL engines like, and add then look at writing a DataMapper adapter that translates Query objects into Veritas relations.  I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
+The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations.  I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
 
 == Usage
 
