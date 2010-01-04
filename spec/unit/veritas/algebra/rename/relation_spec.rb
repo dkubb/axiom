@@ -10,7 +10,5 @@ describe 'Veritas::Algebra::Rename#relation' do
 
   subject { @rename.relation }
 
-  it { should be_kind_of(Relation) }
-
   it { should equal(@relation) }
 end

@@ -10,7 +10,5 @@ describe 'Veritas::Algebra::Product#relation' do
 
   subject { @projection.relation }
 
-  it { should be_kind_of(Relation) }
-
   it { should equal(@relation) }
 end

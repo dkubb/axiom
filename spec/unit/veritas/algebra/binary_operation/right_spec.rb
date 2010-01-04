@@ -11,7 +11,5 @@ describe 'Veritas::Algebra::BinaryOperation#right' do
 
   subject { BinaryOperationSpecs::Object.new(@left, @right).right }
 
-  it { should be_kind_of(Relation)  }
-
   it { should equal(@right) }
 end
