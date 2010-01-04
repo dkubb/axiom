@@ -8,35 +8,35 @@ Simplifies querying of structured data using relational algebra
 
   # Relational Operators
 
-  # union
-  new_relation = relation.union(other)         # OR relation | other
-
-  # intersection
-  new_relation = relation.intersect(other)     # OR relation & other
-
-  # difference
-  new_relation = relation.difference(other)    # OR relation - other
-
-  # restriction
-  new_relation = relation.restrict { |r| r.name.eq('other').and(r.age.gte(21)) }
-
   # projection
   new_relation = relation.project(:a, :b, :c)  # new_relation has only attributes a, b and c
 
   # removal
   new_relation = relation.remove(:a, :b, :c)   # new_relation has attributes except a, b and c
 
-  # product
-  new_relation = relation.product(other)  # OR relation * other
+  # rename
+  new_relation = relation.rename(:a => :b, :c => :d)
+
+  # natural join
+  new_relation = relation.join(other)          # OR relation + other
 
   # theta-join
   new_relation = relation.join(other) { |r,o| r.name.eq(o.name) }
 
-  # natural join
-  new_relation = relation.join(other)
+  # product
+  new_relation = relation.product(other)       # OR relation * other
 
-  # rename
-  new_relation = relation.rename(:a => :b, :c => :d)
+  # intersection
+  new_relation = relation.intersect(other)     # OR relation & other
+
+  # union
+  new_relation = relation.union(other)         # OR relation | other
+
+  # difference
+  new_relation = relation.difference(other)    # OR relation - other
+
+  # restriction
+  new_relation = relation.restrict { |r| r.name.eq('other').and(r.age.gte(21)) }
 
   # Non-Relational Operators
 
