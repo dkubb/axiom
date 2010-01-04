@@ -52,6 +52,15 @@
   * If the Restriction ends up containing only a single "true"
     object, then it should factor itself out since it can match
     everything.
+  * For Equality, if left and right are constants, evaluate the predicate
+    and return the true/false value.
+  * For Equality, if left and right are the same attribute, return true
+  * After optimizing a relation, set @optimized to whatever the return
+    value is, and use @optimized ||= in #optimize to prevent duplicate
+    effort.
+  * In the optimized relation, use "relation.optimized = self" to prevent
+    an already optimized relation from performing any redundant
+    optimizations.
   * Should optimize the "contained" Relation objects first, and then
     compare them:
 
