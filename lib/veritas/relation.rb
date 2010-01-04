@@ -29,6 +29,10 @@ module Veritas
       Algebra::Rename.new(self, aliases)
     end
 
+    def restrict(&block)
+      Algebra::Restriction.new(self, &block)
+    end
+
     def join(other)
       Algebra::Join.new(self, other)
     end
