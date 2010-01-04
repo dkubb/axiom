@@ -3,7 +3,7 @@ module Veritas
     class Project < Relation
       attr_reader :relation
 
-      def initialize(relation, attributes = [])
+      def initialize(relation, attributes)
         @relation, @attributes = relation, attributes.to_ary
       end
 

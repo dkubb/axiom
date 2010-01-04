@@ -48,16 +48,4 @@ describe 'Veritas::Algebra::Project#initialize' do
       subject.header.should == [ [ :id, Integer ] ]
     end
   end
-
-  describe 'with no attributes' do
-    subject { Algebra::Project.new(@relation) }
-
-    it 'should set the relation' do
-      subject.relation.should equal(@relation)
-    end
-
-    it 'should set the header' do
-      subject.header.should be_empty
-    end
-  end
 end
