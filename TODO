@@ -1,0 +1,74 @@
+* Add Relation#restrict
+  * Add OR, OR, NOT predicates
+  * Add lt, lte, gt, gte, eq, ne, include? predicates
+    * Think about how these apply to specific types.  It should be possible
+      to define these on the types, rather than abstract, so that if a
+      type did not support, say >=, then it would raise NoMethodError.
+      - Or perhaps each type has methods defined that return the abstract
+        predicate wrapping self and the arguments passed in.
+
+* Remove Relation#block accessor once conditions can be extracted from
+  the Proc, and the resulting #body tested in initialize_spec.rb
+
+* Figure out how best to sort/order the relation
+  * Create Algebra::Ordered object
+
+* Add Relation#limit and Relation#offset
+  * Depend on Algebra::Ordered object being available
+
+* Add Relation#[] to delegate to limit/offset
+  * Should accept a range, offset/limit, or offset and *always return
+    a Relation
+* Add Relation#first, #last and #at to delegate to #[]
+
+* Add benchmarks for each Relation operation
+  * Will allow git bisect to gather results for each iteration, and
+    plot performance over time
+  * Make sure the memory usage for each method is measured, as well
+    as object allocation, and GC.
+  * Make sure they can be run with each system rvm supports
+  * Output the results in a machine readable format
+    * Output the Ruby version/patch number with each result
+    * Output the Engine name, which is currently named just "naive",
+      referring to the in-memory naive processing approach I am
+      using now.
+      * Measurements will always be taken using every available engine.
+  * Look at memory and speed profiling tools
+
+* Add Tuple object
+  * Refactor internals to use the Tuple object
+  * See if Body can delegate some of it's heavy lifting to it
+  * See if the Relation object can become a Struct class, and
+    the Tuple objects are it's instances.  Will still need a
+    reference to the Header and Body to contain the instances.  Should
+    be more memory efficient than the current approach, but may be
+    clumsy.  Experiment to see if it can be done elegantly.
+
+* Add #optimize method to each Relation subclass
+  * Relation#optimize should just return self
+  * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
+  * If an OR branch always returns true, then the whole operation
+    returns true, so return an object that represents a true match.
+  * If the Restriction ends up containing only a single "true"
+    object, then it should factor itself out since it can match
+    everything.
+  * Should optimize the "contained" Relation objects first, and then
+    compare them:
+
+      def optimize
+        relation = relation.optimize
+        case relation
+          when Join
+            # ...
+        end
+      end
+
+* Move logic from Join#combine_bodies and Product#combine_bodies into Body
+  * should pass enough information that the Body method could either
+    perform the operation in-memory OR generate a native query to
+    carry it out.
+  * review other classes to see if methods could be pushed down to
+    Body or Header.
+
+* Update Relation#join to accept an optional restriction
+  * should just wrap a Join in a Restriction object
