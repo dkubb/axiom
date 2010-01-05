@@ -1,11 +1,13 @@
+* Add Relation::Body#empty?
+  * Update specs that do body.should == [] to body.should be_empty
+* Add Relation#empty? and have it delegate to body.empty?
+
+* Add Attribute::String and other subclasses for each primitive
+
 * Add Relation#restrict
   * Add OR, OR, NOT predicates
-  * Add lt, lte, gt, gte, eq, ne, include? predicates
-    * Think about how these apply to specific types.  It should be possible
-      to define these on the types, rather than abstract, so that if a
-      type did not support, say >=, then it would raise NoMethodError.
-      - Or perhaps each type has methods defined that return the abstract
-        predicate wrapping self and the arguments passed in.
+  * Add lt, lte, gt, gte, eq, ne, include? predicate objects
+  * Add methods for each predicate to the applicable attribute subclasses
 
 * Remove Relation#block accessor once conditions can be extracted from
   the Proc, and the resulting #body tested in initialize_spec.rb
