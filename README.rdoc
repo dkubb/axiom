@@ -21,10 +21,10 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   # Relational Operators
 
   # projection
-  new_relation = relation.project(:a, :b, :c)  # new_relation has only attributes a, b and c
+  new_relation = relation.project([ :a, :b, :c ])  # new_relation has only attributes a, b and c
 
   # removal
-  new_relation = relation.remove(:a, :b, :c)   # new_relation has attributes except a, b and c
+  new_relation = relation.remove([ :a, :b, :c ])   # new_relation has attributes except a, b and c
 
   # rename
   new_relation = relation.rename(:a => :b, :c => :d)
@@ -61,11 +61,10 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   # offset    (only allowed if ordered)
   new_relation = relation.offset(0)
 
-  relation = relation.each { |tuple| ... }  # each tuple is read-only (and Struct-like or Hash-like? if Hash-like is the key a Symbol or an Attribute object?)
-
   # NOTE: a relation is Enumerable
+  relation = relation.each { |tuple| ... }
 
-  # returns read-only Set that represents header of the relation
+  # returns a Set that represents relation header
   header = relation.header
 
   # NOTE: each attribute is an object representing the name, type object, and possibly other constraints
