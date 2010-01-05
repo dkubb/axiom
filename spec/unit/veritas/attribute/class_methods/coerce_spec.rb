@@ -18,12 +18,4 @@ describe 'Veritas::Attribute.coerce' do
 
     it { should eql(Attribute.new(:id, Integer)) }
   end
-
-  describe 'when the object is not an Attribute and does not respond to #to_ary' do
-    before do
-      @object = { :id => Integer }
-    end
-
-    it { method(:subject).should raise_error(ArgumentError) }
-  end
 end

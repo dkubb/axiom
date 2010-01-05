@@ -3,7 +3,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation::Body#to_set' do
   before do
     header = Relation::Header.new([ [ :id, Integer ] ])
-    @tuple = mock('Tuple')
+    @tuple = Tuple.new(header, [ 1 ])
 
     @body = Relation::Body.new(header, [ @tuple ])
   end

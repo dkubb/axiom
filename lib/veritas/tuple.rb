@@ -1,0 +1,45 @@
+module Veritas
+  class Tuple
+    attr_reader :header
+
+    def initialize(header, data)
+      @header, @data = header, data.to_ary
+    end
+
+    def values_at(*attributes)
+      to_ary.values_at(*attributes)
+    end
+
+    def to_ary
+      @data
+    end
+
+    def ==(other)
+      other = self.class.coerce(header, other)
+      header == other.header &&
+      to_ary == other.to_ary
+    end
+
+    def eql?(other)
+      instance_of?(other.class) &&
+      header.eql?(other.header) &&
+      to_ary.eql?(other.to_ary)
+    end
+
+    def hash
+      header.hash ^ to_ary.hash
+    end
+
+    def inspect
+      to_ary.inspect
+    end
+
+    def self.coerce(header, tuple)
+      if tuple.kind_of?(Tuple) && tuple.header.equal?(header)
+        tuple
+      else
+        new(header, tuple)
+      end
+    end
+  end
+end
