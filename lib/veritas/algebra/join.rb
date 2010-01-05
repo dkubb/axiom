@@ -59,12 +59,6 @@ module Veritas
         index
       end
 
-      def self.combine_tuples(left_tuples, join_tuple)
-        left_tuples.map do |left_tuple|
-          left_tuple + join_tuple
-        end
-      end
-
     end # class Join
   end # module Algebra
 end # module Veritas

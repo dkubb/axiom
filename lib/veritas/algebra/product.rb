@@ -16,10 +16,8 @@ module Veritas
       def combine_bodies
         body = []
 
-        left.each do |left_tuple|
-          right.each do |right_tuple|
-            body << left_tuple + right_tuple
-          end
+        right.each do |right_tuple|
+          body.concat self.class.combine_tuples(left, right_tuple)
         end
 
         Body.new(header, body)
