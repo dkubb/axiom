@@ -17,6 +17,10 @@ module Veritas
         self
       end
 
+      def empty?
+        to_set.empty?
+      end
+
       def project(header)
         self.class.new(header, map { |tuple| tuple.project(header) })
       end

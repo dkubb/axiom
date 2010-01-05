@@ -1,7 +1,3 @@
-* Add Relation::Body#empty?
-  * Update specs that do body.should == [] to body.should be_empty
-* Add Relation#empty? and have it delegate to body.empty?
-
 * Add Attribute::String and other subclasses for each primitive
 
 * Add Relation#restrict

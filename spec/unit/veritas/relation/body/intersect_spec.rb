@@ -14,5 +14,5 @@ describe 'Veritas::Relation::Body#intersect' do
 
   it { subject.header.should equal(@header) }
 
-  it { should == [] }
+  it { should be_empty }
 end

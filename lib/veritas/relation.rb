@@ -17,6 +17,10 @@ module Veritas
       self
     end
 
+    def empty?
+      body.empty?
+    end
+
     def project(attributes)
       Algebra::Project.new(self, attributes)
     end
