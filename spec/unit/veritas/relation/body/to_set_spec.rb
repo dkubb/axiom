@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Body#to_set' do
 
   subject { @body.to_set }
 
-  it { should be_kind_of(Set) }
+  it { should be_instance_of(Set) }
 
   it { should == Set[ @tuple ] }
 end

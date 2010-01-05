@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Header#to_ary' do
 
   subject { @header.to_ary }
 
-  it { should be_kind_of(Array) }
+  it { should be_instance_of(Array) }
 
   it { should == [ @attribute ] }
 end
