@@ -1,4 +1,17 @@
-* Add Attribute::String and other subclasses for each primitive
+* Add Attribute subclasses: (tentative)
+  * Attribute::Boolean
+  * Attribute::String
+  * Attribute::Text
+  * Attribute::Binary
+  * Attribute::Numeric (abstract for Float, Integer, Decimal)
+  * Attribute::Float
+  * Attribute::Integer
+  * Attribute::Decimal
+  * Attribute::DateTime
+  * Attribute::Date
+  * Attribute::Time
+  * Attribute::Object (abstract for every attribute)
+  * Attribute::Class
 
 * Add Relation#restrict
   * Add OR, OR, NOT predicates
