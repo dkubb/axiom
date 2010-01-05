@@ -18,9 +18,3 @@ describe 'Veritas::Relation::Body#difference' do
 
   it { should == Set[ @tuple1 ] }
 end
-
-describe 'Veritas::Relation::Body#-' do
-  it 'is an alias to #difference' do
-    Relation::Body.instance_method(:-).should == Relation::Body.instance_method(:difference)
-  end
-end

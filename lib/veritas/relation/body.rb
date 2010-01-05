@@ -27,19 +27,13 @@ module Veritas
         new(to_set & other)
       end
 
-      alias & intersect
-
       def union(other)
         new(to_set | other)
       end
 
-      alias | union
-
       def difference(other)
         new(to_set - other)
       end
-
-      alias - difference
 
       def to_set
         @tuples

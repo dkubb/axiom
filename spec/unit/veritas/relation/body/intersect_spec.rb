@@ -16,9 +16,3 @@ describe 'Veritas::Relation::Body#intersect' do
 
   it { should == [] }
 end
-
-describe 'Veritas::Relation::Body#&' do
-  it 'is an alias to #intersect' do
-    Relation::Body.instance_method(:&).should == Relation::Body.instance_method(:intersect)
-  end
-end

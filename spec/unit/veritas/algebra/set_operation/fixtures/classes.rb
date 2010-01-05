@@ -7,7 +7,7 @@ module SetOperationSpecs
     include Veritas::Algebra::SetOperation
 
     def self.operation
-      :|
+      :union
     end
   end
 end

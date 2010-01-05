@@ -18,9 +18,3 @@ describe 'Veritas::Relation::Body#union' do
 
   it { should == Set[ @tuple1, @tuple2 ] }
 end
-
-describe 'Veritas::Relation::Body#|' do
-  it 'is an alias to #union' do
-    Relation::Body.instance_method(:|).should == Relation::Body.instance_method(:union)
-  end
-end
