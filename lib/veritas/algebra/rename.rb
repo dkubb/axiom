@@ -8,11 +8,22 @@ module Veritas
       end
 
       def header
-        @header ||= relation.header.rename(@aliases)
+        @header ||= rename_header
       end
 
       def body
-        @body ||= relation.body.class.new(header, relation.body)
+        @body ||= rename_body
+      end
+
+    private
+
+      def rename_header
+        relation.header.rename(@aliases)
+      end
+
+      def rename_body
+        body = relation.body
+        body.class.new(header, body)
       end
 
     end # class Rename

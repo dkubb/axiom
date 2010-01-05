@@ -26,6 +26,7 @@ module Veritas
     end
 
     def remove(attributes)
+      header = self.header
       Algebra::Project.new(self, header - header.project(attributes))
     end
 

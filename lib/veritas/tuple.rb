@@ -21,15 +21,16 @@ module Veritas
     end
 
     def ==(other)
+      header = self.header
       other = self.class.coerce(header, other)
       header == other.header &&
-      to_ary == other.to_ary
+      to_ary == other.project(header).to_ary
     end
 
     def eql?(other)
       instance_of?(other.class) &&
       header.eql?(other.header) &&
-      to_ary.eql?(other.to_ary)
+      to_ary.eql?(other.project(header).to_ary)
     end
 
     def hash
