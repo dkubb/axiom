@@ -22,7 +22,7 @@ module Veritas
     end
 
     def remove(attributes)
-      Algebra::Project.new(self, header - header.values_at(*attributes))
+      Algebra::Project.new(self, header - header.project(attributes))
     end
 
     def rename(aliases)

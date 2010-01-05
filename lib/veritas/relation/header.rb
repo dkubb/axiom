@@ -14,6 +14,10 @@ module Veritas
         self
       end
 
+      def size
+        to_ary.size
+      end
+
       def index(attribute)
         attribute = Attribute.coerce(attribute)
         to_ary.index(attribute)
@@ -24,12 +28,8 @@ module Veritas
         detect { |attribute| attribute.name == name }
       end
 
-      def values_at(*attributes)
-        attributes.map { |attribute| self[attribute] }
-      end
-
-      def size
-        to_ary.size
+      def project(attributes)
+        new(attributes.map { |attribute| self[attribute] })
       end
 
       def rename(aliases)
