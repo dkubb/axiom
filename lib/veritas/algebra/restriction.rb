@@ -6,6 +6,7 @@ module Veritas
       def initialize(relation, &block)
         @relation, @block = relation, block
       end
+
     end # class Restriction
   end # module Algebra
 end # module Veritas

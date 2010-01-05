@@ -47,5 +47,6 @@ module Veritas
         new(header, tuple)
       end
     end
-  end
-end
+
+  end # class Tuple
+end # module Veritas
