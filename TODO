@@ -14,9 +14,11 @@
   * Attribute::Class
 
 * Add Relation#restrict
-  * Add OR, OR, NOT predicates
   * Add lt, lte, gt, gte, eq, ne, include? predicate objects
-  * Add methods for each predicate to the applicable attribute subclasses
+  * Add methods for each predicate to the applicable attribute
+    subclasses.
+  * Add OR, OR, NOT predicates, and add methods to the predicate
+    base class to allow any predicate to chain with them.
 
 * Remove Relation#block accessor once conditions can be extracted from
   the Proc, and the resulting #body tested in initialize_spec.rb
