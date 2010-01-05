@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Body#union' do
 
   it { subject.header.should equal(@header) }
 
-  it { subject.to_set.should == Set[ @tuple1, @tuple2 ] }
+  it { should == Set[ @tuple1, @tuple2 ] }
 end
 
 describe 'Veritas::Relation::Body#|' do

@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Header#union' do
 
   it { should be_kind_of(Relation::Header) }
 
-  it { subject.should == [ @attribute1, @attribute2 ] }
+  it { should == [ @attribute1, @attribute2 ] }
 end
 
 describe 'Veritas::Relation::Header#|' do

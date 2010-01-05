@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#eql?' do
   before do
-    @header = [ [ :id, Integer ] ]
+    @header = Relation::Header.new([ [ :id, Integer ] ])
 
     @body = Relation::Body.new(@header, [ [ 1 ] ])
   end
@@ -47,7 +47,8 @@ describe 'Veritas::Relation::Body#eql?' do
 
   describe 'with a different header' do
     before do
-      @other = Relation::Body.new(mock('Different Header'), @body)
+      header = Relation::Header.new([ [ :name, String ] ])
+      @other = Relation::Body.new(header, @body)
     end
 
     it { should be_false }

@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#initialize' do
   before do
-    @header = mock('Header')
+    @header = Relation::Header.new([ [ :id, Integer ] ])
   end
 
   describe 'with a header' do
@@ -22,6 +22,6 @@ describe 'Veritas::Relation::Body#initialize' do
 
     it { subject.header.should equal(@header) }
 
-    it { subject.to_set.should == Set[ [ 1 ] ] }
+    it { should == [ [ 1 ] ] }
   end
 end

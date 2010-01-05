@@ -3,11 +3,10 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation::Body#project' do
   before do
     header = Relation::Header.new([ [ :name, String ], [ :id, Integer ] ])
-    body   = [ [ 'Dan Kubb', 1 ] ]
 
     @reversed_header = Relation::Header.new(header.to_a.reverse)
 
-    @body  = Relation::Body.new(header, body)
+    @body = Relation::Body.new(header, [ [ 'Dan Kubb', 1 ] ])
   end
 
   subject { @body.project(@reversed_header) }
@@ -16,5 +15,10 @@ describe 'Veritas::Relation::Body#project' do
 
   it { subject.header.should equal(@reversed_header) }
 
-  it { subject.to_set.should == Set[ [ 1, 'Dan Kubb' ] ] }
+  it { should == [ [ 1, 'Dan Kubb' ] ] }
+
+  # TODO: remove this once Set is no longer used inside the body because
+  # it alters the == method, so that eql? is used to match each tuple,
+  # rather than ==, which will properly coerce the Array into a Tuple.
+  it { subject.to_a.should == [ [ 1, 'Dan Kubb' ] ] }
 end

@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#intersect' do
   before do
-    @header = [ [ :id, Integer ] ]
+    @header = Relation::Header.new([ [ :id, Integer ] ])
 
     @body  = Relation::Body.new(@header, [ [ 1 ] ])
     @other = Relation::Body.new(@header, [ [ 2 ] ])
@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Body#intersect' do
 
   it { subject.header.should equal(@header) }
 
-  it { subject.to_set.should == Set[] }
+  it { should == [] }
 end
 
 describe 'Veritas::Relation::Body#&' do

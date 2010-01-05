@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body' do
   before do
-    @header = mock('Header')
+    @header = Relation::Header.new([ [ :id, Integer ] ])
   end
 
   subject { Relation::Body.new(@header, [ [ 1 ] ]) }
@@ -16,7 +16,7 @@ end
 
 describe 'Veritas::Relation::Body#each' do
   before do
-    header = mock('Header')
+    header = Relation::Header.new([ [ :id, Integer ] ])
 
     @tuples = []
     @body   = Relation::Body.new(header, [ [ 1 ] ])

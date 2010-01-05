@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Body#difference' do
   before do
-    @header = [ [ :id, Integer ] ]
+    @header = Relation::Header.new([ [ :id, Integer ] ])
     @tuple1 = [ 1 ]
     @tuple2 = [ 2 ]
 
@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Body#difference' do
 
   it { subject.header.should equal(@header) }
 
-  it { subject.to_set.should == Set[ @tuple1 ] }
+  it { should == Set[ @tuple1 ] }
 end
 
 describe 'Veritas::Relation::Body#-' do

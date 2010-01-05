@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Header#intersect' do
 
   it { should be_kind_of(Relation::Header) }
 
-  it { subject.should be_empty }
+  it { should be_empty }
 end
 
 describe 'Veritas::Relation::Header#&' do

@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Header#difference' do
 
   it { should be_kind_of(Relation::Header) }
 
-  it { subject.should == [ @attribute1 ] }
+  it { should == [ @attribute1 ] }
 end
 
 describe 'Veritas::Relation::Header#-' do
