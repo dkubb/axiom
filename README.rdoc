@@ -33,7 +33,9 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.join(other)          # OR relation + other
 
   # theta-join
-  new_relation = relation.join(other) { |r,o| r.name.eq(o.name) }
+  new_relation = relation.join(other) { |r,o| r.age.gte(o.age) }
+
+  # NOTE: theta-join is effectively restricting a product of the relations
 
   # product
   new_relation = relation.product(other)       # OR relation * other
