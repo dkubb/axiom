@@ -18,10 +18,7 @@ module Veritas
       end
 
       def project(header)
-        original = self.header
-        indexes  = header.map { |attribute| original.index(attribute) }
-        tuples   = map { |tuple| tuple.values_at(*indexes) }
-        self.class.new(header, tuples)
+        self.class.new(header, map { |tuple| tuple.project(header) })
       end
 
       def intersect(other)

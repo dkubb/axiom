@@ -10,6 +10,12 @@ module Veritas
       to_ary.values_at(*attributes)
     end
 
+    def project(header)
+      original = self.header
+      indexes  = header.map { |attribute| original.index(attribute) }
+      self.class.new(header, values_at(*indexes))
+    end
+
     def to_ary
       @data
     end

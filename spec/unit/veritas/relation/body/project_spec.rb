@@ -16,9 +16,4 @@ describe 'Veritas::Relation::Body#project' do
   it { subject.header.should equal(@reversed_header) }
 
   it { should == [ [ 1, 'Dan Kubb' ] ] }
-
-  # TODO: remove this once Set is no longer used inside the body because
-  # it alters the == method, so that eql? is used to match each tuple,
-  # rather than ==, which will properly coerce the Array into a Tuple.
-  it { subject.to_a.should == [ [ 1, 'Dan Kubb' ] ] }
 end
