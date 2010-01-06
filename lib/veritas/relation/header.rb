@@ -15,8 +15,7 @@ module Veritas
       end
 
       def index(attribute)
-        attribute = Attribute.coerce(attribute)
-        to_ary.index(attribute)
+        to_ary.index(self[attribute])
       end
 
       def [](name)

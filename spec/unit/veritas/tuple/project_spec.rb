@@ -14,5 +14,5 @@ describe 'Veritas::Tuple#project' do
 
   it { subject.header.should equal(@reversed_header) }
 
-  it { should == [ 1, 'Dan Kubb' ] }
+  it { subject.to_ary.should == [ 1, 'Dan Kubb' ] }
 end

@@ -6,10 +6,12 @@ module Veritas
       @header, @data = header, data.to_ary
     end
 
+    def [](attribute)
+      to_ary[header.index(attribute)]
+    end
+
     def project(header)
-      original = self.header
-      indexes  = header.map { |attribute| original.index(attribute) }
-      self.class.new(header, values_at(*indexes))
+      self.class.new(header, header.map { |attribute| self[attribute] })
     end
 
     def to_ary
@@ -36,12 +38,6 @@ module Veritas
 
     def inspect
       to_ary.inspect
-    end
-
-  private
-
-    def values_at(*attributes)
-      to_ary.values_at(*attributes)
     end
 
     def self.coerce(header, tuple)
