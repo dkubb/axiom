@@ -7,10 +7,12 @@ module Veritas
         include Connective::Methods
 
         def call(tuple)
-          left_value  = extract_value(left,  tuple)
-          right_value = extract_value(right, tuple)
+          util = self.class
 
-          eval(left_value, right_value)
+          left_value  = util.extract_value(left,  tuple)
+          right_value = util.extract_value(right, tuple)
+
+          util.eval(left_value, right_value)
         end
 
         def eql?(other)
@@ -23,77 +25,59 @@ module Veritas
           left.hash ^ right.hash
         end
 
-      private
-
-        def eval(left, right)
-          raise NotImplementedError, "#{self.class.name}#eval must be implemented"
+        def self.eval(left, right)
+          raise NotImplementedError, "#{name}.eval must be implemented"
         end
 
-        def extract_value(operand, tuple)
+        def self.extract_value(operand, tuple)
           operand.kind_of?(Attribute) ? tuple[operand] : operand
         end
       end # class Predicate
 
       class Equality < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left == right
         end
       end # class Equality
 
       class Inequality < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left != right
         end
       end # class Inequality
 
       class Inclusion < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           right.include?(left)
         end
       end # class Inclusion
 
       class Match < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           right === left
         end
       end # class Match
 
       class GreaterThanOrEqualTo < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left >= right
         end
       end # class GreaterThanOrEqualTo
 
       class GreaterThan < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left > right
         end
       end # class GreaterThan
 
       class LessThanOrEqualTo < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left <= right
         end
       end # class LessThanOrEqualTo
 
       class LessThan < Predicate
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left < right
         end
       end # class LessThan

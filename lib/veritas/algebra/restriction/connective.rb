@@ -25,7 +25,7 @@ module Veritas
         include Algebra::BinaryOperation
 
         def call(tuple)
-          eval(left.call(tuple), right.call(tuple))
+          self.class.eval(left.call(tuple), right.call(tuple))
         end
 
         def eql?(other)
@@ -42,9 +42,7 @@ module Veritas
       class Conjunction < Connective
         include BinaryConnective
 
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left && right
         end
       end # class Conjunction
@@ -52,9 +50,7 @@ module Veritas
       class Disjunction < Connective
         include BinaryConnective
 
-      private
-
-        def eval(left, right)
+        def self.eval(left, right)
           left || right
         end
       end # class Disjunction
@@ -67,7 +63,7 @@ module Veritas
         end
 
         def call(tuple)
-          eval(operand.call(tuple))
+          self.class.eval(operand.call(tuple))
         end
 
         def eql?(other)
@@ -79,9 +75,7 @@ module Veritas
           operand.hash
         end
 
-      private
-
-        def eval(value)
+        def self.eval(value)
           !value
         end
       end # class Negation

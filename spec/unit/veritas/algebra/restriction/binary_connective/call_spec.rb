@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#call' do
 
     @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
 
-    @connective.should_receive(:eval).with(true, false).and_return(@response)
+    BinaryConnectiveSpecs::Object.should_receive(:eval).with(true, false).and_return(@response)
   end
 
   subject { @connective.call(@tuple) }
