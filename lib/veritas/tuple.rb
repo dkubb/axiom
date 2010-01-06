@@ -28,6 +28,7 @@ module Veritas
     end
 
     def eql?(other)
+      header = self.header
       instance_of?(other.class) &&
       header.eql?(other.header) &&
       to_ary.eql?(other.project(header).to_ary)
