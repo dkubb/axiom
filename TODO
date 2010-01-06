@@ -1,18 +1,3 @@
-* Add Attribute subclasses: (tentative)
-  * Attribute::Boolean
-  * Attribute::String
-  * Attribute::Text
-  * Attribute::Binary
-  * Attribute::Numeric (abstract for Float, Integer, Decimal)
-  * Attribute::Float
-  * Attribute::Integer
-  * Attribute::Decimal
-  * Attribute::DateTime
-  * Attribute::Date
-  * Attribute::Time
-  * Attribute::Object (abstract for every attribute)
-  * Attribute::Class
-
 * Add Relation#restrict
   * Add lt, lte, gt, gte, eq, ne, include? predicate objects
   * Add methods for each predicate to the applicable attribute
