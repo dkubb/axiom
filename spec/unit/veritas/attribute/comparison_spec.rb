@@ -1,7 +1,7 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute' do
-  subject { Attribute.new(:id, Integer) }
+  subject { Attribute::Integer.new(:id) }
 
   it { should be_kind_of(Comparable) }
 
@@ -12,14 +12,14 @@ end
 
 describe 'Veritas::Attribute#<=>' do
   before do
-    @attribute = Attribute.new(:id, Integer)
+    @attribute = Attribute::Integer.new(:id)
   end
 
   subject { @attribute <=> @other }
 
   describe 'with an equivalent attribute' do
     before do
-      @other = Attribute.new(:id, Integer)
+      @other = Attribute::Integer.new(:id)
     end
 
     it { should == 0 }
@@ -27,7 +27,7 @@ describe 'Veritas::Attribute#<=>' do
 
   describe 'with a different attribute' do
     before do
-      @other = Attribute.new(:name, String)
+      @other = Attribute::String.new(:name)
     end
 
     it { should_not == 0 }

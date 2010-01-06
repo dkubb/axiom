@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Header.coerce' do
       @object = [ [ :id, Integer ] ]
     end
 
-    it { should eql(Relation::Header.new([ Attribute.new(:id, Integer) ])) }
+    it { should eql(Relation::Header.new([ Attribute::Integer.new(:id) ])) }
   end
 
   describe 'when the object is not a Header and does not respond to #to_ary' do

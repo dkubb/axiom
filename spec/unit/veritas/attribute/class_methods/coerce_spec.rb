@@ -5,7 +5,7 @@ describe 'Veritas::Attribute.coerce' do
 
   describe 'when the object is an Attribute' do
     before do
-      @object = Attribute.new(:id, Integer)
+      @object = Attribute::Integer.new(:id)
     end
 
     it { should equal(@object) }
@@ -16,6 +16,6 @@ describe 'Veritas::Attribute.coerce' do
       @object = [ :id, Integer ]
     end
 
-    it { should eql(Attribute.new(:id, Integer)) }
+    it { should eql(Attribute::Integer.new(:id)) }
   end
 end

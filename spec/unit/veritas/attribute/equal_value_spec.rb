@@ -3,9 +3,8 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 describe 'Veritas::Attribute#==' do
   before do
     @name = :id
-    @type = Integer
 
-    @attribute = Attribute.new(@name, @type)
+    @attribute = Attribute::Integer.new(@name)
   end
 
   subject { @attribute == @other }
@@ -36,7 +35,7 @@ describe 'Veritas::Attribute#==' do
 
   describe 'with a different attribute' do
     before do
-      @other = Attribute.new(:name, String)
+      @other = Attribute::String.new(:name)
     end
 
     it { should be_false }
@@ -48,9 +47,9 @@ describe 'Veritas::Attribute#==' do
 
   describe 'with an equivalent attribute of a different class' do
     before do
-      klass = Class.new(Attribute)
+      klass = Class.new(Attribute::Integer)
 
-      @other = klass.new(@name, @type)
+      @other = klass.new(@name)
     end
 
     it { should be_true }

@@ -12,7 +12,7 @@ end
 
 describe 'Veritas::Relation::Header#each' do
   before do
-    @attribute = Attribute.new(:id, Integer)
+    @attribute = Attribute::Integer.new(:id)
 
     @tuples = []
     @header = Relation::Header.new([ @attribute ])

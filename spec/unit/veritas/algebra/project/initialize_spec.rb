@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::Project#initialize' do
 
   describe 'with an Array of Attribute objects' do
     before do
-      @attributes = [ Attribute.new(:id, Integer) ]
+      @attributes = [ Attribute::Integer.new(:id) ]
     end
 
     it 'should set the relation' do

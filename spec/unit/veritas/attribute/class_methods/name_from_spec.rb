@@ -5,7 +5,7 @@ describe 'Veritas::Attribute.name_from' do
 
   describe 'object is an Attribute' do
     before do
-      @object = Attribute.new(:id, Integer)
+      @object = Attribute::Integer.new(:id)
     end
 
     it { should == :id }

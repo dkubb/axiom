@@ -2,7 +2,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#rename' do
   before do
-    @attribute = Attribute.new(:id, Integer)
+    @attribute = Attribute::Integer.new(:id)
     @name      = :other_id
   end
 
@@ -13,6 +13,4 @@ describe 'Veritas::Attribute#rename' do
   it { should_not equal(@attribute) }
 
   it { subject.name.should == @name }
-
-  it { subject.type.should == @attribute.type }
 end
