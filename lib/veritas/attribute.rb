@@ -29,7 +29,7 @@ module Veritas
 
     def <=>(other)
       other = Attribute.coerce(other)
-      [ name.to_s ] <=> [ other.name.to_s ]
+      name.to_s <=> other.name.to_s
     end
 
     def eql?(other)
