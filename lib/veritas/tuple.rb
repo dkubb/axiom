@@ -6,10 +6,6 @@ module Veritas
       @header, @data = header, data.to_ary
     end
 
-    def values_at(*attributes)
-      to_ary.values_at(*attributes)
-    end
-
     def project(header)
       original = self.header
       indexes  = header.map { |attribute| original.index(attribute) }
@@ -40,6 +36,12 @@ module Veritas
 
     def inspect
       to_ary.inspect
+    end
+
+  private
+
+    def values_at(*attributes)
+      to_ary.values_at(*attributes)
     end
 
     def self.coerce(header, tuple)
