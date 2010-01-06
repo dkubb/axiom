@@ -14,10 +14,6 @@ module Veritas
         self
       end
 
-      def size
-        to_ary.size
-      end
-
       def index(attribute)
         attribute = Attribute.coerce(attribute)
         to_ary.index(attribute)
