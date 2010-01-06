@@ -1,3 +1,5 @@
+require 'veritas/attribute/comparable_attribute'
+
 require 'veritas/attribute/object'
 require 'veritas/attribute/numeric'
 
@@ -15,6 +17,7 @@ require 'veritas/attribute/class'
 
 module Veritas
   class Attribute
+    include AbstractClass
     include Comparable
 
     attr_reader :name
@@ -39,14 +42,6 @@ module Veritas
 
     def hash
       name.hash
-    end
-
-    def self.new(*args)
-      if self == Attribute
-        raise NotImplementedError, "#{self}.new is an abstract method"
-      else
-        super
-      end
     end
 
     def self.coerce(attribute)

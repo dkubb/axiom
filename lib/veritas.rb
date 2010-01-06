@@ -1,7 +1,9 @@
+require 'veritas/support/abstract_class'
+
 require 'veritas/relation'
+require 'veritas/algebra'
 
 require 'veritas/attribute'
-require 'veritas/algebra'
 require 'veritas/tuple'
 require 'veritas/version'
 

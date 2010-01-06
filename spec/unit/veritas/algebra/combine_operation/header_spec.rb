@@ -5,9 +5,13 @@ describe 'Veritas::Algebra::CombineOperation#header' do
   before do
     @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])
     @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
+
+    @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
   end
 
-  subject { CombineOperationSpecs::Object.new(@left, @right).header }
+  subject { @combine_operation.header }
+
+  it { should be_kind_of(Relation::Header) }
 
   it 'should union the headers' do
     should == [ [ :id, Integer ], [ :name, String ] ]
