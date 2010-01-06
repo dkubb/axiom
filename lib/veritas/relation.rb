@@ -12,6 +12,10 @@ module Veritas
       @body   = Body.new(@header, body)
     end
 
+    def [](name)
+      header[name]
+    end
+
     def each(&block)
       body.each(&block)
       self
