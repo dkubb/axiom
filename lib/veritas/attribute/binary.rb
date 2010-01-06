@@ -1,6 +1,6 @@
 module Veritas
   class Attribute
-    class Binary < Object
+    class Binary < String
     end # class Binary
   end # class Attribute
 end # module Veritas
