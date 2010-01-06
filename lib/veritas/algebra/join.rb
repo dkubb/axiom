@@ -16,44 +16,32 @@ module Veritas
       def combine_bodies
         body = []
 
-        right     = self.right
-        index     = left_index
-        offsets   = right_offsets
-        remainder = (0..right.header.size-1).to_a - offsets
+        index = left_index
 
         right.each do |right_tuple|
-          key = right_tuple.values_at(*offsets)
+          key = right_tuple.project(common_header)
           next unless index.key?(key)
 
-          join_tuple = right_tuple.values_at(*remainder)
+          join_tuple = right_tuple.project(remainder_header)
           body.concat self.class.combine_tuples(index[key], join_tuple)
         end
 
         Body.new(header, body)
       end
 
-      def left_offsets
-        @left_offsets ||= offset(left.header)
+      def common_header
+        @common_header ||= left.header & right.header
       end
 
-      def right_offsets
-        @right_offsets ||= offset(right.header)
-      end
-
-      def offset(header)
-        common.map { |attribute| header.index(attribute) }
-      end
-
-      def common
-        @common ||= left.header & right.header
+      def remainder_header
+        @remainder_header ||= right.header - common_header
       end
 
       def left_index
-        offsets = left_offsets
-        index   = {}
+        index = {}
 
         left.each do |left_tuple|
-          (index[left_tuple.values_at(*offsets)] ||= []) << left_tuple
+          (index[left_tuple.project(common_header)] ||= []) << left_tuple
         end
 
         index
