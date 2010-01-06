@@ -7,9 +7,27 @@ describe 'Veritas::Attribute.new' do
     it { method(:subject).should raise_error(NotImplementedError, 'Veritas::Attribute.new is an abstract method') }
   end
 
-  describe 'when called on an Attribute subclass' do
-    subject { Attribute::Integer.new(:id) }
+  [
+    Attribute::Binary,
+    Attribute::Boolean,
+    Attribute::Class,
+    Attribute::Date,
+    Attribute::DateTime,
+    Attribute::Decimal,
+    Attribute::Float,
+    Attribute::Integer,
+    Attribute::Numeric,
+    Attribute::Object,
+    Attribute::String,
+    Attribute::Text,
+    Attribute::Time,
+  ].each do |klass|
+    describe "when called on the Attribute subclass #{klass}" do
+      subject { klass.new(:id) }
 
-    it { should eql(Attribute::Integer.new(:id)) }
+      it { should be_kind_of(Attribute) }
+
+      it { should be_kind_of(klass) }
+    end
   end
 end
