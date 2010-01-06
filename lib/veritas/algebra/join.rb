@@ -19,11 +19,11 @@ module Veritas
         index = left_index
 
         right.each do |right_tuple|
-          key = right_tuple.project(common_header)
-          next unless index.key?(key)
+          left_tuples = index[right_tuple.project(common_header)]
+          next unless left_tuples
 
           join_tuple = right_tuple.project(remainder_header)
-          body.concat self.class.combine_tuples(index[key], join_tuple)
+          body.concat self.class.combine_tuples(left_tuples, join_tuple)
         end
 
         Body.new(header, body)
