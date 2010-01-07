@@ -44,9 +44,9 @@ module Veritas
 
     def join(other, predicate = nil, &block)
       if predicate || block_given?
-        product(other).restrict(predicate, &block)
+        theta_join(other, predicate, &block)
       else
-        Algebra::Join.new(self, other)
+        natural_join(other)
       end
     end
 
@@ -85,6 +85,16 @@ module Veritas
       instance_of?(other.class) &&
       header.eql?(other.header) &&
       body.eql?(other.body)
+    end
+
+  private
+
+    def natural_join(other)
+      Algebra::Join.new(self, other)
+    end
+
+    def theta_join(other, predicate, &block)
+      product(other).restrict(predicate, &block)
     end
 
   end # class Relation
