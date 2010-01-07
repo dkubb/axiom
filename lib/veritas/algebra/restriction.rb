@@ -1,11 +1,11 @@
 module Veritas
   module Algebra
     class Restriction < Relation
-      attr_reader :relation
+      attr_reader :relation, :predicate
 
-      def initialize(relation, conditions = nil)
-        @relation   = relation
-        @conditions = conditions || yield(relation)
+      def initialize(relation, predicate = nil)
+        @relation  = relation
+        @predicate = predicate || yield(relation)
       end
 
       def header
@@ -19,7 +19,7 @@ module Veritas
     private
 
       def restrict_body
-        body = relation.select { |tuple| @conditions.call(tuple) }
+        body = relation.select { |tuple| predicate.call(tuple) }
         Body.new(header, body)
       end
 

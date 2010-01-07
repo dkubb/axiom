@@ -21,6 +21,8 @@ module Veritas
           right.eql?(other.right)
         end
 
+        alias == eql?
+
         def hash
           left.hash ^ right.hash
         end

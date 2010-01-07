@@ -33,7 +33,8 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.join(other)          # OR relation + other
 
   # theta-join
-  new_relation = relation.join(other) { |r,o| r.age.gte(o.age) }
+  new_relation = relation.join(other, relation[:age].gte(other[:age]))
+  new_relation = relation.join(other) { |r,o| r[:age].gte(o[:age]) }
 
   # NOTE: theta-join is effectively restricting a product of the relations
 
@@ -50,6 +51,8 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.difference(other)    # OR relation - other
 
   # restriction
+  new_relation = relation.restrict(relation.name.eq('other'))
+
   new_relation = relation.restrict { |r| r.name.eq('other').and(r.age.gte(21)) }
 
   # Non-Relational Operators

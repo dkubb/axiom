@@ -38,12 +38,16 @@ module Veritas
       Algebra::Rename.new(self, aliases)
     end
 
-    def restrict(&block)
-      Algebra::Restriction.new(self, &block)
+    def restrict(predicate = nil, &block)
+      Algebra::Restriction.new(self, predicate, &block)
     end
 
-    def join(other)
-      Algebra::Join.new(self, other)
+    def join(other, predicate = nil, &block)
+      if predicate || block_given?
+        product(other).restrict(predicate, &block)
+      else
+        Algebra::Join.new(self, other)
+      end
     end
 
     alias + join
