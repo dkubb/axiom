@@ -7,6 +7,8 @@
 * Add Relation#first, #last and #at to return slices of tuples
   * Uses Relation#limit and Relation#offset underneath
 
+* Add Relation#group and Relation#ungroup to nest/unnest the relations
+
 * Add benchmarks for each Relation operation
   * Will allow git bisect to gather results for each iteration, and
     plot performance over time
