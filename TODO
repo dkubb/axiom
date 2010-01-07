@@ -1,5 +1,4 @@
-* Remove Relation#block accessor once conditions can be extracted from
-  the Proc, and the resulting #body tested in initialize_spec.rb
+* Add theta-join behavior as specified in README
 
 * Figure out how best to sort/order the relation
   * Create Algebra::Ordered object
@@ -7,10 +6,7 @@
 * Add Relation#limit and Relation#offset
   * Depend on Algebra::Ordered object being available
 
-* Add Relation#[] to delegate to limit/offset
-  * Should accept a range, offset/limit, or offset and *always return
-    a Relation
-* Add Relation#first, #last and #at to delegate to #[]
+* Add Relation#first, #last and #at to return slices of tuples
 
 * Add benchmarks for each Relation operation
   * Will allow git bisect to gather results for each iteration, and
