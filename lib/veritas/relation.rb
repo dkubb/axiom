@@ -30,8 +30,7 @@ module Veritas
     end
 
     def remove(attributes)
-      header = self.header
-      Algebra::Project.new(self, header - header.project(attributes))
+      Algebra::Project.new(self, header - project_header(attributes))
     end
 
     def rename(aliases)
@@ -88,6 +87,10 @@ module Veritas
     end
 
   private
+
+    def project_header(attributes)
+      header.project(attributes)
+    end
 
     def natural_join(other)
       Algebra::Join.new(self, other)
