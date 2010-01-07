@@ -5,6 +5,7 @@
   * Depend on Algebra::Ordered object being available
 
 * Add Relation#first, #last and #at to return slices of tuples
+  * Uses Relation#limit and Relation#offset underneath
 
 * Add benchmarks for each Relation operation
   * Will allow git bisect to gather results for each iteration, and
@@ -56,6 +57,3 @@
     carry it out.
   * review other classes to see if methods could be pushed down to
     Body or Header.
-
-* Update Relation#join to accept an optional restriction
-  * should just wrap a Join in a Restriction object
