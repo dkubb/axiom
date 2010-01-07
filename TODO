@@ -1,5 +1,3 @@
-* Add theta-join behavior as specified in README
-
 * Figure out how best to sort/order the relation
   * Create Algebra::Ordered object
 
