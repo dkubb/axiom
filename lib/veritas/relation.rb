@@ -1,5 +1,6 @@
 require 'veritas/relation/body'
 require 'veritas/relation/header'
+require 'veritas/relation/operation'
 
 module Veritas
   class Relation
@@ -74,6 +75,10 @@ module Veritas
     end
 
     alias - difference
+
+    def order(directions = nil, &block)
+      Operation::Order.new(self, directions, &block)
+    end
 
     def ==(other)
       header == other.header &&

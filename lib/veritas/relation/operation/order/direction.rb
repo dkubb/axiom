@@ -1,0 +1,44 @@
+module Veritas
+  class Relation
+    module Operation
+      class Order
+        class Direction
+          include AbstractClass
+
+          attr_reader :attribute
+
+          def initialize(attribute)
+            @attribute = attribute
+          end
+
+          def call(left, right)
+            self.class.eval(left[attribute], right[attribute])
+          end
+
+          def eql?(other)
+            instance_of?(other.class) &&
+            attribute.eql?(other.attribute)
+          end
+
+          alias == eql?
+
+          def hash
+            attribute.hash
+          end
+        end # class Direction
+
+        class Ascending < Direction
+          def self.eval(left, right)
+            left <=> right
+          end
+        end # class Ascending
+
+        class Descending < Direction
+          def self.eval(left, right)
+            right <=> left
+          end
+        end # class Descending
+      end # class Order
+    end # module Operation
+  end # class Relation
+end # module Veritas
