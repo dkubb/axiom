@@ -18,6 +18,7 @@ end
 
 describe 'Veritas::Relation::Header#-' do
   it 'is an alias to #difference' do
-    Relation::Header.instance_method(:-).should == Relation::Header.instance_method(:difference)
+    klass = Relation::Header
+    klass.instance_method(:-).should == klass.instance_method(:difference)
   end
 end

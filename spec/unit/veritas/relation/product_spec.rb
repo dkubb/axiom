@@ -13,6 +13,7 @@ end
 
 describe 'Veritas::Relation#*' do
   it 'is an alias to #product' do
-    Relation.instance_method(:*).should == Relation.instance_method(:product)
+    klass = Relation
+    klass.instance_method(:*).should == klass.instance_method(:product)
   end
 end

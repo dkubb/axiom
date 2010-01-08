@@ -50,6 +50,7 @@ end
 
 describe 'Veritas::Relation#+' do
   it 'is an alias to #join' do
-    Relation.instance_method(:+).should == Relation.instance_method(:join)
+    klass = Relation
+    klass.instance_method(:+).should == klass.instance_method(:join)
   end
 end

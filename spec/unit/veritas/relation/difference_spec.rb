@@ -15,6 +15,7 @@ end
 
 describe 'Veritas::Relation#-' do
   it 'is an alias to #difference' do
-    Relation.instance_method(:-).should == Relation.instance_method(:difference)
+    klass = Relation
+    klass.instance_method(:-).should == klass.instance_method(:difference)
   end
 end

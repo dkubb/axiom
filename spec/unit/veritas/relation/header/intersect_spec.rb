@@ -15,6 +15,7 @@ end
 
 describe 'Veritas::Relation::Header#&' do
   it 'is an alias to #intersect' do
-    Relation::Header.instance_method(:&).should == Relation::Header.instance_method(:intersect)
+    klass = Relation::Header
+    klass.instance_method(:&).should == klass.instance_method(:intersect)
   end
 end
