@@ -30,8 +30,8 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.rename(:a => :b, :c => :d)
 
   # theta-join
-  new_relation = relation.join(other, relation[:age].gte(other[:age]))
-  new_relation = relation.join(other) { |r| r[:age].gte(r[:age]) }
+  new_relation = relation.join(other, relation[:a].gte(other[:b]))
+  new_relation = relation.join(other) { |r| r[:a].gte(r[:b]) }
 
   # NOTE: theta-join is effectively restricting a product of the relations
 
@@ -52,12 +52,12 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
 
   # restriction
   new_relation = relation.restrict(relation.name.eq('other'))
-  new_relation = relation.restrict { |r| r[:name].eq('other').and(r[:age].gte(21)) }
+  new_relation = relation.restrict { |r| r[:a].eq('other').and(r[:b].gte(42)) }
 
   # Non-Relational Operators
 
   # sort by specific attributes
-  new_relation = relation.sort_by { |r| [ -r[:age], r[:name] ] }
+  new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
 
   # limiting  (only allowed if ordered)
   new_relation = relation.limit(10)
