@@ -4,11 +4,11 @@ module Veritas
       class Order
         attr_reader :relation, :directions
 
-        def initialize(relation, directions = nil)
-          @relation   = relation
+        def initialize(relation, directions)
+          @relation = relation
 
           # TODO: create an object to encapsulate an OrderedSet of Direction objects
-          @directions = Array(directions || yield(relation)).map do |direction|
+          @directions = directions.map do |direction|
             direction.respond_to?(:asc) ? direction.asc : direction
           end
         end

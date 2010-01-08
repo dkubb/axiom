@@ -38,8 +38,8 @@ module Veritas
       Algebra::Rename.new(self, aliases)
     end
 
-    def restrict(predicate = nil, &block)
-      Algebra::Restriction.new(self, predicate, &block)
+    def restrict(predicate = yield(self))
+      Algebra::Restriction.new(self, predicate)
     end
 
     def join(other, predicate = nil, &block)
@@ -76,8 +76,8 @@ module Veritas
 
     alias - difference
 
-    def order(directions = nil, &block)
-      Operation::Order.new(self, directions, &block)
+    def order(directions = yield(self))
+      Operation::Order.new(self, directions)
     end
 
     def ==(other)
@@ -101,8 +101,8 @@ module Veritas
       Algebra::Join.new(self, other)
     end
 
-    def theta_join(other, predicate, &block)
-      product(other).restrict(predicate, &block)
+    def theta_join(other, *args, &block)
+      product(other).restrict(*args.compact, &block)
     end
 
   end # class Relation

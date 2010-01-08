@@ -6,8 +6,6 @@ describe 'Veritas::Relation::Operation::Order#body' do
       [ [ :id, Integer ], [ :name, String ] ],
       [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ] ]
     )
-
-    @order = Relation::Operation::Order.new(@relation) {}
   end
 
   subject { @order.body }

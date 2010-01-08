@@ -7,21 +7,21 @@ describe 'Veritas::Relation#order' do
 
   describe 'with direction arguments' do
     before do
-      @direction = @relation[:id].asc
+      @directions = [ @relation[:id].asc ]
     end
 
-    subject { @relation.order(@direction) }
+    subject { @relation.order(@directions) }
 
     it { should be_kind_of(Relation::Operation::Order) }
 
     it 'should set the directions' do
-      subject.directions.should == [ @direction ]
+      subject.directions.should == @directions
     end
   end
 
   describe 'with a block' do
     before do
-      @block = lambda { |relation| relation[:id].asc }
+      @block = lambda { |relation| [ relation[:id].asc ] }
     end
 
     subject { @relation.order(&@block) }
@@ -29,7 +29,7 @@ describe 'Veritas::Relation#order' do
     it { should be_kind_of(Relation::Operation::Order) }
 
     it 'should set the directions' do
-      subject.directions.should == [ @block.call(@relation) ]
+      subject.directions.should == @block.call(@relation)
     end
   end
 end

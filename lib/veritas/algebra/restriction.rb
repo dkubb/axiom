@@ -3,9 +3,8 @@ module Veritas
     class Restriction < Relation
       attr_reader :relation, :predicate
 
-      def initialize(relation, predicate = nil)
-        @relation  = relation
-        @predicate = predicate || yield(relation)
+      def initialize(relation, predicate)
+        @relation, @predicate = relation, predicate
       end
 
       def header
