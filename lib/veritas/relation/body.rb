@@ -61,8 +61,8 @@ module Veritas
         self.class.new(header, tuples)
       end
 
-      def coerce(body)
-        body.kind_of?(Body) ? body : new(body)
+      def coerce(object)
+        object.kind_of?(Body) ? object : new(object)
       end
 
     end # class Body

@@ -40,11 +40,11 @@ module Veritas
       to_ary.inspect
     end
 
-    def self.coerce(header, tuple)
-      if tuple.kind_of?(Tuple) && tuple.header.equal?(header)
-        tuple
+    def self.coerce(header, object)
+      if object.kind_of?(Tuple) && object.header.equal?(header)
+        object
       else
-        new(header, tuple)
+        new(header, object)
       end
     end
 

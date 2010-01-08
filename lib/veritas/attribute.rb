@@ -44,11 +44,11 @@ module Veritas
       name.hash
     end
 
-    def self.coerce(attribute)
-      if attribute.kind_of?(self)
-        attribute
+    def self.coerce(object)
+      if object.kind_of?(self)
+        object
       else
-        name, type = attribute
+        name, type = object
         const_get(type.name.to_sym).new(name)
       end
     end

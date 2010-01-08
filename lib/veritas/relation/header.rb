@@ -75,8 +75,8 @@ module Veritas
         self.class.new(attributes)
       end
 
-      def self.coerce(header)
-        header.kind_of?(Header) ? header : new(header)
+      def self.coerce(object)
+        object.kind_of?(Header) ? object : new(object)
       end
 
     end # class Header
