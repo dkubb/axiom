@@ -1,6 +1,6 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Tuple#to_a' do
+describe 'Veritas::Tuple#to_ary' do
   before do
     @header = Relation::Header.new([ [ :id, Integer ] ])
     @tuple  = Tuple.new(@header, [ 1 ])

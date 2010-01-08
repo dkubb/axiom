@@ -14,6 +14,6 @@ describe 'Veritas::Tuple#initialize' do
   end
 
   it 'should set the internal state' do
-    subject.to_ary.should == [ 1 ]
+    should == [ 1 ]
   end
 end
