@@ -12,6 +12,7 @@ module Veritas
           end
 
           def call(left, right)
+            attribute = self.attribute
             self.class.eval(left[attribute], right[attribute])
           end
 
