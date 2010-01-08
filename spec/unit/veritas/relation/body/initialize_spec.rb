@@ -5,23 +5,11 @@ describe 'Veritas::Relation::Body#initialize' do
     @header = Relation::Header.new([ [ :id, Integer ] ])
   end
 
-  describe 'with a header' do
-    subject { Relation::Body.new(@header) }
+  subject { Relation::Body.new(@header, [ [ 1 ] ]) }
 
-    it { should be_kind_of(Relation::Body) }
+  it { should be_kind_of(Relation::Body) }
 
-    it { subject.header.should equal(@header) }
+  it { subject.header.should equal(@header) }
 
-    it { subject.to_set.should be_empty }
-  end
-
-  describe 'with a header and tuples' do
-    subject { Relation::Body.new(@header, [ [ 1 ] ]) }
-
-    it { should be_kind_of(Relation::Body) }
-
-    it { subject.header.should equal(@header) }
-
-    it { should == [ [ 1 ] ] }
-  end
+  it { should == [ [ 1 ] ] }
 end
