@@ -3,12 +3,9 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 describe 'Veritas::Algebra::Restriction#initialize' do
   before do
     @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
-    @block    = lambda { |relation| proc { true } }
   end
 
-  subject { Algebra::Restriction.new(@relation, &@block) }
-
-  describe 'with conditions in the block' do
+  describe 'with a predicate in the block' do
     before do
       @block = lambda { |relation| proc { true } }
     end
@@ -24,7 +21,7 @@ describe 'Veritas::Algebra::Restriction#initialize' do
     end
   end
 
-  describe 'with conditions argument' do
+  describe 'with a predicate argument' do
     subject { Algebra::Restriction.new(@relation, proc { true }) }
 
     it 'should set the relation' do
