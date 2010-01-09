@@ -1,7 +1,7 @@
 module Veritas
   class Relation
     module Operation
-      class Order
+      class Order < Relation
         attr_reader :relation, :directions
 
         def self.new(relation, directions)
@@ -23,7 +23,7 @@ module Veritas
         end
 
         def body
-          @body ||= Body.new(header, directions.sort(relation.body))
+          @body ||= Body.new(header, directions.sort(relation))
         end
 
       end # class Order

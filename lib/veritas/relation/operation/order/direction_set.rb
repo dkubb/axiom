@@ -6,7 +6,7 @@ module Veritas
           include Enumerable
 
           def initialize(directions)
-            @directions = directions.map do |direction|
+            @directions = Array(directions).map do |direction|
               Ascending.coerce(direction)
             end
           end
