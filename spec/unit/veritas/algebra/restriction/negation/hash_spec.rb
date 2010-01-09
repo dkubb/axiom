@@ -10,5 +10,7 @@ describe 'Veritas::Algebra::Restriction::Negation#hash' do
 
   subject { @negation.hash }
 
+  it { should be_kind_of(Integer) }
+
   it { should == @predicate.hash }
 end

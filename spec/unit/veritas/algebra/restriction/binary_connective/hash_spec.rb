@@ -12,5 +12,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#hash' do
 
   subject { @connective.hash }
 
+  it { should be_kind_of(Integer) }
+
   it { should == @left.hash ^ @right.hash }
 end

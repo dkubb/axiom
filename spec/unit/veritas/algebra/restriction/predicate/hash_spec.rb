@@ -11,5 +11,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#hash' do
 
   subject { @predicate.hash }
 
+  it { should be_kind_of(Integer) }
+
   it { should == @header[:id].hash ^ 1.hash }
 end
