@@ -1,5 +1,3 @@
-* Add Relation#offset
-
 * Add Relation#first, #last and #at to return slices of tuples as relations
   * Uses Relation#limit and Relation#offset underneath
   * #last is especially interesting, since it reverses the sort order,
@@ -58,3 +56,6 @@
     carry it out.
   * review other classes to see if methods could be pushed down to
     Body or Header.
+
+* Add Enumerable#take and Enumerable#drop for Ruby 1.8.6
+  * Use inside Offset and Limit #body
