@@ -5,17 +5,13 @@ module Veritas
         attr_reader :relation, :directions
 
         def self.new(relation, directions)
-          # TODO: create an object to encapsulate an OrderedSet of Direction objects
-          directions = directions.map do |direction|
-            direction.respond_to?(:asc) ? direction.asc : direction
-          end
+          directions = DirectionSet.new(directions)
 
-          header = relation.header
-          unless header == (header & directions.map { |direction| direction.attribute })
+          if relation.header.to_set != directions.attributes.to_set
             raise ArgumentError, 'directions must include every attribute in the header'
           end
 
-          super(relation, directions)
+          super
         end
 
         def initialize(relation, directions)
@@ -27,22 +23,7 @@ module Veritas
         end
 
         def body
-          @body ||= order_body
-        end
-
-      private
-
-        def order_body
-          body = relation.body.sort { |left, right| cmp_tuples(left, right) }
-          Body.new(header, body)
-        end
-
-        # TODO: move this logic into the DirectionSet object
-        def cmp_tuples(left, right)
-          directions.each do |direction|
-            cmp = direction.call(left, right)
-            return cmp if cmp != 0
-          end
+          @body ||= Body.new(header, directions.sort(relation.body))
         end
 
       end # class Order
@@ -50,6 +31,6 @@ module Veritas
   end # class Relation
 end # module Veritas
 
-
 require 'veritas/relation/operation/order/direction'
+require 'veritas/relation/operation/order/direction_set'
 require 'veritas/relation/operation/order/body'

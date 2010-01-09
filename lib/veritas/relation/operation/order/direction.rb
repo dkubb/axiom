@@ -26,6 +26,11 @@ module Veritas
           def hash
             attribute.hash
           end
+
+          def self.coerce(object)
+            object.kind_of?(Direction) ? object : new(object)
+          end
+
         end # class Direction
 
         class Ascending < Direction

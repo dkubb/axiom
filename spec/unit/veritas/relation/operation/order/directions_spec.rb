@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Order#directions' do
 
   subject { @order.directions }
 
-  it { should be_instance_of(Array) }
+  it { should be_kind_of(Veritas::Relation::Operation::Order::DirectionSet) }
 
   it { should == @directions }
 end
