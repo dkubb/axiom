@@ -7,7 +7,7 @@ describe 'Veritas::Relation#remove' do
 
   subject { @relation.remove([ :id ]) }
 
-  it { should be_kind_of(Algebra::Project) }
+  it { should be_kind_of(Algebra::Projection) }
 
   it { subject.header.should == [ [ :name, String ] ] }
 end

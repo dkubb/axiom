@@ -1,6 +1,6 @@
 module Veritas
   module Algebra
-    class Project < Relation
+    class Projection < Relation
       attr_reader :relation
 
       def initialize(relation, attributes)
@@ -22,6 +22,6 @@ module Veritas
         header.class.new(header.project(@attributes))
       end
 
-    end # class Project
+    end # class Projection
   end # module Algebra
 end # module Veritas

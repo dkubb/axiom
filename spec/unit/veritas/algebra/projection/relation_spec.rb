@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Product#relation' do
     @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
     @attributes = [ :id ]
 
-    @projection = Algebra::Project.new(@relation, @attributes)
+    @projection = Algebra::Projection.new(@relation, @attributes)
   end
 
   subject { @projection.relation }

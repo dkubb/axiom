@@ -7,5 +7,5 @@ describe 'Veritas::Relation#project' do
 
   subject { @relation.project([ :id ]) }
 
-  it { should be_kind_of(Algebra::Project) }
+  it { should be_kind_of(Algebra::Projection) }
 end

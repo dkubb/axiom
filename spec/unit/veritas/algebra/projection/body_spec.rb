@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Project#body' do
+describe 'Veritas::Algebra::Projection#body' do
   before do
     @relation = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
 
-    @projection = Algebra::Project.new(@relation, [ :id ])
+    @projection = Algebra::Projection.new(@relation, [ :id ])
   end
 
   subject { @projection.body }

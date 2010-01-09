@@ -27,11 +27,11 @@ module Veritas
     end
 
     def project(attributes)
-      Algebra::Project.new(self, attributes)
+      Algebra::Projection.new(self, attributes)
     end
 
     def remove(attributes)
-      Algebra::Project.new(self, header - project_header(attributes))
+      Algebra::Projection.new(self, header - project_header(attributes))
     end
 
     def rename(aliases)

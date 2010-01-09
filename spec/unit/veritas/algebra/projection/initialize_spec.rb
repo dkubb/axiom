@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Project#initialize' do
+describe 'Veritas::Algebra::Projection#initialize' do
   before do
     @relation = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
   end
 
-  subject { Algebra::Project.new(@relation, @attributes) }
+  subject { Algebra::Projection.new(@relation, @attributes) }
 
   describe 'with an Array of Attribute objects' do
     before do
