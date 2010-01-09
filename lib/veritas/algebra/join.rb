@@ -26,7 +26,7 @@ module Veritas
           body.concat self.class.combine_tuples(left_tuples, join_tuple)
         end
 
-        Body.new(header, body)
+        body
       end
 
       def common_header

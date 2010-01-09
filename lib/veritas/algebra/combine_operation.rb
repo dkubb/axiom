@@ -12,7 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= combine_bodies
+        @body ||= Relation::Body.new(header, combine_bodies)
       end
 
     private

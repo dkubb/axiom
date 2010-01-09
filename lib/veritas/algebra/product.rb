@@ -20,7 +20,7 @@ module Veritas
           body.concat self.class.combine_tuples(left, right_tuple)
         end
 
-        Body.new(header, body)
+        body
       end
 
     end # class Product
