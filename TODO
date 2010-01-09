@@ -1,5 +1,4 @@
-* Add Relation#limit and Relation#offset
-  * Depend on Algebra::Ordered object being available
+* Add Relation#offset
 
 * Add Relation#first, #last and #at to return slices of tuples
   * Uses Relation#limit and Relation#offset underneath

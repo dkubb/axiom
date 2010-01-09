@@ -80,6 +80,11 @@ module Veritas
       Operation::Order.new(self, directions)
     end
 
+    # TODO: limit this to only be available to ordered relations, and containers
+    def limit(limit)
+      Operation::Limit.new(self, limit)
+    end
+
     def ==(other)
       header == other.header &&
       body   == other.body
