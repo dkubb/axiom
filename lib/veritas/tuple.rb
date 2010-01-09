@@ -20,7 +20,7 @@ module Veritas
 
     def ==(other)
       header = self.header
-      other = self.class.coerce(header, other)
+      other  = self.class.coerce(header, other)
       header == other.header &&
       to_ary == other.project(header).to_ary
     end
