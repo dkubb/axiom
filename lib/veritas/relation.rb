@@ -85,6 +85,11 @@ module Veritas
       Operation::Limit.new(self, limit)
     end
 
+    # TODO: limit this to only be available to ordered relations, and containers
+    def offset(offset)
+      Operation::Offset.new(self, offset)
+    end
+
     def ==(other)
       header == other.header &&
       body   == other.body
