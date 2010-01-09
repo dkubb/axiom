@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Operation::Order::Direction#eql?' do
     before do
       @attribute = Attribute::String.new(:name)
 
-      @direction = @klass.new(@attribute)
+      @other = @klass.new(@attribute)
     end
 
     it { should be_false }
@@ -52,7 +52,7 @@ describe 'Veritas::Relation::Operation::Order::Direction#eql?' do
     before do
       klass = Class.new(@klass)
 
-      @direction = klass.new(@attribute)
+      @other = klass.new(@attribute)
     end
 
     it { should be_false }

@@ -12,16 +12,16 @@ end
 
 describe 'Veritas::Relation#each' do
   before do
-    @tuples = []
-
     @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+
+    @yield = []
   end
 
-  subject { @relation.each { |tuple| @tuples << tuple } }
+  subject { @relation.each { |tuple| @yield << tuple } }
 
   it { should equal(@relation) }
 
-  it 'should yield each tuple in the body' do
-    method(:subject).should change { @tuples.dup }.from([]).to([ [ 1 ] ])
+  it 'should yield each tuple' do
+    method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
   end
 end

@@ -16,17 +16,17 @@ end
 
 describe 'Veritas::Relation::Body#each' do
   before do
-    header = Relation::Header.new([ [ :id, Integer ] ])
+    @header = Relation::Header.new([ [ :id, Integer ] ])
+    @body   = Relation::Body.new(@header, [ [ 1 ] ])
 
-    @tuples = []
-    @body   = Relation::Body.new(header, [ [ 1 ] ])
+    @yield = []
   end
 
-  subject { @body.each { |tuple| @tuples << tuple } }
+  subject { @body.each { |tuple| @yield << tuple } }
 
   it { should equal(@body) }
 
-  it 'should yield each tuple in the body' do
-    method(:subject).should change { @tuples.dup }.from([]).to([ [ 1 ] ])
+  it 'should yield each tuple' do
+    method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
   end
 end
