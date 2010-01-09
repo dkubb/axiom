@@ -1,7 +1,10 @@
 * Add Relation#offset
 
-* Add Relation#first, #last and #at to return slices of tuples
+* Add Relation#first, #last and #at to return slices of tuples as relations
   * Uses Relation#limit and Relation#offset underneath
+  * #last is especially interesting, since it reverses the sort order,
+    performs a #first operatin, then reversed the sort order again.
+    This will need to be seamless for it to work properly.
 
 * Add Relation#group and Relation#ungroup to nest/unnest the relations
 
