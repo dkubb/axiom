@@ -31,7 +31,7 @@ module Veritas
     end
 
     def remove(attributes)
-      Algebra::Projection.new(self, header - project_header(attributes))
+      project(header - project_header(attributes))
     end
 
     def rename(aliases)
