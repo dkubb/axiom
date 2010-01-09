@@ -25,18 +25,14 @@ module Veritas
         end
 
         def body
-          @body ||= relation.body.class.new(header, limit_body)
+          @body ||= limit_body
         end
 
       private
 
         def limit_body
-          tuples = []
-          relation.each_with_index do |tuple, index|
-            break if index == to_int
-            tuples << tuple
-          end
-          tuples
+          relation = self.relation
+          relation.body.class.new(header, relation.take(to_int))
         end
 
       end # class Limit

@@ -25,19 +25,14 @@ module Veritas
         end
 
         def body
-          @body ||= relation.body.class.new(header, offset_body)
+          @body ||= offset_body
         end
 
       private
 
         def offset_body
-          # XXX: can this be turned into an Enumerable that only
-          # evaluates once #each is called on it
-          tuples = []
-          relation.each_with_index do |tuple, index|
-            tuples << tuple if index >= to_int
-          end
-          tuples
+          relation = self.relation
+          relation.body.class.new(header, relation.drop(to_int))
         end
 
       end # class Offset
