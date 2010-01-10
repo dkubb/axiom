@@ -13,7 +13,7 @@ module Veritas
         end
 
         def initialize(relation, offset)
-          @relation, @offset = relation, offset.to_int
+          @relation, @offset = relation, offset
         end
 
         def to_int

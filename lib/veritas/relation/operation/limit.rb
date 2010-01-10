@@ -13,7 +13,7 @@ module Veritas
         end
 
         def initialize(relation, limit)
-          @relation, @limit = relation, limit.to_int
+          @relation, @limit = relation, limit
         end
 
         def to_int
