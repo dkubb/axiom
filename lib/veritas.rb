@@ -1,3 +1,5 @@
+require 'veritas/core_ext'
+
 require 'veritas/support/abstract_class'
 
 require 'veritas/relation'

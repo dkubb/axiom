@@ -59,6 +59,3 @@
     carry it out.
   * review other classes to see if methods could be pushed down to
     Body or Header.
-
-* Add Enumerable#take and Enumerable#drop for Ruby 1.8.6
-  * Use inside Offset and Limit #body
