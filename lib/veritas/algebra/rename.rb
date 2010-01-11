@@ -12,14 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= rename_body
-      end
-
-    private
-
-      def rename_body
-        body = relation.body
-        body.class.new(header, body)
+        @body ||= relation.body.rename(header)
       end
 
     end # class Rename

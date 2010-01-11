@@ -24,6 +24,10 @@ module Veritas
         self.class.new(header, Algebra::Projection::Set.new(self, header))
       end
 
+      def rename(header)
+        self.class.new(header, self)
+      end
+
       def restrict(predicate)
         new(Algebra::Restriction::Set.new(self, predicate))
       end
