@@ -27,3 +27,4 @@ end # module Veritas
 
 require 'veritas/algebra/restriction/connective'
 require 'veritas/algebra/restriction/predicate'
+require 'veritas/algebra/restriction/set'
