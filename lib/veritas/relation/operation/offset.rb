@@ -31,8 +31,8 @@ module Veritas
       private
 
         def offset_body
-          relation = self.relation
-          relation.body.class.new(header, relation.drop(to_int))
+          body = relation.body
+          body.class.new(header, body.drop(to_int))
         end
 
       end # class Offset
