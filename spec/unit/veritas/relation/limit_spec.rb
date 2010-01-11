@@ -9,4 +9,8 @@ describe 'Veritas::Relation#limit' do
   subject { @ordered.limit(1) }
 
   it { should be_kind_of(Relation::Operation::Limit) }
+
+  it 'should set the limit' do
+    subject.to_int.should == 1
+  end
 end
