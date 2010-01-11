@@ -12,13 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= relation.body.class.new(header, restrict_body)
-      end
-
-    private
-
-      def restrict_body
-        relation.select { |tuple| predicate.call(tuple) }
+        @body ||= relation.body.restrict(predicate)
       end
 
     end # class Restriction
