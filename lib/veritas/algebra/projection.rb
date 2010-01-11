@@ -18,3 +18,5 @@ module Veritas
     end # class Projection
   end # module Algebra
 end # module Veritas
+
+require 'veritas/algebra/projection/set'
