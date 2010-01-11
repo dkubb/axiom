@@ -25,7 +25,7 @@ module Veritas
       end
 
       def restrict(predicate)
-        self.class.new(header, Algebra::Restriction::Set.new(self, predicate))
+        new(Algebra::Restriction::Set.new(self, predicate))
       end
 
       def intersect(other)
