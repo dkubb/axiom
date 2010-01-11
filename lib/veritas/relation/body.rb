@@ -11,7 +11,7 @@ module Veritas
         @header, @tuples = header, tuples
       end
 
-      def each(&block)
+      def each
         @tuples.each { |tuple| yield Tuple.coerce(header, tuple) }
         self
       end
