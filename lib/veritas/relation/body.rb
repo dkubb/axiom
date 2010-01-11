@@ -8,12 +8,11 @@ module Veritas
       attr_reader :header
 
       def initialize(header, tuples)
-        @header = header
-        @tuples = tuples.map { |tuple| Tuple.coerce(@header, tuple) }.to_set
+        @header, @tuples = header, tuples
       end
 
       def each(&block)
-        @tuples.each(&block)
+        @tuples.each { |tuple| yield Tuple.coerce(header, tuple) }
         self
       end
 
