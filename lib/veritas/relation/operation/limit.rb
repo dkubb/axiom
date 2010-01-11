@@ -25,14 +25,7 @@ module Veritas
         end
 
         def body
-          @body ||= limit_body
-        end
-
-      private
-
-        def limit_body
-          body = relation.body
-          body.class.new(header, body.take(to_int))
+          @body ||= relation.body.limit(to_int)
         end
 
       end # class Limit
