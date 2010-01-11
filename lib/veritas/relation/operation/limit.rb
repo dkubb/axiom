@@ -31,8 +31,8 @@ module Veritas
       private
 
         def limit_body
-          relation = self.relation
-          relation.body.class.new(header, relation.take(to_int))
+          body = relation.body
+          body.class.new(header, body.take(to_int))
         end
 
       end # class Limit
