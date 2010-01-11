@@ -3,10 +3,6 @@ module Veritas
     module CombineOperation
       include BinaryOperation
 
-      def self.included(klass)
-        klass.extend ClassMethods
-      end
-
       def header
         @header ||= left.header | right.header
       end
@@ -21,10 +17,8 @@ module Veritas
         raise NotImplementedError, "#{self.class.name}#combine_bodies must be implemented"
       end
 
-      module ClassMethods
-        def combine_tuples(left_tuples, right_tuple)
-          left_tuples.map { |left_tuple| left_tuple.to_ary + right_tuple.to_ary }
-        end
+      def self.combine_tuples(left_tuples, right_tuple)
+        left_tuples.map { |left_tuple| left_tuple.to_ary + right_tuple.to_ary }
       end
 
     end # module CombineOperation

@@ -17,7 +17,7 @@ module Veritas
         body = []
 
         right.each do |right_tuple|
-          body.concat self.class.combine_tuples(left, right_tuple)
+          body.concat CombineOperation.combine_tuples(left, right_tuple)
         end
 
         body

@@ -23,7 +23,7 @@ module Veritas
           next unless left_tuples
 
           join_tuple = right_tuple.project(remainder_header)
-          body.concat self.class.combine_tuples(left_tuples, join_tuple)
+          body.concat CombineOperation.combine_tuples(left_tuples, join_tuple)
         end
 
         body
