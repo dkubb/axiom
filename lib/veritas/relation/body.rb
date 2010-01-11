@@ -13,7 +13,7 @@ module Veritas
       end
 
       def each(&block)
-        to_set.each(&block)
+        @tuples.each(&block)
         self
       end
 
@@ -35,10 +35,6 @@ module Veritas
 
       def difference(other)
         new(to_set - other)
-      end
-
-      def to_set
-        @tuples
       end
 
       def ==(other)
