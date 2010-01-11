@@ -24,6 +24,10 @@ module Veritas
         self.class.new(header, map { |tuple| tuple.project(header) })
       end
 
+      def restrict(predicate)
+        self.class.new(header, Algebra::Restriction::Set.new(self, predicate))
+      end
+
       def intersect(other)
         new(to_set & other)
       end
