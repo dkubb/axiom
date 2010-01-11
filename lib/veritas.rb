@@ -1,4 +1,4 @@
-require 'veritas/core_ext'
+require 'backports'
 
 require 'veritas/support/abstract_class'
 
