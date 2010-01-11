@@ -17,10 +17,9 @@ begin
 
     gem.version = Veritas::VERSION
 
-    gem.add_dependency 'backports', '~> 1.12'
-
-    gem.add_development_dependency 'rspec', '~> 1.2.9'
-    gem.add_development_dependency 'yard',  '~> 0.5'
+    gem.add_development_dependency 'backports', '~> 1.12'
+    gem.add_development_dependency 'rspec',     '~> 1.2.9'
+    gem.add_development_dependency 'yard',      '~> 0.5'
   end
 
   Jeweler::GemcutterTasks.new
