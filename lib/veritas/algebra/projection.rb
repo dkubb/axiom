@@ -8,18 +8,11 @@ module Veritas
       end
 
       def header
-        @header ||= project_header
+        @header ||= relation.header.project(@attributes)
       end
 
       def body
         @body ||= relation.body.project(header)
-      end
-
-    private
-
-      def project_header
-        header = relation.header
-        header.class.new(header.project(@attributes))
       end
 
     end # class Projection
