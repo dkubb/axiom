@@ -12,5 +12,5 @@ describe 'Veritas::Algebra::Product#header' do
 
   it { should be_kind_of(Relation::Header) }
 
-  it { should ==  [ [ :id, Integer ] ] }
+  it { should == [ [ :id, Integer ] ] }
 end
