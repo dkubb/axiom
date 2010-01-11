@@ -25,14 +25,7 @@ module Veritas
         end
 
         def body
-          @body ||= offset_body
-        end
-
-      private
-
-        def offset_body
-          body = relation.body
-          body.class.new(header, body.drop(to_int))
+          @body ||= relation.body.offset(to_int)
         end
 
       end # class Offset

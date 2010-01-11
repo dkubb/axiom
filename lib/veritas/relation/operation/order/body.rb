@@ -6,6 +6,10 @@ module Veritas
           def limit(limit)
             new(take(limit))
           end
+
+          def offset(offset)
+            new(drop(offset))
+          end
         end # class OrderedBody
       end # class Order
     end # module Operation
