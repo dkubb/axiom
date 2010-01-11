@@ -21,7 +21,7 @@ module Veritas
       end
 
       def project(header)
-        self.class.new(header, map { |tuple| tuple.project(header) })
+        self.class.new(header, Algebra::Projection::Set.new(self, header))
       end
 
       def restrict(predicate)
