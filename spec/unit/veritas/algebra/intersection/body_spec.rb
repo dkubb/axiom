@@ -29,7 +29,7 @@ describe 'Veritas::Algebra::Intersection#body' do
     it { should be_kind_of(Relation::Body) }
 
     it 'should intersect the bodies' do
-      should == []
+      should be_empty
     end
   end
 end
