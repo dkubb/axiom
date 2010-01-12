@@ -1,5 +1,3 @@
-require 'set'
-
 module Veritas
   class Relation
     class Body

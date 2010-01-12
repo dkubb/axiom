@@ -1,3 +1,5 @@
+require 'set'
+
 require 'veritas/support/abstract_class'
 
 require 'veritas/relation'
