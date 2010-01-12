@@ -33,15 +33,15 @@ module Veritas
       end
 
       def intersect(other)
-        new(to_set & other)
+        new(Algebra::Intersection::Set.new(self, other))
       end
 
       def union(other)
-        new(to_set | other)
+        new(Algebra::Union::Set.new(self, other))
       end
 
       def difference(other)
-        new(to_set - other)
+        new(Algebra::Difference::Set.new(self, other))
       end
 
       def ==(other)

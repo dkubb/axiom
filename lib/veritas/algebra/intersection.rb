@@ -10,3 +10,5 @@ module Veritas
     end # class Intersection
   end # module Algebra
 end # module Veritas
+
+require 'veritas/algebra/intersection/set'

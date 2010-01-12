@@ -18,7 +18,7 @@ module Veritas
       end
 
       def self.combine_tuples(left_tuples, right_tuple)
-        left_tuples.map { |left_tuple| left_tuple.to_ary + right_tuple.to_ary }
+        left_tuples.map { |left_tuple| yield(left_tuple.to_ary + right_tuple.to_ary) }
       end
 
     end # module CombineOperation

@@ -10,3 +10,5 @@ module Veritas
     end # class Union
   end # module Algebra
 end # module Veritas
+
+require 'veritas/algebra/union/set'

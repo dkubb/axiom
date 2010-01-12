@@ -14,15 +14,11 @@ module Veritas
     private
 
       def combine_bodies
-        body = []
-
-        right.each do |right_tuple|
-          body.concat CombineOperation.combine_tuples(left, right_tuple)
-        end
-
-        body
+        Algebra::Product::Set.new(left, right)
       end
 
     end # class Product
   end # module Algebra
 end # module Veritas
+
+require 'veritas/algebra/product/set'
