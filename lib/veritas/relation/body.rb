@@ -14,10 +14,6 @@ module Veritas
         self
       end
 
-      def empty?
-        to_set.empty?
-      end
-
       def ==(other)
         other  = coerce(other)
         header = self.header

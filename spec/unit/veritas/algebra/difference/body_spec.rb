@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Difference#body' do
     it { should be_kind_of(Relation::Body) }
 
     it 'should subtract the bodies' do
-      should be_empty
+      should == []
     end
   end
 

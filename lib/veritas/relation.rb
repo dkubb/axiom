@@ -24,7 +24,8 @@ module Veritas
     end
 
     def empty?
-      body.empty?
+      each { return false }
+      true
     end
 
     def project(attributes)
