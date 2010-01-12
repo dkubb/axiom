@@ -13,10 +13,7 @@ describe 'Veritas::Algebra::CombineOperation#body' do
 
   subject { @combine_operation.body }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#combine_bodies must be implemented') }
-
   it 'should return the expected body' do
-    @combine_operation.should_receive(:combine_bodies).and_return([])
-    subject.should eql(Relation::Body.new(@header, []))
+    subject.should == [ [ 1 ], [ 2 ] ]
   end
 end

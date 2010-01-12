@@ -11,12 +11,6 @@ module Veritas
         super
       end
 
-    private
-
-      def combine_bodies
-        Algebra::Product::Set.new(left, right)
-      end
-
     end # class Product
   end # module Algebra
 end # module Veritas

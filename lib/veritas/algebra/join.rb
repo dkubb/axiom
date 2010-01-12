@@ -11,12 +11,6 @@ module Veritas
         super
       end
 
-    private
-
-      def combine_bodies
-        Algebra::Join::Set.new(left, right)
-      end
-
     end # class Join
   end # module Algebra
 end # module Veritas

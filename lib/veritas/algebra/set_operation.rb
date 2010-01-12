@@ -12,7 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= left.body.send(self.class.operation, right.body)
+        @body ||= Relation::Body.new(header, self.class::Set.new(left, right))
       end
 
       module ClassMethods
@@ -22,10 +22,6 @@ module Veritas
           end
 
           super
-        end
-
-        def operation
-          raise NotImplementedError, "#{name}.operation must be implemented"
         end
       end
 

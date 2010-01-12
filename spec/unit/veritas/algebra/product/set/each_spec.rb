@@ -2,10 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product::Set#each' do
   before do
-    @left   = Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])
-    @right  = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ])
+    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
+    @left   = Relation.new(@header.project([ :id   ]), [ [ 1 ], [ 2 ] ])
+    @right  = Relation.new(@header.project([ :name ]), [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ])
 
-    @set = Algebra::Product::Set.new(@left, @right)
+    @set = Algebra::Product::Set.new(@header, @left, @right)
 
     @yield = []
   end

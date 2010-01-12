@@ -1,6 +1,7 @@
 require 'veritas/relation/body'
 require 'veritas/relation/header'
 require 'veritas/relation/operation'
+require 'veritas/relation/set'
 
 module Veritas
   class Relation
@@ -8,9 +9,9 @@ module Veritas
 
     attr_reader :header, :body
 
-    def initialize(header, body)
-      @header = Header.new(header)
-      @body   = Body.new(@header, body)
+    def initialize(attributes, tuples)
+      @header = Header.new(attributes)
+      @body   = Body.new(@header, tuples)
     end
 
     def [](name)

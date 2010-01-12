@@ -8,17 +8,13 @@ module Veritas
       end
 
       def body
-        @body ||= Relation::Body.new(header, combine_bodies)
+        @body ||= Relation::Body.new(header, self.class::Set.new(header, left, right))
       end
 
     private
 
-      def combine_bodies
-        raise NotImplementedError, "#{self.class.name}#combine_bodies must be implemented"
-      end
-
-      def self.combine_tuples(left_tuples, right_tuple)
-        left_tuples.map { |left_tuple| yield(left_tuple.to_ary + right_tuple.to_ary) }
+      def self.combine_tuples(header, left_tuples, right_tuple)
+        left_tuples.map { |left_tuple| yield(Tuple.new(header, left_tuple.to_ary + right_tuple.to_ary)) }
       end
 
     end # module CombineOperation

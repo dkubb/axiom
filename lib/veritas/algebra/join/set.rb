@@ -2,8 +2,8 @@ module Veritas
   module Algebra
     class Join
       class Set
-        def initialize(left, right)
-          @left, @right = left, right
+        def initialize(header, left, right)
+          @header, @left, @right = header, left, right
         end
 
         def each(&block)
@@ -14,6 +14,7 @@ module Veritas
             next unless left_tuples
 
             CombineOperation.combine_tuples(
+              @header,
               left_tuples,
               project_right_tuple(tuple),
               &block

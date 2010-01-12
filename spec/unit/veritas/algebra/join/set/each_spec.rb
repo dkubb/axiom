@@ -2,10 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Join::Set#each' do
   before do
-    @left  = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
-    @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
+    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
+    @left   = Relation.new(@header.project([ :id ]), [ [ 1 ], [ 2 ] ])
+    @right  = Relation.new(@header, [ [ 2, 'Dan Kubb' ] ])
 
-    @set = Algebra::Join::Set.new(@left, @right)
+    @set = Algebra::Join::Set.new(@header, @left, @right)
 
     @yield = []
   end

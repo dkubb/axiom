@@ -6,11 +6,11 @@ module Veritas
       attr_reader :header
 
       def initialize(header, tuples)
-        @header, @tuples = header, tuples
+        @header, @tuples = header, Set.new(tuples, header)
       end
 
-      def each
-        @tuples.each { |tuple| yield Tuple.coerce(header, tuple) }
+      def each(&block)
+        @tuples.each(&block)
         self
       end
 
@@ -18,45 +18,25 @@ module Veritas
         to_set.empty?
       end
 
-      def project(header)
-        self.class.new(header, Algebra::Projection::Set.new(self, header))
-      end
-
-      def rename(header)
-        self.class.new(header, self)
-      end
-
-      def restrict(predicate)
-        new(Algebra::Restriction::Set.new(self, predicate))
-      end
-
-      def intersect(other)
-        new(Algebra::Intersection::Set.new(self, other))
-      end
-
-      def union(other)
-        new(Algebra::Union::Set.new(self, other))
-      end
-
-      def difference(other)
-        new(Algebra::Difference::Set.new(self, other))
-      end
-
       def ==(other)
         other  = coerce(other)
         header = self.header
         header == other.header &&
-        to_set == other.project(header).to_set
+        to_set == other.send(:project, header).to_set
       end
 
       def eql?(other)
         header = self.header
         instance_of?(other.class) &&
         header.eql?(other.header) &&
-        to_set == other.project(header).to_set
+        to_set == other.send(:project, header).to_set
       end
 
     private
+
+      def project(header)
+        self.class.new(header, Algebra::Projection::Set.new(self, header))
+      end
 
       def new(tuples)
         self.class.new(header, tuples)

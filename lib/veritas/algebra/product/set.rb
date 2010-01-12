@@ -2,13 +2,13 @@ module Veritas
   module Algebra
     class Product
       class Set
-        def initialize(left, right)
-          @left, @right = left, right
+        def initialize(header, left, right)
+          @header, @left, @right = header, left, right
         end
 
         def each(&block)
-          @right.each do |right_tuple|
-            CombineOperation.combine_tuples(@left, right_tuple, &block)
+          @right.each do |tuple|
+            CombineOperation.combine_tuples(@header, @left, tuple, &block)
           end
           self
         end

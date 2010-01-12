@@ -15,7 +15,8 @@ describe 'Veritas::Algebra::SetOperation#header' do
 
   it { should be_kind_of(Relation::Header) }
 
-  it "should equal either relation's header" do
-    should == @header
+  it "should equal both relation's headers" do
+    should == @left.header
+    should == @right.header
   end
 end
