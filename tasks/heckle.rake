@@ -46,11 +46,6 @@ task :heckle => :verify_rcov do
     other_methods = mod.protected_instance_methods(false) |
                     mod.private_instance_methods(false)
 
-    if other_methods.include?('initialize')
-      other_methods -= %w[ initialize ]
-      spec_methods << 'initialize'
-    end
-
     spec_methods.each do |method|
       spec_file = spec_prefix.join(map.file_name(method, mod.name))
       raise "No spec file #{spec_file} for #{mod}##{method}" unless spec_file.file?
