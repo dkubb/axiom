@@ -1,8 +1,8 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Restriction::Set#each' do
+describe 'Veritas::Algebra::Restriction::Body#each' do
   before do
-    @set = Veritas::Algebra::Restriction::Set.new([ [ 1 ] ], proc { true })
+    @set = Veritas::Algebra::Restriction::Body.new([ [ 1 ] ], proc { true })
 
     @yield = []
   end

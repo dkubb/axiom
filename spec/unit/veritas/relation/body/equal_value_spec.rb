@@ -4,7 +4,7 @@ describe 'Veritas::Relation::Body#==' do
   before do
     @header = Relation::Header.new([ [ :id, Integer ] ])
 
-    @body = Relation::Body.new(@header, [ [ 1 ] ])
+    @body = Relation::Body.new([ [ 1 ] ], @header)
   end
 
   subject { @body == @other }
@@ -35,7 +35,7 @@ describe 'Veritas::Relation::Body#==' do
 
   describe 'with an equivalent header and different tuples' do
     before do
-      @other = Relation::Body.new(@header, [ [ 2 ] ])
+      @other = Relation::Body.new([ [ 2 ] ], @header)
     end
 
     it { should be_false }
@@ -48,7 +48,7 @@ describe 'Veritas::Relation::Body#==' do
   describe 'with a different header' do
     before do
       header = Relation::Header.new([ [ :name, String ] ])
-      @other = Relation::Body.new(header, @body)
+      @other = Relation::Body.new(@body, header)
     end
 
     it { should be_false }
@@ -92,8 +92,8 @@ describe 'Veritas::Relation::Body#==' do
       header1 = Relation::Header.new([ attribute1, attribute2 ])
       header2 = Relation::Header.new([ attribute2, attribute1 ])
 
-      @body  = Relation::Body.new(header1, [ [ 1, 'Dan Kubb' ] ])
-      @other = Relation::Body.new(header2, [ [ 'Dan Kubb', 1 ] ])
+      @body  = Relation::Body.new([ [ 1, 'Dan Kubb' ] ], header1)
+      @other = Relation::Body.new([ [ 'Dan Kubb', 1 ] ], header2)
     end
 
     it { should be_true }

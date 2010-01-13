@@ -15,4 +15,4 @@ module Veritas
   end # module Algebra
 end # module Veritas
 
-require 'veritas/algebra/join/set'
+require 'veritas/algebra/join/body'

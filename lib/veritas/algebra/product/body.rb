@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Product
-      class Set
+      class Body < Relation::Body
         def initialize(header, left, right)
           @header, @left, @right = header, left, right
         end
@@ -13,7 +13,7 @@ module Veritas
           self
         end
 
-      end # class Set
+      end # class Body
     end # class Product
   end # module Algebra
 end # module Veritas

@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Body' do
     @header = Relation::Header.new([ [ :id, Integer ] ])
   end
 
-  subject { Relation::Body.new(@header, [ [ 1 ] ]) }
+  subject { Relation::Body.new([ [ 1 ] ], @header) }
 
   it { should be_kind_of(Enumerable) }
 
@@ -17,16 +17,18 @@ end
 describe 'Veritas::Relation::Body#each' do
   before do
     @header = Relation::Header.new([ [ :id, Integer ] ])
-    @body   = Relation::Body.new(@header, [ [ 1 ] ])
+    @tuples = [ [ 1 ], [ 2 ], [ 2 ] ]
+
+    @set = Relation::Body.new(@tuples, @header)
 
     @yield = []
   end
 
-  subject { @body.each { |tuple| @yield << tuple } }
+  subject { @set.each { |tuple| @yield << tuple } }
 
-  it { should equal(@body) }
+  it { should equal(@set) }
 
-  it 'should yield each tuple' do
-    method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
+  it 'should yield each tuple only once' do
+    method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
   end
 end

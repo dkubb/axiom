@@ -6,4 +6,4 @@ module Veritas
   end # module Algebra
 end # module Veritas
 
-require 'veritas/algebra/intersection/set'
+require 'veritas/algebra/intersection/body'

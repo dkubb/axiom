@@ -12,7 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= Relation::Body.new(header, self.class::Set.new(left, right))
+        @body ||= Relation::Body.new(self.class::Body.new(left, right), header)
       end
 
       module ClassMethods

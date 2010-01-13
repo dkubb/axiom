@@ -12,11 +12,11 @@ module Veritas
       end
 
       def body
-        @body ||= relation.body.class.new(header, Set.new(relation, header))
+        @body ||= Relation::Body.new(Body.new(relation, header), header)
       end
 
     end # class Projection
   end # module Algebra
 end # module Veritas
 
-require 'veritas/algebra/projection/set'
+require 'veritas/algebra/projection/body'

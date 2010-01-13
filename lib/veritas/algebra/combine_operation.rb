@@ -8,7 +8,7 @@ module Veritas
       end
 
       def body
-        @body ||= Relation::Body.new(header, self.class::Set.new(header, left, right))
+        @body ||= Relation::Body.new(self.class::Body.new(header, left, right), header)
       end
 
     private

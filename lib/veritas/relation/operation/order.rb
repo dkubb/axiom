@@ -23,7 +23,7 @@ module Veritas
         end
 
         def body
-          @body ||= Body.new(header, directions.sort(relation))
+          @body ||= Body.new(directions.sort(relation), header)
         end
 
       end # class Order

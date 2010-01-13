@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Operation::Order::Body#limit' do
     @header = Relation::Header.new([ [ :id, Integer ] ])
     @tuples = (10..15).map { |index| [ index ] }
 
-    @body = Relation::Operation::Order::Body.new(@header, @tuples)
+    @body = Relation::Operation::Order::Body.new(@tuples, @header)
   end
 
   subject { @body.limit(1) }

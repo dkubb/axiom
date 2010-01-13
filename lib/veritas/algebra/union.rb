@@ -6,4 +6,4 @@ module Veritas
   end # module Algebra
 end # module Veritas
 
-require 'veritas/algebra/union/set'
+require 'veritas/algebra/union/body'

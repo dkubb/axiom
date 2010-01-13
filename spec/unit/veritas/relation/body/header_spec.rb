@@ -4,7 +4,7 @@ describe 'Veritas::Relation::Body#header' do
   before do
     @header = Relation::Header.new([ [ :id, Integer ] ])
 
-    @body = Relation::Body.new(@header, [ [ 1 ] ])
+    @body = Relation::Body.new([ [ 1 ] ], @header)
   end
 
   subject { @body.header }

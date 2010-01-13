@@ -1,6 +1,6 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Projection::Set#each' do
+describe 'Veritas::Algebra::Projection::Body#each' do
   before do
     @relation = Relation.new(
       [ [ :id, Integer ], [ :name, String ] ],
@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Projection::Set#each' do
 
     @header = @relation.header.project([ :id ])
 
-    @set = Veritas::Algebra::Projection::Set.new(@relation, @header)
+    @set = Veritas::Algebra::Projection::Body.new(@relation, @header)
 
     @yield = []
   end

@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Restriction
-      class Set
+      class Body < Relation::Body
         def initialize(tuples, predicate)
           @tuples, @predicate = tuples, predicate
         end
@@ -11,7 +11,7 @@ module Veritas
           self
         end
 
-      end # class Set
+      end # class Body
     end # class Restriction
   end # module Algebra
 end # module Veritas

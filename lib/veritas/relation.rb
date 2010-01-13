@@ -1,7 +1,6 @@
 require 'veritas/relation/body'
 require 'veritas/relation/header'
 require 'veritas/relation/operation'
-require 'veritas/relation/set'
 
 module Veritas
   class Relation
@@ -11,7 +10,7 @@ module Veritas
 
     def initialize(attributes, tuples)
       @header = Header.new(attributes)
-      @body   = Body.new(@header, tuples)
+      @body   = Body.new(tuples, @header)
     end
 
     def [](name)

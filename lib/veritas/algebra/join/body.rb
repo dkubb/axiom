@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Join
-      class Set
+      class Body < Relation::Body
         def initialize(header, left, right)
           @header, @left, @right = header, left, right
         end
@@ -52,7 +52,7 @@ module Veritas
           index
         end
 
-      end # class Set
+      end # class Body
     end # class Join
   end # module Algebra
 end # module Veritas

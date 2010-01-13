@@ -12,7 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= relation.body.class.new(header, Set.new(relation, predicate))
+        @body ||= Relation::Body.new(Body.new(relation, predicate), header)
       end
 
     end # class Restriction
@@ -21,4 +21,4 @@ end # module Veritas
 
 require 'veritas/algebra/restriction/connective'
 require 'veritas/algebra/restriction/predicate'
-require 'veritas/algebra/restriction/set'
+require 'veritas/algebra/restriction/body'

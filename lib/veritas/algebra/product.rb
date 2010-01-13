@@ -15,4 +15,4 @@ module Veritas
   end # module Algebra
 end # module Veritas
 
-require 'veritas/algebra/product/set'
+require 'veritas/algebra/product/body'

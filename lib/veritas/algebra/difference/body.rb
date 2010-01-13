@@ -1,10 +1,8 @@
 module Veritas
   module Algebra
     class Difference
-      class Set
-        def initialize(left, right)
-          @left, @right = left, right
-        end
+      class Body < Relation::Body
+        include BinaryOperation
 
         def each
           right = right_set
@@ -18,7 +16,7 @@ module Veritas
           @right_set ||= @right.to_set
         end
 
-      end # class Set
+      end # class Body
     end # class Difference
   end # module Algebra
 end # module Veritas

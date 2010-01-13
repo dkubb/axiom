@@ -1,6 +1,6 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Union::Set#each' do
+describe 'Veritas::Algebra::Union::Body#each' do
   before do
     @header = [ [ :id, Integer ] ]
 
@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Union::Set#each' do
 
   describe 'with relations having similar bodies' do
     before do
-      @set = Algebra::Union::Set.new(@left, @left.dup)
+      @set = Algebra::Union::Body.new(@left, @left.dup)
     end
 
     it { should equal(@set) }
@@ -27,7 +27,7 @@ describe 'Veritas::Algebra::Union::Set#each' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
 
-      @set = Algebra::Union::Set.new(@left, @right)
+      @set = Algebra::Union::Body.new(@left, @right)
     end
 
     it { should equal(@set) }

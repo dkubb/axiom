@@ -1,10 +1,8 @@
 module Veritas
   module Algebra
     class Union
-      class Set
-        def initialize(left, right)
-          @left, @right = left, right
-        end
+      class Body < Relation::Body
+        include BinaryOperation
 
         def each
           seen = {}
@@ -13,7 +11,7 @@ module Veritas
           self
         end
 
-      end # class Set
+      end # class Body
     end # class Union
   end # module Algebra
 end # module Veritas

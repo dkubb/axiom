@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Operation::Order::Body#offset' do
     @header = Relation::Header.new([ [ :id, Integer ] ])
     @tuples = (10..15).map { |index| [ index ] }
 
-    @body = Relation::Operation::Order::Body.new(@header, @tuples)
+    @body = Relation::Operation::Order::Body.new(@tuples, @header)
   end
 
   subject { @body.offset(1) }

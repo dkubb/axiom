@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Body#to_set' do
     header = Relation::Header.new([ [ :id, Integer ] ])
     @tuple = Tuple.new(header, [ 1 ])
 
-    @body = Relation::Body.new(header, [ @tuple ])
+    @body = Relation::Body.new([ @tuple ], header)
   end
 
   subject { @body.to_set }

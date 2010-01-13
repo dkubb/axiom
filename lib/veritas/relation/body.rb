@@ -5,12 +5,16 @@ module Veritas
 
       attr_reader :header
 
-      def initialize(header, tuples)
-        @header, @tuples = header, Set.new(tuples, header)
+      def initialize(tuples, header)
+        @tuples, @header = tuples, header
       end
 
-      def each(&block)
-        @tuples.each(&block)
+      def each
+        seen = {}
+        @tuples.each do |tuple|
+          tuple = Tuple.coerce(@header, tuple)
+          yield(seen[tuple] = tuple) unless seen.key?(tuple)
+        end
         self
       end
 
@@ -18,24 +22,24 @@ module Veritas
         other  = coerce(other)
         header = self.header
         header == other.header &&
-        to_set == other.send(:project, header).to_set
+        to_set == project(other).to_set
       end
 
       def eql?(other)
         header = self.header
         instance_of?(other.class) &&
         header.eql?(other.header) &&
-        to_set == other.send(:project, header).to_set
+        to_set == project(other).to_set
       end
 
     private
 
-      def project(header)
-        self.class.new(header, Algebra::Projection::Set.new(self, header))
+      def project(body)
+        Algebra::Projection::Body.new(body, header)
       end
 
       def new(tuples)
-        self.class.new(header, tuples)
+        self.class.new(tuples, header)
       end
 
       def coerce(object)

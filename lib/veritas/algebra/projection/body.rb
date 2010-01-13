@@ -1,11 +1,7 @@
 module Veritas
   module Algebra
     class Projection
-      class Set
-        def initialize(tuples, header)
-          @tuples, @header = tuples, header
-        end
-
+      class Body < Relation::Body
         def each
           seen = {}
           @tuples.each do |tuple|
@@ -15,7 +11,7 @@ module Veritas
           self
         end
 
-      end # class Set
+      end # class Body
     end # class Projection
   end # module Algebra
 end # module Veritas

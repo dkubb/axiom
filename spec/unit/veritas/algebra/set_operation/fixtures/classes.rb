@@ -2,7 +2,7 @@ module SetOperationSpecs
   class Object
     include Veritas::Algebra::SetOperation
 
-    class Set
+    class Body
       def initialize(left, right)
         @left, @right = left, right
       end
