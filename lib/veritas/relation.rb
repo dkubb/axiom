@@ -86,10 +86,14 @@ module Veritas
       Operation::Limit.new(self, limit.to_int)
     end
 
+    alias take limit
+
     # TODO: limit this to only be available to ordered relations, and containers
     def offset(offset)
       Operation::Offset.new(self, offset.to_int)
     end
+
+    alias drop offset
 
     def ==(other)
       header == other.header &&
