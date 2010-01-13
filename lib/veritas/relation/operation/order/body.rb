@@ -4,11 +4,11 @@ module Veritas
       class Order
         class Body < Relation::Body
           def limit(limit)
-            new(take(limit))
+            self.class.new(take(limit), header)
           end
 
           def offset(offset)
-            new(drop(offset))
+            self.class.new(drop(offset), header)
           end
         end # class OrderedBody
       end # class Order

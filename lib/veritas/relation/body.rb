@@ -34,12 +34,12 @@ module Veritas
 
     private
 
-      def project(body)
-        Algebra::Projection::Body.new(body, header)
+      def project(tuples)
+        Algebra::Projection::Body.new(tuples, header)
       end
 
       def new(tuples)
-        self.class.new(tuples, header)
+        Body.new(tuples, header)
       end
 
       def coerce(object)
