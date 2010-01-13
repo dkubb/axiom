@@ -15,6 +15,6 @@ describe 'Veritas::Algebra::Restriction::Predicate#call' do
   it 'should send the left and right value to self.class.eval' do
     response = mock('#eval response')
     @klass.should_receive(:eval).with(1, 1).and_return(response)
-    subject.should equal(response)
+    should equal(response)
   end
 end

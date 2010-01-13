@@ -18,6 +18,6 @@ describe 'Veritas::Relation::Operation::Order::Direction#call' do
   it 'should send the tuple value to self.class.eval' do
     response = mock('#eval response')
     @klass.should_receive(:eval).with(1, 2).and_return(response)
-    subject.should equal(response)
+    should equal(response)
   end
 end

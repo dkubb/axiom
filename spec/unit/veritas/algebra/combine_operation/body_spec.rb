@@ -14,6 +14,6 @@ describe 'Veritas::Algebra::CombineOperation#body' do
   subject { @combine_operation.body }
 
   it 'should return the expected body' do
-    subject.should == [ [ 1 ], [ 2 ] ]
+    should == [ [ 1 ], [ 2 ] ]
   end
 end
