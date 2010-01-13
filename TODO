@@ -1,5 +1,3 @@
-* Add Relation#group and Relation#ungroup to nest/unnest the relations
-
 * Figure out how to delegate #directions to subordinate Relations cleanly
   * Add Relation#last
 
@@ -52,6 +50,8 @@
 * Add a way to know if a Relation contains a body that is ordered
   * this should be something a "container" Relation can delegate to
     it's "contained" Relations
+
+* Add Relation#nest and Relation#unnest
 
 * Consider factoring out Body subclasses and using Enumerator objects
   to encapsulate the #each iteration logic.  The end result from the
