@@ -25,7 +25,7 @@ module Veritas
         end
 
         def body
-          @body ||= Order::Body.new(relation.body.drop(to_int), header)
+          @body ||= Relation::Body.new(relation.body.drop(to_int), header)
         end
 
       end # class Offset

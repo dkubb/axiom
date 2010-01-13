@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Offset#body' do
 
   subject { @remainder.body }
 
-  it { should be_kind_of(Relation::Operation::Order::Body) }
+  it { should be_kind_of(Relation::Body) }
 
   it { should == [ [ 2 ] ] }
 end

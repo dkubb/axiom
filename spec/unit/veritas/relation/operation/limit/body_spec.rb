@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Limit#body' do
 
   subject { @limit.body }
 
-  it { should be_kind_of(Relation::Operation::Order::Body) }
+  it { should be_kind_of(Relation::Body) }
 
   it { should == [ [ 1 ] ] }
 end

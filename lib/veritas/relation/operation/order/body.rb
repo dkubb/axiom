@@ -3,6 +3,16 @@ module Veritas
     module Operation
       class Order
         class Body < Relation::Body
+          def initialize(tuples, directions)
+            @directions = directions
+            super(tuples, tuples.header)
+          end
+
+          def each(&block)
+            @directions.sort(@tuples).each(&block)
+            self
+          end
+
         end # class OrderedBody
       end # class Order
     end # module Operation
