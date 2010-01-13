@@ -1,0 +1,16 @@
+require File.expand_path('../../../../spec_helper', __FILE__)
+
+describe 'Veritas::Relation#reverse' do
+  before do
+    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
+    @ordered  = @relation.order { |r| r[:id] }
+  end
+
+  subject { @ordered.reverse }
+
+  it { should be_kind_of(Relation::Operation::Order) }
+
+  it 'should reverse the direction' do
+    subject.directions.should == [ @relation[:id].desc ]
+  end
+end

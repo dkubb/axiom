@@ -25,7 +25,7 @@ module Veritas
         end
 
         def body
-          @body ||= relation.body.limit(to_int)
+          @body ||= Order::Body.new(relation.body.take(to_int), header)
         end
 
       end # class Limit

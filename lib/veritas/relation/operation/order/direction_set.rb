@@ -11,6 +11,10 @@ module Veritas
             end
           end
 
+          def reverse
+            self.class.new(map { |direction| direction.reverse })
+          end
+
           def each(&block)
             to_ary.each(&block)
             self
