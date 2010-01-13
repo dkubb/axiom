@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Projection::Body#each' do
 
     @header = @relation.header.project([ :id ])
 
-    @set = Veritas::Algebra::Projection::Body.new(@relation, @header)
+    @set = Algebra::Projection::Body.new(@relation, @header)
 
     @yield = []
   end
