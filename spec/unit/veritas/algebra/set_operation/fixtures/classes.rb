@@ -2,9 +2,13 @@ module SetOperationSpecs
   class Object
     include Veritas::Algebra::SetOperation
 
-    class Body
+    class Body < Relation::Body
       def initialize(left, right)
         @left, @right = left, right
+      end
+
+      def header
+        @header ||= @left.header
       end
 
       def each(&block)

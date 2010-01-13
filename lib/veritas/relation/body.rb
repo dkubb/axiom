@@ -12,7 +12,7 @@ module Veritas
       def each
         seen = {}
         @tuples.each do |tuple|
-          tuple = Tuple.coerce(@header, tuple)
+          tuple = Tuple.coerce(header, tuple)
           yield(seen[tuple] = tuple) unless seen.key?(tuple)
         end
         self
@@ -30,6 +30,14 @@ module Veritas
         instance_of?(other.class) &&
         header.eql?(other.header) &&
         to_set == project(other).to_set
+      end
+
+      def hash
+        to_set.hash
+      end
+
+      def inspect
+        to_a.inspect
       end
 
     private

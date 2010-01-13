@@ -9,7 +9,7 @@ module Veritas
     attr_reader :header, :body
 
     def initialize(attributes, tuples)
-      @header = Header.new(attributes)
+      @header = Header.coerce(attributes)
       @body   = Body.new(tuples, @header)
     end
 

@@ -12,7 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= Relation::Body.new(Body.new(relation.body, predicate), header)
+        @body ||= Body.new(relation.body, predicate)
       end
 
     end # class Restriction

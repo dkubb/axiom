@@ -2,7 +2,9 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction::Body#each' do
   before do
-    @set = Veritas::Algebra::Restriction::Body.new([ [ 1 ] ], proc { true })
+    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+
+    @set = Algebra::Restriction::Body.new(@relation.body, proc { true })
 
     @yield = []
   end

@@ -3,7 +3,8 @@ module Veritas
     class Restriction
       class Body < Relation::Body
         def initialize(tuples, predicate)
-          @tuples, @predicate = tuples, predicate
+          @predicate = predicate
+          super(tuples, tuples.header)
         end
 
         def each

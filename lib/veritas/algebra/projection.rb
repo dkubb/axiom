@@ -12,7 +12,7 @@ module Veritas
       end
 
       def body
-        @body ||= Relation::Body.new(Body.new(relation.body, header), header)
+        @body ||= Body.new(relation.body, header)
       end
 
     end # class Projection

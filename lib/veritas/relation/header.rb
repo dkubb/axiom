@@ -65,6 +65,10 @@ module Veritas
         to_set == other.to_set
       end
 
+      def hash
+        to_ary.hash
+      end
+
       def empty?
         to_ary.empty?
       end
