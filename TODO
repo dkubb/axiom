@@ -51,10 +51,3 @@
             # ...
         end
       end
-
-* Move logic from Join#combine_bodies and Product#combine_bodies into Body
-  * should pass enough information that the Body method could either
-    perform the operation in-memory OR generate a native query to
-    carry it out.
-  * review other classes to see if methods could be pushed down to
-    Body or Header.
