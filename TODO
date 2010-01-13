@@ -1,8 +1,3 @@
-* Update Order::Body to accept the Relation and DirectionSet and
-  perform sorting on demand when Order::Body#each is called.
-  * It should sort the Relation and then yield to each Tuple in
-    sorted order.
-
 * Add Relation#group and Relation#ungroup to nest/unnest the relations
 
 * Figure out how to delegate #directions to subordinate Relations cleanly
