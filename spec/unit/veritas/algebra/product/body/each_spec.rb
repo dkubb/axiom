@@ -6,14 +6,14 @@ describe 'Veritas::Algebra::Product::Body#each' do
     @left   = Relation.new(@header.project([ :id   ]), [ [ 1 ], [ 2 ] ])
     @right  = Relation.new(@header.project([ :name ]), [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ])
 
-    @set = Algebra::Product::Body.new(@header, @left, @right)
+    @body = Algebra::Product::Body.new(@header, @left, @right)
 
     @yield = []
   end
 
-  subject { @set.each { |tuple| @yield << tuple } }
+  subject { @body.each { |tuple| @yield << tuple } }
 
-  it { should equal(@set) }
+  it { should equal(@body) }
 
   it 'should yield the product' do
     method(:subject).should change { @yield.dup }.

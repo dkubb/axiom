@@ -9,14 +9,14 @@ describe 'Veritas::Algebra::Union::Body#each' do
     @yield = []
   end
 
-  subject { @set.each { |tuple| @yield << tuple } }
+  subject { @body.each { |tuple| @yield << tuple } }
 
   describe 'with relations having similar bodies' do
     before do
-      @set = Algebra::Union::Body.new(@left, @left.dup)
+      @body = Algebra::Union::Body.new(@left, @left.dup)
     end
 
-    it { should equal(@set) }
+    it { should equal(@body) }
 
     it 'should yield the union' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
@@ -27,10 +27,10 @@ describe 'Veritas::Algebra::Union::Body#each' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
 
-      @set = Algebra::Union::Body.new(@left, @right)
+      @body = Algebra::Union::Body.new(@left, @right)
     end
 
-    it { should equal(@set) }
+    it { should equal(@body) }
 
     it 'should yield the union' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])

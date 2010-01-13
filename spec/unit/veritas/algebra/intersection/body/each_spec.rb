@@ -9,14 +9,14 @@ describe 'Veritas::Algebra::Intersection::Body#each' do
     @yield = []
   end
 
-  subject { @set.each { |tuple| @yield << tuple } }
+  subject { @body.each { |tuple| @yield << tuple } }
 
   describe 'with relations having similar bodies' do
     before do
-      @set = Algebra::Intersection::Body.new(@left, @left.dup)
+      @body = Algebra::Intersection::Body.new(@left, @left.dup)
     end
 
-    it { should equal(@set) }
+    it { should equal(@body) }
 
     it 'should yield the intersection' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
@@ -27,10 +27,10 @@ describe 'Veritas::Algebra::Intersection::Body#each' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
 
-      @set = Algebra::Intersection::Body.new(@left, @right)
+      @body = Algebra::Intersection::Body.new(@left, @right)
     end
 
-    it { should equal(@set) }
+    it { should equal(@body) }
 
     it 'should yield the intersection' do
       method(:subject).should_not change { @yield.dup }

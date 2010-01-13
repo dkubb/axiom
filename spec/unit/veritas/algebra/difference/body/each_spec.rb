@@ -9,14 +9,14 @@ describe 'Veritas::Algebra::Difference::Body#each' do
     @yield = []
   end
 
-  subject { @set.each { |tuple| @yield << tuple } }
+  subject { @body.each { |tuple| @yield << tuple } }
 
   describe 'with relations having similar bodies' do
     before do
-      @set = Algebra::Difference::Body.new(@left, @left.dup)
+      @body = Algebra::Difference::Body.new(@left, @left.dup)
     end
 
-    it { should equal(@set) }
+    it { should equal(@body) }
 
     it 'should yield the difference' do
       method(:subject).should_not change { @yield.dup }
@@ -27,10 +27,10 @@ describe 'Veritas::Algebra::Difference::Body#each' do
     before do
       @right = Relation.new(@header, [ [ 2 ] ])
 
-      @set = Algebra::Difference::Body.new(@left, @right)
+      @body = Algebra::Difference::Body.new(@left, @right)
     end
 
-    it { should equal(@set) }
+    it { should equal(@body) }
 
     it 'should yield the difference' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])

@@ -13,14 +13,14 @@ describe 'Veritas::Algebra::Projection::Body#each' do
 
     @header = @relation.header.project([ :id ])
 
-    @set = Algebra::Projection::Body.new(@relation, @header)
+    @body = Algebra::Projection::Body.new(@relation, @header)
 
     @yield = []
   end
 
-  subject { @set.each { |tuple| @yield << tuple } }
+  subject { @body.each { |tuple| @yield << tuple } }
 
-  it { should equal(@set) }
+  it { should equal(@body) }
 
   it 'should yield each tuple only once' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
