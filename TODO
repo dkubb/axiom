@@ -1,5 +1,3 @@
-* Alias Relation#take to #limit
-
 * Add Relation#first, #last and #at to return slices of tuples as relations
   * Uses Relation#limit and Relation#offset underneath
   * #last is especially interesting, since it reverses the sort order,
