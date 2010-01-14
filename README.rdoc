@@ -90,4 +90,4 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
 
 == Copyright
 
-Copyright (c) 2009 Dan Kubb. See LICENSE for details.
+Copyright (c) 2010 Dan Kubb. See LICENSE for details.
