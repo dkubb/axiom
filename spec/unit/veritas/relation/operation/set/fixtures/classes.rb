@@ -1,6 +1,6 @@
 module SetOperationSpecs
   class Object
-    include Veritas::Algebra::SetOperation
+    include Veritas::Relation::Operation::Set
 
     class Body < Relation::Body
       def initialize(left, right)

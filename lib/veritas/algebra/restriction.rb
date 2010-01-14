@@ -1,14 +1,13 @@
 module Veritas
   module Algebra
     class Restriction < Relation
-      attr_reader :relation, :predicate
+      include Relation::Operation::Unary
+
+      attr_reader :predicate
 
       def initialize(relation, predicate)
-        @relation, @predicate = relation, predicate
-      end
-
-      def header
-        @header ||= relation.header
+        @predicate = predicate
+        super(relation)
       end
 
       def body

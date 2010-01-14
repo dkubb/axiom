@@ -2,7 +2,7 @@ module Veritas
   class Relation
     module Operation
       class Offset < Relation
-        attr_reader :relation
+        include Unary
 
         def self.new(relation, offset)
           unless relation.body.kind_of?(Order::Body)
@@ -13,15 +13,12 @@ module Veritas
         end
 
         def initialize(relation, offset)
-          @relation, @offset = relation, offset
+          @offset = offset
+          super(relation)
         end
 
         def to_int
           @offset
-        end
-
-        def header
-          @header ||= relation.header
         end
 
         def body

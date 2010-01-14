@@ -2,7 +2,7 @@ module Veritas
   module Algebra
     class Intersection
       class Body < Relation::Body
-        include BinaryOperation
+        include Relation::Operation::Binary
 
         def header
           @header ||= left.header

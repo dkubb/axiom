@@ -1,7 +1,7 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../../spec_helper', __FILE__)
 require File.expand_path('../../fixtures/classes', __FILE__)
 
-describe 'Veritas::Algebra::SetOperation.new' do
+describe 'Veritas::Relation::Operation::Set.new' do
   before do
     @header = [ [ :id, Integer ] ]
 

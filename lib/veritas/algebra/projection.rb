@@ -1,18 +1,15 @@
 module Veritas
   module Algebra
     class Projection < Relation
-      attr_reader :relation
+      include Relation::Operation::Unary
 
       def initialize(relation, attributes)
-        @relation, @attributes = relation, attributes.to_ary
+        @attributes = attributes.to_ary
+        super(relation)
       end
 
       def header
         @header ||= relation.header.project(@attributes)
-      end
-
-      def body
-        @body ||= Body.new(relation.body, header)
       end
 
     end # class Projection

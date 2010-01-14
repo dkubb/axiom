@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Join < Relation
-      include CombineOperation
+      include Relation::Operation::Combine
 
       def self.new(left, right)
         if (left.header & right.header).empty?

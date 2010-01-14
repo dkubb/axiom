@@ -1,7 +1,7 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Algebra::CombineOperation#body' do
+describe 'Veritas::Relation::Operation::Combine#body' do
   before do
     @header = Relation::Header.new([ [ :id, Integer ] ])
 

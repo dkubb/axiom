@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Product < Relation
-      include CombineOperation
+      include Relation::Operation::Combine
 
       def self.new(left, right)
         unless (left.header & right.header).empty?

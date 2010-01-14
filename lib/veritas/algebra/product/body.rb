@@ -8,7 +8,7 @@ module Veritas
 
         def each(&block)
           @right.each do |tuple|
-            CombineOperation.combine_tuples(@header, @left, tuple, &block)
+            Relation::Operation::Combine.combine_tuples(@header, @left, tuple, &block)
           end
           self
         end

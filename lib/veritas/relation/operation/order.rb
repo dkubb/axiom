@@ -2,7 +2,9 @@ module Veritas
   class Relation
     module Operation
       class Order < Relation
-        attr_reader :relation, :directions
+        include Unary
+
+        attr_reader :directions
 
         def self.new(relation, directions)
           directions = DirectionSet.new(directions)
@@ -15,11 +17,8 @@ module Veritas
         end
 
         def initialize(relation, directions)
-          @relation, @directions = relation, directions
-        end
-
-        def header
-          @header ||= relation.header
+          @directions = directions
+          super(relation)
         end
 
         def body

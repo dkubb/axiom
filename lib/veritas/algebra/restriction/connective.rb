@@ -22,7 +22,8 @@ module Veritas
       end # class Connective
 
       module BinaryConnective
-        include Algebra::BinaryOperation
+        # TODO: use Veritas::Operation::Binary here
+        include Relation::Operation::Binary
 
         def call(tuple)
           self.class.eval(left.call(tuple), right.call(tuple))

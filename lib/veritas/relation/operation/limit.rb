@@ -2,7 +2,7 @@ module Veritas
   class Relation
     module Operation
       class Limit < Relation
-        attr_reader :relation
+        include Unary
 
         def self.new(relation, limit)
           unless relation.body.kind_of?(Order::Body)
@@ -13,15 +13,12 @@ module Veritas
         end
 
         def initialize(relation, limit)
-          @relation, @limit = relation, limit
+          @limit = limit
+          super(relation)
         end
 
         def to_int
           @limit
-        end
-
-        def header
-          @header ||= relation.header
         end
 
         def body

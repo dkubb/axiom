@@ -13,7 +13,7 @@ module Veritas
             left_tuples = index[project_join_tuple(tuple)]
             next unless left_tuples
 
-            CombineOperation.combine_tuples(
+            Relation::Operation::Combine.combine_tuples(
               @header,
               left_tuples,
               project_right_tuple(tuple),

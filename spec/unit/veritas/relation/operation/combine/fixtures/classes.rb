@@ -1,6 +1,6 @@
 module CombineOperationSpecs
   class Object
-    include Veritas::Algebra::CombineOperation
+    include Veritas::Relation::Operation::Combine
 
     class Body < Relation::Body
       def initialize(header, left, right)

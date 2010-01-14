@@ -1,5 +1,5 @@
 module BinaryOperationSpecs
   class Object
-    include Veritas::Algebra::BinaryOperation
+    include Veritas::Relation::Operation::Binary
   end
 end

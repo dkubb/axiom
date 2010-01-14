@@ -1,7 +1,7 @@
 module Veritas
   module Algebra
     class Union < Relation
-      include SetOperation
+      include Relation::Operation::Set
     end # class Union
   end # module Algebra
 end # module Veritas

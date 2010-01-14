@@ -13,7 +13,7 @@ module Veritas
             self
           end
 
-        end # class OrderedBody
+        end # class Body
       end # class Order
     end # module Operation
   end # class Relation
