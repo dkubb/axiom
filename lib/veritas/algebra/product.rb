@@ -11,8 +11,13 @@ module Veritas
         super
       end
 
+      def each(&block)
+        right.each do |tuple|
+          Relation::Operation::Combine.combine_tuples(header, left, tuple, &block)
+        end
+        self
+      end
+
     end # class Product
   end # module Algebra
 end # module Veritas
-
-require 'veritas/algebra/product/body'

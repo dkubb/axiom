@@ -5,9 +5,9 @@ module Veritas
         include Unary
 
         def self.new(relation, offset)
-          unless relation.body.kind_of?(Order::Body)
-            raise ArgumentError, 'can only slice a relation with an ordered body'
-          end
+#          unless relation.body.kind_of?(Order::Body)
+#            raise ArgumentError, 'can only slice a relation with an ordered body'
+#          end
 
           super
         end
@@ -21,8 +21,11 @@ module Veritas
           @offset
         end
 
-        def body
-          @body ||= Relation::Body.new(relation.body.drop(to_int), header)
+        def each
+          relation.each_with_index do |tuple, index|
+            yield tuple if index >= to_int
+          end
+          self
         end
 
       end # class Offset

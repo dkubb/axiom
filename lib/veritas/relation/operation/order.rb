@@ -21,8 +21,9 @@ module Veritas
           super(relation)
         end
 
-        def body
-          @body ||= Body.new(relation.body, directions)
+        def each(&block)
+          directions.sort(relation).each(&block)
+          self
         end
 
       end # class Order
@@ -32,4 +33,3 @@ end # module Veritas
 
 require 'veritas/relation/operation/order/direction'
 require 'veritas/relation/operation/order/direction_set'
-require 'veritas/relation/operation/order/body'

@@ -5,9 +5,9 @@ module Veritas
         include Unary
 
         def self.new(relation, limit)
-          unless relation.body.kind_of?(Order::Body)
-            raise ArgumentError, 'can only limit a relation with an ordered body'
-          end
+#          unless relation.body.kind_of?(Order::Body)
+#            raise ArgumentError, 'can only limit a relation with an ordered body'
+#          end
 
           super
         end
@@ -21,8 +21,12 @@ module Veritas
           @limit
         end
 
-        def body
-          @body ||= Relation::Body.new(relation.body.take(to_int), header)
+        def each
+          relation.each_with_index do |tuple, index|
+            break if to_int == index
+            yield tuple
+          end
+          self
         end
 
       end # class Limit

@@ -12,9 +12,6 @@ module Veritas
           @header ||= relation.header
         end
 
-        def body
-          @body ||= self.class::Body.new(relation.body, header)
-        end
       end # module Unary
     end # module Operation
   end # class Relation

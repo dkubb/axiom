@@ -2,11 +2,11 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#intersect' do
   before do
-    @body  = Relation::Header.new([ [ :id,   Integer ] ])
-    @other = Relation::Header.new([ [ :name, String  ] ])
+    @header = Relation::Header.new([ [ :id,   Integer ] ])
+    @other  = Relation::Header.new([ [ :name, String  ] ])
   end
 
-  subject { @body.intersect(@other) }
+  subject { @header.intersect(@other) }
 
   it { should be_kind_of(Relation::Header) }
 

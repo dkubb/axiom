@@ -10,8 +10,9 @@ module Veritas
         super(relation)
       end
 
-      def body
-        @body ||= Body.new(relation.body, predicate)
+      def each
+        relation.each { |tuple| yield(tuple) if predicate.call(tuple) }
+        self
       end
 
     end # class Restriction
@@ -20,4 +21,3 @@ end # module Veritas
 
 require 'veritas/algebra/restriction/connective'
 require 'veritas/algebra/restriction/predicate'
-require 'veritas/algebra/restriction/body'

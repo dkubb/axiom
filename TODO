@@ -52,8 +52,3 @@
     it's "contained" Relations
 
 * Add Relation#nest and Relation#unnest
-
-* Consider factoring out Body subclasses and using Enumerator objects
-  to encapsulate the #each iteration logic.  The end result from the
-  user's POV will be the same (efficient, chained enumerating), but
-  internally it could also increase complexity.

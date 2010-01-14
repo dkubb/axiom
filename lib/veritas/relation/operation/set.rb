@@ -8,10 +8,6 @@ module Veritas
           klass.extend ClassMethods
         end
 
-        def body
-          @body ||= self.class::Body.new(left.body, right.body)
-        end
-
         module ClassMethods
           def new(left, right)
             unless left.header == right.header

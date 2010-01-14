@@ -12,8 +12,15 @@ module Veritas
         @header ||= relation.header.project(@attributes)
       end
 
+      def each
+        seen = {}
+        relation.each do |tuple|
+          tuple = tuple.project(header)
+          yield(seen[tuple] = tuple) unless seen.key?(tuple)
+        end
+        self
+      end
+
     end # class Projection
   end # module Algebra
 end # module Veritas
-
-require 'veritas/algebra/projection/body'

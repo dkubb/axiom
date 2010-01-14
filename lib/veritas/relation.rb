@@ -1,4 +1,3 @@
-require 'veritas/relation/body'
 require 'veritas/relation/header'
 require 'veritas/relation/operation'
 
@@ -6,19 +5,22 @@ module Veritas
   class Relation
     include Enumerable
 
-    attr_reader :header, :body
+    attr_reader :header
 
     def initialize(attributes, tuples)
-      @header = Header.coerce(attributes)
-      @body   = Body.new(tuples, @header)
+      @header, @tuples = Header.coerce(attributes), tuples
     end
 
     def [](name)
       header[name]
     end
 
-    def each(&block)
-      body.each(&block)
+    def each
+      seen = {}
+      @tuples.each do |tuple|
+        tuple = Tuple.coerce(header, tuple)
+        yield(seen[tuple] = tuple) unless seen.key?(tuple)
+      end
       self
     end
 
@@ -28,7 +30,7 @@ module Veritas
     end
 
     def project(attributes)
-      Algebra::Projection.new(self, attributes)
+      project_relation(self, attributes)
     end
 
     def remove(attributes)
@@ -111,14 +113,15 @@ module Veritas
     alias drop offset
 
     def ==(other)
+      other = coerce(other)
       header == other.header &&
-      body   == other.body
+      to_set == project_relation(other).to_set
     end
 
     def eql?(other)
       instance_of?(other.class) &&
       header.eql?(other.header) &&
-      body.eql?(other.body)
+      to_set.eql?(project_relation(other).to_set)
     end
 
   private
@@ -127,12 +130,20 @@ module Veritas
       header.project(attributes)
     end
 
+    def project_relation(relation, attributes = header)
+      Algebra::Projection.new(relation, attributes)
+    end
+
     def natural_join(other)
       Algebra::Join.new(self, other)
     end
 
     def theta_join(other, *args, &block)
       product(other).restrict(*args.compact, &block)
+    end
+
+    def coerce(tuples)
+      tuples.kind_of?(Relation) ? tuples : Relation.new(header, tuples)
     end
 
   end # class Relation

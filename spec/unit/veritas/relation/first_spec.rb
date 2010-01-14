@@ -16,7 +16,7 @@ describe 'Veritas::Relation#first' do
     end
 
     it 'should return the expected tuples' do
-      subject.body.should == [ [ 1 ] ]
+      subject.should == [ [ 1 ] ]
     end
   end
 
@@ -30,7 +30,7 @@ describe 'Veritas::Relation#first' do
     end
 
     it 'should return the expected tuples' do
-      subject.body.should == [ [ 1 ], [ 2 ] ]
+      subject.should == [ [ 1 ], [ 2 ] ]
     end
   end
 end

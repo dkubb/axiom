@@ -5,11 +5,11 @@ describe 'Veritas::Relation::Header#union' do
     @attribute1 = [ :id,   Integer ]
     @attribute2 = [ :name, String  ]
 
-    @body  = Relation::Header.new([ @attribute1 ])
-    @other = Relation::Header.new([ @attribute2 ])
+    @header = Relation::Header.new([ @attribute1 ])
+    @other  = Relation::Header.new([ @attribute2 ])
   end
 
-  subject { @body.union(@other) }
+  subject { @header.union(@other) }
 
   it { should be_kind_of(Relation::Header) }
 

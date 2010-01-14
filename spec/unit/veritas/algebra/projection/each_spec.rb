@@ -1,6 +1,6 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Projection::Body#each' do
+describe 'Veritas::Algebra::Projection#each' do
   before do
     @relation = Relation.new(
       [ [ :id, Integer ], [ :name, String ] ],
@@ -13,14 +13,14 @@ describe 'Veritas::Algebra::Projection::Body#each' do
 
     @header = @relation.header.project([ :id ])
 
-    @body = Algebra::Projection::Body.new(@relation, @header)
+    @projection = Algebra::Projection.new(@relation, @header)
 
     @yield = []
   end
 
-  subject { @body.each { |tuple| @yield << tuple } }
+  subject { @projection.each { |tuple| @yield << tuple } }
 
-  it { should equal(@body) }
+  it { should equal(@projection) }
 
   it 'should yield each tuple only once' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])

@@ -3,9 +3,9 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation#eql?' do
   before do
     @header = [ [ :id, Integer ] ]
-    @body   = [ [ 1 ] ]
+    @tuples = [ [ 1 ] ]
 
-    @relation = Relation.new(@header, @body)
+    @relation = Relation.new(@header, @tuples)
   end
 
   subject { @relation.eql?(@other) }
@@ -50,7 +50,7 @@ describe 'Veritas::Relation#eql?' do
     before do
       klass = Class.new(Relation)
 
-      @other = klass.new(@header, @body)
+      @other = klass.new(@header, @tuples)
     end
 
     it { should be_false }
