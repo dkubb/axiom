@@ -21,7 +21,7 @@ module Veritas
           Relation::Operation::Combine.combine_tuples(
             header,
             left_tuples,
-            project_right_tuple(tuple),
+            project_remainder_tuple(tuple),
             &block
           )
         end
@@ -31,11 +31,21 @@ module Veritas
 
     private
 
+      def left_index
+        index = {}
+
+        left.each do |tuple|
+          (index[project_join_tuple(tuple)] ||= []) << tuple
+        end
+
+        index
+      end
+
       def project_join_tuple(tuple)
         tuple.project(join_header)
       end
 
-      def project_right_tuple(tuple)
+      def project_remainder_tuple(tuple)
         tuple.project(remainder_header)
       end
 
@@ -45,16 +55,6 @@ module Veritas
 
       def remainder_header
         @remainder_header ||= right.header - join_header
-      end
-
-      def left_index
-        index = {}
-
-        left.each do |tuple|
-          (index[project_join_tuple(tuple)] ||= []) << tuple
-        end
-
-        index
       end
 
     end # class Join
