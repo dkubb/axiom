@@ -73,6 +73,10 @@ module Veritas
         to_ary.empty?
       end
 
+      def inspect
+        to_ary.inspect
+      end
+
     private
 
       def new(attributes)

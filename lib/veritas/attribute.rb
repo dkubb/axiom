@@ -44,6 +44,10 @@ module Veritas
       name.hash
     end
 
+    def inspect
+      "<#{self.class.name.gsub('Veritas::', '')} name: #{name}>"
+    end
+
     def self.coerce(object)
       if object.kind_of?(self)
         object
