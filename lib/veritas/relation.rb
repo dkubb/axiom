@@ -80,7 +80,7 @@ module Veritas
     alias - difference
 
     def order(directions = yield(self))
-      Operation::Order.new(self, Array(directions))
+      Operation::Order.new(self, directions)
     end
 
     # TODO: limit this to only be available to ordered relations, and containers
@@ -100,14 +100,14 @@ module Veritas
 
     # TODO: limit this to only be available to ordered relations, and containers
     def limit(limit)
-      Operation::Limit.new(self, limit.to_int)
+      Operation::Limit.new(self, limit)
     end
 
     alias take limit
 
     # TODO: limit this to only be available to ordered relations, and containers
     def offset(offset)
-      Operation::Offset.new(self, offset.to_int)
+      Operation::Offset.new(self, offset)
     end
 
     alias drop offset

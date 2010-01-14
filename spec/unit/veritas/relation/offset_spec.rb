@@ -9,8 +9,4 @@ describe 'Veritas::Relation#offset' do
   subject { @ordered.offset(1) }
 
   it { should be_kind_of(Relation::Operation::Offset) }
-
-  it 'should set the offset' do
-    subject.to_int.should == 1
-  end
 end

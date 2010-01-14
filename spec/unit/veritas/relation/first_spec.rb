@@ -11,10 +11,6 @@ describe 'Veritas::Relation#first' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    it 'should set the default limit' do
-      subject.to_int.should == 1
-    end
-
     it 'should return the expected tuples' do
       subject.should == [ [ 1 ] ]
     end
@@ -24,10 +20,6 @@ describe 'Veritas::Relation#first' do
     subject { @ordered.first(2) }
 
     it { should be_kind_of(Relation::Operation::Limit) }
-
-    it 'should set the limit' do
-      subject.to_int.should == 2
-    end
 
     it 'should return the expected tuples' do
       subject.should == [ [ 1 ], [ 2 ] ]

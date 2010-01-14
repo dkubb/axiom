@@ -13,17 +13,13 @@ module Veritas
         end
 
         def initialize(relation, offset)
-          @offset = offset
+          @offset = offset.to_int
           super(relation)
-        end
-
-        def to_int
-          @offset
         end
 
         def each
           relation.each_with_index do |tuple, index|
-            yield tuple if index >= to_int
+            yield tuple if index >= @offset
           end
           self
         end

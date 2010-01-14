@@ -13,17 +13,13 @@ module Veritas
         end
 
         def initialize(relation, limit)
-          @limit = limit
+          @limit = limit.to_int
           super(relation)
-        end
-
-        def to_int
-          @limit
         end
 
         def each
           relation.each_with_index do |tuple, index|
-            break if to_int == index
+            break if @limit == index
             yield tuple
           end
           self
