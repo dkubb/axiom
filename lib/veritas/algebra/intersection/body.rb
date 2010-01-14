@@ -9,15 +9,9 @@ module Veritas
         end
 
         def each
-          right = right_set
-          left.each { |tuple| yield(tuple) if right.include?(tuple) }
+          right_set = right.to_set
+          left.each { |tuple| yield(tuple) if right_set.include?(tuple) }
           self
-        end
-
-      private
-
-        def right_set
-          @right_set ||= right.to_set
         end
 
       end # class Body
