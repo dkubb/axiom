@@ -68,6 +68,13 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   # NOTE: a relation is Enumerable
   relation = relation.each { |tuple| ... }
 
+  # get the first or last n tuples
+  new_relation = relation.first(5)
+  new_relation = relation.last(5)
+
+  # reverse the relation
+  new_relation = relation.reverse
+
   # returns a Set that represents relation header
   header = relation.header
 

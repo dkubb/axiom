@@ -84,21 +84,6 @@ module Veritas
     end
 
     # TODO: limit this to only be available to ordered relations, and containers
-    def reverse
-      Operation::Order.new(self, directions.reverse)
-    end
-
-    # TODO: limit this to only be available to ordered relations, and containers
-    def first(limit = 1)
-      limit(limit)
-    end
-
-    # TODO: limit this to only be available to ordered relations, and containers
-    def last(limit = 1)
-      reverse.first(limit).reverse
-    end
-
-    # TODO: limit this to only be available to ordered relations, and containers
     def limit(limit)
       Operation::Limit.new(self, limit)
     end
@@ -111,6 +96,21 @@ module Veritas
     end
 
     alias drop offset
+
+    # TODO: limit this to only be available to ordered relations, and containers
+    def first(limit = 1)
+      limit(limit)
+    end
+
+    # TODO: limit this to only be available to ordered relations, and containers
+    def last(limit = 1)
+      reverse.first(limit).reverse
+    end
+
+    # TODO: limit this to only be available to ordered relations, and containers
+    def reverse
+      Operation::Order.new(self, directions.reverse)
+    end
 
     def directions
       @directions ||= Operation::Order::DirectionSet.new([])
