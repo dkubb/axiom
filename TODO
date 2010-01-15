@@ -12,8 +12,6 @@
       * Measurements will always be taken using every available engine.
   * Look at memory and speed profiling tools
 
-* Look at optimizing the Tuple as a Struct
-
 * Add #optimize method to each Relation subclass
   * Relation#optimize should just return self
   * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
@@ -43,5 +41,8 @@
       end
 
 * Refactor common code from Offset and Limit
+  - Use Flay to identify duplicate code and refactor
+
+* Look at optimizing the Tuple as a Struct
 
 * Add Relation#nest and Relation#unnest
