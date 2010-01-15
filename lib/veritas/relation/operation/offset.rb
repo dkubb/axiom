@@ -6,7 +6,7 @@ module Veritas
 
         def self.new(relation, offset)
           if relation.directions.empty?
-            raise ArgumentError, 'can only offset a relation with an ordered body'
+            raise OrderedRelationRequiredError, 'can only offset an ordered relation'
           end
 
           super

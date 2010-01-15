@@ -83,32 +83,31 @@ module Veritas
       Operation::Order.new(self, directions)
     end
 
-    # TODO: limit this to only be available to ordered relations, and containers
     def limit(limit)
       Operation::Limit.new(self, limit)
     end
 
     alias take limit
 
-    # TODO: limit this to only be available to ordered relations, and containers
     def offset(offset)
       Operation::Offset.new(self, offset)
     end
 
     alias drop offset
 
-    # TODO: limit this to only be available to ordered relations, and containers
     def first(limit = 1)
       limit(limit)
     end
 
-    # TODO: limit this to only be available to ordered relations, and containers
     def last(limit = 1)
       reverse.first(limit).reverse
     end
 
-    # TODO: limit this to only be available to ordered relations, and containers
     def reverse
+      if directions.empty?
+        raise OrderedRelationRequiredError, 'can only reverse an ordered relation'
+      end
+
       Operation::Order.new(self, directions.reverse)
     end
 

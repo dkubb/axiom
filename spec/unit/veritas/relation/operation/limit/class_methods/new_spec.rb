@@ -16,6 +16,6 @@ describe 'Veritas::Relation::Operation::Limit.new' do
   end
 
   describe 'without an ordered relation' do
-    it { method(:subject).should raise_error(ArgumentError, 'can only limit a relation with an ordered body') }
+    it { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only limit an ordered relation') }
   end
 end

@@ -6,7 +6,7 @@ module Veritas
 
         def self.new(relation, limit)
           if relation.directions.empty?
-            raise ArgumentError, 'can only limit a relation with an ordered body'
+            raise OrderedRelationRequiredError, 'can only limit an ordered relation'
           end
 
           super

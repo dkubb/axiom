@@ -16,6 +16,6 @@ describe 'Veritas::Relation::Operation::Offset.new' do
   end
 
   describe 'without an ordered relation' do
-    it { method(:subject).should raise_error(ArgumentError, 'can only offset a relation with an ordered body') }
+    it { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only offset an ordered relation') }
   end
 end
