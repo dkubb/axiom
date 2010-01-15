@@ -5,9 +5,9 @@ module Veritas
         include Unary
 
         def self.new(relation, offset)
-#          unless relation.body.kind_of?(Order::Body)
-#            raise ArgumentError, 'can only slice a relation with an ordered body'
-#          end
+          if relation.directions.empty?
+            raise ArgumentError, 'can only offset a relation with an ordered body'
+          end
 
           super
         end

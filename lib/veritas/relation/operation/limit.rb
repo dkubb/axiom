@@ -5,9 +5,9 @@ module Veritas
         include Unary
 
         def self.new(relation, limit)
-#          unless relation.body.kind_of?(Order::Body)
-#            raise ArgumentError, 'can only limit a relation with an ordered body'
-#          end
+          if relation.directions.empty?
+            raise ArgumentError, 'can only limit a relation with an ordered body'
+          end
 
           super
         end
