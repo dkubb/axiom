@@ -7,8 +7,8 @@ module Veritas
 
     attr_reader :header
 
-    def initialize(attributes, tuples)
-      @header, @tuples = Header.coerce(attributes), tuples
+    def initialize(header, tuples)
+      @header, @tuples = Header.coerce(header), tuples
     end
 
     def [](name)
