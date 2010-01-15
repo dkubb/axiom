@@ -113,7 +113,7 @@ module Veritas
     alias drop offset
 
     def directions
-      @directions ||= []
+      @directions ||= Operation::Order::DirectionSet.new([])
     end
 
     def ==(other)

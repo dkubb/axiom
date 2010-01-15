@@ -7,6 +7,8 @@ describe 'Veritas::Relation#directions' do
 
   subject { @relation.directions }
 
+  it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
+
   it { should be_empty }
 
   it 'should be consistent' do
