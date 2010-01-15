@@ -112,6 +112,10 @@ module Veritas
 
     alias drop offset
 
+    def directions
+      @directions ||= []
+    end
+
     def ==(other)
       other = coerce(other)
       header == other.header &&

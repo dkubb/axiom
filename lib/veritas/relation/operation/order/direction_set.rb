@@ -24,6 +24,12 @@ module Veritas
             @directions
           end
 
+          def union(other)
+            self.class.new(to_ary | other.to_ary)
+          end
+
+          alias | union
+
           def attributes
             map { |direction| direction.attribute }
           end

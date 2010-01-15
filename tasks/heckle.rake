@@ -29,6 +29,8 @@ task :heckle => :verify_rcov do
     NameMap::MAP['|'][suffix] = 'union'
   end
 
+  NameMap::MAP['|']['DirectionSet'] = 'union'
+
   map = NameMap.new
 
   heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }

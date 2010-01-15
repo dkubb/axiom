@@ -12,6 +12,10 @@ module Veritas
           @header ||= relation.header
         end
 
+        def directions
+          @directions ||= relation.directions
+        end
+
       end # module Unary
     end # module Operation
   end # class Relation
