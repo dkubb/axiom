@@ -104,6 +104,7 @@ module Veritas
     end
 
     def reverse
+      directions = self.directions
       if directions.empty?
         raise OrderedRelationRequiredError, 'can only reverse an ordered relation'
       end
