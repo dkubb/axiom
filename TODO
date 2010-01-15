@@ -1,6 +1,3 @@
-* Figure out how to delegate #directions to subordinate Relations cleanly
-  * Add Relation#last
-
 * Add benchmarks for each Relation operation
   * Will allow git bisect to gather results for each iteration, and
     plot performance over time
