@@ -33,7 +33,7 @@ module Veritas
     end
 
     def hash
-      header.hash ^ to_ary.hash
+      @hash ||= header.hash ^ to_ary.hash
     end
 
     def inspect

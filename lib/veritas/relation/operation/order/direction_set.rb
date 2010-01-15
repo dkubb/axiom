@@ -49,7 +49,7 @@ module Veritas
           end
 
           def hash
-            to_ary.hash
+            @hash ||= to_ary.hash
           end
 
           def empty?

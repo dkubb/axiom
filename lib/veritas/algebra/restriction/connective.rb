@@ -36,7 +36,7 @@ module Veritas
         end
 
         def hash
-          left.hash ^ right.hash
+          @hash ||= left.hash ^ right.hash
         end
       end
 
@@ -73,7 +73,7 @@ module Veritas
         end
 
         def hash
-          operand.hash
+          @hash ||= operand.hash
         end
 
         def self.eval(value)

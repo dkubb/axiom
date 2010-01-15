@@ -24,7 +24,7 @@ module Veritas
           alias == eql?
 
           def hash
-            attribute.hash
+            @hash ||= attribute.hash
           end
 
           def self.coerce(object)

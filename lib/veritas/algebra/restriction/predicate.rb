@@ -26,7 +26,7 @@ module Veritas
         alias == eql?
 
         def hash
-          left.hash ^ right.hash
+          @hash ||= left.hash ^ right.hash
         end
 
         def self.eval(left, right)
