@@ -41,11 +41,7 @@ module Veritas
     end
 
     def self.coerce(header, object)
-      if object.kind_of?(Tuple) && object.header.equal?(header)
-        object
-      else
-        new(header, object)
-      end
+      object.kind_of?(Tuple) ? object : new(header, object)
     end
 
   end # class Tuple

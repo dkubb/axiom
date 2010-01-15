@@ -44,6 +44,19 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
+  describe 'with an equivalent tuple with a different header' do
+    before do
+      @header = @header.rename(:id => :other_id)
+      @other  = Tuple.new(@header, @tuple.to_ary)
+    end
+
+    it { should be_false }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@tuple)
+    end
+  end
+
   describe 'with an equivalent tuple of a different class' do
     before do
       klass = Class.new(Tuple)

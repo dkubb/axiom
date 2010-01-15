@@ -12,6 +12,13 @@ module Veritas
         @header ||= relation.header.rename(@aliases)
       end
 
+      def each(&block)
+        relation.each do |tuple|
+          yield Tuple.new(header, tuple.to_ary)
+        end
+        self
+      end
+
     end # class Rename
   end # module Algebra
 end # module Veritas
