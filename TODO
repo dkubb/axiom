@@ -44,8 +44,4 @@
 
 * Refactor common code from Offset and Limit
 
-* Add a way to know if a Relation contains a body that is ordered
-  * this should be something a "container" Relation can delegate to
-    it's "contained" Relations
-
 * Add Relation#nest and Relation#unnest
