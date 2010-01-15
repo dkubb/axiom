@@ -52,6 +52,10 @@ module Veritas
             to_ary.hash
           end
 
+          def empty?
+            @directions.empty?
+          end
+
         private
 
           def cmp_tuples(left, right)
