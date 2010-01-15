@@ -94,9 +94,9 @@ module Veritas
     end
 
     # TODO: limit this to only be available to ordered relations, and containers
-#    def last(limit = 1)
-#      reverse.first(limit).reverse
-#    end
+    def last(limit = 1)
+      reverse.first(limit).reverse
+    end
 
     # TODO: limit this to only be available to ordered relations, and containers
     def limit(limit)
