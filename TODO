@@ -1,16 +1,4 @@
-* Add benchmarks for each Relation operation
-  * Will allow git bisect to gather results for each iteration, and
-    plot performance over time
-  * Make sure the memory usage for each method is measured, as well
-    as object allocation, and GC.
-  * Make sure they can be run with each system rvm supports
-  * Output the results in a machine readable format
-    * Output the Ruby version/patch number with each result
-    * Output the Engine name, which is currently named just "naive",
-      referring to the in-memory naive processing approach I am
-      using now.
-      * Measurements will always be taken using every available engine.
-  * Look at memory and speed profiling tools
+* Add benchmarks for memory usage of each Relation operation
 
 * Add #optimize method to each Relation subclass
   * Relation#optimize should just return self
