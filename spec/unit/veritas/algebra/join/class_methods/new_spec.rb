@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Join.new' do
     it { method(:subject).should_not raise_error }
   end
 
-  describe 'with relations having similar headers' do
+  describe 'with relations having equivalent headers' do
     before do
       @right = @left.dup
     end

@@ -9,17 +9,17 @@ describe 'Veritas::Algebra::Product.new' do
 
   subject { Algebra::Product.new(@left, @right) }
 
-  describe 'with relations having similar headers' do
+  describe 'with relations having headers with common attributes' do
     before do
-      @right = Relation.new(@header, [ [ 2 ] ])
+      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
     end
 
     it { method(:subject).should raise_error(InvalidHeaderError, 'the headers must be disjointed for Veritas::Algebra::Product.new') }
   end
 
-  describe 'with relations having headers with similar attributes' do
+  describe 'with relations having equivalent headers' do
     before do
-      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
+      @right = Relation.new(@header, [ [ 2 ] ])
     end
 
     it { method(:subject).should raise_error(InvalidHeaderError, 'the headers must be disjointed for Veritas::Algebra::Product.new') }
