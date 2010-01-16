@@ -4,7 +4,7 @@ describe 'Veritas::Algebra::Join' do
   describe 'Commutative property' do
     before do
       @left  = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
-      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
+      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ])
     end
 
     it 'should not matter which order the relations are joined in' do

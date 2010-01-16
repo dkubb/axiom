@@ -12,18 +12,12 @@ module Veritas
       end
 
       def each(&block)
-        index = left_index
+        index = build_index
 
-        right.each do |tuple|
-          left_tuples = index[project_join_tuple(tuple)]
-          next unless left_tuples
-
-          Relation::Operation::Combine.combine_tuples(
-            header,
-            left_tuples,
-            project_remainder_tuple(tuple),
-            &block
-          )
+        left.each do |tuple|
+          right_tuples = index[join_tuple(tuple)]
+          next unless right_tuples
+          Relation::Operation::Combine.combine_tuples(header, tuple, right_tuples, &block)
         end
 
         self
@@ -31,21 +25,21 @@ module Veritas
 
     private
 
-      def left_index
+      def build_index
         index = {}
 
-        left.each do |tuple|
-          (index[project_join_tuple(tuple)] ||= []) << tuple
+        right.each do |tuple|
+          (index[join_tuple(tuple)] ||= []) << remainder_tuple(tuple)
         end
 
         index
       end
 
-      def project_join_tuple(tuple)
+      def join_tuple(tuple)
         tuple.project(join_header)
       end
 
-      def project_remainder_tuple(tuple)
+      def remainder_tuple(tuple)
         tuple.project(remainder_header)
       end
 

@@ -12,8 +12,8 @@ module Veritas
       end
 
       def each(&block)
-        right.each do |tuple|
-          Relation::Operation::Combine.combine_tuples(header, left, tuple, &block)
+        left.each do |tuple|
+          Relation::Operation::Combine.combine_tuples(header, tuple, right, &block)
         end
         self
       end

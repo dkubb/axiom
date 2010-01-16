@@ -18,6 +18,6 @@ describe 'Veritas::Algebra::Product#each' do
   it 'should yield the product' do
     method(:subject).should change { @yield.dup }.
       from([]).
-      to([ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 1, 'Alex Kubb' ], [ 2, 'Alex Kubb' ] ])
+      to([ [ 1, 'Dan Kubb' ], [ 1, 'Alex Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ])
   end
 end
