@@ -68,6 +68,7 @@ RBench.run(TIMES) do
 
   each_count do |array, relation, count|
     report "product (#{count} tuples)" do
+#      ruby    { array.product(array).each {} }  # uses too much memory and crashes
       veritas { relation.product(Relation.new([ [ :age, Integer ] ], [ [ 34 ] ])).each {} }
     end
   end
