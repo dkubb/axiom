@@ -1,5 +1,20 @@
 * Add benchmarks for memory usage of each Relation operation
 
+* Update specs to make sure the ruby version of an operation is
+  tested against the output of the operation to ensure the same
+  output.  It would not make sense to benchmark against something
+  that produces different results.
+
+* Add a Reverse operation
+  * Update it's #each block to simply use #reverse_each
+  * Make sure it still reverses the directions though.
+
+* Benchmark using sort_by instead of sort in the current ordering
+  system.
+  * see if wrapping the objects in a "sort" object is
+    helpful too, since we can have something sort in reverse order
+    and still use sort_by.
+
 * Add #optimize method to each Relation subclass
   * Relation#optimize should just return self
   * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
