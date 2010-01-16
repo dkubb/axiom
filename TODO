@@ -45,4 +45,6 @@
 
 * Look at optimizing the Tuple as a Struct
 
+* Add Relation#antijoin
+
 * Add Relation#nest and Relation#unnest
