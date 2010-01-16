@@ -6,6 +6,8 @@ module Veritas
       def self.new(left, right)
         if (left.header & right.header).empty?
           raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
+        elsif left.header == right.header
+          raise InvalidHeaderError, 'the headers are identical, use intersection instead'
         end
 
         super

@@ -17,6 +17,14 @@ describe 'Veritas::Algebra::Join.new' do
     it { method(:subject).should_not raise_error }
   end
 
+  describe 'with relations having similar headers' do
+    before do
+      @right = @left.dup
+    end
+
+    it { method(:subject).should raise_error(InvalidHeaderError, 'the headers are identical, use intersection instead') }
+  end
+
   describe 'with relations having different headers' do
     before do
       @right = Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ])
