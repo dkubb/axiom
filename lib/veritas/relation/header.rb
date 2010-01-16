@@ -15,12 +15,15 @@ module Veritas
       end
 
       def index(attribute)
-        to_ary.index(self[attribute])
+        indexes[attribute] ||= to_ary.index(self[attribute])
       end
 
       def [](name)
-        name = Attribute.name_from(name)
-        detect { |attribute| attribute.name == name }
+        names[name] ||=
+          begin
+            name = Attribute.name_from(name)
+            detect { |attribute| attribute.name == name }
+          end
       end
 
       def project(attributes)
@@ -85,6 +88,14 @@ module Veritas
 
       def self.coerce(object)
         object.kind_of?(Header) ? object : new(object)
+      end
+
+      def names
+        @names ||= {}
+      end
+
+      def indexes
+        @indexex ||= {}
       end
 
     end # class Header
