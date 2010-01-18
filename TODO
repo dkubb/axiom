@@ -1,8 +1,8 @@
 * Benchmark using sort_by instead of sort in the current ordering
   system.
-  * see if wrapping the objects in a "sort" object is
-    helpful too, since we can have something sort in reverse order
-    and still use sort_by.
+  * see if wrapping the objects in a "sort" object is helpful too, since
+    we can have objects that do not respond to -@ wrapped in them, which
+    would allow them to be sorted in reverse order.
 
 * Add #optimize method to each Relation subclass
   * Relation#optimize should just return self
