@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby -Ku
 
+# benchmark speed of relation operations
+
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
 require 'rbench'
