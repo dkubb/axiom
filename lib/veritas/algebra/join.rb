@@ -4,9 +4,10 @@ module Veritas
       include Relation::Operation::Combine
 
       def self.new(left, right)
-        if (left.header & right.header).empty?
+        left_header, right_header = left.header, right.header
+        if (left_header & right_header).empty?
           raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
-        elsif left.header == right.header
+        elsif left_header == right_header
           raise InvalidHeaderError, 'the headers are identical, use intersection instead'
         end
 
@@ -18,8 +19,9 @@ module Veritas
 
         left.each do |tuple|
           right_tuples = index[join_tuple(tuple)]
-          next unless right_tuples
-          Relation::Operation::Combine.combine_tuples(header, tuple, right_tuples, &block)
+          if right_tuples
+            Relation::Operation::Combine.combine_tuples(header, tuple, right_tuples, &block)
+          end
         end
 
         self
