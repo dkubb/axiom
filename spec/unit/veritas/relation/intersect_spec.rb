@@ -11,6 +11,10 @@ describe 'Veritas::Relation#intersect' do
   subject { @relation.intersect(@other) }
 
   it { should be_kind_of(Algebra::Intersection) }
+
+  it 'should behave the same as Array#&' do
+    should == (@relation.to_a & @other.to_a)
+  end
 end
 
 describe 'Veritas::Relation#&' do

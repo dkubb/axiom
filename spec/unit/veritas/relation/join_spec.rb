@@ -26,7 +26,7 @@ describe 'Veritas::Relation#join' do
     it { should be_kind_of(Algebra::Restriction) }
 
     it 'should restrict a product' do
-      subject.should == [ [ 1, 'Dan Kubb', true ] ]
+      should == [ [ 1, 'Dan Kubb', true ] ]
     end
   end
 
@@ -43,7 +43,7 @@ describe 'Veritas::Relation#join' do
     it { should be_kind_of(Algebra::Restriction) }
 
     it 'should restrict a product' do
-      subject.should == [ [ 1, 'Dan Kubb', true ] ]
+      should == [ [ 1, 'Dan Kubb', true ] ]
     end
   end
 end

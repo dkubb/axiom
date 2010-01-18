@@ -43,14 +43,14 @@ RBench.run(TIMES) do
 
   each_count do |array, relation, count|
     report "projection (#{count} tuples)" do
-      ruby    { array.map { |tuple| tuple[:id] }.each {} }
+      ruby    { array.map { |tuple| [ tuple[:id] ] }.each {} }
       veritas { relation.project([ :id ]).each {} }
     end
   end
 
   each_count do |array, relation, count|
     report "removal (#{count} tuples)" do
-      ruby    { array.map { |tuple| tuple[:id] }.each {} }
+      ruby    { array.map { |tuple| [ tuple[:id] ] }.each {} }
       veritas { relation.remove([ :name ]).each {} }
     end
   end

@@ -8,4 +8,8 @@ describe 'Veritas::Relation#project' do
   subject { @relation.project([ :id ]) }
 
   it { should be_kind_of(Algebra::Projection) }
+
+  it 'should behave the same as Enumerable#map with Tuple#[]' do
+    should == @relation.map { |tuple| [ tuple[:id] ] }
+  end
 end

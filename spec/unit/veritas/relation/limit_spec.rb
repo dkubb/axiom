@@ -9,4 +9,8 @@ describe 'Veritas::Relation#limit' do
   subject { @ordered.limit(1) }
 
   it { should be_kind_of(Relation::Operation::Limit) }
+
+  it 'should behave the same as Array#take' do
+    should == @ordered.to_a.take(1)
+  end
 end

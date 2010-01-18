@@ -17,6 +17,10 @@ describe 'Veritas::Relation#order' do
     it 'should set the directions' do
       subject.directions.should == @directions
     end
+
+    it 'should behave the same as Array#sort_by' do
+      should == @relation.to_a.sort_by { |tuple| tuple[:id] }
+    end
   end
 
   describe 'with a block' do
@@ -30,6 +34,10 @@ describe 'Veritas::Relation#order' do
 
     it 'should set the directions' do
       subject.directions.should == @block.call(@relation)
+    end
+
+    it 'should behave the same as Array#sort_by' do
+      should == @relation.to_a.sort_by { |tuple| tuple[:id] }
     end
   end
 end

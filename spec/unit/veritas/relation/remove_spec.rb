@@ -10,4 +10,8 @@ describe 'Veritas::Relation#remove' do
   it { should be_kind_of(Algebra::Projection) }
 
   it { subject.header.should == [ [ :name, String ] ] }
+
+  it 'should behave the same as Enumerable#map with Tuple#[]' do
+    should == @relation.map { |tuple| [ tuple[:name] ] }
+  end
 end

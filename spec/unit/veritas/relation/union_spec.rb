@@ -11,6 +11,10 @@ describe 'Veritas::Relation#union' do
   subject { @relation.union(@other) }
 
   it { should be_kind_of(Algebra::Union) }
+
+  it 'should behave the same as Array#|' do
+    should == (@relation.to_a | @other.to_a)
+  end
 end
 
 describe 'Veritas::Relation#|' do

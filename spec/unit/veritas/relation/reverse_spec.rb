@@ -9,4 +9,8 @@ describe 'Veritas::Relation#reverse' do
   subject { @ordered.reverse }
 
   it { should be_kind_of(Relation::Operation::Reverse) }
+
+  it 'should behave the same as Array#reverse' do
+    should == @relation.to_a.reverse
+  end
 end

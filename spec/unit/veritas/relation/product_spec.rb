@@ -2,8 +2,8 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#product' do
   before do
-    @relation = Relation.new([ [ :id,   Integer ] ], [ [ 1         ] ])
-    @other    = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kub' ] ])
+    @relation = Relation.new([ [ :id,   Integer ] ], [ [ 1          ] ])
+    @other    = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
   end
 
   subject { @relation.product(@other) }

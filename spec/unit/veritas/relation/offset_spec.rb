@@ -9,4 +9,8 @@ describe 'Veritas::Relation#offset' do
   subject { @ordered.offset(1) }
 
   it { should be_kind_of(Relation::Operation::Offset) }
+
+  it 'should behave the same as Array#drop' do
+    should == @ordered.to_a.drop(1)
+  end
 end

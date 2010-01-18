@@ -12,7 +12,11 @@ describe 'Veritas::Relation#first' do
     it { should be_kind_of(Relation::Operation::Limit) }
 
     it 'should return the expected tuples' do
-      subject.should == [ [ 1 ] ]
+      should == [ [ 1 ] ]
+    end
+
+    it 'should behave the same as Array#first' do
+      should == [ @ordered.to_a.first ]
     end
   end
 
@@ -22,7 +26,11 @@ describe 'Veritas::Relation#first' do
     it { should be_kind_of(Relation::Operation::Limit) }
 
     it 'should return the expected tuples' do
-      subject.should == [ [ 1 ], [ 2 ] ]
+      should == [ [ 1 ], [ 2 ] ]
+    end
+
+    it 'should behave the same as Array#first' do
+      should == @ordered.to_a.first(2)
     end
   end
 end
