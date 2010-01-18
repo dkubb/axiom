@@ -10,7 +10,7 @@ task :heckle => :verify_rcov do
   require 'heckle'  # make sure heckle is available
   require 'mspec'
   require 'mspec/utils/name_map'
-  require 'active_support'
+  require 'active_support'  # gem install activesupport
 
   root_module = 'Veritas'
 
