@@ -19,15 +19,35 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   relation = Veritas::Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
 
   # Relational Operators
+  # --------------------
 
   # projection
-  new_relation = relation.project([ :a, :b, :c ])  # new_relation has only attributes a, b and c
+  new_relation = relation.project([ :a, :b, :c ])
 
   # removal
-  new_relation = relation.remove([ :a, :b, :c ])   # new_relation has attributes except a, b and c
+  new_relation = relation.remove([ :a, :b, :c ])
 
   # rename
   new_relation = relation.rename(:a => :b, :c => :d)
+
+  # natural join
+  new_relation = relation.join(other)        # OR relation + other
+
+  # product
+  new_relation = relation.product(other)     # OR relation * other
+
+  # intersection
+  new_relation = relation.intersect(other)   # OR relation & other
+
+  # union
+  new_relation = relation.union(other)       # OR relation | other
+
+  # difference
+  new_relation = relation.difference(other)  # OR relation - other
+
+  # restriction
+  new_relation = relation.restrict(relation.name.eq('other'))
+  new_relation = relation.restrict { |r| r[:a].eq('other').and(r[:b].gte(42)) }
 
   # theta-join
   new_relation = relation.join(other, relation[:a].gte(other[:b]))
@@ -35,50 +55,38 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
 
   # NOTE: theta-join is effectively restricting a product of the relations
 
-  # natural join
-  new_relation = relation.join(other)          # OR relation + other
-
-  # product
-  new_relation = relation.product(other)       # OR relation * other
-
-  # intersection
-  new_relation = relation.intersect(other)     # OR relation & other
-
-  # union
-  new_relation = relation.union(other)         # OR relation | other
-
-  # difference
-  new_relation = relation.difference(other)    # OR relation - other
-
-  # restriction
-  new_relation = relation.restrict(relation.name.eq('other'))
-  new_relation = relation.restrict { |r| r[:a].eq('other').and(r[:b].gte(42)) }
-
   # Non-Relational Operators
+  # ------------------------
 
-  # sort by specific attributes
-  new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
-
-  # limiting  (only allowed if ordered)
-  new_relation = relation.limit(10)
-
-  # offset    (only allowed if ordered)
-  new_relation = relation.offset(0)
-
-  # NOTE: a relation is Enumerable
-  relation = relation.each { |tuple| ... }
-
-  # get the first or last n tuples
-  new_relation = relation.first(5)
-  new_relation = relation.last(5)
-
-  # reverse the relation
-  new_relation = relation.reverse
-
-  # returns a Set that represents relation header
+  # returns a set that represents the relation header
   header = relation.header
 
-  # NOTE: each attribute is an object representing the name, type object, and possibly other constraints
+  # a relation is Enumerable
+  relation = relation.each { |tuple| ... }
+
+  # order by attribute and direction
+  new_relation = relation.order([ relation[:a].desc, relation[:b] ])
+  new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
+
+  # limiting (only allowed if ordered)
+  new_relation = relation.limit(10)
+
+  # offset (only allowed if ordered)
+  new_relation = relation.offset(0)
+
+  # get the first n tuples (only allowed if ordered)
+  new_relation = relation.first     # default is 1
+  new_relation = relation.first(5)
+
+  # get the last n tuples (only allowed if ordered)
+  new_relation = relation.last      # default is 1
+  new_relation = relation.last(5)
+
+  # reverse the relation (only allowed if ordered)
+  new_relation = relation.reverse
+
+  # CRUD Operators
+  # --------------
 
   # can only modify relations that project all candidate keys for the base relations
   new_relation = relation.create(:a => 'test', :b => 'other', :c => 'yet another')
