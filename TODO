@@ -1,8 +1,3 @@
-* Update specs to make sure the ruby version of an operation is
-  tested against the output of the operation to ensure the same
-  output.  It would not make sense to benchmark against something
-  that produces different results.
-
 * Benchmark using sort_by instead of sort in the current ordering
   system.
   * see if wrapping the objects in a "sort" object is
