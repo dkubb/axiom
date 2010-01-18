@@ -1,6 +1,3 @@
-* Add benchmarks for memory usage of each Relation operation
-* Add benchmarks for memory usage of the library itself
-
 * Update specs to make sure the ruby version of an operation is
   tested against the output of the operation to ensure the same
   output.  It would not make sense to benchmark against something
