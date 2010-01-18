@@ -5,10 +5,6 @@
   output.  It would not make sense to benchmark against something
   that produces different results.
 
-* Add a Reverse operation
-  * Update it's #each block to simply use #reverse_each
-  * Make sure it still reverses the directions though.
-
 * Benchmark using sort_by instead of sort in the current ordering
   system.
   * see if wrapping the objects in a "sort" object is
