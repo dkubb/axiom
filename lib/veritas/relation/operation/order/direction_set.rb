@@ -61,7 +61,7 @@ module Veritas
           def cmp_tuples(left, right)
             each do |direction|
               cmp = direction.call(left, right)
-              return cmp if cmp != 0
+              return cmp if cmp.nonzero?
             end
           end
 
