@@ -1,5 +1,4 @@
 * Add #optimize method to each Relation subclass
-  * Relation#optimize should just return self
   * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
   * If an OR branch always returns true, then the whole operation
     returns true, so return an object that represents a true match.

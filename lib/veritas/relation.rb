@@ -111,6 +111,10 @@ module Veritas
       @directions ||= Operation::Order::DirectionSet.new([])
     end
 
+    def optimize
+      self
+    end
+
     def ==(other)
       other = coerce(other)
       header == other.header &&
