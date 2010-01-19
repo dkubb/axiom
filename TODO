@@ -4,6 +4,15 @@
     we can have objects that do not respond to -@ wrapped in them, which
     would allow them to be sorted in reverse order.
 
+* Only allow join/product/set operations to be performed on all
+  unordered relations, or all ordered.  No mixing and matching.
+  * This is because the results will be non-deterministic, and when
+    order is specified, you are asserting the ordering results should
+    be deterministic.
+  * If an ordered relationship is joined with an unordered relationship,
+    you will then only be ordering on some of the header, and not all,
+    so the results will not be consistent.
+
 * Add #optimize method to each Relation subclass
   * Relation#optimize should just return self
   * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
