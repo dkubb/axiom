@@ -9,7 +9,7 @@ describe 'Veritas::Relation::Operation::Binary#directions' do
     @left  = @left.order  { |r| r[:id]   }
     @right = @right.order { |r| r[:name] }
 
-    @binary_operation = BinaryOperationSpecs::Object.new(@left, @right)
+    @binary_operation = BinaryRelationOperationSpecs::Object.new(@left, @right)
   end
 
   subject { @binary_operation.directions }

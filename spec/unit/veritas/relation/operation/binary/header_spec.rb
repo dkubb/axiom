@@ -6,7 +6,7 @@ describe 'Veritas::Relation::Operation::Binary#header' do
     @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
     @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
 
-    @binary_operation = BinaryOperationSpecs::Object.new(@left, @right)
+    @binary_operation = BinaryRelationOperationSpecs::Object.new(@left, @right)
   end
 
   subject { @binary_operation.header }

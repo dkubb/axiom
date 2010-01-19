@@ -1,6 +1,7 @@
 require 'set'
 
 require 'veritas/support/abstract_class'
+require 'veritas/support/operation/binary'
 
 require 'veritas/relation'
 require 'veritas/algebra'
@@ -13,4 +14,6 @@ module Veritas
   class InvalidHeaderError < ArgumentError; end
 
   class OrderedRelationRequiredError < StandardError; end
+
+  class RelationMismatchError < StandardError; end
 end

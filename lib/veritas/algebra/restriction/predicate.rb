@@ -4,9 +4,7 @@ module Veritas
       class Predicate
         include AbstractClass
         include Connective::Methods
-
-        # TODO: use Veritas::Operation::Binary here
-        include Relation::Operation::Binary
+        include Operation::Binary
 
         def call(tuple)
           util = self.class
