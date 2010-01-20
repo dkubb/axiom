@@ -50,7 +50,13 @@ task :heckle => :verify_rcov do
 
     spec_methods.each do |method|
       spec_file = spec_prefix.join(map.file_name(method, mod.name))
-      raise "No spec file #{spec_file} for #{mod}##{method}" unless spec_file.file?
+
+      if !spec_file.file?
+        raise "No spec file #{spec_file} for #{mod}##{method}"
+      elsif File.read(spec_file) !~ /#{Regexp.quote(mod.name)}##{Regexp.quote(method)}/
+        raise "#{mod}##{method} not specifed in #{spec_file}"
+      end
+
       specs << [ method, [ spec_file ] ]
     end
 
