@@ -25,31 +25,41 @@ module Veritas
         relation = self.relation.optimize
 
         if relation.kind_of?(self.class)
-          # TODO: create Rename::Aliases object, and move this to the union method
-
-          aliases  = relation.aliases.dup
-          inverted = aliases.invert
-
-          self.aliases.each do |old_attribute, new_attribute|
-            old_attribute = inverted.fetch(old_attribute, old_attribute)
-
-            if old_attribute == new_attribute
-              aliases.delete(new_attribute)
-            else
-              aliases[old_attribute] = new_attribute
-            end
-          end
-
-          relation = relation.relation
-
-          if aliases.empty?
-            relation
-          else
-            self.class.new(relation, aliases)
-          end
+          optimize_rename(relation)
         else
           super
         end
+      end
+
+    private
+
+      def optimize_rename(relation)
+        aliases  = optimize_aliases(relation)
+        relation = relation.relation
+
+        if aliases.empty?
+          relation
+        else
+          self.class.new(relation, aliases)
+        end
+      end
+
+      # TODO: create Rename::Aliases object, and move this to a #union method
+      def optimize_aliases(relation)
+        aliases  = relation.aliases.dup
+        inverted = aliases.invert
+
+        self.aliases.each do |old_attribute, new_attribute|
+          old_attribute = inverted.fetch(old_attribute, old_attribute)
+
+          if old_attribute == new_attribute
+            aliases.delete(new_attribute)
+          else
+            aliases[old_attribute] = new_attribute
+          end
+        end
+
+        aliases
       end
 
     end # class Rename

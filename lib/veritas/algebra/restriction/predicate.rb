@@ -21,6 +21,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left.kind_of?(Attribute) || right.kind_of?(Attribute)
             super
           else
@@ -61,6 +62,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
             True.new
           else
@@ -84,6 +86,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
             False.new
           else
@@ -129,6 +132,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
             True.new
           else
@@ -152,6 +156,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
             False.new
           else
@@ -175,6 +180,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
             True.new
           else
@@ -198,6 +204,7 @@ module Veritas
         end
 
         def optimize
+          right, left = self.right, self.left
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
             False.new
           else

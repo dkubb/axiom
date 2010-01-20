@@ -39,6 +39,7 @@ module Veritas
         end
 
         def optimize
+          left = self.left
           if left.eql?(right)
             left
           else
@@ -55,6 +56,16 @@ module Veritas
         def hash
           @hash ||= left.hash ^ right.hash
         end
+
+      private
+
+        def left_changed?(new_left)
+          !left.eql?(new_left)
+        end
+
+        def right_changed?(new_right)
+          !right.eql?(new_right)
+        end
       end
 
       class Conjunction < Connective
@@ -65,16 +76,12 @@ module Veritas
         end
 
         def optimize
-          left  = self.left.optimize
-          right = self.right.optimize
-
-          if left.kind_of?(False) || right.kind_of?(False)
-            False.new
-          elsif left.kind_of?(True)
-            right
-          elsif right.kind_of?(True)
+          left, right = self.left.optimize, self.right.optimize
+          if left.kind_of?(False) || right.kind_of?(True)
             left
-          elsif !left.eql?(self.left) || !right.eql?(self.right)
+          elsif right.kind_of?(False) || left.kind_of?(True)
+            right
+          elsif left_changed?(left) || right_changed?(right)
             self.class.new(left, right)
           else
             super
@@ -95,16 +102,12 @@ module Veritas
         end
 
         def optimize
-          left  = self.left.optimize
-          right = self.right.optimize
-
-          if left.kind_of?(True) || right.kind_of?(True)
-            True.new
-          elsif left.kind_of?(False)
-            right
-          elsif right.kind_of?(False)
+          left, right = self.left.optimize, self.right.optimize
+          if left.kind_of?(True) || right.kind_of?(False)
             left
-          elsif !left.eql?(self.left) || !right.eql?(self.right)
+          elsif right.kind_of?(True) || left.kind_of?(False)
+            right
+          elsif left_changed?(left) || right_changed?(right)
             self.class.new(left, right)
           else
             super
