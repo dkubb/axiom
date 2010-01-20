@@ -1,24 +1,8 @@
-* Add #optimize method to each Relation subclass
-  * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
-  * If two relations have the same restrictions, order, limit, offset,
-    header and base, then Union#optimize and Intersection#optimize should
-    just return one of them.
-    * Create a method like #equivalent? that tests each Relation operation
-      to make sure it is of the same class *and* the contained
-      relation/operation is #equivalent?.  This is different from #==
-      where only the header and body are compared for equivalency.
-    * For Relation, we may need to provide a #tuples method, which can
-      be checked using #eql? to ensure both tuples are of the same
-      class, and have the same Tuple objects.
-  * If two relations have the same restrictions, order, limit, offset,
-    header and base, then Difference#optimize should return an empty
-    Relation.
-  * Projection should factor itself out if the projection is the same
-    as the relation's header (with the order the same for now, since we
-    sometimes use projection to reorder Tuple internals for comparison,
-    which in itself will soon no longer be necessary)
-  * Restriction should check to see if it contains another restriction,
-    and then "and" the predicates together.
+* Look at optimizing the Tuple as a Struct
+  * If that does not work, look at making a Tuple a normal object,
+    and store each value inside an ivar rather than an Array.  This
+    will make it unnecessary to do things like use projection to
+    re-order each Tuple's internal Array just to do comparisons.
 
 * Add a class to represent an Empty Relation.
   * Restriction, Intersection, Order, Limit, Offset can use this class to
@@ -26,6 +10,23 @@
     return anything other than an Empty relation.
   * Join and Product can use this class to return an empty
     relation with the unioned headers.
+
+* Add #optimize method to each Relation subclass
+  * Restriction should check to see if it contains another restriction,
+    and union (and) the predicates together.
+  * Projection should factor itself out if the projection is the same
+    as the relation's header (with the order the same for now, since we
+    sometimes use projection to reorder Tuple internals for comparison,
+    which in itself will soon no longer be necessary)
+  * Product with a Relation containing an empty Header should just
+    return the other Relation.
+  * If two relations have the same restrictions, order, limit, offset,
+    header and base, then Union#optimize and Intersection#optimize should
+    just return one of them.
+  * If two relations have the same restrictions, order, limit, offset,
+    header and base, then Difference#optimize should return an empty
+    Relation.
+  * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
 
 * Move common methods from Predicate, Proposition and Connective up to
   a base module
@@ -41,12 +42,6 @@
 
 * Refactor common code from Offset and Limit
   - Use Flay to identify duplicate code and refactor
-
-* Look at optimizing the Tuple as a Struct
-  * If that does not work, look at making a Tuple a normal object,
-    and store each value inside an ivar rather than an Array.  This
-    will make it unnecessary to do things like use projection to
-    re-order each Tuple's internal Array just to do comparisons.
 
 * Add Relation#antijoin
 
