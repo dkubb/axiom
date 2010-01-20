@@ -54,8 +54,10 @@ task :heckle => :verify_rcov do
       specs << [ method, [ spec_file ] ]
     end
 
-    other_methods.each do |method|
-      specs << [ method, FileList[spec_prefix.join('*_spec.rb')] ]
+    unless mod.instance_of?(Module)
+      other_methods.each do |method|
+        specs << [ method, FileList[spec_prefix.join('*_spec.rb')] ]
+      end
     end
 
     specs.sort.each do |(method, spec_files)|
