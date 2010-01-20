@@ -3,7 +3,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Attribute::ComparableAttribute#desc' do
   before do
-    @comparable = ComparableAttributeSpecs::Object.new
+    @comparable = ComparableAttributeSpecs::Object.new(:object)
   end
 
   subject { @comparable.desc }

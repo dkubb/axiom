@@ -1,12 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
+require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Algebra::Restriction::Predicate#eql?' do
   before do
-    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
-    @klass  = Class.new(Algebra::Restriction::Predicate)
-
-    # Predicate is an abstract class, so call constructor on anonymous subclass
-    @predicate = @klass.new(@header[:id], 1)
+    @attribute = Attribute::Integer.new(:id)
+    @predicate = PredicateSpecs::Object.new(@attribute, 1)
   end
 
   subject { @predicate.eql?(@other) }
@@ -37,7 +35,8 @@ describe 'Veritas::Algebra::Restriction::Predicate#eql?' do
 
   describe 'with a different predicate' do
     before do
-      @other = @klass.new(@header[:name], 1)
+      @attribute = Attribute::String.new(:name)
+      @other     = PredicateSpecs::Object.new(@attribute, 1)
     end
 
     it { should be_false }
@@ -49,9 +48,9 @@ describe 'Veritas::Algebra::Restriction::Predicate#eql?' do
 
   describe 'with an equivalent predicate of a different class' do
     before do
-      klass = Class.new(@klass)
+      klass = Class.new(PredicateSpecs::Object)
 
-      @other = klass.new(@header[:id], 1)
+      @other = klass.new(@attribute, 1)
     end
 
     it { should be_false }

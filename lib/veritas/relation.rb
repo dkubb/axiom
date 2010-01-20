@@ -4,6 +4,7 @@ require 'veritas/relation/operation'
 module Veritas
   class Relation
     include Enumerable
+    include Optimizable
 
     attr_reader :header
 
@@ -109,10 +110,6 @@ module Veritas
 
     def directions
       @directions ||= Operation::Order::DirectionSet.new([])
-    end
-
-    def optimize
-      self
     end
 
     def ==(other)

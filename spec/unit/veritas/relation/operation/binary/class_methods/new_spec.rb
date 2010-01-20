@@ -1,7 +1,7 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 require File.expand_path('../../fixtures/classes', __FILE__)
 
- describe 'Veritas::Relation::Operation::Binary.new' do
+ describe 'Veritas::Relation::Operation::Binary::ClassMethods#new' do
    before do
      @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
      @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])

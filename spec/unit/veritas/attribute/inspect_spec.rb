@@ -1,6 +1,6 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Attribute#hash' do
+describe 'Veritas::Attribute#inspect' do
   before do
     @attribute = Attribute::Integer.new(:id)
   end

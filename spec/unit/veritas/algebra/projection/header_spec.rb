@@ -1,6 +1,6 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Algebra::Product#header' do
+describe 'Veritas::Algebra::Projection#header' do
   before do
     @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
     @attributes = [ :id ]

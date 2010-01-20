@@ -2,10 +2,10 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction::Negation#eql?' do
   before do
-    @header    = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
-    @predicate = Algebra::Restriction::Equality.new(@header[:id], 1)
+    @attribute = Attribute::Integer.new(:id)
+    @operand = @attribute.eq(1)
 
-    @negation = Algebra::Restriction::Negation.new(@predicate)
+    @negation = Algebra::Restriction::Negation.new(@operand)
   end
 
   subject { @negation.eql?(@other) }
@@ -36,8 +36,9 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
 
   describe 'with a different negation' do
     before do
-      @predicate = Algebra::Restriction::Equality.new(@header[:name], 'Dan Kubb')
-      @other     = Algebra::Restriction::Negation.new(@predicate)
+      @attribute = Attribute::String.new(:name)
+      @operand   = @attribute.eq('Dan Kubb')
+      @other     = Algebra::Restriction::Negation.new(@operand)
     end
 
     it { should be_false }
@@ -51,7 +52,7 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
     before do
       klass = Class.new(Algebra::Restriction::Negation)
 
-      @other = klass.new(@predicate)
+      @other = klass.new(@operand)
     end
 
     it { should be_false }

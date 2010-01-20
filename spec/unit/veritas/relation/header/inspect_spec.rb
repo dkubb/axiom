@@ -1,6 +1,6 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation::Header#hash' do
+describe 'Veritas::Relation::Header#inspect' do
   before do
     @attribute = [ :id, Integer ]
     @header    = Relation::Header.new([ @attribute ])

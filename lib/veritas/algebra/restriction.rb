@@ -15,9 +15,23 @@ module Veritas
         self
       end
 
+      def optimize
+        relation  = self.relation.optimize
+        predicate = self.predicate.optimize
+
+        if predicate.kind_of?(True)
+          relation
+        elsif predicate.kind_of?(False)
+          Relation.new(relation.header, [])
+        else
+          super
+        end
+      end
+
     end # class Restriction
   end # module Algebra
 end # module Veritas
 
 require 'veritas/algebra/restriction/connective'
 require 'veritas/algebra/restriction/predicate'
+require 'veritas/algebra/restriction/proposition'

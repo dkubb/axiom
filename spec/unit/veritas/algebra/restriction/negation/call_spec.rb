@@ -2,10 +2,10 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction::Negation#call' do
   before do
-    @header    = Relation::Header.new([ [ :id, Integer ] ])
-    @predicate = Algebra::Restriction::Equality.new(@header[:id], 1)
+    @header  = Relation::Header.new([ [ :id, Integer ] ])
+    @operand = @header[:id].eq(1)
 
-    @negation = Algebra::Restriction::Negation.new(@predicate)
+    @negation = Algebra::Restriction::Negation.new(@operand)
   end
 
   subject { @negation.call(@tuple) }
