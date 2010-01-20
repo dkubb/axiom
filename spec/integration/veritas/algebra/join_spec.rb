@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Join' do
     end
 
     it 'should not matter which order the relations are joined in' do
-      @left.join(@right).should eql(@right.join(@left))
+      @left.join(@right).should == @right.join(@left)
     end
   end
 end

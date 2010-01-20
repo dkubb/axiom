@@ -124,6 +124,10 @@ module Veritas
       to_set.eql?(project_relation(other).to_set)
     end
 
+    def hash
+      header.hash ^ to_set.hash
+    end
+
   private
 
     def project_header(attributes)

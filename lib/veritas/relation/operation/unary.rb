@@ -16,6 +16,15 @@ module Veritas
           @directions ||= relation.directions
         end
 
+        def eql?(other)
+          instance_of?(other.class) &&
+          relation.eql?(other.relation)
+        end
+
+        def hash
+          relation.hash
+        end
+
       end # module Unary
     end # module Operation
   end # class Relation

@@ -31,5 +31,4 @@ describe 'Veritas::Algebra::Restriction::Proposition#eql?' do
       should == @other.eql?(@proposition)
     end
   end
-
 end

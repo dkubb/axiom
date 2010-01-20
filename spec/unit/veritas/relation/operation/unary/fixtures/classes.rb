@@ -8,4 +8,8 @@ module UnaryOperationSpecs
     end
 
   end
+
+  class Other
+    include Veritas::Relation::Operation::Unary
+  end
 end

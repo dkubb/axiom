@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Product' do
     end
 
     it 'should not matter which order the relations are multiplied in' do
-      @left.product(@right).should eql(@right.product(@left))
+      @left.product(@right).should == @right.product(@left)
     end
   end
 end
