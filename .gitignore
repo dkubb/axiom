@@ -19,5 +19,6 @@ rdoc
 pkg
 tmp
 log
+*.rbc
 
 ## PROJECT::SPECIFIC
