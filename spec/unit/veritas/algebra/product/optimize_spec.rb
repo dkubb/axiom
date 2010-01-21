@@ -2,8 +2,11 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product#optimize' do
   before do
-    @left   = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
-    @right  = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
+    @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
+    @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
+
+    @left.should_not_receive(:each)
+    @right.should_not_receive(:each)
   end
 
   subject { @product.optimize }

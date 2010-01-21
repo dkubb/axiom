@@ -8,6 +8,8 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     before do
       @empty = Relation::Empty.new([ [ :id, Integer ] ])
 
+      @empty.should_not_receive(:each)
+
       @unary_operation = UnaryOperationSpecs::Object.new(@empty)
     end
 
@@ -17,6 +19,8 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
   describe 'with an non-empty relation' do
     before do
       @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+
+      @relation.should_not_receive(:each)
 
       @unary_operation = UnaryOperationSpecs::Object.new(@relation)
     end

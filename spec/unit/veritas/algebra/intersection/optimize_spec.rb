@@ -5,6 +5,9 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     @header = [ [ :id, Integer ] ]
     @left   = Relation.new(@header, [ [ 1 ] ])
     @right  = Relation.new(@header, [ [ 1 ] ])
+
+    @left.should_not_receive(:each)
+    @right.should_not_receive(:each)
   end
 
   subject { @intersection.optimize }

@@ -6,6 +6,8 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     @directions = Relation::Operation::Order::DirectionSet.new([ @relation[:id] ])
     @order      = Relation::Operation::Order.new(@relation, @directions)
 
+    @relation.should_not_receive(:each)
+
     @reverse = Relation::Operation::Reverse.new(@order)
   end
 
