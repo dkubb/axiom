@@ -6,7 +6,6 @@
     header and base, then Difference#optimize should return an empty
     Relation.
   * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
-  * A Reverse that contains a Reverse should factor itself out.
   * A Limit that contains a Limit, should return a Limit object
     using the smallest limit of the two.
   * An Offset that contains an Offset should return an Offset object
