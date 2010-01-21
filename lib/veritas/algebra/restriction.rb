@@ -22,7 +22,7 @@ module Veritas
         if predicate.kind_of?(True) || relation.kind_of?(Relation::Empty)
           relation
         elsif predicate.kind_of?(False)
-          Relation.new(relation.header, [])
+          Relation::Empty.new(relation.header)
         else
           super
         end

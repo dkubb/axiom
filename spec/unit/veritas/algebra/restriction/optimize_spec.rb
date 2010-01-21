@@ -22,7 +22,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@relation, @proposition)
     end
 
-    it { should be_instance_of(Relation) }
+    it { should be_kind_of(Relation::Empty) }
 
     it { subject.header.should equal(@relation.header) }
 
