@@ -18,6 +18,26 @@ module Veritas
         self
       end
 
+      def optimize
+        if empty_left_header?
+          right.optimize
+        elsif empty_right_header?
+          left.optimize
+        else
+          super
+        end
+      end
+
+    private
+
+      def empty_left_header?
+        left.header.empty?
+      end
+
+      def empty_right_header?
+        right.header.empty?
+      end
+
     end # class Product
   end # module Algebra
 end # module Veritas

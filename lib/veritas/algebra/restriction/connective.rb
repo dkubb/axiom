@@ -10,13 +10,19 @@ module Veritas
             Conjunction.new(self, other)
           end
 
+          alias & and
+
           def or(other)
             Disjunction.new(self, other)
           end
 
+          alias | or
+
           def not(other)
             self.and(Negation.new(other))
           end
+
+          alias - not
         end # module Methods
 
         include Methods
@@ -40,6 +46,7 @@ module Veritas
 
         def optimize
           left = self.left
+
           if left.eql?(right)
             left
           else
@@ -77,6 +84,7 @@ module Veritas
 
         def optimize
           left, right = self.left.optimize, self.right.optimize
+
           if left.kind_of?(False) || right.kind_of?(True)
             left
           elsif right.kind_of?(False) || left.kind_of?(True)
@@ -103,6 +111,7 @@ module Veritas
 
         def optimize
           left, right = self.left.optimize, self.right.optimize
+
           if left.kind_of?(True) || right.kind_of?(False)
             left
           elsif right.kind_of?(True) || left.kind_of?(False)

@@ -16,13 +16,14 @@ module Veritas
       end
 
       def optimize
-        relation  = self.relation.optimize
-        predicate = self.predicate.optimize
+        relation, predicate = self.relation.optimize, self.predicate.optimize
 
-        if predicate.kind_of?(True) || relation.kind_of?(Relation::Empty)
+        if predicate.kind_of?(True)
           relation
         elsif predicate.kind_of?(False)
-          Relation::Empty.new(relation.header)
+          new_empty_relation
+        elsif relation.kind_of?(self.class)
+          relation.class.new(relation.relation, (relation.predicate & predicate).optimize)
         else
           super
         end

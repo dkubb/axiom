@@ -6,7 +6,6 @@ module UnaryOperationSpecs
       relation.each(&block)
       self
     end
-
   end
 
   class Other

@@ -13,3 +13,10 @@ describe 'Veritas::Algebra::Restriction::Connective::Methods#or' do
 
   it { should be_kind_of(Algebra::Restriction::Disjunction) }
 end
+
+describe 'Veritas::Algebra::Restriction::Connective::Methods#|' do
+  it 'is an alias to #or' do
+    mod = Algebra::Restriction::Connective::Methods
+    mod.instance_method(:|).should == mod.instance_method(:or)
+  end
+end

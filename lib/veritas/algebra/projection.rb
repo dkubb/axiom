@@ -21,6 +21,19 @@ module Veritas
         self
       end
 
+      def optimize
+        relation = self.relation.optimize
+
+        # only optimize if the header attributes and order is the same
+        if relation.header.to_a == header.to_a
+          relation
+        elsif relation.kind_of?(Relation::Empty)
+          new_empty_relation
+        else
+          super
+        end
+      end
+
     end # class Projection
   end # module Algebra
 end # module Veritas

@@ -15,3 +15,10 @@ describe 'Veritas::Algebra::Restriction::Connective::Methods#not' do
 
   it { should eql(Algebra::Restriction::Conjunction.new(@connective, Algebra::Restriction::Negation.new(@predicate))) }
 end
+
+describe 'Veritas::Algebra::Restriction::Connective::Methods#-' do
+  it 'is an alias to #not' do
+    mod = Algebra::Restriction::Connective::Methods
+    mod.instance_method(:-).should == mod.instance_method(:not)
+  end
+end

@@ -9,6 +9,18 @@ module Veritas
         self
       end
 
+      def optimize
+        left, right = self.left.optimize, self.right.optimize
+
+        if left.kind_of?(Relation::Empty)
+          left
+        elsif right.kind_of?(Relation::Empty)
+          right
+        else
+          super
+        end
+      end
+
     end # class Intersection
   end # module Algebra
 end # module Veritas

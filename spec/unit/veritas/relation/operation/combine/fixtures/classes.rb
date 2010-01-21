@@ -7,6 +7,5 @@ module CombineOperationSpecs
       right.each { |tuple| yield tuple.project(header) }
       self
     end
-
   end
 end

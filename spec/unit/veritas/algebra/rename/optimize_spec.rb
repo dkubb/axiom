@@ -21,6 +21,18 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it { subject.relation.should equal(@relation) }
   end
 
+  describe 'containing an empty relation' do
+    before do
+      @empty = Relation::Empty.new(@relation.header)
+
+      @rename = Algebra::Rename.new(@empty, :id => :other_id)
+    end
+
+    it { should be_kind_of(Relation::Empty) }
+
+    it { subject.header.should == @rename.header }
+  end
+
   describe 'containing a rename operation' do
     before do
       @rename = Algebra::Rename.new(@relation, :id   => :other_id)

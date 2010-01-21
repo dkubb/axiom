@@ -2,10 +2,9 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#header' do
   before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
-    @attributes = [ :id ]
+    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
 
-    @projection = Algebra::Projection.new(@relation, @attributes)
+    @projection = Algebra::Projection.new(@relation, [ :id ])
   end
 
   subject { @projection.header }

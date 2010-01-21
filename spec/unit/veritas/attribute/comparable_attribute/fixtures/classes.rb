@@ -1,5 +1,5 @@
 module ComparableAttributeSpecs
-  class Object < Attribute
+  class Object
     include Veritas::Attribute::ComparableAttribute
   end
 end

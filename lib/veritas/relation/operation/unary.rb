@@ -16,6 +16,16 @@ module Veritas
           @directions ||= relation.directions
         end
 
+        def optimize
+          relation = self.relation.optimize
+
+          if relation.kind_of?(Relation::Empty)
+            relation
+          else
+            super
+          end
+        end
+
         def eql?(other)
           instance_of?(other.class) &&
           relation.eql?(other.relation)
@@ -23,6 +33,12 @@ module Veritas
 
         def hash
           relation.hash
+        end
+
+      private
+
+        def new_empty_relation
+          Relation::Empty.new(header)
         end
 
       end # module Unary
