@@ -4,5 +4,6 @@ module BinaryConnectiveSpecs
 
     def self.eval(*)
     end
-  end
-end
+
+  end # class Object
+end # module BinaryConnectiveSpecs

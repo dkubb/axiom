@@ -12,5 +12,5 @@ module CombineOperationSpecs
       raise NotImplementedError, "#{self.class}#new_empty_relation"
     end
 
-  end
-end
+  end # class Object
+end # module CombineOperationSpecs

@@ -6,9 +6,10 @@ module UnaryOperationSpecs
       relation.each(&block)
       self
     end
-  end
+
+  end # class Object
 
   class Other
     include Veritas::Relation::Operation::Unary
-  end
-end
+  end # class Other
+end # module UnaryOperationSpecs

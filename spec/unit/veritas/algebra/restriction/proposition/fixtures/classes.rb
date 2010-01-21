@@ -3,5 +3,6 @@ module PropositionSpecs
     def self.name
       'Veritas::Algebra::Restriction::Proposition'
     end
-  end
-end
+
+  end # class Object
+end # module PropositionSpecs

@@ -8,5 +8,5 @@ module SetOperationSpecs
       self
     end
 
-  end
-end
+  end # class Object
+end # module SetOperationSpecs

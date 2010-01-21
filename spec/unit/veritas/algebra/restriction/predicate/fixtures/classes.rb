@@ -3,5 +3,6 @@ module PredicateSpecs
     def self.name
       'Veritas::Algebra::Restriction::Predicate'
     end
-  end
-end
+
+  end # class Object
+end # module PredicateSpecs

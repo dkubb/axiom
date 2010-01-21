@@ -1,5 +1,5 @@
 module ConnectiveMethodSpecs
   class Object
     include Veritas::Algebra::Restriction::Connective::Methods
-  end
-end
+  end # class Object
+end # module ConnectiveMethodSpecs

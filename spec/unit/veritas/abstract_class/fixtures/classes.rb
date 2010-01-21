@@ -1,7 +1,7 @@
 module AbstractClassSpecs
   class Object
     include Veritas::AbstractClass
-  end
+  end # class Object
 
   class Subclass < Object; end
-end
+end # module AbstractClassSpecs

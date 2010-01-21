@@ -1,4 +1,3 @@
 module ConnectiveSpecs
-  class Object < Veritas::Algebra::Restriction::Connective
-  end
-end
+  class Object < Veritas::Algebra::Restriction::Connective; end
+end # module ConnectiveSpecs
