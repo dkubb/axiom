@@ -10,9 +10,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'left is a TABLE_DUM' do
     before do
-      @left = Relation.new([], [])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(TABLE_DUM, @right)
     end
 
     it { should be_kind_of(Relation::Empty) }
@@ -24,9 +22,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'right is a TABLE_DUM' do
     before do
-      @right = Relation.new([], [])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(@left, TABLE_DUM)
     end
 
     it { should be_kind_of(Relation::Empty) }
@@ -38,10 +34,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'left is a TABLE_DUM when optimized' do
     before do
-      @left = Relation.new([], [])
-      @left = @left.project([])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(TABLE_DUM.project([]), @right)
     end
 
     it { should be_kind_of(Relation::Empty) }
@@ -53,10 +46,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'right is a TABLE_DUM when optimized' do
     before do
-      @right = Relation.new([], [])
-      @right = @right.project([])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(@left, TABLE_DUM.project([]))
     end
 
     it { should be_kind_of(Relation::Empty) }
@@ -68,9 +58,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'left is a TABLE_DEE' do
     before do
-      @left = Relation.new([], [ [] ])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(TABLE_DEE, @right)
     end
 
     it { should equal(@right) }
@@ -82,9 +70,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'right is a TABLE_DEE' do
     before do
-      @right = Relation.new([], [ [] ])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(@left, TABLE_DEE)
     end
 
     it { should equal(@left) }
@@ -96,10 +82,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'left is a TABLE_DEE when optimized' do
     before do
-      @left = Relation.new([], [ [] ])
-      @left = @left.project([])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(TABLE_DEE.project([]), @right)
     end
 
     it { should equal(@right) }
@@ -111,10 +94,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   describe 'right is a TABLE_DEE when optimized' do
     before do
-      @right = Relation.new([], [ [] ])
-      @right = @right.project([])
-
-      @product = Algebra::Product.new(@left, @right)
+      @product = Algebra::Product.new(@left, TABLE_DEE.project([]))
     end
 
     it { should equal(@left) }

@@ -13,8 +13,9 @@ require 'veritas/version'
 
 module Veritas
   class InvalidHeaderError < ArgumentError; end
-
   class OrderedRelationRequiredError < StandardError; end
-
   class RelationMismatchError < StandardError; end
+
+  TABLE_DEE = Relation.new([], [ [] ])
+  TABLE_DUM = Relation::Empty.new([])
 end
