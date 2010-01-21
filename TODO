@@ -1,11 +1,9 @@
-* Add a class to represent an Empty Relation.
-  * Restriction, Intersection, Order, Limit, Offset can use this class to
-    factor themselves out and return the Empty relation, since they cannot
-    return anything other than an Empty relation.
-  * Join and Product can use this class to return an empty
-    relation with the unioned headers.
-
 * Add #optimize method to each Relation subclass
+  * Restriction, Intersection, Order, Limit, Offset that contain an Empty
+    relation should return an Empty relation because they cannot possibly
+    return anything else.
+  * Join and Product should return an Empty relation with the headers
+    unioned between both relations
   * Restriction should check to see if it contains another restriction,
     and union (and) the predicates together.
   * Projection should factor itself out if the projection is the same
