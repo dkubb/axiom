@@ -1,9 +1,3 @@
-* Look at optimizing the Tuple as a Struct
-  * If that does not work, look at making a Tuple a normal object,
-    and store each value inside an ivar rather than an Array.  This
-    will make it unnecessary to do things like use projection to
-    re-order each Tuple's internal Array just to do comparisons.
-
 * Add a class to represent an Empty Relation.
   * Restriction, Intersection, Order, Limit, Offset can use this class to
     factor themselves out and return the Empty relation, since they cannot
