@@ -1,17 +1,4 @@
 * Add #optimize method to each Relation subclass
-  * Restriction, Intersection, Order, Limit, Offset that contain an Empty
-    relation should return an Empty relation because they cannot possibly
-    return anything else.
-  * Join and Product should return an Empty relation with the headers
-    unioned between both relations
-  * Restriction should check to see if it contains another restriction,
-    and union (and) the predicates together.
-  * Projection should factor itself out if the projection is the same
-    as the relation's header (with the order the same for now, since we
-    sometimes use projection to reorder Tuple internals for comparison,
-    which in itself will soon no longer be necessary)
-  * Product with a Relation containing an empty Header should just
-    return the other Relation.
   * If two relations have the same restrictions, order, limit, offset,
     header and base, then Union#optimize and Intersection#optimize should
     just return one of them.
@@ -19,11 +6,13 @@
     header and base, then Difference#optimize should return an empty
     Relation.
   * See if "attr = ? OR attr = ?" can be optimized to "attr IN(..)"
-
-* Move common methods from Predicate, Proposition and Connective up to
-  a base module
-  * Any cases where a method should be defined to match the
-    interface (eg. invert) should be defined here too.
+  * A Reverse that contains a Reverse should factor itself out.
+  * A Limit that contains a Limit, should return a Limit object
+    using the smallest limit of the two.
+  * An Offset that contains an Offset should return an Offset object
+    that adds the offsets together.
+  * An Order that contains an Order should return the outer-most
+    Order.
 
 * In Predicate, Proposition and Connective #==, make sure that it
   works by comparing equivalent operations.  eg :id >= 1 is the
@@ -32,8 +21,7 @@
 * Instead of True.new and False.new, just use the constants in the code
   * Make sure that all the instance methods are changed to be class methods
 
-* Refactor common code from Offset and Limit
-  - Use Flay to identify duplicate code and refactor
+* Use Flay to identify duplicate code and refactor
 
 * Add Relation#antijoin
 
