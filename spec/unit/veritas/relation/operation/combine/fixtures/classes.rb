@@ -7,5 +7,10 @@ module CombineOperationSpecs
       right.each { |tuple| yield tuple.project(header) }
       self
     end
+
+    def new_empty_relation
+      raise NotImplementedError, "#{self.class}#new_empty_relation"
+    end
+
   end
 end

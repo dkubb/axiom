@@ -19,23 +19,15 @@ module Veritas
       end
 
       def optimize
-        if empty_left_header?
-          right.optimize
-        elsif empty_right_header?
-          left.optimize
+        left, right = self.left.optimize, self.right.optimize
+
+        if left.header.empty? && !left.kind_of?(Relation::Empty)
+          right
+        elsif right.header.empty? && !right.kind_of?(Relation::Empty)
+          left
         else
           super
         end
-      end
-
-    private
-
-      def empty_left_header?
-        left.header.empty?
-      end
-
-      def empty_right_header?
-        right.header.empty?
       end
 
     end # class Product

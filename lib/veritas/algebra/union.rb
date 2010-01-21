@@ -14,9 +14,9 @@ module Veritas
         left, right = self.left.optimize, self.right.optimize
 
         if left.kind_of?(Relation::Empty)
-          left
-        elsif right.kind_of?(Relation::Empty)
           right
+        elsif right.kind_of?(Relation::Empty)
+          left
         else
           super
         end

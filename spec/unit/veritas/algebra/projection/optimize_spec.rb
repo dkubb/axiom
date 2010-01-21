@@ -13,6 +13,10 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
 
     it { should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @projection
+    end
   end
 
   describe 'when the attributes are equivalent to the relation headers, and not in the same order' do
@@ -43,6 +47,10 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it { should be_kind_of(Relation::Empty) }
 
     it { subject.header.should == @projection.header }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @projection
+    end
   end
 
   describe 'containing an empty relation when optimized' do
@@ -55,5 +63,9 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it { should be_kind_of(Relation::Empty) }
 
     it { subject.header.should == @projection.header }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @projection
+    end
   end
 end

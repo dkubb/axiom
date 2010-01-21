@@ -12,6 +12,10 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     end
 
     it { should equal(@empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @unary_operation
+    end
   end
 
   describe 'with an non-empty relation' do

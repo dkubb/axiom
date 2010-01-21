@@ -8,27 +8,123 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   subject { @product.optimize }
 
-  describe 'left has an empty header' do
+  describe 'left is a TABLE_DUM' do
     before do
       @left = Relation.new([], [])
 
       @product = Algebra::Product.new(@left, @right)
     end
 
-    it { should equal(@right) }
+    it { should be_kind_of(Relation::Empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
   end
 
-  describe 'right has an empty header' do
+  describe 'right is a TABLE_DUM' do
     before do
       @right = Relation.new([], [])
 
       @product = Algebra::Product.new(@left, @right)
     end
 
-    it { should equal(@left) }
+    it { should be_kind_of(Relation::Empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
   end
 
-  describe 'left and right do not have empty headers' do
+  describe 'left is a TABLE_DUM when optimized' do
+    before do
+      @left = Relation.new([], [])
+      @left = @left.project([])
+
+      @product = Algebra::Product.new(@left, @right)
+    end
+
+    it { should be_kind_of(Relation::Empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
+  end
+
+  describe 'right is a TABLE_DUM when optimized' do
+    before do
+      @right = Relation.new([], [])
+      @right = @right.project([])
+
+      @product = Algebra::Product.new(@left, @right)
+    end
+
+    it { should be_kind_of(Relation::Empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
+  end
+
+  describe 'left is a TABLE_DEE' do
+    before do
+      @left = Relation.new([], [ [] ])
+
+      @product = Algebra::Product.new(@left, @right)
+    end
+
+    it { should equal(@right) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
+  end
+
+  describe 'right is a TABLE_DEE' do
+    before do
+      @right = Relation.new([], [ [] ])
+
+      @product = Algebra::Product.new(@left, @right)
+    end
+
+    it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
+  end
+
+  describe 'left is a TABLE_DEE when optimized' do
+    before do
+      @left = Relation.new([], [ [] ])
+      @left = @left.project([])
+
+      @product = Algebra::Product.new(@left, @right)
+    end
+
+    it { should equal(@right) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
+  end
+
+  describe 'right is a TABLE_DEE when optimized' do
+    before do
+      @right = Relation.new([], [ [] ])
+      @right = @right.project([])
+
+      @product = Algebra::Product.new(@left, @right)
+    end
+
+    it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @product
+    end
+  end
+
+  describe 'left and right are normal relations' do
     before do
       @product = Algebra::Product.new(@left, @right)
     end

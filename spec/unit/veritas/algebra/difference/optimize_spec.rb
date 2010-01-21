@@ -17,6 +17,10 @@ describe 'Veritas::Algebra::Difference#optimize' do
     end
 
     it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @difference
+    end
   end
 
   describe 'right is an empty relation' do
@@ -27,6 +31,10 @@ describe 'Veritas::Algebra::Difference#optimize' do
     end
 
     it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @difference
+    end
   end
 
   describe 'left is an empty relation when optimized' do
@@ -37,6 +45,10 @@ describe 'Veritas::Algebra::Difference#optimize' do
     end
 
     it { should be_kind_of(Relation::Empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @difference
+    end
   end
 
   describe 'right is an empty relation when optimized' do
@@ -47,6 +59,10 @@ describe 'Veritas::Algebra::Difference#optimize' do
     end
 
     it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @difference
+    end
   end
 
   describe 'left and right are not empty relations' do

@@ -17,6 +17,10 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     end
 
     it { should equal(@order) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @reverse
+    end
   end
 
   describe 'with a reverse operation when optimized' do
@@ -27,6 +31,10 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     end
 
     it { should equal(@order) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @reverse
+    end
   end
 
   describe 'without a reverse operation' do

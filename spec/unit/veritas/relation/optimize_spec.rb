@@ -1,16 +1,18 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#optimize' do
+  subject { @relation.optimize }
+
   describe 'with an empty Enumerable, responding to size' do
     before do
       @relation = Relation.new([ [ :id, Integer ] ], [])
     end
 
-    subject { @relation.optimize }
-
     it { should be_kind_of(Relation::Empty) }
 
-    it { should == @relation }
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @relation
+    end
   end
 
   describe 'with an nonempty Enumerable' do
@@ -18,10 +20,6 @@ describe 'Veritas::Relation#optimize' do
       @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
     end
 
-    subject { @relation.optimize }
-
     it { should equal(@relation) }
-
-    it { should == [ [ 1 ] ] }
   end
 end

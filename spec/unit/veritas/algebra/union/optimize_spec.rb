@@ -16,7 +16,11 @@ describe 'Veritas::Algebra::Union#optimize' do
       @union = Algebra::Union.new(@left, @right)
     end
 
-    it { should equal(@left) }
+    it { should equal(@right) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @union
+    end
   end
 
   describe 'right is an empty relation' do
@@ -26,7 +30,11 @@ describe 'Veritas::Algebra::Union#optimize' do
       @union = Algebra::Union.new(@left, @right)
     end
 
-    it { should equal(@right) }
+    it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @union
+    end
   end
 
   describe 'left is an empty relation when optimized' do
@@ -36,7 +44,11 @@ describe 'Veritas::Algebra::Union#optimize' do
       @union = Algebra::Union.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@header)) }
+    it { should equal(@right) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @union
+    end
   end
 
   describe 'right is an empty relation when optimized' do
@@ -46,7 +58,11 @@ describe 'Veritas::Algebra::Union#optimize' do
       @union = Algebra::Union.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@header)) }
+    it { should equal(@left) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @union
+    end
   end
 
   describe 'left and right are not empty relations' do

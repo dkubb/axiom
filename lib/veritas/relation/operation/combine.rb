@@ -20,12 +20,6 @@ module Veritas
           end
         end
 
-      private
-
-        def new_empty_relation
-          raise NotImplementedError, "#{self.class}#new_empty_relation"
-        end
-
       end # module Combine
     end # module Operation
   end # class Relation

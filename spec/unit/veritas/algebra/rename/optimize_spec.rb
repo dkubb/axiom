@@ -19,6 +19,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
 
     it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
   end
 
   describe 'containing an empty relation' do
@@ -31,6 +35,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it { should be_kind_of(Relation::Empty) }
 
     it { subject.header.should == @rename.header }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
   end
 
   describe 'containing a rename operation' do
@@ -46,6 +54,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
 
     it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
   end
 
   describe 'containing a rename operation with overlapping aliases' do
@@ -61,6 +73,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
 
     it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
   end
 
   describe 'containing an inverse rename operation' do
@@ -70,5 +86,9 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
 
     it { should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
   end
 end

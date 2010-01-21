@@ -25,6 +25,10 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     it { should be_kind_of(Relation::Empty) }
 
     it { subject.header.should equal(@relation.header) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
   end
 
   describe 'without a proposition' do
@@ -40,6 +44,10 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
 
     it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
   end
 
   describe 'with an empty relation' do
@@ -52,6 +60,10 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     it { should be_kind_of(Relation::Empty) }
 
     it { should == @empty }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
   end
 
   describe 'with an empty relation when optimized' do
@@ -64,6 +76,10 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     it { should be_kind_of(Relation::Empty) }
 
     it { should == Relation::Empty.new(@relation.header) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
   end
 
   describe 'with a restriction' do
@@ -82,5 +98,9 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
 
     it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
   end
 end
