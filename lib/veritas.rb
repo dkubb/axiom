@@ -16,6 +16,6 @@ module Veritas
   class OrderedRelationRequiredError < StandardError; end
   class RelationMismatchError < StandardError; end
 
-  TABLE_DEE = Relation.new([], [ [] ])
-  TABLE_DUM = Relation::Empty.new([])
+  TABLE_DUM = Relation.new([], [    ]).optimize
+  TABLE_DEE = Relation.new([], [ [] ]).optimize
 end
