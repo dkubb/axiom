@@ -43,4 +43,16 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { subject.relation.should equal(@relation) }
   end
+
+  describe 'with an empty relation' do
+    before do
+      @empty       = Relation::Empty.new([ [ :id, Integer ] ])
+      @predicate   = @empty.header[:id].gte(1)
+      @restriction = Algebra::Restriction.new(@empty, @predicate)
+    end
+
+    it { should be_kind_of(Relation::Empty) }
+
+    it { should == @empty }
+  end
 end
