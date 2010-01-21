@@ -29,7 +29,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     it { should eql(Relation::Empty.new(@left.header | @right.header)) }
   end
 
-  describe 'left is an empty relation after optimizing' do
+  describe 'left is an empty relation when optimized' do
     before do
       @left = Algebra::Restriction.new(@left, Algebra::Restriction::False.new)
 
@@ -39,7 +39,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     it { should eql(Relation::Empty.new(@left.header | @right.header)) }
   end
 
-  describe 'right is an empty relation after optimizing' do
+  describe 'right is an empty relation when optimized' do
     before do
       @right = Algebra::Restriction.new(@right, Algebra::Restriction::False.new)
 

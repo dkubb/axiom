@@ -45,7 +45,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it { subject.header.should == @projection.header }
   end
 
-  describe 'containing an empty relation after optimizing' do
+  describe 'containing an empty relation when optimized' do
     before do
       @restriction = Algebra::Restriction.new(@relation, Algebra::Restriction::False.new)
 

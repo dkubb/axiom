@@ -16,6 +16,16 @@ module Veritas
           self
         end
 
+        def optimize
+          relation = self.relation.optimize
+
+          if relation.kind_of?(Reverse)
+            relation.relation
+          else
+            super
+          end
+        end
+
       end # class Limit
     end # module Operation
   end # class Relation

@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   subject { @product.optimize }
 
-  describe 'left has and empty header' do
+  describe 'left has an empty header' do
     before do
       @left = Relation.new([], [])
 
@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should equal(@right) }
   end
 
-  describe 'right has and empty header' do
+  describe 'right has an empty header' do
     before do
       @right = Relation.new([], [])
 

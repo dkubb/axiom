@@ -24,7 +24,7 @@ module Veritas
       def optimize
         relation = self.relation.optimize
 
-        if relation.kind_of?(self.class)
+        if relation.kind_of?(Rename)
           optimize_rename(relation)
         elsif relation.kind_of?(Relation::Empty)
           new_empty_relation
