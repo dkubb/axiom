@@ -3,8 +3,6 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 describe 'Veritas::Algebra::Rename#optimize' do
   before do
     @relation = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
-
-    @relation.should_not_receive(:each)
   end
 
   subject { @rename.optimize }

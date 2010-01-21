@@ -3,11 +3,8 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Combine#optimize' do
   before do
-    @left  = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
-    @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
-
-    @left.should_not_receive(:each)
-    @right.should_not_receive(:each)
+    @left   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
+    @right  = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
   end
 
   subject { @combine_operation.optimize }
