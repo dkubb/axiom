@@ -26,9 +26,12 @@ module Veritas
       self
     end
 
-    def empty?
-      each { return false }
-      true
+    def optimize
+      if @tuples.respond_to?(:size) && @tuples.size.zero?
+        new_empty_relation
+      else
+        super
+      end
     end
 
     def project(attributes)
@@ -129,6 +132,11 @@ module Veritas
       header.hash ^ to_a.hash
     end
 
+    def empty?
+      each { return false }
+      true
+    end
+
   private
 
     def project_header(attributes)
@@ -149,6 +157,10 @@ module Veritas
 
     def coerce(tuples)
       tuples.kind_of?(Relation) ? tuples : Relation.new(header, tuples)
+    end
+
+    def new_empty_relation
+      Relation::Empty.new(header)
     end
 
   end # class Relation

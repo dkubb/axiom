@@ -23,7 +23,7 @@ module Veritas
       private
 
         def new_empty_relation
-          Relation::Empty.new(header)
+          raise NotImplementedError, "#{self.class}#new_empty_relation"
         end
 
       end # module Combine

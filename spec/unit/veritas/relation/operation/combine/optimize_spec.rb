@@ -16,7 +16,9 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
+    it 'should attempt to delegate new_empty_relation' do
+      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+    end
   end
 
   describe 'right is an empty relation' do
@@ -26,7 +28,9 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
+    it 'should attempt to delegate new_empty_relation' do
+      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+    end
   end
 
   describe 'left is an empty relation when optimized' do
@@ -36,7 +40,9 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
+    it 'should attempt to delegate new_empty_relation' do
+      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+    end
   end
 
   describe 'right is an empty relation when optimized' do
@@ -46,7 +52,9 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
+    it 'should attempt to delegate new_empty_relation' do
+      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+    end
   end
 
   describe 'left and right are not empty relations' do

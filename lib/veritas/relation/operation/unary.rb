@@ -35,12 +35,6 @@ module Veritas
           relation.hash
         end
 
-      private
-
-        def new_empty_relation
-          Relation::Empty.new(header)
-        end
-
       end # module Unary
     end # module Operation
   end # class Relation
