@@ -34,7 +34,7 @@ module Veritas
             map { |direction| direction.attribute }
           end
 
-          def sort(tuples)
+          def sort_tuples(tuples)
             tuples.sort { |left, right| cmp_tuples(left, right) }
           end
 

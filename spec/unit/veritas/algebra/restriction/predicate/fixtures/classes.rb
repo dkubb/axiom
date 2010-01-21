@@ -1,5 +1,5 @@
 module PredicateSpecs
-  class Object < Algebra::Restriction::Predicate
+  class Object < Veritas::Algebra::Restriction::Predicate
     def self.name
       'Veritas::Algebra::Restriction::Predicate'
     end

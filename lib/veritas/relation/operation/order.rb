@@ -22,7 +22,7 @@ module Veritas
         end
 
         def each(&block)
-          directions.sort(relation).each(&block)
+          directions.sort_tuples(relation).each(&block)
           self
         end
 
