@@ -38,12 +38,3 @@
 * Add Relation#antijoin
 
 * Add Relation#nest and Relation#unnest
-
-* Add Relation#freeze
-  * Make sure it calls any memoized methods to set the ivars prior
-    to freezing.
-  * Make sure any subclasses with extra memoized methods provide their
-    own #freeze method, call the memoized methods, and then delegates to super
-  * Add specs for methods that memoize anything in ivars to ensure they
-    continue to work after the relation is frozen.
-  * Make sure TABLE_DUM and TABLE_DEE are frozen
