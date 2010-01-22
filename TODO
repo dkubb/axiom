@@ -1,4 +1,8 @@
-* Add #optimize method to each Relation subclass
+* Restriction predicates should be visible to all parent relations
+  because they form the base constraints all tuples must match in
+  order to be included/inserted in the Relation.
+
+* Add further optimizations:
   * If two relations have the same restrictions, order, limit, offset,
     header and base, then Union#optimize and Intersection#optimize should
     just return one of them.
@@ -27,11 +31,10 @@
       "attr1 IN(..) OR attr2 = ?"
 
 * In Predicate, Proposition and Connective #==, make sure that it
-  works by comparing equivalent operations.  eg :id >= 1 is the
-  same as not(id < 1), and should return true
+  works by comparing equivalent operations.  eg id >= 1 is the
+  same as not(id < 1), and should return when compared.
 
-* Instead of True.new and False.new, just use the constants in the code
-  * Make sure that all the instance methods are changed to be class methods
+* Update True and False propositions to be singleton objects.
 
 * Use Flay to identify duplicate code and refactor
 
