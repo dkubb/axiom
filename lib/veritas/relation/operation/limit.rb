@@ -25,6 +25,30 @@ module Veritas
           self
         end
 
+        def optimize
+          relation = self.relation.optimize
+
+          if relation.kind_of?(Limit)
+            restrict_limit_operation(relation)
+          else
+            super
+          end
+        end
+
+        def to_i
+          @limit
+        end
+
+      private
+
+        def restrict_limit_operation(other)
+          if to_i == other.to_i
+            other
+          else
+            Limit.new(other.relation, [ to_i, other.to_i ].min)
+          end
+        end
+
       end # class Limit
     end # module Operation
   end # class Relation
