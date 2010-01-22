@@ -4,7 +4,7 @@ module Veritas
       include Optimizable  # for no-op #optimize
 
       def initialize(header)
-        super(header, [])
+        super(header, Set[])
       end
 
     end # class Empty
