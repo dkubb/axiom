@@ -26,6 +26,8 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       )
     end
 
+    it { should_not equal(@disjunction) }
+
     it 'should invert the operands' do
       should eql(Algebra::Restriction::Disjunction.new(@attribute.lte(1), @attribute.gte(3)))
     end
@@ -39,7 +41,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should eql(@left) }
+    it { should equal(@left) }
   end
 
   describe 'left and right are true propositions' do
@@ -50,7 +52,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::True) }
+    it { should equal(@left) }
   end
 
   describe 'left and right are false propositions' do
@@ -61,7 +63,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::False) }
+    it { should equal(@left) }
   end
 
   describe 'right is a true proposition' do
@@ -72,7 +74,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::True) }
+    it { should equal(@right) }
   end
 
   describe 'left is a true proposition' do
@@ -83,7 +85,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::True) }
+    it { should equal(@left) }
   end
 
   describe 'right is a false proposition' do

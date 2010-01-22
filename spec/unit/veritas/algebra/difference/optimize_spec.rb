@@ -44,7 +44,7 @@ describe 'Veritas::Algebra::Difference#optimize' do
       @difference = Algebra::Difference.new(@left, @right)
     end
 
-    it { should be_kind_of(Relation::Empty) }
+    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @difference

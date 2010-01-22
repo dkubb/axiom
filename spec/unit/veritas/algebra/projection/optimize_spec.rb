@@ -44,9 +44,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       @projection = Algebra::Projection.new(@empty, [ :id ])
     end
 
-    it { should be_kind_of(Relation::Empty) }
-
-    it { subject.header.should == @projection.header }
+    it { should eql(Relation::Empty.new(@projection.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @projection
@@ -60,9 +58,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       @projection = Algebra::Projection.new(@restriction, [ :id ])
     end
 
-    it { should be_kind_of(Relation::Empty) }
-
-    it { subject.header.should == @projection.header }
+    it { should eql(Relation::Empty.new(@projection.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @projection
@@ -76,7 +72,9 @@ describe 'Veritas::Algebra::Projection#optimize' do
       @projection = Algebra::Projection.new(@restriction, [ :id ])
     end
 
-    it { should be_kind_of(Algebra::Projection) }
+    it { should_not equal(@projection) }
+
+    it { should be_instance_of(Algebra::Projection) }
 
     it { subject.relation.should equal(@relation) }
 

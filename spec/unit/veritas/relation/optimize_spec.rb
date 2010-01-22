@@ -8,7 +8,7 @@ describe 'Veritas::Relation#optimize' do
       @relation = Relation.new([ [ :id, Integer ] ], [])
     end
 
-    it { should be_kind_of(Relation::Empty) }
+    it { should be_instance_of(Relation::Empty) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @relation

@@ -64,7 +64,9 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
     end
 
-    it { should be_kind_of(BinaryConnectiveSpecs::Object) }
+    it { should_not equal(@connective) }
+
+    it { should be_instance_of(BinaryConnectiveSpecs::Object) }
 
     it { subject.left.should equal(@original_left) }
 
@@ -80,7 +82,9 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
     end
 
-    it { should be_kind_of(BinaryConnectiveSpecs::Object) }
+    it { should_not equal(@connective) }
+
+    it { should be_instance_of(BinaryConnectiveSpecs::Object) }
 
     it { subject.left.should equal(@left) }
 

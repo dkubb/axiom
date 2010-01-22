@@ -35,7 +35,7 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::False) }
+    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
   end
 
   describe 'operand is a false proposition' do
@@ -45,6 +45,6 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::True) }
+    it { should be_instance_of(Veritas::Algebra::Restriction::True) }
   end
 end

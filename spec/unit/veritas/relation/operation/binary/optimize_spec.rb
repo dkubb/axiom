@@ -27,10 +27,10 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
       @binary_operation = BinaryRelationOperationSpecs::Object.new(@left, @right)
     end
 
-    it { should be_kind_of(BinaryRelationOperationSpecs::Object) }
+    it { should_not equal(@binary_operation) }
 
-    it { subject.left.should eql(@left.optimize) }
+    it { should_not eql(BinaryRelationOperationSpecs::Object.new(@left, @right)) }
 
-    it { subject.right.should eql(@right.optimize) }
+    it { should eql(BinaryRelationOperationSpecs::Object.new(@left.optimize, @right.optimize)) }
   end
 end

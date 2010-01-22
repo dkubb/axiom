@@ -38,7 +38,9 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
       @unary_operation = UnaryOperationSpecs::Object.new(@projection)
     end
 
-    it { should be_kind_of(UnaryOperationSpecs::Object) }
+    it { should_not equal(@unary_operation) }
+
+    it { should be_instance_of(UnaryOperationSpecs::Object) }
 
     it { subject.relation.should equal(@relation) }
   end

@@ -12,9 +12,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
       @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, @attribute)
     end
 
-    it 'should always be true' do
-      should be_kind_of(Algebra::Restriction::True)
-    end
+    it { should be_instance_of(Algebra::Restriction::True) }
   end
 
   describe 'left is an attribute' do
@@ -22,9 +20,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
       @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, 1)
     end
 
-    it 'should equal the predicate' do
-      should equal(@less_than_or_equal_to)
-    end
+    it { should equal(@less_than_or_equal_to) }
   end
 
   describe 'right is an attribute' do
@@ -32,9 +28,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
       @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, @attribute)
     end
 
-    it 'should equal the predicate' do
-      should equal(@less_than_or_equal_to)
-    end
+    it { should equal(@less_than_or_equal_to) }
   end
 
   describe 'left and right are not attributes' do
@@ -42,8 +36,6 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
       @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, 1)
     end
 
-    it 'should evaluate the proposition' do
-      should eql(Algebra::Restriction::True.new)
-    end
+    it { should be_instance_of(Algebra::Restriction::True) }
   end
 end

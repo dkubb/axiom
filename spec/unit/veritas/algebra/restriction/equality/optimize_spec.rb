@@ -12,9 +12,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
       @equality = Algebra::Restriction::Equality.new(@attribute, @attribute)
     end
 
-    it 'should always be true' do
-      should be_kind_of(Algebra::Restriction::True)
-    end
+    it { should be_instance_of(Algebra::Restriction::True) }
   end
 
   describe 'left is an attribute' do
@@ -22,9 +20,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
       @equality = Algebra::Restriction::Equality.new(@attribute, 1)
     end
 
-    it 'should equal the predicate' do
-      should equal(@equality)
-    end
+    it { should equal(@equality) }
   end
 
   describe 'right is an attribute' do
@@ -32,9 +28,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
       @equality = Algebra::Restriction::Equality.new(1, @attribute)
     end
 
-    it 'should equal the predicate' do
-      should equal(@equality)
-    end
+    it { should equal(@equality) }
   end
 
   describe 'left and right are not attributes' do
@@ -42,8 +36,6 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
       @equality = Algebra::Restriction::Equality.new(1, 1)
     end
 
-    it 'should evaluate the proposition' do
-      should eql(Algebra::Restriction::True.new)
-    end
+    it { should be_instance_of(Algebra::Restriction::True) }
   end
 end

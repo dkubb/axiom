@@ -24,7 +24,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       @offset = Relation::Operation::Offset.new(@projection, 1)
     end
 
-    it { should be_kind_of(Relation::Operation::Offset) }
+    it { should be_instance_of(Relation::Operation::Offset) }
 
     it { subject.relation.should equal(@order) }
 
@@ -42,7 +42,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       @offset = Relation::Operation::Offset.new(@original, 10)
     end
 
-    it { should be_kind_of(Relation::Operation::Offset) }
+    it { should be_instance_of(Relation::Operation::Offset) }
 
     it { subject.relation.should equal(@order) }
 

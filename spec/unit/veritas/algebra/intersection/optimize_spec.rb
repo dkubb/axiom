@@ -44,7 +44,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       @intersection = Algebra::Intersection.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@header)) }
+    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @intersection
@@ -58,7 +58,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       @intersection = Algebra::Intersection.new(@left, @right)
     end
 
-    it { should eql(Relation::Empty.new(@header)) }
+    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @intersection

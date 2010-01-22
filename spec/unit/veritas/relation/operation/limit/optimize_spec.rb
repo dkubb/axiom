@@ -24,7 +24,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       @limit = Relation::Operation::Limit.new(@projection, 1)
     end
 
-    it { should be_kind_of(Relation::Operation::Limit) }
+    it { should be_instance_of(Relation::Operation::Limit) }
 
     it { subject.relation.should equal(@order) }
 
@@ -42,7 +42,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       @limit = Relation::Operation::Limit.new(@limit, 10)
     end
 
-    it { should be_kind_of(Relation::Operation::Limit) }
+    it { should be_instance_of(Relation::Operation::Limit) }
 
     it { subject.relation.should equal(@order) }
 
@@ -62,7 +62,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       @limit = Relation::Operation::Limit.new(@original, 5)
     end
 
-    it { should be_kind_of(Relation::Operation::Limit) }
+    it { should be_instance_of(Relation::Operation::Limit) }
 
     it { subject.relation.should equal(@order) }
 

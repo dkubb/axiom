@@ -12,9 +12,7 @@ describe 'Veritas::Algebra::Restriction::LessThan#optimize' do
       @less_than = Algebra::Restriction::LessThan.new(@attribute, @attribute)
     end
 
-    it 'should always be false' do
-      should be_kind_of(Algebra::Restriction::False)
-    end
+    it { should be_instance_of(Algebra::Restriction::False) }
   end
 
   describe 'left is an attribute' do
@@ -22,9 +20,7 @@ describe 'Veritas::Algebra::Restriction::LessThan#optimize' do
       @less_than = Algebra::Restriction::LessThan.new(@attribute, 1)
     end
 
-    it 'should equal the predicate' do
-      should equal(@less_than)
-    end
+    it { should equal(@less_than) }
   end
 
   describe 'right is an attribute' do
@@ -32,9 +28,7 @@ describe 'Veritas::Algebra::Restriction::LessThan#optimize' do
       @less_than = Algebra::Restriction::LessThan.new(1, @attribute)
     end
 
-    it 'should equal the predicate' do
-      should equal(@less_than)
-    end
+    it { should equal(@less_than) }
   end
 
   describe 'left and right are not attributes' do
@@ -42,8 +36,6 @@ describe 'Veritas::Algebra::Restriction::LessThan#optimize' do
       @less_than = Algebra::Restriction::LessThan.new(1, 2)
     end
 
-    it 'should evaluate the proposition' do
-      should eql(Algebra::Restriction::True.new)
-    end
+    it { should be_instance_of(Algebra::Restriction::True) }
   end
 end

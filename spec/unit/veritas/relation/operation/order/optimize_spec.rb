@@ -23,7 +23,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
       @order = Relation::Operation::Order.new(@projection, @directions)
     end
 
-    it { should be_kind_of(Relation::Operation::Order) }
+    it { should be_instance_of(Relation::Operation::Order) }
 
     it { subject.relation.should equal(@relation) }
 
@@ -41,7 +41,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
       @order = Relation::Operation::Order.new(@original, @directions)
     end
 
-    it { should be_kind_of(Relation::Operation::Order) }
+    it { should be_instance_of(Relation::Operation::Order) }
 
     it { subject.relation.should equal(@relation) }
 

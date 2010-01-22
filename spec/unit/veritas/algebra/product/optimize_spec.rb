@@ -2,8 +2,8 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product#optimize' do
   before do
-    @left   = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
-    @right  = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
+    @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
+    @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
   end
 
   subject { @product.optimize }
@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       @product = Algebra::Product.new(TABLE_DUM, @right)
     end
 
-    it { should be_kind_of(Relation::Empty) }
+    it { should eql(Relation::Empty.new(@right.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @product
@@ -25,7 +25,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       @product = Algebra::Product.new(@left, TABLE_DUM)
     end
 
-    it { should be_kind_of(Relation::Empty) }
+    it { should eql(Relation::Empty.new(@left.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @product
@@ -37,7 +37,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       @product = Algebra::Product.new(TABLE_DUM.project([]), @right)
     end
 
-    it { should be_kind_of(Relation::Empty) }
+    it { should eql(Relation::Empty.new(@right.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @product
@@ -49,7 +49,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       @product = Algebra::Product.new(@left, TABLE_DUM.project([]))
     end
 
-    it { should be_kind_of(Relation::Empty) }
+    it { should eql(Relation::Empty.new(@left.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @product

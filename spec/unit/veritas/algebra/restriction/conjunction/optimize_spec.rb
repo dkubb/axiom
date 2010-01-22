@@ -26,6 +26,8 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       )
     end
 
+    it { should_not equal(@conjunction) }
+
     it 'should invert the operands' do
       should eql(Algebra::Restriction::Conjunction.new(@attribute.lte(1), @attribute.gte(3)))
     end
@@ -50,7 +52,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::True) }
+    it { should be_instance_of(Veritas::Algebra::Restriction::True) }
   end
 
   describe 'left and right are false propositions' do
@@ -61,7 +63,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::False) }
+    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
   end
 
   describe 'right is a true proposition' do
@@ -94,7 +96,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::False) }
+    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
   end
 
   describe 'left is a false proposition' do
@@ -105,6 +107,6 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_kind_of(Veritas::Algebra::Restriction::False) }
+    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
   end
 end

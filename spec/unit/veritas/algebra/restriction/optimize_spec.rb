@@ -24,9 +24,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@relation, @proposition)
     end
 
-    it { should be_kind_of(Relation::Empty) }
-
-    it { subject.header.should equal(@relation.header) }
+    it { should eql(Relation::Empty.new(@relation.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @restriction
@@ -50,7 +48,9 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@relation, @predicate)
     end
 
-    it { should be_kind_of(Algebra::Restriction) }
+    it { should_not equal(@restriction) }
+
+    it { should be_instance_of(Algebra::Restriction) }
 
     it 'should set the predicate' do
       subject.predicate.should eql(@relation[:id].eq(1))
@@ -71,7 +71,9 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@projection, @predicate)
     end
 
-    it { should be_kind_of(Algebra::Restriction) }
+    it { should_not equal(@restriction) }
+
+    it { should be_instance_of(Algebra::Restriction) }
 
     it 'should set the predicate' do
       subject.predicate.should equal(@predicate)
@@ -92,9 +94,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@empty, @predicate)
     end
 
-    it { should be_kind_of(Relation::Empty) }
-
-    it { should == @empty }
+    it { should equal(@empty) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @restriction
@@ -109,9 +109,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@other, @predicate)
     end
 
-    it { should be_kind_of(Relation::Empty) }
-
-    it { should == Relation::Empty.new(@relation.header) }
+    it { should eql(Relation::Empty.new(@relation.header)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @restriction
@@ -127,7 +125,9 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@other, @predicate)
     end
 
-    it { should be_kind_of(Algebra::Restriction) }
+    it { should_not equal(@restriction) }
+
+    it { should be_instance_of(Algebra::Restriction) }
 
     it 'should set the predicate' do
       subject.predicate.should eql(@other_predicate & @predicate)
