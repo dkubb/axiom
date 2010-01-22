@@ -3,7 +3,7 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation::Operation::Order#each' do
   before do
     @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = Relation::Operation::Order::DirectionSet.new([ @relation[:id].desc ])
+    @directions = [ @relation[:id].desc ]
 
     @order = Relation::Operation::Order.new(@relation, @directions)
 

@@ -3,7 +3,7 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation::Operation::Limit#optimize' do
   before do
     @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = Relation::Operation::Order::DirectionSet.new([ @relation[:id] ])
+    @directions = [ @relation[:id] ]
     @order      = Relation::Operation::Order.new(@relation, @directions)
   end
 
@@ -26,6 +26,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
+    it { subject.relation.should equal(@order) }
+
     it 'should use the more restrictive limit' do
       subject.to_i.should == 5
     end
@@ -43,6 +45,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     end
 
     it { should be_kind_of(Relation::Operation::Limit) }
+
+    it { subject.relation.should equal(@order) }
 
     it 'should use the more restrictive limit' do
       subject.to_i.should == 5

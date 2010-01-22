@@ -26,6 +26,22 @@ module Veritas
           self
         end
 
+        def optimize
+          relation = self.relation.optimize
+
+          if relation.kind_of?(Order)
+            merge_order(relation)
+          else
+            super
+          end
+        end
+
+      private
+
+        def merge_order(other)
+          Order.new(other.relation, directions)
+        end
+
       end # class Order
     end # module Operation
   end # class Relation
