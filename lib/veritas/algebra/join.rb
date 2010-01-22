@@ -33,7 +33,7 @@ module Veritas
         index = {}
 
         right.each do |tuple|
-          (index[join_tuple(tuple)] ||= []) << remainder_tuple(tuple)
+          (index[join_tuple(tuple)] ||= Set[]) << remainder_tuple(tuple)
         end
 
         index
