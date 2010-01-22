@@ -34,8 +34,6 @@
   works by comparing equivalent operations.  eg id >= 1 is the
   same as not(id < 1), and should return when compared.
 
-* Update True and False propositions to be singleton objects.
-
 * Use Flay to identify duplicate code and refactor
 
 * Add Relation#antijoin
