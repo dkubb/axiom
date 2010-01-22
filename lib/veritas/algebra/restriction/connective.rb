@@ -23,6 +23,7 @@ module Veritas
           end
 
           alias - not
+
         end # module Methods
 
         include Methods
@@ -45,10 +46,12 @@ module Veritas
         end
 
         def optimize
-          left = self.left
+          left, right = left_optimize, right_optimize
 
           if left.eql?(right)
             left
+          elsif optimized?
+            self.class.new(left, right)
           else
             super
           end
@@ -66,13 +69,22 @@ module Veritas
 
       private
 
-        def left_changed?(new_left)
-          !left.eql?(new_left)
+        def left_optimize
+          @left_optimize ||= left.optimize
         end
 
-        def right_changed?(new_right)
-          !right.eql?(new_right)
+        def right_optimize
+          @right_optimize ||= right.optimize
         end
+
+        def new_optimized_operand
+          self.class.new(left_optimize, right_optimize)
+        end
+
+        def optimized?
+          !(left_optimize.equal?(left) && right_optimize.equal?(right))
+        end
+
       end
 
       class Conjunction < Connective
@@ -83,14 +95,12 @@ module Veritas
         end
 
         def optimize
-          left, right = self.left.optimize, self.right.optimize
+          left, right = left_optimize, right_optimize
 
           if left.kind_of?(False) || right.kind_of?(True)
             left
           elsif right.kind_of?(False) || left.kind_of?(True)
             right
-          elsif left_changed?(left) || right_changed?(right)
-            self.class.new(left, right)
           else
             super
           end
@@ -110,14 +120,12 @@ module Veritas
         end
 
         def optimize
-          left, right = self.left.optimize, self.right.optimize
+          left, right = left_optimize, right_optimize
 
           if left.kind_of?(True) || right.kind_of?(False)
             left
           elsif right.kind_of?(True) || left.kind_of?(False)
             right
-          elsif left_changed?(left) || right_changed?(right)
-            self.class.new(left, right)
           else
             super
           end
