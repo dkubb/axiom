@@ -17,10 +17,12 @@ module Veritas
         end
 
         def optimize
-          relation = self.relation.optimize
+          relation = relation_optimize
 
           if relation.kind_of?(Relation::Empty)
             relation
+          elsif !relation.equal?(self.relation)
+            new(relation)
           else
             super
           end
@@ -33,6 +35,16 @@ module Veritas
 
         def hash
           relation.hash
+        end
+
+      private
+
+        def relation_optimize
+          @relation_optimize ||= relation.optimize
+        end
+
+        def new(relation)
+          self.class.new(relation)
         end
 
       end # module Unary

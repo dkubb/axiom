@@ -41,6 +41,26 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
+  describe 'containing an optimizable relation' do
+    before do
+      @projection = @relation.project(@relation.header)
+
+      @rename = Algebra::Rename.new(@projection, :id => :other_id)
+    end
+
+    it { should be_kind_of(Algebra::Rename) }
+
+    it 'should set aliases the same as the original rename' do
+      subject.aliases.should == @rename.aliases
+    end
+
+    it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
   describe 'containing a rename operation' do
     before do
       @rename = Algebra::Rename.new(@relation, :id   => :other_id)

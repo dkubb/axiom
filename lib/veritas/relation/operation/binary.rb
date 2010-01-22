@@ -16,6 +16,26 @@ module Veritas
           @directions ||= left.directions | right.directions
         end
 
+        def optimize
+          left, right = left_optimize, right_optimize
+
+          unless left.equal?(self.left) && right.equal?(self.right)
+            self.class.new(left, right)
+          else
+            super
+          end
+        end
+
+      private
+
+        def left_optimize
+          @left_optimize ||= left.optimize
+        end
+
+        def right_optimize
+          @right_optimize ||= right.optimize
+        end
+
         module ClassMethods
           def new(left, right)
             left_empty  = left.directions.empty?

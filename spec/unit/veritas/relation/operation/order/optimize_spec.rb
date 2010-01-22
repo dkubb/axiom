@@ -16,6 +16,24 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     it { should equal(@order) }
   end
 
+  describe 'containing an optimizable relation' do
+    before do
+      @projection = @relation.project(@relation.header)
+
+      @order = Relation::Operation::Order.new(@projection, @directions)
+    end
+
+    it { should be_kind_of(Relation::Operation::Order) }
+
+    it { subject.relation.should equal(@relation) }
+
+    it { subject.directions.should == @directions }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @order
+    end
+  end
+
   describe 'containing an order operation' do
     before do
       @original = @relation.order([ @relation[:id].desc ])

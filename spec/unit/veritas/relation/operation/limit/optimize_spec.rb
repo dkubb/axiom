@@ -17,6 +17,24 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it { should equal(@limit) }
   end
 
+  describe 'containing an optimizable order operation' do
+    before do
+      @projection = @order.project(@order.header)
+
+      @limit = Relation::Operation::Limit.new(@projection, 1)
+    end
+
+    it { should be_kind_of(Relation::Operation::Limit) }
+
+    it { subject.relation.should equal(@order) }
+
+    it { subject.to_i.should == 1 }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @limit
+    end
+  end
+
   describe 'containing a more restrictive limit operation' do
     before do
       @limit = Relation::Operation::Limit.new(@order, 5)

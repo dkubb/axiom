@@ -17,6 +17,24 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     it { should equal(@offset) }
   end
 
+  describe 'containing an optimizable order operation' do
+    before do
+      @projection = @order.project(@order.header)
+
+      @offset = Relation::Operation::Offset.new(@projection, 1)
+    end
+
+    it { should be_kind_of(Relation::Operation::Offset) }
+
+    it { subject.relation.should equal(@order) }
+
+    it { subject.to_i.should == 1 }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @offset
+    end
+  end
+
   describe 'containing an offset operation' do
     before do
       @original = Relation::Operation::Offset.new(@order, 5)

@@ -29,4 +29,17 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
       method(:subject).should raise_error(NoMethodError)
     end
   end
+
+  describe 'with an optimizable relation' do
+    before do
+      @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+      @projection = @relation.project(@relation.header)
+
+      @unary_operation = UnaryOperationSpecs::Object.new(@projection)
+    end
+
+    it { should be_kind_of(UnaryOperationSpecs::Object) }
+
+    it { subject.relation.should equal(@relation) }
+  end
 end

@@ -77,4 +77,23 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == @reverse
     end
   end
+
+  describe 'with an optimizable operation' do
+    before do
+      @limit      = @order.limit(1)
+      @projection = @limit.project(@limit.header)
+
+      @reverse = Relation::Operation::Reverse.new(@projection)
+    end
+
+    it { should be_kind_of(Relation::Operation::Order) }
+
+    it { subject.relation.should equal(@limit) }
+
+    it { subject.directions.should == @reverse.directions }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @reverse
+    end
+  end
 end

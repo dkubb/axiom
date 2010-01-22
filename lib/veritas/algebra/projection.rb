@@ -22,7 +22,7 @@ module Veritas
       end
 
       def optimize
-        relation = self.relation.optimize
+        relation = relation_optimize
 
         # only optimize if the header attributes and order is the same
         if relation.header.to_a == header.to_a
@@ -32,6 +32,12 @@ module Veritas
         else
           super
         end
+      end
+
+    private
+
+      def new(relation)
+        self.class.new(relation, header)
       end
 
     end # class Projection

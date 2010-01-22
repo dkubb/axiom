@@ -68,4 +68,22 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == @projection
     end
   end
+
+  describe 'containing an optimizable relation' do
+    before do
+      @restriction = Algebra::Restriction.new(@relation, Algebra::Restriction::True.new)
+
+      @projection = Algebra::Projection.new(@restriction, [ :id ])
+    end
+
+    it { should be_kind_of(Algebra::Projection) }
+
+    it { subject.relation.should equal(@relation) }
+
+    it { subject.header.should == @projection.header }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @projection
+    end
+  end
 end

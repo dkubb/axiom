@@ -50,6 +50,27 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
+  describe 'with an optimizable operation' do
+    before do
+      @predicate   = @relation[:id].eq(1)
+      @projection  = @relation.project(@relation.header)
+      @restriction = Algebra::Restriction.new(@projection, @predicate)
+    end
+
+    it { should be_kind_of(Algebra::Restriction) }
+
+    it 'should set the predicate' do
+      subject.predicate.should equal(@predicate)
+    end
+
+    it { subject.relation.should equal(@relation) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
+  end
+
+
   describe 'with an empty relation' do
     before do
       @empty       = Relation::Empty.new([ [ :id, Integer ] ])
@@ -103,4 +124,6 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == @restriction
     end
   end
+
+
 end
