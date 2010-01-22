@@ -22,7 +22,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
   describe 'left and right are the same, after optimizing the left' do
     before do
       @original_left = @attribute.gt(1)
-      @left          = @original_left.and(Algebra::Restriction::True.new)
+      @left          = @original_left.and(Algebra::Restriction::True.instance)
       @right         = @attribute.gt(1)
 
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
@@ -34,7 +34,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
   describe 'left and right are the same, after optimizing the right' do
     before do
       @left  = @attribute.gt(1)
-      @right = @attribute.gt(1).and(Algebra::Restriction::True.new)
+      @right = @attribute.gt(1).and(Algebra::Restriction::True.instance)
 
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
     end
@@ -58,7 +58,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
   describe 'left and right are different, after optimizing the left' do
     before do
       @original_left = @attribute.gt(1)
-      @left          = @original_left.and(Algebra::Restriction::True.new)
+      @left          = @original_left.and(Algebra::Restriction::True.instance)
       @right         = @attribute.lt(1)
 
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
@@ -77,7 +77,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
     before do
       @original_right = @attribute.lt(1)
       @left           = @attribute.gt(1)
-      @right          = @original_right.and(Algebra::Restriction::True.new)
+      @right          = @original_right.and(Algebra::Restriction::True.instance)
 
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
     end

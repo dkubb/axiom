@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Union#optimize' do
 
   describe 'left is an empty relation when optimized' do
     before do
-      @left = Algebra::Restriction.new(@left, Algebra::Restriction::False.new)
+      @left = Algebra::Restriction.new(@left, Algebra::Restriction::False.instance)
 
       @union = Algebra::Union.new(@left, @right)
     end
@@ -53,7 +53,7 @@ describe 'Veritas::Algebra::Union#optimize' do
 
   describe 'right is an empty relation when optimized' do
     before do
-      @right = Algebra::Restriction.new(@right, Algebra::Restriction::False.new)
+      @right = Algebra::Restriction.new(@right, Algebra::Restriction::False.instance)
 
       @union = Algebra::Union.new(@left, @right)
     end

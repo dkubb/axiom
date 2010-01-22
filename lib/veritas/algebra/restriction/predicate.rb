@@ -66,7 +66,7 @@ module Veritas
           right, left = self.right, self.left
 
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            True.new
+            True.instance
           else
             super
           end
@@ -91,7 +91,7 @@ module Veritas
           right, left = self.right, self.left
 
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            False.new
+            False.instance
           else
             super
           end
@@ -138,7 +138,7 @@ module Veritas
           right, left = self.right, self.left
 
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            True.new
+            True.instance
           else
             super
           end
@@ -163,7 +163,7 @@ module Veritas
           right, left = self.right, self.left
 
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            False.new
+            False.instance
           else
             super
           end
@@ -188,7 +188,7 @@ module Veritas
           right, left = self.right, self.left
 
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            True.new
+            True.instance
           else
             super
           end
@@ -213,7 +213,7 @@ module Veritas
           right, left = self.right, self.left
 
           if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            False.new
+            False.instance
           else
             super
           end

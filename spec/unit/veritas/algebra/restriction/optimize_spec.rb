@@ -43,7 +43,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   describe 'with an optimizable predicate' do
     before do
-      @predicate = @relation[:id].eq(1).and(Algebra::Restriction::True.new)
+      @predicate = @relation[:id].eq(1).and(Algebra::Restriction::True.instance)
 
       @restriction = Algebra::Restriction.new(@relation, @predicate)
     end
@@ -103,7 +103,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   describe 'with an empty relation when optimized' do
     before do
-      @other     = Algebra::Restriction.new(@relation, Algebra::Restriction::False.new)
+      @other     = Algebra::Restriction.new(@relation, Algebra::Restriction::False.instance)
       @predicate = @other.header[:id].gte(1)
 
       @restriction = Algebra::Restriction.new(@other, @predicate)

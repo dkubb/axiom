@@ -30,7 +30,7 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
 
   describe 'operand is a true proposition' do
     before do
-      @operand = Veritas::Algebra::Restriction::True.new
+      @operand = Veritas::Algebra::Restriction::True.instance
 
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
@@ -40,7 +40,7 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
 
   describe 'operand is a false proposition' do
     before do
-      @operand = Veritas::Algebra::Restriction::False.new
+      @operand = Veritas::Algebra::Restriction::False.instance
 
       @negation = Algebra::Restriction::Negation.new(@operand)
     end

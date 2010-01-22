@@ -9,7 +9,7 @@ module Veritas
           if args.empty?
             super
           else
-            (args.first ? True : False).new
+            (args.first ? True : False).instance
           end
         end
 
@@ -40,12 +40,14 @@ module Veritas
       end # class Proposition
 
       class True < Proposition
+        include Singleton
+
         def self.eval
           true
         end
 
         def invert
-          False.new
+          False.instance
         end
 
         def inspect
@@ -55,12 +57,14 @@ module Veritas
       end # class True
 
       class False < Proposition
+        include Singleton
+
         def self.eval
           false
         end
 
         def invert
-          True.new
+          True.instance
         end
 
         def inspect

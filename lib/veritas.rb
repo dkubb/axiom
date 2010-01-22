@@ -1,4 +1,5 @@
 require 'set'
+require 'singleton'
 
 require 'veritas/support/abstract_class'
 require 'veritas/support/operation/binary'

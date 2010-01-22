@@ -53,7 +53,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
   describe 'containing an empty relation when optimized' do
     before do
-      @restriction = Algebra::Restriction.new(@relation, Algebra::Restriction::False.new)
+      @restriction = Algebra::Restriction.new(@relation, Algebra::Restriction::False.instance)
 
       @projection = Algebra::Projection.new(@restriction, [ :id ])
     end
@@ -67,7 +67,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
   describe 'containing an optimizable relation' do
     before do
-      @restriction = Algebra::Restriction.new(@relation, Algebra::Restriction::True.new)
+      @restriction = Algebra::Restriction.new(@relation, Algebra::Restriction::True.instance)
 
       @projection = Algebra::Projection.new(@restriction, [ :id ])
     end
