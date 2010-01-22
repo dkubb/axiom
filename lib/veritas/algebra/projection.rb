@@ -36,8 +36,8 @@ module Veritas
 
     private
 
-      def new(relation)
-        self.class.new(relation, header)
+      def new_optimized_operation
+        self.class.new(relation_optimize, header)
       end
 
     end # class Projection

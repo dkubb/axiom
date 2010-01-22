@@ -31,8 +31,8 @@ module Veritas
 
     private
 
-      def new(relation)
-        self.class.new(relation, predicate)
+      def new_optimized_operation
+        self.class.new(relation_optimize, predicate.optimize)
       end
 
     end # class Restriction

@@ -38,8 +38,8 @@ module Veritas
 
       private
 
-        def new(relation)
-          self.class.new(relation, directions)
+        def new_optimized_operation
+          self.class.new(relation_optimize, directions)
         end
 
         def merge_order(other)

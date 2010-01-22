@@ -21,8 +21,8 @@ module Veritas
 
           if relation.kind_of?(Relation::Empty)
             relation
-          elsif !relation.equal?(self.relation)
-            new(relation)
+          elsif optimized?
+            new_optimized_operation
           else
             super
           end
@@ -43,8 +43,12 @@ module Veritas
           @relation_optimize ||= relation.optimize
         end
 
-        def new(relation)
-          self.class.new(relation)
+        def new_optimized_operation
+          self.class.new(relation_optimize)
+        end
+
+        def optimized?
+          !relation_optimize.equal?(relation)
         end
 
       end # module Unary

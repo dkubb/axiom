@@ -40,8 +40,8 @@ module Veritas
 
       private
 
-        def new(relation)
-          self.class.new(relation, to_i)
+        def new_optimized_operation
+          self.class.new(relation_optimize, to_i)
         end
 
         def add_limit_operation(other)

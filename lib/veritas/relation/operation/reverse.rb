@@ -28,8 +28,8 @@ module Veritas
 
       private
 
-        def new(relation)
-          self.class.new(relation)
+        def new_optimized_operation
+          self.class.new(relation_optimize)
         end
 
       end # class Limit

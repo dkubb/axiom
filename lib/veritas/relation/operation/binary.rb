@@ -17,10 +17,8 @@ module Veritas
         end
 
         def optimize
-          left, right = left_optimize, right_optimize
-
-          unless left.equal?(self.left) && right.equal?(self.right)
-            self.class.new(left, right)
+          if optimized?
+            new_optimized_operation
           else
             super
           end
@@ -34,6 +32,14 @@ module Veritas
 
         def right_optimize
           @right_optimize ||= right.optimize
+        end
+
+        def new_optimized_operation
+          self.class.new(left_optimize, right_optimize)
+        end
+
+        def optimized?
+          !(left_optimize.equal?(left) && right_optimize.equal?(right))
         end
 
         module ClassMethods

@@ -35,8 +35,8 @@ module Veritas
 
     private
 
-      def new(relation)
-        self.class.new(relation, aliases)
+      def new_optimized_operation
+        self.class.new(relation_optimize, aliases)
       end
 
       def optimize_rename(relation)
