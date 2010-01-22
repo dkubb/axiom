@@ -5,12 +5,6 @@
   * If two relations have the same restrictions, order, limit, offset,
     header and base, then Difference#optimize should return an empty
     Relation.
-  * A Limit that contains a Limit, should return a Limit object
-    using the smallest limit of the two.
-  * An Offset that contains an Offset should return an Offset object
-    that adds the offsets together.
-  * An Order that contains an Order should return the outer-most
-    Order.
   * Restriction optimizations:
     * When the value is the wrong type -> False
     * "attr = ? OR attr = ?", when the value is the same -> "attr = ?"
