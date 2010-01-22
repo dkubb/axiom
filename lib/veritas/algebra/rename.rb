@@ -22,7 +22,7 @@ module Veritas
       end
 
       def optimize
-        relation = relation_optimize
+        relation = optimize_relation
 
         if relation.kind_of?(Rename)
           optimize_rename(relation)
@@ -36,7 +36,7 @@ module Veritas
     private
 
       def new_optimized_operation
-        self.class.new(relation_optimize, aliases)
+        self.class.new(optimize_relation, aliases)
       end
 
       def optimize_rename(relation)

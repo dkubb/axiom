@@ -17,7 +17,7 @@ module Veritas
         end
 
         def optimize
-          relation = relation_optimize
+          relation = optimize_relation
 
           if relation.kind_of?(Reverse)
             relation.relation
@@ -29,7 +29,7 @@ module Veritas
       private
 
         def new_optimized_operation
-          self.class.new(relation_optimize)
+          self.class.new(optimize_relation)
         end
 
       end # class Limit

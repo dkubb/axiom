@@ -46,7 +46,7 @@ module Veritas
         end
 
         def optimize
-          left, right = left_optimize, right_optimize
+          left, right = optimize_left, optimize_right
 
           if left.eql?(right)
             left
@@ -69,20 +69,20 @@ module Veritas
 
       private
 
-        def left_optimize
-          @left_optimize ||= left.optimize
+        def optimize_left
+          @optimize_left ||= left.optimize
         end
 
-        def right_optimize
-          @right_optimize ||= right.optimize
+        def optimize_right
+          @optimize_right ||= right.optimize
         end
 
         def new_optimized_operand
-          self.class.new(left_optimize, right_optimize)
+          self.class.new(optimize_left, optimize_right)
         end
 
         def optimized?
-          !(left_optimize.equal?(left) && right_optimize.equal?(right))
+          !(optimize_left.equal?(left) && optimize_right.equal?(right))
         end
 
       end
@@ -95,7 +95,7 @@ module Veritas
         end
 
         def optimize
-          left, right = left_optimize, right_optimize
+          left, right = optimize_left, optimize_right
 
           if left.kind_of?(False) || right.kind_of?(True)
             left
@@ -120,7 +120,7 @@ module Veritas
         end
 
         def optimize
-          left, right = left_optimize, right_optimize
+          left, right = optimize_left, optimize_right
 
           if left.kind_of?(True) || right.kind_of?(False)
             left

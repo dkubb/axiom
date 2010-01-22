@@ -16,7 +16,7 @@ module Veritas
       end
 
       def optimize
-        relation, predicate = relation_optimize, predicate_optimize
+        relation, predicate = optimize_relation, optimize_predicate
 
         if predicate.kind_of?(True)
           relation
@@ -32,15 +32,15 @@ module Veritas
     private
 
       def new_optimized_operation
-        self.class.new(relation_optimize, predicate_optimize)
+        self.class.new(optimize_relation, optimize_predicate)
       end
 
       def optimized?
-        super || !predicate_optimize.equal?(predicate)
+        super || !optimize_predicate.equal?(predicate)
       end
 
-      def predicate_optimize
-        @predicate_optimize ||= predicate.optimize
+      def optimize_predicate
+        @optimize_predicate ||= predicate.optimize
       end
 
     end # class Restriction

@@ -19,7 +19,7 @@ module Veritas
       end
 
       def optimize
-        left, right = left_optimize, right_optimize
+        left, right = optimize_left, optimize_right
 
         if left.header.empty? && !left.kind_of?(Relation::Empty)
           right

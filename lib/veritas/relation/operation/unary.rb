@@ -17,7 +17,7 @@ module Veritas
         end
 
         def optimize
-          relation = relation_optimize
+          relation = optimize_relation
 
           if relation.kind_of?(Relation::Empty)
             relation
@@ -39,16 +39,16 @@ module Veritas
 
       private
 
-        def relation_optimize
-          @relation_optimize ||= relation.optimize
+        def optimize_relation
+          @optimize_relation ||= relation.optimize
         end
 
         def new_optimized_operation
-          self.class.new(relation_optimize)
+          self.class.new(optimize_relation)
         end
 
         def optimized?
-          !relation_optimize.equal?(relation)
+          !optimize_relation.equal?(relation)
         end
 
       end # module Unary

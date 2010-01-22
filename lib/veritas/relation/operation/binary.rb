@@ -26,20 +26,20 @@ module Veritas
 
       private
 
-        def left_optimize
-          @left_optimize ||= left.optimize
+        def optimize_left
+          @optimize_left ||= left.optimize
         end
 
-        def right_optimize
-          @right_optimize ||= right.optimize
+        def optimize_right
+          @optimize_right ||= right.optimize
         end
 
         def new_optimized_operation
-          self.class.new(left_optimize, right_optimize)
+          self.class.new(optimize_left, optimize_right)
         end
 
         def optimized?
-          !(left_optimize.equal?(left) && right_optimize.equal?(right))
+          !(optimize_left.equal?(left) && optimize_right.equal?(right))
         end
 
         module ClassMethods
