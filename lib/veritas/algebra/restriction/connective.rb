@@ -51,7 +51,7 @@ module Veritas
           if left.eql?(right)
             left
           elsif optimized?
-            self.class.new(left, right)
+            new_optimized_connective
           else
             super
           end
@@ -77,7 +77,7 @@ module Veritas
           @optimize_right ||= right.optimize
         end
 
-        def new_optimized_operand
+        def new_optimized_connective
           self.class.new(optimize_left, optimize_right)
         end
 
