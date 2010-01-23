@@ -8,9 +8,17 @@ The purpose of this project is to expand my knowledge of relational algebra by a
 
 Most of the design is heavily inspired from koios[http://github.com/carllerche/koios] and arel[http://github.com/rails/arel].  The reason I decided to write my own and not just build on top of those systems was not so much because I don't like the code/API in those projects, it's more because I wanted to gain a depth of understanding that can only be earned by trying to solve the problem myself.
 
+=== Phase 1: Implement In-Memory Operations
+
 The first phase of this project will be to implement all the operations listed below using in-memory data structures.  I'm focusing on the API, and making sure the specs ensure the desired results are obtained from each operation.
 
+*90% Complete*
+
+=== Phase 2: Write RDBMS Engine
+
 The second phase of this project will be to add an RDBMS based engine, and move the in-memory matching to it's own engine.  I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching.  I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
+
+=== Phase 3: Integrate with DataMapper
 
 The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations.  I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
 
