@@ -2,33 +2,78 @@
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
 
+* Rename should change the directions (and predicates if delegated)
+  from any operations they wrap.
+
+* Projection should remove any directions for attributes that were
+  projected out of the header
+
 * Add further optimizations:
-  * If two relations have the same restrictions, order, limit, offset,
-    header and base, then Union#optimize and Intersection#optimize should
-    just return one of them.
-  * If two relations have the same restrictions, order, limit, offset,
-    header and base, then Difference#optimize should return an empty
-    Relation.
-  * Restriction optimizations:
-    * When the value is the wrong type -> False
-    * "attr = ? OR attr = ?", when the value is the same -> "attr = ?"
-    * "attr = ? OR attr = ?", when the value is different -> "attr IN(..)"
-    * "attr = ? AND attr = ?", when the value is the same -> "attr = ?".
-    * "attr = ? AND attr = ?", when the value is different -> False
-    * "attr = ? AND NOT(attr = ?)", when the value is the same -> False
-    * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
-      * Do the same for >=, <, <=
-    * "attr > ? AND attr > ?" -> "attr > ?", with the most restrictive value
-      * Do the same for >=, <, <=
-  * Figure out how to reorganize the Restriction predicates so that all
-    similar operations are closer together to allow more efficient
-    optimizations.  This would allow optimizations of stuff like this:
+  * Set operation optimizations
+    * If two relations have the same restrictions, order, limit, offset,
+      header and base, then Union#optimize and Intersection#optimize should
+      just return one of them.
+    * If two relations have the same restrictions, order, limit, offset,
+      header and base, then Difference#optimize should return an empty
+      Relation.
+  * Operation Order:
+    * Rename should be pushed down before everything
+      * When a Rename contains a Projection, wrap the Rename in the
+        Projection, and rename the attributes used in the Projection
+      * When a Rename contains a Restriction, wrap the Rename in the
+        Restriction, and rename the attributes used in the Restriction.
+      * When a Rename contains a Set operation, wrap the left and
+        right relations in a Rename, and then wrap the Rename in the
+        Set operation.
+      * When a Rename contains an Order or Reverse, wrap the Rename in
+        the operation, and rename the attributes in the directions
+      * When a Rename contains a Limit or Offset, wrap the Rename
+        in the operation.
+    * Projection should follow Rename
+      * When a Projection contains a Restriction, wrap the Projection
+        in the Restriction, projecting away any attributes not used in
+        the restriction.  If there are any remaining attributes, then
+        wrap the operation in a Projection removing those attributes.
+        * If all attributes are being used in the Restriction do nothing
+      * When a Projection contains a Join, wrap the Join with a Projection
+        of all the headers, minus those used in the Join.  If there were
+        any used, then wrap the whole operation in a Projection with
+        the remaining attributes.
+        * If all the attributes are used in the Join, do nothing
+        * Try to use the same approach for Product
+        * Test if it's possible to fully distribute projections over
+          joins rather than splitting it up like this.
+    * Restriction should follow Projection
+      * Restriction optimizations:
+        * When the value is the wrong type -> False
+        * "attr = ? OR attr = ?", when the value is the same -> "attr = ?"
+        * "attr = ? OR attr = ?", when the value is different -> "attr IN(..)"
+        * "attr = ? AND attr = ?", when the value is the same -> "attr = ?".
+        * "attr = ? AND attr = ?", when the value is different -> False
+        * "attr = ? AND NOT(attr = ?)", when the value is the same -> False
+        * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
+          * Do the same for >=, <, <=
+        * "attr > ? AND attr > ?" -> "attr > ?", with the most restrictive value
+          * Do the same for >=, <, <=
+      * Figure out how to reorganize the Restriction predicates so that all
+        similar operations are closer together to allow more efficient
+        optimizations.  This would allow optimizations of stuff like this:
 
-      "attr1 = ? OR attr2 = ? OR attr1 = ?"
+          "attr1 = ? OR attr2 = ? OR attr1 = ?"
 
-    Into:
+        Into:
 
-      "attr1 IN(..) OR attr2 = ?"
+          "attr1 IN(..) OR attr2 = ?"
+
+* A Union of relations with the same base, header, and restrictions should
+  try to combine into a single relation with the restrictions using OR.
+
+* An Intersection of relations with the same base, header, and restrictions
+  should try to combine into a single relation with the restrictions using
+  AND.
+
+* A Difference of relations with the same base and restrictions should
+  try to combine into a single relation with the restrictions using NOT.
 
 * In Predicate, Proposition and Connective #==, make sure that it
   works by comparing equivalent operations.  eg id >= 1 is the
