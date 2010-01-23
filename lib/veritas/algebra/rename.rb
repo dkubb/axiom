@@ -24,12 +24,11 @@ module Veritas
       def optimize
         relation = optimize_relation
 
-        if relation.kind_of?(Rename)
-          optimize_rename(relation)
-        elsif relation.kind_of?(Relation::Empty)
-          new_empty_relation
-        else
-          super
+        case relation
+          when Relation::Empty then new_empty_relation
+          when self.class      then optimize_rename(relation)
+          else
+            super
         end
       end
 
@@ -39,9 +38,9 @@ module Veritas
         self.class.new(optimize_relation, aliases)
       end
 
-      def optimize_rename(relation)
-        aliases  = optimize_aliases(relation)
-        relation = relation.relation
+      def optimize_rename(other)
+        aliases  = optimize_aliases(other)
+        relation = other.relation
 
         if aliases.empty?
           relation
@@ -51,8 +50,8 @@ module Veritas
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method
-      def optimize_aliases(relation)
-        aliases  = relation.aliases.dup
+      def optimize_aliases(other)
+        aliases  = other.aliases.dup
         inverted = aliases.invert
 
         self.aliases.each do |old_attribute, new_attribute|

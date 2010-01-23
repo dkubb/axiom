@@ -24,20 +24,36 @@ module Veritas
       def optimize
         relation = optimize_relation
 
-        # only optimize if the header attributes and order is the same
-        if relation.header.to_a == header.to_a
-          relation
-        elsif relation.kind_of?(Relation::Empty)
-          new_empty_relation
-        else
-          super
+        # drop the current projection if the headers and order are the same
+        return relation if relation.header.to_a == header.to_a
+
+        case relation
+          when Relation::Empty          then new_empty_relation
+          when self.class               then optimize_projection(relation)
+          when Relation::Operation::Set then optimize_set(relation)
+          else
+            super
         end
       end
 
     private
 
+      def new(relation)
+        self.class.new(relation, header)
+      end
+
       def new_optimized_operation
-        self.class.new(optimize_relation, header)
+        new(optimize_relation)
+      end
+
+      def optimize_projection(other)
+        # drop the inner projection
+        new(other.relation)
+      end
+
+      def optimize_set(set)
+        # push projections down to each relation in the set operation
+        set.class.new(new(set.left), new(set.right))
       end
 
     end # class Projection

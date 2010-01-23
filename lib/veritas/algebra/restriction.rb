@@ -16,31 +16,68 @@ module Veritas
       end
 
       def optimize
-        relation, predicate = optimize_relation, optimize_predicate
+        relation = optimize_relation
 
-        if predicate.kind_of?(True)
-          relation
-        elsif predicate.kind_of?(False)
-          new_empty_relation
-        elsif relation.kind_of?(self.class)
-          relation.class.new(relation.relation, (relation.predicate & predicate).optimize)
-        else
-          super
+        return relation           if matches_all?
+        return new_empty_relation if matches_none?
+
+        case relation
+          when self.class                   then optimize_restriction(relation)
+          when Relation::Operation::Set     then optimize_set(relation)
+          when Relation::Operation::Reverse then optimize_reverse(relation)
+          when Relation::Operation::Order   then optimize_order(relation)
+          else
+            super
         end
       end
 
     private
 
+      def new(relation)
+        self.class.new(relation, optimize_predicate)
+      end
+
       def new_optimized_operation
-        self.class.new(optimize_relation, optimize_predicate)
+        new(optimize_relation)
       end
 
       def optimized?
         super || !optimize_predicate.equal?(predicate)
       end
 
+      def matches_all?
+        optimize_predicate.kind_of?(True)
+      end
+
+      def matches_none?
+        optimize_predicate.kind_of?(False)
+      end
+
       def optimize_predicate
         @optimize_predicate ||= predicate.optimize
+      end
+
+      def optimize_restriction(other)
+        # combine restrictions
+        other.class.new(
+          other.relation,
+          (other.predicate & predicate).optimize
+        )
+      end
+
+      def optimize_set(set)
+        # push restrictions down to each relation in the set operation
+        set.class.new(new(set.left), new(set.right))
+      end
+
+      def optimize_reverse(reverse)
+        # push the restrictions down before the reverse
+        reverse.class.new(new(reverse.relation))
+      end
+
+      def optimize_order(order)
+        # push the restrictions down before the order
+        order.class.new(new(order.relation), directions)
       end
 
     end # class Restriction

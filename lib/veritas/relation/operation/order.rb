@@ -29,10 +29,10 @@ module Veritas
         def optimize
           relation = optimize_relation
 
-          if relation.kind_of?(Order)
-            merge_order(relation)
-          else
-            super
+          case relation
+            when Order then optimize_order(relation)
+            else
+              super
           end
         end
 
@@ -42,8 +42,8 @@ module Veritas
           self.class.new(optimize_relation, directions)
         end
 
-        def merge_order(other)
-          Order.new(other.relation, directions)
+        def optimize_order(other)
+          other.class.new(other.relation, directions)
         end
 
       end # class Order

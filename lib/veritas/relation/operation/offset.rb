@@ -27,10 +27,10 @@ module Veritas
         def optimize
           relation = optimize_relation
 
-          if relation.kind_of?(Offset)
-            add_limit_operation(relation)
-          else
-            super
+          case relation
+            when Offset then optimize_offset(relation)
+            else
+              super
           end
         end
 
@@ -44,8 +44,9 @@ module Veritas
           self.class.new(optimize_relation, to_i)
         end
 
-        def add_limit_operation(other)
-          Offset.new(other.relation, to_i + other.to_i)
+        def optimize_offset(other)
+          # add the offsets together
+          other.class.new(other.relation, to_i + other.to_i)
         end
 
       end # class Offset

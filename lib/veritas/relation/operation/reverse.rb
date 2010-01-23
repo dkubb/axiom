@@ -19,10 +19,10 @@ module Veritas
         def optimize
           relation = optimize_relation
 
-          if relation.kind_of?(Reverse)
-            relation.relation
-          else
-            super
+          case relation
+            when Reverse then optimize_reverse(relation)
+            else
+              super
           end
         end
 
@@ -30,6 +30,11 @@ module Veritas
 
         def new_optimized_operation
           self.class.new(optimize_relation)
+        end
+
+        def optimize_reverse(other)
+          # drop the current operation
+          other.relation
         end
 
       end # class Limit
