@@ -125,11 +125,11 @@ module Veritas
     def eql?(other)
       instance_of?(other.class) &&
       header.eql?(other.header) &&
-      to_set == project_relation(other).to_set
+      to_set.eql?(project_relation(other).to_set)
     end
 
     def hash
-      header.hash ^ to_a.hash
+      header.hash ^ to_set.hash
     end
 
     def empty?

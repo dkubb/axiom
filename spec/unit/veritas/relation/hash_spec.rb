@@ -9,5 +9,5 @@ describe 'Veritas::Relation#hash' do
 
   it { should be_kind_of(Integer) }
 
-  it { should == @relation.header.hash ^ @relation.to_a.hash }
+  it { should == @relation.header.hash ^ @relation.to_set.hash }
 end
