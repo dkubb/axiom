@@ -16,7 +16,7 @@ begin
 
     gem.version = Veritas::VERSION
 
-    gem.add_development_dependency 'backports', '~> 1.12'
+    gem.add_development_dependency 'backports', '~> 1.13.1'
     gem.add_development_dependency 'rspec',     '~> 1.3'
     gem.add_development_dependency 'yard',      '~> 0.5'
   end
