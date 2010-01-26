@@ -52,7 +52,7 @@ module Veritas
       end
 
       def optimize_set(set)
-        # push projections down to each relation in the set operation
+        # push projections before the set operation
         set.class.new(new(set.left), new(set.right))
       end
 

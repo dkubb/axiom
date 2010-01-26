@@ -55,8 +55,10 @@ module Veritas
         relation = other.relation
 
         if aliases.empty?
+          # drop no-op renames
           relation
         else
+          # combine renames together
           other.class.new(relation, aliases)
         end
       end
@@ -77,7 +79,7 @@ module Veritas
       end
 
       def optimize_order(order)
-        # push restrictions before the order
+        # push renames before the order
         order.class.new(new(order.relation), directions)
       end
 
