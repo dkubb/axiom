@@ -12,7 +12,7 @@ module Veritas
           end
 
           def reverse
-            self.class.new(map { |direction| direction.reverse })
+            new(map { |direction| direction.reverse })
           end
 
           def each(&block)
@@ -25,7 +25,7 @@ module Veritas
           end
 
           def union(other)
-            self.class.new(to_ary | other.to_ary)
+            new(to_ary | other.to_ary)
           end
 
           alias | union
@@ -57,6 +57,10 @@ module Veritas
           end
 
         private
+
+          def new(directions)
+            self.class.new(directions)
+          end
 
           def cmp_tuples(left, right)
             each do |direction|
