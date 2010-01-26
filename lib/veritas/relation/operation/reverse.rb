@@ -17,10 +17,8 @@ module Veritas
         end
 
         def optimize
-          relation = optimize_relation
-
-          case relation
-            when Reverse then optimize_reverse(relation)
+          case optimize_relation
+            when Reverse then drop_no_op_reverse
             else
               super
           end
@@ -32,9 +30,8 @@ module Veritas
           self.class.new(optimize_relation)
         end
 
-        def optimize_reverse(other)
-          # drop the contained reverse
-          other.relation
+        def drop_no_op_reverse
+          optimize_relation.relation
         end
 
       end # class Limit

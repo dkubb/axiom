@@ -24,13 +24,12 @@ module Veritas
       def optimize
         relation = optimize_relation
 
-        # drop the current projection if the headers and order are the same
-        return relation if relation.header.to_a == header.to_a
+        return drop_current_projection if relation.header.to_a == header.to_a
 
         case relation
           when Relation::Empty          then new_empty_relation
-          when self.class               then optimize_projection(relation)
-          when Relation::Operation::Set then optimize_set(relation)
+          when self.class               then drop_contained_projection
+          when Relation::Operation::Set then move_before_set
           else
             super
         end
@@ -46,13 +45,16 @@ module Veritas
         new(optimize_relation)
       end
 
-      def optimize_projection(other)
-        # drop the inner projection
-        new(other.relation)
+      def drop_current_projection
+        optimize_relation
       end
 
-      def optimize_set(set)
-        # push projections before the set operation
+      def drop_contained_projection
+        new(optimize_relation.relation)
+      end
+
+      def move_before_set
+        set = optimize_relation
         set.class.new(new(set.left), new(set.right))
       end
 

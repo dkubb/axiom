@@ -26,10 +26,8 @@ module Veritas
         end
 
         def optimize
-          relation = optimize_relation
-
-          case relation
-            when Limit then optimize_limit(relation)
+          case optimize_relation
+            when Limit then optimize_limit
             else
               super
           end
@@ -45,16 +43,22 @@ module Veritas
           self.class.new(optimize_relation, to_i)
         end
 
-        def optimize_limit(other)
-          limit, other_limit = to_i, other.to_i
-
-          if limit == other_limit
-            # drop the current limit, since it is the same as the contained limit
-            other
+        def optimize_limit
+          limit = optimize_relation
+          if to_i == limit.to_i
+            drop_no_op_limit
           else
-            # use the smallest of the current and contained limit operations
-            other.class.new(other.relation, [ limit, other_limit ].min)
+            use_smallest_limit
           end
+        end
+
+        def drop_no_op_limit
+          optimize_relation
+        end
+
+        def use_smallest_limit
+          limit = optimize_relation
+          self.class.new(limit.relation, [ to_i, limit.to_i ].min)
         end
 
       end # class Limit

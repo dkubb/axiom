@@ -22,10 +22,10 @@ module Veritas
         return new_empty_relation if matches_none?
 
         case relation
-          when self.class                   then optimize_restriction(relation)
-          when Relation::Operation::Set     then optimize_set(relation)
-          when Relation::Operation::Reverse then optimize_reverse(relation)
-          when Relation::Operation::Order   then optimize_order(relation)
+          when self.class                   then combine_restrictions
+          when Relation::Operation::Set     then move_before_set
+          when Relation::Operation::Reverse then move_before_reverse
+          when Relation::Operation::Order   then move_before_order
           else
             super
         end
@@ -57,26 +57,26 @@ module Veritas
         @optimize_predicate ||= predicate.optimize
       end
 
-      def optimize_restriction(other)
-        # combine restrictions
-        other.class.new(
-          other.relation,
-          (other.predicate & predicate).optimize
+      def combine_restrictions
+        restriction = optimize_relation
+        restriction.class.new(
+          restriction.relation,
+          (restriction.predicate & predicate).optimize
         )
       end
 
-      def optimize_set(set)
-        # push restrictions before the set operation
+      def move_before_set
+        set = optimize_relation
         set.class.new(new(set.left), new(set.right))
       end
 
-      def optimize_reverse(reverse)
-        # push restrictions before the reverse
+      def move_before_reverse
+        reverse = optimize_relation
         reverse.class.new(new(reverse.relation))
       end
 
-      def optimize_order(order)
-        # push restrictions before the order
+      def move_before_order
+        order = optimize_relation
         order.class.new(new(order.relation), directions)
       end
 

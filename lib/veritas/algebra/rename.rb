@@ -26,15 +26,13 @@ module Veritas
       end
 
       def optimize
-        relation = optimize_relation
-
-        case relation
+        case optimize_relation
           when Relation::Empty              then new_empty_relation
-          when self.class                   then optimize_rename(relation)
-          when Projection                   then optimize_projection(relation)
-          when Relation::Operation::Set     then optimize_set(relation)
-          when Relation::Operation::Reverse then optimize_reverse(relation)
-          when Relation::Operation::Order   then optimize_order(relation)
+          when self.class                   then optimize_rename
+          when Projection                   then move_before_projection
+          when Relation::Operation::Set     then move_before_set
+          when Relation::Operation::Reverse then move_before_reverse
+          when Relation::Operation::Order   then move_before_order
           else
             super
         end
@@ -50,55 +48,58 @@ module Veritas
         self.class.new(optimize_relation, aliases)
       end
 
-      def optimize_rename(other)
-        aliases  = optimize_aliases(other)
-        relation = other.relation
-
-        if aliases.empty?
-          # drop no-op renames
-          relation
-        else
-          # combine renames together
-          other.class.new(relation, aliases)
-        end
+      def optimize_rename
+        optimize_aliases.empty? ? drop_no_op_renames : combine_renames
       end
 
-      def optimize_projection(projection)
-        # push renames before the projection
+      def drop_no_op_renames
+        optimize_relation.relation
+      end
+
+      def combine_renames
+        self.class.new(optimize_relation.relation, optimize_aliases)
+      end
+
+      def move_before_projection
+        projection = optimize_relation
         projection.class.new(new(projection.relation), header)
       end
 
-      def optimize_set(set)
-        # push renames before the set operation
+      def move_before_set
+        set = optimize_relation
         set.class.new(new(set.left), new(set.right))
       end
 
-      def optimize_reverse(reverse)
-        # push renames before the reverse
+      def move_before_reverse
+        reverse = optimize_relation
         reverse.class.new(new(reverse.relation))
       end
 
-      def optimize_order(order)
-        # push renames before the order
+      def move_before_order
+        order = optimize_relation
         order.class.new(new(order.relation), directions)
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method
-      def optimize_aliases(other)
-        aliases  = other.aliases.dup
-        inverted = aliases.invert
+      def optimize_aliases
+        @optimize_aliases ||=
+          begin
+            other    = optimize_relation
+            aliases  = other.aliases.dup
+            inverted = aliases.invert
 
-        self.aliases.each do |old_attribute, new_attribute|
-          old_attribute = inverted.fetch(old_attribute, old_attribute)
+            self.aliases.each do |old_attribute, new_attribute|
+              old_attribute = inverted.fetch(old_attribute, old_attribute)
 
-          if old_attribute == new_attribute
-            aliases.delete(new_attribute)
-          else
-            aliases[old_attribute] = new_attribute
+              if old_attribute == new_attribute
+                aliases.delete(new_attribute)
+              else
+                aliases[old_attribute] = new_attribute
+              end
+            end
+
+            aliases
           end
-        end
-
-        aliases
       end
 
     end # class Rename

@@ -27,10 +27,8 @@ module Veritas
         end
 
         def optimize
-          relation = optimize_relation
-
-          case relation
-            when Order then optimize_order(relation)
+          case optimize_relation
+            when Order then drop_no_op_order
             else
               super
           end
@@ -42,9 +40,9 @@ module Veritas
           self.class.new(optimize_relation, directions)
         end
 
-        def optimize_order(other)
-          # drop the contained order
-          other.class.new(other.relation, directions)
+        def drop_no_op_order
+          order = optimize_relation
+          order.class.new(order.relation, directions)
         end
 
       end # class Order

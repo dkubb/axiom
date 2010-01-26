@@ -25,10 +25,8 @@ module Veritas
         end
 
         def optimize
-          relation = optimize_relation
-
-          case relation
-            when Offset then optimize_offset(relation)
+          case optimize_relation
+            when Offset then use_offset_sum
             else
               super
           end
@@ -44,9 +42,9 @@ module Veritas
           self.class.new(optimize_relation, to_i)
         end
 
-        def optimize_offset(other)
-          # add the offsets together
-          other.class.new(other.relation, to_i + other.to_i)
+        def use_offset_sum
+          offset = optimize_relation
+          self.class.new(offset.relation, to_i + offset.to_i)
         end
 
       end # class Offset
