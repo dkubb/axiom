@@ -1,3 +1,6 @@
+* Rename #optimize related methods to match the comments, so that it is
+  more clear what is happening.
+
 * Some places in #optimize methods that use self.class.new() to create
   new instances using contained objects should also call optimize on
   the object immediately. My theory is (and this needs to be tested)
