@@ -45,7 +45,7 @@ module Veritas
         if aliases.empty?
           relation
         else
-          self.class.new(relation, aliases)
+          other.class.new(relation, aliases)
         end
       end
 
