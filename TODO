@@ -2,8 +2,7 @@
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
 
-* Rename should change the directions (and predicates if delegated)
-  from any operations they wrap.
+* Rename should change the predicates from any operations they wrap.
 
 * Projection should remove any directions for attributes that were
   projected out of the header
@@ -18,15 +17,8 @@
       Relation.
   * Operation Order:
     * Rename should be pushed down before everything
-      * When a Rename contains a Projection, wrap the Rename in the
-        Projection, and rename the attributes used in the Projection
       * When a Rename contains a Restriction, wrap the Rename in the
         Restriction, and rename the attributes used in the Restriction.
-      * When a Rename contains a Set operation, wrap the left and
-        right relations in a Rename, and then wrap the Rename in the
-        Set operation.
-      * When a Rename contains an Order or Reverse, wrap the Rename in
-        the operation, and rename the attributes in the directions
       * When a Rename contains a Limit or Offset, wrap the Rename
         in the operation.
     * Projection should follow Rename
