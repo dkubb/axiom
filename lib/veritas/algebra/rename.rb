@@ -21,6 +21,10 @@ module Veritas
         self
       end
 
+      def directions
+        @directions ||= relation.directions.rename(aliases)
+      end
+
       def optimize
         relation = optimize_relation
 
