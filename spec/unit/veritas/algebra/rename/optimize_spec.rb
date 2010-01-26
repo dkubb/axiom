@@ -144,4 +144,23 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == @rename
     end
   end
+
+  describe 'with a reverse operation' do
+    before do
+      @limit   = @relation.order(@relation.header).limit(1)
+      @reverse = @limit.reverse
+
+      @rename = @reverse.rename(:id => :other_id)
+    end
+
+    it 'should push the rename under the reverse' do
+      should eql(Relation::Operation::Reverse.new(
+        Algebra::Rename.new(@limit, :id => :other_id)
+      ))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
 end

@@ -66,17 +66,17 @@ module Veritas
       end
 
       def optimize_set(set)
-        # push restrictions down to each relation in the set operation
+        # push restrictions before the set operation
         set.class.new(new(set.left), new(set.right))
       end
 
       def optimize_reverse(reverse)
-        # push the restrictions down before the reverse
+        # push restrictions before the reverse
         reverse.class.new(new(reverse.relation))
       end
 
       def optimize_order(order)
-        # push the restrictions down before the order
+        # push restrictions before the order
         order.class.new(new(order.relation), directions)
       end
 

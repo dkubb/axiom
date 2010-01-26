@@ -29,10 +29,11 @@ module Veritas
         relation = optimize_relation
 
         case relation
-          when Relation::Empty          then new_empty_relation
-          when self.class               then optimize_rename(relation)
-          when Projection               then optimize_projection(relation)
-          when Relation::Operation::Set then optimize_set(relation)
+          when Relation::Empty              then new_empty_relation
+          when self.class                   then optimize_rename(relation)
+          when Projection                   then optimize_projection(relation)
+          when Relation::Operation::Set     then optimize_set(relation)
+          when Relation::Operation::Reverse then optimize_reverse(relation)
           else
             super
         end
@@ -60,13 +61,18 @@ module Veritas
       end
 
       def optimize_projection(projection)
-        # push renames beneath the projection
+        # push renames before the projection
         projection.class.new(new(projection.relation), header)
       end
 
       def optimize_set(set)
-        # push renames down to each relation in the set operation
+        # push renames before the set operation
         set.class.new(new(set.left), new(set.right))
+      end
+
+      def optimize_reverse(reverse)
+        # push renames before the reverse
+        reverse.class.new(new(reverse.relation))
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method
