@@ -33,7 +33,7 @@ module Veritas
         end
 
         def optimize_reverse(other)
-          # drop the current operation
+          # drop the contained reverse
           other.relation
         end
 

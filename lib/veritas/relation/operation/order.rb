@@ -43,6 +43,7 @@ module Veritas
         end
 
         def optimize_order(other)
+          # drop the contained order
           other.class.new(other.relation, directions)
         end
 

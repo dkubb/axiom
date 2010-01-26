@@ -49,8 +49,10 @@ module Veritas
           limit, other_limit = to_i, other.to_i
 
           if limit == other_limit
+            # drop the current limit, since it is the same as the contained limit
             other
           else
+            # use the smallest of the current and contained limit operations
             other.class.new(other.relation, [ limit, other_limit ].min)
           end
         end
