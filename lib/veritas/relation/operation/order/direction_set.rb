@@ -11,6 +11,13 @@ module Veritas
             end
           end
 
+          def rename(aliases)
+            new map { |direction|
+              name = aliases[direction.attribute.name]
+              name ? direction.rename(name) : direction
+            }
+          end
+
           def reverse
             new(map { |direction| direction.reverse })
           end

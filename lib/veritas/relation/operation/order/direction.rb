@@ -16,6 +16,10 @@ module Veritas
             self.class.eval(left[attribute], right[attribute])
           end
 
+          def rename(name)
+            self.class.new(attribute.rename(name))
+          end
+
           def eql?(other)
             instance_of?(other.class) &&
             attribute.eql?(other.attribute)
