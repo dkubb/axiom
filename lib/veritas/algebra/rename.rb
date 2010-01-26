@@ -34,6 +34,7 @@ module Veritas
           when Projection                   then optimize_projection(relation)
           when Relation::Operation::Set     then optimize_set(relation)
           when Relation::Operation::Reverse then optimize_reverse(relation)
+          when Relation::Operation::Order   then optimize_order(relation)
           else
             super
         end
@@ -73,6 +74,11 @@ module Veritas
       def optimize_reverse(reverse)
         # push renames before the reverse
         reverse.class.new(new(reverse.relation))
+      end
+
+      def optimize_order(order)
+        # push restrictions before the order
+        order.class.new(new(order.relation), directions)
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method

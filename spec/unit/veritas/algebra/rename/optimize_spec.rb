@@ -163,4 +163,23 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == @rename
     end
   end
+
+  describe 'with an order operation' do
+    before do
+      @order = @relation.order(@relation.header)
+
+      @rename = @order.rename(:id => :other_id)
+    end
+
+    it 'should push the rename under the order' do
+      should eql(Relation::Operation::Order.new(
+        Algebra::Rename.new(@relation, :id => :other_id),
+        @rename.directions
+      ))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
 end
