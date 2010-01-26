@@ -105,4 +105,22 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == @rename
     end
   end
+
+  describe 'containing a projection' do
+    before do
+      @projection = @relation.project([ :id ])
+
+      @rename = Algebra::Rename.new(@projection, :id => :other_id)
+    end
+
+    it { should be_instance_of(Algebra::Projection) }
+
+    it { subject.relation.should eql(Algebra::Rename.new(@relation, :id => :other_id)) }
+
+    it { subject.header.should == [ [ :other_id, Integer ] ] }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
 end
