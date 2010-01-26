@@ -11,7 +11,7 @@ module Veritas
       end
 
       def header
-        @header ||= relation.header.rename(@aliases)
+        @header ||= relation.header.rename(aliases)
       end
 
       def each(&block)
