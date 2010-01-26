@@ -123,4 +123,25 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == @rename
     end
   end
+
+  describe 'containing a set operation' do
+    before do
+      @left  = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
+      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
+      @union = @left.union(@right)
+
+      @rename = @union.rename(:id => :other_id)
+    end
+
+    it 'should push the rename to each relation' do
+      should eql(Algebra::Union.new(
+         Algebra::Rename.new(@left,  :id => :other_id),
+         Algebra::Rename.new(@right, :id => :other_id)
+      ))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
 end
