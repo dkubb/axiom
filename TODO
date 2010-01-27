@@ -7,11 +7,6 @@
     everything returns either the optimized relation OR self (eventually).
   * I think this will apply in certain cases where we factor out
     no-ops, like projections with all the headers.
-  * Add specs to ensure all optimizations are idempotent.  Check
-    to make sure that:
-
-      optimized = subject.optimize
-      optimized.should equal(optimized.optimize)  # => always returns true
 
 * Restriction predicates should be visible to all parent relations
   because they form the base constraints all tuples must match in
