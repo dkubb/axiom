@@ -125,4 +125,22 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == @projection
     end
   end
+
+  describe 'containing a set operation containing a projection' do
+    before do
+      @left  = Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ])
+      @right = Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 2, 'Dan Kubb', 34 ] ])
+      @union = @left.project([ :id, :name ]).union(@right.project([ :id, :name ]))
+
+      @projection = @union.project([ :name ])
+    end
+
+    it 'should push the projection to each relation, and combine the nested projections' do
+      should eql(@left.project([ :name ]).union(@right.project([ :name ])))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @projection
+    end
+  end
 end

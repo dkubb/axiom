@@ -3,13 +3,14 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 describe 'Veritas::Algebra::Rename#optimize' do
   before do
     @relation = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
+    @aliases  = { :id => :other_id }
   end
 
   subject { @rename.optimize }
 
   describe 'containing a relation' do
     before do
-      @rename = Algebra::Rename.new(@relation, :id => :other_id)
+      @rename = Algebra::Rename.new(@relation, @aliases)
     end
 
     it { should equal(@rename) }
@@ -19,7 +20,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     before do
       @empty = Relation::Empty.new(@relation.header)
 
-      @rename = Algebra::Rename.new(@empty, :id => :other_id)
+      @rename = Algebra::Rename.new(@empty, @aliases)
     end
 
     it { should eql(Relation::Empty.new(@rename.header)) }
@@ -33,7 +34,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     before do
       @projection = @relation.project(@relation.header)
 
-      @rename = Algebra::Rename.new(@projection, :id => :other_id)
+      @rename = Algebra::Rename.new(@projection, @aliases)
     end
 
     it { should_not equal(@rename) }
@@ -62,7 +63,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it { should be_instance_of(Algebra::Rename) }
 
     it 'should set aliases as a union of both aliases' do
-      subject.aliases.should == { :id => :other_id, :name => :other_name }
+      subject.aliases.should == @aliases.merge(:name => :other_name)
     end
 
     it { subject.relation.should equal(@relation) }
@@ -110,14 +111,30 @@ describe 'Veritas::Algebra::Rename#optimize' do
     before do
       @projection = @relation.project([ :id ])
 
-      @rename = Algebra::Rename.new(@projection, :id => :other_id)
+      @rename = Algebra::Rename.new(@projection, @aliases)
     end
 
     it { should be_instance_of(Algebra::Projection) }
 
-    it { subject.relation.should eql(Algebra::Rename.new(@relation, :id => :other_id)) }
+    it { subject.relation.should eql(Algebra::Rename.new(@relation, @aliases)) }
 
     it { subject.header.should == [ [ :other_id, Integer ] ] }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing a projection, containing a rename that cancels out' do
+    before do
+      @projection = @relation.rename(:id => :other_id).project([ :other_id ])
+
+      @rename = Algebra::Rename.new(@projection, :other_id => :id)
+    end
+
+    it 'should push the rename before the projection, and then cancel it out' do
+      should eql(@relation.project([ :id ]))
+    end
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @rename
@@ -130,14 +147,29 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
       @union = @left.union(@right)
 
-      @rename = @union.rename(:id => :other_id)
+      @rename = @union.rename(@aliases)
     end
 
     it 'should push the rename to each relation' do
-      should eql(Algebra::Union.new(
-         Algebra::Rename.new(@left,  :id => :other_id),
-         Algebra::Rename.new(@right, :id => :other_id)
-      ))
+      should eql(@left.rename(@aliases).union(@right.rename(@aliases)))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing a set operation, containing a rename that cancels out' do
+    before do
+      @left  = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
+      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
+      @union = @left.rename(:id => :other_id).union(@right.rename(:id => :other_id))
+
+      @rename = @union.rename(:other_id => :id)
+    end
+
+    it 'should push the rename to each relation, then cancel it out' do
+      should eql(@left.union(@right))
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -147,16 +179,31 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   describe 'containing a reverse operation' do
     before do
-      @limit   = @relation.order(@relation.header).limit(1)
+      @limit   = @relation.order { |r| r.header }.limit(1)
       @reverse = @limit.reverse
 
-      @rename = @reverse.rename(:id => :other_id)
+      @rename = @reverse.rename(@aliases)
     end
 
-    it 'should push the rename under the reverse and limit' do
-      should eql(Relation::Operation::Reverse.new(
-        Algebra::Rename.new(@limit, :id => :other_id)
-      ))
+    it 'should push the rename under the order, limit and reverse' do
+      should eql(@relation.rename(@aliases).order { |r| r.header }.limit(1).reverse)
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing a reverse operation, containing a rename that cancels out' do
+    before do
+      @limit   = @relation.order { |r| r.header }.limit(1)
+      @reverse = @limit.rename(:id => :other_id).reverse
+
+      @rename = @reverse.rename(:other_id => :id)
+    end
+
+    it 'should push the rename under the order, limit and reverse, and then cancel it out' do
+      should eql(@relation.order { |r| r.header }.limit(1).reverse)
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -166,16 +213,29 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   describe 'containing an order operation' do
     before do
-      @order = @relation.order(@relation.header)
+      @order = @relation.order { |r| r.header }
 
-      @rename = @order.rename(:id => :other_id)
+      @rename = @order.rename(@aliases)
     end
 
     it 'should push the rename under the order' do
-      should eql(Relation::Operation::Order.new(
-        Algebra::Rename.new(@relation, :id => :other_id),
-        @rename.directions
-      ))
+      should eql(@relation.rename(@aliases).order { |r| r.header })
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing an order operation, containing a rename that cancels out' do
+    before do
+      @order = @relation.rename(:id => :other_id).order { |r| r.header }
+
+      @rename = @order.rename(:other_id => :id)
+    end
+
+    it 'should push the rename under the order, and then cancel it out' do
+      should eql(@relation.order { |r| r.header })
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -185,14 +245,31 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   describe 'containing a limit operation' do
     before do
-      @order = @relation.order(@relation.header)
+      @order = @relation.order { |r| r.header }
       @limit = @order.limit(1)
 
-      @rename = @limit.rename(:id => :other_id)
+      @rename = @limit.rename(@aliases)
     end
 
     it 'should push the rename under the limit and order' do
-      should eql(@relation.rename(:id => :other_id).order { |r| r.header }.limit(1))
+      should eql(@relation.rename(@aliases).order { |r| r.header }.limit(1))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing a limit operation, containing a rename that cancels out' do
+    before do
+      @order = @relation.order { |r| r.header }
+      @limit = @order.rename(:id => :other_id).limit(1)
+
+      @rename = @limit.rename(:other_id => :id)
+    end
+
+    it 'should push the rename under the limit and order, and then cancel it out' do
+      should eql(@relation.order { |r| r.header }.limit(1))
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -202,14 +279,31 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   describe 'containing an offset operation' do
     before do
-      @order = @relation.order(@relation.header)
+      @order = @relation.order { |r| r.header }
       @offset = @order.offset(1)
 
-      @rename = @offset.rename(:id => :other_id)
+      @rename = @offset.rename(@aliases)
     end
 
     it 'should push the rename under the offset and order' do
-      should eql(@relation.rename(:id => :other_id).order { |r| r.header }.offset(1))
+      should eql(@relation.rename(@aliases).order { |r| r.header }.offset(1))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing an offset operation, containing a rename that cancels out' do
+    before do
+      @order = @relation.order { |r| r.header }
+      @offset = @order.rename(:id => :other_id).offset(1)
+
+      @rename = @offset.rename(:other_id => :id)
+    end
+
+    it 'should push the rename under the offset and order, and then cancel it out' do
+      should eql(@relation.order { |r| r.header }.offset(1))
     end
 
     it 'should return the same tuples as the unoptimized operation' do

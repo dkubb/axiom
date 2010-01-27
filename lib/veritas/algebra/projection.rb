@@ -55,7 +55,7 @@ module Veritas
 
       def move_before_set
         set = optimize_relation
-        set.class.new(new(set.left), new(set.right))
+        set.class.new(new(set.left), new(set.right)).optimize
       end
 
     end # class Projection

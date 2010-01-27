@@ -151,10 +151,25 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
 
     it 'should push the restriction to each relation' do
-      should eql(Algebra::Union.new(
-         Algebra::Restriction.new(@left,  @predicate),
-         Algebra::Restriction.new(@right, @predicate)
-      ))
+      should eql(@left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) }) )
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
+  end
+
+  describe 'with a set operation, containing a restriction with duplicate predicates' do
+    before do
+      @left  = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+      @right = Relation.new([ [ :id, Integer ] ], [ [ 2 ] ])
+      @union = @left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) })
+
+      @restriction = @union.restrict { |r| r[:id].gte(1) }
+    end
+
+    it 'should push the restriction to each relation, and then removes duplicate predicates' do
+      should eql(@left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) }) )
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -164,17 +179,33 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   describe 'with a reverse operation' do
     before do
-      @limit     = @relation.order(@relation.header).limit(1)
+      @limit     = @relation.order { |r| r.header }.limit(1)
       @reverse   = @limit.reverse
       @predicate = @reverse[:id].gte(1)
 
-      @restriction = Algebra::Restriction.new(@reverse, @predicate)
+      @restriction = @reverse.restrict(@predicate)
     end
 
     it 'should push the restriction under the reverse' do
-      should eql(Relation::Operation::Reverse.new(
-        Algebra::Restriction.new(@limit, @predicate)
-      ))
+      should eql(@limit.restrict(@predicate).reverse)
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
+  end
+
+  describe 'with a reverse operation, containing a restriction with duplicate predicates' do
+    before do
+      @limit     = @relation.order { |r| r.header }.limit(1)
+      @reverse   = @limit.restrict { |r| r[:id].gte(1) }.reverse
+      @predicate = @reverse[:id].gte(1)
+
+      @restriction = @reverse.restrict(@predicate)
+    end
+
+    it 'should push the restriction under the reverse, and then removes duplicate predicates' do
+      should eql(@limit.restrict(@predicate).reverse)
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -184,17 +215,31 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   describe 'with an order operation' do
     before do
-      @order     = @relation.order(@relation.header)
+      @order     = @relation.order { |r| r.header }
       @predicate = @order[:id].gte(1)
 
-      @restriction = Algebra::Restriction.new(@order, @predicate)
+      @restriction = @order.restrict(@predicate)
     end
 
     it 'should push the restriction under the order' do
-      should eql(Relation::Operation::Order.new(
-        Algebra::Restriction.new(@relation, @predicate),
-        @order.directions
-      ))
+      should eql(@relation.restrict(@predicate).order { |r| r.header })
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @restriction
+    end
+  end
+
+  describe 'with an order operation, containing a restriction with duplicate predicates' do
+    before do
+      @order     = @relation.restrict { |r| r[:id].gte(1) }.order { |r| r.header }
+      @predicate = @order[:id].gte(1)
+
+      @restriction = @order.restrict(@predicate)
+    end
+
+    it 'should push the restriction under the order, and then removes duplicate predicates' do
+      should eql(@relation.restrict(@predicate).order { |r| r.header })
     end
 
     it 'should return the same tuples as the unoptimized operation' do

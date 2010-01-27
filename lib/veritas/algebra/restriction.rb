@@ -59,25 +59,23 @@ module Veritas
 
       def combine_restrictions
         restriction = optimize_relation
-        restriction.class.new(
-          restriction.relation,
-          (restriction.predicate & predicate).optimize
-        )
+        predicate   = restriction.predicate & optimize_predicate
+        self.class.new(restriction.relation, predicate)
       end
 
       def move_before_set
         set = optimize_relation
-        set.class.new(new(set.left), new(set.right))
+        set.class.new(new(set.left), new(set.right)).optimize
       end
 
       def move_before_reverse
         reverse = optimize_relation
-        reverse.class.new(new(reverse.relation))
+        reverse.class.new(new(reverse.relation)).optimize
       end
 
       def move_before_order
         order = optimize_relation
-        order.class.new(new(order.relation), directions)
+        order.class.new(new(order.relation), directions).optimize
       end
 
     end # class Restriction

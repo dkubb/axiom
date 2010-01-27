@@ -43,11 +43,11 @@ module Veritas
     private
 
       def new(relation)
-        self.class.new(relation, aliases)
+        self.class.new(relation, optimize_aliases)
       end
 
       def new_optimized_operation
-        self.class.new(optimize_relation, aliases)
+        new(optimize_relation)
       end
 
       def optimize_rename
@@ -59,27 +59,27 @@ module Veritas
       end
 
       def combine_renames
-        self.class.new(optimize_relation.relation, optimize_aliases)
+        new(optimize_relation.relation)
       end
 
       def move_before_projection
         projection = optimize_relation
-        projection.class.new(new(projection.relation), header)
+        projection.class.new(new(projection.relation), header).optimize
       end
 
       def move_before_set
         set = optimize_relation
-        set.class.new(new(set.left), new(set.right))
+        set.class.new(new(set.left), new(set.right)).optimize
       end
 
       def move_before_reverse
         reverse = optimize_relation
-        reverse.class.new(new(reverse.relation))
+        reverse.class.new(new(reverse.relation)).optimize
       end
 
       def move_before_order
         order = optimize_relation
-        order.class.new(new(order.relation), directions)
+        order.class.new(new(order.relation), directions).optimize
       end
 
       def move_before_limit
@@ -96,21 +96,25 @@ module Veritas
       def optimize_aliases
         @optimize_aliases ||=
           begin
-            other    = optimize_relation
-            aliases  = other.aliases.dup
-            inverted = aliases.invert
+            other = optimize_relation
+            if other.respond_to?(:aliases)
+              aliases  = other.aliases.dup
+              inverted = aliases.invert
 
-            self.aliases.each do |old_attribute, new_attribute|
-              old_attribute = inverted.fetch(old_attribute, old_attribute)
+              self.aliases.each do |old_attribute, new_attribute|
+                old_attribute = inverted.fetch(old_attribute, old_attribute)
 
-              if old_attribute == new_attribute
-                aliases.delete(new_attribute)
-              else
-                aliases[old_attribute] = new_attribute
+                if old_attribute == new_attribute
+                  aliases.delete(new_attribute)
+                else
+                  aliases[old_attribute] = new_attribute
+                end
               end
-            end
 
-            aliases
+              aliases
+            else
+              self.aliases
+            end
           end
       end
 
