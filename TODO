@@ -29,8 +29,6 @@
     * Rename should be pushed down before everything
       * When a Rename contains a Restriction, wrap the Rename in the
         Restriction, and rename the attributes used in the Restriction.
-      * When a Rename contains a Limit or Offset, wrap the Rename
-        in the operation.
     * Projection should follow Rename
       * When a Projection contains a Restriction, wrap the Projection
         in the Restriction, projecting away any attributes not used in
