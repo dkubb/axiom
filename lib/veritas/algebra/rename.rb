@@ -33,6 +33,8 @@ module Veritas
           when Relation::Operation::Set     then move_before_set
           when Relation::Operation::Reverse then move_before_reverse
           when Relation::Operation::Order   then move_before_order
+          when Relation::Operation::Limit   then move_before_limit
+          when Relation::Operation::Offset  then move_before_offset
           else
             super
         end
@@ -78,6 +80,16 @@ module Veritas
       def move_before_order
         order = optimize_relation
         order.class.new(new(order.relation), directions)
+      end
+
+      def move_before_limit
+        limit = optimize_relation
+        limit.class.new(new(limit.relation), limit.to_i).optimize
+      end
+
+      def move_before_offset
+        offset = optimize_relation
+        offset.class.new(new(offset.relation), offset.to_i).optimize
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method

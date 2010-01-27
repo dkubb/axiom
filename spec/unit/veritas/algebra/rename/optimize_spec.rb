@@ -145,7 +145,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'with a reverse operation' do
+  describe 'containing a reverse operation' do
     before do
       @limit   = @relation.order(@relation.header).limit(1)
       @reverse = @limit.reverse
@@ -153,7 +153,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @reverse.rename(:id => :other_id)
     end
 
-    it 'should push the rename under the reverse' do
+    it 'should push the rename under the reverse and limit' do
       should eql(Relation::Operation::Reverse.new(
         Algebra::Rename.new(@limit, :id => :other_id)
       ))
@@ -164,7 +164,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'with an order operation' do
+  describe 'containing an order operation' do
     before do
       @order = @relation.order(@relation.header)
 
@@ -176,6 +176,40 @@ describe 'Veritas::Algebra::Rename#optimize' do
         Algebra::Rename.new(@relation, :id => :other_id),
         @rename.directions
       ))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing a limit operation' do
+    before do
+      @order = @relation.order(@relation.header)
+      @limit = @order.limit(1)
+
+      @rename = @limit.rename(:id => :other_id)
+    end
+
+    it 'should push the rename under the limit and order' do
+      should eql(@relation.rename(:id => :other_id).order { |r| r.header }.limit(1))
+    end
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing an offset operation' do
+    before do
+      @order = @relation.order(@relation.header)
+      @offset = @order.offset(1)
+
+      @rename = @offset.rename(:id => :other_id)
+    end
+
+    it 'should push the rename under the offset and order' do
+      should eql(@relation.rename(:id => :other_id).order { |r| r.header }.offset(1))
     end
 
     it 'should return the same tuples as the unoptimized operation' do
