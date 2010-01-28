@@ -72,7 +72,7 @@
 
 * In Predicate, Proposition and Connective #==, make sure that it
   works by comparing equivalent operations.  eg id >= 1 is the
-  same as not(id < 1), and should return when compared.
+  same as not(id < 1), and should return true when compared with #==.
 
 * Use Flay to identify duplicate code and refactor
 
