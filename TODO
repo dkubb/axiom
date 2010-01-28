@@ -1,13 +1,3 @@
-* Some places in #optimize methods that use self.class.new() to create
-  new instances using contained objects should also call optimize on
-  the object immediately. My theory is (and this needs to be tested)
-  is that you can sometimes further optimize the relations depending
-  on what the compressed structure looks like.
-  * Will need to be careful to avoid circular logic, and ensure that
-    everything returns either the optimized relation OR self (eventually).
-  * I think this will apply in certain cases where we factor out
-    no-ops, like projections with all the headers.
-
 * Restriction predicates should be visible to all parent relations
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
