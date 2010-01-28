@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Union#optimize' do
 
     it { should equal(@right) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @union
     end
   end
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Union#optimize' do
 
     it { should equal(@left) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @union
     end
   end
@@ -46,7 +46,7 @@ describe 'Veritas::Algebra::Union#optimize' do
 
     it { should equal(@right) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @union
     end
   end
@@ -60,7 +60,7 @@ describe 'Veritas::Algebra::Union#optimize' do
 
     it { should equal(@left) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @union
     end
   end

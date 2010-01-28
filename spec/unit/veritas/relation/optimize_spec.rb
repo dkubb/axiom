@@ -10,7 +10,7 @@ describe 'Veritas::Relation#optimize' do
 
     it { should be_instance_of(Relation::Empty) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @relation
     end
   end

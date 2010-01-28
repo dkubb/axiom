@@ -25,7 +25,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should eql(Relation::Empty.new(@rename.header)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -47,7 +47,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -68,7 +68,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -89,7 +89,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -102,7 +102,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -120,7 +120,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { subject.header.should == [ [ :other_id, Integer ] ] }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -136,7 +136,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.project([ :id ]))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -154,7 +154,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@left.rename(@aliases).union(@right.rename(@aliases)))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -172,7 +172,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@left.union(@right))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -189,7 +189,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.rename(@aliases).order { |r| r.header }.limit(2).reverse)
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -206,7 +206,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.order { |r| r.header }.limit(2).reverse)
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -222,7 +222,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.rename(@aliases).order { |r| r.header })
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -238,7 +238,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.order { |r| r.header })
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -255,7 +255,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.rename(@aliases).order { |r| r.header }.limit(2))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -272,7 +272,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.order { |r| r.header }.limit(2))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -289,7 +289,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.rename(@aliases).order { |r| r.header }.offset(1))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -306,7 +306,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should eql(@relation.order { |r| r.header }.offset(1))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end

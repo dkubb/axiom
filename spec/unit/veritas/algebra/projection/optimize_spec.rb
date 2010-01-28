@@ -14,7 +14,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -46,7 +46,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should eql(Relation::Empty.new(@projection.header)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -60,7 +60,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should eql(Relation::Empty.new(@projection.header)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -80,7 +80,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { subject.header.should == @projection.header }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -100,7 +100,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { subject.header.should == @projection.header }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -121,7 +121,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       ))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -139,7 +139,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should eql(@left.project([ :name ]).union(@right.project([ :name ])))
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end

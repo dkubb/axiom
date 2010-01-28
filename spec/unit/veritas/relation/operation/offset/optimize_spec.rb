@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it { should equal(@order) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @offset
     end
   end
@@ -42,7 +42,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it { subject.to_i.should == 1 }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @offset
     end
   end
@@ -62,7 +62,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       subject.to_i.should == 15
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @offset
     end
   end

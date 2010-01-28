@@ -25,7 +25,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
     it { should eql(@relation.order(@directions)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @order
     end
   end
@@ -39,7 +39,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
     it { should eql(@relation.order(@directions)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @order
     end
   end
@@ -53,7 +53,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
     it { should eql(@relation.order(@directions)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @order
     end
   end
@@ -67,7 +67,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
     it { should eql(@original.limit(1)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @order
     end
   end

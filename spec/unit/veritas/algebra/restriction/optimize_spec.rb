@@ -26,7 +26,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should eql(Relation::Empty.new(@relation.header)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -58,7 +58,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -81,7 +81,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -96,7 +96,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should equal(@empty) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -111,7 +111,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should eql(Relation::Empty.new(@relation.header)) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -135,7 +135,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -154,7 +154,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should eql(@left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) }) )
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -172,7 +172,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should eql(@left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) }) )
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -190,7 +190,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should eql(@limit.restrict(@predicate).reverse)
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -208,7 +208,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should eql(@limit.restrict(@predicate).reverse)
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -225,7 +225,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should eql(@relation.restrict(@predicate).order { |r| r.header })
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -242,7 +242,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should eql(@relation.restrict(@predicate).order { |r| r.header })
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end

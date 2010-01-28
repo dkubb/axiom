@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     it { should be_kind_of(Relation::Empty) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @limit
     end
   end
@@ -42,7 +42,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     it { subject.to_i.should == 1 }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @limit
     end
   end
@@ -62,7 +62,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       subject.to_i.should == 5
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @limit
     end
   end
@@ -82,7 +82,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       subject.to_i.should == 5
     end
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @limit
     end
   end
@@ -96,7 +96,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     it { should equal(@original) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @limit
     end
   end

@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
 
     it { should equal(@empty) }
 
-    it 'should return the same tuples as the unoptimized operation' do
+    it 'should return an equivalent relation to the unoptimized operation' do
       should == @unary_operation
     end
   end
