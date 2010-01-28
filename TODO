@@ -82,6 +82,9 @@
   directions sorted the same as the Order was.
   * The code should work for this now, but I think it needs specs
 
+* An Order or Reverse containing a Limit of 0 or 1 should become
+  a no-op, since there's nothing to order.
+
 * In Predicate, Proposition and Connective #==, make sure that it
   works by comparing equivalent operations.  eg id >= 1 is the
   same as not(id < 1), and should return when compared.
