@@ -60,11 +60,7 @@
 
           "attr1 IN(..) OR attr2 = ?"
 
-* Factor out Offset when it is 0
-
 * Throw an exception when Offset is < 0
-
-* Return an empty relation when the Limit is 0
 
 * A Union of relations with the same base, header, and restrictions should
   try to combine into a single relation with the restrictions using OR.
