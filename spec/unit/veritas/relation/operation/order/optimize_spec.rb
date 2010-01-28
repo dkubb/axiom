@@ -43,4 +43,18 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
       should == @order
     end
   end
+
+  describe 'containing a reverse operation' do
+    before do
+      @original = @relation.order { |r| [ r[:id] ] }
+
+      @order = @original.reverse.order(@directions)
+    end
+
+    it { should eql(@relation.order(@directions)) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @order
+    end
+  end
 end
