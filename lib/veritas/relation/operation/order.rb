@@ -34,6 +34,12 @@ module Veritas
           end
         end
 
+        def eql?(other)
+          instance_of?(other.class)         &&
+          directions.eql?(other.directions) &&
+          relation.eql?(other.relation)
+        end
+
       private
 
         def new_optimized_operation

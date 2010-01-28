@@ -61,5 +61,4 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
       should == @other.eql?(@negation)
     end
   end
-
 end

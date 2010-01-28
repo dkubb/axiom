@@ -40,6 +40,12 @@ module Veritas
         end
       end
 
+      def eql?(other)
+        instance_of?(other.class)   &&
+        aliases.eql?(other.aliases) &&
+        relation.eql?(other.relation)
+      end
+
     private
 
       def new(relation)

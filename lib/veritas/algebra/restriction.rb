@@ -31,6 +31,12 @@ module Veritas
         end
       end
 
+      def eql?(other)
+        instance_of?(other.class)       &&
+        predicate.eql?(other.predicate) &&
+        relation.eql?(other.relation)
+      end
+
     private
 
       def new(relation)
@@ -60,7 +66,7 @@ module Veritas
       def combine_restrictions
         restriction = optimize_relation
         predicate   = restriction.predicate & optimize_predicate
-        self.class.new(restriction.relation, predicate)
+        self.class.new(restriction.relation, predicate).optimize
       end
 
       def move_before_set

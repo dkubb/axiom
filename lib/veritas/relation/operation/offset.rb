@@ -36,6 +36,12 @@ module Veritas
           @offset
         end
 
+        def eql?(other)
+          instance_of?(other.class) &&
+          to_i.eql?(other.to_i)     &&
+          relation.eql?(other.relation)
+        end
+
       private
 
         def new_optimized_operation
