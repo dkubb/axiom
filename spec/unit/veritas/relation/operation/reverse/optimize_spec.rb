@@ -49,11 +49,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       @reverse = Relation::Operation::Reverse.new(@order)
     end
 
-    it { should be_instance_of(Relation::Operation::Order) }
-
-    it { subject.relation.should equal(@relation) }
-
-    it { subject.directions.should eql(@reverse.directions) }
+    it { should eql(@relation.order(@reverse.directions)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @reverse
@@ -67,11 +63,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       @reverse = Relation::Operation::Reverse.new(@projection)
     end
 
-    it { should be_instance_of(Relation::Operation::Order) }
-
-    it { subject.relation.should equal(@relation) }
-
-    it { subject.directions.should eql(@reverse.directions) }
+    it { should eql(@relation.order(@reverse.directions)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @reverse
@@ -86,13 +78,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       @reverse = Relation::Operation::Reverse.new(@projection)
     end
 
-    it { should_not equal(@reverse) }
-
-    it { should be_instance_of(Relation::Operation::Reverse) }
-
-    it { subject.relation.should equal(@limit) }
-
-    it { subject.directions.should eql(@reverse.directions) }
+    it { should eql(@order.limit(1).reverse) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @reverse
