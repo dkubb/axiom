@@ -11,7 +11,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
   describe 'with a reverse operation' do
     before do
-      @limit = @order.limit(1)
+      @limit = @order.limit(2)
       @other = @limit.reverse
 
       @reverse = Relation::Operation::Reverse.new(@other)
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
   describe 'with a reverse operation when optimized' do
     before do
-      @limit      = @order.limit(1)
+      @limit      = @order.limit(2)
       @other      = @limit.reverse
       @projection = @other.project(@other.header)
 
@@ -72,13 +72,13 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
   describe 'with an optimizable operation' do
     before do
-      @limit      = @order.limit(1)
+      @limit      = @order.limit(2)
       @projection = @limit.project(@limit.header)
 
       @reverse = Relation::Operation::Reverse.new(@projection)
     end
 
-    it { should eql(@order.limit(1).reverse) }
+    it { should eql(@order.limit(2).reverse) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @reverse

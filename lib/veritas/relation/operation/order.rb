@@ -27,10 +27,13 @@ module Veritas
         end
 
         def optimize
-          case optimize_relation
-            when Order then drop_no_op_order
-            else
-              super
+          relation = optimize_relation
+          if relation.kind_of?(Order)
+            drop_no_op_order
+          elsif relation.kind_of?(Limit) && relation.to_i <= 1
+            drop_current_order
+          else
+            super
           end
         end
 
@@ -44,6 +47,10 @@ module Veritas
 
         def new_optimized_operation
           self.class.new(optimize_relation, directions)
+        end
+
+        def drop_current_order
+          optimize_relation
         end
 
         def drop_no_op_order

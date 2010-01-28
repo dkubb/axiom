@@ -179,14 +179,14 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   describe 'containing a reverse operation' do
     before do
-      @limit   = @relation.order { |r| r.header }.limit(1)
+      @limit   = @relation.order { |r| r.header }.limit(2)
       @reverse = @limit.reverse
 
       @rename = @reverse.rename(@aliases)
     end
 
     it 'should push the rename under the order, limit and reverse' do
-      should eql(@relation.rename(@aliases).order { |r| r.header }.limit(1).reverse)
+      should eql(@relation.rename(@aliases).order { |r| r.header }.limit(2).reverse)
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -196,14 +196,14 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   describe 'containing a reverse operation, containing a rename that cancels out' do
     before do
-      @limit   = @relation.order { |r| r.header }.limit(1)
+      @limit   = @relation.order { |r| r.header }.limit(2)
       @reverse = @limit.rename(:id => :other_id).reverse
 
       @rename = @reverse.rename(:other_id => :id)
     end
 
     it 'should push the rename under the order, limit and reverse, and then cancel it out' do
-      should eql(@relation.order { |r| r.header }.limit(1).reverse)
+      should eql(@relation.order { |r| r.header }.limit(2).reverse)
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -246,13 +246,13 @@ describe 'Veritas::Algebra::Rename#optimize' do
   describe 'containing a limit operation' do
     before do
       @order = @relation.order { |r| r.header }
-      @limit = @order.limit(1)
+      @limit = @order.limit(2)
 
       @rename = @limit.rename(@aliases)
     end
 
     it 'should push the rename under the limit and order' do
-      should eql(@relation.rename(@aliases).order { |r| r.header }.limit(1))
+      should eql(@relation.rename(@aliases).order { |r| r.header }.limit(2))
     end
 
     it 'should return the same tuples as the unoptimized operation' do
@@ -263,13 +263,13 @@ describe 'Veritas::Algebra::Rename#optimize' do
   describe 'containing a limit operation, containing a rename that cancels out' do
     before do
       @order = @relation.order { |r| r.header }
-      @limit = @order.rename(:id => :other_id).limit(1)
+      @limit = @order.rename(:id => :other_id).limit(2)
 
       @rename = @limit.rename(:other_id => :id)
     end
 
     it 'should push the rename under the limit and order, and then cancel it out' do
-      should eql(@relation.order { |r| r.header }.limit(1))
+      should eql(@relation.order { |r| r.header }.limit(2))
     end
 
     it 'should return the same tuples as the unoptimized operation' do

@@ -179,7 +179,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   describe 'with a reverse operation' do
     before do
-      @limit     = @relation.order { |r| r.header }.limit(1)
+      @limit     = @relation.order { |r| r.header }.limit(2)
       @reverse   = @limit.reverse
       @predicate = @reverse[:id].gte(1)
 
@@ -197,7 +197,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   describe 'with a reverse operation, containing a restriction with duplicate predicates' do
     before do
-      @limit     = @relation.order { |r| r.header }.limit(1)
+      @limit     = @relation.order { |r| r.header }.limit(2)
       @reverse   = @limit.restrict { |r| r[:id].gte(1) }.reverse
       @predicate = @reverse[:id].gte(1)
 
