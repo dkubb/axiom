@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
   describe 'containing a relation' do
     before do
-      @order = Relation::Operation::Order.new(@relation, @directions)
+      @order = @relation.order(@directions)
     end
 
     it { should equal(@order) }
@@ -20,14 +20,10 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     before do
       @projection = @relation.project(@relation.header)
 
-      @order = Relation::Operation::Order.new(@projection, @directions)
+      @order = @projection.order(@directions)
     end
 
-    it { should be_instance_of(Relation::Operation::Order) }
-
-    it { subject.relation.should equal(@relation) }
-
-    it { subject.directions.should == @directions }
+    it { should eql(@relation.order(@directions)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @order
@@ -36,16 +32,12 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
   describe 'containing an order operation' do
     before do
-      @original = @relation.order([ @relation[:id].desc ])
+      @original = @relation.order { |r| [ r[:id].desc ] }
 
-      @order = Relation::Operation::Order.new(@original, @directions)
+      @order = @original.order(@directions)
     end
 
-    it { should be_instance_of(Relation::Operation::Order) }
-
-    it { subject.relation.should equal(@relation) }
-
-    it { subject.directions.should == @directions }
+    it { should eql(@relation.order(@directions)) }
 
     it 'should return the same tuples as the unoptimized operation' do
       should == @order
