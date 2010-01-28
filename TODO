@@ -36,6 +36,9 @@
     * Restriction should follow Projection
       * Restriction optimizations:
         * When the value is the wrong type -> False
+        * When the value is nil, but the attribute is required -> False
+          * This is a special case of the preceding rule, but special
+            enough to warrant it's own specs.
         * "attr = ? OR attr = ?", when the value is the same -> "attr = ?"
         * "attr = ? OR attr = ?", when the value is different -> "attr IN(..)"
         * "attr = ? AND attr = ?", when the value is the same -> "attr = ?".
@@ -45,6 +48,8 @@
           * Do the same for >=, <, <=
         * "attr > ? AND attr > ?" -> "attr > ?", with the most restrictive value
           * Do the same for >=, <, <=
+        * Constant folding, eg:
+          "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
       * Figure out how to reorganize the Restriction predicates so that all
         similar operations are closer together to allow more efficient
         optimizations.  This would allow optimizations of stuff like this:
@@ -54,6 +59,12 @@
         Into:
 
           "attr1 IN(..) OR attr2 = ?"
+
+* Factor out Offset when it is 0
+
+* Throw an exception when Offset is < 0
+
+* Return an empty relation when the Limit is 0
 
 * A Union of relations with the same base, header, and restrictions should
   try to combine into a single relation with the restrictions using OR.
