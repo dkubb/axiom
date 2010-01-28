@@ -58,19 +58,17 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     end
   end
 
-  [ 0, 1 ].each do |limit|
-    describe "containing a limit(#{limit}) operation" do
-      before do
-        @original = @relation.order { |r| [ r[:id] ] }
+  describe "containing a limit(1) operation" do
+    before do
+      @original = @relation.order { |r| [ r[:id] ] }
 
-        @order = @original.limit(limit).order(@directions)
-      end
+      @order = @original.limit(1).order(@directions)
+    end
 
-      it { should eql(@original.limit(limit)) }
+    it { should eql(@original.limit(1)) }
 
-      it 'should return the same tuples as the unoptimized operation' do
-        should == @order
-      end
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @order
     end
   end
 end

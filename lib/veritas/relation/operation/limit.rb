@@ -26,6 +26,8 @@ module Veritas
         end
 
         def optimize
+          return new_empty_relation if to_i == 0
+
           case optimize_relation
             when Limit then optimize_limit
             else
@@ -52,13 +54,13 @@ module Veritas
         def optimize_limit
           limit = optimize_relation
           if to_i == limit.to_i
-            drop_no_op_limit
+            drop_current_limit
           else
             use_smallest_limit
           end
         end
 
-        def drop_no_op_limit
+        def drop_current_limit
           optimize_relation
         end
 

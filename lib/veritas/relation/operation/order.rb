@@ -30,7 +30,7 @@ module Veritas
           relation = optimize_relation
           if relation.kind_of?(Order)
             drop_no_op_order
-          elsif relation.kind_of?(Limit) && relation.to_i <= 1
+          elsif relation.kind_of?(Limit) && relation.to_i == 1
             drop_current_order
           else
             super

@@ -9,6 +9,18 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
   subject { @limit.optimize }
 
+  describe 'when the limit is 0' do
+    before do
+      @limit = @order.limit(0)
+    end
+
+    it { should be_kind_of(Relation::Empty) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @limit
+    end
+  end
+
   describe 'containing an order operation' do
     before do
       @limit = Relation::Operation::Limit.new(@order, 1)
