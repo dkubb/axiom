@@ -9,6 +9,18 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
   subject { @offset.optimize }
 
+  describe 'with an offset of 0' do
+    before do
+      @offset = @order.offset(0)
+    end
+
+    it { should equal(@order) }
+
+    it 'should return the same tuples as the unoptimized operation' do
+      should == @offset
+    end
+  end
+
   describe 'containing an order operation' do
     before do
       @offset = Relation::Operation::Offset.new(@order, 1)

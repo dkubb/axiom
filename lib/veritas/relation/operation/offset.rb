@@ -25,6 +25,8 @@ module Veritas
         end
 
         def optimize
+          return drop_current_offset if to_i == 0
+
           case optimize_relation
             when Offset then use_offset_sum
             else
@@ -46,6 +48,10 @@ module Veritas
 
         def new_optimized_operation
           self.class.new(optimize_relation, to_i)
+        end
+
+        def drop_current_offset
+          optimize_relation
         end
 
         def use_offset_sum
