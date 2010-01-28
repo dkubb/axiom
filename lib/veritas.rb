@@ -14,6 +14,7 @@ require 'veritas/version'
 
 module Veritas
   class InvalidHeaderError < ArgumentError; end
+  class InvalidOffsetError < ArgumentError; end
   class OrderedRelationRequiredError < StandardError; end
   class RelationMismatchError < StandardError; end
 

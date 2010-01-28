@@ -9,6 +9,10 @@ module Veritas
             raise OrderedRelationRequiredError, 'can only offset an ordered relation'
           end
 
+          unless offset >= 0
+            raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
+          end
+
           super
         end
 
