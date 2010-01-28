@@ -65,10 +65,6 @@
 * A Difference of relations with the same base and restrictions should
   try to combine into a single relation with the restrictions using NOT.
 
-* An Order containing a Reverse, should just return an Order with the
-  directions sorted the same as the Order was.
-  * The code should work for this now, but I think it needs specs
-
 * An Order or Reverse containing a Limit of 0 or 1 should become
   a no-op, since there's nothing to order.
 
