@@ -65,9 +65,6 @@
 * A Difference of relations with the same base and restrictions should
   try to combine into a single relation with the restrictions using NOT.
 
-* An Order or Reverse containing a Limit of 0 or 1 should become
-  a no-op, since there's nothing to order.
-
 * In Predicate, Proposition and Connective #==, make sure that it
   works by comparing equivalent operations.  eg id >= 1 is the
   same as not(id < 1), and should return when compared.
