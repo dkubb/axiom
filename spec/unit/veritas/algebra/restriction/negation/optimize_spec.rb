@@ -30,21 +30,21 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
 
   describe 'operand is a true proposition' do
     before do
-      @operand = Veritas::Algebra::Restriction::True.instance
+      @operand = Algebra::Restriction::True.instance
 
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
 
-    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
+    it { should == Algebra::Restriction::False.instance }
   end
 
   describe 'operand is a false proposition' do
     before do
-      @operand = Veritas::Algebra::Restriction::False.instance
+      @operand = Algebra::Restriction::False.instance
 
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
 
-    it { should be_instance_of(Veritas::Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 end

@@ -15,11 +15,11 @@ require File.expand_path('../../fixtures/classes', __FILE__)
        @right = @right.order { |r| r[:name] }
      end
 
-     it { should be_kind_of(Veritas::Relation::Operation::Binary) }
+     it { should be_kind_of(Relation::Operation::Binary) }
    end
 
    describe 'with left and right unordered' do
-     it { should be_kind_of(Veritas::Relation::Operation::Binary) }
+     it { should be_kind_of(Relation::Operation::Binary) }
    end
 
    describe 'with left ordered, and right unordered' do

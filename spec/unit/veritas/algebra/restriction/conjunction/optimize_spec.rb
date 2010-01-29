@@ -46,30 +46,30 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
 
   describe 'left and right are true propositions' do
     before do
-      @left  = Veritas::Algebra::Restriction::True.instance
-      @right = Veritas::Algebra::Restriction::True.instance
+      @left  = Algebra::Restriction::True.instance
+      @right = Algebra::Restriction::True.instance
 
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_instance_of(Veritas::Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 
   describe 'left and right are false propositions' do
     before do
-      @left  = Veritas::Algebra::Restriction::False.instance
-      @right = Veritas::Algebra::Restriction::False.instance
+      @left  = Algebra::Restriction::False.instance
+      @right = Algebra::Restriction::False.instance
 
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
+    it { should == Algebra::Restriction::False.instance }
   end
 
   describe 'right is a true proposition' do
     before do
       @left  = @attribute.gt(1)
-      @right = Veritas::Algebra::Restriction::True.instance
+      @right = Algebra::Restriction::True.instance
 
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
@@ -79,7 +79,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
 
   describe 'left is a true proposition' do
     before do
-      @left  = Veritas::Algebra::Restriction::True.instance
+      @left  = Algebra::Restriction::True.instance
       @right = @attribute.lt(3)
 
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
@@ -91,22 +91,22 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
   describe 'right is a false proposition' do
     before do
       @left  = @attribute.gt(1)
-      @right = Veritas::Algebra::Restriction::False.instance
+      @right = Algebra::Restriction::False.instance
 
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
+    it { should == Algebra::Restriction::False.instance }
   end
 
   describe 'left is a false proposition' do
     before do
-      @left  = Veritas::Algebra::Restriction::False.instance
+      @left  = Algebra::Restriction::False.instance
       @right = @attribute.lt(3)
 
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should be_instance_of(Veritas::Algebra::Restriction::False) }
+    it { should == Algebra::Restriction::False.instance }
   end
 end

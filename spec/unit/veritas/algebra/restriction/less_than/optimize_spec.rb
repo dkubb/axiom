@@ -12,7 +12,7 @@ describe 'Veritas::Algebra::Restriction::LessThan#optimize' do
       @less_than = Algebra::Restriction::LessThan.new(@attribute, @attribute)
     end
 
-    it { should be_instance_of(Algebra::Restriction::False) }
+    it { should == Algebra::Restriction::False.instance }
   end
 
   describe 'left is an attribute' do
@@ -36,6 +36,6 @@ describe 'Veritas::Algebra::Restriction::LessThan#optimize' do
       @less_than = Algebra::Restriction::LessThan.new(1, 2)
     end
 
-    it { should be_instance_of(Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 end

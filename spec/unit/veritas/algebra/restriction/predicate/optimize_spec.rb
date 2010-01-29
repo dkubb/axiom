@@ -35,7 +35,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
 
     it 'should send the left and right value to self.class.eval' do
       PredicateSpecs::Object.should_receive(:eval).with(1, 1).and_return(true)
-      should be_kind_of(Algebra::Restriction::True)
+      should == Algebra::Restriction::True.instance
     end
   end
 end

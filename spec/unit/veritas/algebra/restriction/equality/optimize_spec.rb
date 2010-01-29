@@ -12,7 +12,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
       @equality = Algebra::Restriction::Equality.new(@attribute, @attribute)
     end
 
-    it { should be_instance_of(Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 
   describe 'left is an attribute' do
@@ -36,6 +36,6 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
       @equality = Algebra::Restriction::Equality.new(1, 1)
     end
 
-    it { should be_instance_of(Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 end

@@ -12,7 +12,7 @@ describe 'Veritas::Algebra::Restriction::GreaterThanOrEqualTo#optimize' do
       @greater_than_or_equal_to = Algebra::Restriction::GreaterThanOrEqualTo.new(@attribute, @attribute)
     end
 
-    it { should be_instance_of(Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 
   describe 'left is an attribute' do
@@ -36,6 +36,6 @@ describe 'Veritas::Algebra::Restriction::GreaterThanOrEqualTo#optimize' do
       @greater_than_or_equal_to = Algebra::Restriction::GreaterThanOrEqualTo.new(2, 1)
     end
 
-    it { should be_instance_of(Algebra::Restriction::True) }
+    it { should == Algebra::Restriction::True.instance }
   end
 end

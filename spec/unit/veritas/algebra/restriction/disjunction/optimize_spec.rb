@@ -46,8 +46,8 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
 
   describe 'left and right are true propositions' do
     before do
-      @left  = Veritas::Algebra::Restriction::True.instance
-      @right = Veritas::Algebra::Restriction::True.instance
+      @left  = Algebra::Restriction::True.instance
+      @right = Algebra::Restriction::True.instance
 
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
@@ -57,8 +57,8 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
 
   describe 'left and right are false propositions' do
     before do
-      @left  = Veritas::Algebra::Restriction::False.instance
-      @right = Veritas::Algebra::Restriction::False.instance
+      @left  = Algebra::Restriction::False.instance
+      @right = Algebra::Restriction::False.instance
 
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
@@ -69,7 +69,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
   describe 'right is a true proposition' do
     before do
       @left  = @attribute.gt(1)
-      @right = Veritas::Algebra::Restriction::True.instance
+      @right = Algebra::Restriction::True.instance
 
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
@@ -79,7 +79,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
 
   describe 'left is a true proposition' do
     before do
-      @left  = Veritas::Algebra::Restriction::True.instance
+      @left  = Algebra::Restriction::True.instance
       @right = @attribute.lt(3)
 
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
@@ -91,7 +91,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
   describe 'right is a false proposition' do
     before do
       @left  = @attribute.gt(1)
-      @right = Veritas::Algebra::Restriction::False.instance
+      @right = Algebra::Restriction::False.instance
 
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
@@ -101,7 +101,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
 
   describe 'left is a false proposition' do
     before do
-      @left  = Veritas::Algebra::Restriction::False.instance
+      @left  = Algebra::Restriction::False.instance
       @right = @attribute.lt(3)
 
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
