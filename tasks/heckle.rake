@@ -31,9 +31,9 @@ task :heckle => :verify_rcov do
 
   NameMap::MAP['|']['DirectionSet'] = 'union'
 
-  NameMap::MAP['&']['Methods'] = 'and'
-  NameMap::MAP['|']['Methods'] = 'or'
-  NameMap::MAP['-']['Methods'] = 'not'
+  NameMap::MAP['&']['Expression'] = 'and'
+  NameMap::MAP['|']['Expression'] = 'or'
+  NameMap::MAP['-']['Expression'] = 'not'
 
   map = NameMap.new
 

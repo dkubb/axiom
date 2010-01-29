@@ -8,5 +8,5 @@ describe 'Veritas::Algebra::Restriction::Proposition#inspect' do
 
   subject { @proposition.inspect }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'Veritas::Algebra::Restriction::Proposition#inspect must be implemented') }
+  it { method(:subject).should raise_error(NotImplementedError, 'Veritas::Algebra::Restriction::Proposition.eval must be implemented') }
 end

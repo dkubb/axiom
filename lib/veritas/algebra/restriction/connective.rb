@@ -3,39 +3,7 @@ module Veritas
     class Restriction
       class Connective
         include AbstractClass
-        include Optimizable
-
-        module Methods
-          def and(other)
-            Conjunction.new(self, other)
-          end
-
-          alias & and
-
-          def or(other)
-            Disjunction.new(self, other)
-          end
-
-          alias | or
-
-          def not(other)
-            self.and(Negation.new(other))
-          end
-
-          alias - not
-
-        end # module Methods
-
-        include Methods
-
-        def invert
-          Negation.new(self)
-        end
-
-        def inspect
-          raise NotImplementedError, "#{self.class.name}#inspect must be implemented"
-        end
-
+        include Expression
       end # class Connective
 
       module BinaryConnective

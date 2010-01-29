@@ -88,6 +88,8 @@ module Veritas
   end # module Algebra
 end # module Veritas
 
+require 'veritas/algebra/restriction/expression'
+
 require 'veritas/algebra/restriction/connective'
 require 'veritas/algebra/restriction/predicate'
 require 'veritas/algebra/restriction/proposition'

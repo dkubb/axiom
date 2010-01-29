@@ -3,9 +3,8 @@ module Veritas
     class Restriction
       class Predicate
         include AbstractClass
-        include Connective::Methods
+        include Expression
         include Operation::Binary
-        include Optimizable
 
         def call(tuple)
           util = self.class
@@ -14,10 +13,6 @@ module Veritas
           right_value = util.extract_value(right, tuple)
 
           util.eval(left_value, right_value)
-        end
-
-        def invert
-          Negation.new(self)
         end
 
         def optimize
@@ -38,14 +33,6 @@ module Veritas
 
         def hash
           @hash ||= left.hash ^ right.hash
-        end
-
-        def inspect
-          raise NotImplementedError, "#{self.class.name}#inspect must be implemented"
-        end
-
-        def self.eval(left, right)
-          raise NotImplementedError, "#{name}.eval must be implemented"
         end
 
         def self.extract_value(operand, tuple)

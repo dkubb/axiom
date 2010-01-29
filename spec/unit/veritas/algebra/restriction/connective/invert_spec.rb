@@ -4,6 +4,10 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Algebra::Restriction::Connective#invert' do
   before do
     @connective = ConnectiveSpecs::Object.new
+
+    def @connective.eql?(other)
+      equal?(other)
+    end
   end
 
   subject { @connective.invert }
