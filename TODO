@@ -65,6 +65,13 @@
 * A Difference of relations with the same base and restrictions should
   try to combine into a single relation with the restrictions using NOT.
 
+* Join Optimizations
+  * When a Join contains a Join, and the size of the base relations is
+    known, join the smallest with the largest, and then join that result
+    with the remaining relation.
+  * Make sure the smallest relation (with a known size) is always the right
+    operation.
+
 * Use Flay to identify duplicate code and refactor
 
 * Add Relation#antijoin
