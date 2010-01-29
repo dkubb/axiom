@@ -38,7 +38,7 @@ module Veritas
         end # class Direction
 
         class Ascending < Direction
-          def reverse
+          def invert
             Descending.new(attribute)
           end
 
@@ -48,7 +48,7 @@ module Veritas
         end # class Ascending
 
         class Descending < Direction
-          def reverse
+          def invert
             Ascending.new(attribute)
           end
 

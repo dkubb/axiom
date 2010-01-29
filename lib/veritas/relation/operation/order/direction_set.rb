@@ -25,7 +25,7 @@ module Veritas
           end
 
           def reverse
-            new map { |direction| direction.reverse }
+            new map { |direction| direction.invert }
           end
 
           def each(&block)
