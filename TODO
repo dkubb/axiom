@@ -2,8 +2,6 @@
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
 
-* Rename should change the predicates from any operations they wrap.
-
 * Add further optimizations:
   * Set operation optimizations
     * If two relations have the same restrictions, order, limit, offset,
