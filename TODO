@@ -4,9 +4,6 @@
 
 * Rename should change the predicates from any operations they wrap.
 
-* Projection should remove any directions for attributes that were
-  projected out of the header
-
 * Add further optimizations:
   * Set operation optimizations
     * If two relations have the same restrictions, order, limit, offset,
