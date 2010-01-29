@@ -21,6 +21,10 @@ module Veritas
         self
       end
 
+      def directions
+        @directions ||= relation.directions.project(header)
+      end
+
       def optimize
         relation = optimize_relation
 

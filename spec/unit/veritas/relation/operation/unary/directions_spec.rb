@@ -10,5 +10,11 @@ describe 'Veritas::Relation::Operation::Unary#directions' do
 
   subject { @unary_operation.directions }
 
+  it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
+
   it { should equal(@relation.directions) }
+
+  it 'should be consistent' do
+    should equal(@unary_operation.directions)
+  end
 end

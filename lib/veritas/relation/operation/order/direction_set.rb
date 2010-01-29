@@ -11,6 +11,12 @@ module Veritas
             end
           end
 
+          def project(attributes)
+            new select { |direction|
+              attributes.include?(direction.attribute)
+            }
+          end
+
           def rename(aliases)
             new map { |direction|
               name = aliases[direction.attribute.name]
@@ -19,7 +25,7 @@ module Veritas
           end
 
           def reverse
-            new(map { |direction| direction.reverse })
+            new map { |direction| direction.reverse }
           end
 
           def each(&block)

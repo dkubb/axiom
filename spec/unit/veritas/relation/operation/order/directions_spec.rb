@@ -13,4 +13,8 @@ describe 'Veritas::Relation::Operation::Order#directions' do
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
   it { should == @directions }
+
+  it 'should be consistent' do
+    should equal(@order.directions)
+  end
 end
