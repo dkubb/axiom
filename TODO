@@ -3,13 +3,6 @@
   order to be included/inserted in the Relation.
 
 * Add further optimizations:
-  * Set operation optimizations
-    * If two relations have the same restrictions, order, limit, offset,
-      header and base, then Union#optimize and Intersection#optimize should
-      just return one of them.
-    * If two relations have the same restrictions, order, limit, offset,
-      header and base, then Difference#optimize should return an empty
-      Relation.
   * Operation Order:
     * Rename should be pushed down before everything
       * When a Rename contains a Restriction, wrap the Rename in the
