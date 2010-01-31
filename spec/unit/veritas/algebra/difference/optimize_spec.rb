@@ -4,7 +4,7 @@ describe 'Veritas::Algebra::Difference#optimize' do
   before do
     @header = [ [ :id, Integer ] ]
     @left   = Relation.new(@header, [ [ 1 ] ])
-    @right  = Relation.new(@header, [ [ 1 ] ])
+    @right  = Relation.new(@header, [ [ 2 ] ])
   end
 
   subject { @difference.optimize }
