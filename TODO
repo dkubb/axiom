@@ -23,10 +23,10 @@
           joins rather than splitting it up like this.
     * Restriction should follow Projection
       * Restriction optimizations:
-        * When the value is the wrong type -> False
+        * When a value class does not match the class allowed by the attribute -> False
+        * When two values are not the same class -> False
+        * When two attribute types are not the same class -> False
         * When the value is nil, but the attribute is required -> False
-          * This is a special case of the preceding rule, but special
-            enough to warrant it's own specs.
         * "attr = ? OR attr = ?", when the value is the same -> "attr = ?"
         * "attr = ? OR attr = ?", when the value is different -> "attr IN(..)"
         * "attr = ? AND attr = ?", when the value is the same -> "attr = ?".
