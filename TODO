@@ -2,6 +2,26 @@
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
 
+* Add a way for Attribute to be required or not via a third optional
+  argument to the Attribute constructor, eg:
+
+    Veritas::Attribute::Integer.new(:id, :required => true)
+
+* Add Attribute#required? method
+
+* Provide method like Attribute#valid?(object), where object can
+  either be a literal value, an Attribute object, or nil.
+  * If a literal value it would ensure the object is the expected type.
+    * Extra tests can also be performed to ensure that the size or
+      length matches the Attribute constraints. Constraints could be
+      defined using the predicate classes.
+  * If an attribute, it would ensure the other Attribute is the same
+    instance, and otherwise is compatible in terms of constraints.
+    * Should delegate this check to something like Attribute#comparable?,
+      because Attribute behaviour will likely grow, and the number of
+      things in two attributes that need to be tested may also increase.
+  * If nil, would return true only if the Attribute was not required.
+
 * Add further optimizations:
   * Operation Order:
     * Rename should be pushed down before everything
@@ -10,11 +30,11 @@
     * Projection should follow Rename
       * When a Projection contains a Restriction, wrap the Projection
         in the Restriction, projecting away any attributes not used in
-        the restriction.  If there are any remaining attributes, then
+        the restriction. If there are any remaining attributes, then
         wrap the operation in a Projection removing those attributes.
         * If all attributes are being used in the Restriction do nothing
       * When a Projection contains a Join, wrap the Join with a Projection
-        of all the headers, minus those used in the Join.  If there were
+        of all the headers, minus those used in the Join. If there were
         any used, then wrap the whole operation in a Projection with
         the remaining attributes.
         * If all the attributes are used in the Join, do nothing
@@ -40,7 +60,7 @@
           "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
       * Figure out how to reorganize the Restriction predicates so that all
         similar operations are closer together to allow more efficient
-        optimizations.  This would allow optimizations of stuff like this:
+        optimizations. This would allow optimizations of stuff like this:
 
           "attr1 = ? OR attr2 = ? OR attr1 = ?"
 
