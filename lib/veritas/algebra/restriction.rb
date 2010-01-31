@@ -23,8 +23,8 @@ module Veritas
 
         case relation
           when self.class                   then combine_restrictions
-          when Relation::Operation::Set     then wrap_with_operation
-          when Relation::Operation::Reverse then wrap_with_operation
+          when Relation::Operation::Set,
+               Relation::Operation::Reverse then wrap_with_operation
           when Relation::Operation::Order   then wrap_with_order
           else
             super

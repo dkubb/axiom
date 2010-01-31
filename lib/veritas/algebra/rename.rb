@@ -27,14 +27,14 @@ module Veritas
 
       def optimize
         case optimize_relation
-          when Relation::Empty              then new_empty_relation
-          when self.class                   then optimize_rename
-          when Projection                   then wrap_with_projection
-          when Relation::Operation::Set     then wrap_with_operation
-          when Relation::Operation::Reverse then wrap_with_operation
-          when Relation::Operation::Order   then wrap_with_order
-          when Relation::Operation::Limit   then wrap_with_operation
-          when Relation::Operation::Offset  then wrap_with_operation
+          when Relation::Empty               then new_empty_relation
+          when self.class                    then optimize_rename
+          when Projection                    then wrap_with_projection
+          when Relation::Operation::Set,
+               Relation::Operation::Reverse,
+               Relation::Operation::Limit,
+               Relation::Operation::Offset   then wrap_with_operation
+          when Relation::Operation::Order    then wrap_with_order
           else
             super
         end
