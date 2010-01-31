@@ -37,6 +37,10 @@ module Veritas
           end
         end
 
+        def wrap(directions)
+          self.class.new(yield(relation), directions)
+        end
+
         def eql?(other)
           instance_of?(other.class)         &&
           directions.eql?(other.directions) &&

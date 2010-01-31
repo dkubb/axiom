@@ -33,10 +33,14 @@ module Veritas
         case relation
           when Relation::Empty          then new_empty_relation
           when self.class               then drop_contained_projection
-          when Relation::Operation::Set then move_before_set
+          when Relation::Operation::Set then wrap_with_operation
           else
             super
         end
+      end
+
+      def wrap(header)
+        self.class.new(yield(relation), header)
       end
 
     private
@@ -57,9 +61,8 @@ module Veritas
         new(optimize_relation.relation)
       end
 
-      def move_before_set
-        set = optimize_relation
-        set.class.new(new(set.left), new(set.right)).optimize
+      def wrap_with_operation
+        optimize_relation.wrap { |relation| new(relation) }.optimize
       end
 
     end # class Projection

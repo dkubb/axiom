@@ -24,6 +24,10 @@ module Veritas
           end
         end
 
+        def wrap
+          self.class.new(yield(relation))
+        end
+
       private
 
         def new_optimized_operation

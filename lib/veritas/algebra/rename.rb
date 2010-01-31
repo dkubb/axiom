@@ -29,15 +29,19 @@ module Veritas
         case optimize_relation
           when Relation::Empty              then new_empty_relation
           when self.class                   then optimize_rename
-          when Projection                   then move_before_projection
-          when Relation::Operation::Set     then move_before_set
-          when Relation::Operation::Reverse then move_before_reverse
-          when Relation::Operation::Order   then move_before_order
-          when Relation::Operation::Limit   then move_before_limit
-          when Relation::Operation::Offset  then move_before_offset
+          when Projection                   then wrap_with_projection
+          when Relation::Operation::Set     then wrap_with_operation
+          when Relation::Operation::Reverse then wrap_with_operation
+          when Relation::Operation::Order   then wrap_with_order
+          when Relation::Operation::Limit   then wrap_with_operation
+          when Relation::Operation::Offset  then wrap_with_operation
           else
             super
         end
+      end
+
+      def wrap
+        self.class.new(yield(relation), aliases)
       end
 
       def eql?(other)
@@ -68,34 +72,16 @@ module Veritas
         new(optimize_relation.relation)
       end
 
-      def move_before_projection
-        projection = optimize_relation
-        projection.class.new(new(projection.relation), header).optimize
+      def wrap_with_operation
+        optimize_relation.wrap { |relation| new(relation) }.optimize
       end
 
-      def move_before_set
-        set = optimize_relation
-        set.class.new(new(set.left), new(set.right)).optimize
+      def wrap_with_projection
+        optimize_relation.wrap(header) { |relation| new(relation) }.optimize
       end
 
-      def move_before_reverse
-        reverse = optimize_relation
-        reverse.class.new(new(reverse.relation)).optimize
-      end
-
-      def move_before_order
-        order = optimize_relation
-        order.class.new(new(order.relation), directions).optimize
-      end
-
-      def move_before_limit
-        limit = optimize_relation
-        limit.class.new(new(limit.relation), limit.to_i).optimize
-      end
-
-      def move_before_offset
-        offset = optimize_relation
-        offset.class.new(new(offset.relation), offset.to_i).optimize
+      def wrap_with_order
+        optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method

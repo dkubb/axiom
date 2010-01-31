@@ -38,6 +38,10 @@ module Veritas
           end
         end
 
+        def wrap
+          self.class.new(yield(relation), to_i)
+        end
+
         def to_i
           @offset
         end

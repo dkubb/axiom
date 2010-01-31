@@ -23,12 +23,16 @@ module Veritas
 
         case relation
           when self.class                   then combine_restrictions
-          when Relation::Operation::Set     then move_before_set
-          when Relation::Operation::Reverse then move_before_reverse
-          when Relation::Operation::Order   then move_before_order
+          when Relation::Operation::Set     then wrap_with_operation
+          when Relation::Operation::Reverse then wrap_with_operation
+          when Relation::Operation::Order   then wrap_with_order
           else
             super
         end
+      end
+
+      def wrap
+        self.class.new(yield(relation), predicate)
       end
 
       def eql?(other)
@@ -69,19 +73,12 @@ module Veritas
         self.class.new(restriction.relation, predicate).optimize
       end
 
-      def move_before_set
-        set = optimize_relation
-        set.class.new(new(set.left), new(set.right)).optimize
+      def wrap_with_operation
+        optimize_relation.wrap { |relation| new(relation) }.optimize
       end
 
-      def move_before_reverse
-        reverse = optimize_relation
-        reverse.class.new(new(reverse.relation)).optimize
-      end
-
-      def move_before_order
-        order = optimize_relation
-        order.class.new(new(order.relation), directions).optimize
+      def wrap_with_order
+        optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
       end
 
     end # class Restriction
