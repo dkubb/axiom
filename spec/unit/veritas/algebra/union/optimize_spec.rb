@@ -72,4 +72,18 @@ describe 'Veritas::Algebra::Union#optimize' do
 
     it { should equal(@union) }
   end
+
+  describe 'left and right are equivalent relations' do
+    before do
+      @right = @left.dup
+
+      @union = Algebra::Union.new(@left, @right)
+    end
+
+    it { should equal(@left) }
+
+    it 'should return an equivalent relation to the unoptimized operation' do
+      should == @union
+    end
+  end
 end

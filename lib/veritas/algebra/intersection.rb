@@ -12,6 +12,8 @@ module Veritas
       def optimize
         left, right = optimize_left, optimize_right
 
+        return left if left.eql?(right)
+
         if left.kind_of?(Relation::Empty)
           left
         elsif right.kind_of?(Relation::Empty)

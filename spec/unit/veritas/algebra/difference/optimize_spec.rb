@@ -72,4 +72,18 @@ describe 'Veritas::Algebra::Difference#optimize' do
 
     it { should equal(@difference) }
   end
+
+  describe 'left and right are equivalent relations' do
+    before do
+      @right = @left.dup
+
+      @difference = Algebra::Difference.new(@left, @right)
+    end
+
+    it { should eql(Relation::Empty.new(@header)) }
+
+    it 'should return an equivalent relation to the unoptimized operation' do
+      should == @difference
+    end
+  end
 end

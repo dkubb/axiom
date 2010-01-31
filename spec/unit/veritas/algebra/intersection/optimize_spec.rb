@@ -72,4 +72,18 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should equal(@intersection) }
   end
+
+  describe 'left and right are equivalent relations' do
+    before do
+      @right = @left.dup
+
+      @intersection = Algebra::Intersection.new(@left, @right)
+    end
+
+    it { should equal(@left) }
+
+    it 'should return an equivalent relation to the unoptimized operation' do
+      should == @intersection
+    end
+  end
 end
