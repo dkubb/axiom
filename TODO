@@ -6,13 +6,13 @@
   an attribute. For example, if an Equality predicate is being used,
   but the value is not the correct primitive OR the value falls outside
   of the allowed constraints, then it can never match and should be
-  optimized to False. Examples:
-  * For a LessThan predicate with a value is 1, but with an Attribute
-    constraint that says the value must be between 1 and 100, the
-    predicate cannot possibly match, and should be optimized to False.
-  * For an Equality predicate with a 100 character string, but with an
-    Attribute constraint that says the value must be between 1 and 50
-    characters in length cannot match, and should be optimized to False.
+  optimized to False. Examples of predicates that cannot match:
+  * A LessThan predicate with a value of 1, but with an Attribute
+    size constraint of 1..100.
+  * An Equality predicate with a 100 character string, but with an
+    Attribute length constraint of 1..50
+  * An Equality predicate with a nil value, but the Attribute is
+    required.
 
 * Add further optimizations:
   * Operation Order:
