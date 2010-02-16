@@ -4,16 +4,14 @@ require 'veritas/attribute/object'
 require 'veritas/attribute/numeric'
 
 require 'veritas/attribute/boolean'
-require 'veritas/attribute/string'
-require 'veritas/attribute/text'
-require 'veritas/attribute/binary'
+require 'veritas/attribute/class'
+require 'veritas/attribute/date'
+require 'veritas/attribute/date_time'
+require 'veritas/attribute/decimal'
 require 'veritas/attribute/float'
 require 'veritas/attribute/integer'
-require 'veritas/attribute/decimal'
-require 'veritas/attribute/date_time'
-require 'veritas/attribute/date'
 require 'veritas/attribute/time'
-require 'veritas/attribute/class'
+require 'veritas/attribute/string'
 
 module Veritas
   class Attribute

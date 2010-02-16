@@ -8,7 +8,6 @@ describe 'Veritas::Attribute.new' do
   end
 
   [
-    Attribute::Binary,
     Attribute::Boolean,
     Attribute::Class,
     Attribute::Date,
@@ -19,7 +18,6 @@ describe 'Veritas::Attribute.new' do
     Attribute::Numeric,
     Attribute::Object,
     Attribute::String,
-    Attribute::Text,
     Attribute::Time,
   ].each do |klass|
     describe "when called on the Attribute subclass #{klass}" do
