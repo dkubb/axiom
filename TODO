@@ -2,13 +2,6 @@
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
 
-* Add a way for Attribute to be required or not via a third optional
-  argument to the Attribute constructor, eg:
-
-    Veritas::Attribute::Integer.new(:id, :required => true)
-
-* Add Attribute#required? method
-
 * Provide method like Attribute#valid?(object), where object can
   either be a literal value, an Attribute object, or nil.
   * If a literal value it would ensure the object is the expected type.
