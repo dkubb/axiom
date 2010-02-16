@@ -2,18 +2,17 @@
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
 
-* Provide method like Attribute#valid?(object), where object can
-  either be a literal value, an Attribute object, or nil.
-  * If a literal value it would ensure the object is the expected type.
-    * Extra tests can also be performed to ensure that the size or
-      length matches the Attribute constraints. Constraints could be
-      defined using the predicate classes.
-  * If an attribute, it would ensure the other Attribute is the same
-    instance, and otherwise is compatible in terms of constraints.
-    * Should delegate this check to something like Attribute#comparable?,
-      because Attribute behaviour will likely grow, and the number of
-      things in two attributes that need to be tested may also increase.
-  * If nil, would return true only if the Attribute was not required.
+* Figure out a way to see if a specific predicate will never match
+  an attribute. For example, if an Equality predicate is being used,
+  but the value is not the correct primitive OR the value falls outside
+  of the allowed constraints, then it can never match and should be
+  optimized to False. Examples:
+  * For a LessThan predicate with a value is 1, but with an Attribute
+    constraint that says the value must be between 1 and 100, the
+    predicate cannot possibly match, and should be optimized to False.
+  * For an Equality predicate with a 100 character string, but with an
+    Attribute constraint that says the value must be between 1 and 50
+    characters in length cannot match, and should be optimized to False.
 
 * Add further optimizations:
   * Operation Order:
