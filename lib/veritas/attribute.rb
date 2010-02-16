@@ -22,12 +22,17 @@ module Veritas
 
     attr_reader :name
 
-    def initialize(name)
-      @name = name.to_sym
+    def initialize(name, options = {})
+      @name     = name.to_sym
+      @required = options.fetch(:required, true)
     end
 
     def rename(name)
       self.class.new(name)
+    end
+
+    def required?
+      @required
     end
 
     def <=>(other)
