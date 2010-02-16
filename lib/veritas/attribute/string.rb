@@ -3,6 +3,13 @@ module Veritas
     class String < Object
       include ComparableAttribute
 
+      attr_reader :length
+
+      def initialize(name, options = {})
+        super
+        @length = options.fetch(:length, 0..50)
+      end
+
       def match(regexp)
         Algebra::Restriction::Match.new(self, regexp)
       end
