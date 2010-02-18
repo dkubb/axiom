@@ -1,7 +1,7 @@
 module Veritas
   class Attribute
     class String < Object
-      include ComparableAttribute
+      include Comparable
 
       attr_reader :length
 

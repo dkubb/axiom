@@ -1,4 +1,4 @@
-require 'veritas/attribute/comparable_attribute'
+require 'veritas/attribute/comparable'
 
 require 'veritas/attribute/object'
 require 'veritas/attribute/numeric'
@@ -16,7 +16,7 @@ require 'veritas/attribute/string'
 module Veritas
   class Attribute
     include AbstractClass
-    include Comparable
+    include ::Comparable
 
     attr_reader :name
 

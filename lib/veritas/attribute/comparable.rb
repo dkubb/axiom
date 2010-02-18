@@ -1,6 +1,6 @@
 module Veritas
   class Attribute
-    module ComparableAttribute
+    module Comparable
       def gte(other)
         Algebra::Restriction::GreaterThanOrEqualTo.new(self, other)
       end
