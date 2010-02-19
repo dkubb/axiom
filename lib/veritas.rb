@@ -2,6 +2,7 @@ require 'set'
 require 'singleton'
 
 require 'veritas/core_ext/range'
+require 'veritas/core_ext/time'
 
 require 'veritas/support/abstract_class'
 require 'veritas/support/operation/binary'
