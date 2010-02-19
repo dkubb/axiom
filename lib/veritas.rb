@@ -1,6 +1,8 @@
+require 'date'
 require 'set'
 require 'singleton'
 
+require 'veritas/core_ext/date'
 require 'veritas/core_ext/range'
 require 'veritas/core_ext/time'
 
