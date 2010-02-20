@@ -7,35 +7,99 @@ describe 'Veritas::Algebra::Restriction::GreaterThan#optimize' do
 
   subject { @greater_than.optimize }
 
-  describe 'left and right are equivalent attributes' do
-    before do
-      @greater_than = Algebra::Restriction::GreaterThan.new(@attribute, @attribute)
+  describe 'left and right are attributes' do
+    describe 'and equivalent' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new(@attribute, @attribute)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    describe 'and are not comparable' do
+      before do
+        @other = Attribute::Float.new(:float)
+
+        @greater_than = Algebra::Restriction::GreaterThan.new(@attribute, @other)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
+
+    describe 'and left is always less than or equal to right' do
+      before do
+        @left  = @attribute
+        @right = Attribute::Integer.new(:right, :size => 2**31-1..2**31-1)
+
+        @greater_than = Algebra::Restriction::GreaterThan.new(@left, @right)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
+
+    describe 'and left is always greater than right' do
+      before do
+        @left  = @attribute
+        @right = Attribute::Integer.new(:right, :size => -1..-1)
+
+        @greater_than = Algebra::Restriction::GreaterThan.new(@left, @right)
+      end
+
+      it { should == Algebra::Restriction::True.instance }
+    end
   end
 
   describe 'left is an attribute' do
-    before do
-      @greater_than = Algebra::Restriction::GreaterThan.new(@attribute, 1)
+    describe 'right is a valid value' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new(@attribute, 1)
+      end
+
+      it { should equal(@greater_than) }
     end
 
-    it { should equal(@greater_than) }
+    describe 'right is an invalid primitive' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new(@attribute, 'a')
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 
   describe 'right is an attribute' do
-    before do
-      @greater_than = Algebra::Restriction::GreaterThan.new(1, @attribute)
+    describe 'left is a valid value' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new(1, @attribute)
+      end
+
+      it { should equal(@greater_than) }
     end
 
-    it { should equal(@greater_than) }
+    describe 'left is an invalid primitive' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new('a', @attribute)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 
-  describe 'left and right are not attributes' do
-    before do
-      @greater_than = Algebra::Restriction::GreaterThan.new(2, 1)
+  describe 'left and right are values' do
+    describe 'that will evaluate to true' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new(2, 1)
+      end
+
+      it { should == Algebra::Restriction::True.instance }
     end
 
-    it { should == Algebra::Restriction::True.instance }
+    describe 'that will evaluate to false' do
+      before do
+        @greater_than = Algebra::Restriction::GreaterThan.new(1, 2)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 end

@@ -12,6 +12,10 @@ module Veritas
       def in(other)
         Algebra::Restriction::Inclusion.new(self, other)
       end
+
+      def self.primitive
+        ::Object
+      end
     end # class Object
   end # class Attribute
 end # module Veritas

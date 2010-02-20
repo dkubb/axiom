@@ -1,6 +1,13 @@
 module Veritas
   class Attribute
     module Comparable
+      include Orderable
+
+      # TODO: figure out how to dry this up with Attribute#joinable?
+      def comparable?(other)
+        !(self.class <=> other.class).nil?
+      end
+
       def gte(other)
         Algebra::Restriction::GreaterThanOrEqualTo.new(self, other)
       end
@@ -15,14 +22,6 @@ module Veritas
 
       def lt(other)
         Algebra::Restriction::LessThan.new(self, other)
-      end
-
-      def asc
-        Relation::Operation::Order::Ascending.new(self)
-      end
-
-      def desc
-        Relation::Operation::Order::Descending.new(self)
       end
     end
   end

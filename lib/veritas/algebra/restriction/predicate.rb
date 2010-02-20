@@ -16,10 +16,16 @@ module Veritas
         end
 
         def optimize
-          right, left = self.right, self.left
+          left  = self.left
+          right = self.right
 
-          if left.kind_of?(Attribute) || right.kind_of?(Attribute)
+          return false_proposition if always_false?
+          return true_proposition  if always_true?
+
+          if left_attribute? || right_attribute?
             super
+          elsif left.nil? && right.nil?
+            false_proposition
           else
             Proposition.new(self.class.eval(left, right))
           end
@@ -38,6 +44,66 @@ module Veritas
         def self.extract_value(operand, tuple)
           operand.kind_of?(Attribute) ? tuple[operand] : operand
         end
+
+      private
+
+        def equivalent?
+          left.eql?(right)
+        end
+
+        def comparable?
+          left.comparable?(right)
+        end
+
+        def joinable?
+          left.joinable?(right)
+        end
+
+        def left_attribute?
+          left.kind_of?(Attribute)
+        end
+
+        def right_attribute?
+          right.kind_of?(Attribute)
+        end
+
+        def always_false?
+          false
+        end
+
+        def always_true?
+          false
+        end
+
+        def true_proposition
+          True.instance
+        end
+
+        def false_proposition
+          False.instance
+        end
+
+        def range_or_value(attribute, range_method)
+          value = send(attribute)
+          value.respond_to?(:range)  ? value.range.send(range_method) : value
+        end
+
+        def left_min
+          range_or_value(:left, :first)
+        end
+
+        def left_max
+          range_or_value(:left, :last)
+        end
+
+        def right_min
+          range_or_value(:right, :first)
+        end
+
+        def right_max
+          range_or_value(:right, :last)
+        end
+
       end # class Predicate
 
       class Equality < Predicate
@@ -49,18 +115,31 @@ module Veritas
           Inequality.new(left, right)
         end
 
-        def optimize
-          right, left = self.right, self.left
-
-          if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            True.instance
-          else
-            super
-          end
-        end
-
         def inspect
           "#{left.inspect} == #{right.inspect}"
+        end
+
+      private
+
+        # TODO: DRY this up with Inequality
+        def always_true?
+          left_attribute? && right_attribute? && equivalent?
+        end
+
+        # TODO: DRY this up with Inequality
+        def always_false?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if    left_attribute && right_attribute then !joinable?
+          elsif left_attribute                    then !left.valid_value?(right)
+          elsif right_attribute                   then !right.valid_value?(left)
+          else
+            false
+          end
         end
 
       end # class Equality
@@ -74,18 +153,31 @@ module Veritas
           Equality.new(left, right)
         end
 
-        def optimize
-          right, left = self.right, self.left
+        def inspect
+          "#{left.inspect} != #{right.inspect}"
+        end
 
-          if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            False.instance
+      private
+
+        # TODO: DRY this up with Equality
+        def always_true?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if    left_attribute && right_attribute then !joinable?
+          elsif left_attribute                    then !left.valid_value?(right)
+          elsif right_attribute                   then !right.valid_value?(left)
           else
-            super
+            false
           end
         end
 
-        def inspect
-          "#{left.inspect} != #{right.inspect}"
+        # TODO: DRY this up with Equality
+        def always_false?
+          left_attribute? && right_attribute? && equivalent?
         end
 
       end # class Inequality
@@ -95,8 +187,46 @@ module Veritas
           right.include?(left)
         end
 
+        def optimize
+          left = self.left
+
+          return false_proposition if right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
+
+          right = optimize_right
+
+          if right.nil? || right.respond_to?(:empty?) && right.empty?
+            return false_proposition
+          elsif right != self.right
+            return self.class.new(left, right)
+          end
+
+          super
+        end
+
         def inspect
           "#{left.inspect} IN(#{right.inspect})"
+        end
+
+      private
+
+        def optimize_right
+          right = self.right
+
+          if right.respond_to?(:to_inclusive)
+            right = right.to_inclusive
+            return [] if empty_right?           ||
+                         left_max < right.first ||
+                         left_min > right.last
+          elsif right.respond_to?(:select)
+            return right.select { |value| left.valid_value?(value) }
+          end
+
+          right
+        end
+
+        def empty_right?
+          right.each { return false }
+          true
         end
 
       end # class Inclusion
@@ -121,18 +251,39 @@ module Veritas
           LessThan.new(left, right)
         end
 
-        def optimize
-          right, left = self.right, self.left
+        def inspect
+          "#{left.inspect} >= #{right.inspect}"
+        end
 
-          if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            True.instance
+      private
+
+        def always_true?
+          if left_attribute? && right_attribute? && equivalent?
+            true
           else
-            super
+            left_min > right_max
           end
         end
 
-        def inspect
-          "#{left.inspect} >= #{right.inspect}"
+        def always_false?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if left_attribute && right_attribute
+            return true unless comparable?
+
+          elsif left_attribute
+            return true unless left.valid_primitive?(right)
+
+          elsif right_attribute
+            return true unless right.valid_primitive?(left)
+
+          end
+
+          left_max < right_min
         end
 
       end # class GreaterThanOrEqualTo
@@ -146,18 +297,36 @@ module Veritas
           LessThanOrEqualTo.new(left, right)
         end
 
-        def optimize
-          right, left = self.right, self.left
-
-          if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            False.instance
-          else
-            super
-          end
-        end
-
         def inspect
           "#{left.inspect} > #{right.inspect}"
+        end
+
+      private
+
+        def always_true?
+          left_min > right_max
+        end
+
+        def always_false?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if left_attribute && right_attribute
+            return true if     equivalent?
+            return true unless comparable?
+
+          elsif left_attribute
+            return true unless left.valid_primitive?(right)
+
+          elsif right_attribute
+            return true unless right.valid_primitive?(left)
+
+          end
+
+          left_max <= right_min
         end
 
       end # class GreaterThan
@@ -171,18 +340,39 @@ module Veritas
           GreaterThan.new(left, right)
         end
 
-        def optimize
-          right, left = self.right, self.left
+        def inspect
+          "#{left.inspect} <= #{right.inspect}"
+        end
 
-          if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            True.instance
+      private
+
+        def always_true?
+          if left_attribute? && right_attribute? && equivalent?
+            true
           else
-            super
+            left_max < right_min
           end
         end
 
-        def inspect
-          "#{left.inspect} <= #{right.inspect}"
+        def always_false?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if left_attribute && right_attribute
+            return true unless comparable?
+
+          elsif left_attribute
+            return true unless left.valid_primitive?(right)
+
+          elsif right_attribute
+            return true unless right.valid_primitive?(left)
+
+          end
+
+          left_min > right_max
         end
 
       end # class LessThanOrEqualTo
@@ -196,18 +386,36 @@ module Veritas
           GreaterThanOrEqualTo.new(left, right)
         end
 
-        def optimize
-          right, left = self.right, self.left
-
-          if left == right && left.kind_of?(Attribute) && right.kind_of?(Attribute)
-            False.instance
-          else
-            super
-          end
-        end
-
         def inspect
           "#{left.inspect} < #{right.inspect}"
+        end
+
+      private
+
+        def always_true?
+          left_max < right_min
+        end
+
+        def always_false?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if left_attribute && right_attribute
+            return true if     equivalent?
+            return true unless comparable?
+
+          elsif left_attribute
+            return true unless left.valid_primitive?(right)
+
+          elsif right_attribute
+            return true unless right.valid_primitive?(left)
+
+          end
+
+          left_min >= right_max
         end
 
       end # class LessThan

@@ -1,3 +1,5 @@
+require 'veritas/attribute/orderable'
+
 require 'veritas/attribute/comparable'
 
 require 'veritas/attribute/object'
@@ -33,6 +35,18 @@ module Veritas
       @required
     end
 
+    def valid_primitive?(value)
+      self.class.primitive === value
+    end
+
+    def valid_value?(value)
+      validate(value) { valid_primitive?(value) }
+    end
+
+    def joinable?(other)
+      !(self.class <=> other.class).nil?
+    end
+
     def <=>(other)
       other = Attribute.coerce(other)
       name.to_s <=> other.name.to_s
@@ -40,7 +54,8 @@ module Veritas
 
     def eql?(other)
       instance_of?(other.class) &&
-      name.eql?(other.name)
+      name.eql?(other.name)     &&
+      joinable?(other)
     end
 
     def hash
@@ -68,6 +83,12 @@ module Veritas
       else
         attribute.to_sym
       end
+    end
+
+  private
+
+    def validate(value)
+      value.nil? ? !required? : yield
     end
 
   end # class Attribute

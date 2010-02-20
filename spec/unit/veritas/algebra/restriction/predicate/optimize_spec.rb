@@ -38,4 +38,12 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
       should == Algebra::Restriction::True.instance
     end
   end
+
+  describe 'left and right are nil' do
+    before do
+      @predicate = PredicateSpecs::Object.new(nil, nil)
+    end
+
+    it { should == Algebra::Restriction::False.instance }
+  end
 end

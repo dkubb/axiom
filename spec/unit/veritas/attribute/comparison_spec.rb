@@ -27,7 +27,7 @@ describe 'Veritas::Attribute#<=>' do
 
   describe 'with a different attribute' do
     before do
-      @other = Attribute::String.new(:name)
+      @other = Attribute::Time.new(:time)
     end
 
     it { should_not == 0 }

@@ -7,35 +7,99 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
 
   subject { @less_than_or_equal_to.optimize }
 
-  describe 'left and right are equivalent attributes' do
-    before do
-      @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, @attribute)
+  describe 'left and right are attributes' do
+    describe 'and equivalent' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, @attribute)
+      end
+
+      it { should == Algebra::Restriction::True.instance }
     end
 
-    it { should == Algebra::Restriction::True.instance }
+    describe 'and are not comparable' do
+      before do
+        @other = Attribute::Float.new(:float)
+
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, @other)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
+
+    describe 'and left is always less than right' do
+      before do
+        @left  = @attribute
+        @right = Attribute::Integer.new(:right, :size => 2**31..2**31)
+
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@left, @right)
+      end
+
+      it { should == Algebra::Restriction::True.instance }
+    end
+
+    describe 'and left is always greater than right' do
+      before do
+        @left  = @attribute
+        @right = Attribute::Integer.new(:right, :size => -1..-1)
+
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@left, @right)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 
   describe 'left is an attribute' do
-    before do
-      @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, 1)
+    describe 'right is a valid value' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, 1)
+      end
+
+      it { should equal(@less_than_or_equal_to) }
     end
 
-    it { should equal(@less_than_or_equal_to) }
+    describe 'right is an invalid primitive' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, 'a')
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 
   describe 'right is an attribute' do
-    before do
-      @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, @attribute)
+    describe 'left is a valid value' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, @attribute)
+      end
+
+      it { should equal(@less_than_or_equal_to) }
     end
 
-    it { should equal(@less_than_or_equal_to) }
+    describe 'left is an invalid primitive' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new('a', @attribute)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 
-  describe 'left and right are not attributes' do
-    before do
-      @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, 1)
+  describe 'left and right are values' do
+    describe 'that will evaluate to true' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, 1)
+      end
+
+      it { should == Algebra::Restriction::True.instance }
     end
 
-    it { should == Algebra::Restriction::True.instance }
+    describe 'that will evaluate to false' do
+      before do
+        @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(2, 1)
+      end
+
+      it { should == Algebra::Restriction::False.instance }
+    end
   end
 end

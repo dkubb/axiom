@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Attribute::Comparable#desc' do
+describe 'Veritas::Attribute::Orderable#desc' do
   before do
-    @comparable = ComparableSpecs::Object.new
+    @comparable = OrderableSpecs::Object.new
   end
 
   subject { @comparable.desc }
