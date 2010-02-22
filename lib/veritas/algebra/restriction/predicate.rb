@@ -102,7 +102,32 @@ module Veritas
 
       end # class Predicate
 
+      module ComparisonPredicate
+      private
+
+        def always_equivalent?
+          left_attribute? && right_attribute? && equivalent?
+        end
+
+        def never_equivalent?
+          left  = self.left
+          right = self.right
+
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
+
+          if    left_attribute && right_attribute then !joinable?
+          elsif left_attribute                    then !left.valid_value?(right)
+          elsif right_attribute                   then !right.valid_value?(left)
+          else
+            false
+          end
+        end
+      end
+
       class Equality < Predicate
+        include ComparisonPredicate
+
         def self.eval(left, right)
           left == right
         end
@@ -117,30 +142,19 @@ module Veritas
 
       private
 
-        # TODO: DRY this up with Inequality
         def always_true?
-          left_attribute? && right_attribute? && equivalent?
+          always_equivalent?
         end
 
-        # TODO: DRY this up with Inequality
         def always_false?
-          left  = self.left
-          right = self.right
-
-          left_attribute  = left_attribute?
-          right_attribute = right_attribute?
-
-          if    left_attribute && right_attribute then !joinable?
-          elsif left_attribute                    then !left.valid_value?(right)
-          elsif right_attribute                   then !right.valid_value?(left)
-          else
-            false
-          end
+          never_equivalent?
         end
 
       end # class Equality
 
       class Inequality < Predicate
+        include ComparisonPredicate
+
         def self.eval(left, right)
           left != right
         end
@@ -155,25 +169,12 @@ module Veritas
 
       private
 
-        # TODO: DRY this up with Equality
         def always_true?
-          left  = self.left
-          right = self.right
-
-          left_attribute  = left_attribute?
-          right_attribute = right_attribute?
-
-          if    left_attribute && right_attribute then !joinable?
-          elsif left_attribute                    then !left.valid_value?(right)
-          elsif right_attribute                   then !right.valid_value?(left)
-          else
-            false
-          end
+          never_equivalent?
         end
 
-        # TODO: DRY this up with Equality
         def always_false?
-          left_attribute? && right_attribute? && equivalent?
+          always_equivalent?
         end
 
       end # class Inequality
