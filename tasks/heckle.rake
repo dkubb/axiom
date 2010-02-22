@@ -64,8 +64,18 @@ task :heckle => :verify_rcov do
       specs << [ method, [ spec_file ] ]
     end
 
+    # non-public methods are considered covered if they can be mutated
+    # and any spec fails for the current or descendant modules
     other_methods.each do |method|
-      specs << [ method, FileList[spec_prefix.join('*_spec.rb')] ]
+      descedant_specs = []
+
+      ObjectSpace.each_object(Module) do |descedant|
+        next unless descedant.name =~ /\A#{root_module}(?::|\z)/ && mod >= descedant
+        descedant_spec_prefix = spec_dir.join(descedant.name.underscore)
+        descedant_specs.concat(FileList[descedant_spec_prefix.join('*_spec.rb')])
+      end
+
+      specs << [ method, descedant_specs ]
     end
 
     specs.sort.each do |(method, spec_files)|
