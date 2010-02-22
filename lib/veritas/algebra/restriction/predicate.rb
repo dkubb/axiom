@@ -19,16 +19,12 @@ module Veritas
           left  = self.left
           right = self.right
 
-          return false_proposition if always_false?
+          return false_proposition if always_false? || left.nil? && right.nil?
           return true_proposition  if always_true?
 
-          if left_attribute? || right_attribute?
-            super
-          elsif left.nil? && right.nil?
-            false_proposition
-          else
-            Proposition.new(self.class.eval(left, right))
-          end
+          return super if left_attribute? || right_attribute?
+
+          Proposition.new(self.class.eval(left, right))
         end
 
         def eql?(other)
