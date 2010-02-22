@@ -14,4 +14,8 @@ class Range
       self.class.new(first, last.succ, true)
     end
   end unless method_defined? :to_exclusive
+
+  def overlaps?(other)
+    include?(other.first) || other.include?(first)
+  end unless method_defined? :overlaps?
 end
