@@ -65,9 +65,11 @@ module Veritas
         def optimize
           left, right = optimize_left, optimize_right
 
-          if left.kind_of?(False) || right.kind_of?(True)
+          if left.kind_of?(False) || right.kind_of?(False)
+            False.instance
+          elsif right.kind_of?(True)
             left
-          elsif right.kind_of?(False) || left.kind_of?(True)
+          elsif left.kind_of?(True)
             right
           else
             super
@@ -90,9 +92,11 @@ module Veritas
         def optimize
           left, right = optimize_left, optimize_right
 
-          if left.kind_of?(True) || right.kind_of?(False)
+          if left.kind_of?(True) || right.kind_of?(True)
+            True.instance
+          elsif right.kind_of?(False)
             left
-          elsif right.kind_of?(True) || left.kind_of?(False)
+          elsif left.kind_of?(False)
             right
           else
             super

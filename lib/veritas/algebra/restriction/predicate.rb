@@ -16,15 +16,12 @@ module Veritas
         end
 
         def optimize
-          left  = self.left
-          right = self.right
+          return False.instance if always_false? || left.nil? && right.nil?
+          return True.instance  if always_true?
 
-          return false_proposition if always_false? || left.nil? && right.nil?
-          return true_proposition  if always_true?
+          return evaluate_literal_values unless left_attribute? || right_attribute?
 
-          return super if left_attribute? || right_attribute?
-
-          Proposition.new(self.class.eval(left, right))
+          super
         end
 
         def eql?(other)
@@ -42,6 +39,10 @@ module Veritas
         end
 
       private
+
+        def evaluate_literal_values
+          Proposition.new(self.class.eval(left, right))
+        end
 
         def equivalent?
           left.eql?(right)
@@ -69,14 +70,6 @@ module Veritas
 
         def always_true?
           false
-        end
-
-        def true_proposition
-          True.instance
-        end
-
-        def false_proposition
-          False.instance
         end
 
         def range_or_value(attribute, range_method)
@@ -187,12 +180,12 @@ module Veritas
         def optimize
           left = self.left
 
-          return false_proposition if right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
+          return False.instance if right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
 
           right = optimize_right
 
           if right.nil? || right.respond_to?(:empty?) && right.empty?
-            return false_proposition
+            return False.instance
           elsif right != self.right
             return self.class.new(left, right)
           end
