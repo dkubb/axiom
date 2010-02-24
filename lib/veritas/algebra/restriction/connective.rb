@@ -98,6 +98,8 @@ module Veritas
             left
           elsif left.kind_of?(False)
             right
+          elsif collapse_to_inclusion?
+            Inclusion.new(left.left, [ left.right, right.right ])
           else
             super
           end
@@ -105,6 +107,41 @@ module Veritas
 
         def inspect
           "(#{left.inspect} OR #{right.inspect})"
+        end
+
+      private
+
+        def collapse_to_inclusion?
+          left_equality?  &&
+          right_equality? &&
+          same_attribute? &&
+          left_value?     &&
+          right_value?    &&
+          different_values?
+        end
+
+        def left_equality?
+          optimize_left.kind_of?(Equality)
+        end
+
+        def right_equality?
+          optimize_right.kind_of?(Equality)
+        end
+
+        def same_attribute?
+          optimize_left.left.eql?(optimize_right.left)
+        end
+
+        def left_value?
+          !optimize_left.right.kind_of?(Attribute)
+        end
+
+        def right_value?
+          !optimize_right.right.kind_of?(Attribute)
+        end
+
+        def different_values?
+          !optimize_left.right.eql?(optimize_right.right)
         end
 
       end # class Disjunction
