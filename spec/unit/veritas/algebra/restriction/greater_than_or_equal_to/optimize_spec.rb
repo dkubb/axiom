@@ -73,7 +73,7 @@ describe 'Veritas::Algebra::Restriction::GreaterThanOrEqualTo#optimize' do
         @greater_than_or_equal_to = Algebra::Restriction::GreaterThanOrEqualTo.new(1, @attribute)
       end
 
-      it { should equal(@greater_than_or_equal_to) }
+      it { should eql(Algebra::Restriction::LessThanOrEqualTo.new(@attribute, 1)) }
     end
 
     describe 'left is an invalid primitive' do

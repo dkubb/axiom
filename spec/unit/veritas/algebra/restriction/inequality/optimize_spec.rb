@@ -61,7 +61,7 @@ describe 'Veritas::Algebra::Restriction::Inequality#optimize' do
         @inequality = Algebra::Restriction::Inequality.new(1, @attribute)
       end
 
-      it { should equal(@inequality) }
+      it { should eql(Algebra::Restriction::Inequality.new(@attribute, 1)) }
     end
 
     describe 'left is an invalid value' do

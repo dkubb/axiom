@@ -19,6 +19,9 @@ module Veritas
           return False.instance if always_false? || left.nil? && right.nil?
           return True.instance  if always_true?
 
+          # if possible swap the left and right if left is a value, and right is an attribute
+          return swap if respond_to?(:swap, true) && !left_attribute? && right_attribute?
+
           return evaluate_literal_values unless left_attribute? || right_attribute?
 
           super
@@ -97,6 +100,10 @@ module Veritas
 
       module ComparisonPredicate
       private
+
+        def swap
+          self.class.new(right, left)
+        end
 
         def always_equivalent?
           left_attribute? && right_attribute? && equivalent?
@@ -247,6 +254,10 @@ module Veritas
 
       private
 
+        def swap
+          LessThanOrEqualTo.new(right, left)
+        end
+
         def always_true?
           if left_attribute? && right_attribute? && equivalent?
             true
@@ -293,6 +304,10 @@ module Veritas
 
       private
 
+        def swap
+          LessThan.new(right, left)
+        end
+
         def always_true?
           left_min > right_max
         end
@@ -335,6 +350,10 @@ module Veritas
         end
 
       private
+
+        def swap
+          GreaterThanOrEqualTo.new(right, left)
+        end
 
         def always_true?
           if left_attribute? && right_attribute? && equivalent?
@@ -381,6 +400,10 @@ module Veritas
         end
 
       private
+
+        def swap
+          GreaterThan.new(right, left)
+        end
 
         def always_true?
           left_max < right_min

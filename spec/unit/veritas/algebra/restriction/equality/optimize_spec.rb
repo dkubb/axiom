@@ -60,7 +60,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new(1, @attribute)
       end
 
-      it { should equal(@equality) }
+      it { should eql(Algebra::Restriction::Equality.new(@attribute, 1)) }
     end
 
     describe 'left is an invalid value' do
