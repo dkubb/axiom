@@ -1,7 +1,12 @@
 module Veritas
   class Relation
     class Header
+      extend Forwardable
       include Enumerable
+
+      def_delegator :self, :intersect,  :&
+      def_delegator :self, :union,      :|
+      def_delegator :self, :difference, :-
 
       def initialize(attributes = [])
         @attributes = attributes.to_ary.map do |attribute|
@@ -41,19 +46,13 @@ module Veritas
         new(to_ary & other)
       end
 
-      alias & intersect
-
       def union(other)
         new(to_ary | other)
       end
 
-      alias | union
-
       def difference(other)
         new(to_ary - other)
       end
-
-      alias - difference
 
       def to_ary
         @attributes

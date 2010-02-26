@@ -1,10 +1,12 @@
 module Veritas
   class Attribute
     class Numeric < Object
+      extend Forwardable
       include Comparable
 
+      def_delegator :self, :size, :range
+
       attr_reader :size
-      alias range size
 
       def initialize(name, options = {})
         super

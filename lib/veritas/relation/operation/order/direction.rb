@@ -3,7 +3,10 @@ module Veritas
     module Operation
       class Order
         class Direction
+          extend Forwardable
           include AbstractClass
+
+          def_delegator :self, :eql?, :==
 
           attr_reader :attribute
 
@@ -24,8 +27,6 @@ module Veritas
             instance_of?(other.class) &&
             attribute.eql?(other.attribute)
           end
-
-          alias == eql?
 
           def hash
             @hash ||= attribute.hash

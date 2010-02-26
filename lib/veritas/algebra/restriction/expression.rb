@@ -2,7 +2,12 @@ module Veritas
   module Algebra
     class Restriction
       module Expression
+        extend Forwardable
         include Optimizable
+
+        def_delegator :self, :and, :&
+        def_delegator :self, :or,  :|
+        def_delegator :self, :not, :-
 
         def self.included(klass)
           klass.extend ClassMethods
@@ -12,19 +17,13 @@ module Veritas
           Conjunction.new(self, other)
         end
 
-        alias & and
-
         def or(other)
           Disjunction.new(self, other)
         end
 
-        alias | or
-
         def not(other)
           self.and(Negation.new(other))
         end
-
-        alias - not
 
         def invert
           Negation.new(self)

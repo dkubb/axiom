@@ -1,10 +1,12 @@
 module Veritas
   class Attribute
     class String < Object
+      extend Forwardable
       include Orderable
 
+      def_delegator :self, :length, :range
+
       attr_reader :length
-      alias range length
 
       def initialize(name, options = {})
         super

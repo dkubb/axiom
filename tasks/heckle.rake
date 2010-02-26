@@ -29,11 +29,21 @@ task :heckle => :verify_rcov do
     NameMap::MAP['|'][suffix] = 'union'
   end
 
+  NameMap::MAP['==']['Direction'] = 'eql'
+
   NameMap::MAP['|']['DirectionSet'] = 'union'
 
   NameMap::MAP['&']['Expression'] = 'and'
   NameMap::MAP['|']['Expression'] = 'or'
   NameMap::MAP['-']['Expression'] = 'not'
+
+  aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
+
+  aliases['Veritas::Relation']['drop'] = 'offset'
+  aliases['Veritas::Relation']['take'] = 'limit'
+
+  aliases['Veritas::Attribute::Numeric']['range'] = 'size'
+  aliases['Veritas::Attribute::String']['range']  = 'length'
 
   map = NameMap.new
 
@@ -53,12 +63,12 @@ task :heckle => :verify_rcov do
                     mod.private_instance_methods(false)
 
     spec_methods.each do |method|
+      method = aliases[mod.name][method]
+
       spec_file = spec_prefix.join(map.file_name(method, mod.name))
 
-      if !spec_file.file?
+      unless spec_file.file?
         raise "No spec file #{spec_file} for #{mod}##{method}"
-      elsif File.read(spec_file) !~ /#{Regexp.quote(mod.name)}##{Regexp.quote(method)}/
-        raise "#{mod}##{method} not specifed in #{spec_file}"
       end
 
       specs << [ method, [ spec_file ] ]
