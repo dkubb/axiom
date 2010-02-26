@@ -31,7 +31,7 @@ module Veritas
         end
 
         def ==(other)
-          eql?(other.optimize)
+          optimize.eql?(other.optimize)
         end
 
         def eql?(other)

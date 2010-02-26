@@ -2,22 +2,69 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Algebra::Restriction::Expression#==' do
-  before do
-    @other = ExpressionSpecs::Object.new
-
-    # so the with(@other) below can match successfully
-    def @other.eql?(other)
-      equal?(other)
+  before :all do
+    ExpressionSpecs::Object.class_eval do
+      def eql?(other)
+        instance_of?(other.class)
+      end
     end
-
-    @expression = ExpressionSpecs::Object.new
   end
 
   subject { @expression == @other }
 
-  it 'should delegate to #eql?' do
-    result = mock('result')
-    @expression.should_receive(:eql?).with(@other).and_return(result)
-    subject.should equal(result)
+  describe 'with two equivalent expressions' do
+    before do
+      @expression = ExpressionSpecs::Object.new
+      @other      = ExpressionSpecs::Object.new
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@expression)
+    end
+  end
+
+  describe 'with two different expressions' do
+    before do
+      subclass = Class.new(ExpressionSpecs::Object)
+
+      @expression = ExpressionSpecs::Object.new
+      @other      = subclass.new
+    end
+
+    it { should be_false }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@expression)
+    end
+  end
+
+  describe 'with two equivalent unoptimized expressions' do
+    before do
+      @expression = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
+      @other      = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
+    end
+
+    it { should be_true }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@expression)
+    end
+  end
+
+  describe 'with two different unoptimized expressions' do
+    before do
+      subclass = Class.new(ExpressionSpecs::Object)
+
+      @expression = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
+      @other      = subclass.new & subclass.new
+    end
+
+    it { should be_false }
+
+    it 'should be symmetric' do
+      should == @other.eql?(@expression)
+    end
   end
 end
