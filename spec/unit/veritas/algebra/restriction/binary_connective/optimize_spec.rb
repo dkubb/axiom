@@ -90,4 +90,22 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
 
     it { subject.right.should equal(@original_right) }
   end
+
+  describe 'self and right are the same, and left and right.left are the same' do
+    before do
+      mod = Module.new do
+        def optimize
+          self
+        end
+      end
+
+      @left  = @attribute.eq(1)
+      @right = BinaryConnectiveSpecs::Object.new(@attribute.eq(1), @attribute.ne(5))
+      @right.extend(mod)
+
+      @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
+    end
+
+    it { should equal(@right) }
+  end
 end

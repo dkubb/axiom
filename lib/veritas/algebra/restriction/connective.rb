@@ -18,6 +18,8 @@ module Veritas
 
           if left.eql?(right)
             left
+          elsif kind_of?(right.class) && left.eql?(right.left)
+            right
           elsif optimized?
             new_optimized_connective
           else
