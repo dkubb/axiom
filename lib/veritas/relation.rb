@@ -116,6 +116,10 @@ module Veritas
       @directions ||= Operation::Order::DirectionSet.new([])
     end
 
+    def predicate
+      @predicate ||= Algebra::Restriction::True.instance
+    end
+
     def ==(other)
       other = coerce(other)
       header == other.header &&

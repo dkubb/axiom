@@ -3,8 +3,6 @@ module Veritas
     class Restriction < Relation
       include Relation::Operation::Unary
 
-      attr_reader :predicate
-
       def initialize(relation, predicate)
         @predicate = predicate
         super(relation)
