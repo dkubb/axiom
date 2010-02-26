@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby -Ku
 
+# encoding: utf-8
+
 # benchmark speed of relation operations
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)

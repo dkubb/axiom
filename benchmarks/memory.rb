@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby -Ku
 
+# encoding: utf-8
+
 # benchmark memory usage of lib, core object init and relation operations
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
