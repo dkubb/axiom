@@ -37,6 +37,14 @@ module Veritas
           true
         end
 
+        def and(other)
+          other
+        end
+
+        def or(other)
+          self
+        end
+
         def invert
           False.instance
         end
@@ -48,6 +56,14 @@ module Veritas
 
         def self.eval
           false
+        end
+
+        def and(other)
+          self
+        end
+
+        def or(other)
+          other
         end
 
         def invert
