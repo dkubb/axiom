@@ -7,6 +7,10 @@ module Veritas
         super(header, Set[])
       end
 
+      def predicate
+        @predicate ||= Algebra::Restriction::False.instance
+      end
+
     end # class Empty
   end # class Relation
 end # module Veritas
