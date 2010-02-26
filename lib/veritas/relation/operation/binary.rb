@@ -16,6 +16,10 @@ module Veritas
           @directions ||= left.directions | right.directions
         end
 
+        def predicate
+          @predicate ||= left.predicate & right.predicate
+        end
+
         def optimize
           if optimized?
             new_optimized_operation
