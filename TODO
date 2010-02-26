@@ -1,6 +1,13 @@
-* Restriction predicates should be visible to all parent relations
+* Predicates should be visible to all parent relations
   because they form the base constraints all tuples must match in
   order to be included/inserted in the Relation.
+
+* Restriction should AND the relation.predicate with it's own predicate.
+
+* Rename should change the names of the attributes within it's
+  predicate.
+
+* Projection should remove the attributes in it's predicate
 
 * Add further optimizations:
   * Operation Order:
