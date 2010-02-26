@@ -16,6 +16,10 @@ module Veritas
           @directions ||= relation.directions
         end
 
+        def predicate
+          @predicate ||= relation.predicate
+        end
+
         def optimize
           relation = optimize_relation
 
