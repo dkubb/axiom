@@ -4,7 +4,7 @@ module Veritas
       include Relation::Operation::Unary
 
       def initialize(relation, predicate)
-        @predicate = predicate
+        @predicate = relation.predicate & predicate
         super(relation)
       end
 
@@ -16,7 +16,7 @@ module Veritas
       def optimize
         relation = optimize_relation
 
-        return relation           if matches_all?
+        return relation           if matches_all? || relation.kind_of?(Relation::Empty)
         return new_empty_relation if matches_none?
 
         case relation

@@ -22,7 +22,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
   end
 
   it 'should set the relation with the block return values' do
-    relation = mock('relation')
+    relation = mock('relation', :predicate => Algebra::Restriction::True.instance)
     operation = @restriction.wrap { relation }
     operation.relation.should equal(relation)
   end
