@@ -18,10 +18,10 @@ module Veritas
         def rename(aliases)
           left  = self.left
           right = self.right
+          util  = self.class
 
-          # rename the left and right operands if possible
-          renamed_left  = left.respond_to?(:rename)  ? left.rename(aliases)  : left
-          renamed_right = right.respond_to?(:rename) ? right.rename(aliases) : right
+          renamed_left  = util.rename_operand(left,  aliases)
+          renamed_right = util.rename_operand(right, aliases)
 
           if left.equal?(renamed_left) && right.equal?(renamed_right)
             self
@@ -54,6 +54,10 @@ module Veritas
 
         def self.extract_value(operand, tuple)
           operand.respond_to?(:call) ? operand.call(tuple) : operand
+        end
+
+        def self.rename_operand(operand, aliases)
+          operand.respond_to?(:rename) ? operand.rename(aliases) : operand
         end
 
       private
