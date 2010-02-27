@@ -10,5 +10,5 @@ describe 'Veritas::Algebra::Restriction::Negation#inspect' do
 
   subject { @negation.inspect }
 
-  it { should == "NOT(#{@operand.inspect})"}
+  it { should == "NOT(#{@operand.inspect})" }
 end
