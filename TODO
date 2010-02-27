@@ -1,6 +1,3 @@
-* Rename should change the names of the attributes within it's
-  predicate.
-
 * Projection should remove the attributes in it's predicate
 
 * Add further optimizations:
