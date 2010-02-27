@@ -6,12 +6,12 @@ describe 'Veritas::Algebra::Rename#directions' do
     @aliases  = { :id => :other_id }
   end
 
+  subject { @rename.directions }
+
   describe 'containing a relation' do
     before do
       @rename = Algebra::Rename.new(@relation, @aliases)
     end
-
-    subject { @rename.directions }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
@@ -28,8 +28,6 @@ describe 'Veritas::Algebra::Rename#directions' do
 
       @rename = Algebra::Rename.new(@order, @aliases)
     end
-
-    subject { @rename.directions }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
