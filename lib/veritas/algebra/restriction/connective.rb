@@ -13,6 +13,17 @@ module Veritas
           self.class.eval(left.call(tuple), right.call(tuple))
         end
 
+        def rename(aliases)
+          renamed_left  = left.rename(aliases)
+          renamed_right = right.rename(aliases)
+
+          if left.equal?(renamed_left) && right.equal?(renamed_right)
+            self
+          else
+            self.class.new(renamed_left, renamed_right)
+          end
+        end
+
         def optimize
           left, right = optimize_left, optimize_right
 
