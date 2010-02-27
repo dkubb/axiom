@@ -15,6 +15,21 @@ module Veritas
           util.eval(left_value, right_value)
         end
 
+        def rename(aliases)
+          left  = self.left
+          right = self.right
+
+          # rename the left and right operands if possible
+          renamed_left  = left.respond_to?(:rename)  ? left.rename(aliases)  : left
+          renamed_right = right.respond_to?(:rename) ? right.rename(aliases) : right
+
+          if left.equal?(renamed_left) && right.equal?(renamed_right)
+            self
+          else
+            self.class.new(renamed_left, renamed_right)
+          end
+        end
+
         def optimize
           return False.instance if always_false? || left.nil? && right.nil?
           return True.instance  if always_true?
