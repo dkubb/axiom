@@ -114,24 +114,24 @@ module Veritas
       private
 
         def collapse_to_inclusion?
-          left_equality?  &&
-          right_equality? &&
-          same_attribute? &&
-          left_value?     &&
-          right_value?    &&
-          different_values?
+          left_and_right_equality?         &&
+          left_and_right_same_attribute?   &&
+          left_and_right_different_values?
         end
 
-        def left_equality?
-          optimize_left.kind_of?(Equality)
-        end
-
-        def right_equality?
+        def left_and_right_equality?
+          optimize_left.kind_of?(Equality) &&
           optimize_right.kind_of?(Equality)
         end
 
-        def same_attribute?
+        def left_and_right_same_attribute?
           optimize_left.left.eql?(optimize_right.left)
+        end
+
+        def left_and_right_different_values?
+          left_value?       &&
+          right_value?      &&
+          different_values?
         end
 
         def left_value?

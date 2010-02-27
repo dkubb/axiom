@@ -132,4 +132,29 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
     it { should == @attribute.eq(1) }
   end
 
+  describe 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
+    before do
+      @other = Attribute::Integer.new(:other_id)
+
+      @left  = @attribute.eq(@other)
+      @right = @attribute.eq(1)
+
+      @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
+    end
+
+    it { should == (@left | @right) }
+  end
+
+  describe 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
+    before do
+      @other = Attribute::Integer.new(:other_id)
+
+      @left  = @attribute.eq(1)
+      @right = @attribute.eq(@other)
+
+      @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
+    end
+
+    it { should == (@left | @right) }
+  end
 end
