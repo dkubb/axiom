@@ -163,6 +163,16 @@ module Veritas
           operand
         end
 
+        def rename(aliases)
+          renamed_operand = operand.rename(aliases)
+
+          if operand.equal?(renamed_operand)
+            self
+          else
+            self.class.new(renamed_operand)
+          end
+        end
+
         def optimize
           operand.optimize.invert
         end
