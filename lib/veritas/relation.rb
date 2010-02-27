@@ -4,17 +4,8 @@ require 'veritas/relation/empty'
 
 module Veritas
   class Relation
-    extend Forwardable
     include Enumerable
     include Optimizable
-
-    def_delegator :self, :join,       :+
-    def_delegator :self, :product,    :*
-    def_delegator :self, :intersect,  :&
-    def_delegator :self, :union,      :|
-    def_delegator :self, :difference, :-
-    def_delegator :self, :limit,      :take
-    def_delegator :self, :offset,     :drop
 
     attr_reader :header
 
@@ -67,20 +58,40 @@ module Veritas
       end
     end
 
+    def +(*args, &block)
+      join(*args, &block)
+    end
+
     def product(other)
       Algebra::Product.new(self, other)
+    end
+
+    def *(other)
+      product(other)
     end
 
     def intersect(other)
       Algebra::Intersection.new(self, other)
     end
 
+    def &(other)
+      intersect(other)
+    end
+
     def union(other)
       Algebra::Union.new(self, other)
     end
 
+    def |(other)
+      union(other)
+    end
+
     def difference(other)
       Algebra::Difference.new(self, other)
+    end
+
+    def -(other)
+      difference(other)
     end
 
     def order(directions = yield(self))
@@ -91,8 +102,16 @@ module Veritas
       Operation::Limit.new(self, limit)
     end
 
+    def take(other)
+      limit(other)
+    end
+
     def offset(offset)
       Operation::Offset.new(self, offset)
+    end
+
+    def drop(other)
+      offset(other)
     end
 
     def first(limit = 1)
