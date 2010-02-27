@@ -16,8 +16,9 @@ module Veritas
             self.class.eval(left[attribute], right[attribute])
           end
 
-          def rename(name)
-            self.class.new(attribute.rename(name))
+          def rename(aliases)
+            renamed = attribute.rename(aliases)
+            renamed.equal?(attribute) ? self : self.class.new(renamed)
           end
 
           def eql?(other)

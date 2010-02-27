@@ -27,8 +27,9 @@ module Veritas
       @required = options.fetch(:required, true)
     end
 
-    def rename(name)
-      self.class.new(name)
+    def rename(aliases)
+      new_name = aliases[name]
+      new_name ? self.class.new(new_name) : self
     end
 
     def required?

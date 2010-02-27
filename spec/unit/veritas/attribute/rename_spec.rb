@@ -6,7 +6,7 @@ describe 'Veritas::Attribute#rename' do
     @name      = :other_id
   end
 
-  subject { @attribute.rename(@name) }
+  subject { @attribute.rename(@attribute.name => @name) }
 
   it { should be_kind_of(Attribute) }
 

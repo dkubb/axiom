@@ -18,14 +18,11 @@ module Veritas
           end
 
           def rename(aliases)
-            new map { |direction|
-              name = aliases[direction.attribute.name]
-              name ? direction.rename(name) : direction
-            }
+            new(map { |direction| direction.rename(aliases) })
           end
 
           def reverse
-            new map { |direction| direction.invert }
+            new(map { |direction| direction.invert })
           end
 
           def each(&block)

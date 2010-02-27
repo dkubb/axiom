@@ -8,9 +8,25 @@ describe 'Veritas::Relation::Operation::Order::Direction#rename' do
     @direction = @klass.new(@attribute)
   end
 
-  subject { @direction.rename(:other_id) }
+  subject { @direction.rename(@aliases) }
 
-  it { should be_kind_of(@klass) }
+  describe 'with aliases matching the attribute' do
+    before do
+      @aliases = { :id => :other_id }
+    end
 
-  it { should eql(@klass.new(Attribute::Integer.new(:other_id))) }
+    it { should be_kind_of(@klass) }
+
+    it { should eql(@klass.new(Attribute::Integer.new(:other_id))) }
+  end
+
+  describe 'with aliases not matching the attribute' do
+    before do
+      @aliases = { :name => :other_name }
+    end
+
+    it { should be_kind_of(@klass) }
+
+    it { should equal(@direction) }
+  end
 end
