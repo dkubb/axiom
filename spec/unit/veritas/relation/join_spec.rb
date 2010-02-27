@@ -3,7 +3,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 [ :join, :+ ].each do |method|
   describe "Veritas::Relation##{method}" do
     before do
-      @relation = Relation.new([ [ :id, Integer ], [ :name, String  ] ], [ [ 1, 'Dan Kubb' ] ])
+      @relation = Relation.new([ [ :id, Integer ], [ :name, String  ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ])
     end
 
     describe 'without predicate arguments or a block' do
