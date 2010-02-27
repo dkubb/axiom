@@ -25,6 +25,10 @@ module Veritas
         @directions ||= relation.directions.rename(aliases)
       end
 
+      def predicate
+        @predicate ||= relation.predicate.rename(aliases)
+      end
+
       def optimize
         case optimize_relation
           when Relation::Empty               then new_empty_relation
