@@ -6,7 +6,21 @@ describe 'Veritas::Tuple#[]' do
     @tuple  = Tuple.new(@header, [ 1 ])
   end
 
-  subject { @tuple[:id] }
+  subject { @tuple[@attribute] }
 
-  it { should == 1 }
+  describe 'with a known attribute' do
+    before do
+      @attribute = @header[:id]
+    end
+
+    it { should == 1 }
+  end
+
+  describe 'with an known attribute' do
+    before do
+      @attribute = Attribute::Integer.new(:other_id)
+    end
+
+    it { should be_nil }
+  end
 end
