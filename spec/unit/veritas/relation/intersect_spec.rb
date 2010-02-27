@@ -9,7 +9,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
       @other    = Relation.new(header, [ [ 2 ] ])
     end
 
-    subject { @relation.intersect(@other) }
+    subject { @relation.send(method, @other) }
 
     it { should be_kind_of(Algebra::Intersection) }
 

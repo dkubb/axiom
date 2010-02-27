@@ -10,7 +10,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
       @other  = Relation::Header.new([ @attribute2 ])
     end
 
-    subject { @header.union(@other) }
+    subject { @header.send(method, @other) }
 
     it { should be_kind_of(Relation::Header) }
 
