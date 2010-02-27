@@ -53,7 +53,7 @@ module Veritas
         end
 
         def self.extract_value(operand, tuple)
-          operand.kind_of?(Attribute) ? tuple[operand] : operand
+          operand.respond_to?(:call) ? operand.call(tuple) : operand
         end
 
       private

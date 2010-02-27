@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction::Predicate.extract_value' do
 
   subject { Algebra::Restriction::Predicate.extract_value(@operand, @tuple) }
 
-  describe 'when the operand is an Attribute' do
+  describe 'when the operand responds to #call' do
     before do
       @operand = @header[:id]
     end
@@ -16,7 +16,7 @@ describe 'Veritas::Algebra::Restriction::Predicate.extract_value' do
     it { should == 1 }
   end
 
-  describe 'when the operand is not an Attribute' do
+  describe 'when the operand does not respond to #call' do
     before do
       @operand = mock('Value')
     end
