@@ -27,6 +27,10 @@ module Veritas
       @required = options.fetch(:required, true)
     end
 
+    def call(tuple)
+      tuple[self]
+    end
+
     def rename(aliases)
       aliases.key?(name) ? self.class.new(aliases[name]) : self
     end
