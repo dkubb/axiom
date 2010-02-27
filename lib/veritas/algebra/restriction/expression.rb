@@ -36,6 +36,10 @@ module Veritas
           Negation.new(self)
         end
 
+        def rename(aliases)
+          self
+        end
+
         def ==(other)
           optimize.eql?(other.optimize)
         end
