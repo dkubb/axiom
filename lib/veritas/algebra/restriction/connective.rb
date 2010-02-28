@@ -14,6 +14,8 @@ module Veritas
         end
 
         def rename(aliases)
+          left          = self.left
+          right         = self.right
           renamed_left  = left.rename(aliases)
           renamed_right = right.rename(aliases)
 
@@ -175,6 +177,7 @@ module Veritas
         end
 
         def rename(aliases)
+          operand         = self.operand
           renamed_operand = operand.rename(aliases)
 
           if operand.equal?(renamed_operand)

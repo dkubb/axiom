@@ -92,24 +92,26 @@ module Veritas
       def optimize_aliases
         @optimize_aliases ||=
           begin
-            other = optimize_relation
-            if other.respond_to?(:aliases)
-              aliases  = other.aliases.dup
-              inverted = aliases.invert
+            other   = optimize_relation
+            aliases = self.aliases
 
-              self.aliases.each do |old_attribute, new_attribute|
+            if other.respond_to?(:aliases)
+              other_aliases = other.aliases.dup
+              inverted      = other_aliases.invert
+
+              aliases.each do |old_attribute, new_attribute|
                 old_attribute = inverted.fetch(old_attribute, old_attribute)
 
                 if old_attribute == new_attribute
-                  aliases.delete(new_attribute)
+                  other_aliases.delete(new_attribute)
                 else
-                  aliases[old_attribute] = new_attribute
+                  other_aliases[old_attribute] = new_attribute
                 end
               end
 
-              aliases
+              other_aliases
             else
-              self.aliases
+              aliases
             end
           end
       end

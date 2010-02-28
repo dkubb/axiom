@@ -26,7 +26,7 @@ module Veritas
           if left.equal?(renamed_left) && right.equal?(renamed_right)
             self
           else
-            self.class.new(renamed_left, renamed_right)
+            util.new(renamed_left, renamed_right)
           end
         end
 
@@ -34,10 +34,13 @@ module Veritas
           return False.instance if always_false? || left.nil? && right.nil?
           return True.instance  if always_true?
 
-          # if possible swap the left and right if left is a value, and right is an attribute
-          return swap if respond_to?(:swap, true) && !left_attribute? && right_attribute?
+          left_attribute  = left_attribute?
+          right_attribute = right_attribute?
 
-          return evaluate_literal_values unless left_attribute? || right_attribute?
+          # if possible swap the left and right if left is a value, and right is an attribute
+          return swap if respond_to?(:swap, true) && !left_attribute && right_attribute
+
+          return evaluate_literal_values unless left_attribute || right_attribute
 
           super
         end
@@ -204,14 +207,15 @@ module Veritas
         end
 
         def optimize
-          left = self.left
+          left           = self.left
+          false_instance = False.instance
 
-          return False.instance if right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
+          return false_instance if right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
 
           right = optimize_right
 
           if right.nil? || right.respond_to?(:empty?) && right.empty?
-            return False.instance
+            return false_instance
           elsif right != self.right
             return self.class.new(left, right)
           end

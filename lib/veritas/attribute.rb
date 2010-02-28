@@ -32,6 +32,7 @@ module Veritas
     end
 
     def rename(aliases)
+      name = self.name
       aliases.key?(name) ? self.class.new(aliases[name]) : self
     end
 
