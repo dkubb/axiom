@@ -55,14 +55,6 @@ module Veritas
           @hash ||= left.hash ^ right.hash
         end
 
-        def self.extract_value(operand, tuple)
-          operand.respond_to?(:call) ? operand.call(tuple) : operand
-        end
-
-        def self.rename_operand(operand, aliases)
-          operand.respond_to?(:rename) ? operand.rename(aliases) : operand
-        end
-
       private
 
         def evaluate_literal_values
@@ -115,6 +107,14 @@ module Veritas
 
         def self.range_or_value(value, method)
           value.respond_to?(:range) ? value.range.send(method) : value
+        end
+
+        def self.extract_value(operand, tuple)
+          operand.respond_to?(:call) ? operand.call(tuple) : operand
+        end
+
+        def self.rename_operand(operand, aliases)
+          operand.respond_to?(:rename) ? operand.rename(aliases) : operand
         end
 
       end # class Predicate
