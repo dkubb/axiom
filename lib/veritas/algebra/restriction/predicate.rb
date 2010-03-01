@@ -97,25 +97,24 @@ module Veritas
           false
         end
 
-        def range_or_value(attribute, range_method)
-          value = send(attribute)
-          value.respond_to?(:range)  ? value.range.send(range_method) : value
-        end
-
         def left_min
-          range_or_value(:left, :first)
+          self.class.range_or_value(left, :first)
         end
 
         def left_max
-          range_or_value(:left, :last)
+          self.class.range_or_value(left, :last)
         end
 
         def right_min
-          range_or_value(:right, :first)
+          self.class.range_or_value(right, :first)
         end
 
         def right_max
-          range_or_value(:right, :last)
+          self.class.range_or_value(right, :last)
+        end
+
+        def self.range_or_value(value, method)
+          value.respond_to?(:range) ? value.range.send(method) : value
         end
 
       end # class Predicate
