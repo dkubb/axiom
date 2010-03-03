@@ -39,6 +39,9 @@
 
           "attr1 IN(..) OR attr2 = ?"
 
+      * Inclusion with a single value can be transformed into an
+        Equality test.
+
 * A Union of relations with the same base, header, and restrictions should
   try to combine into a single relation with the restrictions using OR.
 
@@ -59,6 +62,8 @@
 * Allow Inclusion match to accept a Relation
   * Ensure that Inclusion can have the left/right be an Array of
     Attributes.
+  * Consider transforming the value provided to an Inclusion into
+    a Relation.
 
 * Update Attributes so that constraints are modelled using predicates,
   so that when "join-ability" is tested, the predicates can just be
