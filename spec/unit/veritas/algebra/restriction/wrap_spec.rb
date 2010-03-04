@@ -4,30 +4,66 @@ describe 'Veritas::Algebra::Restriction#wrap' do
   before do
     @relation  = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
     @predicate = @relation[:id].eq(1)
-
-    @restriction = Algebra::Restriction.new(@relation, @predicate)
   end
 
-  subject { @restriction.wrap { |relation| relation } }
+  describe 'without a predicate' do
+    before do
+      @restriction = Algebra::Restriction.new(@relation, @predicate)
+    end
 
-  it { should_not be_equal(@restriction) }
+    subject { @restriction.wrap { |relation| relation } }
 
-  it { should be_kind_of(Algebra::Restriction) }
+    it { should_not be_equal(@restriction) }
 
-  it 'should yield the relations' do
-    @yield = []
-    lambda {
-      @restriction.wrap { |relation| @yield << relation; relation }
-    }.should change { @yield.dup }.from([]).to([ @relation ])
+    it { should be_kind_of(Algebra::Restriction) }
+
+    it 'should yield the relations' do
+      @yield = []
+      lambda {
+        @restriction.wrap { |relation| @yield << relation; relation }
+      }.should change { @yield.dup }.from([]).to([ @relation ])
+    end
+
+    it 'should set the relation with the block return values' do
+      relation = mock('relation', :predicate => Algebra::Restriction::True.instance)
+      operation = @restriction.wrap { relation }
+      operation.relation.should equal(relation)
+    end
+
+    it 'should set the predicate' do
+      subject.predicate.should equal(@predicate)
+    end
   end
 
-  it 'should set the relation with the block return values' do
-    relation = mock('relation', :predicate => Algebra::Restriction::True.instance)
-    operation = @restriction.wrap { relation }
-    operation.relation.should equal(relation)
-  end
+  describe 'with a predicate' do
+    before do
+      @rename = @relation.rename(:id => :other_id)
 
-  it 'should set the predicate' do
-    subject.predicate.should equal(@predicate)
+      @restriction = Algebra::Restriction.new(@rename, @predicate)
+      @predicate   = @predicate.rename(:id => :other_id)
+    end
+
+    subject { @restriction.wrap(@predicate) { |relation| relation } }
+
+    it { should_not be_equal(@restriction) }
+
+    it { should be_kind_of(Algebra::Restriction) }
+
+    it 'should yield the relations' do
+      @yield = []
+      lambda {
+        @restriction.wrap { |relation| @yield << relation; relation }
+      }.should change { @yield.dup }.from([]).to([ @rename ])
+    end
+
+    it 'should set the relation with the block return values' do
+      relation = mock('relation', :predicate => Algebra::Restriction::True.instance)
+      operation = @restriction.wrap { relation }
+      operation.relation.should equal(relation)
+    end
+
+    it 'should set the predicate' do
+      subject.predicate.should equal(@predicate)
+    end
   end
 end

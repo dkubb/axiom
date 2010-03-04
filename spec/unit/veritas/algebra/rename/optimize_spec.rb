@@ -141,6 +141,42 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
+  describe 'containing a restriction' do
+    before do
+      @restriction = @relation.restrict { |r| r[:id].eq(1) }
+
+      @rename = Algebra::Rename.new(@restriction, @aliases)
+    end
+
+    it { should be_instance_of(Algebra::Restriction) }
+
+    it { subject.relation.should eql(Algebra::Rename.new(@relation, @aliases)) }
+
+    it { subject.header.should == [ [ :other_id, Integer ], [ :name, String ] ] }
+
+    it { subject.predicate.should == @rename[:other_id].eq(1) }
+
+    it 'should return an equivalent relation to the unoptimized operation' do
+      should == @rename
+    end
+  end
+
+  describe 'containing a restriction, containing a rename that cancels out' do
+    before do
+      @projection = @relation.rename(:id => :other_id).restrict { |r| r[:other_id].eq(1) }
+
+      @rename = Algebra::Rename.new(@projection, :other_id => :id)
+    end
+
+    it 'should push the rename before the restriction, and then cancel it out' do
+      should eql(@relation.restrict { |r| r[:id].eq(1) })
+    end
+
+    it 'should return an equivalent relation to the unoptimized operation' do
+      should == @rename
+    end
+  end
+
   describe 'containing a set operation' do
     before do
       @left  = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])

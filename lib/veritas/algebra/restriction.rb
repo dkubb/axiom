@@ -29,7 +29,7 @@ module Veritas
         end
       end
 
-      def wrap
+      def wrap(predicate = self.predicate)
         self.class.new(yield(relation), predicate)
       end
 

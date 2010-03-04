@@ -34,6 +34,7 @@ module Veritas
           when Relation::Empty               then new_empty_relation
           when self.class                    then optimize_rename
           when Projection                    then wrap_with_projection
+          when Restriction                   then wrap_with_restriction
           when Relation::Operation::Set,
                Relation::Operation::Reverse,
                Relation::Operation::Limit,
@@ -82,6 +83,10 @@ module Veritas
 
       def wrap_with_projection
         optimize_relation.wrap(header) { |relation| new(relation) }.optimize
+      end
+
+      def wrap_with_restriction
+        optimize_relation.wrap(predicate) { |relation| new(relation) }.optimize
       end
 
       def wrap_with_order
