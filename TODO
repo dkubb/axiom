@@ -1,5 +1,3 @@
-* Projection should remove the attributes in it's predicate
-
 * Add further optimizations:
   * Operation Order:
     * Rename should be pushed down before everything
