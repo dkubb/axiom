@@ -12,8 +12,6 @@ describe 'Veritas::Algebra::Projection#directions' do
       @projection = @relation.project([ :id ])
     end
 
-    subject { @projection.directions }
-
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
     it { should be_empty }
@@ -29,8 +27,6 @@ describe 'Veritas::Algebra::Projection#directions' do
 
       @projection = @order.project([ :id ])
     end
-
-    subject { @projection.directions }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
