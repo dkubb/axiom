@@ -15,6 +15,12 @@ module Veritas
           util.eval(left_value, right_value)
         end
 
+        def project(attributes)
+          return nil if left_attribute?  && !attributes.include?(left)
+          return nil if right_attribute? && !attributes.include?(right)
+          super
+        end
+
         def rename(aliases)
           left  = self.left
           right = self.right
