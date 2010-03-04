@@ -13,6 +13,19 @@ module Veritas
           self.class.eval(left.call(tuple), right.call(tuple))
         end
 
+        def project(attributes)
+          left  = self.left.project(attributes)
+          right = self.right.project(attributes)
+
+          if left.nil?
+            right
+          elsif right.nil?
+            left
+          else
+            super
+          end
+        end
+
         def rename(aliases)
           left          = self.left
           right         = self.right
