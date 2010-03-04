@@ -7,8 +7,12 @@ describe 'Veritas::Algebra::Product' do
       @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ])
     end
 
+    subject { @left.product(@right) }
+
     it 'should not matter which order the relations are multiplied in' do
-      @left.product(@right).should == @right.product(@left)
+      should == @right.product(@left)
     end
+
+    it { should have_tuples_matching_predicate }
   end
 end

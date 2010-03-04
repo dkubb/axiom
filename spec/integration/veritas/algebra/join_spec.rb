@@ -7,8 +7,12 @@ describe 'Veritas::Algebra::Join' do
       @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ])
     end
 
+    subject { @left.join(@right) }
+
     it 'should not matter which order the relations are joined in' do
-      @left.join(@right).should == @right.join(@left)
+      should == @right.join(@left)
     end
+
+    it { should have_tuples_matching_predicate }
   end
 end
