@@ -189,6 +189,11 @@ module Veritas
           operand
         end
 
+        def project(attributes)
+          return nil if operand.project(attributes).nil?
+          super
+        end
+
         def rename(aliases)
           operand         = self.operand
           renamed_operand = operand.rename(aliases)
