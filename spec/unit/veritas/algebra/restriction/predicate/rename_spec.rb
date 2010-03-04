@@ -6,7 +6,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#rename' do
     @attribute = Attribute::Integer.new(:id)
     @other     = Attribute::Integer.new(:other_id)
 
-    @aliases   = { @attribute.name => @other.name }
+    @aliases = { @attribute.name => @other.name }
   end
 
   subject { @predicate.rename(@aliases) }
