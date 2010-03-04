@@ -10,12 +10,12 @@ describe 'Veritas::Algebra::Restriction::Proposition.new' do
   describe 'with true argument' do
     subject { Algebra::Restriction::Proposition.new(true) }
 
-    it { should == Algebra::Restriction::True.instance }
+    it { should equal(Algebra::Restriction::True.instance) }
   end
 
   describe 'with false argument' do
     subject { Algebra::Restriction::Proposition.new(false) }
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 end

@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new(@attribute, @attribute)
       end
 
-      it { should == Algebra::Restriction::True.instance }
+      it { should equal(Algebra::Restriction::True.instance) }
     end
 
     describe 'and are not joinable' do
@@ -22,7 +22,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new(@attribute, @other)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
 
     describe 'and are joinable' do
@@ -50,7 +50,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new(@attribute, 'a')
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 
@@ -68,7 +68,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new('a', @attribute)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 
@@ -78,7 +78,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new(1, 1)
       end
 
-      it { should == Algebra::Restriction::True.instance }
+      it { should equal(Algebra::Restriction::True.instance) }
     end
 
     describe 'that will evaluate to false' do
@@ -86,7 +86,7 @@ describe 'Veritas::Algebra::Restriction::Equality#optimize' do
         @equality = Algebra::Restriction::Equality.new(1, 2)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 end

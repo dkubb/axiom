@@ -35,7 +35,7 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 
   describe 'operand is a false proposition' do
@@ -45,6 +45,6 @@ describe 'Veritas::Algebra::Restriction::Negation#optimize' do
       @negation = Algebra::Restriction::Negation.new(@operand)
     end
 
-    it { should == Algebra::Restriction::True.instance }
+    it { should equal(Algebra::Restriction::True.instance) }
   end
 end

@@ -28,6 +28,6 @@ describe 'Veritas::Algebra::Restriction#wrap' do
   end
 
   it 'should set the predicate' do
-    subject.predicate.should == @predicate
+    subject.predicate.should equal(@predicate)
   end
 end

@@ -35,7 +35,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
 
     it 'should send the left and right value to self.class.eval' do
       PredicateSpecs::Object.should_receive(:eval).with(1, 1).and_return(true)
-      should == Algebra::Restriction::True.instance
+      should equal(Algebra::Restriction::True.instance)
     end
   end
 
@@ -44,6 +44,6 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
       @predicate = PredicateSpecs::Object.new(nil, nil)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 end

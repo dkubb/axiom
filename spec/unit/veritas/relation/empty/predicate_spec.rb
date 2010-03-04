@@ -7,5 +7,5 @@ describe 'Veritas::Relation::Empty#predicate' do
 
   subject { @empty.predicate }
 
-  it { should == Algebra::Restriction::False.instance }
+  it { should equal(Algebra::Restriction::False.instance) }
 end

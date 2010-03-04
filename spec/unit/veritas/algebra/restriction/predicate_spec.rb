@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction#predicate' do
       @relation  = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
       @predicate = @relation[:id].eq(1)
 
-      @relation.predicate.should == Algebra::Restriction::True.instance
+      @relation.predicate.should equal(Algebra::Restriction::True.instance)
 
       @restriction = Algebra::Restriction.new(@relation, @predicate)
     end
@@ -21,12 +21,12 @@ describe 'Veritas::Algebra::Restriction#predicate' do
       @empty = Relation::Empty.new([ [ :id, Integer ] ])
       @predicate = @empty[:id].eq(1)
 
-      @empty.predicate.should == Algebra::Restriction::False.instance
+      @empty.predicate.should equal(Algebra::Restriction::False.instance)
 
       @restriction = Algebra::Restriction.new(@empty, @predicate)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 
   describe 'when the relation has a predicate' do
@@ -39,6 +39,6 @@ describe 'Veritas::Algebra::Restriction#predicate' do
 
     it { should be_kind_of(Algebra::Restriction::Conjunction) }
 
-    it { should == (@relation.predicate & @predicate) }
+    it { should eql(@relation.predicate & @predicate) }
   end
 end

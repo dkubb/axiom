@@ -11,5 +11,5 @@ describe 'Veritas::Relation::Operation::Binary#predicate' do
 
   subject { @binary_operation.predicate }
 
-  it { should == (@left.predicate & @right.predicate) }
+  it { should eql(@left.predicate & @right.predicate) }
 end

@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, @attribute)
       end
 
-      it { should == Algebra::Restriction::True.instance }
+      it { should equal(Algebra::Restriction::True.instance) }
     end
 
     describe 'and are not comparable' do
@@ -23,7 +23,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, @other)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
 
     describe 'and left is always less than right' do
@@ -34,7 +34,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@left, @right)
       end
 
-      it { should == Algebra::Restriction::True.instance }
+      it { should equal(Algebra::Restriction::True.instance) }
     end
 
     describe 'and left is always greater than right' do
@@ -45,7 +45,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@left, @right)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 
@@ -63,7 +63,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(@attribute, 'a')
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 
@@ -81,7 +81,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new('a', @attribute)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 
@@ -91,7 +91,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(1, 1)
       end
 
-      it { should == Algebra::Restriction::True.instance }
+      it { should equal(Algebra::Restriction::True.instance) }
     end
 
     describe 'that will evaluate to false' do
@@ -99,7 +99,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#optimize' do
         @less_than_or_equal_to = Algebra::Restriction::LessThanOrEqualTo.new(2, 1)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 end

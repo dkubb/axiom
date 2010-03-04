@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
             @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
           end
 
-          it { should == Algebra::Restriction::False.instance }
+          it { should equal(Algebra::Restriction::False.instance) }
         end
 
         describe 'and not empty' do
@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
             @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
           end
 
-          it { should == Algebra::Restriction::False.instance }
+          it { should equal(Algebra::Restriction::False.instance) }
         end
 
         describe 'and not empty' do
@@ -50,7 +50,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
           end
 
           it 'should change the Range to be inclusive' do
-            should == @left.in(1..9)
+            should eql(@left.in(1..9))
           end
         end
       end
@@ -62,7 +62,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
           @inclusion = Algebra::Restriction::Inclusion.new(@left, 'a'..'z')
         end
 
-        it { should == Algebra::Restriction::False.instance }
+        it { should equal(Algebra::Restriction::False.instance) }
       end
 
       describe 'that is greater than the left range' do
@@ -72,7 +72,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
           @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
         end
 
-        it { should == Algebra::Restriction::False.instance }
+        it { should equal(Algebra::Restriction::False.instance) }
       end
 
       describe 'that is less than the left range' do
@@ -82,7 +82,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
           @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
         end
 
-        it { should == Algebra::Restriction::False.instance }
+        it { should equal(Algebra::Restriction::False.instance) }
       end
     end
 
@@ -94,7 +94,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
           @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
         end
 
-        it { should == Algebra::Restriction::False.instance }
+        it { should equal(Algebra::Restriction::False.instance) }
       end
 
       describe 'that is empty after filtering invalid values' do
@@ -104,7 +104,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
           @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
         end
 
-        it { should == Algebra::Restriction::False.instance }
+        it { should equal(Algebra::Restriction::False.instance) }
       end
 
       describe 'that is not empty after filtering invalid values' do
@@ -125,7 +125,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
         @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
       end
 
-      it { should == Algebra::Restriction::False.instance }
+      it { should equal(Algebra::Restriction::False.instance) }
     end
   end
 end

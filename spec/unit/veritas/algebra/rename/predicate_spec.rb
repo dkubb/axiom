@@ -15,7 +15,7 @@ describe 'Veritas::Algebra::Rename#predicate' do
       @rename = Algebra::Rename.new(@empty, @aliases)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 
   describe 'containing a relation' do
@@ -25,7 +25,7 @@ describe 'Veritas::Algebra::Rename#predicate' do
       @rename = Algebra::Rename.new(@relation, @aliases)
     end
 
-    it { should == Algebra::Restriction::True.instance }
+    it { should equal(Algebra::Restriction::True.instance) }
   end
 
   describe 'containing a relation with a predicate' do
@@ -36,6 +36,6 @@ describe 'Veritas::Algebra::Rename#predicate' do
       @rename = Algebra::Rename.new(@restriction, @aliases)
     end
 
-    it { should == Attribute::Integer.new(:other_id).eq(1) }
+    it { should eql(Attribute::Integer.new(:other_id).eq(1)) }
   end
 end

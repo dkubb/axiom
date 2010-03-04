@@ -52,7 +52,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should == Algebra::Restriction::True.instance }
+    it { should equal(Algebra::Restriction::True.instance) }
   end
 
   describe 'left and right are false propositions' do
@@ -63,7 +63,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 
   describe 'right is a true proposition' do
@@ -96,7 +96,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 
   describe 'left is a false proposition' do
@@ -107,6 +107,6 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
       @conjunction = Algebra::Restriction::Conjunction.new(@left, @right)
     end
 
-    it { should == Algebra::Restriction::False.instance }
+    it { should equal(Algebra::Restriction::False.instance) }
   end
 end

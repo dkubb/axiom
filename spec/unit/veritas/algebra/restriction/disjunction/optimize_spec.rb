@@ -118,7 +118,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should == @attribute.in([ 1, 3 ]) }
+    it { should eql(@attribute.in([ 1, 3 ])) }
   end
 
   describe 'left and right are equal predicates for the same attribute and the same values' do
@@ -129,7 +129,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should == @attribute.eq(1) }
+    it { should eql(@attribute.eq(1)) }
   end
 
   describe 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
@@ -142,7 +142,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should == (@left | @right) }
+    it { should eql(@left | @right) }
   end
 
   describe 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
@@ -155,6 +155,6 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
       @disjunction = Algebra::Restriction::Disjunction.new(@left, @right)
     end
 
-    it { should == (@left | @right) }
+    it { should eql(@left | @right) }
   end
 end
