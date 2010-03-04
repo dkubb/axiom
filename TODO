@@ -1,3 +1,21 @@
+* Extract optimization into Optimizer class
+  * Make sure it can be inherited and optimization overridden on a
+    per-operation basis.
+  * Think about the design. Will it be some sort of Factory that
+    returns an object that knows how to optimize instances of a
+    specific class? Will it be a map? Will different optimizers be
+    needed for each adapter (YES)? Will an optimizer alter their
+    approach over time? Will it take into account cases where the
+    data is already known, to alter other queries (eg. if a join between
+    in-memory and an RDBMS, use the in-memory values in an IN() clause)
+  * Consider what it would take to expose the Optimizer to the end user
+    who wants to control how optimization is performed for their
+    adapter and/or add something into the chain that will take
+    precedence over both the per-adapter optimizer, and the base
+    optimizer. Even just making it so that the Factory object is
+    returned from a method that can be easily overridden might make
+    it much nicer for the end user.
+
 * Add further optimizations:
   * Operation Order:
     * Projection should follow Rename
