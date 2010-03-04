@@ -21,11 +21,6 @@ describe 'Veritas::Algebra::Projection' do
       subject.should == [ [ 'Dan Kubb' ] ]
     end
 
-    it 'should have a predicate that matches every tuple' do
-      projection = subject
-      predicate  = projection.predicate
-
-      projection.should be_all { |tuple| predicate.call(tuple) }
-    end
+    it { should have_tuples_matching_predicate }
   end
 end
