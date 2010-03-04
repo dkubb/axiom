@@ -36,6 +36,10 @@ module Veritas
           Negation.new(self)
         end
 
+        def project(attributes)
+          self
+        end
+
         def rename(aliases)
           self
         end
