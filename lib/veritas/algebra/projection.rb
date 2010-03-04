@@ -25,6 +25,10 @@ module Veritas
         @directions ||= relation.directions.project(header)
       end
 
+      def predicate
+        @predicate ||= relation.predicate.project(header) || Restriction::True.instance
+      end
+
       def optimize
         relation = optimize_relation
 
