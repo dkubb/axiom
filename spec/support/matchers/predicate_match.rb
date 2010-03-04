@@ -16,6 +16,6 @@ Spec::Matchers.define :have_tuples_matching_predicate do
   end
 
   def predicate
-    @expected.first || @actual.predicate
+    expected.first || actual.predicate
   end
 end
