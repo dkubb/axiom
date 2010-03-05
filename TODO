@@ -1,12 +1,3 @@
-* Consider making a Relation::Materialized
-  * It would inherit from Relation, but add a size method because the
-    number of rows would be known.
-  * Update Relation::Empty to inherit from Relation::Materialized, since
-    the size is actually known.
-  * This also allows for other optimizations, such as with join, where
-    we can use the materialized object to provide restriction criteria
-    to the other side, making the query more efficient.
-
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
     per-operation basis.
