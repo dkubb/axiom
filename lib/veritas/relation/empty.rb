@@ -1,6 +1,6 @@
 module Veritas
   class Relation
-    class Empty < Relation
+    class Empty < Materialized
       include Optimizable  # for no-op #optimize
 
       def initialize(header)

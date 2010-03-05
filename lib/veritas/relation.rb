@@ -1,5 +1,6 @@
 require 'veritas/relation/header'
 require 'veritas/relation/operation'
+require 'veritas/relation/materialized'
 require 'veritas/relation/empty'
 
 module Veritas
@@ -8,6 +9,14 @@ module Veritas
     include Optimizable
 
     attr_reader :header
+
+    def self.new(*args)
+      if args.size == 2 && args.last.respond_to?(:size) && self == Relation
+        Materialized.new(*args)
+      else
+        super
+      end
+    end
 
     def initialize(header, tuples)
       @header, @tuples = Header.coerce(header), tuples
@@ -24,14 +33,6 @@ module Veritas
         yield(seen[tuple] = tuple) unless seen.key?(tuple)
       end
       self
-    end
-
-    def optimize
-      if @tuples.respond_to?(:size) && @tuples.size.zero?
-        new_empty_relation
-      else
-        super
-      end
     end
 
     def project(attributes)
