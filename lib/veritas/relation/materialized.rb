@@ -6,7 +6,7 @@ module Veritas
       end
 
       def optimize
-        size.zero? ? new_empty_relation : super
+        empty? ? new_empty_relation : super
       end
 
     end # class Materialized
