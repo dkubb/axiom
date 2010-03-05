@@ -28,7 +28,7 @@ module Veritas
 
     def each
       seen = {}
-      @tuples.each do |tuple|
+      tuples.each do |tuple|
         tuple = Tuple.coerce(header, tuple)
         yield(seen[tuple] = tuple) unless seen.key?(tuple)
       end
@@ -157,6 +157,8 @@ module Veritas
     end
 
   private
+
+    attr_reader :tuples
 
     def project_header(attributes)
       header.project(attributes)

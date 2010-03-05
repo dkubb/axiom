@@ -2,7 +2,7 @@ module Veritas
   class Relation
     class Materialized < Relation
       def size
-        @tuples.size
+        tuples.size
       end
 
       def optimize
