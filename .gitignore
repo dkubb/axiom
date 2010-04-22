@@ -20,5 +20,6 @@ pkg
 tmp
 log
 *.rbc
+.bundle
 
 ## PROJECT::SPECIFIC
