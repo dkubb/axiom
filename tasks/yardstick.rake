@@ -9,7 +9,7 @@ begin
 
   # verify_measurements task
   Yardstick::Rake::Verify.new do |verify|
-    verify.threshold = 100
+    verify.threshold = 59.4
   end
 rescue LoadError
   %w[ yardstick_measure verify_measurements ].each do |name|
