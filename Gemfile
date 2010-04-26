@@ -10,8 +10,12 @@ group :development do
 end
 
 group :quality do
-  gem 'yardstick', '~> 0.1'
+  gem 'flay',      '~> 1.4.0'
+  gem 'flog',      '~> 2.2.0'
+  gem 'heckle',    '~> 1.4.3'
   gem 'metric_fu', '~> 1.3'
-  gem 'reek',      '~> 1.2.7'
+  gem 'mspec',     '~> 1.5.17'
+  gem 'reek',      '~> 1.2.8'
   gem 'roodi',     '~> 2.1'
+  gem 'yardstick', '~> 0.1'
 end
