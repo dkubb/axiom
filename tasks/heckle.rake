@@ -10,7 +10,6 @@ task :heckle => :verify_rcov do
   require 'heckle'  # make sure heckle is available
   require 'mspec'
   require 'mspec/utils/name_map'
-  require 'active_support'  # gem install activesupport
 
   unless Ruby2Ruby::VERSION == '1.2.2'
     raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
