@@ -15,6 +15,7 @@ tmtags
 
 ## PROJECT::GENERAL
 coverage
+measurements
 rdoc
 pkg
 tmp
