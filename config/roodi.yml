@@ -3,7 +3,7 @@ CaseMissingElseCheck:            { }
 ClassLineCountCheck:             { line_count: 225 }
 ClassNameCheck:                  { pattern: !ruby/regexp /\A[A-Z][a-z](?:[A-Z]?[a-z])+\z/ }
 ClassVariableCheck:              { }
-CyclomaticComplexityBlockCheck:  { complexity: 4 }
+CyclomaticComplexityBlockCheck:  { complexity: 2 }
 # TODO: decrease complexity to 8 or less
 CyclomaticComplexityMethodCheck: { complexity: 9 }
 EmptyRescueBodyCheck:            { }
