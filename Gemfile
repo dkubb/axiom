@@ -18,5 +18,6 @@ group :quality do
   gem 'mspec',     '~> 1.5.17'
   gem 'reek',      '~> 1.2.8'
   gem 'roodi',     '~> 2.1'
+  gem 'ruby2ruby', '=  1.2.2'
   gem 'yardstick', '~> 0.1'
 end
