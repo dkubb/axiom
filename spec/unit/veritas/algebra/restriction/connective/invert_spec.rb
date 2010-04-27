@@ -12,11 +12,11 @@ describe 'Veritas::Algebra::Restriction::Connective#invert' do
 
   subject { @connective.invert }
 
-  it 'should negate the connective' do
+  it 'negates the connective' do
     should eql(Algebra::Restriction::Negation.new(@connective))
   end
 
-  it 'should invert back to original' do
+  it 'inverts back to original' do
     subject.invert.should eql(@connective)
   end
 end

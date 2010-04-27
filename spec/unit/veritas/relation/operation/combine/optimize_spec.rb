@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it 'should attempt to delegate new_empty_relation' do
+    it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it 'should attempt to delegate new_empty_relation' do
+    it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
@@ -40,7 +40,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it 'should attempt to delegate new_empty_relation' do
+    it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
@@ -52,7 +52,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it 'should attempt to delegate new_empty_relation' do
+    it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
@@ -62,7 +62,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
 
-    it 'should attempt to delegate to the superclass' do
+    it 'attempts to delegate to the superclass' do
       method(:subject).should raise_error(NoMethodError)
     end
   end

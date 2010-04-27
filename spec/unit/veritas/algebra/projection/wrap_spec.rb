@@ -14,20 +14,20 @@ describe 'Veritas::Algebra::Projection#wrap' do
 
   it { should be_kind_of(Algebra::Projection) }
 
-  it 'should yield the relations' do
+  it 'yields the relations' do
     @yield = []
     lambda {
       @projection.wrap(@header) { |relation| @yield << relation; relation }
     }.should change { @yield.dup }.from([]).to([ @relation ])
   end
 
-  it 'should set the relation with the block return values' do
+  it 'sets the relation with the block return values' do
     relation = mock('relation')
     operation = @projection.wrap(@header) { relation }
     operation.relation.should equal(relation)
   end
 
-  it 'should set the header' do
+  it 'sets the header' do
     subject.header.should == @header
   end
 end

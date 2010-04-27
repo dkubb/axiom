@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Restriction::Inequality#invert' do
 
   it { should eql(@attribute.eq(1)) }
 
-  it 'should invert back to original' do
+  it 'inverts back to original' do
     subject.invert.should eql(@inequality)
   end
 end

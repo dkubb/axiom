@@ -51,7 +51,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#project' do
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
     end
 
-    it 'should delegate to super, but no #project in superclass' do
+    it 'delegates to super, but no #project in superclass' do
       method(:subject).should raise_error(NoMethodError)
     end
   end

@@ -18,7 +18,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
     it { should be_kind_of(Algebra::Restriction::Conjunction) }
 
-    it 'should return an expression ANDed with a negated predicate' do
+    it 'returns an expression ANDed with a negated predicate' do
       should eql(Algebra::Restriction::Conjunction.new(@expression, Algebra::Restriction::Negation.new(@predicate)))
     end
   end

@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#project' do
         @predicate = PredicateSpecs::Object.new(@attribute, 1)
       end
 
-      it 'should return self' do
+      it 'returns self' do
         should equal(@predicate)
       end
     end
@@ -27,7 +27,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#project' do
         @predicate = PredicateSpecs::Object.new(@other, 1)
       end
 
-      it 'should return nil' do
+      it 'returns nil' do
         should be_nil
       end
     end
@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#project' do
         @predicate = PredicateSpecs::Object.new(1, @attribute)
       end
 
-      it 'should return self' do
+      it 'returns self' do
         should equal(@predicate)
       end
     end
@@ -49,7 +49,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#project' do
         @predicate = PredicateSpecs::Object.new(1, @other)
       end
 
-      it 'should return nil' do
+      it 'returns nil' do
         should be_nil
       end
     end
@@ -60,7 +60,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#project' do
       @predicate = PredicateSpecs::Object.new(1, 1)
     end
 
-    it 'should return self' do
+    it 'returns self' do
       should equal(@predicate)
     end
   end

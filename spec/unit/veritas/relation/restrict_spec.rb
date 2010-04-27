@@ -14,11 +14,11 @@ describe 'Veritas::Relation#restrict' do
 
     it { should be_kind_of(Algebra::Restriction) }
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should equal(@predicate)
     end
 
-    it 'should behave the same as Enumerable#select' do
+    it 'behaves the same as Enumerable#select' do
       should == @relation.select { |tuple| tuple[:id] == 1 }
     end
   end
@@ -32,11 +32,11 @@ describe 'Veritas::Relation#restrict' do
 
     it { should be_kind_of(Algebra::Restriction) }
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should eql(@block.call(@relation))
     end
 
-    it 'should behave the same as Enumerable#select' do
+    it 'behaves the same as Enumerable#select' do
       should == @relation.select { |tuple| tuple[:id] == 1 }
     end
   end

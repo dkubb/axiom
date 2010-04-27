@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Operation::Combine#header' do
 
   it { should be_kind_of(Relation::Header) }
 
-  it 'should union the headers' do
+  it 'unions the headers' do
     should == [ [ :id, Integer ], [ :name, String ] ]
   end
 end

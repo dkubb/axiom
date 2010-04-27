@@ -18,7 +18,7 @@ describe 'Veritas::Relation::Operation::Binary#directions' do
 
   it { should == [ @left[:id].asc, @right[:name].asc ] }
 
-  it 'should be consistent' do
+  it 'is consistent' do
     should equal(@binary_operation.directions)
   end
 end

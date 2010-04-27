@@ -8,7 +8,7 @@ describe 'Range#to_exclusive' do
       @range = 1...2
     end
 
-    it 'should return self' do
+    it 'returns self' do
       should equal(@range)
     end
   end
@@ -18,7 +18,7 @@ describe 'Range#to_exclusive' do
       @range = 1..2
     end
 
-    it 'should return an exclusive Range' do
+    it 'returns an exclusive Range' do
       should == (1...3)
     end
   end

@@ -17,20 +17,20 @@ describe 'Veritas::Algebra::Restriction#wrap' do
 
     it { should be_kind_of(Algebra::Restriction) }
 
-    it 'should yield the relations' do
+    it 'yields the relations' do
       @yield = []
       lambda {
         @restriction.wrap { |relation| @yield << relation; relation }
       }.should change { @yield.dup }.from([]).to([ @relation ])
     end
 
-    it 'should set the relation with the block return values' do
+    it 'sets the relation with the block return values' do
       relation = mock('relation', :predicate => Algebra::Restriction::True.instance)
       operation = @restriction.wrap { relation }
       operation.relation.should equal(relation)
     end
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should equal(@predicate)
     end
   end
@@ -49,20 +49,20 @@ describe 'Veritas::Algebra::Restriction#wrap' do
 
     it { should be_kind_of(Algebra::Restriction) }
 
-    it 'should yield the relations' do
+    it 'yields the relations' do
       @yield = []
       lambda {
         @restriction.wrap { |relation| @yield << relation; relation }
       }.should change { @yield.dup }.from([]).to([ @rename ])
     end
 
-    it 'should set the relation with the block return values' do
+    it 'sets the relation with the block return values' do
       relation = mock('relation', :predicate => Algebra::Restriction::True.instance)
       operation = @restriction.wrap { relation }
       operation.relation.should equal(relation)
     end
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should equal(@predicate)
     end
   end

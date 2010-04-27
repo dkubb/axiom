@@ -12,7 +12,7 @@ describe 'Veritas::Algebra::Restriction::Expression#invert' do
 
   subject { @expression.invert }
 
-  it 'should return a negated expression' do
+  it 'returns a negated expression' do
     should eql(Algebra::Restriction::Negation.new(@expression))
   end
 end

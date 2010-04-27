@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Operation::Unary#directions' do
 
   it { should equal(@relation.directions) }
 
-  it 'should be consistent' do
+  it 'is consistent' do
     should equal(@unary_operation.directions)
   end
 end

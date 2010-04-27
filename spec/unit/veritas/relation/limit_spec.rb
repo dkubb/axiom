@@ -11,7 +11,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    it 'should behave the same as Array#take' do
+    it 'behaves the same as Array#take' do
       should == @ordered.to_a.take(1)
     end
   end

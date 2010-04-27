@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Operation::Order#directions' do
 
   it { should == @directions }
 
-  it 'should be consistent' do
+  it 'is consistent' do
     should equal(@order.directions)
   end
 end

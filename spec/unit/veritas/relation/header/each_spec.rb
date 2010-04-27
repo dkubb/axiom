@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Header' do
 
   it { should be_kind_of(Enumerable) }
 
-  it 'should case match Enumerable' do
+  it 'case matches Enumerable' do
     (Enumerable === subject).should be_true
   end
 end
@@ -22,7 +22,7 @@ describe 'Veritas::Relation::Header#each' do
 
   it { should equal(@header) }
 
-  it 'should yield each attribute' do
+  it 'yields each attribute' do
     method(:subject).should change { @yield.dup }.from([]).to([ @attribute ])
   end
 end

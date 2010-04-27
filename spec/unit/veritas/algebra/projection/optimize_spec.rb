@@ -14,7 +14,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -24,7 +24,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       @projection = Algebra::Projection.new(@relation, [ :name, :id ])
     end
 
-    it 'should not factor out the projection, because tuple order is currently significant' do
+    it 'does not factor out the projection, because tuple order is currently significant' do
       should equal(@projection)
     end
   end
@@ -46,7 +46,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should eql(Relation::Empty.new(@projection.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -60,7 +60,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should eql(Relation::Empty.new(@projection.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -80,7 +80,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { subject.header.should == @projection.header }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -100,7 +100,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { subject.header.should == @projection.header }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -114,14 +114,14 @@ describe 'Veritas::Algebra::Projection#optimize' do
       @projection = @union.project([ :name ])
     end
 
-    it 'should push the projection to each relation' do
+    it 'pushes the projection to each relation' do
       should eql(Algebra::Union.new(
          Algebra::Projection.new(@left,  @projection.header),
          Algebra::Projection.new(@right, @projection.header)
       ))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end
@@ -135,11 +135,11 @@ describe 'Veritas::Algebra::Projection#optimize' do
       @projection = @union.project([ :name ])
     end
 
-    it 'should push the projection to each relation, and combine the nested projections' do
+    it 'pushes the projection to each relation, and combine the nested projections' do
       should eql(@left.project([ :name ]).union(@right.project([ :name ])))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @projection
     end
   end

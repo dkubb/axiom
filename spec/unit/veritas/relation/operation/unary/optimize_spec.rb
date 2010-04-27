@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
 
     it { should equal(@empty) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @unary_operation
     end
   end
@@ -25,7 +25,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
       @unary_operation = UnaryOperationSpecs::Object.new(@relation)
     end
 
-    it 'should attempt to delegate to the superclass' do
+    it 'attempts to delegate to the superclass' do
       method(:subject).should raise_error(NoMethodError)
     end
   end

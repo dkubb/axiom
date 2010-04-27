@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction::Expression#rename' do
 
   subject { @expression.rename({}) }
 
-  it 'should return self' do
+  it 'returns self' do
     should equal(@expression)
   end
 end

@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#call' do
 
   subject { @predicate.call(@tuple) }
 
-  it 'should send the left and right value to self.class.eval' do
+  it 'sends the left and right value to self.class.eval' do
     response = mock('#eval response')
     PredicateSpecs::Object.should_receive(:eval).with(1, 1).and_return(response)
     should equal(response)

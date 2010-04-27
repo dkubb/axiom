@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::Product' do
 
     subject { @left.product(@right) }
 
-    it 'should not matter which order the relations are multiplied in' do
+    it 'does not matter which order the relations are multiplied in' do
       should == @right.product(@left)
     end
 

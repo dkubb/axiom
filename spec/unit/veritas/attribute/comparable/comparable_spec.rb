@@ -14,7 +14,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.comparable?(@attribute)
     end
   end
@@ -26,7 +26,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
 
     it { should be_false }
 
-    it 'should be not be symmetric' do
+    it 'is not be symmetric' do
       lambda {
         @other.comparable?(@attribute)
       }.should raise_error(NoMethodError)
@@ -40,7 +40,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.comparable?(@attribute)
     end
   end
@@ -52,7 +52,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.comparable?(@attribute)
     end
   end

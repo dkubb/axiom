@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Order::Direction#call' do
 
   subject { @direction.call(@left, @right) }
 
-  it 'should send the tuple value to self.class.eval' do
+  it 'sends the tuple value to self.class.eval' do
     response = mock('#eval response')
     @klass.should_receive(:eval).with(1, 2).and_return(response)
     should equal(response)

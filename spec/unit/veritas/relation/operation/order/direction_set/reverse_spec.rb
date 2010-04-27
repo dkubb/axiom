@@ -11,11 +11,11 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#reverse' do
 
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
-  it 'should reverse each direction' do
+  it 'reverses each direction' do
     should == [ @attribute1.desc, @attribute2.desc ]
   end
 
-  it 'should not reverse the attribute order' do
+  it 'does not reverse the attribute order' do
     subject.attributes.should == [ @attribute1, @attribute2 ]
   end
 end

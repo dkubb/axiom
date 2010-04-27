@@ -13,11 +13,11 @@ describe 'Veritas::Algebra::Rename#each' do
 
   it { should equal(@rename) }
 
-  it 'should yield each tuple' do
+  it 'yields each tuple' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
   end
 
-  it 'should change the header for each tuple' do
+  it 'changes the header for each tuple' do
     subject
     @yield.first.header.should equal(@rename.header)
   end

@@ -28,7 +28,7 @@ describe 'Veritas::Algebra::Restriction::Conjunction#optimize' do
 
     it { should_not equal(@conjunction) }
 
-    it 'should invert the operands' do
+    it 'inverts the operands' do
       should eql(Algebra::Restriction::Conjunction.new(@attribute.lte(1), @attribute.gte(3)))
     end
   end

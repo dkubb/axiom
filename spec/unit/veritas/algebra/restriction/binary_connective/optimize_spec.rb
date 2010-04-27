@@ -50,7 +50,7 @@ describe 'Veritas::Algebra::Restriction::BinaryConnective#optimize' do
       @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
     end
 
-    it 'should delegate to super, but no #optimize in superclass' do
+    it 'delegates to super, but no #optimize in superclass' do
       method(:subject).should raise_error(NoMethodError)
     end
   end

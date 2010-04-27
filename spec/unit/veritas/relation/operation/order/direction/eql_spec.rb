@@ -18,7 +18,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
       it { should be_true }
 
-      it 'should be symmetric' do
+      it 'is symmetric' do
         should == @other.send(method, @direction)
       end
     end
@@ -30,7 +30,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
       it { should be_true }
 
-      it 'should be symmetric' do
+      it 'is symmetric' do
         should == @other.send(method, @direction)
       end
     end
@@ -44,7 +44,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
       it { should be_false }
 
-      it 'should be symmetric' do
+      it 'is symmetric' do
         should == @other.send(method, @direction)
       end
     end
@@ -58,7 +58,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
       it { should be_false }
 
-      it 'should be symmetric' do
+      it 'is symmetric' do
         should == @other.send(method, @direction)
       end
     end

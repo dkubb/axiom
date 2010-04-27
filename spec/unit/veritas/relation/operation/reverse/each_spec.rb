@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Reverse#each' do
 
   it { should equal(@reverse) }
 
-  it 'should yield each tuple in reverse order' do
+  it 'yields each tuple in reverse order' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 3 ], [ 2 ], [ 1 ] ])
   end
 end

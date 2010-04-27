@@ -16,7 +16,7 @@ describe 'Veritas::Algebra::Projection#directions' do
 
     it { should be_empty }
 
-    it 'should be consistent' do
+    it 'is consistent' do
       should equal(@projection.directions)
     end
   end
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Projection#directions' do
 
     it { should == [ @order[:id].asc ] }
 
-    it 'should be consistent' do
+    it 'is consistent' do
       should equal(@projection.directions)
     end
   end

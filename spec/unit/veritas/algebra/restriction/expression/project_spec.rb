@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction::Expression#project' do
 
   subject { @expression.project([]) }
 
-  it 'should return self' do
+  it 'returns self' do
     should equal(@expression)
   end
 end

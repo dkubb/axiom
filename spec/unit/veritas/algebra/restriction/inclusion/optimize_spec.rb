@@ -49,7 +49,7 @@ describe 'Veritas::Algebra::Restriction::Inclusion#optimize' do
             @inclusion = Algebra::Restriction::Inclusion.new(@left, @right)
           end
 
-          it 'should change the Range to be inclusive' do
+          it 'changes the Range to be inclusive' do
             should eql(@left.in(1..9))
           end
         end

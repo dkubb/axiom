@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Restriction::LessThanOrEqualTo#invert' do
 
   it { should eql(@attribute.gt(1)) }
 
-  it 'should invert back to original' do
+  it 'inverts back to original' do
     subject.invert.should eql(@less_than_or_equal_to)
   end
 end

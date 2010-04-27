@@ -26,7 +26,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
       it { should be_kind_of(Algebra::Restriction) }
 
-      it 'should restrict a product' do
+      it 'restricts a product' do
         should == [ [ 1, 'Dan Kubb', true ] ]
       end
     end
@@ -43,7 +43,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
       it { should be_kind_of(Algebra::Restriction) }
 
-      it 'should restrict a product' do
+      it 'restricts a product' do
         should == [ [ 1, 'Dan Kubb', true ] ]
       end
     end

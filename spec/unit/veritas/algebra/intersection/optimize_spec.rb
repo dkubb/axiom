@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should equal(@left) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @intersection
     end
   end
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should equal(@right) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @intersection
     end
   end
@@ -46,7 +46,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should eql(Relation::Empty.new(@left.header | @right.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @intersection
     end
   end
@@ -60,7 +60,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should eql(Relation::Empty.new(@left.header | @right.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @intersection
     end
   end
@@ -82,7 +82,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should equal(@left) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @intersection
     end
   end

@@ -28,7 +28,7 @@ describe 'Veritas::Algebra::Restriction::Disjunction#optimize' do
 
     it { should_not equal(@disjunction) }
 
-    it 'should invert the operands' do
+    it 'inverts the operands' do
       should eql(Algebra::Restriction::Disjunction.new(@attribute.lte(1), @attribute.gte(3)))
     end
   end

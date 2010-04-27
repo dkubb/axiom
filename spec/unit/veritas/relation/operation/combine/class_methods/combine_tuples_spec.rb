@@ -9,7 +9,7 @@ describe 'Veritas::Relation::Operation::Combine.combine_tuples' do
 
   subject { Relation::Operation::Combine.combine_tuples(@header, [ 1 ], [ [ 'Dan Kubb' ] ]) { |tuple| @yield << tuple } }
 
-  it 'should yield each combined tuple' do
+  it 'yields each combined tuple' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 1, 'Dan Kubb' ] ])
   end
 end

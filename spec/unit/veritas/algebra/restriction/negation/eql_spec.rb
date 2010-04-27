@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.eql?(@negation)
     end
   end
@@ -29,7 +29,7 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.eql?(@negation)
     end
   end
@@ -43,7 +43,7 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.eql?(@negation)
     end
   end
@@ -57,7 +57,7 @@ describe 'Veritas::Algebra::Restriction::Negation#eql?' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == @other.eql?(@negation)
     end
   end

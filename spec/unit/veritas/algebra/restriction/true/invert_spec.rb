@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::Restriction::True#invert' do
 
   it { should equal(Algebra::Restriction::False.instance) }
 
-  it 'should invert back to original' do
+  it 'inverts back to original' do
     subject.invert.should eql(@true)
   end
 end

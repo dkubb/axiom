@@ -10,7 +10,7 @@ describe 'Veritas::Algebra::Restriction::Predicate.range_or_value' do
       @method    = :last
     end
 
-    it 'should execute the method on attribute range' do
+    it 'executes the method on attribute range' do
       should == 10
     end
   end
@@ -21,7 +21,7 @@ describe 'Veritas::Algebra::Restriction::Predicate.range_or_value' do
       @method = :last
     end
 
-    it 'should execute the method on attribute range' do
+    it 'executes the method on attribute range' do
       should == 5
     end
   end

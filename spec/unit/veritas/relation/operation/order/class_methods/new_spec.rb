@@ -12,11 +12,11 @@ describe 'Veritas::Relation::Operation::Order.new' do
       @directions = [ @relation[:id] ]
     end
 
-    it 'should set the relation' do
+    it 'sets the relation' do
       subject.relation.should equal(@relation)
     end
 
-    it 'should set the directions' do
+    it 'sets the directions' do
       subject.directions.should == [ @relation[:id].asc ]
     end
   end

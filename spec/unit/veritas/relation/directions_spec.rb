@@ -11,7 +11,7 @@ describe 'Veritas::Relation#directions' do
 
   it { should be_empty }
 
-  it 'should be consistent' do
+  it 'is consistent' do
     should equal(@relation.directions)
   end
 end

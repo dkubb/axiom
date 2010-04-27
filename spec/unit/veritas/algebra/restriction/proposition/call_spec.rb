@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction::Proposition#call' do
 
   subject { @proposition.call }
 
-  it 'should call self.class.eval' do
+  it 'calls self.class.eval' do
     response = mock('#eval response')
     PropositionSpecs::Object.should_receive(:eval).with(no_args).and_return(response)
     should equal(response)

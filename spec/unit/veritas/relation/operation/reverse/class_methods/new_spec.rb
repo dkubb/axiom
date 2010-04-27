@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Operation::Reverse.new' do
 
     it { should be_kind_of(Relation::Operation::Reverse)  }
 
-    it 'should reverse the directions' do
+    it 'reverses the directions' do
       subject.directions.should == @relation.directions.reverse
     end
   end

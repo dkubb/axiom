@@ -17,7 +17,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end
@@ -29,7 +29,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end
@@ -41,7 +41,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end
@@ -53,7 +53,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end
@@ -65,7 +65,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       pending 'Set#== should call to_set on other' do
         should == (@other == @relation)
       end
@@ -79,7 +79,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end
@@ -98,7 +98,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end
@@ -112,7 +112,7 @@ describe 'Veritas::Relation#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @relation)
     end
   end

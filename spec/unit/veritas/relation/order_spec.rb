@@ -14,11 +14,11 @@ describe 'Veritas::Relation#order' do
 
     it { should be_kind_of(Relation::Operation::Order) }
 
-    it 'should set the directions' do
+    it 'sets the directions' do
       subject.directions.should == @directions
     end
 
-    it 'should behave the same as Array#sort_by' do
+    it 'behaves the same as Array#sort_by' do
       should == @relation.to_a.sort_by { |tuple| tuple[:id] }
     end
   end
@@ -32,11 +32,11 @@ describe 'Veritas::Relation#order' do
 
     it { should be_kind_of(Relation::Operation::Order) }
 
-    it 'should set the directions' do
+    it 'sets the directions' do
       subject.directions.should == @block.call(@relation)
     end
 
-    it 'should behave the same as Array#sort_by' do
+    it 'behaves the same as Array#sort_by' do
       should == @relation.to_a.sort_by { |tuple| tuple[:id] }
     end
   end

@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end
@@ -40,7 +40,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end
@@ -54,7 +54,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end
@@ -66,7 +66,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end
@@ -78,7 +78,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_false }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end
@@ -94,7 +94,7 @@ describe 'Veritas::Relation::Header#==' do
 
     it { should be_true }
 
-    it 'should be symmetric' do
+    it 'is symmetric' do
       should == (@other == @header)
     end
   end

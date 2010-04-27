@@ -11,11 +11,11 @@ describe 'Veritas::Relation#last' do
 
     it { should be_kind_of(Relation::Operation::Order) }
 
-    it 'should return the expected tuples' do
+    it 'returns the expected tuples' do
       should == [ [ 3 ] ]
     end
 
-    it 'should behave the same as Array#last' do
+    it 'behaves the same as Array#last' do
       should == [ @ordered.to_a.last ]
     end
   end
@@ -25,11 +25,11 @@ describe 'Veritas::Relation#last' do
 
     it { should be_kind_of(Relation::Operation::Order) }
 
-    it 'should return the expected tuples' do
+    it 'returns the expected tuples' do
       should == [ [ 2 ], [ 3 ] ]
     end
 
-    it 'should behave the same as Array#last' do
+    it 'behaves the same as Array#last' do
       should == @ordered.to_a.last(2)
     end
   end

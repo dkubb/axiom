@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Materialized#optimize' do
 
     it { should eql(Relation::Empty.new(@relation.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @relation
     end
   end

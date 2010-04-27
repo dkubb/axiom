@@ -7,11 +7,11 @@ describe 'Time#pred' do
 
   subject { @time.pred }
 
-  it 'should return the time 1 second ago' do
+  it 'returns the time 1 second ago' do
     should == (@time - 1)
   end
 
-  it 'should be the inverse of #succ' do
+  it 'is the inverse of #succ' do
     subject.succ.should == @time
   end
 end

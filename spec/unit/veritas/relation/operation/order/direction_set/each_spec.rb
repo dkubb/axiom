@@ -9,7 +9,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet' do
 
   it { should be_kind_of(Enumerable) }
 
-  it 'should case match Enumerable' do
+  it 'case matches Enumerable' do
     (Enumerable === subject).should be_true
   end
 end
@@ -26,7 +26,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
 
   it { should equal(@directions) }
 
-  it 'should yield each direction' do
+  it 'yields each direction' do
     method(:subject).should change { @yield.dup }.from([]).to(@directions.to_ary)
   end
 end

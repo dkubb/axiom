@@ -13,11 +13,11 @@ describe 'Veritas::Algebra::Projection' do
 
     subject { @restriction.project([ :name ]) }
 
-    it 'should remove the predicates with the removed attributes' do
+    it 'removes the predicates with the removed attributes' do
       subject.predicate.should eql(@relation[:name].eq('Dan Kubb'))
     end
 
-    it 'should return a relation with a single tuple' do
+    it 'returns a relation with a single tuple' do
       subject.should == [ [ 'Dan Kubb' ] ]
     end
 

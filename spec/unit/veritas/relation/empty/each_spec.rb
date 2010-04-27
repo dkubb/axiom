@@ -11,7 +11,7 @@ describe 'Veritas::Relation::Empty#each' do
 
   it { should equal(@empty) }
 
-  it 'should not yield any tuples' do
+  it 'does not yield any tuples' do
     method(:subject).should_not change { @yield.dup }
   end
 end

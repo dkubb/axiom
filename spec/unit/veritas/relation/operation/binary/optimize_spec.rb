@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
       @binary_operation = BinaryRelationOperationSpecs::Object.new(@left, @right)
     end
 
-    it 'should delegate to super, but no #optimize in superclass' do
+    it 'delegates to super, but no #optimize in superclass' do
       method(:subject).should raise_error(NoMethodError)
     end
   end

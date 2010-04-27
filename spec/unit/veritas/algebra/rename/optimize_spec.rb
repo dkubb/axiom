@@ -25,7 +25,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should eql(Relation::Empty.new(@rename.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -41,13 +41,13 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Rename) }
 
-    it 'should set aliases the same as the original rename' do
+    it 'sets aliases the same as the original rename' do
       subject.aliases.should == @rename.aliases
     end
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -62,13 +62,13 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Rename) }
 
-    it 'should set aliases as a union of both aliases' do
+    it 'sets aliases as a union of both aliases' do
       subject.aliases.should == @aliases.merge(:name => :other_name)
     end
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -83,13 +83,13 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Rename) }
 
-    it 'should set aliases as a union of both aliases' do
+    it 'sets aliases as a union of both aliases' do
       subject.aliases.should == { :id => :another_id }
     end
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -102,7 +102,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -120,7 +120,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { subject.header.should == [ [ :other_id, Integer ] ] }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -132,11 +132,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = Algebra::Rename.new(@projection, :other_id => :id)
     end
 
-    it 'should push the rename before the projection, and then cancel it out' do
+    it 'pushes the rename before the projection, and then cancel it out' do
       should eql(@relation.project([ :id ]))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -156,7 +156,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { subject.predicate.should == @rename[:other_id].eq(1) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -168,11 +168,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = Algebra::Rename.new(@projection, :other_id => :id)
     end
 
-    it 'should push the rename before the restriction, and then cancel it out' do
+    it 'pushes the rename before the restriction, and then cancel it out' do
       should eql(@relation.restrict { |r| r[:id].eq(1) })
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -186,11 +186,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @union.rename(@aliases)
     end
 
-    it 'should push the rename to each relation' do
+    it 'pushes the rename to each relation' do
       should eql(@left.rename(@aliases).union(@right.rename(@aliases)))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -204,11 +204,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @union.rename(:other_id => :id)
     end
 
-    it 'should push the rename to each relation, then cancel it out' do
+    it 'pushes the rename to each relation, then cancel it out' do
       should eql(@left.union(@right))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -221,11 +221,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @reverse.rename(@aliases)
     end
 
-    it 'should push the rename under the order, limit and reverse' do
+    it 'pushes the rename under the order, limit and reverse' do
       should eql(@relation.rename(@aliases).order { |r| r.header }.limit(2).reverse)
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -238,11 +238,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @reverse.rename(:other_id => :id)
     end
 
-    it 'should push the rename under the order, limit and reverse, and then cancel it out' do
+    it 'pushes the rename under the order, limit and reverse, and then cancel it out' do
       should eql(@relation.order { |r| r.header }.limit(2).reverse)
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -254,11 +254,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @order.rename(@aliases)
     end
 
-    it 'should push the rename under the order' do
+    it 'pushes the rename under the order' do
       should eql(@relation.rename(@aliases).order { |r| r.header })
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -270,11 +270,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @order.rename(:other_id => :id)
     end
 
-    it 'should push the rename under the order, and then cancel it out' do
+    it 'pushes the rename under the order, and then cancel it out' do
       should eql(@relation.order { |r| r.header })
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -287,11 +287,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @limit.rename(@aliases)
     end
 
-    it 'should push the rename under the limit and order' do
+    it 'pushes the rename under the limit and order' do
       should eql(@relation.rename(@aliases).order { |r| r.header }.limit(2))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -304,11 +304,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @limit.rename(:other_id => :id)
     end
 
-    it 'should push the rename under the limit and order, and then cancel it out' do
+    it 'pushes the rename under the limit and order, and then cancel it out' do
       should eql(@relation.order { |r| r.header }.limit(2))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -321,11 +321,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @offset.rename(@aliases)
     end
 
-    it 'should push the rename under the offset and order' do
+    it 'pushes the rename under the offset and order' do
       should eql(@relation.rename(@aliases).order { |r| r.header }.offset(1))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end
@@ -338,11 +338,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       @rename = @offset.rename(:other_id => :id)
     end
 
-    it 'should push the rename under the offset and order, and then cancel it out' do
+    it 'pushes the rename under the offset and order, and then cancel it out' do
       should eql(@relation.order { |r| r.header }.offset(1))
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
     end
   end

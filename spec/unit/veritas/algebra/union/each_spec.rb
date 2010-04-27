@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Union#each' do
 
     it { should equal(@union) }
 
-    it 'should yield the union' do
+    it 'yields the union' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
     end
   end
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Union#each' do
 
     it { should equal(@union) }
 
-    it 'should yield the union' do
+    it 'yields the union' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
     end
   end

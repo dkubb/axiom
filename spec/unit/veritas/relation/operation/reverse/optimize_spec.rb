@@ -17,11 +17,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       @reverse = Relation::Operation::Reverse.new(@other)
     end
 
-    it 'should cancel out the operations and return the contained operation' do
+    it 'cancels out the operations and return the contained operation' do
       should equal(@limit)
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @reverse
     end
   end
@@ -35,11 +35,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       @reverse = Relation::Operation::Reverse.new(@projection)
     end
 
-    it 'should cancel out the operations and return the contained operation' do
+    it 'cancels out the operations and return the contained operation' do
       should equal(@limit)
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @reverse
     end
   end
@@ -51,7 +51,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
     it { should eql(@relation.order(@reverse.directions)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @reverse
     end
   end
@@ -65,7 +65,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
     it { should eql(@relation.order(@reverse.directions)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @reverse
     end
   end
@@ -80,7 +80,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
     it { should eql(@order.limit(2).reverse) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @reverse
     end
   end

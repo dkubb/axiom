@@ -5,7 +5,7 @@ describe 'Veritas::Relation' do
 
   it { should be_kind_of(Enumerable) }
 
-  it 'should case match Enumerable' do
+  it 'case matches Enumerable' do
     (Enumerable === subject).should be_true
   end
 end
@@ -24,7 +24,7 @@ describe 'Veritas::Relation#each' do
 
   it { should equal(@relation) }
 
-  it 'should yield each tuple only once' do
+  it 'yields each tuple only once' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
   end
 end

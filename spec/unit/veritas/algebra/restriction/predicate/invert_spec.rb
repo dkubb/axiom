@@ -10,11 +10,11 @@ describe 'Veritas::Algebra::Restriction::Predicate#invert' do
 
   subject { @predicate.invert }
 
-  it 'should negate the predicate' do
+  it 'negates the predicate' do
     should eql(Algebra::Restriction::Negation.new(@predicate))
   end
 
-  it 'should invert back to original' do
+  it 'inverts back to original' do
     subject.invert.should equal(@predicate)
   end
 end

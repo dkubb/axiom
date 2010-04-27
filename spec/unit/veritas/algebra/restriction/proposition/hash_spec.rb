@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction::Proposition#hash' do
 
   subject { @proposition.hash }
 
-  it 'should hash the resutls of self.class.eval' do
+  it 'hashes the results of self.class.eval' do
     response = mock('#eval response')
     PropositionSpecs::Object.should_receive(:eval).with(no_args).and_return(response)
     should == response.hash

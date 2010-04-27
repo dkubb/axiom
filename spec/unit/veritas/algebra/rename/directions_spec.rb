@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Rename#directions' do
 
     it { should be_empty }
 
-    it 'should be consistent' do
+    it 'is consistent' do
       should equal(@rename.directions)
     end
   end
@@ -33,7 +33,7 @@ describe 'Veritas::Algebra::Rename#directions' do
 
     it { should == [ Attribute::Integer.new(:other_id).asc ] }
 
-    it 'should be consistent' do
+    it 'is consistent' do
       should equal(@rename.directions)
     end
   end

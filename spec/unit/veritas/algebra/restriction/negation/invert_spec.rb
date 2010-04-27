@@ -10,11 +10,11 @@ describe 'Veritas::Algebra::Restriction::Negation#invert' do
 
   subject { @negation.invert }
 
-  it 'should return the operand' do
+  it 'returns the operand' do
     should equal(@operand)
   end
 
-  it 'should not invert back to original' do
+  it 'does not invert back to original' do
     subject.invert.should_not eql(@negation)
   end
 end

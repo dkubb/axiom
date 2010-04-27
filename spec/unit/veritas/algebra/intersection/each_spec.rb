@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Intersection#each' do
 
     it { should equal(@intersection) }
 
-    it 'should yield the intersection' do
+    it 'yields the intersection' do
       method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
     end
   end
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Intersection#each' do
 
     it { should equal(@intersection) }
 
-    it 'should yield the intersection' do
+    it 'yields the intersection' do
       method(:subject).should_not change { @yield.dup }
     end
   end

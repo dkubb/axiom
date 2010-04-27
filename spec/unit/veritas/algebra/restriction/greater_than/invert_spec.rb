@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Restriction::GreaterThan#invert' do
 
   it { should eql(@attribute.lte(1)) }
 
-  it 'should invert back to original' do
+  it 'inverts back to original' do
     subject.invert.should eql(@greater_than)
   end
 end

@@ -16,7 +16,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#rename' do
       @predicate = PredicateSpecs::Object.new(@attribute, @attribute)
     end
 
-    it 'should rename the matching expressions' do
+    it 'renames the matching expressions' do
       should eql(PredicateSpecs::Object.new(@other, @other))
     end
   end
@@ -26,7 +26,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#rename' do
       @predicate = PredicateSpecs::Object.new(@attribute, 1)
     end
 
-    it 'should rename the matching expressions' do
+    it 'renames the matching expressions' do
       should eql(PredicateSpecs::Object.new(@other, 1))
     end
   end
@@ -36,7 +36,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#rename' do
       @predicate = PredicateSpecs::Object.new(1, @attribute)
     end
 
-    it 'should rename the matching expressions' do
+    it 'renames the matching expressions' do
       should eql(PredicateSpecs::Object.new(1, @other))
     end
   end
@@ -46,7 +46,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#rename' do
       @predicate = PredicateSpecs::Object.new(1, 1)
     end
 
-    it 'should do nothing' do
+    it 'does nothing' do
       should equal(@predicate)
     end
   end

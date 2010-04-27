@@ -14,20 +14,20 @@ describe 'Veritas::Algebra::Rename#wrap' do
 
   it { should be_kind_of(Algebra::Rename) }
 
-  it 'should yield the relations' do
+  it 'yields the relations' do
     @yield = []
     lambda {
       @rename.wrap { |relation| @yield << relation; relation }
     }.should change { @yield.dup }.from([]).to([ @relation ])
   end
 
-  it 'should set the relation with the block return values' do
+  it 'sets the relation with the block return values' do
     relation = mock('relation')
     operation = @rename.wrap { relation }
     operation.relation.should equal(relation)
   end
 
-  it 'should set the aliases' do
+  it 'sets the aliases' do
     subject.aliases.should == @aliases
   end
 end

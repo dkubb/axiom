@@ -15,20 +15,20 @@ describe 'Veritas::Relation::Operation::Offset#wrap' do
 
   it { should be_kind_of(Relation::Operation::Offset) }
 
-  it 'should yield the relations' do
+  it 'yields the relations' do
     @yield = []
     lambda {
       @offset.wrap { |relation| @yield << relation; relation }
     }.should change { @yield.dup }.from([]).to([ @relation ])
   end
 
-  it 'should set the relation with the block return values' do
+  it 'sets the relation with the block return values' do
     relation = mock('relation', :directions => @order.directions)
     operation = @offset.wrap { relation }
     operation.relation.should equal(relation)
   end
 
-  it 'should set the offset' do
+  it 'sets the offset' do
     subject.to_i.should == 1
   end
 end

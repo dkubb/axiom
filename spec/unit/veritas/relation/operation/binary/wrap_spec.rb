@@ -15,14 +15,14 @@ describe 'Veritas::Relation::Operation::Binary#wrap' do
 
   it { should be_kind_of(BinaryRelationOperationSpecs::Object) }
 
-  it 'should yield the relations' do
+  it 'yields the relations' do
     @yield = []
     lambda {
       @binary_operation.wrap { |relation| @yield << relation; relation }
     }.should change { @yield.dup }.from([]).to([ @left, @right ])
   end
 
-  it 'should set the left and right relations with the block return values' do
+  it 'sets the left and right relations with the block return values' do
     left      = mock('left',  :directions => [])
     right     = mock('right', :directions => [])
     relations = [ left, right ]

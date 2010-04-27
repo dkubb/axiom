@@ -9,7 +9,7 @@ describe 'Range#to_inclusive' do
         @range = 1...3
       end
 
-      it 'should return an inclusive Range' do
+      it 'returns an inclusive Range' do
         should == (1..2)
       end
     end
@@ -28,7 +28,7 @@ describe 'Range#to_inclusive' do
       @range = 1..2
     end
 
-    it 'should return self' do
+    it 'returns self' do
       should equal(@range)
     end
   end

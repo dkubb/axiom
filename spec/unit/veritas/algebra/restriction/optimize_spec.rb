@@ -26,7 +26,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should eql(Relation::Empty.new(@relation.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -52,13 +52,13 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should eql(@relation[:id].eq(1))
     end
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -75,13 +75,13 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should equal(@predicate)
     end
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -96,7 +96,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should equal(@empty) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -111,7 +111,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should eql(Relation::Empty.new(@relation.header)) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -129,13 +129,13 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it 'should set the predicate' do
+    it 'sets the predicate' do
       subject.predicate.should eql(@other_predicate & @predicate)
     end
 
     it { subject.relation.should equal(@relation) }
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -150,11 +150,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = Algebra::Restriction.new(@union, @predicate)
     end
 
-    it 'should push the restriction to each relation' do
+    it 'pushes the restriction to each relation' do
       should eql(@left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) }) )
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -168,11 +168,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = @union.restrict { |r| r[:id].gte(1) }
     end
 
-    it 'should push the restriction to each relation, and then removes duplicate predicates' do
+    it 'pushes the restriction to each relation, and then removes duplicate predicates' do
       should eql(@left.restrict { |r| r[:id].gte(1) }.union(@right.restrict { |r| r[:id].gte(1) }) )
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -186,11 +186,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = @reverse.restrict(@predicate)
     end
 
-    it 'should push the restriction under the reverse' do
+    it 'pushes the restriction under the reverse' do
       should eql(@limit.restrict(@predicate).reverse)
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -204,11 +204,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = @reverse.restrict(@predicate)
     end
 
-    it 'should push the restriction under the reverse, and then removes duplicate predicates' do
+    it 'pushes the restriction under the reverse, and then removes duplicate predicates' do
       should eql(@limit.restrict(@predicate).reverse)
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -221,11 +221,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = @order.restrict(@predicate)
     end
 
-    it 'should push the restriction under the order' do
+    it 'pushes the restriction under the order' do
       should eql(@relation.restrict(@predicate).order { |r| r.header })
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end
@@ -238,11 +238,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       @restriction = @order.restrict(@predicate)
     end
 
-    it 'should push the restriction under the order, and then removes duplicate predicates' do
+    it 'pushes the restriction under the order, and then removes duplicate predicates' do
       should eql(@relation.restrict(@predicate).order { |r| r.header })
     end
 
-    it 'should return an equivalent relation to the unoptimized operation' do
+    it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
     end
   end

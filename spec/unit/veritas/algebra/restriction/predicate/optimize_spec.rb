@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
       @predicate = PredicateSpecs::Object.new(@attribute, 1)
     end
 
-    it 'should equal the predicate' do
+    it 'equals the predicate' do
       should equal(@predicate)
     end
   end
@@ -23,7 +23,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
       @predicate = PredicateSpecs::Object.new(1, @attribute)
     end
 
-    it 'should equal the predicate' do
+    it 'equals the predicate' do
       should equal(@predicate)
     end
   end
@@ -33,7 +33,7 @@ describe 'Veritas::Algebra::Restriction::Predicate#optimize' do
       @predicate = PredicateSpecs::Object.new(1, 1)
     end
 
-    it 'should send the left and right value to self.class.eval' do
+    it 'sends the left and right value to self.class.eval' do
       PredicateSpecs::Object.should_receive(:eval).with(1, 1).and_return(true)
       should equal(Algebra::Restriction::True.instance)
     end

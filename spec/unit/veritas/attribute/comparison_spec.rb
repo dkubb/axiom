@@ -5,7 +5,7 @@ describe 'Veritas::Attribute' do
 
   it { should be_kind_of(Comparable) }
 
-  it 'should case match Comparable' do
+  it 'case matches Comparable' do
     (Comparable === subject).should be_true
   end
 end

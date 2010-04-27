@@ -14,7 +14,7 @@ describe 'Veritas::Algebra::Join#each' do
 
   it { should equal(@join) }
 
-  it 'should yield the join' do
+  it 'yields the join' do
     method(:subject).should change { @yield.dup }.
       from([]).
       to([ [ 2, 'Dan Kubb' ] ])

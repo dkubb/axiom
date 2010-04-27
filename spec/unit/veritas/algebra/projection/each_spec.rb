@@ -22,7 +22,7 @@ describe 'Veritas::Algebra::Projection#each' do
 
   it { should equal(@projection) }
 
-  it 'should yield each tuple only once' do
+  it 'yields each tuple only once' do
     method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
   end
 end

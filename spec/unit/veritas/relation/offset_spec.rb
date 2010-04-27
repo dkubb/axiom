@@ -11,7 +11,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
     it { should be_kind_of(Relation::Operation::Offset) }
 
-    it 'should behave the same as Array#drop' do
+    it 'behaves the same as Array#drop' do
       should == @ordered.to_a.drop(1)
     end
   end
