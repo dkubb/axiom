@@ -11,6 +11,6 @@ ForLoopCheck:                    { }
 # TODO: decrease line_count to 10 or less
 MethodLineCountCheck:            { line_count: 24 }
 MethodNameCheck:                 { pattern: !ruby/regexp /\A(?:[a-z](?:_?[a-z])+[?!]?|\[\]|==|<=>|[+*&|-])\z/ }
-ModuleLineCountCheck:            { line_count: 229 }
+ModuleLineCountCheck:            { line_count: 181 }
 ModuleNameCheck:                 { pattern: !ruby/regexp /\A[A-Z][a-z](?:[A-Z]?[a-z])+\z/ }
 ParameterNumberCheck:            { parameter_count: 3 }
