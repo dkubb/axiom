@@ -37,18 +37,13 @@ module Veritas
         end
 
         def optimize
-          return False.instance if always_false? || left.nil? && right.nil?
-          return True.instance  if always_true?
-
-          left_attribute  = left_attribute?
-          right_attribute = right_attribute?
-
-          # if possible swap the left and right if left is a value, and right is an attribute
-          return swap if respond_to?(:swap, true) && !left_attribute && right_attribute
-
-          return evaluate_literal_values unless left_attribute || right_attribute
-
-          super
+          if    always_false? || left.nil? && right.nil? then False.instance
+          elsif always_true?                             then True.instance
+          elsif swappable?                               then swap
+          elsif !left_attribute? && !right_attribute?    then evaluate_literal_values
+          else
+            super
+          end
         end
 
         def eql?(other)
@@ -77,6 +72,11 @@ module Veritas
 
         def joinable?
           left.joinable?(right)
+        end
+
+        def swappable?
+          # if possible swap the left and right if left is a value, and right is an attribute
+          respond_to?(:swap, true) && !left_attribute? && right_attribute?
         end
 
         def left_attribute?

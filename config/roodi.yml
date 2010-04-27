@@ -5,7 +5,7 @@ ClassNameCheck:                  { pattern: !ruby/regexp /^[A-Z][a-zA-Z0-9]*$/ }
 ClassVariableCheck:              { }
 CyclomaticComplexityBlockCheck:  { complexity: 4 }
 # TODO: decrease complexity to 8 or less
-CyclomaticComplexityMethodCheck: { complexity: 10 }
+CyclomaticComplexityMethodCheck: { complexity: 9 }
 EmptyRescueBodyCheck:            { }
 ForLoopCheck:                    { }
 # TODO: decrease line_count to 10 or less
