@@ -5,6 +5,7 @@ begin
 
   RoodiTask.new do |t|
     t.verbose = false
+    t.config  = File.expand_path('../../../config/roodi.yml', __FILE__)
   end
 rescue LoadError
   task :roodi do
