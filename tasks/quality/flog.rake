@@ -25,7 +25,7 @@ begin
       raise "Adjust flog score down to #{max}"
     end
 
-    bad_methods = totals.select { |name, score| score > FLOG_THRESHOLD }
+    bad_methods = totals.select { |name, score| score > FLOG_THRESHOLD.round_to(1) }
     if bad_methods.any?
       bad_methods.reverse_each do |name, score|
         puts '%8.1f: %s' % [ score, name ]
