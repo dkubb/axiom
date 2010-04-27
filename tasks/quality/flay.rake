@@ -12,7 +12,7 @@ begin
     flay.process(*Flay.expand_dirs_to_files('lib'))
 
     max = flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max
-    unless max == FLAY_THRESHOLD
+    unless max >= FLAY_THRESHOLD
       raise "Adjust flay score down to #{max}"
     end
 

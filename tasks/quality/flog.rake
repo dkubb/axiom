@@ -21,7 +21,7 @@ begin
                          sort_by { |name, score| score }
 
     max = totals.last[1]
-    unless max == FLOG_THRESHOLD
+    unless max >= FLOG_THRESHOLD
       raise "Adjust flog score down to #{max}"
     end
 
