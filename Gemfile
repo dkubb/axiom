@@ -13,6 +13,7 @@ group :quality do
   gem 'flay',      '~> 1.4.0'
   gem 'flog',      '~> 2.2.0'
   gem 'heckle',    '~> 1.4.3'
+  gem 'json',      '~> 1.4.1'
   gem 'metric_fu', '~> 1.3'
   gem 'mspec',     '~> 1.5.17'
   gem 'reek',      '~> 1.2.8'

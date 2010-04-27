@@ -1,5 +1,6 @@
 begin
   require 'metric_fu'
+  require 'json'
 rescue LoadError
   namespace :metrics do
     task :all do
