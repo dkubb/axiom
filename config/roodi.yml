@@ -14,4 +14,4 @@ MethodLineCountCheck:            { line_count: 24 }
 MethodNameCheck:                 { pattern: !ruby/regexp /^[_a-z<>=\[&|+-\/\*`]+[_a-z0-9_<>=~@\[\]]*[=!\?]?$/ }
 ModuleLineCountCheck:            { line_count: 229 }
 ModuleNameCheck:                 { pattern: !ruby/regexp /^[A-Z][a-zA-Z0-9]*$/ }
-ParameterNumberCheck:            { parameter_count: 5 }
+ParameterNumberCheck:            { parameter_count: 3 }
