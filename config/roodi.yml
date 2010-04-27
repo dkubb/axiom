@@ -10,8 +10,7 @@ EmptyRescueBodyCheck:            { }
 ForLoopCheck:                    { }
 # TODO: decrease line_count to 10 or less
 MethodLineCountCheck:            { line_count: 24 }
-# TODO: get "default" roodi.yml to include "&" in regexp
-MethodNameCheck:                 { pattern: !ruby/regexp /^[_a-z<>=\[&|+-\/\*`]+[_a-z0-9_<>=~@\[\]]*[=!\?]?$/ }
+MethodNameCheck:                 { pattern: !ruby/regexp /\A(?:[a-z](?:_?[a-z])+[?!]?|\[\]|==|<=>|[+*&|-])\z/ }
 ModuleLineCountCheck:            { line_count: 229 }
 ModuleNameCheck:                 { pattern: !ruby/regexp /\A[A-Z][a-z](?:[A-Z]?[a-z])+\z/ }
 ParameterNumberCheck:            { parameter_count: 3 }
