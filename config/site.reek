@@ -1,0 +1,9 @@
+---
+IrresponsibleModule:
+  enabled: false      # TODO: remove this when all classes/modules are documented
+
+LargeClass:
+  max_methods: 37     # TODO: remove this once it's 25 or less
+
+LongMethod:
+  max_statements: 11  # TODO: remove this once it's 5 or less
