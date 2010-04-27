@@ -1,7 +1,6 @@
 AssignmentInConditionalCheck:    { }
 CaseMissingElseCheck:            { }
-# TODO: decrease line_count to 300 or less
-ClassLineCountCheck:             { line_count: 459 }
+ClassLineCountCheck:             { line_count: 225 }
 ClassNameCheck:                  { pattern: !ruby/regexp /^[A-Z][a-zA-Z0-9]*$/ }
 ClassVariableCheck:              { }
 CyclomaticComplexityBlockCheck:  { complexity: 4 }
@@ -14,7 +13,6 @@ MethodLineCountCheck:            { line_count: 24 }
 # TODO: get "default" roodi.yml to include "&" in regexp
 MethodNameCheck:                 { pattern: !ruby/regexp /^[_a-z<>=\[&|+-\/\*`]+[_a-z0-9_<>=~@\[\]]*[=!\?]?$/ }
 # MissingForeignKeyIndexCheck:     { }
-# TODO: decrease line_count to 300 or less
-ModuleLineCountCheck:            { line_count: 463 }
+ModuleLineCountCheck:            { line_count: 229 }
 ModuleNameCheck:                 { pattern: !ruby/regexp /^[A-Z][a-zA-Z0-9]*$/ }
 ParameterNumberCheck:            { parameter_count: 5 }

@@ -1,4 +1,4 @@
-FLAY_THRESHOLD = 124
+FLAY_THRESHOLD = 129
 
 begin
   require 'flay'
