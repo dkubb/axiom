@@ -1,3 +1,4 @@
+AbcMetricMethodCheck:            { score: 13 }
 AssignmentInConditionalCheck:    { }
 CaseMissingElseCheck:            { }
 ClassLineCountCheck:             { line_count: 179 }
