@@ -10,7 +10,7 @@ begin
   task :flay do
     # run flay once without a threshold to ensure the max mass matches the threshold
     flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
-    flay.process(*Flay.expand_dirs_to_files(config.fetch('path')))
+    flay.process(*Flay.expand_dirs_to_files(config.fetch('path', 'lib')))
 
     max       = flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max
     threshold = config.fetch('threshold')

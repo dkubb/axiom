@@ -15,7 +15,7 @@ begin
   desc 'Analyze for code complexity'
   task :flog do
     flog = Flog.new
-    flog.flog Array(config.fetch('path'))
+    flog.flog Array(config.fetch('path', 'lib'))
 
     totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }.
                          map     { |name, score| [ name, score.round_to(1) ] }.
