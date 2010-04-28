@@ -5,9 +5,20 @@ require 'veritas/relation/empty'
 
 module Veritas
   class Relation
+    extend Aliasable
     include Enumerable, Optimizable
 
     attr_reader :header
+
+    inheritable_alias(
+      :join       => :+,
+      :product    => :*,
+      :intersect  => :&,
+      :union      => :|,
+      :difference => :-,
+      :limit      => :take,
+      :offset     => :drop
+    )
 
     def self.new(*args)
       if args.size == 2 && args.last.respond_to?(:size) && self == Relation
@@ -58,40 +69,20 @@ module Veritas
       end
     end
 
-    def +(*args, &block)
-      join(*args, &block)
-    end
-
     def product(other)
       Algebra::Product.new(self, other)
-    end
-
-    def *(other)
-      product(other)
     end
 
     def intersect(other)
       Algebra::Intersection.new(self, other)
     end
 
-    def &(other)
-      intersect(other)
-    end
-
     def union(other)
       Algebra::Union.new(self, other)
     end
 
-    def |(other)
-      union(other)
-    end
-
     def difference(other)
       Algebra::Difference.new(self, other)
-    end
-
-    def -(other)
-      difference(other)
     end
 
     def order(directions = yield(self))
@@ -102,16 +93,8 @@ module Veritas
       Operation::Limit.new(self, limit)
     end
 
-    def take(other)
-      limit(other)
-    end
-
     def offset(offset)
       Operation::Offset.new(self, offset)
-    end
-
-    def drop(other)
-      offset(other)
     end
 
     def first(limit = 1)

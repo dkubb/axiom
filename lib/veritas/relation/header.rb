@@ -1,7 +1,14 @@
 module Veritas
   class Relation
     class Header
+      extend Aliasable
       include Enumerable
+
+      inheritable_alias(
+        :intersect  => :&,
+        :union      => :|,
+        :difference => :-
+      )
 
       def initialize(attributes = [])
         @attributes = attributes.to_ary.map do |attribute|
@@ -38,24 +45,12 @@ module Veritas
         new(to_ary & other)
       end
 
-      def &(other)
-        intersect(other)
-      end
-
       def union(other)
         new(to_ary | other)
       end
 
-      def |(other)
-        union(other)
-      end
-
       def difference(other)
         new(to_ary - other)
-      end
-
-      def -(other)
-        difference(other)
       end
 
       def to_ary

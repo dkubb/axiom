@@ -1,17 +1,16 @@
 module Veritas
   class Attribute
     class Numeric < Object
+      extend Aliasable
       include Comparable
+
+      inheritable_alias(:size => :range)
 
       attr_reader :size
 
       def initialize(name, options = {})
         super
         @size = options.fetch(:size, 0..2**31-1).to_inclusive
-      end
-
-      def range
-        size
       end
 
       def joinable?(other)

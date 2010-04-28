@@ -3,7 +3,10 @@ module Veritas
     module Operation
       class Order
         class DirectionSet
+          extend Aliasable
           include Enumerable
+
+          inheritable_alias(:union => :|)
 
           def initialize(directions)
             @directions = Array(directions).map do |direction|
@@ -36,10 +39,6 @@ module Veritas
 
           def union(other)
             new(to_ary | other.to_ary)
-          end
-
-          def |(other)
-            union(other)
           end
 
           def attributes

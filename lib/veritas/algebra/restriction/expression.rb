@@ -2,7 +2,14 @@ module Veritas
   module Algebra
     class Restriction
       module Expression
+        extend Aliasable
         include Optimizable
+
+        inheritable_alias(
+          :and => :&,
+          :or  => :|,
+          :not => :-
+        )
 
         def self.included(klass)
           klass.extend ClassMethods
@@ -12,24 +19,12 @@ module Veritas
           Conjunction.new(self, other)
         end
 
-        def &(other)
-          self.and(other)
-        end
-
         def or(other)
           Disjunction.new(self, other)
         end
 
-        def |(other)
-          self.or(other)
-        end
-
         def not(other)
           self.and(Negation.new(other))
-        end
-
-        def -(other)
-          self.not(other)
         end
 
         def invert

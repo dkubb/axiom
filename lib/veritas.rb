@@ -8,6 +8,7 @@ require 'veritas/core_ext/range'
 require 'veritas/core_ext/time'
 
 require 'veritas/support/abstract_class'
+require 'veritas/support/aliasable'
 require 'veritas/support/operation/binary'
 require 'veritas/support/optimizable'
 
