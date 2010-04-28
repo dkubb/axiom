@@ -2,8 +2,6 @@ module Veritas
   module Logic
     class Proposition
       class False < Proposition
-        include Singleton
-
         def self.eval
           false
         end
