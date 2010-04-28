@@ -3,5 +3,6 @@ module Veritas
     def optimize
       self
     end
-  end
-end
+
+  end # module Optimizable
+end # module Veritas
