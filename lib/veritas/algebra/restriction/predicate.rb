@@ -2,9 +2,7 @@ module Veritas
   module Algebra
     class Restriction
       class Predicate
-        include AbstractClass
-        include Expression
-        include Operation::Binary
+        include AbstractClass, Expression, Operation::Binary
 
         def call(tuple)
           util = self.class

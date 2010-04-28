@@ -2,8 +2,7 @@ module Veritas
   module Algebra
     class Restriction
       class Connective
-        include AbstractClass
-        include Expression
+        include AbstractClass, Expression
       end # class Connective
 
       module BinaryConnective

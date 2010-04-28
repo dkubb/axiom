@@ -17,8 +17,7 @@ require 'veritas/attribute/string'
 
 module Veritas
   class Attribute
-    include AbstractClass
-    include ::Comparable
+    include AbstractClass, ::Comparable
 
     attr_reader :name
 

@@ -5,8 +5,7 @@ require 'veritas/relation/empty'
 
 module Veritas
   class Relation
-    include Enumerable
-    include Optimizable
+    include Enumerable, Optimizable
 
     attr_reader :header
 
