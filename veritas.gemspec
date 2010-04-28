@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-04-22}
+  s.date = %q{2010-04-27}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
      "TODO",
      "benchmarks/memory.rb",
      "benchmarks/speed.rb",
+     "config/roodi.yml",
+     "config/site.reek",
      "lib/veritas.rb",
      "lib/veritas/algebra.rb",
      "lib/veritas/algebra/difference.rb",
@@ -37,8 +39,19 @@ Gem::Specification.new do |s|
      "lib/veritas/algebra/rename.rb",
      "lib/veritas/algebra/restriction.rb",
      "lib/veritas/algebra/restriction/connective.rb",
+     "lib/veritas/algebra/restriction/connective/conjunction.rb",
+     "lib/veritas/algebra/restriction/connective/disjunction.rb",
+     "lib/veritas/algebra/restriction/connective/negation.rb",
      "lib/veritas/algebra/restriction/expression.rb",
      "lib/veritas/algebra/restriction/predicate.rb",
+     "lib/veritas/algebra/restriction/predicate/equality.rb",
+     "lib/veritas/algebra/restriction/predicate/greater_than.rb",
+     "lib/veritas/algebra/restriction/predicate/greater_than_or_equal_to.rb",
+     "lib/veritas/algebra/restriction/predicate/inclusion.rb",
+     "lib/veritas/algebra/restriction/predicate/inequality.rb",
+     "lib/veritas/algebra/restriction/predicate/less_than.rb",
+     "lib/veritas/algebra/restriction/predicate/less_than_or_equal_to.rb",
+     "lib/veritas/algebra/restriction/predicate/match.rb",
      "lib/veritas/algebra/restriction/proposition.rb",
      "lib/veritas/algebra/union.rb",
      "lib/veritas/attribute.rb",
@@ -74,6 +87,7 @@ Gem::Specification.new do |s|
      "lib/veritas/relation/operation/set.rb",
      "lib/veritas/relation/operation/unary.rb",
      "lib/veritas/support/abstract_class.rb",
+     "lib/veritas/support/aliasable.rb",
      "lib/veritas/support/operation/binary.rb",
      "lib/veritas/support/optimizable.rb",
      "lib/veritas/tuple.rb",
@@ -220,6 +234,8 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/algebra/restriction/wrap_spec.rb",
      "spec/unit/veritas/algebra/union/each_spec.rb",
      "spec/unit/veritas/algebra/union/optimize_spec.rb",
+     "spec/unit/veritas/aliasable/fixtures/classes.rb",
+     "spec/unit/veritas/aliasable/inheritable_alias_spec.rb",
      "spec/unit/veritas/attribute/boolean/class_methods/primitive_spec.rb",
      "spec/unit/veritas/attribute/boolean/valid_value_spec.rb",
      "spec/unit/veritas/attribute/call_spec.rb",
@@ -400,11 +416,16 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/tuple/to_ary_spec.rb",
      "tasks/ci.rake",
      "tasks/clean.rake",
-     "tasks/heckle.rake",
-     "tasks/metrics.rake",
+     "tasks/quality/flay.rake",
+     "tasks/quality/flog.rake",
+     "tasks/quality/heckle.rake",
+     "tasks/quality/metric_fu.rake",
+     "tasks/quality/reek.rake",
+     "tasks/quality/roodi.rake",
+     "tasks/quality/yardstick.rake",
      "tasks/spec.rake",
      "tasks/yard.rake",
-     "tasks/yardstick.rake"
+     "veritas.gemspec"
   ]
   s.homepage = %q{http://github.com/dkubb/veritas}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -552,6 +573,8 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/algebra/restriction/wrap_spec.rb",
      "spec/unit/veritas/algebra/union/each_spec.rb",
      "spec/unit/veritas/algebra/union/optimize_spec.rb",
+     "spec/unit/veritas/aliasable/fixtures/classes.rb",
+     "spec/unit/veritas/aliasable/inheritable_alias_spec.rb",
      "spec/unit/veritas/attribute/boolean/class_methods/primitive_spec.rb",
      "spec/unit/veritas/attribute/boolean/valid_value_spec.rb",
      "spec/unit/veritas/attribute/call_spec.rb",
