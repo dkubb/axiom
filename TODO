@@ -1,7 +1,3 @@
-* Create a method that aliases calls to a method to another
-  method, package it into a module, and use it to DRY up the various
-  operators that explicitly define aliases to be inheritance-friendly.
-
 * Move Connective, Predicate, Proposition and Expression from under
   the Veritas::Algebra::Restriction namespace, and move it to the
   Veritas::Logic namespace.
