@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "TODO",
      "benchmarks/memory.rb",
      "benchmarks/speed.rb",
+     "config/flay.yml",
      "config/flog.yml",
      "config/roodi.yml",
      "config/site.reek",
