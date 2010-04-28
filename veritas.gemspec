@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
      "config/flog.yml",
      "config/roodi.yml",
      "config/site.reek",
+     "config/yardstick.yml",
      "lib/veritas.rb",
      "lib/veritas/algebra.rb",
      "lib/veritas/algebra/difference.rb",
