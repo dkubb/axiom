@@ -7,5 +7,5 @@ describe 'Veritas::Relation#predicate' do
 
   subject { @relation.predicate }
 
-  it { should equal(Algebra::Restriction::True.instance) }
+  it { should equal(Logic::Proposition::True.instance) }
 end

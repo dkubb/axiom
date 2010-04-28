@@ -35,7 +35,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
 
   describe 'left is an empty relation when optimized' do
     before do
-      @left = Algebra::Restriction.new(@left, Algebra::Restriction::False.instance)
+      @left = Algebra::Restriction.new(@left, Logic::Proposition::False.instance)
 
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end
@@ -47,7 +47,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
 
   describe 'right is an empty relation when optimized' do
     before do
-      @right = Algebra::Restriction.new(@right, Algebra::Restriction::False.instance)
+      @right = Algebra::Restriction.new(@right, Logic::Proposition::False.instance)
 
       @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
     end

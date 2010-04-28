@@ -7,5 +7,5 @@ describe 'Veritas::Attribute::String#match' do
 
   subject { @attribute.match(/Dan Kubb/) }
 
-  it { should be_kind_of(Algebra::Restriction::Match) }
+  it { should be_kind_of(Logic::Predicate::Match) }
 end

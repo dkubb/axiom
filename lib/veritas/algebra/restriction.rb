@@ -54,11 +54,11 @@ module Veritas
       end
 
       def matches_all?
-        optimize_predicate.kind_of?(True)
+        optimize_predicate.kind_of?(Logic::Proposition::True)
       end
 
       def matches_none?
-        optimize_predicate.kind_of?(False)
+        optimize_predicate.kind_of?(Logic::Proposition::False)
       end
 
       def optimize_predicate
@@ -82,9 +82,3 @@ module Veritas
     end # class Restriction
   end # module Algebra
 end # module Veritas
-
-require 'veritas/algebra/restriction/expression'
-
-require 'veritas/algebra/restriction/connective'
-require 'veritas/algebra/restriction/predicate'
-require 'veritas/algebra/restriction/proposition'

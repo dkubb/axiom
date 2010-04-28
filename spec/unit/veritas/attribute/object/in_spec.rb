@@ -7,5 +7,5 @@ describe 'Veritas::Attribute::Object#in' do
 
   subject { @attribute.in([ { :active => true }, { :active => false } ]) }
 
-  it { should be_kind_of(Algebra::Restriction::Inclusion) }
+  it { should be_kind_of(Logic::Predicate::Inclusion) }
 end

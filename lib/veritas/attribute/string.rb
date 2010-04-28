@@ -22,7 +22,7 @@ module Veritas
       end
 
       def match(regexp)
-        Algebra::Restriction::Match.new(self, regexp)
+        Logic::Predicate::Match.new(self, regexp)
       end
 
       def self.primitive

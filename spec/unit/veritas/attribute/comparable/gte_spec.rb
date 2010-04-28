@@ -8,5 +8,5 @@ describe 'Veritas::Attribute::Comparable#gte' do
 
   subject { @comparable.gte(1) }
 
-  it { should be_kind_of(Algebra::Restriction::GreaterThanOrEqualTo) }
+  it { should be_kind_of(Logic::Predicate::GreaterThanOrEqualTo) }
 end

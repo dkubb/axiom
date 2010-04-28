@@ -114,7 +114,7 @@ module Veritas
     end
 
     def predicate
-      @predicate ||= Algebra::Restriction::True.instance
+      @predicate ||= Logic::Proposition::True.instance
     end
 
     def ==(other)

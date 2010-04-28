@@ -7,5 +7,5 @@ describe 'Veritas::Attribute::Object#eq' do
 
   subject { @attribute.eq(:active => true) }
 
-  it { should be_kind_of(Algebra::Restriction::Equality) }
+  it { should be_kind_of(Logic::Predicate::Equality) }
 end

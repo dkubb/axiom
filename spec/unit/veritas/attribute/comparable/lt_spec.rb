@@ -8,5 +8,5 @@ describe 'Veritas::Attribute::Comparable#lt' do
 
   subject { @comparable.lt(1) }
 
-  it { should be_kind_of(Algebra::Restriction::LessThan) }
+  it { should be_kind_of(Logic::Predicate::LessThan) }
 end

@@ -26,7 +26,7 @@ module Veritas
       end
 
       def predicate
-        @predicate ||= relation.predicate.project(header) || Restriction::True.instance
+        @predicate ||= relation.predicate.project(header) || Logic::Proposition::True.instance
       end
 
       def optimize

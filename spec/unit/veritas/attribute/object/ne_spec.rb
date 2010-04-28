@@ -7,5 +7,5 @@ describe 'Veritas::Attribute::Object#ne' do
 
   subject { @attribute.ne(:active => true) }
 
-  it { should be_kind_of(Algebra::Restriction::Inequality) }
+  it { should be_kind_of(Logic::Predicate::Inequality) }
 end

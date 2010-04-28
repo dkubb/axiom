@@ -1,4 +1,4 @@
-FLOG_THRESHOLD = 24.1
+FLOG_THRESHOLD = 22.7
 
 begin
   require 'flog'

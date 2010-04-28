@@ -12,6 +12,7 @@ require 'veritas/support/aliasable'
 require 'veritas/support/operation/binary'
 require 'veritas/support/optimizable'
 
+require 'veritas/logic'
 require 'veritas/relation'
 require 'veritas/algebra'
 
