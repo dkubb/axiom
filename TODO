@@ -1,7 +1,3 @@
-* Move Connective, Predicate, Proposition and Expression from under
-  the Veritas::Algebra::Restriction namespace, and move it to the
-  Veritas::Logic namespace.
-
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
     per-operation basis.
