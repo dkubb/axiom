@@ -2,7 +2,8 @@ begin
   require 'flay'
   require 'yaml'
 
-  config = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__))
+  config    = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
+  threshold = config.fetch('threshold').to_i
 
   # original code by Marty Andrews:
   # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
@@ -12,9 +13,7 @@ begin
     flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
     flay.process(*Flay.expand_dirs_to_files(config.fetch('path', 'lib')))
 
-    max       = flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max
-    threshold = config.fetch('threshold')
-
+    max = flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max
     unless max >= threshold
       raise "Adjust flay score down to #{max}"
     end

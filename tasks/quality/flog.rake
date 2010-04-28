@@ -8,7 +8,8 @@ begin
     end
   end
 
-  config = YAML.load_file(File.expand_path('../../../config/flog.yml', __FILE__))
+  config    = YAML.load_file(File.expand_path('../../../config/flog.yml', __FILE__)).freeze
+  threshold = config.fetch('threshold').to_f.round_to(1)
 
   # original code by Marty Andrews:
   # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
@@ -21,9 +22,7 @@ begin
                          map     { |name, score| [ name, score.round_to(1) ] }.
                          sort_by { |name, score| score }
 
-    max       = totals.last[1]
-    threshold = config.fetch('threshold').round_to(1)
-
+    max = totals.last[1]
     unless max >= threshold
       raise "Adjust flog score down to #{max}"
     end
