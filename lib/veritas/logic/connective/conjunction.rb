@@ -11,7 +11,7 @@ module Veritas
         def optimize
           left, right = optimize_left, optimize_right
 
-          if left.kind_of?(Proposition::False) || right.kind_of?(Proposition::False)
+          if always_false?
             Proposition::False.instance
           elsif right.kind_of?(Proposition::True)
             left
@@ -24,6 +24,12 @@ module Veritas
 
         def inspect
           "(#{left.inspect} AND #{right.inspect})"
+        end
+
+      private
+
+        def always_false?
+          optimize_left.kind_of?(Proposition::False) || optimize_right.kind_of?(Proposition::False)
         end
 
       end # class Conjunction
