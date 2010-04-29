@@ -11,7 +11,7 @@ LargeClass:
   max_methods: 37  # TODO: decrease max_methods to 25 or less
   exclude: []
   enabled: true
-  max_instance_variables: 9
+  max_instance_variables: 5
 UncommunicativeMethodName:
   accept: []
   exclude: []
