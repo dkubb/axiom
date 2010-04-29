@@ -30,11 +30,9 @@ module Veritas
       end
 
       def optimize
-        relation = optimize_relation
+        return drop_current_projection if header_unchanged?
 
-        return drop_current_projection if relation.header.to_a == header.to_a
-
-        case relation
+        case optimize_relation
           when Relation::Empty          then new_empty_relation
           when self.class               then drop_contained_projection
           when Relation::Operation::Set then wrap_with_operation
@@ -48,6 +46,10 @@ module Veritas
       end
 
     private
+
+      def header_unchanged?
+        optimize_relation.header.to_a == header.to_a
+      end
 
       def new(relation)
         self.class.new(relation, header)
