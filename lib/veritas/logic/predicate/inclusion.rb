@@ -7,20 +7,13 @@ module Veritas
         end
 
         def optimize
-          left           = self.left
-          false_instance = Proposition::False.instance
-
-          return false_instance if right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
-
-          right = optimize_right
-
-          if right.nil? || right.respond_to?(:empty?) && right.empty?
-            return false_instance
-          elsif right != self.right
-            return self.class.new(left, right)
+          if not_comparable? || includes_nothing?
+            Proposition::False.instance
+          elsif optimized?
+            new_optimized_inclusion
+          else
+            super
           end
-
-          super
         end
 
         def inspect
@@ -30,15 +23,18 @@ module Veritas
       private
 
         def optimize_right
-          right = self.right
+          @optimize_right ||=
+            begin
+              right = self.right
 
-          if right.respond_to?(:to_inclusive)
-            optimize_right_range
-          elsif right.respond_to?(:select)
-            optimize_right_enumerable
-          else
-            right
-          end
+              if right.respond_to?(:to_inclusive)
+                optimize_right_range
+              elsif right.respond_to?(:select)
+                optimize_right_enumerable
+              else
+                right
+              end
+            end
         end
 
         def optimize_right_range
@@ -53,9 +49,26 @@ module Veritas
           right.select { |value| left.valid_value?(value) }
         end
 
+        def optimized?
+          !optimize_right.equal?(right)
+        end
+
+        def new_optimized_inclusion
+          self.class.new(left, optimize_right)
+        end
+
         def empty_right?
           right.each { return false }
           true
+        end
+
+        def not_comparable?
+          right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
+        end
+
+        def includes_nothing?
+          right = optimize_right
+          right.nil? || right.respond_to?(:empty?) && right.empty?
         end
 
       end # class Inclusion
