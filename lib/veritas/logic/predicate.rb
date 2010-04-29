@@ -34,10 +34,10 @@ module Veritas
       end
 
       def optimize
-        if    left_and_right_constant? then fold_constants
-        elsif always_false?            then Proposition::False.instance
-        elsif always_true?             then Proposition::True.instance
-        elsif swappable?               then swap
+        if    left_constant? && right_constant? then fold_constants
+        elsif always_false?                     then Proposition::False.instance
+        elsif always_true?                      then Proposition::True.instance
+        elsif swappable?                        then swap
         else
           super
         end
@@ -59,7 +59,7 @@ module Veritas
         Proposition.new(self.class.eval(left, right))
       end
 
-      def equivalent?
+      def same_attributes?
         left.eql?(right)
       end
 
@@ -72,8 +72,8 @@ module Veritas
       end
 
       def swappable?
-        # if possible swap the left and right if left is a value, and right is an attribute
-        respond_to?(:swap, true) && !left_attribute? && right_attribute?
+        # if possible swap the left and right if left is a constant, and right is an attribute
+        respond_to?(:swap, true) && left_constant? && right_attribute?
       end
 
       def left_attribute?
@@ -84,8 +84,20 @@ module Veritas
         right.kind_of?(Attribute)
       end
 
-      def left_and_right_constant?
-        !left_attribute? && !right_attribute?
+      def left_constant?
+        !left_attribute?
+      end
+
+      def right_constant?
+        !right_attribute?
+      end
+
+      def left_valid_primitive?
+        right.valid_primitive?(left)
+      end
+
+      def right_valid_primitive?
+        left.valid_primitive?(right)
       end
 
       def always_false?
@@ -132,16 +144,17 @@ module Veritas
         end
 
         def always_equivalent?
-          left_attribute? && right_attribute? && equivalent?
+          left_attribute? && right_attribute? && same_attributes?
         end
 
         def never_equivalent?
           left  = self.left
           right = self.right
 
-          if    !right_attribute? then !left.valid_value?(right)
-          elsif !left_attribute?  then !right.valid_value?(left)
-          else                         !joinable?
+          if    right_constant? then !left.valid_value?(right)
+          elsif left_constant?  then !right.valid_value?(left)
+          else
+            !joinable?
           end
         end
 

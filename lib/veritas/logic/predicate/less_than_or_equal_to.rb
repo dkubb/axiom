@@ -2,6 +2,8 @@ module Veritas
   module Logic
     class Predicate
       class LessThanOrEqualTo < Predicate
+        include ComparisonPredicate
+
         def self.eval(left, right)
           left <= right
         end
@@ -21,32 +23,19 @@ module Veritas
         end
 
         def always_true?
-          if left_attribute? && right_attribute? && equivalent?
-            true
-          else
-            left_max < right_min
-          end
+          always_equivalent? || left_max < right_min
         end
 
         def always_false?
-          left  = self.left
-          right = self.right
+          never_comparable? || left_min > right_max
+        end
 
-          left_attribute  = left_attribute?
-          right_attribute = right_attribute?
-
-          if left_attribute && right_attribute
-            return true unless comparable?
-
-          elsif left_attribute
-            return true unless left.valid_primitive?(right)
-
-          elsif right_attribute
-            return true unless right.valid_primitive?(left)
-
+        def never_comparable?
+          if    right_constant? then !right_valid_primitive?
+          elsif left_constant?  then !left_valid_primitive?
+          else
+            !comparable?
           end
-
-          left_min > right_max
         end
 
       end # class LessThanOrEqualTo

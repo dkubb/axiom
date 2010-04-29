@@ -2,7 +2,7 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::GreaterThan#optimize' do
   before do
-    @attribute = Attribute::Integer.new(:id)
+    @attribute = Attribute::Integer.new(:id, :required => false)
   end
 
   subject { @greater_than.optimize }
@@ -60,7 +60,7 @@ describe 'Veritas::Logic::Predicate::GreaterThan#optimize' do
 
     describe 'right is an invalid primitive' do
       before do
-        @greater_than = Logic::Predicate::GreaterThan.new(@attribute, 'a')
+        @greater_than = Logic::Predicate::GreaterThan.new(@attribute, nil)
       end
 
       it { should equal(Logic::Proposition::False.instance) }
@@ -78,7 +78,7 @@ describe 'Veritas::Logic::Predicate::GreaterThan#optimize' do
 
     describe 'left is an invalid primitive' do
       before do
-        @greater_than = Logic::Predicate::GreaterThan.new('a', @attribute)
+        @greater_than = Logic::Predicate::GreaterThan.new(nil, @attribute)
       end
 
       it { should equal(Logic::Proposition::False.instance) }

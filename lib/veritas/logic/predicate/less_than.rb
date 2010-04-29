@@ -25,25 +25,15 @@ module Veritas
         end
 
         def always_false?
-          left  = self.left
-          right = self.right
+          never_comparable? || left_min >= right_max
+        end
 
-          left_attribute  = left_attribute?
-          right_attribute = right_attribute?
-
-          if left_attribute && right_attribute
-            return true if     equivalent?
-            return true unless comparable?
-
-          elsif left_attribute
-            return true unless left.valid_primitive?(right)
-
-          elsif right_attribute
-            return true unless right.valid_primitive?(left)
-
+        def never_comparable?
+          if    right_constant? then !right_valid_primitive?
+          elsif left_constant?  then !left_valid_primitive?
+          else
+            same_attributes? || !comparable?
           end
-
-          left_min >= right_max
         end
 
       end # class LessThan
