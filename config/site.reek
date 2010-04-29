@@ -24,9 +24,7 @@ LongParameterList:
   max_params: 3
   exclude: []
   enabled: true
-  overrides:
-    initialize:
-      max_params: 5
+  overrides: {}
 FeatureEnvy:
   exclude: &id001 []
   enabled: true
@@ -40,8 +38,7 @@ IrresponsibleModule:
   exclude: *id001
   enabled: false  # TODO: set to true when all classes/modules are documented
 UncommunicativeModuleName:
-  accept:
-  - Inline::C
+  accept: []
   exclude: []
   enabled: true
   reject:
@@ -90,6 +87,6 @@ ControlCouple:
   exclude: *id001
   enabled: true
 LongYieldList:
-  max_params: 3
+  max_params: 1
   exclude: []
   enabled: true
