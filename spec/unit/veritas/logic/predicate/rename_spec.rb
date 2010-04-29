@@ -41,7 +41,7 @@ describe 'Veritas::Logic::Predicate#rename' do
     end
   end
 
-  describe 'when the left and right are values' do
+  describe 'when the left and right are constants' do
     before do
       @predicate = PredicateSpecs::Object.new(1, 1)
     end

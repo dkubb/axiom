@@ -28,7 +28,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
     end
   end
 
-  describe 'left and right are not attributes' do
+  describe 'left and right are constants' do
     before do
       @predicate = PredicateSpecs::Object.new(1, 1)
     end
@@ -39,9 +39,17 @@ describe 'Veritas::Logic::Predicate#optimize' do
     end
   end
 
-  describe 'left and right are nil' do
+  context 'on a subclass that is always true when left and right are not constants' do
     before do
-      @predicate = PredicateSpecs::Object.new(nil, nil)
+      @predicate = PredicateSpecs::AlwaysTrue.new(@attribute, 1)
+    end
+
+    it { should equal(Logic::Proposition::True.instance) }
+  end
+
+  context 'on a subclass that is always false when left and right are not constants' do
+    before do
+      @predicate = PredicateSpecs::AlwaysFalse.new(@attribute, 1)
     end
 
     it { should equal(Logic::Proposition::False.instance) }

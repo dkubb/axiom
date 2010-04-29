@@ -73,7 +73,7 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
     end
   end
 
-  describe 'left and right are values' do
+  describe 'left and right are constants' do
     describe 'that will evaluate to true' do
       before do
         @inequality = Logic::Predicate::Inequality.new(1, 2)

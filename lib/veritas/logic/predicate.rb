@@ -34,10 +34,10 @@ module Veritas
       end
 
       def optimize
-        if    always_false? || left.nil? && right.nil? then Proposition::False.instance
-        elsif always_true?                             then Proposition::True.instance
-        elsif swappable?                               then swap
-        elsif !left_attribute? && !right_attribute?    then evaluate_literal_values
+        if    left_and_right_constant? then fold_constants
+        elsif always_false?            then Proposition::False.instance
+        elsif always_true?             then Proposition::True.instance
+        elsif swappable?               then swap
         else
           super
         end
@@ -55,7 +55,7 @@ module Veritas
 
     private
 
-      def evaluate_literal_values
+      def fold_constants
         Proposition.new(self.class.eval(left, right))
       end
 
@@ -82,6 +82,10 @@ module Veritas
 
       def right_attribute?
         right.kind_of?(Attribute)
+      end
+
+      def left_and_right_constant?
+        !left_attribute? && !right_attribute?
       end
 
       def always_false?
@@ -135,14 +139,9 @@ module Veritas
           left  = self.left
           right = self.right
 
-          left_attribute  = left_attribute?
-          right_attribute = right_attribute?
-
-          if    left_attribute && right_attribute then !joinable?
-          elsif left_attribute                    then !left.valid_value?(right)
-          elsif right_attribute                   then !right.valid_value?(left)
-          else
-            false
+          if    !right_attribute? then !left.valid_value?(right)
+          elsif !left_attribute?  then !right.valid_value?(left)
+          else                         !joinable?
           end
         end
 

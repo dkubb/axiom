@@ -72,7 +72,7 @@ describe 'Veritas::Logic::Predicate::Equality#optimize' do
     end
   end
 
-  describe 'left and right are not attributes' do
+  describe 'left and right are constants' do
     describe 'that will evaluate to true' do
       before do
         @equality = Logic::Predicate::Equality.new(1, 1)
