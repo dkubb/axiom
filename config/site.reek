@@ -1,9 +1,95 @@
 ---
-IrresponsibleModule:
-  enabled: false      # TODO: remove this when all classes/modules are documented
-
+UncommunicativeParameterName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
 LargeClass:
-  max_methods: 37     # TODO: remove this once it's 25 or less
-
+  max_methods: 37  # TODO: decrease max_methods to 25 or less
+  exclude: []
+  enabled: true
+  max_instance_variables: 9
+UncommunicativeMethodName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^[a-z]$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+LongParameterList:
+  max_params: 3
+  exclude: []
+  enabled: true
+  overrides:
+    initialize:
+      max_params: 5
+FeatureEnvy:
+  exclude: &id001 []
+  enabled: true
+ClassVariable:
+  exclude: *id001
+  enabled: true
+BooleanParameter:
+  exclude: *id001
+  enabled: true
+IrresponsibleModule:
+  exclude: *id001
+  enabled: false  # TODO: set to true when all classes/modules are documented
+UncommunicativeModuleName:
+  accept:
+  - Inline::C
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+NestedIterators:
+  ignore_iterators: []
+  exclude: []
+  enabled: true
+  max_allowed_nesting: 1
 LongMethod:
-  max_statements: 11  # TODO: remove this once it's 5 or less
+  max_statements: 11  # TODO: decrease max_statements to 5 or less
+  exclude:
+  - initialize
+  enabled: true
+Duplication:
+  allow_calls: []
+  exclude: []
+  enabled: true
+  max_calls: 1
+UtilityFunction:
+  max_helper_calls: 1
+  exclude: []
+  enabled: true
+Attribute:
+  exclude: []
+  enabled: false
+UncommunicativeVariableName:
+  accept: []
+  exclude: []
+  enabled: true
+  reject:
+  - !ruby/regexp /^.$/
+  - !ruby/regexp /[0-9]$/
+  - !ruby/regexp /[A-Z]/
+SimulatedPolymorphism:
+  exclude: []
+  enabled: true
+  max_ifs: 2
+DataClump:
+  exclude: []
+  enabled: true
+  max_copies: 2
+  min_clump_size: 2
+ControlCouple:
+  exclude: *id001
+  enabled: true
+LongYieldList:
+  max_params: 3
+  exclude: []
+  enabled: true
