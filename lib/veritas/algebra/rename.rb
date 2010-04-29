@@ -93,32 +93,26 @@ module Veritas
         optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
       end
 
-      # TODO: create Rename::Aliases object, and move this to a #union method
       def optimize_aliases
-        @optimize_aliases ||=
-          begin
-            other   = optimize_relation
-            aliases = self.aliases
+        @optimize_aliases ||= optimize_relation.respond_to?(:aliases) ? union_aliases : aliases
+      end
 
-            if other.respond_to?(:aliases)
-              other_aliases = other.aliases.dup
-              inverted      = other_aliases.invert
+      # TODO: create Rename::Aliases object, and move this to a #union method
+      def union_aliases
+        other_aliases = optimize_relation.aliases.dup
+        inverted      = other_aliases.invert
 
-              aliases.each do |old_attribute, new_attribute|
-                old_attribute = inverted.fetch(old_attribute, old_attribute)
+        aliases.each do |old_attribute, new_attribute|
+          old_attribute = inverted.fetch(old_attribute, old_attribute)
 
-                if old_attribute == new_attribute
-                  other_aliases.delete(new_attribute)
-                else
-                  other_aliases[old_attribute] = new_attribute
-                end
-              end
-
-              other_aliases
-            else
-              aliases
-            end
+          if old_attribute == new_attribute
+            other_aliases.delete(new_attribute)
+          else
+            other_aliases[old_attribute] = new_attribute
           end
+        end
+
+        other_aliases
       end
 
     end # class Rename

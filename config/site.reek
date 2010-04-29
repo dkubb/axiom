@@ -50,7 +50,7 @@ NestedIterators:
   enabled: true
   max_allowed_nesting: 1
 LongMethod:
-  max_statements: 11  # TODO: decrease max_statements to 5 or less
+  max_statements: 7  # TODO: decrease max_statements to 5 or less
   exclude:
   - initialize
   enabled: true

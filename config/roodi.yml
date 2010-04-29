@@ -6,12 +6,11 @@ ClassLineCountCheck:             { line_count: 161 }
 ClassNameCheck:                  { pattern: !ruby/regexp /\A[A-Z][a-z](?:[A-Z]?[a-z])+\z/ }
 ClassVariableCheck:              { }
 CyclomaticComplexityBlockCheck:  { complexity: 2 }
-# TODO: decrease complexity to 8 or less
-CyclomaticComplexityMethodCheck: { complexity: 9 }
+CyclomaticComplexityMethodCheck: { complexity: 8 }
 EmptyRescueBodyCheck:            { }
 ForLoopCheck:                    { }
 # TODO: decrease line_count to 10 or less
-MethodLineCountCheck:            { line_count: 24 }
+MethodLineCountCheck:            { line_count: 14 }
 MethodNameCheck:                 { pattern: !ruby/regexp /\A(?:[a-z](?:_?[a-z])+[?!]?|\[\]|==|<=>|[+*&|-])\z/ }
 ModuleLineCountCheck:            { line_count: 163 }
 ModuleNameCheck:                 { pattern: !ruby/regexp /\A[A-Z][a-z](?:[A-Z]?[a-z])+\z/ }
