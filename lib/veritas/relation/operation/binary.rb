@@ -21,11 +21,7 @@ module Veritas
         end
 
         def optimize
-          if optimized?
-            new_optimized_operation
-          else
-            super
-          end
+          optimized? ? new_optimized_operation : super
         end
 
         def wrap
