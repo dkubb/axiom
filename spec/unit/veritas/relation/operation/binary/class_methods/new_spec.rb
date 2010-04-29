@@ -27,7 +27,7 @@ require File.expand_path('../../fixtures/classes', __FILE__)
        @left = @left.order { |r| r[:id] }
      end
 
-     it { method(:subject).should raise_error(RelationMismatchError, 'left is ordered, and right is not, both relations must be ordered or neither') }
+     it { method(:subject).should raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
    end
 
    describe 'with right ordered, and left unordered' do
@@ -35,6 +35,6 @@ require File.expand_path('../../fixtures/classes', __FILE__)
        @right = @right.order { |r| r[:name] }
      end
 
-     it { method(:subject).should raise_error(RelationMismatchError, 'right is ordered, and left is not, both relations must be ordered or neither') }
+     it { method(:subject).should raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
    end
 end

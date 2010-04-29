@@ -37,12 +37,10 @@ module Veritas
         end
 
         def optimize
-          left, right = optimize_left, optimize_right
-
-          if left.eql?(right)
-            left
-          elsif kind_of?(right.class) && left.eql?(right.left)
-            right
+          if duplicate_operands?
+            optimize_left
+          elsif redundant?
+            optimize_right
           elsif optimized?
             new_optimized_connective
           else
@@ -61,6 +59,15 @@ module Veritas
         end
 
       private
+
+        def duplicate_operands?
+          optimize_left.eql?(optimize_right)
+        end
+
+        def redundant?
+          right = optimize_right
+          kind_of?(right.class) && optimize_left.eql?(right.left)
+        end
 
         def optimize_left
           @optimize_left ||= left.optimize
