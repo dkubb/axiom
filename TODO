@@ -1,3 +1,5 @@
+* Remove Time#pred because Time#succ is being deprecated in Ruby 1.9.2-dev
+
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
     per-operation basis.
