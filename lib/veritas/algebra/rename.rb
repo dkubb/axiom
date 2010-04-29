@@ -6,7 +6,7 @@ module Veritas
       attr_reader :aliases
 
       def initialize(relation, aliases)
-        @aliases = aliases
+        @aliases = aliases.to_hash
         super(relation)
       end
 
