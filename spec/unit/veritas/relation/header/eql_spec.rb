@@ -66,8 +66,16 @@ describe 'Veritas::Relation::Header#eql?' do
 
     it { should be_false }
 
-    it 'is symmetric' do
+    specification = proc do
       should == @other.eql?(@header)
+    end
+
+    it 'is symmetric' do
+      if RUBY_PLATFORM[/java/]
+        pending('Array#eql? does not call other#to_ary in JRuby', &specification)
+      else
+        instance_eval(&specification)
+      end
     end
   end
 

@@ -28,7 +28,7 @@ describe 'Veritas::Aliasable#inheritable_alias' do
     @aliasable.other.should equal(retval)
   end
 
-  it 'should set the file and line number' do
+  specification = proc do
     @klass.class_eval do
       def test
         caller
@@ -38,5 +38,13 @@ describe 'Veritas::Aliasable#inheritable_alias' do
     subject
 
     @aliasable.other.first.split(':')[0, 2].should == [  File.expand_path('../../../../../lib/veritas/support/aliasable.rb', __FILE__), '7' ]
+  end
+
+  it 'should set the file and line number' do
+    if RUBY_PLATFORM[/java/]
+      pending('Kernel#caller returns the incorrect line number in JRuby', &specification)
+    else
+      instance_eval(&specification)
+    end
   end
 end
