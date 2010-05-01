@@ -14,7 +14,7 @@ describe 'Range#overlaps?' do
       @other = 1..4
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -29,7 +29,7 @@ describe 'Range#overlaps?' do
       @other = 11..15
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -44,7 +44,7 @@ describe 'Range#overlaps?' do
       @other = 10..15
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -59,7 +59,7 @@ describe 'Range#overlaps?' do
       @other = 1..5
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -74,7 +74,7 @@ describe 'Range#overlaps?' do
       @other = 9..15
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -89,7 +89,7 @@ describe 'Range#overlaps?' do
       @other = 1..6
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -104,7 +104,7 @@ describe 'Range#overlaps?' do
       @other = 1..6
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -119,7 +119,7 @@ describe 'Range#overlaps?' do
       @other = 1..5
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -134,7 +134,7 @@ describe 'Range#overlaps?' do
       @other = 1..10
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -149,7 +149,7 @@ describe 'Range#overlaps?' do
       @other = 5..10
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -164,7 +164,7 @@ describe 'Range#overlaps?' do
       @other = 1..10
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -179,7 +179,7 @@ describe 'Range#overlaps?' do
       @other = 5..7
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -194,7 +194,7 @@ describe 'Range#overlaps?' do
       @other = 1..10
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)
@@ -209,7 +209,7 @@ describe 'Range#overlaps?' do
       @other = 1..4
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.overlaps?(@range)

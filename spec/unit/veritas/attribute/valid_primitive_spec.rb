@@ -12,7 +12,7 @@ describe 'Veritas::Attribute#valid_primitive?' do
       @value = 1
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with an invalid value' do
@@ -20,6 +20,6 @@ describe 'Veritas::Attribute#valid_primitive?' do
       @value = 'a'
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

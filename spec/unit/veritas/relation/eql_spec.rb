@@ -15,7 +15,7 @@ describe 'Veritas::Relation#eql?' do
       @other = @relation
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@relation)
@@ -27,7 +27,7 @@ describe 'Veritas::Relation#eql?' do
       @other = @relation.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@relation)
@@ -39,7 +39,7 @@ describe 'Veritas::Relation#eql?' do
       @other = Relation.new(@header, [ [ 2 ] ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@relation)
@@ -53,7 +53,7 @@ describe 'Veritas::Relation#eql?' do
       @other = klass.new(@header, @tuples)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@relation)

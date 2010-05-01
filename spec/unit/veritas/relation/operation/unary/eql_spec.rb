@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
       @other = @unary_operation
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@unary_operation)
@@ -27,7 +27,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
       @other = @unary_operation.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@unary_operation)
@@ -39,7 +39,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
       @other = UnaryOperationSpecs::Other.new(@relation)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@unary_operation)
@@ -53,7 +53,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
       @other = klass.new(@relation)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@unary_operation)

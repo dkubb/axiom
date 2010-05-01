@@ -13,7 +13,7 @@ describe 'Veritas::Attribute#valid_value?' do
         @attribute = Attribute::Integer.new(:id)
       end
 
-      it { should be_false }
+      it { should be(false) }
     end
 
     describe 'and the attribute not required' do
@@ -21,7 +21,7 @@ describe 'Veritas::Attribute#valid_value?' do
         @attribute = Attribute::Integer.new(:id, :required => false)
       end
 
-      it { should be_true }
+      it { should be(true) }
     end
   end
 
@@ -31,7 +31,7 @@ describe 'Veritas::Attribute#valid_value?' do
       @value     = 1
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'when the value is not a valid primitive' do
@@ -40,6 +40,6 @@ describe 'Veritas::Attribute#valid_value?' do
       @value     = 'a'
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

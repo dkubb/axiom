@@ -15,7 +15,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
       @other = @rename
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@rename)
@@ -27,7 +27,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
       @other = @rename.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@rename)
@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
       @other = @relation.rename(:id => :another_id)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@rename)
@@ -53,7 +53,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
       @other = klass.new(@relation, @aliases)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@rename)

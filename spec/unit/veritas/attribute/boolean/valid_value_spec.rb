@@ -12,7 +12,7 @@ describe 'Veritas::Attribute::Boolean#valid_value?' do
       @value = true
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with a false value' do
@@ -20,7 +20,7 @@ describe 'Veritas::Attribute::Boolean#valid_value?' do
       @value = false
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with a value that is not true or false' do
@@ -28,6 +28,6 @@ describe 'Veritas::Attribute::Boolean#valid_value?' do
       @value = 1
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

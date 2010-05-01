@@ -13,7 +13,7 @@ describe 'Veritas::Attribute::Numeric#joinable?' do
         @other = Attribute::Numeric.new(:numeric, :size => 20..30)
       end
 
-      it { should be_true }
+      it { should be(true) }
 
       it 'is symmetric' do
         should == @other.joinable?(@attribute)
@@ -25,7 +25,7 @@ describe 'Veritas::Attribute::Numeric#joinable?' do
         @other = Attribute::Numeric.new(:numeric, :size => 1..10)
       end
 
-      it { should be_true }
+      it { should be(true) }
 
       it 'is symmetric' do
         should == @other.joinable?(@attribute)
@@ -37,7 +37,7 @@ describe 'Veritas::Attribute::Numeric#joinable?' do
         @other = Attribute::Numeric.new(:numeric, :size => 21..30)
       end
 
-      it { should be_false }
+      it { should be(false) }
 
       it 'is symmetric' do
         should == @other.joinable?(@attribute)
@@ -50,7 +50,7 @@ describe 'Veritas::Attribute::Numeric#joinable?' do
       @other = Attribute::String.new(:different)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.joinable?(@attribute)

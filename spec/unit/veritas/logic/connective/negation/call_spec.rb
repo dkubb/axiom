@@ -15,7 +15,7 @@ describe 'Veritas::Logic::Connective::Negation#call' do
       @tuple = Tuple.new(@header, [ 2 ])
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with a tuple that does not match' do
@@ -23,6 +23,6 @@ describe 'Veritas::Logic::Connective::Negation#call' do
       @tuple = Tuple.new(@header, [ 1 ])
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

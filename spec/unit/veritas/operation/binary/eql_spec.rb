@@ -16,7 +16,7 @@ describe 'Veritas::Operation::Binary#eql?' do
       @other = @binary_operation
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@binary_operation)
@@ -28,7 +28,7 @@ describe 'Veritas::Operation::Binary#eql?' do
       @other = @binary_operation.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@binary_operation)
@@ -43,7 +43,7 @@ describe 'Veritas::Operation::Binary#eql?' do
       @other = BinaryOperationSpecs::Object.new(@left, @right)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@binary_operation)
@@ -57,7 +57,7 @@ describe 'Veritas::Operation::Binary#eql?' do
       @other = klass.new(@left, @right)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@binary_operation)

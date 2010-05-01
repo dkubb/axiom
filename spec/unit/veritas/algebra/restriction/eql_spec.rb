@@ -14,7 +14,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
       @other = @restriction
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@restriction)
@@ -26,7 +26,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
       @other = @restriction.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@restriction)
@@ -38,7 +38,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
       @other = @relation.restrict { false }
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@restriction)
@@ -52,7 +52,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
       @other = klass.new(@relation, proc { true })
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@restriction)

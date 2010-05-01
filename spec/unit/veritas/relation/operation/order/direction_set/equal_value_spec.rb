@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
       @other = @directions
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @directions)
@@ -25,7 +25,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
       @other = @directions.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @directions)
@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
       @other     = Relation::Operation::Order::DirectionSet.new([ @attribute ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @directions)
@@ -52,7 +52,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
       @other = klass.new([ @attribute ])
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @directions)

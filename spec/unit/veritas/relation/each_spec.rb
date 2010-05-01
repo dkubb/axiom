@@ -6,7 +6,7 @@ describe 'Veritas::Relation' do
   it { should be_kind_of(Enumerable) }
 
   it 'case matches Enumerable' do
-    (Enumerable === subject).should be_true
+    (Enumerable === subject).should be(true)
   end
 end
 

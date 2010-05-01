@@ -13,7 +13,7 @@ describe 'Veritas::Attribute::Numeric#valid_value?' do
         @value = 1
       end
 
-      it { should be_true }
+      it { should be(true) }
     end
 
     describe 'that is greater than the allowed size range' do
@@ -21,7 +21,7 @@ describe 'Veritas::Attribute::Numeric#valid_value?' do
         @value = 51
       end
 
-      it { should be_false }
+      it { should be(false) }
     end
 
     describe 'that is less than the allowed size range' do
@@ -29,7 +29,7 @@ describe 'Veritas::Attribute::Numeric#valid_value?' do
         @value = 0
       end
 
-      it { should be_false }
+      it { should be(false) }
     end
   end
 
@@ -38,6 +38,6 @@ describe 'Veritas::Attribute::Numeric#valid_value?' do
       @value = 'a'
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

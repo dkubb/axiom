@@ -13,7 +13,7 @@ describe 'Veritas::Attribute::String#valid_value?' do
         @value = 'a'
       end
 
-      it { should be_true }
+      it { should be(true) }
     end
 
     describe 'that is greater than the allowed length range' do
@@ -21,7 +21,7 @@ describe 'Veritas::Attribute::String#valid_value?' do
         @value = 'a' * 51
       end
 
-      it { should be_false }
+      it { should be(false) }
     end
 
     describe 'that is less than the allowed length range' do
@@ -29,7 +29,7 @@ describe 'Veritas::Attribute::String#valid_value?' do
         @value = ''
       end
 
-      it { should be_false }
+      it { should be(false) }
     end
   end
 
@@ -38,6 +38,6 @@ describe 'Veritas::Attribute::String#valid_value?' do
       @value = 1
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

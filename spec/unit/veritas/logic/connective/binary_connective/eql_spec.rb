@@ -17,7 +17,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#eql?' do
       @other = @connective
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@connective)
@@ -29,7 +29,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#eql?' do
       @other = @connective.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@connective)
@@ -41,7 +41,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#eql?' do
       @other = BinaryConnectiveSpecs::Object.new(@header[:name], 1)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@connective)
@@ -55,7 +55,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#eql?' do
       @other = klass.new(@header[:id], 1)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@connective)

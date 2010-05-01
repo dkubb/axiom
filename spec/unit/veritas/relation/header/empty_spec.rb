@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Header#empty?' do
       @header = Relation::Header.new([ [ :id, Integer ] ])
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 
   describe 'without attributes' do
@@ -16,6 +16,6 @@ describe 'Veritas::Relation::Header#empty?' do
       @header = Relation::Header.new
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 end

@@ -15,7 +15,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
       @other = @negation
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@negation)
@@ -27,7 +27,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
       @other = @negation.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@negation)
@@ -41,7 +41,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
       @other     = Logic::Connective::Negation.new(@operand)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@negation)
@@ -55,7 +55,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
       @other = klass.new(@operand)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@negation)

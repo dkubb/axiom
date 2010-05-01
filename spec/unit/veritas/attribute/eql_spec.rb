@@ -14,7 +14,7 @@ describe 'Veritas::Attribute#eql?' do
       @other = @attribute
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@attribute)
@@ -26,7 +26,7 @@ describe 'Veritas::Attribute#eql?' do
       @other = @attribute.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@attribute)
@@ -38,7 +38,7 @@ describe 'Veritas::Attribute#eql?' do
       @other = Attribute::String.new(:name)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@attribute)
@@ -52,7 +52,7 @@ describe 'Veritas::Attribute#eql?' do
       @other = klass.new(@name)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@attribute)
@@ -64,7 +64,7 @@ describe 'Veritas::Attribute#eql?' do
       @other = @attribute.class.new(@attribute.name, :size => 1..100)
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@attribute)

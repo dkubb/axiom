@@ -14,7 +14,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
       @other = @predicate
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@predicate)
@@ -26,7 +26,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
       @other = @predicate.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@predicate)
@@ -39,7 +39,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
       @other     = PredicateSpecs::Object.new(@attribute, 1)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@predicate)
@@ -53,7 +53,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
       @other = klass.new(@attribute, 1)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@predicate)

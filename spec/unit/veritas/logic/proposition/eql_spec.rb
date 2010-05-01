@@ -13,7 +13,7 @@ describe 'Veritas::Logic::Proposition#eql?' do
       @other = PropositionSpecs::Object.new
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@proposition)
@@ -25,7 +25,7 @@ describe 'Veritas::Logic::Proposition#eql?' do
       @other = Class.new(Logic::Proposition).new
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@proposition)

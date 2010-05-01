@@ -18,7 +18,7 @@ describe 'Veritas::Logic::Expression#==' do
       @other      = ExpressionSpecs::Object.new
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@expression)
@@ -33,7 +33,7 @@ describe 'Veritas::Logic::Expression#==' do
       @other      = subclass.new
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@expression)
@@ -46,7 +46,7 @@ describe 'Veritas::Logic::Expression#==' do
       @other      = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@expression)
@@ -61,7 +61,7 @@ describe 'Veritas::Logic::Expression#==' do
       @other      = subclass.new & subclass.new
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@expression)

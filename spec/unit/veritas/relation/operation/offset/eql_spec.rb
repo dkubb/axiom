@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
       @other = @offset
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@offset)
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
       @other = @offset.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@offset)
@@ -40,7 +40,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
       @other = @offset.offset(0)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@offset)
@@ -54,7 +54,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
       @other = klass.new(@offset, 1)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@offset)

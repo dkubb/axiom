@@ -13,7 +13,7 @@ describe 'Veritas::Tuple#==' do
       @other = @tuple
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @tuple)
@@ -25,7 +25,7 @@ describe 'Veritas::Tuple#==' do
       @other = @tuple.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @tuple)
@@ -37,7 +37,7 @@ describe 'Veritas::Tuple#==' do
       @other = Tuple.new(@header, [ 2 ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @tuple)
@@ -50,7 +50,7 @@ describe 'Veritas::Tuple#==' do
       @other  = Tuple.new(@header, @tuple.to_ary)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @tuple)
@@ -64,7 +64,7 @@ describe 'Veritas::Tuple#==' do
       @other = klass.new(@header, [ 1 ])
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @tuple)
@@ -76,7 +76,7 @@ describe 'Veritas::Tuple#==' do
       @other = [ 1 ]
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @tuple)
@@ -88,7 +88,7 @@ describe 'Veritas::Tuple#==' do
       @other = [ 2 ]
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @tuple)

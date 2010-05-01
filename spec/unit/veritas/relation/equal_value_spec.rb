@@ -15,7 +15,7 @@ describe 'Veritas::Relation#==' do
       @other = @relation
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @relation)
@@ -27,7 +27,7 @@ describe 'Veritas::Relation#==' do
       @other = @relation.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @relation)
@@ -39,7 +39,7 @@ describe 'Veritas::Relation#==' do
       @other = Relation.new(@header, [ [ 2 ] ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @relation)
@@ -51,7 +51,7 @@ describe 'Veritas::Relation#==' do
       @other = Relation.new([ [ :name, String ] ], @relation)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @relation)
@@ -63,7 +63,7 @@ describe 'Veritas::Relation#==' do
       @other = Set[ [ 1 ] ]
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       pending 'Set#== should call to_set on other' do
@@ -77,7 +77,7 @@ describe 'Veritas::Relation#==' do
       @other = Set[ [ 2 ] ]
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (@other == @relation)
@@ -96,7 +96,7 @@ describe 'Veritas::Relation#==' do
       @other    = Relation.new(header2, [ [ 'Dan Kubb', 1 ] ])
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @relation)
@@ -110,7 +110,7 @@ describe 'Veritas::Relation#==' do
       @other = klass.new(@header, @tuples)
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (@other == @relation)

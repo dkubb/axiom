@@ -12,7 +12,7 @@ describe 'Veritas::Relation#empty?' do
       @relation = Relation.new(@header, [])
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with a body containing an entry' do
@@ -20,6 +20,6 @@ describe 'Veritas::Relation#empty?' do
       @relation = Relation.new(@header, [ [ 1 ] ])
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

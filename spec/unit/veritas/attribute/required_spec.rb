@@ -8,7 +8,7 @@ describe 'Veritas::Attribute#required?' do
       @attribute = Attribute::Integer.new(:id)
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with :required => true option passed to constructor' do
@@ -16,7 +16,7 @@ describe 'Veritas::Attribute#required?' do
       @attribute = Attribute::Integer.new(:id, :required => true)
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with :required => false option passed to constructor' do
@@ -24,6 +24,6 @@ describe 'Veritas::Attribute#required?' do
       @attribute = Attribute::Integer.new(:id, :required => false)
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

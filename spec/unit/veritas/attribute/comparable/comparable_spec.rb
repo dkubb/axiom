@@ -12,7 +12,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
       @other = @attribute.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.comparable?(@attribute)
@@ -24,7 +24,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
       @other = Attribute::String.new(:different)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is not be symmetric' do
       lambda {
@@ -38,7 +38,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
       @other = Class.new(Attribute::Integer).new(:descendant)
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.comparable?(@attribute)
@@ -50,7 +50,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
       @other = Attribute::Numeric.new(:ancestor)
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.comparable?(@attribute)

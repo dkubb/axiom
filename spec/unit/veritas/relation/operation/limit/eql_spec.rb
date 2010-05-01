@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
       @other = @limit
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@limit)
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
       @other = @limit.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@limit)
@@ -40,7 +40,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
       @other = @order.limit(2)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@limit)
@@ -54,7 +54,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
       @other = klass.new(@order, 1)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@limit)

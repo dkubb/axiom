@@ -7,5 +7,5 @@ describe 'Veritas::Relation::Empty#empty?' do
 
   subject { @empty.empty? }
 
-  it { should be_true }
+  it { should be(true) }
 end

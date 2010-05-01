@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
       @other = @order
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@order)
@@ -27,7 +27,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
       @other = @order.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@order)
@@ -39,7 +39,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
       @other = @order.order([ @relation[:id].desc ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@order)
@@ -53,7 +53,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
       @other = klass.new(@order, @directions)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@order)

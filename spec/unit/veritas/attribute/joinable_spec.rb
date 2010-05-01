@@ -12,7 +12,7 @@ describe 'Veritas::Attribute#joinable?' do
       @other = @attribute.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.joinable?(@attribute)
@@ -24,7 +24,7 @@ describe 'Veritas::Attribute#joinable?' do
       @other = Attribute::String.new(:different)
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.joinable?(@attribute)
@@ -36,7 +36,7 @@ describe 'Veritas::Attribute#joinable?' do
       @other = Class.new(Attribute::Integer).new(:descendant)
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.joinable?(@attribute)
@@ -48,7 +48,7 @@ describe 'Veritas::Attribute#joinable?' do
       @other = Attribute::Numeric.new(:ancestor)
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.joinable?(@attribute)

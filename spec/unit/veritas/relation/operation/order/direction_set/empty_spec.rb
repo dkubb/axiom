@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#empty?' do
       @directions = Relation::Operation::Order::DirectionSet.new([])
     end
 
-    it { should be_true }
+    it { should be(true) }
   end
 
   describe 'with directions' do
@@ -17,6 +17,6 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#empty?' do
       @directions = Relation::Operation::Order::DirectionSet.new([ @attribute ])
     end
 
-    it { should be_false }
+    it { should be(false) }
   end
 end

@@ -14,7 +14,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other = @header
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@header)
@@ -26,7 +26,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other = @header.dup
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@header)
@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other = Relation::Header.new([ [ :name, String ] ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@header)
@@ -52,7 +52,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other = klass.new([ @attribute ])
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@header)
@@ -64,7 +64,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other = [ @attribute ]
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     specification = proc do
       should == @other.eql?(@header)
@@ -84,7 +84,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other = [ [ :name, String ] ]
     end
 
-    it { should be_false }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == @other.eql?(@header)
@@ -100,7 +100,7 @@ describe 'Veritas::Relation::Header#eql?' do
       @other  = Relation::Header.new([ @attribute2, @attribute1 ])
     end
 
-    it { should be_true }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == @other.eql?(@header)
