@@ -38,9 +38,9 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it { should be_instance_of(Relation::Operation::Offset) }
 
-    it { subject.relation.should equal(@order) }
+    its(:relation) { should equal(@order) }
 
-    it { subject.to_i.should == 1 }
+    its(:to_i) { should == 1 }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @offset
@@ -56,7 +56,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it { should be_instance_of(Relation::Operation::Offset) }
 
-    it { subject.relation.should equal(@order) }
+    its(:relation) { should equal(@order) }
 
     it 'adds the offset of the operations' do
       subject.to_i.should == 15

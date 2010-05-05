@@ -68,9 +68,9 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
 
     it { should be_instance_of(BinaryConnectiveSpecs::Object) }
 
-    it { subject.left.should equal(@original_left) }
+    its(:left) { should equal(@original_left) }
 
-    it { subject.right.should equal(@right) }
+    its(:right) { should equal(@right) }
   end
 
   describe 'left and right are different, after optimizing the right' do
@@ -86,9 +86,9 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
 
     it { should be_instance_of(BinaryConnectiveSpecs::Object) }
 
-    it { subject.left.should equal(@left) }
+    its(:left) { should equal(@left) }
 
-    it { subject.right.should equal(@original_right) }
+    its(:right) { should equal(@original_right) }
   end
 
   describe 'self and right are the same, and left and right.left are the same' do

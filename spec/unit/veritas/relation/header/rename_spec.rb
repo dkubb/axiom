@@ -11,5 +11,5 @@ describe 'Veritas::Relation::Header#rename' do
 
   it { should_not equal(@header) }
 
-  it { subject.to_ary.should == [ [ :other_id, Integer ], [ :name, String ] ] }
+  its(:to_ary) { should == [ [ :other_id, Integer ], [ :name, String ] ] }
 end

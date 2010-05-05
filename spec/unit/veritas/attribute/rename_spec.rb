@@ -12,5 +12,5 @@ describe 'Veritas::Attribute#rename' do
 
   it { should_not equal(@attribute) }
 
-  it { subject.name.should == @name }
+  its(:name) { should == @name }
 end

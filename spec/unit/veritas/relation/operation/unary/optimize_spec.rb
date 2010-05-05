@@ -42,6 +42,6 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
 
     it { should be_instance_of(UnaryOperationSpecs::Object) }
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
   end
 end

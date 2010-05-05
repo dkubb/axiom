@@ -56,7 +56,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       subject.predicate.should eql(@relation[:id].eq(1))
     end
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
@@ -79,7 +79,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       subject.predicate.should equal(@predicate)
     end
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction
@@ -133,7 +133,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       subject.predicate.should eql(@other_predicate & @predicate)
     end
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @restriction

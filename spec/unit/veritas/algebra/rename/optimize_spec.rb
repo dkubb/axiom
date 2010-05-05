@@ -45,7 +45,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       subject.aliases.should == @rename.aliases
     end
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
@@ -66,7 +66,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       subject.aliases.should == @aliases.merge(:name => :other_name)
     end
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
@@ -87,7 +87,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       subject.aliases.should == { :id => :another_id }
     end
 
-    it { subject.relation.should equal(@relation) }
+    its(:relation) { should equal(@relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
@@ -116,9 +116,9 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Projection) }
 
-    it { subject.relation.should eql(Algebra::Rename.new(@relation, @aliases)) }
+    its(:relation) { should eql(Algebra::Rename.new(@relation, @aliases)) }
 
-    it { subject.header.should == [ [ :other_id, Integer ] ] }
+    its(:header) { should == [ [ :other_id, Integer ] ] }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename
@@ -150,11 +150,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it { subject.relation.should eql(Algebra::Rename.new(@relation, @aliases)) }
+    its(:relation) { should eql(Algebra::Rename.new(@relation, @aliases)) }
 
-    it { subject.header.should == [ [ :other_id, Integer ], [ :name, String ] ] }
+    its(:header) { should == [ [ :other_id, Integer ], [ :name, String ] ] }
 
-    it { subject.predicate.should == @rename[:other_id].eq(1) }
+    its(:predicate) { should == @rename[:other_id].eq(1) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == @rename

@@ -12,7 +12,7 @@ describe 'Veritas::Tuple#project' do
 
   it { should be_kind_of(Tuple) }
 
-  it { subject.header.should equal(@reversed_header) }
+  its(:header) { should equal(@reversed_header) }
 
-  it { subject.to_ary.should == [ 1, 'Dan Kubb' ] }
+  its(:to_ary) { should == [ 1, 'Dan Kubb' ] }
 end
