@@ -2,61 +2,49 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate#eql?' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @predicate = PredicateSpecs::Object.new(@attribute, 1)
-  end
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
 
-  subject { @predicate.eql?(@other) }
+  subject { predicate.eql?(other) }
 
   describe 'with the same predicate' do
-    before do
-      @other = @predicate
-    end
+    let(:other) { predicate }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@predicate)
+      should == other.eql?(predicate)
     end
   end
 
   describe 'with an equivalent predicate' do
-    before do
-      @other = @predicate.dup
-    end
+    let(:other) { predicate.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@predicate)
+      should == other.eql?(predicate)
     end
   end
 
   describe 'with a different predicate' do
-    before do
-      @attribute = Attribute::String.new(:name)
-      @other     = PredicateSpecs::Object.new(@attribute, 1)
-    end
+    let(:other_attribute) { Attribute::String.new(:name)                   }
+    let(:other)           { PredicateSpecs::Object.new(other_attribute, 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@predicate)
+      should == other.eql?(predicate)
     end
   end
 
   describe 'with an equivalent predicate of a different class' do
-    before do
-      klass = Class.new(PredicateSpecs::Object)
-
-      @other = klass.new(@attribute, 1)
-    end
+    let(:other) { Class.new(PredicateSpecs::Object).new(attribute, 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@predicate)
+      should == other.eql?(predicate)
     end
   end
 end

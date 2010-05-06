@@ -1,61 +1,48 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#==' do
-  before do
-    @name = :id
+  let(:name)      { :id                          }
+  let(:attribute) { Attribute::Integer.new(name) }
 
-    @attribute = Attribute::Integer.new(@name)
-  end
-
-  subject { @attribute == @other }
+  subject { attribute == other }
 
   describe 'with the same attribute' do
-    before do
-      @other = @attribute
-    end
+    let(:other) { attribute }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @attribute)
+      should == (other == attribute)
     end
   end
 
   describe 'with an equivalent attribute' do
-    before do
-      @other = @attribute.dup
-    end
+    let(:other) { attribute.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @attribute)
+      should == (other == attribute)
     end
   end
 
   describe 'with a different attribute' do
-    before do
-      @other = Attribute::String.new(:name)
-    end
+    let(:other) { Attribute::String.new(:name) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @attribute)
+      should == (other == attribute)
     end
   end
 
   describe 'with an equivalent attribute of a different class' do
-    before do
-      klass = Class.new(Attribute::Integer)
-
-      @other = klass.new(@name)
-    end
+    let(:other) { Class.new(Attribute::Integer).new(name) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @attribute)
+      should == (other == attribute)
     end
   end
 end

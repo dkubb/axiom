@@ -1,17 +1,14 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Empty#each' do
-  before do
-    @empty = Relation::Empty.new([ [ :id, Integer ] ])
+  let(:empty)  { Relation::Empty.new([ [ :id, Integer ] ]) }
+  let(:yields) { []                                        }
 
-    @yield = []
-  end
+  subject { empty.each { |tuple| yields << tuple } }
 
-  subject { @empty.each { |tuple| @yield << tuple } }
-
-  it { should equal(@empty) }
+  it { should equal(empty) }
 
   it 'does not yield any tuples' do
-    method(:subject).should_not change { @yield.dup }
+    method(:subject).should_not change { yields.dup }
   end
 end

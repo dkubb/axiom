@@ -2,19 +2,15 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Combine#optimize' do
-  before do
-    @left   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
-    @right  = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
-  end
+  let(:original_left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])                         }
+  let(:original_right)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
+  let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)                               }
 
-  subject { @combine_operation.optimize }
+  subject { combine_operation.optimize }
 
   describe 'left is an empty relation' do
-    before do
-      @left = Relation::Empty.new(@left.header)
-
-      @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
-    end
+    let(:left)  { Relation::Empty.new(original_left.header) }
+    let(:right) { original_right                            }
 
     it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
@@ -22,11 +18,8 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
   end
 
   describe 'right is an empty relation' do
-    before do
-      @right = Relation::Empty.new(@right.header)
-
-      @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
-    end
+    let(:left)  { original_left                              }
+    let(:right) { Relation::Empty.new(original_right.header) }
 
     it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
@@ -34,11 +27,8 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
   end
 
   describe 'left is an empty relation when optimized' do
-    before do
-      @left = Algebra::Restriction.new(@left, Logic::Proposition::False.instance)
-
-      @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
-    end
+    let(:left)  { Algebra::Restriction.new(original_left, Logic::Proposition::False.instance) }
+    let(:right) { original_right                                                              }
 
     it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
@@ -46,11 +36,8 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
   end
 
   describe 'right is an empty relation when optimized' do
-    before do
-      @right = Algebra::Restriction.new(@right, Logic::Proposition::False.instance)
-
-      @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
-    end
+    let(:left)  { original_left                                                                }
+    let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::False.instance) }
 
     it 'attempts to delegate new_empty_relation' do
       method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
@@ -58,9 +45,8 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
   end
 
   describe 'left and right are not empty relations' do
-    before do
-      @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
-    end
+    let(:left)  { original_left  }
+    let(:right) { original_right }
 
     it 'attempts to delegate to the superclass' do
       method(:subject).should raise_error(NoMethodError)

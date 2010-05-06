@@ -1,21 +1,21 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
-  before do
-    @relation = Relation.new(
+  let(:relation) do
+    Relation.new(
       [ [ :id, Integer ], [ :name, String ] ],
       [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ] ]
     )
-
-    @directions = Relation::Operation::Order::DirectionSet.new(@relation.header)
   end
 
-  subject { @directions.sort_tuples(@relation) }
+  let(:directions) { Relation::Operation::Order::DirectionSet.new(relation.header) }
+
+  subject { directions.sort_tuples(relation) }
 
   describe 'sorted with ascending id and descending name' do
-    before do
-      @directions = Relation::Operation::Order::DirectionSet.new(
-        [ @relation[:id].asc, @relation[:name].desc ]
+    let(:directions) do
+      Relation::Operation::Order::DirectionSet.new(
+        [ relation[:id].asc, relation[:name].desc ]
       )
     end
 
@@ -25,9 +25,9 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   describe 'sorted with ascending id and ascending name' do
-    before do
-      @directions = Relation::Operation::Order::DirectionSet.new(
-        [ @relation[:id].asc, @relation[:name].asc ]
+    let(:directions) do
+      Relation::Operation::Order::DirectionSet.new(
+        [ relation[:id].asc, relation[:name].asc ]
       )
     end
 
@@ -37,9 +37,9 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   describe 'sorted with descending id and ascending name' do
-    before do
-      @directions = Relation::Operation::Order::DirectionSet.new(
-        [ @relation[:id].desc, @relation[:name].asc ]
+    let(:directions) do
+      Relation::Operation::Order::DirectionSet.new(
+        [ relation[:id].desc, relation[:name].asc ]
       )
     end
 
@@ -49,9 +49,9 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   describe 'sorted with descending id and descending name' do
-    before do
-      @directions = Relation::Operation::Order::DirectionSet.new(
-        [ @relation[:id].desc, @relation[:name].desc ]
+    let(:directions) do
+      Relation::Operation::Order::DirectionSet.new(
+        [ relation[:id].desc, relation[:name].desc ]
       )
     end
 

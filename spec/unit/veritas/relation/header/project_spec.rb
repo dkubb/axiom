@@ -1,11 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#project' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
-  end
+  let(:header) { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
 
-  subject { @header.project([ :id ]) }
+  subject { header.project([ :id ]) }
 
   it { should be_kind_of(Relation::Header) }
 

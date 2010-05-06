@@ -1,11 +1,9 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet' do
-  before do
-    @attributes = [ Attribute::Integer.new(:id) ]
-  end
+  let(:attributes) { [ Attribute::Integer.new(:id) ] }
 
-  subject { Relation::Operation::Order::DirectionSet.new(@attributes) }
+  subject { Relation::Operation::Order::DirectionSet.new(attributes) }
 
   it { should be_kind_of(Enumerable) }
 
@@ -15,18 +13,15 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet' do
 end
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
-  before do
-    @attributes = [ Attribute::Integer.new(:id), Attribute::String.new(:name) ]
-    @directions = Relation::Operation::Order::DirectionSet.new(@attributes)
+  let(:attributes) { [ Attribute::Integer.new(:id), Attribute::String.new(:name) ] }
+  let(:directions) { Relation::Operation::Order::DirectionSet.new(attributes)      }
+  let(:yields)     { []                                                            }
 
-    @yield = []
-  end
+  subject { directions.each { |direction| yields << direction } }
 
-  subject { @directions.each { |direction| @yield << direction } }
-
-  it { should equal(@directions) }
+  it { should equal(directions) }
 
   it 'yields each direction' do
-    method(:subject).should change { @yield.dup }.from([]).to(@directions.to_ary)
+    method(:subject).should change { yields.dup }.from([]).to(directions.to_ary)
   end
 end

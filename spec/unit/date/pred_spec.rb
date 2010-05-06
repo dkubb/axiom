@@ -1,17 +1,15 @@
 require File.expand_path('../../../spec_helper', __FILE__)
 
 describe 'Date#pred' do
-  before do
-    @date = Date.today
-  end
+  let(:date) { Date.today }
 
-  subject { @date.pred }
+  subject { date.pred }
 
   it 'returns the date 1 day ago' do
-    should == (@date - 1)
+    should == (date - 1)
   end
 
   it 'is the inverse of #succ' do
-    subject.succ.should == @date
+    subject.succ.should == date
   end
 end

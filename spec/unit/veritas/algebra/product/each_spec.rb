@@ -1,22 +1,18 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product#each' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
-    @left   = Relation.new(@header.project([ :id   ]), [ [ 1 ], [ 2 ] ])
-    @right  = Relation.new(@header.project([ :name ]), [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ])
+  let(:header)  { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])                }
+  let(:left)    { Relation.new(header.project([ :id   ]), [ [ 1 ], [ 2 ] ])                    }
+  let(:right)   { Relation.new(header.project([ :name ]), [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ]) }
+  let(:product) { Algebra::Product.new(left, right)                                            }
+  let(:yields)  { []                                                                           }
 
-    @product = Algebra::Product.new(@left, @right)
+  subject { product.each { |tuple| yields << tuple } }
 
-    @yield = []
-  end
-
-  subject { @product.each { |tuple| @yield << tuple } }
-
-  it { should equal(@product) }
+  it { should equal(product) }
 
   it 'yields the product' do
-    method(:subject).should change { @yield.dup }.
+    method(:subject).should change { yields.dup }.
       from([]).
       to([ [ 1, 'Dan Kubb' ], [ 1, 'Alex Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ])
   end

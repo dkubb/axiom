@@ -2,16 +2,13 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Operation::Binary#hash' do
-  before do
-    @left  = mock('Left')
-    @right = mock('Right')
+  let(:left)             { mock('Left')                                  }
+  let(:right)            { mock('Right')                                 }
+  let(:binary_operation) { BinaryOperationSpecs::Object.new(left, right) }
 
-    @binary_operation = BinaryOperationSpecs::Object.new(@left, @right)
-  end
-
-  subject { @binary_operation.hash }
+  subject { binary_operation.hash }
 
   it { should be_kind_of(Integer) }
 
-  it { should == @left.hash ^ @right.hash }
+  it { should == left.hash ^ right.hash }
 end

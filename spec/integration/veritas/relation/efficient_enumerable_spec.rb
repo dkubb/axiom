@@ -17,42 +17,40 @@ end
 
 describe 'Veritas::Algebra::Relation' do
   describe 'Efficient Enumerable operation' do
-    before do
-      @relation = Relation.new([ [ :id, Integer ] ], InfiniteList.new)
-    end
+    let(:relation) { Relation.new([ [ :id, Integer ] ], InfiniteList.new) }
 
     def sample(relation)
       relation.enum_for.take(5)
     end
 
     it '#project should be efficient' do
-      relation = @relation.project([ :id ])
-      sample(relation).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
+      projected = relation.project([ :id ])
+      sample(projected).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
     end
 
     it '#restrict should be efficient' do
-      relation = @relation.restrict{ |r| r[:id].gt(5) }
-      sample(relation).should == [ [ 6 ], [ 7 ], [ 8 ], [ 9 ], [ 10 ] ]
+      restricted = relation.restrict{ |r| r[:id].gt(5) }
+      sample(restricted).should == [ [ 6 ], [ 7 ], [ 8 ], [ 9 ], [ 10 ] ]
     end
 
     it '#product should be efficient' do
-      relation = @relation.product(Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]))
-      sample(relation).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
+      product = relation.product(Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]))
+      sample(product).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
     end
 
     it '#difference should be efficient' do
-      relation = @relation.difference(Relation.new(@relation.header, [ [ 1 ] ]))
-      sample(relation).should == [ [ 0 ], [ 2 ], [ 3 ], [ 4 ], [ 5 ] ]
+      difference = relation.difference(Relation.new(relation.header, [ [ 1 ] ]))
+      sample(difference).should == [ [ 0 ], [ 2 ], [ 3 ], [ 4 ], [ 5 ] ]
     end
 
     it '#union should be efficient' do
-      relation = @relation.union(Relation.new(@relation.header, [ [ 1 ] ]))
-      sample(relation).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
+      union = relation.union(Relation.new(relation.header, [ [ 1 ] ]))
+      sample(union).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
     end
 
     it '#rename should be efficient' do
-      relation = @relation.rename(:id => :other_id)
-      sample(relation).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
+      renamed = relation.rename(:id => :other_id)
+      sample(renamed).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
     end
   end
 end

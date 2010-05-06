@@ -2,14 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Combine#header' do
-  before do
-    @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])
-    @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
+  let(:left)              { Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])   }
+  let(:right)             { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
+  let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)           }
 
-    @combine_operation = CombineOperationSpecs::Object.new(@left, @right)
-  end
-
-  subject { @combine_operation.header }
+  subject { combine_operation.header }
 
   it { should be_kind_of(Relation::Header) }
 

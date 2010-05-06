@@ -11,20 +11,16 @@ describe 'Veritas::Relation' do
 end
 
 describe 'Veritas::Relation#each' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ] ])
-    @tuples = [ [ 1 ], [ 2 ], [ 2 ] ]
+  let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:tuples)   { [ [ 1 ], [ 2 ], [ 2 ] ]                    }
+  let(:relation) { Relation.new(header, tuples)               }
+  let(:yields)   { []                                         }
 
-    @relation = Relation.new(@header, @tuples)
+  subject { relation.each { |tuple| yields << tuple } }
 
-    @yield = []
-  end
-
-  subject { @relation.each { |tuple| @yield << tuple } }
-
-  it { should equal(@relation) }
+  it { should equal(relation) }
 
   it 'yields each tuple only once' do
-    method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
+    method(:subject).should change { yields.dup }.from([]).to([ [ 1 ], [ 2 ] ])
   end
 end

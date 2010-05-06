@@ -1,160 +1,120 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Disjunction#optimize' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-  end
+  let(:attribute) { Attribute::Integer.new(:id) }
 
-  subject { @disjunction.optimize }
+  subject { disjunction.optimize }
 
   describe 'left and right are predicates' do
-    before do
-      @left  = @attribute.gt(1)
-      @right = @attribute.lt(3)
+    let(:left)        { attribute.gt(1)                                 }
+    let(:right)       { attribute.lt(3)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@disjunction) }
+    it { should equal(disjunction) }
   end
 
   describe 'left and right are negated predicates' do
-    before do
-      @disjunction = Logic::Connective::Disjunction.new(
-        Logic::Connective::Negation.new(@attribute.gt(1)),
-        Logic::Connective::Negation.new(@attribute.lt(3))
+    let(:disjunction) do
+      Logic::Connective::Disjunction.new(
+        Logic::Connective::Negation.new(attribute.gt(1)),
+        Logic::Connective::Negation.new(attribute.lt(3))
       )
     end
 
-    it { should_not equal(@disjunction) }
+    it { should_not equal(disjunction) }
 
     it 'inverts the operands' do
-      should eql(Logic::Connective::Disjunction.new(@attribute.lte(1), @attribute.gte(3)))
+      should eql(Logic::Connective::Disjunction.new(attribute.lte(1), attribute.gte(3)))
     end
   end
 
   describe 'left and right are the same' do
-    before do
-      @left  = @attribute.gt(1)
-      @right = @attribute.gt(1)
+    let(:left)        { attribute.gt(1)                                 }
+    let(:right)       { attribute.gt(1)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
   end
 
   describe 'left and right are true propositions' do
-    before do
-      @left  = Logic::Proposition::True.instance
-      @right = Logic::Proposition::True.instance
+    let(:left)        { Logic::Proposition::True.instance               }
+    let(:right)       { Logic::Proposition::True.instance               }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
   end
 
   describe 'left and right are false propositions' do
-    before do
-      @left  = Logic::Proposition::False.instance
-      @right = Logic::Proposition::False.instance
+    let(:left)        { Logic::Proposition::False.instance              }
+    let(:right)       { Logic::Proposition::False.instance              }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
   end
 
   describe 'right is a true proposition' do
-    before do
-      @left  = @attribute.gt(1)
-      @right = Logic::Proposition::True.instance
+    let(:left)        { attribute.gt(1)                                 }
+    let(:right)       { Logic::Proposition::True.instance               }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@right) }
+    it { should equal(right) }
   end
 
   describe 'left is a true proposition' do
-    before do
-      @left  = Logic::Proposition::True.instance
-      @right = @attribute.lt(3)
+    let(:left)        { Logic::Proposition::True.instance               }
+    let(:right)       { attribute.lt(3)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
   end
 
   describe 'right is a false proposition' do
-    before do
-      @left  = @attribute.gt(1)
-      @right = Logic::Proposition::False.instance
+    let(:left)        { attribute.gt(1)                                 }
+    let(:right)       { Logic::Proposition::False.instance              }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
   end
 
   describe 'left is a false proposition' do
-    before do
-      @left  = Logic::Proposition::False.instance
-      @right = @attribute.lt(3)
+    let(:left)        { Logic::Proposition::False.instance              }
+    let(:right)       { attribute.lt(3)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should equal(@right) }
+    it { should equal(right) }
   end
 
   describe 'left and right are equal predicates for the same attribute and different values' do
-    before do
-      @left  = @attribute.eq(1)
-      @right = @attribute.eq(3)
+    let(:left)        { attribute.eq(1)                                 }
+    let(:right)       { attribute.eq(3)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should eql(@attribute.in([ 1, 3 ])) }
+    it { should eql(attribute.in([ 1, 3 ])) }
   end
 
   describe 'left and right are equal predicates for the same attribute and the same values' do
-    before do
-      @left  = @attribute.eq(1)
-      @right = @attribute.eq(1)
+    let(:left)        { attribute.eq(1)                                 }
+    let(:right)       { attribute.eq(1)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should eql(@attribute.eq(1)) }
+    it { should eql(attribute.eq(1)) }
   end
 
   describe 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
-    before do
-      @other = Attribute::Integer.new(:other_id)
+    let(:other)       { Attribute::Integer.new(:other_id)               }
+    let(:left)        { attribute.eq(other)                             }
+    let(:right)       { attribute.eq(1)                                 }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @left  = @attribute.eq(@other)
-      @right = @attribute.eq(1)
-
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should eql(@left | @right) }
+    it { should eql(left | right) }
   end
 
   describe 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
-    before do
-      @other = Attribute::Integer.new(:other_id)
+    let(:other)       { Attribute::Integer.new(:other_id)               }
+    let(:left)        { attribute.eq(1)                                 }
+    let(:right)       { attribute.eq(other)                             }
+    let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-      @left  = @attribute.eq(1)
-      @right = @attribute.eq(@other)
-
-      @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-    end
-
-    it { should eql(@left | @right) }
+    it { should eql(left | right) }
   end
 end

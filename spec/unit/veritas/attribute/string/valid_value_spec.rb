@@ -1,42 +1,32 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute::String#valid_value?' do
-  before do
-    @attribute = Veritas::Attribute::String.new(:string, :length => 1..50)
-  end
+  let(:attribute) { Veritas::Attribute::String.new(:string, :length => 1..50) }
 
-  subject { @attribute.valid_value?(@value) }
+  subject { attribute.valid_value?(value) }
 
   describe 'with a string value' do
     describe 'that is within the allowed length range' do
-      before do
-        @value = 'a'
-      end
+      let(:value) { 'a' }
 
       it { should be(true) }
     end
 
     describe 'that is greater than the allowed length range' do
-      before do
-        @value = 'a' * 51
-      end
+      let(:value) { 'a' * 51 }
 
       it { should be(false) }
     end
 
     describe 'that is less than the allowed length range' do
-      before do
-        @value = ''
-      end
+      let(:value) { '' }
 
       it { should be(false) }
     end
   end
 
   describe 'with a value that is not a string' do
-    before do
-      @value = 1
-    end
+    let(:value) { 1 }
 
     it { should be(false) }
   end

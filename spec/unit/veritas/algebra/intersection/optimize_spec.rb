@@ -1,89 +1,72 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Intersection#optimize' do
-  before do
-    @header = [ [ :id, Integer ] ]
-    @left   = Relation.new(@header, [ [ 1 ] ])
-    @right  = Relation.new(@header, [ [ 2 ] ])
-  end
+  let(:header)         { [ [ :id, Integer ] ]                   }
+  let(:original_left)  { Relation.new(header, [ [ 1 ] ])        }
+  let(:original_right) { Relation.new(header, [ [ 2 ] ])        }
+  let(:intersection)   { Algebra::Intersection.new(left, right) }
 
-  subject { @intersection.optimize }
+  subject { intersection.optimize }
 
   describe 'left is an empty relation' do
-    before do
-      @left = Relation::Empty.new(@header)
+    let(:left)  { Relation::Empty.new(header) }
+    let(:right) { original_right              }
 
-      @intersection = Algebra::Intersection.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @intersection
+      should == intersection
     end
   end
 
   describe 'right is an empty relation' do
-    before do
-      @right = Relation::Empty.new(@header)
+    let(:left)  { original_left               }
+    let(:right) { Relation::Empty.new(header) }
 
-      @intersection = Algebra::Intersection.new(@left, @right)
-    end
-
-    it { should equal(@right) }
+    it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @intersection
+      should == intersection
     end
   end
 
   describe 'left is an empty relation when optimized' do
-    before do
-      @left = Algebra::Restriction.new(@left, Logic::Proposition::False.instance)
+    let(:left)  { Algebra::Restriction.new(original_left, Logic::Proposition::False.instance) }
+    let(:right) { original_right                                                              }
 
-      @intersection = Algebra::Intersection.new(@left, @right)
-    end
-
-    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
+    it { should eql(Relation::Empty.new(left.header | right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @intersection
+      should == intersection
     end
   end
 
   describe 'right is an empty relation when optimized' do
-    before do
-      @right = Algebra::Restriction.new(@right, Logic::Proposition::False.instance)
+    let(:left)  { original_left                                                                }
+    let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::False.instance) }
 
-      @intersection = Algebra::Intersection.new(@left, @right)
-    end
-
-    it { should eql(Relation::Empty.new(@left.header | @right.header)) }
+    it { should eql(Relation::Empty.new(left.header | right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @intersection
+      should == intersection
     end
   end
 
   describe 'left and right are not empty relations' do
-    before do
-      @intersection = Algebra::Intersection.new(@left, @right)
-    end
+    let(:left)  { original_left  }
+    let(:right) { original_right }
 
-    it { should equal(@intersection) }
+    it { should equal(intersection) }
   end
 
   describe 'left and right are equivalent relations' do
-    before do
-      @right = @left.dup
+    let(:left)  { original_left }
+    let(:right) { left.dup      }
 
-      @intersection = Algebra::Intersection.new(@left, @right)
-    end
-
-    it { should equal(@left) }
+    it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @intersection
+      should == intersection
     end
   end
 end

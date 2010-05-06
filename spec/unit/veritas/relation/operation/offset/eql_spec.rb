@@ -1,63 +1,50 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Offset#eql?' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = Relation::Operation::Order.new(@relation, @directions)
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:offset)     { order.offset(1)                                             }
 
-    @offset = @order.offset(1)
-  end
-
-  subject { @offset.eql?(@other) }
+  subject { offset.eql?(other) }
 
   describe 'with the same offset' do
-    before do
-      @other = @offset
-    end
+    let(:other) { offset }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@offset)
+      should == other.eql?(offset)
     end
   end
 
   describe 'with an equivalent offset' do
-    before do
-      @other = @offset.dup
-    end
+    let(:other) { offset.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@offset)
+      should == other.eql?(offset)
     end
   end
 
   describe 'with a different offset' do
-    before do
-      @other = @offset.offset(0)
-    end
+    let(:other) { offset.offset(0) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@offset)
+      should == other.eql?(offset)
     end
   end
 
   describe 'with an equivalent offset of a different class' do
-    before do
-      klass = Class.new(Relation::Operation::Offset)
-
-      @other = klass.new(@offset, 1)
-    end
+    let(:other) { Class.new(Relation::Operation::Offset).new(offset, 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@offset)
+      should == other.eql?(offset)
     end
   end
 

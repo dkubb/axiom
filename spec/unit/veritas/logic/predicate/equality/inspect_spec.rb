@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Equality#inspect' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:equality)  { attribute.eq(1)             }
 
-    @equality = @attribute.eq(1)
-  end
+  subject { equality.inspect }
 
-  subject { @equality.inspect }
-
-  it { should == "#{@attribute.inspect} == 1" }
+  it { should == "#{attribute.inspect} == 1" }
 end

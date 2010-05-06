@@ -1,25 +1,19 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Tuple#[]' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ] ])
-    @tuple  = Tuple.new(@header, [ 1 ])
-  end
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
 
-  subject { @tuple[@attribute] }
+  subject { tuple[attribute] }
 
   describe 'with a known attribute' do
-    before do
-      @attribute = @header[:id]
-    end
+    let(:attribute) { header[:id] }
 
     it { should == 1 }
   end
 
   describe 'with an known attribute' do
-    before do
-      @attribute = Attribute::Integer.new(:other_id)
-    end
+    let(:attribute) { Attribute::Integer.new(:other_id) }
 
     it { should be_nil }
   end

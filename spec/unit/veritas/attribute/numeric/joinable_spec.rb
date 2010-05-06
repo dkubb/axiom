@@ -1,59 +1,49 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute::Numeric#joinable?' do
-  before do
-    @attribute = Attribute::Numeric.new(:numeric, :size => 10..20)
-  end
+  let(:attribute) { Attribute::Numeric.new(:numeric, :size => 10..20) }
 
-  subject { @attribute.joinable?(@other) }
+  subject { attribute.joinable?(other) }
 
   describe 'when the other attribute is the same type' do
     describe 'and the start of the other size falls within range' do
-      before do
-        @other = Attribute::Numeric.new(:numeric, :size => 20..30)
-      end
+      let(:other) { Attribute::Numeric.new(:numeric, :size => 20..30) }
 
       it { should be(true) }
 
       it 'is symmetric' do
-        should == @other.joinable?(@attribute)
+        should == other.joinable?(attribute)
       end
     end
 
     describe 'and the end of the other size falls within range' do
-      before do
-        @other = Attribute::Numeric.new(:numeric, :size => 1..10)
-      end
+      let(:other) { Attribute::Numeric.new(:numeric, :size => 1..10) }
 
       it { should be(true) }
 
       it 'is symmetric' do
-        should == @other.joinable?(@attribute)
+        should == other.joinable?(attribute)
       end
     end
 
     describe 'and the other size is outside the range' do
-      before do
-        @other = Attribute::Numeric.new(:numeric, :size => 21..30)
-      end
+      let(:other) { Attribute::Numeric.new(:numeric, :size => 21..30) }
 
       it { should be(false) }
 
       it 'is symmetric' do
-        should == @other.joinable?(@attribute)
+        should == other.joinable?(attribute)
       end
     end
   end
 
   describe 'when the other attribute is a different class' do
-    before do
-      @other = Attribute::String.new(:different)
-    end
+    let(:other) { Attribute::String.new(:different) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.joinable?(@attribute)
+      should == other.joinable?(attribute)
     end
   end
 end

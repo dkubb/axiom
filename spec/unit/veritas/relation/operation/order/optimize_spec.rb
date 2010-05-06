@@ -1,74 +1,58 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order#optimize' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-  end
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
 
-  subject { @order.optimize }
+  subject { order.optimize }
 
   describe 'containing a relation' do
-    before do
-      @order = @relation.order(@directions)
-    end
+    let(:order) { relation.order(directions) }
 
-    it { should equal(@order) }
+    it { should equal(order) }
   end
 
   describe 'containing an optimizable relation' do
-    before do
-      @projection = @relation.project(@relation.header)
+    let(:projection) { relation.project(relation.header) }
+    let(:order)      { projection.order(directions)      }
 
-      @order = @projection.order(@directions)
-    end
-
-    it { should eql(@relation.order(@directions)) }
+    it { should eql(relation.order(directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @order
+      should == order
     end
   end
 
   describe 'containing an order operation' do
-    before do
-      @original = @relation.order { |r| [ r[:id].desc ] }
+    let(:original) { relation.order { |r| [ r[:id].desc ] } }
+    let(:order)    { original.order(directions)             }
 
-      @order = @original.order(@directions)
-    end
-
-    it { should eql(@relation.order(@directions)) }
+    it { should eql(relation.order(directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @order
+      should == order
     end
   end
 
   describe 'containing a reverse operation' do
-    before do
-      @original = @relation.order { |r| [ r[:id] ] }
+    let(:original) { relation.order { |r| [ r[:id] ] }  }
+    let(:order)    { original.reverse.order(directions) }
 
-      @order = @original.reverse.order(@directions)
-    end
-
-    it { should eql(@relation.order(@directions)) }
+    it { should eql(relation.order(directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @order
+      should == order
     end
   end
 
   describe "containing a limit(1) operation" do
-    before do
-      @original = @relation.order { |r| [ r[:id] ] }
+    let(:original) { relation.order { |r| [ r[:id] ] }   }
+    let(:order)    { original.limit(1).order(directions) }
 
-      @order = @original.limit(1).order(@directions)
-    end
-
-    it { should eql(@original.limit(1)) }
+    it { should eql(original.limit(1)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @order
+      should == order
     end
   end
 end

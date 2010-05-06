@@ -1,119 +1,96 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#==' do
-  before do
-    @header = [ [ :id, Integer ] ]
-    @tuples = [ [ 1 ] ]
+  let(:header)   { [ [ :id, Integer ] ]         }
+  let(:tuples)   { [ [ 1 ] ]                    }
+  let(:relation) { Relation.new(header, tuples) }
 
-    @relation = Relation.new(@header, @tuples)
-  end
-
-  subject { @relation == @other }
+  subject { relation == other }
 
   describe 'with the same relation' do
-    before do
-      @other = @relation
-    end
+    let(:other) { relation }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 
   describe 'with an equivalent relation' do
-    before do
-      @other = @relation.dup
-    end
+    let(:other) { relation.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 
   describe 'with an equivalent header and different tuples' do
-    before do
-      @other = Relation.new(@header, [ [ 2 ] ])
-    end
+    let(:other) { Relation.new(header, [ [ 2 ] ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 
   describe 'with a different header' do
-    before do
-      @other = Relation.new([ [ :name, String ] ], @relation)
-    end
+    let(:other) { Relation.new([ [ :name, String ] ], relation) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 
   describe 'with an equivalent object responding to #to_set' do
-    before do
-      @other = Set[ [ 1 ] ]
-    end
+    let(:other) { Set[ [ 1 ] ] }
 
     it { should be(true) }
 
     it 'is symmetric' do
       pending 'Set#== should call to_set on other' do
-        should == (@other == @relation)
+        should == (other == relation)
       end
     end
   end
 
   describe 'with a different object responding to #to_set' do
-    before do
-      @other = Set[ [ 2 ] ]
-    end
+    let(:other) { Set[ [ 2 ] ] }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 
   describe 'with an equivalent header and equivalent tuples with attributes in a different order' do
-    before do
-      attribute1 = [ :id,   Integer ]
-      attribute2 = [ :name, String  ]
-
-      header1 = Relation::Header.new([ attribute1, attribute2 ])
-      header2 = Relation::Header.new([ attribute2, attribute1 ])
-
-      @relation = Relation.new(header1, [ [ 1, 'Dan Kubb' ] ])
-      @other    = Relation.new(header2, [ [ 'Dan Kubb', 1 ] ])
-    end
+    let(:attribute1) { [ :id,   Integer ]                               }
+    let(:attribute2) { [ :name, String  ]                               }
+    let(:header1)    { Relation::Header.new([ attribute1, attribute2 ]) }
+    let(:header2)    { Relation::Header.new([ attribute2, attribute1 ]) }
+    let(:relation)   { Relation.new(header1, [ [ 1, 'Dan Kubb' ] ])     }
+    let(:other)      { Relation.new(header2, [ [ 'Dan Kubb', 1 ] ])     }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 
   describe 'with an equivalent relation of a different class' do
-    before do
-      klass = Class.new(Relation)
-
-      @other = klass.new(@header, @tuples)
-    end
+    let(:other) { Class.new(Relation).new(header, tuples) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @relation)
+      should == (other == relation)
     end
   end
 end

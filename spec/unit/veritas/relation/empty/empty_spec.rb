@@ -1,11 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Empty#empty?' do
-  before do
-    @empty = Relation::Empty.new([ [ :id, Integer ] ])
-  end
+  let(:empty) { Relation::Empty.new([ [ :id, Integer ] ]) }
 
-  subject { @empty.empty? }
+  subject { empty.empty? }
 
   it { should be(true) }
 end

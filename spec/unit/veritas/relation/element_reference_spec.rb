@@ -1,13 +1,10 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#[]' do
-  before do
-    @header = [ [ :id, Integer ] ]
+  let(:header)   { [ [ :id, Integer ] ]     }
+  let(:relation) { Relation.new(header, []) }
 
-    @relation = Relation.new(@header, [])
-  end
-
-  subject { @relation[:id] }
+  subject { relation[:id] }
 
   it { should be_kind_of(Attribute::Integer) }
 

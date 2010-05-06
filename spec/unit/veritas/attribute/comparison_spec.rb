@@ -11,40 +11,30 @@ describe 'Veritas::Attribute' do
 end
 
 describe 'Veritas::Attribute#<=>' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-  end
+  let(:attribute) { Attribute::Integer.new(:id) }
 
-  subject { @attribute <=> @other }
+  subject { attribute <=> other }
 
   describe 'with an equivalent attribute' do
-    before do
-      @other = Attribute::Integer.new(:id)
-    end
+    let(:other) { Attribute::Integer.new(:id) }
 
     it { should == 0 }
   end
 
   describe 'with a different attribute' do
-    before do
-      @other = Attribute::Time.new(:time)
-    end
+    let(:other) { Attribute::Time.new(:time) }
 
     it { should_not == 0 }
   end
 
   describe 'with an equivalent object responding to #to_ary' do
-    before do
-      @other = [ :id, Integer ]
-    end
+    let(:other) { [ :id, Integer ] }
 
     it { should == 0 }
   end
 
   describe 'with a different object responding to #to_ary' do
-    before do
-      @other = [ :name, String ]
-    end
+    let(:other) { [ :name, String ] }
 
     it { should_not == 0 }
   end

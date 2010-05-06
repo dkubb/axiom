@@ -2,19 +2,15 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection' do
   describe 'remove attributes in predicate' do
-    before do
-      @left  = Relation.new([ [ :id, Integer ] ], (1..100).map { |n| [ n ] })
-      @right = Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ], [ 'John Doe' ], [ 'Jane Doe' ] ])
+    let(:left)        { Relation.new([ [ :id, Integer ] ], (1..100).map { |n| [ n ] })                           }
+    let(:right)       { Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ], [ 'John Doe' ], [ 'Jane Doe' ] ])  }
+    let(:relation)    { left * right                                                                             }
+    let(:restriction) { relation.restrict { |r| r[:id].gte(1).and(r[:id].lte(10)).and(r[:name].eq('Dan Kubb')) } }
 
-      @relation = @left * @right
-
-      @restriction = @relation.restrict { |r| r[:id].gte(1).and(r[:id].lte(10)).and(r[:name].eq('Dan Kubb')) }
-    end
-
-    subject { @restriction.project([ :name ]) }
+    subject { restriction.project([ :name ]) }
 
     it 'removes the predicates with the removed attributes' do
-      subject.predicate.should eql(@relation[:name].eq('Dan Kubb'))
+      subject.predicate.should eql(relation[:name].eq('Dan Kubb'))
     end
 
     it 'returns a relation with a single tuple' do

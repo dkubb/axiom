@@ -1,30 +1,28 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Offset#wrap' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = Relation::Operation::Order.new(@relation, @directions)
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:offset)     { Relation::Operation::Offset.new(order, 1)                   }
+  let(:yields)     { []                                                          }
 
-    @offset = Relation::Operation::Offset.new(@order, 1)
-  end
+  subject { offset.wrap { |relation| relation } }
 
-  subject { @offset.wrap { |relation| relation } }
-
-  it { should_not be_equal(@offset) }
+  it { should_not be_equal(offset) }
 
   it { should be_kind_of(Relation::Operation::Offset) }
 
   it 'yields the relations' do
-    @yield = []
+
     lambda {
-      @offset.wrap { |relation| @yield << relation; relation }
-    }.should change { @yield.dup }.from([]).to([ @relation ])
+      offset.wrap { |relation| yields << relation; relation }
+    }.should change { yields.dup }.from([]).to([ relation ])
   end
 
   it 'sets the relation with the block return values' do
-    relation = mock('relation', :directions => @order.directions)
-    operation = @offset.wrap { relation }
+    relation = mock('relation', :directions => order.directions)
+    operation = offset.wrap { relation }
     operation.relation.should equal(relation)
   end
 

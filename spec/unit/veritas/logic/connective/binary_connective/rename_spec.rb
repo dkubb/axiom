@@ -2,55 +2,41 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::BinaryConnective#rename' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @other     = Attribute::Integer.new(:other_id)
-    @aliases   = { @attribute.name => @other.name }
-  end
+  let(:attribute) { Attribute::Integer.new(:id)       }
+  let(:other)     { Attribute::Integer.new(:other_id) }
+  let(:aliases)   { { attribute.name => other.name }  }
 
-  subject { @connective.rename(@aliases) }
+  subject { connective.rename(aliases) }
 
   describe 'left and right are renamed' do
-    before do
-      @left  = @attribute.eq(1)
-      @right = @attribute.eq(2)
+    let(:left)       { attribute.eq(1)                                }
+    let(:right)      { attribute.eq(2)                                }
+    let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
 
-      @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
-    end
-
-    it { should eql(BinaryConnectiveSpecs::Object.new(@other.eq(1), @other.eq(2))) }
+    it { should eql(BinaryConnectiveSpecs::Object.new(other.eq(1), other.eq(2))) }
   end
 
   describe 'left is renamed' do
-    before do
-      @left  = @attribute.eq(1)
-      @right = @other.eq(2)
+    let(:left)       { attribute.eq(1)                                }
+    let(:right)      { other.eq(2)                                    }
+    let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
 
-      @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
-    end
-
-    it { should eql(BinaryConnectiveSpecs::Object.new(@other.eq(1), @other.eq(2))) }
+    it { should eql(BinaryConnectiveSpecs::Object.new(other.eq(1), other.eq(2))) }
   end
 
   describe 'right is renamed' do
-    before do
-      @left  = @other.eq(1)
-      @right = @attribute.eq(2)
+    let(:left)       { other.eq(1)                                    }
+    let(:right)      { attribute.eq(2)                                }
+    let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
 
-      @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
-    end
-
-    it { should eql(BinaryConnectiveSpecs::Object.new(@other.eq(1), @other.eq(2))) }
+    it { should eql(BinaryConnectiveSpecs::Object.new(other.eq(1), other.eq(2))) }
   end
 
   describe 'right and right are not renamed' do
-    before do
-      @left  = @other.eq(1)
-      @right = @other.eq(2)
+    let(:left)       { other.eq(1)                                    }
+    let(:right)      { other.eq(2)                                    }
+    let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
 
-      @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
-    end
-
-    it { should equal(@connective) }
+    it { should equal(connective) }
   end
 end

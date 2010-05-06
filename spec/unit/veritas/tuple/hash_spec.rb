@@ -1,14 +1,12 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Tuple#hash' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ] ])
-    @tuple  = Tuple.new(@header, [ 1 ])
-  end
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
 
-  subject { @tuple.hash }
+  subject { tuple.hash }
 
   it { should be_kind_of(Integer) }
 
-  it { should == @header.hash ^ [ 1 ].hash }
+  it { should == header.hash ^ [ 1 ].hash }
 end

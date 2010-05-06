@@ -1,32 +1,24 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute::Boolean#valid_value?' do
-  before do
-    @attribute = Veritas::Attribute::Boolean.new(:boolean)
-  end
+  let(:attribute) { Veritas::Attribute::Boolean.new(:boolean) }
 
-  subject { @attribute.valid_value?(@value) }
+  subject { attribute.valid_value?(value) }
 
   describe 'with a true value' do
-    before do
-      @value = true
-    end
+    let(:value) { true }
 
     it { should be(true) }
   end
 
   describe 'with a false value' do
-    before do
-      @value = false
-    end
+    let(:value) { false }
 
     it { should be(true) }
   end
 
   describe 'with a value that is not true or false' do
-    before do
-      @value = 1
-    end
+    let(:value) { 1 }
 
     it { should be(false) }
   end

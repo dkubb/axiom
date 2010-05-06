@@ -2,18 +2,15 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 
 [ :union, :| ].each do |method|
   describe "Veritas::Relation::Header##{method}" do
-    before do
-      @attribute1 = [ :id,   Integer ]
-      @attribute2 = [ :name, String  ]
+    let(:attribute1) { [ :id,   Integer ]                   }
+    let(:attribute2) { [ :name, String  ]                   }
+    let(:header)     { Relation::Header.new([ attribute1 ]) }
+    let(:other)      { Relation::Header.new([ attribute2 ]) }
 
-      @header = Relation::Header.new([ @attribute1 ])
-      @other  = Relation::Header.new([ @attribute2 ])
-    end
-
-    subject { @header.send(method, @other) }
+    subject { header.send(method, other) }
 
     it { should be_kind_of(Relation::Header) }
 
-    it { should == [ @attribute1, @attribute2 ] }
+    it { should == [ attribute1, attribute2 ] }
   end
 end

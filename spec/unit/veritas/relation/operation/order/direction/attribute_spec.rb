@@ -1,14 +1,11 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::Direction#attribute' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @klass     = Class.new(Relation::Operation::Order::Direction)
+  let(:attribute) { Attribute::Integer.new(:id)                      }
+  let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
+  let(:direction) { klass.new(attribute)                             }
 
-    @direction = @klass.new(@attribute)
-  end
+  subject { direction.attribute }
 
-  subject { @direction.attribute }
-
-  it { should equal(@attribute) }
+  it { should equal(attribute) }
 end

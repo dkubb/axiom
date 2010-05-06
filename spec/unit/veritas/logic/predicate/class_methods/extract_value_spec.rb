@@ -1,26 +1,20 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate.extract_value' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ] ])
-    @tuple  = Tuple.new(@header, [ 1 ])
-  end
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
 
-  subject { Logic::Predicate.extract_value(@operand, @tuple) }
+  subject { Logic::Predicate.extract_value(operand, tuple) }
 
   describe 'when the operand responds to #call' do
-    before do
-      @operand = @header[:id]
-    end
+    let(:operand) { header[:id] }
 
     it { should == 1 }
   end
 
   describe 'when the operand does not respond to #call' do
-    before do
-      @operand = mock('Value')
-    end
+    let(:operand) { mock('Value') }
 
-    it { should equal(@operand) }
+    it { should equal(operand) }
   end
 end

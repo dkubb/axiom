@@ -1,114 +1,94 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product#optimize' do
-  before do
-    @left  = Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])
-    @right = Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ])
-  end
+  let(:left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
+  let(:right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
 
-  subject { @product.optimize }
+  subject { product.optimize }
 
   describe 'left is a TABLE_DUM' do
-    before do
-      @product = Algebra::Product.new(TABLE_DUM, @right)
-    end
+    let(:product) { Algebra::Product.new(TABLE_DUM, right) }
 
-    it { should eql(Relation::Empty.new(@right.header)) }
+    it { should eql(Relation::Empty.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'right is a TABLE_DUM' do
-    before do
-      @product = Algebra::Product.new(@left, TABLE_DUM)
-    end
+    let(:product) { Algebra::Product.new(left, TABLE_DUM) }
 
-    it { should eql(Relation::Empty.new(@left.header)) }
+    it { should eql(Relation::Empty.new(left.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'left is a TABLE_DUM when optimized' do
-    before do
-      @product = Algebra::Product.new(TABLE_DUM.project([]), @right)
-    end
+    let(:product) { Algebra::Product.new(TABLE_DUM.project([]), right) }
 
-    it { should eql(Relation::Empty.new(@right.header)) }
+    it { should eql(Relation::Empty.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'right is a TABLE_DUM when optimized' do
-    before do
-      @product = Algebra::Product.new(@left, TABLE_DUM.project([]))
-    end
+    let(:product) { Algebra::Product.new(left, TABLE_DUM.project([])) }
 
-    it { should eql(Relation::Empty.new(@left.header)) }
+    it { should eql(Relation::Empty.new(left.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'left is a TABLE_DEE' do
-    before do
-      @product = Algebra::Product.new(TABLE_DEE, @right)
-    end
+    let(:product) { Algebra::Product.new(TABLE_DEE, right) }
 
-    it { should equal(@right) }
+    it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'right is a TABLE_DEE' do
-    before do
-      @product = Algebra::Product.new(@left, TABLE_DEE)
-    end
+    let(:product) { Algebra::Product.new(left, TABLE_DEE) }
 
-    it { should equal(@left) }
+    it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'left is a TABLE_DEE when optimized' do
-    before do
-      @product = Algebra::Product.new(TABLE_DEE.project([]), @right)
-    end
+    let(:product) { Algebra::Product.new(TABLE_DEE.project([]), right) }
 
-    it { should equal(@right) }
+    it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'right is a TABLE_DEE when optimized' do
-    before do
-      @product = Algebra::Product.new(@left, TABLE_DEE.project([]))
-    end
+    let(:product) { Algebra::Product.new(left, TABLE_DEE.project([])) }
 
-    it { should equal(@left) }
+    it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @product
+      should == product
     end
   end
 
   describe 'left and right are normal relations' do
-    before do
-      @product = Algebra::Product.new(@left, @right)
-    end
+    let(:product) { Algebra::Product.new(left, right) }
 
-    it { should equal(@product) }
+    it { should equal(product) }
   end
 end

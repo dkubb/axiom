@@ -1,21 +1,17 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Reverse#each' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = Relation::Operation::Order.new(@relation, @directions)
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:reverse)    { Relation::Operation::Reverse.new(order)                     }
+  let(:yields)     { []                                                          }
 
-    @reverse = Relation::Operation::Reverse.new(@order)
+  subject { reverse.each { |tuple| yields << tuple } }
 
-    @yield = []
-  end
-
-  subject { @reverse.each { |tuple| @yield << tuple } }
-
-  it { should equal(@reverse) }
+  it { should equal(reverse) }
 
   it 'yields each tuple in reverse order' do
-    method(:subject).should change { @yield.dup }.from([]).to([ [ 3 ], [ 2 ], [ 1 ] ])
+    method(:subject).should change { yields.dup }.from([]).to([ [ 3 ], [ 2 ], [ 1 ] ])
   end
 end

@@ -1,15 +1,12 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Disjunction#inspect' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @left      = @attribute.gt(1)
-    @right     = @attribute.lt(3)
+  let(:attribute)   { Attribute::Integer.new(:id)                     }
+  let(:left)        { attribute.gt(1)                                 }
+  let(:right)       { attribute.lt(3)                                 }
+  let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-    @disjunction = Logic::Connective::Disjunction.new(@left, @right)
-  end
+  subject { disjunction.inspect }
 
-  subject { @disjunction.inspect }
-
-  it { should == "(#{@left.inspect} OR #{@right.inspect})"}
+  it { should == "(#{left.inspect} OR #{right.inspect})"}
 end

@@ -1,64 +1,51 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Negation#eql?' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @operand = @attribute.eq(1)
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:operand)   { attribute.eq(1)                          }
+  let(:negation)  { Logic::Connective::Negation.new(operand) }
 
-    @negation = Logic::Connective::Negation.new(@operand)
-  end
-
-  subject { @negation.eql?(@other) }
+  subject { negation.eql?(other) }
 
   describe 'with the same negation' do
-    before do
-      @other = @negation
-    end
+    let(:other) { negation }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@negation)
+      should == other.eql?(negation)
     end
   end
 
   describe 'with an equivalent negation' do
-    before do
-      @other = @negation.dup
-    end
+    let(:other) { negation.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@negation)
+      should == other.eql?(negation)
     end
   end
 
   describe 'with a different negation' do
-    before do
-      @attribute = Attribute::String.new(:name)
-      @operand   = @attribute.eq('Dan Kubb')
-      @other     = Logic::Connective::Negation.new(@operand)
-    end
+    let(:other_attribute) { Attribute::String.new(:name)                   }
+    let(:other_operand)   { other_attribute.eq('Dan Kubb')                 }
+    let(:other)           { Logic::Connective::Negation.new(other_operand) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@negation)
+      should == other.eql?(negation)
     end
   end
 
   describe 'with an equivalent negation of a different class' do
-    before do
-      klass = Class.new(Logic::Connective::Negation)
-
-      @other = klass.new(@operand)
-    end
+    let(:other) { Class.new(Logic::Connective::Negation).new(operand) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@negation)
+      should == other.eql?(negation)
     end
   end
 end

@@ -1,25 +1,19 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#index' do
-  before do
-    @attribute = [ :id, Integer ]
-    @header    = Relation::Header.new([ @attribute ])
-  end
+  let(:attribute) { [ :id, Integer ]                    }
+  let(:header)    { Relation::Header.new([ attribute ]) }
 
-  subject { @header.index(@object) }
+  subject { header.index(object) }
 
   describe 'with a known attribute' do
-    before do
-      @object = @attribute
-    end
+    let(:object) { attribute }
 
     it { should == 0 }
   end
 
   describe 'with an unknown attribute' do
-    before do
-      @object = [ :name, String ]
-    end
+    let(:object) { [ :name, String ] }
 
     it { should be_nil }
   end

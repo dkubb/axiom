@@ -11,18 +11,15 @@ describe 'Veritas::Relation::Header' do
 end
 
 describe 'Veritas::Relation::Header#each' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @header    = Relation::Header.new([ @attribute ])
+  let(:attribute) { Attribute::Integer.new(:id)         }
+  let(:header)    { Relation::Header.new([ attribute ]) }
+  let(:yields)    { []                                  }
 
-    @yield = []
-  end
+  subject { header.each { |tuple| yields << tuple } }
 
-  subject { @header.each { |tuple| @yield << tuple } }
-
-  it { should equal(@header) }
+  it { should equal(header) }
 
   it 'yields each attribute' do
-    method(:subject).should change { @yield.dup }.from([]).to([ @attribute ])
+    method(:subject).should change { yields.dup }.from([]).to([ attribute ])
   end
 end

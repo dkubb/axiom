@@ -1,40 +1,29 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#predicate' do
-  before do
-    @header  = Relation::Header.new([ [ :id, Integer ] ])
-    @aliases = { :id => :other_id }
-  end
+  let(:header)  { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:aliases) { { :id => :other_id }                       }
 
-  subject { @rename.predicate }
+  subject { rename.predicate }
 
   describe 'containing an empty relation' do
-    before do
-      @empty = Relation::Empty.new(@header)
-
-      @rename = Algebra::Rename.new(@empty, @aliases)
-    end
+    let(:empty)  { Relation::Empty.new(header)         }
+    let(:rename) { Algebra::Rename.new(empty, aliases) }
 
     it { should equal(Logic::Proposition::False.instance) }
   end
 
   describe 'containing a relation' do
-    before do
-      @relation = Relation.new(@header, [ [ 1 ] ])
-
-      @rename = Algebra::Rename.new(@relation, @aliases)
-    end
+    let(:relation) { Relation.new(header, [ [ 1 ] ])        }
+    let(:rename)   { Algebra::Rename.new(relation, aliases) }
 
     it { should equal(Logic::Proposition::True.instance) }
   end
 
   describe 'containing a relation with a predicate' do
-    before do
-      @relation    = Relation.new(@header, [ [ 1 ], [ 2 ] ])
-      @restriction = @relation.restrict { |r| r[:id].eq(1) }
-
-      @rename = Algebra::Rename.new(@restriction, @aliases)
-    end
+    let(:relation)    { Relation.new(header, [ [ 1 ], [ 2 ] ])    }
+    let(:restriction) { relation.restrict { |r| r[:id].eq(1) }    }
+    let(:rename)      { Algebra::Rename.new(restriction, aliases) }
 
     it { should eql(Attribute::Integer.new(:other_id).eq(1)) }
   end

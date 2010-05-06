@@ -1,63 +1,50 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Limit#eql?' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = Relation::Operation::Order.new(@relation, @directions)
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:limit)      { order.limit(1)                                              }
 
-    @limit = @order.limit(1)
-  end
-
-  subject { @limit.eql?(@other) }
+  subject { limit.eql?(other) }
 
   describe 'with the same limit' do
-    before do
-      @other = @limit
-    end
+    let(:other) { limit }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@limit)
+      should == other.eql?(limit)
     end
   end
 
   describe 'with an equivalent limit' do
-    before do
-      @other = @limit.dup
-    end
+    let(:other) { limit.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@limit)
+      should == other.eql?(limit)
     end
   end
 
   describe 'with a different limit' do
-    before do
-      @other = @order.limit(2)
-    end
+    let(:other) { order.limit(2) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@limit)
+      should == other.eql?(limit)
     end
   end
 
   describe 'with an equivalent limit of a different class' do
-    before do
-      klass = Class.new(Relation::Operation::Limit)
-
-      @other = klass.new(@order, 1)
-    end
+    let(:other) { Class.new(Relation::Operation::Limit).new(order, 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@limit)
+      should == other.eql?(limit)
     end
   end
 end

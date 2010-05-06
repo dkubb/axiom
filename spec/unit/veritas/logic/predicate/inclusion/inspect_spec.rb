@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Inclusion#inspect' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:inclusion) { attribute.in([ 1 ])         }
 
-    @inclusion = @attribute.in([ 1 ])
-  end
+  subject { inclusion.inspect }
 
-  subject { @inclusion.inspect }
-
-  it { should == "#{@attribute.inspect} IN(#{[ 1 ].inspect})" }
+  it { should == "#{attribute.inspect} IN(#{[ 1 ].inspect})" }
 end

@@ -1,33 +1,30 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#wrap' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
-    @header   = @relation.header
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:header)     { relation.header                               }
+  let(:projection) { Algebra::Projection.new(relation, [ :id ])    }
+  let(:yields)     { []                                            }
 
-    @projection = Algebra::Projection.new(@relation, [ :id ])
-  end
+  subject { projection.wrap(header) { |relation| relation } }
 
-  subject { @projection.wrap(@header) { |relation| relation } }
-
-  it { should_not be_equal(@projection) }
+  it { should_not be_equal(projection) }
 
   it { should be_kind_of(Algebra::Projection) }
 
   it 'yields the relations' do
-    @yield = []
     lambda {
-      @projection.wrap(@header) { |relation| @yield << relation; relation }
-    }.should change { @yield.dup }.from([]).to([ @relation ])
+      projection.wrap(header) { |relation| yields << relation; relation }
+    }.should change { yields.dup }.from([]).to([ relation ])
   end
 
   it 'sets the relation with the block return values' do
     relation = mock('relation')
-    operation = @projection.wrap(@header) { relation }
+    operation = projection.wrap(header) { relation }
     operation.relation.should equal(relation)
   end
 
   it 'sets the header' do
-    subject.header.should == @header
+    subject.header.should == header
   end
 end

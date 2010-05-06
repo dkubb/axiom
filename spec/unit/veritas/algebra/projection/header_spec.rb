@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#header' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:projection) { Algebra::Projection.new(relation, [ :id ])    }
 
-    @projection = Algebra::Projection.new(@relation, [ :id ])
-  end
-
-  subject { @projection.header }
+  subject { projection.header }
 
   it { should be_kind_of(Relation::Header) }
 

@@ -1,101 +1,81 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#==' do
-  before do
-    @attribute = [ :id, Integer ]
+  let(:attribute) { [ :id, Integer ]                    }
+  let(:header)    { Relation::Header.new([ attribute ]) }
 
-    @header = Relation::Header.new([ @attribute ])
-  end
-
-  subject { @header == @other }
+  subject { header == other }
 
   describe 'with the same header' do
-    before do
-      @other = @header
-    end
+    let(:other) { header }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 
   describe 'with an equivalent header' do
-    before do
-      @other = @header.dup
-    end
+    let(:other) { header.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 
   describe 'with a different header' do
-    before do
-      @other = Relation::Header.new([ [ :name, String ] ])
-    end
+    let(:other) { Relation::Header.new([ [ :name, String ] ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 
   describe 'with an equivalent header of different classes' do
-    before do
-      klass = Class.new(Relation::Header)
-
-      @other = klass.new([ @attribute ])
-    end
+    let(:other) { Class.new(Relation::Header).new([ attribute ]) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 
   describe 'with an equivalent object responding to #to_ary' do
-    before do
-      @other = [ @attribute ]
-    end
+    let(:other) { [ attribute ] }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 
   describe 'with a different object responding to #to_ary' do
-    before do
-      @other = [ [ :name, String ] ]
-    end
+    let(:other) { [ [ :name, String ] ] }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 
   describe 'with equivalent attributes in a different order' do
-    before do
-      @attribute1 = [ :id,   Integer ]
-      @attribute2 = [ :name, String  ]
-
-      @header = Relation::Header.new([ @attribute1, @attribute2 ])
-      @other  = Relation::Header.new([ @attribute2, @attribute1 ])
-    end
+    let(:attribute1) { [ :id,   Integer ]                               }
+    let(:attribute2) { [ :name, String  ]                               }
+    let(:header)     { Relation::Header.new([ attribute1, attribute2 ]) }
+    let(:other)      { Relation::Header.new([ attribute2, attribute1 ]) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @header)
+      should == (other == header)
     end
   end
 end

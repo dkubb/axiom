@@ -1,62 +1,49 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#eql?' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
-    @aliases  = { :id => :other_id }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:aliases)  { { :id => :other_id }                          }
+  let(:rename)   { relation.rename(aliases)                      }
 
-    @rename = @relation.rename(@aliases)
-  end
-
-  subject { @rename.eql?(@other) }
+  subject { rename.eql?(other) }
 
   describe 'with the same rename' do
-    before do
-      @other = @rename
-    end
+    let(:other) { rename }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@rename)
+      should == other.eql?(rename)
     end
   end
 
   describe 'with an equivalent rename' do
-    before do
-      @other = @rename.dup
-    end
+    let(:other) { rename.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@rename)
+      should == other.eql?(rename)
     end
   end
 
   describe 'with a different rename' do
-    before do
-      @other = @relation.rename(:id => :another_id)
-    end
+    let(:other) { relation.rename(:id => :another_id) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@rename)
+      should == other.eql?(rename)
     end
   end
 
   describe 'with an equivalent rename of a different class' do
-    before do
-      klass = Class.new(Algebra::Rename)
-
-      @other = klass.new(@relation, @aliases)
-    end
+    let(:other) { Class.new(Algebra::Rename).new(relation, aliases) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@rename)
+      should == other.eql?(rename)
     end
   end
 end

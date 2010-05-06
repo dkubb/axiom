@@ -1,30 +1,24 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order.new' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
-  end
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
 
-  subject { Relation::Operation::Order.new(@relation, @directions) }
+  subject { Relation::Operation::Order.new(relation, directions) }
 
   describe 'with all attributes specified in the directions' do
-    before do
-      @directions = [ @relation[:id] ]
-    end
+    let(:directions) { [ relation[:id] ] }
 
     it 'sets the relation' do
-      subject.relation.should equal(@relation)
+      subject.relation.should equal(relation)
     end
 
     it 'sets the directions' do
-      subject.directions.should == [ @relation[:id].asc ]
+      subject.directions.should == [ relation[:id].asc ]
     end
   end
 
   describe 'without all attributes specified in the directions' do
-    before do
-      @directions = []
-    end
+    let(:directions) { [] }
 
     it { method(:subject).should raise_error(ArgumentError, 'directions must include every attribute in the header') }
   end

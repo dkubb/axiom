@@ -1,62 +1,49 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#eql?' do
-  before do
-    @header = [ [ :id, Integer ] ]
-    @tuples = [ [ 1 ] ]
+  let(:header)   { [ [ :id, Integer ] ]         }
+  let(:tuples)   { [ [ 1 ] ]                    }
+  let(:relation) { Relation.new(header, tuples) }
 
-    @relation = Relation.new(@header, @tuples)
-  end
-
-  subject { @relation.eql?(@other) }
+  subject { relation.eql?(other) }
 
   describe 'with the same relation' do
-    before do
-      @other = @relation
-    end
+    let(:other) { relation }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@relation)
+      should == other.eql?(relation)
     end
   end
 
   describe 'with an equivalent relation' do
-    before do
-      @other = @relation.dup
-    end
+    let(:other) { relation.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@relation)
+      should == other.eql?(relation)
     end
   end
 
   describe 'with a different relation' do
-    before do
-      @other = Relation.new(@header, [ [ 2 ] ])
-    end
+    let(:other) { Relation.new(header, [ [ 2 ] ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@relation)
+      should == other.eql?(relation)
     end
   end
 
   describe 'with an equivalent relation of a different class' do
-    before do
-      klass = Class.new(Relation)
-
-      @other = klass.new(@header, @tuples)
-    end
+    let(:other) { Class.new(Relation).new(header, tuples) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@relation)
+      should == other.eql?(relation)
     end
   end
 end

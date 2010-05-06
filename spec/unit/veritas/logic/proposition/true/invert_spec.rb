@@ -1,15 +1,13 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Proposition::True#invert' do
-  before do
-    @true = Logic::Proposition::True.instance
-  end
+  let(:true_proposition) { Logic::Proposition::True.instance }
 
-  subject { @true.invert }
+  subject { true_proposition.invert }
 
   it { should equal(Logic::Proposition::False.instance) }
 
   it 'inverts back to original' do
-    subject.invert.should eql(@true)
+    subject.invert.should eql(true_proposition)
   end
 end

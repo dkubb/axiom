@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::GreaterThan#inspect' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
+  let(:attribute)    { Attribute::Integer.new(:id) }
+  let(:greater_than) { attribute.gt(1)             }
 
-    @greater_than = @attribute.gt(1)
-  end
+  subject { greater_than.inspect }
 
-  subject { @greater_than.inspect }
-
-  it { should == "#{@attribute.inspect} > 1" }
+  it { should == "#{attribute.inspect} > 1" }
 end

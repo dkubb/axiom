@@ -2,30 +2,23 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate#project' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-    @other     = Attribute::Integer.new(:other_id)
+  let(:attribute)  { Attribute::Integer.new(:id)       }
+  let(:other)      { Attribute::Integer.new(:other_id) }
+  let(:attributes) { [ attribute ]                     }
 
-    @attributes = [ @attribute ]
-  end
-
-  subject { @predicate.project(@attributes) }
+  subject { predicate.project(attributes) }
 
   describe 'when left is an attribute' do
     describe 'and it is not removed' do
-      before do
-        @predicate = PredicateSpecs::Object.new(@attribute, 1)
-      end
+      let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
 
       it 'returns self' do
-        should equal(@predicate)
+        should equal(predicate)
       end
     end
 
     describe 'and it is removed' do
-      before do
-        @predicate = PredicateSpecs::Object.new(@other, 1)
-      end
+      let(:predicate) { PredicateSpecs::Object.new(other, 1) }
 
       it 'returns nil' do
         should be_nil
@@ -35,19 +28,15 @@ describe 'Veritas::Logic::Predicate#project' do
 
   describe 'when right is an attribute' do
     describe 'and it is not removed' do
-      before do
-        @predicate = PredicateSpecs::Object.new(1, @attribute)
-      end
+      let(:predicate) { PredicateSpecs::Object.new(1, attribute) }
 
       it 'returns self' do
-        should equal(@predicate)
+        should equal(predicate)
       end
     end
 
     describe 'and it is removed' do
-      before do
-        @predicate = PredicateSpecs::Object.new(1, @other)
-      end
+      let(:predicate) { PredicateSpecs::Object.new(1, other) }
 
       it 'returns nil' do
         should be_nil
@@ -56,12 +45,10 @@ describe 'Veritas::Logic::Predicate#project' do
   end
 
   describe 'when neither left or right is a removed attribute' do
-    before do
-      @predicate = PredicateSpecs::Object.new(1, 1)
-    end
+    let(:predicate) { PredicateSpecs::Object.new(1, 1) }
 
     it 'returns self' do
-      should equal(@predicate)
+      should equal(predicate)
     end
   end
 end

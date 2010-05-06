@@ -1,69 +1,57 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Offset#optimize' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = Relation::Operation::Order.new(@relation, @directions)
-  end
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
 
-  subject { @offset.optimize }
+  subject { offset.optimize }
 
   describe 'with an offset of 0' do
-    before do
-      @offset = @order.offset(0)
-    end
+    let(:offset) { order.offset(0) }
 
-    it { should equal(@order) }
+    it { should equal(order) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @offset
+      should == offset
     end
   end
 
   describe 'containing an order operation' do
-    before do
-      @offset = Relation::Operation::Offset.new(@order, 1)
-    end
+    let(:offset) { Relation::Operation::Offset.new(order, 1) }
 
-    it { should equal(@offset) }
+    it { should equal(offset) }
   end
 
   describe 'containing an optimizable order operation' do
-    before do
-      @projection = @order.project(@order.header)
-
-      @offset = Relation::Operation::Offset.new(@projection, 1)
-    end
+    let(:projection) { order.project(order.header)                    }
+    let(:offset)     { Relation::Operation::Offset.new(projection, 1) }
 
     it { should be_instance_of(Relation::Operation::Offset) }
 
-    its(:relation) { should equal(@order) }
+    its(:relation) { should equal(order) }
 
     its(:to_i) { should == 1 }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @offset
+      should == offset
     end
   end
 
   describe 'containing an offset operation' do
-    before do
-      @original = Relation::Operation::Offset.new(@order, 5)
-
-      @offset = Relation::Operation::Offset.new(@original, 10)
-    end
+    let(:original) { Relation::Operation::Offset.new(order,     5) }
+    let(:offset)   { Relation::Operation::Offset.new(original, 10) }
 
     it { should be_instance_of(Relation::Operation::Offset) }
 
-    its(:relation) { should equal(@order) }
+    its(:relation) { should equal(order) }
 
     it 'adds the offset of the operations' do
       subject.to_i.should == 15
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @offset
+      should == offset
     end
   end
 end

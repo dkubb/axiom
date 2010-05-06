@@ -1,24 +1,20 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#each' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])   }
+  let(:rename)   { Algebra::Rename.new(relation, :id => :other_id) }
+  let(:yields)   { []                                              }
 
-    @rename = Algebra::Rename.new(@relation, :id => :other_id)
+  subject { rename.each { |tuple| yields << tuple } }
 
-    @yield = []
-  end
-
-  subject { @rename.each { |tuple| @yield << tuple } }
-
-  it { should equal(@rename) }
+  it { should equal(rename) }
 
   it 'yields each tuple' do
-    method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
+    method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
   end
 
   it 'changes the header for each tuple' do
     subject
-    @yield.first.header.should equal(@rename.header)
+    yields.first.header.should equal(rename.header)
   end
 end

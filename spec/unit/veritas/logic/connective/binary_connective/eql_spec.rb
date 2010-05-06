@@ -2,63 +2,50 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::BinaryConnective#eql?' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
-    @left   = Logic::Predicate::Equality.new(@header[:id], 1)
-    @right  = Logic::Predicate::Equality.new(@header[:id], 2)
+  let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:left)       { Logic::Predicate::Equality.new(header[:id], 1)                }
+  let(:right)      { Logic::Predicate::Equality.new(header[:id], 2)                }
+  let(:connective) { BinaryConnectiveSpecs::Object.new(left, right)                }
 
-    @connective = BinaryConnectiveSpecs::Object.new(@left, @right)
-  end
-
-  subject { @connective.eql?(@other) }
+  subject { connective.eql?(other) }
 
   describe 'with the same connective' do
-    before do
-      @other = @connective
-    end
+    let(:other) { connective }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@connective)
+      should == other.eql?(connective)
     end
   end
 
   describe 'with an equivalent connective' do
-    before do
-      @other = @connective.dup
-    end
+    let(:other) { connective.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@connective)
+      should == other.eql?(connective)
     end
   end
 
   describe 'with a different connective' do
-    before do
-      @other = BinaryConnectiveSpecs::Object.new(@header[:name], 1)
-    end
+    let(:other) { BinaryConnectiveSpecs::Object.new(header[:name], 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@connective)
+      should == other.eql?(connective)
     end
   end
 
   describe 'with an equivalent connective of a different class' do
-    before do
-      klass = Class.new(BinaryConnectiveSpecs::Object)
-
-      @other = klass.new(@header[:id], 1)
-    end
+    let(:other) { Class.new(BinaryConnectiveSpecs::Object).new(header[:id], 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@connective)
+      should == other.eql?(connective)
     end
   end
 end

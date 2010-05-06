@@ -10,61 +10,50 @@ describe 'Veritas::Logic::Expression#==' do
     end
   end
 
-  subject { @expression == @other }
+  subject { expression == other }
 
   describe 'with two equivalent expressions' do
-    before do
-      @expression = ExpressionSpecs::Object.new
-      @other      = ExpressionSpecs::Object.new
-    end
+    let(:expression) { ExpressionSpecs::Object.new }
+    let(:other)      { ExpressionSpecs::Object.new }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@expression)
+      should == other.eql?(expression)
     end
   end
 
   describe 'with two different expressions' do
-    before do
-      subclass = Class.new(ExpressionSpecs::Object)
-
-      @expression = ExpressionSpecs::Object.new
-      @other      = subclass.new
-    end
+    let(:expression) { ExpressionSpecs::Object.new            }
+    let(:other)      { Class.new(ExpressionSpecs::Object).new }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@expression)
+      should == other.eql?(expression)
     end
   end
 
   describe 'with two equivalent unoptimized expressions' do
-    before do
-      @expression = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
-      @other      = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
-    end
+    let(:expression) { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
+    let(:other)      { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@expression)
+      should == other.eql?(expression)
     end
   end
 
   describe 'with two different unoptimized expressions' do
-    before do
-      subclass = Class.new(ExpressionSpecs::Object)
-
-      @expression = ExpressionSpecs::Object.new & ExpressionSpecs::Object.new
-      @other      = subclass.new & subclass.new
-    end
+    let(:expression) { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
+    let(:subclass)   { Class.new(ExpressionSpecs::Object)                        }
+    let(:other)      { subclass.new & subclass.new                               }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@expression)
+      should == other.eql?(expression)
     end
   end
 end

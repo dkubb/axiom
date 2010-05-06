@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Proposition::True#and' do
-  before do
-    @other = mock('other')
+  let(:other)            { mock('other')                     }
+  let(:true_proposition) { Logic::Proposition::True.instance }
 
-    @true = Logic::Proposition::True.instance
-  end
+  subject { true_proposition.and(other) }
 
-  subject { @true.and(@other) }
-
-  it { should equal(@other) }
+  it { should equal(other) }
 end

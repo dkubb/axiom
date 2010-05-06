@@ -1,21 +1,17 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Offset#each' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = Relation::Operation::Order.new(@relation, @directions)
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:offset)     { Relation::Operation::Offset.new(order, 1)                   }
+  let(:yields)     { []                                                          }
 
-    @offset = Relation::Operation::Offset.new(@order, 1)
+  subject { offset.each { |tuple| yields << tuple } }
 
-    @yield = []
-  end
-
-  subject { @offset.each { |tuple| @yield << tuple } }
-
-  it { should equal(@offset) }
+  it { should equal(offset) }
 
   it 'yields each tuple' do
-    method(:subject).should change { @yield.dup }.from([]).to([ [ 2 ], [ 3 ] ])
+    method(:subject).should change { yields.dup }.from([]).to([ [ 2 ], [ 3 ] ])
   end
 end

@@ -1,11 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Empty#predicate' do
-  before do
-    @empty = Relation::Empty.new([ [ :id, Integer ] ])
-  end
+  let(:empty) { Relation::Empty.new([ [ :id, Integer ] ]) }
 
-  subject { @empty.predicate }
+  subject { empty.predicate }
 
   it { should equal(Logic::Proposition::False.instance) }
 end

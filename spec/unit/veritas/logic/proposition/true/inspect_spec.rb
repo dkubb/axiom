@@ -1,11 +1,9 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Proposition::True#inspect' do
-  before do
-    @true = Logic::Proposition::True.instance
-  end
+  let(:true_proposition) { Logic::Proposition::True.instance }
 
-  subject { @true.inspect }
+  subject { true_proposition.inspect }
 
   it { should == 'true' }
 end

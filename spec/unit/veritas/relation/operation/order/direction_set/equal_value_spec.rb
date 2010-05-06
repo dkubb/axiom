@@ -1,61 +1,49 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
-  before do
-    @attribute  = Attribute::Integer.new(:id)
-    @directions = Relation::Operation::Order::DirectionSet.new([ @attribute ])
-  end
+  let(:attribute)  { Attribute::Integer.new(:id)                                 }
+  let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
 
-  subject { @directions == @other }
+  subject { directions == other }
 
   describe 'with the same direction' do
-    before do
-      @other = @directions
-    end
+    let(:other) { directions }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @directions)
+      should == (other == directions)
     end
   end
 
   describe 'with an equivalent directions' do
-    before do
-      @other = @directions.dup
-    end
+    let(:other) { directions.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @directions)
+      should == (other == directions)
     end
   end
 
   describe 'with a different directions' do
-    before do
-      @attribute = Attribute::Integer.new(:name)
-      @other     = Relation::Operation::Order::DirectionSet.new([ @attribute ])
-    end
+    let(:other_attribute) { Attribute::Integer.new(:name)                                     }
+    let(:other)           { Relation::Operation::Order::DirectionSet.new([ other_attribute ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (@other == @directions)
+      should == (other == directions)
     end
   end
 
   describe 'with an equivalent directions of a different class' do
-    before do
-      klass = Class.new(Relation::Operation::Order::DirectionSet)
-
-      @other = klass.new([ @attribute ])
-    end
+    let(:other) { Class.new(Relation::Operation::Order::DirectionSet).new([ attribute ]) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (@other == @directions)
+      should == (other == directions)
     end
   end
 end

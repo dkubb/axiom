@@ -1,85 +1,69 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Tuple#eql?' do
-  before do
-    @header = Relation::Header.new([ [ :id, Integer ] ])
-    @tuple  = Tuple.new(@header, [ 1 ])
-  end
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
 
-  subject { @tuple.eql?(@other) }
+  subject { tuple.eql?(other) }
 
   describe 'with the same tuple' do
-    before do
-      @other = @tuple
-    end
+    let(:other) { tuple }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
   end
 
   describe 'with an equivalent tuple' do
-    before do
-      @other = @tuple.dup
-    end
+    let(:other) { tuple.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
   end
 
   describe 'with a different tuple' do
-    before do
-      @other = Tuple.new(@header, [ 2 ])
-    end
+    let(:other) { Tuple.new(header, [ 2 ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
   end
 
   describe 'with an equivalent tuple with a different header' do
-    before do
-      @header = @header.rename(:id => :other_id)
-      @other  = Tuple.new(@header, @tuple.to_ary)
-    end
+    let(:other_header) { header.rename(:id => :other_id)       }
+    let(:other)        { Tuple.new(other_header, tuple.to_ary) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
   end
 
   describe 'with an equivalent tuple of a different class' do
-    before do
-      klass = Class.new(Tuple)
-
-      @other = klass.new(@header, [ 1 ])
-    end
+    let(:other) { Class.new(Tuple).new(header, [ 1 ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
   end
 
   describe 'with an equivalent object responding to #to_ary' do
-    before do
-      @other = [ 1 ]
-    end
+    let(:other) { [ 1 ] }
 
     it { should be(false) }
 
     specification = proc do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
 
     it 'is symmetric' do
@@ -92,14 +76,12 @@ describe 'Veritas::Tuple#eql?' do
   end
 
   describe 'with a different object responding to #to_ary' do
-    before do
-      @other = [ 2 ]
-    end
+    let(:other) { [ 2 ] }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@tuple)
+      should == other.eql?(tuple)
     end
   end
 end

@@ -1,57 +1,47 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#joinable?' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
-  end
+  let(:attribute) { Attribute::Integer.new(:id) }
 
-  subject { @attribute.joinable?(@other) }
+  subject { attribute.joinable?(other) }
 
   describe 'when the other attribute is the same type' do
-    before do
-      @other = @attribute.dup
-    end
+    let(:other) { attribute.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.joinable?(@attribute)
+      should == other.joinable?(attribute)
     end
   end
 
   describe 'when the other attribute is a different class' do
-    before do
-      @other = Attribute::String.new(:different)
-    end
+    let(:other) { Attribute::String.new(:different) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.joinable?(@attribute)
+      should == other.joinable?(attribute)
     end
   end
 
   describe 'when the other attribute is a descendant type' do
-    before do
-      @other = Class.new(Attribute::Integer).new(:descendant)
-    end
+    let(:other) { Class.new(Attribute::Integer).new(:descendant) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.joinable?(@attribute)
+      should == other.joinable?(attribute)
     end
   end
 
   describe 'when the other attribute shares a common type' do
-    before do
-      @other = Attribute::Numeric.new(:ancestor)
-    end
+    let(:other) { Attribute::Numeric.new(:ancestor) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.joinable?(@attribute)
+      should == other.joinable?(attribute)
     end
   end
 end

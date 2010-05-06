@@ -1,25 +1,21 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Materialized#optimize' do
-  subject { @relation.optimize }
+  subject { relation.optimize }
 
   describe 'with an empty Array' do
-    before do
-      @relation = Relation::Materialized.new([ [ :id, Integer ] ], [])
-    end
+    let(:relation) { Relation::Materialized.new([ [ :id, Integer ] ], []) }
 
-    it { should eql(Relation::Empty.new(@relation.header)) }
+    it { should eql(Relation::Empty.new(relation.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @relation
+      should == relation
     end
   end
 
   describe 'with an nonempty Array' do
-    before do
-      @relation = Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])
-    end
+    let(:relation) { Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
-    it { should equal(@relation) }
+    it { should equal(relation) }
   end
 end

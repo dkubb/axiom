@@ -1,87 +1,71 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Reverse#optimize' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @directions = [ @relation[:id] ]
-    @order      = @relation.order(@directions)
-  end
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:directions) { [ relation[:id] ]                                           }
+  let(:order)      { relation.order(directions)                                  }
 
-  subject { @reverse.optimize }
+  subject { reverse.optimize }
 
   describe 'with a reverse operation' do
-    before do
-      @limit = @order.limit(2)
-      @other = @limit.reverse
-
-      @reverse = Relation::Operation::Reverse.new(@other)
-    end
+    let(:limit)   { order.limit(2)                          }
+    let(:other)   { limit.reverse                           }
+    let(:reverse) { Relation::Operation::Reverse.new(other) }
 
     it 'cancels out the operations and return the contained operation' do
-      should equal(@limit)
+      should equal(limit)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @reverse
+      should == reverse
     end
   end
 
   describe 'with a reverse operation when optimized' do
-    before do
-      @limit      = @order.limit(2)
-      @other      = @limit.reverse
-      @projection = @other.project(@other.header)
-
-      @reverse = Relation::Operation::Reverse.new(@projection)
-    end
+    let(:limit)      { order.limit(2)                               }
+    let(:other)      { limit.reverse                                }
+    let(:projection) { other.project(other.header)                  }
+    let(:reverse)    { Relation::Operation::Reverse.new(projection) }
 
     it 'cancels out the operations and return the contained operation' do
-      should equal(@limit)
+      should equal(limit)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @reverse
+      should == reverse
     end
   end
 
   describe 'with an order operation' do
-    before do
-      @reverse = Relation::Operation::Reverse.new(@order)
-    end
+    let(:reverse) { Relation::Operation::Reverse.new(order) }
 
-    it { should eql(@relation.order(@reverse.directions)) }
+    it { should eql(relation.order(reverse.directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @reverse
+      should == reverse
     end
   end
 
   describe 'with an order operation when optimized' do
-    before do
-      @projection = @order.project(@order.header)
+    let(:projection) { order.project(order.header)                  }
+    let(:reverse)    { Relation::Operation::Reverse.new(projection) }
 
-      @reverse = Relation::Operation::Reverse.new(@projection)
-    end
-
-    it { should eql(@relation.order(@reverse.directions)) }
+    it { should eql(relation.order(reverse.directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @reverse
+      should == reverse
     end
   end
 
   describe 'with an optimizable operation' do
-    before do
-      @limit      = @order.limit(2)
-      @projection = @limit.project(@limit.header)
+    let(:limit)      { order.limit(2)                               }
+    let(:projection) { limit.project(limit.header)                  }
+    let(:reverse)    { Relation::Operation::Reverse.new(projection) }
 
-      @reverse = Relation::Operation::Reverse.new(@projection)
-    end
-
-    it { should eql(@order.limit(2).reverse) }
+    it { should eql(order.limit(2).reverse) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @reverse
+      should == reverse
     end
   end
 end

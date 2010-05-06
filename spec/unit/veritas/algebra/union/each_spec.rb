@@ -1,39 +1,30 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Union#each' do
-  before do
-    @header = [ [ :id, Integer ] ]
+  let(:header) { [ [ :id, Integer ] ]            }
+  let(:left)   { Relation.new(header, [ [ 1 ] ]) }
+  let(:yields) { []                              }
 
-    @left = Relation.new(@header, [ [ 1 ] ])
-
-    @yield = []
-  end
-
-  subject { @union.each { |tuple| @yield << tuple } }
+  subject { union.each { |tuple| yields << tuple } }
 
   describe 'with relations having similar bodies' do
-    before do
-      @union = Algebra::Union.new(@left, @left.dup)
-    end
+    let(:union) { Algebra::Union.new(left, left.dup) }
 
-    it { should equal(@union) }
+    it { should equal(union) }
 
     it 'yields the union' do
-      method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ] ])
+      method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
     end
   end
 
   describe 'with relations having different bodies' do
-    before do
-      @right = Relation.new(@header, [ [ 2 ] ])
+    let(:right) { Relation.new(header, [ [ 2 ] ]) }
+    let(:union) { Algebra::Union.new(left, right) }
 
-      @union = Algebra::Union.new(@left, @right)
-    end
-
-    it { should equal(@union) }
+    it { should equal(union) }
 
     it 'yields the union' do
-      method(:subject).should change { @yield.dup }.from([]).to([ [ 1 ], [ 2 ] ])
+      method(:subject).should change { yields.dup }.from([]).to([ [ 1 ], [ 2 ] ])
     end
   end
 end

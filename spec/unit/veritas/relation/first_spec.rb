@@ -1,13 +1,11 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#first' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])
-    @ordered  = @relation.order { |r| r[:id] }
-  end
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:ordered)  { relation.order { |r| r[:id] }                               }
 
   describe 'with no arguments' do
-    subject { @ordered.first }
+    subject { ordered.first }
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
@@ -16,12 +14,12 @@ describe 'Veritas::Relation#first' do
     end
 
     it 'behaves the same as Array#first' do
-      should == [ @ordered.to_a.first ]
+      should == [ ordered.to_a.first ]
     end
   end
 
   describe 'with a limit' do
-    subject { @ordered.first(2) }
+    subject { ordered.first(2) }
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
@@ -30,7 +28,7 @@ describe 'Veritas::Relation#first' do
     end
 
     it 'behaves the same as Array#first' do
-      should == @ordered.to_a.first(2)
+      should == ordered.to_a.first(2)
     end
   end
 end

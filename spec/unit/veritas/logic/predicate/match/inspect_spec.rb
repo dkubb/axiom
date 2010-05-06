@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Match#inspect' do
-  before do
-    @attribute = Attribute::String.new(:name)
+  let(:attribute) { Attribute::String.new(:name) }
+  let(:match)     { attribute.match(/Dan Kubb/)  }
 
-    @match = @attribute.match(/Dan Kubb/)
-  end
+  subject { match.inspect }
 
-  subject { @match.inspect }
-
-  it { should == "#{@attribute.inspect} =~ #{/Dan Kubb/.inspect}" }
+  it { should == "#{attribute.inspect} =~ #{/Dan Kubb/.inspect}" }
 end

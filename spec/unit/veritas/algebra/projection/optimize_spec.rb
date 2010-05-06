@@ -1,146 +1,120 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#optimize' do
-  before do
-    @relation = Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ])
-  end
+  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ]) }
 
-  subject { @projection.optimize }
+  subject { projection.optimize }
 
   describe 'when the attributes are equivalent to the relation headers, and in the same order' do
-    before do
-      @projection = Algebra::Projection.new(@relation, @relation.header)
-    end
+    let(:projection) { Algebra::Projection.new(relation, relation.header) }
 
-    it { should equal(@relation) }
+    it { should equal(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 
   describe 'when the attributes are equivalent to the relation headers, and not in the same order' do
-    before do
-      @projection = Algebra::Projection.new(@relation, [ :name, :id ])
-    end
+    let(:projection) { Algebra::Projection.new(relation, [ :name, :id ]) }
 
     it 'does not factor out the projection, because tuple order is currently significant' do
-      should equal(@projection)
+      should equal(projection)
     end
   end
 
   describe 'when the attributes are different from the relation headers' do
-    before do
-      @projection = Algebra::Projection.new(@relation, [ :id ])
-    end
+    let(:projection) { Algebra::Projection.new(relation, [ :id ]) }
 
-    it { should equal(@projection) }
+    it { should equal(projection) }
   end
 
   describe 'containing an empty relation' do
-    before do
-      @empty = Relation::Empty.new(@relation.header)
+    let(:empty)      { Relation::Empty.new(relation.header)    }
+    let(:projection) { Algebra::Projection.new(empty, [ :id ]) }
 
-      @projection = Algebra::Projection.new(@empty, [ :id ])
-    end
-
-    it { should eql(Relation::Empty.new(@projection.header)) }
+    it { should eql(Relation::Empty.new(projection.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 
   describe 'containing an empty relation when optimized' do
-    before do
-      @restriction = Algebra::Restriction.new(@relation, Logic::Proposition::False.instance)
+    let(:restriction) { Algebra::Restriction.new(relation, Logic::Proposition::False.instance) }
+    let(:projection)  { Algebra::Projection.new(restriction, [ :id ])                          }
 
-      @projection = Algebra::Projection.new(@restriction, [ :id ])
-    end
-
-    it { should eql(Relation::Empty.new(@projection.header)) }
+    it { should eql(Relation::Empty.new(projection.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 
   describe 'containing an optimizable relation' do
-    before do
-      @restriction = Algebra::Restriction.new(@relation, Logic::Proposition::True.instance)
+    let(:restriction) { Algebra::Restriction.new(relation, Logic::Proposition::True.instance) }
+    let(:projection)  { Algebra::Projection.new(restriction, [ :id ])                         }
 
-      @projection = Algebra::Projection.new(@restriction, [ :id ])
-    end
-
-    it { should_not equal(@projection) }
+    it { should_not equal(projection) }
 
     it { should be_instance_of(Algebra::Projection) }
 
-    its(:relation) { should equal(@relation) }
+    its(:relation) { should equal(relation) }
 
-    its(:header) { should == @projection.header }
+    its(:header) { should == projection.header }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 
   describe 'containing a projection' do
-    before do
-      @other = @relation.project([ :id, :name ])
+    let(:other)      { relation.project([ :id, :name ]) }
+    let(:projection) { other.project([ :id ])           }
 
-      @projection = @other.project([ :id ])
-    end
-
-    it { should_not equal(@projection) }
+    it { should_not equal(projection) }
 
     it { should be_instance_of(Algebra::Projection) }
 
-    its(:relation) { should equal(@relation) }
+    its(:relation) { should equal(relation) }
 
-    its(:header) { should == @projection.header }
+    its(:header) { should == projection.header }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 
   describe 'containing a set operation' do
-    before do
-      @left  = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
-      @right = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])
-      @union = @left.union(@right)
-
-      @projection = @union.project([ :name ])
-    end
+    let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
+    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
+    let(:union)      { left.union(right)                                                            }
+    let(:projection) { union.project([ :name ])                                                     }
 
     it 'pushes the projection to each relation' do
       should eql(Algebra::Union.new(
-         Algebra::Projection.new(@left,  @projection.header),
-         Algebra::Projection.new(@right, @projection.header)
+         Algebra::Projection.new(left,  projection.header),
+         Algebra::Projection.new(right, projection.header)
       ))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 
   describe 'containing a set operation containing a projection' do
-    before do
-      @left  = Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ])
-      @right = Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 2, 'Dan Kubb', 34 ] ])
-      @union = @left.project([ :id, :name ]).union(@right.project([ :id, :name ]))
-
-      @projection = @union.project([ :name ])
-    end
+    let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ]) }
+    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 2, 'Dan Kubb', 34 ] ]) }
+    let(:union)      { left.project([ :id, :name ]).union(right.project([ :id, :name ]))                                   }
+    let(:projection) { union.project([ :name ])                                                                            }
 
     it 'pushes the projection to each relation, and combine the nested projections' do
-      should eql(@left.project([ :name ]).union(@right.project([ :name ])))
+      should eql(left.project([ :name ]).union(right.project([ :name ])))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == @projection
+      should == projection
     end
   end
 end

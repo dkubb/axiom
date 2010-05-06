@@ -1,62 +1,49 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order#eql?' do
-  before do
-    @relation   = Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])
-    @directions = [ @relation[:id] ]
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
+  let(:directions) { [ relation[:id] ]                                    }
+  let(:order)      { relation.order(directions)                           }
 
-    @order = @relation.order(@directions)
-  end
-
-  subject { @order.eql?(@other) }
+  subject { order.eql?(other) }
 
   describe 'with the same order' do
-    before do
-      @other = @order
-    end
+    let(:other) { order }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@order)
+      should == other.eql?(order)
     end
   end
 
   describe 'with an equivalent order' do
-    before do
-      @other = @order.dup
-    end
+    let(:other) { order.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == @other.eql?(@order)
+      should == other.eql?(order)
     end
   end
 
   describe 'with a different order' do
-    before do
-      @other = @order.order([ @relation[:id].desc ])
-    end
+    let(:other) { order.order([ relation[:id].desc ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@order)
+      should == other.eql?(order)
     end
   end
 
   describe 'with an equivalent order of a different class' do
-    before do
-      klass = Class.new(Relation::Operation::Order)
-
-      @other = klass.new(@order, @directions)
-    end
+    let(:other) { Class.new(Relation::Operation::Order).new(order, directions) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == @other.eql?(@order)
+      should == other.eql?(order)
     end
   end
 

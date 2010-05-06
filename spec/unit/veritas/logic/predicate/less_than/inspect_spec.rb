@@ -1,13 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::LessThan#inspect' do
-  before do
-    @attribute = Attribute::Integer.new(:id)
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:less_than) { attribute.lt(1)             }
 
-    @less_than = @attribute.lt(1)
-  end
+  subject { less_than.inspect }
 
-  subject { @less_than.inspect }
-
-  it { should == "#{@attribute.inspect} < 1" }
+  it { should == "#{attribute.inspect} < 1" }
 end
