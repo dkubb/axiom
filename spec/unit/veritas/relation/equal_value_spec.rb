@@ -7,7 +7,7 @@ describe 'Veritas::Relation#==' do
 
   subject { relation == other }
 
-  describe 'with the same relation' do
+  context 'with the same relation' do
     let(:other) { relation }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with an equivalent relation' do
+  context 'with an equivalent relation' do
     let(:other) { relation.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with an equivalent header and different tuples' do
+  context 'with an equivalent header and different tuples' do
     let(:other) { Relation.new(header, [ [ 2 ] ]) }
 
     it { should be(false) }
@@ -37,7 +37,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with a different header' do
+  context 'with a different header' do
     let(:other) { Relation.new([ [ :name, String ] ], relation) }
 
     it { should be(false) }
@@ -47,7 +47,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with an equivalent object responding to #to_set' do
+  context 'with an equivalent object responding to #to_set' do
     let(:other) { Set[ [ 1 ] ] }
 
     it { should be(true) }
@@ -59,7 +59,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with a different object responding to #to_set' do
+  context 'with a different object responding to #to_set' do
     let(:other) { Set[ [ 2 ] ] }
 
     it { should be(false) }
@@ -69,7 +69,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with an equivalent header and equivalent tuples with attributes in a different order' do
+  context 'with an equivalent header and equivalent tuples with attributes in a different order' do
     let(:attribute1) { [ :id,   Integer ]                               }
     let(:attribute2) { [ :name, String  ]                               }
     let(:header1)    { Relation::Header.new([ attribute1, attribute2 ]) }
@@ -84,7 +84,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  describe 'with an equivalent relation of a different class' do
+  context 'with an equivalent relation of a different class' do
     let(:other) { Class.new(Relation).new(header, tuples) }
 
     it { should be(true) }

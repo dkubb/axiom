@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Operation::Reverse.new' do
 
   subject { Relation::Operation::Reverse.new(relation) }
 
-  describe 'with an ordered relation' do
+  context 'with an ordered relation' do
     let(:relation) { original_relation.order { |r| r[:id] } }
 
     it { should be_kind_of(Relation::Operation::Reverse) }
@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Reverse.new' do
     end
   end
 
-  describe 'without an ordered relation' do
+  context 'without an ordered relation' do
     let(:relation) { original_relation }
 
     it { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only reverse an ordered relation') }

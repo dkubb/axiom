@@ -6,7 +6,7 @@ describe 'Veritas::Logic::Proposition#eql?' do
 
   subject { proposition.eql?(other) }
 
-  describe 'with the same class' do
+  context 'with the same class' do
     let(:other) { PropositionSpecs::Object.new }
 
     it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Logic::Proposition#eql?' do
     end
   end
 
-  describe 'with a different class' do
+  context 'with a different class' do
     let(:other) { Class.new(Logic::Proposition).new }
 
     it { should be(false) }

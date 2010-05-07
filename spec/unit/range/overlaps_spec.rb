@@ -8,7 +8,7 @@ describe 'Range#overlaps?' do
 
   # self:   |---|
   # other:         |---|
-  describe 'before' do
+  context 'before' do
     let(:range) { 5..10 }
     let(:other) { 1..4  }
 
@@ -21,7 +21,7 @@ describe 'Range#overlaps?' do
 
   # self:          |---|
   # other:  |---|
-  describe 'after' do
+  context 'after' do
     let(:range) { 5..10  }
     let(:other) { 11..15 }
 
@@ -34,7 +34,7 @@ describe 'Range#overlaps?' do
 
   # self:  |---|
   # other:     |---|
-  describe 'meets' do
+  context 'meets' do
     let(:range) { 5..10  }
     let(:other) { 10..15 }
 
@@ -47,7 +47,7 @@ describe 'Range#overlaps?' do
 
   # self:      |---|
   # other: |---|
-  describe 'met_by' do
+  context 'met_by' do
     let(:range) { 5..10 }
     let(:other) { 1..5  }
 
@@ -60,7 +60,7 @@ describe 'Range#overlaps?' do
 
   # self:  |---|
   # other:   |---|
-  describe 'overlaps' do
+  context 'overlaps' do
     let(:range) { 5..10 }
     let(:other) { 9..15 }
 
@@ -73,7 +73,7 @@ describe 'Range#overlaps?' do
 
   # self:    |---|
   # other: |---|
-  describe 'overlapped_by' do
+  context 'overlapped_by' do
     let(:range) { 5..10 }
     let(:other) { 1..6  }
 
@@ -86,7 +86,7 @@ describe 'Range#overlaps?' do
 
   # self:  |---|
   # other: |-----|
-  describe 'starts' do
+  context 'starts' do
     let(:range) { 1..5 }
     let(:other) { 1..6 }
 
@@ -99,7 +99,7 @@ describe 'Range#overlaps?' do
 
   # self:  |-----|
   # other: |---|
-  describe 'started_by' do
+  context 'started_by' do
     let(:range) { 1..6 }
     let(:other) { 1..5 }
 
@@ -112,7 +112,7 @@ describe 'Range#overlaps?' do
 
   # self:    |---|
   # other: |-----|
-  describe 'finishes' do
+  context 'finishes' do
     let(:range) { 5..10 }
     let(:other) { 1..10 }
 
@@ -125,7 +125,7 @@ describe 'Range#overlaps?' do
 
   # self:  |-----|
   # other:   |---|
-  describe 'finished_by' do
+  context 'finished_by' do
     let(:range) { 1..10 }
     let(:other) { 5..10 }
 
@@ -138,7 +138,7 @@ describe 'Range#overlaps?' do
 
   # self:     |---|
   # other:  |-------|
-  describe 'during' do
+  context 'during' do
     let(:range) { 5..7  }
     let(:other) { 1..10 }
 
@@ -151,7 +151,7 @@ describe 'Range#overlaps?' do
 
   # self:  |-------|
   # other:   |---|
-  describe 'contains' do
+  context 'contains' do
     let(:range) { 1..10 }
     let(:other) { 5..7  }
 
@@ -164,7 +164,7 @@ describe 'Range#overlaps?' do
 
   # self:   |---|
   # other:  |---|
-  describe 'equals' do
+  context 'equals' do
     let(:range) { 1..10 }
     let(:other) { 1..10 }
 
@@ -177,7 +177,7 @@ describe 'Range#overlaps?' do
 
   # self:   |---|
   # other:         |---|
-  describe 'disjoint' do
+  context 'disjoint' do
     let(:range) { 5..10 }
     let(:other) { 1..4  }
 

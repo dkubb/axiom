@@ -6,7 +6,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
 
   subject { predicate.optimize }
 
-  describe 'left is an attribute' do
+  context 'left is an attribute' do
     let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
 
     it 'equals the predicate' do
@@ -14,7 +14,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
     end
   end
 
-  describe 'right is an attribute' do
+  context 'right is an attribute' do
     let(:predicate) { PredicateSpecs::Object.new(1, attribute) }
 
     it 'equals the predicate' do
@@ -22,7 +22,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
     end
   end
 
-  describe 'left and right are constants' do
+  context 'left and right are constants' do
     let(:predicate) { PredicateSpecs::Object.new(1, 1) }
 
     it 'sends the left and right value to self.class.eval' do

@@ -6,7 +6,7 @@ describe 'Veritas::Algebra::Product#optimize' do
 
   subject { product.optimize }
 
-  describe 'left is a TABLE_DUM' do
+  context 'left is a TABLE_DUM' do
     let(:product) { Algebra::Product.new(TABLE_DUM, right) }
 
     it { should eql(Relation::Empty.new(right.header)) }
@@ -16,7 +16,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'right is a TABLE_DUM' do
+  context 'right is a TABLE_DUM' do
     let(:product) { Algebra::Product.new(left, TABLE_DUM) }
 
     it { should eql(Relation::Empty.new(left.header)) }
@@ -26,7 +26,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'left is a TABLE_DUM when optimized' do
+  context 'left is a TABLE_DUM when optimized' do
     let(:product) { Algebra::Product.new(TABLE_DUM.project([]), right) }
 
     it { should eql(Relation::Empty.new(right.header)) }
@@ -36,7 +36,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'right is a TABLE_DUM when optimized' do
+  context 'right is a TABLE_DUM when optimized' do
     let(:product) { Algebra::Product.new(left, TABLE_DUM.project([])) }
 
     it { should eql(Relation::Empty.new(left.header)) }
@@ -46,7 +46,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'left is a TABLE_DEE' do
+  context 'left is a TABLE_DEE' do
     let(:product) { Algebra::Product.new(TABLE_DEE, right) }
 
     it { should equal(right) }
@@ -56,7 +56,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'right is a TABLE_DEE' do
+  context 'right is a TABLE_DEE' do
     let(:product) { Algebra::Product.new(left, TABLE_DEE) }
 
     it { should equal(left) }
@@ -66,7 +66,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'left is a TABLE_DEE when optimized' do
+  context 'left is a TABLE_DEE when optimized' do
     let(:product) { Algebra::Product.new(TABLE_DEE.project([]), right) }
 
     it { should equal(right) }
@@ -76,7 +76,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'right is a TABLE_DEE when optimized' do
+  context 'right is a TABLE_DEE when optimized' do
     let(:product) { Algebra::Product.new(left, TABLE_DEE.project([])) }
 
     it { should equal(left) }
@@ -86,7 +86,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     end
   end
 
-  describe 'left and right are normal relations' do
+  context 'left and right are normal relations' do
     let(:product) { Algebra::Product.new(left, right) }
 
     it { should equal(product) }

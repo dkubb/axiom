@@ -7,7 +7,7 @@ describe 'Veritas::Relation#eql?' do
 
   subject { relation.eql?(other) }
 
-  describe 'with the same relation' do
+  context 'with the same relation' do
     let(:other) { relation }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation#eql?' do
     end
   end
 
-  describe 'with an equivalent relation' do
+  context 'with an equivalent relation' do
     let(:other) { relation.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Relation#eql?' do
     end
   end
 
-  describe 'with a different relation' do
+  context 'with a different relation' do
     let(:other) { Relation.new(header, [ [ 2 ] ]) }
 
     it { should be(false) }
@@ -37,7 +37,7 @@ describe 'Veritas::Relation#eql?' do
     end
   end
 
-  describe 'with an equivalent relation of a different class' do
+  context 'with an equivalent relation of a different class' do
     let(:other) { Class.new(Relation).new(header, tuples) }
 
     it { should be(false) }

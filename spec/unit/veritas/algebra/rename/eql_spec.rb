@@ -7,7 +7,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
 
   subject { rename.eql?(other) }
 
-  describe 'with the same rename' do
+  context 'with the same rename' do
     let(:other) { rename }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
     end
   end
 
-  describe 'with an equivalent rename' do
+  context 'with an equivalent rename' do
     let(:other) { rename.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
     end
   end
 
-  describe 'with a different rename' do
+  context 'with a different rename' do
     let(:other) { relation.rename(:id => :another_id) }
 
     it { should be(false) }
@@ -37,7 +37,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
     end
   end
 
-  describe 'with an equivalent rename of a different class' do
+  context 'with an equivalent rename of a different class' do
     let(:other) { Class.new(Algebra::Rename).new(relation, aliases) }
 
     it { should be(false) }

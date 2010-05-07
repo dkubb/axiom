@@ -5,7 +5,7 @@ describe 'Veritas::Relation.new' do
 
   subject { Relation.new(header, tuples) }
 
-  describe 'with an Enumerable responding to #size' do
+  context 'with an Enumerable responding to #size' do
     let(:tuples) { [ [ 1 ] ] }
 
     before do
@@ -17,7 +17,7 @@ describe 'Veritas::Relation.new' do
     it { should == tuples }
   end
 
-  describe 'with an Enumerable that does not respond to #size' do
+  context 'with an Enumerable that does not respond to #size' do
     let(:range) { 1..5 }
     let(:tuples) do
       Enumerator.new do |yielder|

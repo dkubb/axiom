@@ -5,13 +5,13 @@ describe 'Veritas::Attribute#valid_primitive?' do
 
   subject { attribute.valid_primitive?(value) }
 
-  describe 'with a valid value' do
+  context 'with a valid value' do
     let(:value) { 1 }
 
     it { should be(true) }
   end
 
-  describe 'with an invalid value' do
+  context 'with an invalid value' do
     let(:value) { 'a' }
 
     it { should be(false) }

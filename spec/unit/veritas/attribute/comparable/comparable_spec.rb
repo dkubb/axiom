@@ -5,7 +5,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
 
   subject { attribute.comparable?(other) }
 
-  describe 'when the other attribute is the same type' do
+  context 'when the other attribute is the same type' do
     let(:other) { attribute.dup }
 
     it { should be(true) }
@@ -15,7 +15,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
     end
   end
 
-  describe 'when the other attribute is a different class' do
+  context 'when the other attribute is a different class' do
     let(:other) { Attribute::String.new(:different) }
 
     it { should be(false) }
@@ -27,7 +27,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
     end
   end
 
-  describe 'when the other attribute is a descendant type' do
+  context 'when the other attribute is a descendant type' do
     let(:other) { Class.new(Attribute::Integer).new(:descendant) }
 
     it { should be(true) }
@@ -37,7 +37,7 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
     end
   end
 
-  describe 'when the other attribute shares a common type' do
+  context 'when the other attribute shares a common type' do
     let(:other) { Attribute::Numeric.new(:ancestor) }
 
     it { should be(true) }

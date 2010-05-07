@@ -7,14 +7,14 @@ describe 'Veritas::Logic::Connective::Negation#rename' do
 
   subject { negation.rename(aliases) }
 
-  describe 'operand is renamed' do
+  context 'operand is renamed' do
     let(:operand)  { attribute.eq(1)                          }
     let(:negation) { Logic::Connective::Negation.new(operand) }
 
     it { should eql(Logic::Connective::Negation.new(other.eq(1))) }
   end
 
-  describe 'operand is not renamed' do
+  context 'operand is not renamed' do
     let(:operand)  { other.eq(1)                              }
     let(:negation) { Logic::Connective::Negation.new(operand) }
 

@@ -3,7 +3,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 describe 'Veritas::Relation#order' do
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
 
-  describe 'with direction arguments' do
+  context 'with direction arguments' do
     let(:directions) { [ relation[:id].asc ] }
 
     subject { relation.order(directions) }
@@ -19,7 +19,7 @@ describe 'Veritas::Relation#order' do
     end
   end
 
-  describe 'with a block' do
+  context 'with a block' do
     let(:block) { lambda { |relation| [ relation[:id].asc ] } }
 
     subject { relation.order(&block) }

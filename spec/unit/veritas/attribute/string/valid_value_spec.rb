@@ -5,27 +5,27 @@ describe 'Veritas::Attribute::String#valid_value?' do
 
   subject { attribute.valid_value?(value) }
 
-  describe 'with a string value' do
-    describe 'that is within the allowed length range' do
+  context 'with a string value' do
+    context 'that is within the allowed length range' do
       let(:value) { 'a' }
 
       it { should be(true) }
     end
 
-    describe 'that is greater than the allowed length range' do
+    context 'that is greater than the allowed length range' do
       let(:value) { 'a' * 51 }
 
       it { should be(false) }
     end
 
-    describe 'that is less than the allowed length range' do
+    context 'that is less than the allowed length range' do
       let(:value) { '' }
 
       it { should be(false) }
     end
   end
 
-  describe 'with a value that is not a string' do
+  context 'with a value that is not a string' do
     let(:value) { 1 }
 
     it { should be(false) }

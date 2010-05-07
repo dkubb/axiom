@@ -7,7 +7,7 @@ describe 'Veritas::Relation::Operation::Order::Direction#rename' do
 
   subject { direction.rename(aliases) }
 
-  describe 'with aliases matching the attribute' do
+  context 'with aliases matching the attribute' do
     let(:aliases) { { :id => :other_id } }
 
     it { should be_kind_of(klass) }
@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Order::Direction#rename' do
     it { should eql(klass.new(Attribute::Integer.new(:other_id))) }
   end
 
-  describe 'with aliases not matching the attribute' do
+  context 'with aliases not matching the attribute' do
     let(:aliases) { { :name => :other_name } }
 
     it { should be_kind_of(klass) }

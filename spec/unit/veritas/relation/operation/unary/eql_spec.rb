@@ -7,7 +7,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
 
   subject { unary_operation.eql?(other) }
 
-  describe 'with the same unary operation' do
+  context 'with the same unary operation' do
     let(:other) { unary_operation }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
     end
   end
 
-  describe 'with an equivalent unary operation' do
+  context 'with an equivalent unary operation' do
     let(:other) { unary_operation.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
     end
   end
 
-  describe 'with a different unary operation' do
+  context 'with a different unary operation' do
     let(:other) { UnaryOperationSpecs::Other.new(relation) }
 
     it { should be(false) }
@@ -37,7 +37,7 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
     end
   end
 
-  describe 'with an equivalent unary operation of a different class' do
+  context 'with an equivalent unary operation of a different class' do
     let(:other) { Class.new(UnaryOperationSpecs::Object).new(relation) }
 
     it { should be(false) }

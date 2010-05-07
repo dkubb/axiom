@@ -6,13 +6,13 @@ describe 'Veritas::Logic::Predicate.extract_value' do
 
   subject { Logic::Predicate.extract_value(operand, tuple) }
 
-  describe 'when the operand responds to #call' do
+  context 'when the operand responds to #call' do
     let(:operand) { header[:id] }
 
     it { should == 1 }
   end
 
-  describe 'when the operand does not respond to #call' do
+  context 'when the operand does not respond to #call' do
     let(:operand) { mock('Value') }
 
     it { should equal(operand) }

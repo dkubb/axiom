@@ -8,13 +8,13 @@ describe 'Veritas::Algebra::Projection#predicate' do
 
   subject { projection.predicate }
 
-  describe 'containing a relation with a removed predicate' do
+  context 'containing a relation with a removed predicate' do
     let(:projection) { relation.project([ :id ]) }
 
     it { should equal(Logic::Proposition::True.instance) }
   end
 
-  describe 'containing a relation without a removed predicate' do
+  context 'containing a relation without a removed predicate' do
     let(:projection) { relation.project([ :name ]) }
 
     it { should equal(relation.predicate) }

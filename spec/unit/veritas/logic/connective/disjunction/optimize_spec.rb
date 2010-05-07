@@ -5,7 +5,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
 
   subject { disjunction.optimize }
 
-  describe 'left and right are predicates' do
+  context 'left and right are predicates' do
     let(:left)        { attribute.gt(1)                                 }
     let(:right)       { attribute.lt(3)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -13,7 +13,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(disjunction) }
   end
 
-  describe 'left and right are negated predicates' do
+  context 'left and right are negated predicates' do
     let(:disjunction) do
       Logic::Connective::Disjunction.new(
         Logic::Connective::Negation.new(attribute.gt(1)),
@@ -28,7 +28,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     end
   end
 
-  describe 'left and right are the same' do
+  context 'left and right are the same' do
     let(:left)        { attribute.gt(1)                                 }
     let(:right)       { attribute.gt(1)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -36,7 +36,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(left) }
   end
 
-  describe 'left and right are true propositions' do
+  context 'left and right are true propositions' do
     let(:left)        { Logic::Proposition::True.instance               }
     let(:right)       { Logic::Proposition::True.instance               }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -44,7 +44,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(left) }
   end
 
-  describe 'left and right are false propositions' do
+  context 'left and right are false propositions' do
     let(:left)        { Logic::Proposition::False.instance              }
     let(:right)       { Logic::Proposition::False.instance              }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -52,7 +52,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(left) }
   end
 
-  describe 'right is a true proposition' do
+  context 'right is a true proposition' do
     let(:left)        { attribute.gt(1)                                 }
     let(:right)       { Logic::Proposition::True.instance               }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -60,7 +60,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(right) }
   end
 
-  describe 'left is a true proposition' do
+  context 'left is a true proposition' do
     let(:left)        { Logic::Proposition::True.instance               }
     let(:right)       { attribute.lt(3)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -68,7 +68,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(left) }
   end
 
-  describe 'right is a false proposition' do
+  context 'right is a false proposition' do
     let(:left)        { attribute.gt(1)                                 }
     let(:right)       { Logic::Proposition::False.instance              }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -76,7 +76,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(left) }
   end
 
-  describe 'left is a false proposition' do
+  context 'left is a false proposition' do
     let(:left)        { Logic::Proposition::False.instance              }
     let(:right)       { attribute.lt(3)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -84,7 +84,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should equal(right) }
   end
 
-  describe 'left and right are equal predicates for the same attribute and different values' do
+  context 'left and right are equal predicates for the same attribute and different values' do
     let(:left)        { attribute.eq(1)                                 }
     let(:right)       { attribute.eq(3)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -92,7 +92,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should eql(attribute.in([ 1, 3 ])) }
   end
 
-  describe 'left and right are equal predicates for the same attribute and the same values' do
+  context 'left and right are equal predicates for the same attribute and the same values' do
     let(:left)        { attribute.eq(1)                                 }
     let(:right)       { attribute.eq(1)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -100,7 +100,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should eql(attribute.eq(1)) }
   end
 
-  describe 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
+  context 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
     let(:other)       { Attribute::Integer.new(:other_id)               }
     let(:left)        { attribute.eq(other)                             }
     let(:right)       { attribute.eq(1)                                 }
@@ -109,7 +109,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it { should eql(left | right) }
   end
 
-  describe 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
+  context 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
     let(:other)       { Attribute::Integer.new(:other_id)               }
     let(:left)        { attribute.eq(1)                                 }
     let(:right)       { attribute.eq(other)                             }

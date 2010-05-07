@@ -12,7 +12,7 @@ describe 'Veritas::Logic::Expression#==' do
 
   subject { expression == other }
 
-  describe 'with two equivalent expressions' do
+  context 'with two equivalent expressions' do
     let(:expression) { ExpressionSpecs::Object.new }
     let(:other)      { ExpressionSpecs::Object.new }
 
@@ -23,7 +23,7 @@ describe 'Veritas::Logic::Expression#==' do
     end
   end
 
-  describe 'with two different expressions' do
+  context 'with two different expressions' do
     let(:expression) { ExpressionSpecs::Object.new            }
     let(:other)      { Class.new(ExpressionSpecs::Object).new }
 
@@ -34,7 +34,7 @@ describe 'Veritas::Logic::Expression#==' do
     end
   end
 
-  describe 'with two equivalent unoptimized expressions' do
+  context 'with two equivalent unoptimized expressions' do
     let(:expression) { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
     let(:other)      { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
 
@@ -45,7 +45,7 @@ describe 'Veritas::Logic::Expression#==' do
     end
   end
 
-  describe 'with two different unoptimized expressions' do
+  context 'with two different unoptimized expressions' do
     let(:expression) { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
     let(:subclass)   { Class.new(ExpressionSpecs::Object)                        }
     let(:other)      { subclass.new & subclass.new                               }

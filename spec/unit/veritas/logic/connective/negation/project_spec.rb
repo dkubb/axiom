@@ -7,14 +7,14 @@ describe 'Veritas::Logic::Connective::Negation#project' do
 
   subject { negation.project(attributes) }
 
-  describe 'operand is removed' do
+  context 'operand is removed' do
     let(:operand)  { other.eq(1)                              }
     let(:negation) { Logic::Connective::Negation.new(operand) }
 
     it { should be_nil }
   end
 
-  describe 'operand is not removed' do
+  context 'operand is not removed' do
     let(:operand)  { attribute.eq(1)                          }
     let(:negation) { Logic::Connective::Negation.new(operand) }
 

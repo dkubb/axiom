@@ -5,8 +5,8 @@ describe 'Veritas::Attribute::String#joinable?' do
 
   subject { attribute.joinable?(other) }
 
-  describe 'when the other attribute is the same type' do
-    describe 'and the start of the other length falls within range' do
+  context 'when the other attribute is the same type' do
+    context 'and the start of the other length falls within range' do
       let(:other) { Attribute::String.new(:string, :length => 20..30) }
 
       it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Attribute::String#joinable?' do
       end
     end
 
-    describe 'and the end of the other length falls within range' do
+    context 'and the end of the other length falls within range' do
       let(:other) { Attribute::String.new(:string, :length => 1..10) }
 
       it { should be(true) }
@@ -26,7 +26,7 @@ describe 'Veritas::Attribute::String#joinable?' do
       end
     end
 
-    describe 'and the other length is outside the range' do
+    context 'and the other length is outside the range' do
       let(:other) { Attribute::String.new(:string, :length => 21..30) }
 
       it { should be(false) }
@@ -37,7 +37,7 @@ describe 'Veritas::Attribute::String#joinable?' do
     end
   end
 
-  describe 'when the other attribute is a different class' do
+  context 'when the other attribute is a different class' do
     let(:other) { Attribute::Integer.new(:different) }
 
     it { should be(false) }

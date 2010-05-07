@@ -7,7 +7,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
   subject { offset.optimize }
 
-  describe 'with an offset of 0' do
+  context 'with an offset of 0' do
     let(:offset) { order.offset(0) }
 
     it { should equal(order) }
@@ -17,13 +17,13 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     end
   end
 
-  describe 'containing an order operation' do
+  context 'containing an order operation' do
     let(:offset) { Relation::Operation::Offset.new(order, 1) }
 
     it { should equal(offset) }
   end
 
-  describe 'containing an optimizable order operation' do
+  context 'containing an optimizable order operation' do
     let(:projection) { order.project(order.header)                    }
     let(:offset)     { Relation::Operation::Offset.new(projection, 1) }
 
@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     end
   end
 
-  describe 'containing an offset operation' do
+  context 'containing an offset operation' do
     let(:original) { Relation::Operation::Offset.new(order,     5) }
     let(:offset)   { Relation::Operation::Offset.new(original, 10) }
 

@@ -7,7 +7,7 @@ describe 'Veritas::Algebra::Difference#each' do
 
   subject { difference.each { |tuple| yields << tuple } }
 
-  describe 'with relations having similar bodies' do
+  context 'with relations having similar bodies' do
     let(:difference) { Algebra::Difference.new(left, left.dup) }
 
     it { should equal(difference) }
@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Difference#each' do
     end
   end
 
-  describe 'with relations having different bodies' do
+  context 'with relations having different bodies' do
     let(:right)      { Relation.new(header, [ [ 2 ] ])      }
     let(:difference) { Algebra::Difference.new(left, right) }
 

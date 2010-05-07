@@ -4,7 +4,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Relation::Operation::Unary#optimize' do
   subject { unary_operation.optimize }
 
-  describe 'with an empty relation' do
+  context 'with an empty relation' do
     let(:empty)           { Relation::Empty.new([ [ :id, Integer ] ]) }
     let(:unary_operation) { UnaryOperationSpecs::Object.new(empty)    }
 
@@ -15,7 +15,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     end
   end
 
-  describe 'with an non-empty relation' do
+  context 'with an non-empty relation' do
     let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
     let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
 
@@ -24,7 +24,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     end
   end
 
-  describe 'with an optimizable relation' do
+  context 'with an optimizable relation' do
     let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
     let(:projection)      { relation.project(relation.header)             }
     let(:unary_operation) { UnaryOperationSpecs::Object.new(projection)   }

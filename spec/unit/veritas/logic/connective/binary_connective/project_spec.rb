@@ -8,7 +8,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#project' do
 
   subject { connective.project(attributes) }
 
-  describe 'left and right is removed' do
+  context 'left and right is removed' do
     let(:left)       { other.eq(1)                                    }
     let(:right)      { other.eq(2)                                    }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
@@ -16,7 +16,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#project' do
     it { should be_nil }
   end
 
-  describe 'left is removed' do
+  context 'left is removed' do
     let(:left)       { other.eq(1)                                    }
     let(:right)      { attribute.eq(2)                                }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
@@ -24,7 +24,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#project' do
     it { should equal(right) }
   end
 
-  describe 'right is removed' do
+  context 'right is removed' do
     let(:left)       { attribute.eq(1)                                }
     let(:right)      { other.eq(2)                                    }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
@@ -32,7 +32,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#project' do
     it { should equal(left) }
   end
 
-  describe 'neither left or right is removed' do
+  context 'neither left or right is removed' do
     let(:left)       { attribute.eq(1)                                }
     let(:right)      { attribute.eq(2)                                }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }

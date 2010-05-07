@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Operation::Order.new' do
 
   subject { Relation::Operation::Order.new(relation, directions) }
 
-  describe 'with all attributes specified in the directions' do
+  context 'with all attributes specified in the directions' do
     let(:directions) { [ relation[:id] ] }
 
     it 'sets the relation' do
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Order.new' do
     end
   end
 
-  describe 'without all attributes specified in the directions' do
+  context 'without all attributes specified in the directions' do
     let(:directions) { [] }
 
     it { method(:subject).should raise_error(ArgumentError, 'directions must include every attribute in the header') }

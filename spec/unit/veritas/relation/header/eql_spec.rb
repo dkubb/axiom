@@ -6,7 +6,7 @@ describe 'Veritas::Relation::Header#eql?' do
 
   subject { header.eql?(other) }
 
-  describe 'with the same header' do
+  context 'with the same header' do
     let(:other) { header }
 
     it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with an equivalent header' do
+  context 'with an equivalent header' do
     let(:other) { header.dup }
 
     it { should be(true) }
@@ -26,7 +26,7 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with a different header' do
+  context 'with a different header' do
     let(:other) { Relation::Header.new([ [ :name, String ] ]) }
 
     it { should be(false) }
@@ -36,7 +36,7 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with an equivalent header of different classes' do
+  context 'with an equivalent header of different classes' do
     let(:other) { Class.new(Relation::Header).new([ attribute ]) }
 
     it { should be(false) }
@@ -46,7 +46,7 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with an equivalent object responding to #to_ary' do
+  context 'with an equivalent object responding to #to_ary' do
     let(:other) { [ attribute ] }
 
     it { should be(false) }
@@ -64,7 +64,7 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with a different object responding to #to_ary' do
+  context 'with a different object responding to #to_ary' do
     let(:other) { [ [ :name, String ] ] }
 
     it { should be(false) }
@@ -74,7 +74,7 @@ describe 'Veritas::Relation::Header#eql?' do
     end
   end
 
-  describe 'with equivalent attributes in a different order' do
+  context 'with equivalent attributes in a different order' do
     let(:attribute1) { [ :id,   Integer ]                               }
     let(:attribute2) { [ :name, String  ]                               }
     let(:header)     { Relation::Header.new([ attribute1, attribute2 ]) }

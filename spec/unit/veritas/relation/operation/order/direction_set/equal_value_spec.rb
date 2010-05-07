@@ -6,7 +6,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
 
   subject { directions == other }
 
-  describe 'with the same direction' do
+  context 'with the same direction' do
     let(:other) { directions }
 
     it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
     end
   end
 
-  describe 'with an equivalent directions' do
+  context 'with an equivalent directions' do
     let(:other) { directions.dup }
 
     it { should be(true) }
@@ -26,7 +26,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
     end
   end
 
-  describe 'with a different directions' do
+  context 'with a different directions' do
     let(:other_attribute) { Attribute::Integer.new(:name)                                     }
     let(:other)           { Relation::Operation::Order::DirectionSet.new([ other_attribute ]) }
 
@@ -37,7 +37,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
     end
   end
 
-  describe 'with an equivalent directions of a different class' do
+  context 'with an equivalent directions of a different class' do
     let(:other) { Class.new(Relation::Operation::Order::DirectionSet).new([ attribute ]) }
 
     it { should be(true) }

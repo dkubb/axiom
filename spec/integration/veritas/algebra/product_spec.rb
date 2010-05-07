@@ -1,7 +1,7 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product' do
-  describe 'Commutative property' do
+  context 'Commutative property' do
     let(:left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])                    }
     let(:right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ]) }
 

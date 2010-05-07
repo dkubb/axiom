@@ -6,7 +6,7 @@ describe 'Veritas::Attribute#eql?' do
 
   subject { attribute.eql?(other) }
 
-  describe 'with the same attribute' do
+  context 'with the same attribute' do
     let(:other) { attribute }
 
     it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Attribute#eql?' do
     end
   end
 
-  describe 'with an equivalent attribute' do
+  context 'with an equivalent attribute' do
     let(:other) { attribute.dup }
 
     it { should be(true) }
@@ -26,7 +26,7 @@ describe 'Veritas::Attribute#eql?' do
     end
   end
 
-  describe 'with a different attribute' do
+  context 'with a different attribute' do
     let(:other) { Attribute::String.new(:name) }
 
     it { should be(false) }
@@ -36,7 +36,7 @@ describe 'Veritas::Attribute#eql?' do
     end
   end
 
-  describe 'with an equivalent attribute of a different class' do
+  context 'with an equivalent attribute of a different class' do
     let(:other) { Class.new(Attribute::Integer).new(name) }
 
     it { should be(false) }
@@ -46,7 +46,7 @@ describe 'Veritas::Attribute#eql?' do
     end
   end
 
-  describe 'with a joinable attribute' do
+  context 'with a joinable attribute' do
     let(:other) { attribute.class.new(attribute.name, :size => 1..100) }
 
     it { should be(true) }

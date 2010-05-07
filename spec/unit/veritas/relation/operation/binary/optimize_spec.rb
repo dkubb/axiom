@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
 
   subject { binary_operation.optimize }
 
-  describe 'containing optimized relations' do
+  context 'containing optimized relations' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     end
   end
 
-  describe 'containing optimizable relations' do
+  context 'containing optimizable relations' do
     let(:left)  { original_left.project(original_left.header)   }
     let(:right) { original_right.project(original_right.header) }
 

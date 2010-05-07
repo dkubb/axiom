@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
 
   subject { combine_operation.optimize }
 
-  describe 'left is an empty relation' do
+  context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(original_left.header) }
     let(:right) { original_right                            }
 
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     end
   end
 
-  describe 'right is an empty relation' do
+  context 'right is an empty relation' do
     let(:left)  { original_left                              }
     let(:right) { Relation::Empty.new(original_right.header) }
 
@@ -26,7 +26,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     end
   end
 
-  describe 'left is an empty relation when optimized' do
+  context 'left is an empty relation when optimized' do
     let(:left)  { Algebra::Restriction.new(original_left, Logic::Proposition::False.instance) }
     let(:right) { original_right                                                              }
 
@@ -35,7 +35,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     end
   end
 
-  describe 'right is an empty relation when optimized' do
+  context 'right is an empty relation when optimized' do
     let(:left)  { original_left                                                                }
     let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::False.instance) }
 
@@ -44,7 +44,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     end
   end
 
-  describe 'left and right are not empty relations' do
+  context 'left and right are not empty relations' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 

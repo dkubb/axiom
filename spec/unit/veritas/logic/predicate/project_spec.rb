@@ -8,8 +8,8 @@ describe 'Veritas::Logic::Predicate#project' do
 
   subject { predicate.project(attributes) }
 
-  describe 'when left is an attribute' do
-    describe 'and it is not removed' do
+  context 'when left is an attribute' do
+    context 'and it is not removed' do
       let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
 
       it 'returns self' do
@@ -17,7 +17,7 @@ describe 'Veritas::Logic::Predicate#project' do
       end
     end
 
-    describe 'and it is removed' do
+    context 'and it is removed' do
       let(:predicate) { PredicateSpecs::Object.new(other, 1) }
 
       it 'returns nil' do
@@ -26,8 +26,8 @@ describe 'Veritas::Logic::Predicate#project' do
     end
   end
 
-  describe 'when right is an attribute' do
-    describe 'and it is not removed' do
+  context 'when right is an attribute' do
+    context 'and it is not removed' do
       let(:predicate) { PredicateSpecs::Object.new(1, attribute) }
 
       it 'returns self' do
@@ -35,7 +35,7 @@ describe 'Veritas::Logic::Predicate#project' do
       end
     end
 
-    describe 'and it is removed' do
+    context 'and it is removed' do
       let(:predicate) { PredicateSpecs::Object.new(1, other) }
 
       it 'returns nil' do
@@ -44,7 +44,7 @@ describe 'Veritas::Logic::Predicate#project' do
     end
   end
 
-  describe 'when neither left or right is a removed attribute' do
+  context 'when neither left or right is a removed attribute' do
     let(:predicate) { PredicateSpecs::Object.new(1, 1) }
 
     it 'returns self' do

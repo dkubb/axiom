@@ -8,7 +8,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#rename' do
 
   subject { connective.rename(aliases) }
 
-  describe 'left and right are renamed' do
+  context 'left and right are renamed' do
     let(:left)       { attribute.eq(1)                                }
     let(:right)      { attribute.eq(2)                                }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
@@ -16,7 +16,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#rename' do
     it { should eql(BinaryConnectiveSpecs::Object.new(other.eq(1), other.eq(2))) }
   end
 
-  describe 'left is renamed' do
+  context 'left is renamed' do
     let(:left)       { attribute.eq(1)                                }
     let(:right)      { other.eq(2)                                    }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
@@ -24,7 +24,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#rename' do
     it { should eql(BinaryConnectiveSpecs::Object.new(other.eq(1), other.eq(2))) }
   end
 
-  describe 'right is renamed' do
+  context 'right is renamed' do
     let(:left)       { other.eq(1)                                    }
     let(:right)      { attribute.eq(2)                                }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
@@ -32,7 +32,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#rename' do
     it { should eql(BinaryConnectiveSpecs::Object.new(other.eq(1), other.eq(2))) }
   end
 
-  describe 'right and right are not renamed' do
+  context 'right and right are not renamed' do
     let(:left)       { other.eq(1)                                    }
     let(:right)      { other.eq(2)                                    }
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }

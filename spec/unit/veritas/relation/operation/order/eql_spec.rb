@@ -7,7 +7,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
 
   subject { order.eql?(other) }
 
-  describe 'with the same order' do
+  context 'with the same order' do
     let(:other) { order }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
     end
   end
 
-  describe 'with an equivalent order' do
+  context 'with an equivalent order' do
     let(:other) { order.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
     end
   end
 
-  describe 'with a different order' do
+  context 'with a different order' do
     let(:other) { order.order([ relation[:id].desc ]) }
 
     it { should be(false) }
@@ -37,7 +37,7 @@ describe 'Veritas::Relation::Operation::Order#eql?' do
     end
   end
 
-  describe 'with an equivalent order of a different class' do
+  context 'with an equivalent order of a different class' do
     let(:other) { Class.new(Relation::Operation::Order).new(order, directions) }
 
     it { should be(false) }

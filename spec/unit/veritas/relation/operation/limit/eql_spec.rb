@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
 
   subject { limit.eql?(other) }
 
-  describe 'with the same limit' do
+  context 'with the same limit' do
     let(:other) { limit }
 
     it { should be(true) }
@@ -18,7 +18,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
     end
   end
 
-  describe 'with an equivalent limit' do
+  context 'with an equivalent limit' do
     let(:other) { limit.dup }
 
     it { should be(true) }
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
     end
   end
 
-  describe 'with a different limit' do
+  context 'with a different limit' do
     let(:other) { order.limit(2) }
 
     it { should be(false) }
@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
     end
   end
 
-  describe 'with an equivalent limit of a different class' do
+  context 'with an equivalent limit of a different class' do
     let(:other) { Class.new(Relation::Operation::Limit).new(order, 1) }
 
     it { should be(false) }

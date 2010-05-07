@@ -6,7 +6,7 @@ describe 'Veritas::Algebra::Rename#directions' do
 
   subject { rename.directions }
 
-  describe 'containing a relation' do
+  context 'containing a relation' do
     let(:rename) { Algebra::Rename.new(relation, aliases) }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Rename#directions' do
     end
   end
 
-  describe 'containing an ordered relation' do
+  context 'containing an ordered relation' do
     let(:order)  { relation.order([ relation[:id] ])   }
     let(:rename) { Algebra::Rename.new(order, aliases) }
 

@@ -7,7 +7,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
   subject { limit.optimize }
 
-  describe 'when the limit is 0' do
+  context 'when the limit is 0' do
     let(:limit) { order.limit(0) }
 
     it { should be_kind_of(Relation::Empty) }
@@ -17,13 +17,13 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     end
   end
 
-  describe 'containing an order operation' do
+  context 'containing an order operation' do
     let(:limit) { Relation::Operation::Limit.new(order, 1) }
 
     it { should equal(limit) }
   end
 
-  describe 'containing an optimizable order operation' do
+  context 'containing an optimizable order operation' do
     let(:projection) { order.project(order.header)                   }
     let(:limit)      { Relation::Operation::Limit.new(projection, 1) }
 
@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     end
   end
 
-  describe 'containing a more restrictive limit operation' do
+  context 'containing a more restrictive limit operation' do
     let(:limit) do
       limit = Relation::Operation::Limit.new(order, 5)
       Relation::Operation::Limit.new(limit, 10)
@@ -57,7 +57,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     end
   end
 
-  describe 'containing a less restrictive limit operation' do
+  context 'containing a less restrictive limit operation' do
     let(:original) { Relation::Operation::Limit.new(order,    10) }
     let(:limit)    { Relation::Operation::Limit.new(original,  5) }
 
@@ -74,7 +74,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     end
   end
 
-  describe 'containing a similar limit operation' do
+  context 'containing a similar limit operation' do
     let(:original) { Relation::Operation::Limit.new(order,    10) }
     let(:limit)    { Relation::Operation::Limit.new(original, 10) }
 

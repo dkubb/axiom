@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
   subject { projection.optimize }
 
-  describe 'when the attributes are equivalent to the relation headers, and in the same order' do
+  context 'when the attributes are equivalent to the relation headers, and in the same order' do
     let(:projection) { Algebra::Projection.new(relation, relation.header) }
 
     it { should equal(relation) }
@@ -15,7 +15,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'when the attributes are equivalent to the relation headers, and not in the same order' do
+  context 'when the attributes are equivalent to the relation headers, and not in the same order' do
     let(:projection) { Algebra::Projection.new(relation, [ :name, :id ]) }
 
     it 'does not factor out the projection, because tuple order is currently significant' do
@@ -23,13 +23,13 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'when the attributes are different from the relation headers' do
+  context 'when the attributes are different from the relation headers' do
     let(:projection) { Algebra::Projection.new(relation, [ :id ]) }
 
     it { should equal(projection) }
   end
 
-  describe 'containing an empty relation' do
+  context 'containing an empty relation' do
     let(:empty)      { Relation::Empty.new(relation.header)    }
     let(:projection) { Algebra::Projection.new(empty, [ :id ]) }
 
@@ -40,7 +40,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'containing an empty relation when optimized' do
+  context 'containing an empty relation when optimized' do
     let(:restriction) { Algebra::Restriction.new(relation, Logic::Proposition::False.instance) }
     let(:projection)  { Algebra::Projection.new(restriction, [ :id ])                          }
 
@@ -51,7 +51,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'containing an optimizable relation' do
+  context 'containing an optimizable relation' do
     let(:restriction) { Algebra::Restriction.new(relation, Logic::Proposition::True.instance) }
     let(:projection)  { Algebra::Projection.new(restriction, [ :id ])                         }
 
@@ -68,7 +68,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'containing a projection' do
+  context 'containing a projection' do
     let(:other)      { relation.project([ :id, :name ]) }
     let(:projection) { other.project([ :id ])           }
 
@@ -85,7 +85,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'containing a set operation' do
+  context 'containing a set operation' do
     let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
     let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
     let(:union)      { left.union(right)                                                            }
@@ -103,7 +103,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     end
   end
 
-  describe 'containing a set operation containing a projection' do
+  context 'containing a set operation containing a projection' do
     let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ]) }
     let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 2, 'Dan Kubb', 34 ] ]) }
     let(:union)      { left.project([ :id, :name ]).union(right.project([ :id, :name ]))                                   }

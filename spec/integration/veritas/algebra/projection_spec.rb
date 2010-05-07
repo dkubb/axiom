@@ -1,7 +1,7 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection' do
-  describe 'remove attributes in predicate' do
+  context 'remove attributes in predicate' do
     let(:left)        { Relation.new([ [ :id, Integer ] ], (1..100).map { |n| [ n ] })                           }
     let(:right)       { Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ], [ 'John Doe' ], [ 'Jane Doe' ] ])  }
     let(:relation)    { left * right                                                                             }

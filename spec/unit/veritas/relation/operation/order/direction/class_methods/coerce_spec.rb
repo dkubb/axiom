@@ -6,13 +6,13 @@ describe 'Veritas::Relation::Operation::Order::Direction.coerce' do
 
   subject { klass.coerce(object) }
 
-  describe 'when the object is a Direction' do
+  context 'when the object is a Direction' do
     let(:object) { Relation::Operation::Order::Ascending.new(attribute) }
 
     it { should equal(object) }
   end
 
-  describe 'when the object is an Attribute' do
+  context 'when the object is an Attribute' do
     let(:object) { attribute }
 
     it { should eql(klass.new(attribute)) }

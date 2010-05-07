@@ -6,13 +6,13 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   subject { rename.optimize }
 
-  describe 'containing a relation' do
+  context 'containing a relation' do
     let(:rename) { Algebra::Rename.new(relation, aliases) }
 
     it { should equal(rename) }
   end
 
-  describe 'containing an empty relation' do
+  context 'containing an empty relation' do
     let(:empty)  { Relation::Empty.new(relation.header) }
     let(:rename) { Algebra::Rename.new(empty, aliases)  }
 
@@ -23,7 +23,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing an optimizable relation' do
+  context 'containing an optimizable relation' do
     let(:projection) { relation.project(relation.header)        }
     let(:rename)     { Algebra::Rename.new(projection, aliases) }
 
@@ -42,7 +42,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a rename operation' do
+  context 'containing a rename operation' do
     let(:rename) do
       rename = Algebra::Rename.new(relation, :id => :other_id)
       Algebra::Rename.new(rename, :name => :other_name)
@@ -63,7 +63,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a rename operation with overlapping aliases' do
+  context 'containing a rename operation with overlapping aliases' do
     let(:rename) do
       rename = Algebra::Rename.new(relation, :id => :other_id)
       Algebra::Rename.new(rename, :other_id => :another_id)
@@ -84,7 +84,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing an inverse rename operation' do
+  context 'containing an inverse rename operation' do
     let(:rename) do
       rename = Algebra::Rename.new(relation, :id => :other_id)
       Algebra::Rename.new(rename, :other_id => :id)
@@ -97,7 +97,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a projection' do
+  context 'containing a projection' do
     let(:projection) { relation.project([ :id ])                }
     let(:rename)     { Algebra::Rename.new(projection, aliases) }
 
@@ -112,7 +112,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a projection, containing a rename that cancels out' do
+  context 'containing a projection, containing a rename that cancels out' do
     let(:projection) { relation.rename(:id => :other_id).project([ :other_id ]) }
     let(:rename)     { Algebra::Rename.new(projection, :other_id => :id)        }
 
@@ -125,7 +125,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a restriction' do
+  context 'containing a restriction' do
     let(:restriction) { relation.restrict { |r| r[:id].eq(1) }    }
     let(:rename)      { Algebra::Rename.new(restriction, aliases) }
 
@@ -142,7 +142,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a restriction, containing a rename that cancels out' do
+  context 'containing a restriction, containing a rename that cancels out' do
     let(:projection) { relation.rename(:id => :other_id).restrict { |r| r[:other_id].eq(1) } }
     let(:rename)     { Algebra::Rename.new(projection, :other_id => :id)                     }
 
@@ -155,7 +155,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a set operation' do
+  context 'containing a set operation' do
     let(:left)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
     let(:right)  { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
     let(:union)  { left.union(right)                                                            }
@@ -170,7 +170,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a set operation, containing a rename that cancels out' do
+  context 'containing a set operation, containing a rename that cancels out' do
     let(:left)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
     let(:right)  { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
     let(:union)  { left.rename(:id => :other_id).union(right.rename(:id => :other_id))          }
@@ -185,7 +185,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a reverse operation' do
+  context 'containing a reverse operation' do
     let(:limit)   { relation.order { |r| r.header }.limit(2) }
     let(:reverse) { limit.reverse                            }
     let(:rename)  { reverse.rename(aliases)                  }
@@ -199,7 +199,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a reverse operation, containing a rename that cancels out' do
+  context 'containing a reverse operation, containing a rename that cancels out' do
     let(:limit)   { relation.order { |r| r.header }.limit(2) }
     let(:reverse) { limit.rename(:id => :other_id).reverse   }
     let(:rename)  { reverse.rename(:other_id => :id)         }
@@ -213,7 +213,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing an order operation' do
+  context 'containing an order operation' do
     let(:order)  { relation.order { |r| r.header } }
     let(:rename) { order.rename(aliases)           }
 
@@ -226,7 +226,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing an order operation, containing a rename that cancels out' do
+  context 'containing an order operation, containing a rename that cancels out' do
     let(:order)  { relation.rename(:id => :other_id).order { |r| r.header } }
     let(:rename) { order.rename(:other_id => :id)                           }
 
@@ -239,7 +239,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a limit operation' do
+  context 'containing a limit operation' do
     let(:order)  { relation.order { |r| r.header } }
     let(:limit)  { order.limit(2)                  }
     let(:rename) { limit.rename(aliases)           }
@@ -253,7 +253,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing a limit operation, containing a rename that cancels out' do
+  context 'containing a limit operation, containing a rename that cancels out' do
     let(:order)  { relation.order { |r| r.header }         }
     let(:limit)  { order.rename(:id => :other_id).limit(2) }
     let(:rename) { limit.rename(:other_id => :id)          }
@@ -267,7 +267,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing an offset operation' do
+  context 'containing an offset operation' do
     let(:order)  { relation.order { |r| r.header } }
     let(:offset) { order.offset(1)                 }
     let(:rename) { offset.rename(aliases)          }
@@ -281,7 +281,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     end
   end
 
-  describe 'containing an offset operation, containing a rename that cancels out' do
+  context 'containing an offset operation, containing a rename that cancels out' do
     let(:order)  { relation.order { |r| r.header }          }
     let(:offset) { order.rename(:id => :other_id).offset(1) }
     let(:rename) { offset.rename(:other_id => :id)          }

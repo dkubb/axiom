@@ -6,13 +6,13 @@ describe 'Veritas::Relation::Header#index' do
 
   subject { header.index(object) }
 
-  describe 'with a known attribute' do
+  context 'with a known attribute' do
     let(:object) { attribute }
 
     it { should == 0 }
   end
 
-  describe 'with an unknown attribute' do
+  context 'with an unknown attribute' do
     let(:object) { [ :name, String ] }
 
     it { should be_nil }

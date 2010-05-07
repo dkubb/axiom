@@ -3,7 +3,7 @@ require File.expand_path('../../../spec_helper', __FILE__)
 describe 'Range#to_exclusive' do
   subject { range.to_exclusive }
 
-  describe 'on an exclusive Range' do
+  context 'on an exclusive Range' do
     let(:range) { 1...2 }
 
     it 'returns self' do
@@ -11,7 +11,7 @@ describe 'Range#to_exclusive' do
     end
   end
 
-  describe 'on an inclusive Range' do
+  context 'on an inclusive Range' do
     let(:range) { 1..2 }
 
     it 'returns an exclusive Range' do

@@ -5,21 +5,21 @@ describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#optimize' do
 
   subject { greater_than_or_equal_to.optimize }
 
-  describe 'left and right are attributes' do
-    describe 'and equivalent' do
+  context 'left and right are attributes' do
+    context 'and equivalent' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(attribute, attribute) }
 
       it { should equal(Logic::Proposition::True.instance) }
     end
 
-    describe 'and are not comparable' do
+    context 'and are not comparable' do
       let(:other)                    { Attribute::Float.new(:float)                                 }
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(attribute, other) }
 
       it { should equal(Logic::Proposition::False.instance) }
     end
 
-    describe 'and left is always less than right' do
+    context 'and left is always less than right' do
       let(:left)                     { attribute                                               }
       let(:right)                    { Attribute::Integer.new(:right, :size => 2**31..2**31)   }
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(left, right) }
@@ -27,7 +27,7 @@ describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#optimize' do
       it { should equal(Logic::Proposition::False.instance) }
     end
 
-    describe 'and left is always greater than right' do
+    context 'and left is always greater than right' do
       let(:left)                     { attribute                                               }
       let(:right)                    { Attribute::Integer.new(:right, :size => -1..-1)         }
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(left, right) }
@@ -36,42 +36,42 @@ describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#optimize' do
     end
   end
 
-  describe 'left is an attribute' do
-    describe 'right is a valid value' do
+  context 'left is an attribute' do
+    context 'right is a valid value' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(attribute, 1) }
 
       it { should equal(greater_than_or_equal_to) }
     end
 
-    describe 'right is an invalid primitive' do
+    context 'right is an invalid primitive' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(attribute, nil) }
 
       it { should equal(Logic::Proposition::False.instance) }
     end
   end
 
-  describe 'right is an attribute' do
-    describe 'left is a valid value' do
+  context 'right is an attribute' do
+    context 'left is a valid value' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(1, attribute) }
 
       it { should eql(Logic::Predicate::LessThanOrEqualTo.new(attribute, 1)) }
     end
 
-    describe 'left is an invalid primitive' do
+    context 'left is an invalid primitive' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(nil, attribute) }
 
       it { should equal(Logic::Proposition::False.instance) }
     end
   end
 
-  describe 'left and right are constants' do
-    describe 'that will evaluate to true' do
+  context 'left and right are constants' do
+    context 'that will evaluate to true' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(1, 1) }
 
       it { should equal(Logic::Proposition::True.instance) }
     end
 
-    describe 'that will evaluate to false' do
+    context 'that will evaluate to false' do
       let(:greater_than_or_equal_to) { Logic::Predicate::GreaterThanOrEqualTo.new(1, 2) }
 
       it { should equal(Logic::Proposition::False.instance) }

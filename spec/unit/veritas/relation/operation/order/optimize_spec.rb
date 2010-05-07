@@ -6,13 +6,13 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
   subject { order.optimize }
 
-  describe 'containing a relation' do
+  context 'containing a relation' do
     let(:order) { relation.order(directions) }
 
     it { should equal(order) }
   end
 
-  describe 'containing an optimizable relation' do
+  context 'containing an optimizable relation' do
     let(:projection) { relation.project(relation.header) }
     let(:order)      { projection.order(directions)      }
 
@@ -23,7 +23,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     end
   end
 
-  describe 'containing an order operation' do
+  context 'containing an order operation' do
     let(:original) { relation.order { |r| [ r[:id].desc ] } }
     let(:order)    { original.order(directions)             }
 
@@ -34,7 +34,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     end
   end
 
-  describe 'containing a reverse operation' do
+  context 'containing a reverse operation' do
     let(:original) { relation.order { |r| [ r[:id] ] }  }
     let(:order)    { original.reverse.order(directions) }
 

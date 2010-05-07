@@ -8,7 +8,7 @@ describe 'Veritas::Operation::Binary#eql?' do
 
   subject { binary_operation.eql?(other) }
 
-  describe 'with the same binary operation' do
+  context 'with the same binary operation' do
     let(:other) { binary_operation }
 
     it { should be(true) }
@@ -18,7 +18,7 @@ describe 'Veritas::Operation::Binary#eql?' do
     end
   end
 
-  describe 'with an equivalent binary operation' do
+  context 'with an equivalent binary operation' do
     let(:other) { binary_operation.dup }
 
     it { should be(true) }
@@ -28,7 +28,7 @@ describe 'Veritas::Operation::Binary#eql?' do
     end
   end
 
-  describe 'with a different binary operation' do
+  context 'with a different binary operation' do
     let(:other_left)  { mock('Other Left')                                        }
     let(:other_right) { mock('Other Right')                                       }
     let(:other)       { BinaryOperationSpecs::Object.new(other_left, other_right) }
@@ -40,7 +40,7 @@ describe 'Veritas::Operation::Binary#eql?' do
     end
   end
 
-  describe 'with an equivalent binary operation of a different class' do
+  context 'with an equivalent binary operation of a different class' do
     let(:other) { Class.new(BinaryOperationSpecs::Object).new(left, right) }
 
     it { should be(false) }

@@ -7,7 +7,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
   subject { reverse.optimize }
 
-  describe 'with a reverse operation' do
+  context 'with a reverse operation' do
     let(:limit)   { order.limit(2)                          }
     let(:other)   { limit.reverse                           }
     let(:reverse) { Relation::Operation::Reverse.new(other) }
@@ -21,7 +21,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     end
   end
 
-  describe 'with a reverse operation when optimized' do
+  context 'with a reverse operation when optimized' do
     let(:limit)      { order.limit(2)                               }
     let(:other)      { limit.reverse                                }
     let(:projection) { other.project(other.header)                  }
@@ -36,7 +36,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     end
   end
 
-  describe 'with an order operation' do
+  context 'with an order operation' do
     let(:reverse) { Relation::Operation::Reverse.new(order) }
 
     it { should eql(relation.order(reverse.directions)) }
@@ -46,7 +46,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     end
   end
 
-  describe 'with an order operation when optimized' do
+  context 'with an order operation when optimized' do
     let(:projection) { order.project(order.header)                  }
     let(:reverse)    { Relation::Operation::Reverse.new(projection) }
 
@@ -57,7 +57,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     end
   end
 
-  describe 'with an optimizable operation' do
+  context 'with an optimizable operation' do
     let(:limit)      { order.limit(2)                               }
     let(:projection) { limit.project(limit.header)                  }
     let(:reverse)    { Relation::Operation::Reverse.new(projection) }

@@ -6,13 +6,13 @@ describe 'Veritas::Tuple#[]' do
 
   subject { tuple[attribute] }
 
-  describe 'with a known attribute' do
+  context 'with a known attribute' do
     let(:attribute) { header[:id] }
 
     it { should == 1 }
   end
 
-  describe 'with an known attribute' do
+  context 'with an known attribute' do
     let(:attribute) { Attribute::Integer.new(:other_id) }
 
     it { should be_nil }

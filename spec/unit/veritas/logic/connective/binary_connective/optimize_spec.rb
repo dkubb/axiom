@@ -9,28 +9,28 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
 
   subject { connective.optimize }
 
-  describe 'left and right are the same' do
+  context 'left and right are the same' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.gt(1) }
 
     it { should equal(left) }
   end
 
-  describe 'left and right are the same, after optimizing the left' do
+  context 'left and right are the same, after optimizing the left' do
     let(:left)  { original_left.and(Logic::Proposition::True.instance) }
     let(:right) { attribute.gt(1)                                      }
 
     it { should equal(original_left) }
   end
 
-  describe 'left and right are the same, after optimizing the right' do
+  context 'left and right are the same, after optimizing the right' do
     let(:left)  { attribute.gt(1)                                        }
     let(:right) { attribute.gt(1).and(Logic::Proposition::True.instance) }
 
     it { should equal(left) }
   end
 
-  describe 'left and right are different' do
+  context 'left and right are different' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.lt(1) }
 
@@ -39,7 +39,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     end
   end
 
-  describe 'left and right are different, after optimizing the left' do
+  context 'left and right are different, after optimizing the left' do
     let(:left)  { original_left.and(Logic::Proposition::True.instance) }
     let(:right) { attribute.lt(1)                                      }
 
@@ -52,7 +52,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     its(:right) { should equal(right) }
   end
 
-  describe 'left and right are different, after optimizing the right' do
+  context 'left and right are different, after optimizing the right' do
     let(:left)  { attribute.gt(1)                                       }
     let(:right) { original_right.and(Logic::Proposition::True.instance) }
 
@@ -65,7 +65,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     its(:right) { should equal(original_right) }
   end
 
-  describe 'self and right are the same, and left and right.left are the same' do
+  context 'self and right are the same, and left and right.left are the same' do
     let(:left)  { attribute.eq(1)                                                     }
     let(:right) { BinaryConnectiveSpecs::Object.new(attribute.eq(1), attribute.ne(5)) }
 

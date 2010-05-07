@@ -6,7 +6,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
 
   subject { restriction.eql?(other) }
 
-  describe 'with the same restriction' do
+  context 'with the same restriction' do
     let(:other) { restriction }
 
     it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
     end
   end
 
-  describe 'with an equivalent restriction' do
+  context 'with an equivalent restriction' do
     let(:other) { restriction.dup }
 
     it { should be(true) }
@@ -26,7 +26,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
     end
   end
 
-  describe 'with a different restriction' do
+  context 'with a different restriction' do
     let(:other) { relation.restrict { false } }
 
     it { should be(false) }
@@ -36,7 +36,7 @@ describe 'Veritas::Algebra::Restriction#eql?' do
     end
   end
 
-  describe 'with an equivalent restriction of a different class' do
+  context 'with an equivalent restriction of a different class' do
     let(:other) { Class.new(Algebra::Restriction).new(relation, proc { true }) }
 
     it { should be(false) }

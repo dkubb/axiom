@@ -4,13 +4,13 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
   describe "Veritas::Attribute::String##{method}" do
     subject { attribute.send(method) }
 
-    describe 'without :length option passed to constructor' do
+    context 'without :length option passed to constructor' do
       let(:attribute) { Attribute::String.new(:name) }
 
       it { should == (0..50) }
     end
 
-    describe 'with :length option passed to constructor' do
+    context 'with :length option passed to constructor' do
       let(:attribute) { Attribute::String.new(:name, :length => 1..100) }
 
       it { should == (1..100) }

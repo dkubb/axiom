@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
   let(:original_predicate) { relation[:id].eq(1)                           }
   let(:yields)             { []                                            }
 
-  describe 'without a predicate' do
+  context 'without a predicate' do
     let(:predicate)   { original_predicate                            }
     let(:restriction) { Algebra::Restriction.new(relation, predicate) }
 
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
     end
   end
 
-  describe 'with a predicate' do
+  context 'with a predicate' do
     let(:rename)      { relation.rename(:id => :other_id)           }
     let(:restriction) { Algebra::Restriction.new(rename, predicate) }
     let(:predicate)   { original_predicate.rename(:id => :other_id) }

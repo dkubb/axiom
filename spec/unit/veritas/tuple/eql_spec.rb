@@ -6,7 +6,7 @@ describe 'Veritas::Tuple#eql?' do
 
   subject { tuple.eql?(other) }
 
-  describe 'with the same tuple' do
+  context 'with the same tuple' do
     let(:other) { tuple }
 
     it { should be(true) }
@@ -16,7 +16,7 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
-  describe 'with an equivalent tuple' do
+  context 'with an equivalent tuple' do
     let(:other) { tuple.dup }
 
     it { should be(true) }
@@ -26,7 +26,7 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
-  describe 'with a different tuple' do
+  context 'with a different tuple' do
     let(:other) { Tuple.new(header, [ 2 ]) }
 
     it { should be(false) }
@@ -36,7 +36,7 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
-  describe 'with an equivalent tuple with a different header' do
+  context 'with an equivalent tuple with a different header' do
     let(:other_header) { header.rename(:id => :other_id)       }
     let(:other)        { Tuple.new(other_header, tuple.to_ary) }
 
@@ -47,7 +47,7 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
-  describe 'with an equivalent tuple of a different class' do
+  context 'with an equivalent tuple of a different class' do
     let(:other) { Class.new(Tuple).new(header, [ 1 ]) }
 
     it { should be(false) }
@@ -57,7 +57,7 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
-  describe 'with an equivalent object responding to #to_ary' do
+  context 'with an equivalent object responding to #to_ary' do
     let(:other) { [ 1 ] }
 
     it { should be(false) }
@@ -75,7 +75,7 @@ describe 'Veritas::Tuple#eql?' do
     end
   end
 
-  describe 'with a different object responding to #to_ary' do
+  context 'with a different object responding to #to_ary' do
     let(:other) { [ 2 ] }
 
     it { should be(false) }

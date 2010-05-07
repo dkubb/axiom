@@ -8,7 +8,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
     subject { direction.send(method, other) }
 
-    describe 'with the same direction' do
+    context 'with the same direction' do
       let(:other) { direction }
 
       it { should be(true) }
@@ -18,7 +18,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
       end
     end
 
-    describe 'with an equivalent direction' do
+    context 'with an equivalent direction' do
       let(:other) { direction.dup }
 
       it { should be(true) }
@@ -28,7 +28,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
       end
     end
 
-    describe 'with a different direction' do
+    context 'with a different direction' do
       let(:other_attribute) { Attribute::String.new(:name) }
       let(:other)           { klass.new(other_attribute)   }
 
@@ -39,7 +39,7 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
       end
     end
 
-    describe 'with an equivalent direction of a different class' do
+    context 'with an equivalent direction of a different class' do
       let(:other) { Class.new(klass).new(attribute) }
 
       it { should be(false) }

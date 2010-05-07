@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Projection#directions' do
 
   subject { projection.directions }
 
-  describe 'containing a relation' do
+  context 'containing a relation' do
     let(:projection) { relation.project([ :id ]) }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
@@ -17,7 +17,7 @@ describe 'Veritas::Algebra::Projection#directions' do
     end
   end
 
-  describe 'containing an ordered relation' do
+  context 'containing an ordered relation' do
     let(:order)      { relation.order { |r| r.header } }
     let(:projection) { order.project([ :id ])          }
 

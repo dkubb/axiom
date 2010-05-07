@@ -7,7 +7,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
 
   subject { negation.eql?(other) }
 
-  describe 'with the same negation' do
+  context 'with the same negation' do
     let(:other) { negation }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
     end
   end
 
-  describe 'with an equivalent negation' do
+  context 'with an equivalent negation' do
     let(:other) { negation.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
     end
   end
 
-  describe 'with a different negation' do
+  context 'with a different negation' do
     let(:other_attribute) { Attribute::String.new(:name)                   }
     let(:other_operand)   { other_attribute.eq('Dan Kubb')                 }
     let(:other)           { Logic::Connective::Negation.new(other_operand) }
@@ -39,7 +39,7 @@ describe 'Veritas::Logic::Connective::Negation#eql?' do
     end
   end
 
-  describe 'with an equivalent negation of a different class' do
+  context 'with an equivalent negation of a different class' do
     let(:other) { Class.new(Logic::Connective::Negation).new(operand) }
 
     it { should be(false) }

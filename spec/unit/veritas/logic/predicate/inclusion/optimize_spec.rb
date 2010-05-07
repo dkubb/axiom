@@ -5,17 +5,17 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
 
   subject { inclusion.optimize }
 
-  describe 'left is an attribute' do
-    describe 'right is a Range' do
-      describe 'that is inclusive' do
-        describe 'and empty' do
+  context 'left is an attribute' do
+    context 'right is a Range' do
+      context 'that is inclusive' do
+        context 'and empty' do
           let(:right)     { 1..0                                         }
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
           it { should equal(Logic::Proposition::False.instance) }
         end
 
-        describe 'and not empty' do
+        context 'and not empty' do
           let(:right)     { 1..10                                        }
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
@@ -23,15 +23,15 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         end
       end
 
-      describe 'that is exclusive' do
-        describe 'and empty' do
+      context 'that is exclusive' do
+        context 'and empty' do
           let(:right)     { 1...1                                        }
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
           it { should equal(Logic::Proposition::False.instance) }
         end
 
-        describe 'and not empty' do
+        context 'and not empty' do
           let(:right)     { 1...10                                       }
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
@@ -41,21 +41,21 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         end
       end
 
-      describe 'using an attribute that is not comparable' do
+      context 'using an attribute that is not comparable' do
         let(:left)      { Attribute::String.new(:string)                  }
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, 'a'..'z') }
 
         it { should equal(Logic::Proposition::False.instance) }
       end
 
-      describe 'that is greater than the left range' do
+      context 'that is greater than the left range' do
         let(:right)     { 2**31..2**31                                 }
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
       end
 
-      describe 'that is less than the left range' do
+      context 'that is less than the left range' do
         let(:right)     { -1..-1                                       }
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
@@ -63,22 +63,22 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
       end
     end
 
-    describe 'right is an Enumerable' do
-      describe 'that is empty' do
+    context 'right is an Enumerable' do
+      context 'that is empty' do
         let(:right)     { []                                           }
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
       end
 
-      describe 'that is empty after filtering invalid values' do
+      context 'that is empty after filtering invalid values' do
         let(:right)     { [ 'a' ]                                      }
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
       end
 
-      describe 'that is not empty after filtering invalid values' do
+      context 'that is not empty after filtering invalid values' do
         let(:right)     { [ 'a', 1 ]                                   }
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
@@ -86,7 +86,7 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
       end
     end
 
-    describe 'right is a nil' do
+    context 'right is a nil' do
       let(:right)     { nil                                          }
       let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 

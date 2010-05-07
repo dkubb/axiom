@@ -7,7 +7,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
 
   subject { predicate.eql?(other) }
 
-  describe 'with the same predicate' do
+  context 'with the same predicate' do
     let(:other) { predicate }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
     end
   end
 
-  describe 'with an equivalent predicate' do
+  context 'with an equivalent predicate' do
     let(:other) { predicate.dup }
 
     it { should be(true) }
@@ -27,7 +27,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
     end
   end
 
-  describe 'with a different predicate' do
+  context 'with a different predicate' do
     let(:other_attribute) { Attribute::String.new(:name)                   }
     let(:other)           { PredicateSpecs::Object.new(other_attribute, 1) }
 
@@ -38,7 +38,7 @@ describe 'Veritas::Logic::Predicate#eql?' do
     end
   end
 
-  describe 'with an equivalent predicate of a different class' do
+  context 'with an equivalent predicate of a different class' do
     let(:other) { Class.new(PredicateSpecs::Object).new(attribute, 1) }
 
     it { should be(false) }

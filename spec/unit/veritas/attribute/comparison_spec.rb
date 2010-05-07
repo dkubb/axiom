@@ -15,25 +15,25 @@ describe 'Veritas::Attribute#<=>' do
 
   subject { attribute <=> other }
 
-  describe 'with an equivalent attribute' do
+  context 'with an equivalent attribute' do
     let(:other) { Attribute::Integer.new(:id) }
 
     it { should == 0 }
   end
 
-  describe 'with a different attribute' do
+  context 'with a different attribute' do
     let(:other) { Attribute::Time.new(:time) }
 
     it { should_not == 0 }
   end
 
-  describe 'with an equivalent object responding to #to_ary' do
+  context 'with an equivalent object responding to #to_ary' do
     let(:other) { [ :id, Integer ] }
 
     it { should == 0 }
   end
 
-  describe 'with a different object responding to #to_ary' do
+  context 'with a different object responding to #to_ary' do
     let(:other) { [ :name, String ] }
 
     it { should_not == 0 }

@@ -5,14 +5,14 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
   subject { restriction.optimize }
 
-  describe 'with a true proposition' do
+  context 'with a true proposition' do
     let(:proposition) { relation[:id].eq(relation[:id])                 }
     let(:restriction) { Algebra::Restriction.new(relation, proposition) }
 
     it { should equal(relation) }
   end
 
-  describe 'with a false proposition' do
+  context 'with a false proposition' do
     let(:proposition) { relation[:id].ne(relation[:id])                 }
     let(:restriction) { Algebra::Restriction.new(relation, proposition) }
 
@@ -23,14 +23,14 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with a predicate' do
+  context 'with a predicate' do
     let(:predicate)   { relation[:id].eq(1)                           }
     let(:restriction) { Algebra::Restriction.new(relation, predicate) }
 
     it { should equal(restriction) }
   end
 
-  describe 'with an optimizable predicate' do
+  context 'with an optimizable predicate' do
     let(:predicate)   { relation[:id].eq(1).and(Logic::Proposition::True.instance) }
     let(:restriction) { Algebra::Restriction.new(relation, predicate)              }
 
@@ -49,7 +49,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with an optimizable operation' do
+  context 'with an optimizable operation' do
     let(:predicate)   { relation[:id].eq(1)                             }
     let(:projection)  { relation.project(relation.header)               }
     let(:restriction) { Algebra::Restriction.new(projection, predicate) }
@@ -69,7 +69,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with an empty relation' do
+  context 'with an empty relation' do
     let(:empty)       { Relation::Empty.new([ [ :id, Integer ] ])  }
     let(:predicate)   { empty[:id].gte(1)                          }
     let(:restriction) { Algebra::Restriction.new(empty, predicate) }
@@ -81,7 +81,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with an empty relation when optimized' do
+  context 'with an empty relation when optimized' do
     let(:other)       { Algebra::Restriction.new(relation, Logic::Proposition::False.instance) }
     let(:predicate)   { other[:id].gte(1)                                                      }
     let(:restriction) { Algebra::Restriction.new(other, predicate)                             }
@@ -93,7 +93,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with a restriction' do
+  context 'with a restriction' do
     let(:other_predicate) { relation[:id].lt(2)                                 }
     let(:other)           { Algebra::Restriction.new(relation, other_predicate) }
     let(:predicate)       { relation[:id].gte(1)                                }
@@ -114,7 +114,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with a set operation' do
+  context 'with a set operation' do
     let(:left)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
     let(:right)       { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ]) }
     let(:union)       { left.union(right)                             }
@@ -130,7 +130,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with a set operation, containing a restriction with duplicate predicates' do
+  context 'with a set operation, containing a restriction with duplicate predicates' do
     let(:left)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])                                   }
     let(:right)       { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ])                                   }
     let(:union)       { left.restrict { |r| r[:id].gte(1) }.union(right.restrict { |r| r[:id].gte(1) }) }
@@ -145,7 +145,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with a reverse operation' do
+  context 'with a reverse operation' do
     let(:limit)       { relation.order { |r| r.header }.limit(2) }
     let(:reverse)     { limit.reverse                            }
     let(:predicate)   { reverse[:id].gte(1)                      }
@@ -160,7 +160,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with a reverse operation, containing a restriction with duplicate predicates' do
+  context 'with a reverse operation, containing a restriction with duplicate predicates' do
     let(:limit)       { relation.order { |r| r.header }.limit(2)     }
     let(:reverse)     { limit.restrict { |r| r[:id].gte(1) }.reverse }
     let(:predicate)   { reverse[:id].gte(1)                          }
@@ -175,7 +175,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with an order operation' do
+  context 'with an order operation' do
     let(:order)       { relation.order { |r| r.header } }
     let(:predicate)   { order[:id].gte(1)               }
     let(:restriction) { order.restrict(predicate)       }
@@ -189,7 +189,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     end
   end
 
-  describe 'with an order operation, containing a restriction with duplicate predicates' do
+  context 'with an order operation, containing a restriction with duplicate predicates' do
     let(:order)       { relation.restrict { |r| r[:id].gte(1) }.order { |r| r.header } }
     let(:predicate)   { order[:id].gte(1)                                              }
     let(:restriction) { order.restrict(predicate)                                      }

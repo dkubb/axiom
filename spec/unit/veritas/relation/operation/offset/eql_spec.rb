@@ -8,7 +8,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
 
   subject { offset.eql?(other) }
 
-  describe 'with the same offset' do
+  context 'with the same offset' do
     let(:other) { offset }
 
     it { should be(true) }
@@ -18,7 +18,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
     end
   end
 
-  describe 'with an equivalent offset' do
+  context 'with an equivalent offset' do
     let(:other) { offset.dup }
 
     it { should be(true) }
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
     end
   end
 
-  describe 'with a different offset' do
+  context 'with a different offset' do
     let(:other) { offset.offset(0) }
 
     it { should be(false) }
@@ -38,7 +38,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
     end
   end
 
-  describe 'with an equivalent offset of a different class' do
+  context 'with an equivalent offset of a different class' do
     let(:other) { Class.new(Relation::Operation::Offset).new(offset, 1) }
 
     it { should be(false) }

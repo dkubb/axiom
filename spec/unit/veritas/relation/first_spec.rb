@@ -4,7 +4,7 @@ describe 'Veritas::Relation#first' do
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:ordered)  { relation.order { |r| r[:id] }                               }
 
-  describe 'with no arguments' do
+  context 'with no arguments' do
     subject { ordered.first }
 
     it { should be_kind_of(Relation::Operation::Limit) }
@@ -18,7 +18,7 @@ describe 'Veritas::Relation#first' do
     end
   end
 
-  describe 'with a limit' do
+  context 'with a limit' do
     subject { ordered.first(2) }
 
     it { should be_kind_of(Relation::Operation::Limit) }

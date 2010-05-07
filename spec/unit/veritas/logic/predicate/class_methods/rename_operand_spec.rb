@@ -7,13 +7,13 @@ describe 'Veritas::Logic::Predicate.rename_operand' do
 
   subject { Logic::Predicate.rename_operand(operand, aliases) }
 
-  describe 'when the operand responds to #rename' do
+  context 'when the operand responds to #rename' do
     let(:operand) { attribute }
 
     it { should eql(Attribute::Integer.new(:other_id)) }
   end
 
-  describe 'when the operand does not respond to #rename' do
+  context 'when the operand does not respond to #rename' do
     let(:operand) { other }
 
     it { should equal(operand) }

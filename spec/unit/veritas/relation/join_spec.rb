@@ -4,7 +4,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
   describe "Veritas::Relation##{method}" do
     let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String  ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ]) }
 
-    describe 'without predicate arguments or a block' do
+    context 'without predicate arguments or a block' do
       let(:other) { Relation.new([ [ :id, Integer ], [ :age, Integer ] ], [ [ 1, 34 ] ]) }
 
       subject { relation.send(method, other) }
@@ -12,7 +12,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
       it { should be_kind_of(Algebra::Join) }
     end
 
-    describe 'with predicate arguments' do
+    context 'with predicate arguments' do
       let(:other)     { Relation.new([ Attribute::Boolean.new(:active) ], [ [ true ] ]) }
       let(:predicate) { relation[:id].eq(1)                                             }
 
@@ -25,7 +25,7 @@ require File.expand_path('../../../../spec_helper', __FILE__)
       end
     end
 
-    describe 'with a block' do
+    context 'with a block' do
       let(:other) { Relation.new([ Attribute::Boolean.new(:active) ], [ [ true ] ]) }
       let(:block) do
         lambda do |relation|

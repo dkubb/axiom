@@ -12,7 +12,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
 
   subject { directions.sort_tuples(relation) }
 
-  describe 'sorted with ascending id and descending name' do
+  context 'sorted with ascending id and descending name' do
     let(:directions) do
       Relation::Operation::Order::DirectionSet.new(
         [ relation[:id].asc, relation[:name].desc ]
@@ -24,7 +24,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
     it { should == [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ] }
   end
 
-  describe 'sorted with ascending id and ascending name' do
+  context 'sorted with ascending id and ascending name' do
     let(:directions) do
       Relation::Operation::Order::DirectionSet.new(
         [ relation[:id].asc, relation[:name].asc ]
@@ -36,7 +36,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
     it { should == [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ] ] }
   end
 
-  describe 'sorted with descending id and ascending name' do
+  context 'sorted with descending id and ascending name' do
     let(:directions) do
       Relation::Operation::Order::DirectionSet.new(
         [ relation[:id].desc, relation[:name].asc ]
@@ -48,7 +48,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
     it { should == [ [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ], [ 1, 'Dan Kubb' ] ] }
   end
 
-  describe 'sorted with descending id and descending name' do
+  context 'sorted with descending id and descending name' do
     let(:directions) do
       Relation::Operation::Order::DirectionSet.new(
         [ relation[:id].desc, relation[:name].desc ]
