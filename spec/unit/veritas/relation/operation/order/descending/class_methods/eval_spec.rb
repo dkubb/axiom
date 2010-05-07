@@ -1,21 +1,26 @@
 require File.expand_path('../../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::Descending.eval' do
-  context 'with equal values' do
-    subject { Relation::Operation::Order::Descending.eval(1, 1) }
+  subject { Relation::Operation::Order::Descending.eval(left, right) }
 
-    it { should == 0 }
+  context 'when left is equal to right' do
+    let(:left)  { 1 }
+    let(:right) { 1 }
+
+    it { should be(0) }
   end
 
-  context 'with a left value greater than the right' do
-    subject { Relation::Operation::Order::Descending.eval(2, 1) }
+  context 'when left is greater than right' do
+    let(:left)  { 2 }
+    let(:right) { 1 }
 
-    it { should == -1 }
+    it { should be(-1) }
   end
 
-  context 'with a left value less than the right' do
-    subject { Relation::Operation::Order::Descending.eval(1, 2) }
+  context 'when left is less than right' do
+    let(:left)  { 1 }
+    let(:right) { 2 }
 
-    it { should == 1 }
+    it { should be(1) }
   end
 end

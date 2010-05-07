@@ -1,15 +1,19 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Inequality.eval' do
-  context 'with statement that is true' do
-    subject { Logic::Predicate::Inequality.eval(true, false) }
+  subject { Logic::Predicate::Inequality.eval(left, right) }
 
-    it { should be(true) }
-  end
-
-  context 'with statement that is false' do
-    subject { Logic::Predicate::Inequality.eval(true, true) }
+  context 'when left is equal to right' do
+    let(:left)  { true }
+    let(:right) { true }
 
     it { should be(false) }
+  end
+
+  context 'when left is not equal to right' do
+    let(:left)  { true  }
+    let(:right) { false }
+
+    it { should be(true) }
   end
 end
