@@ -22,7 +22,7 @@ describe 'Veritas::Attribute.new' do
     Attribute::String,
     Attribute::Time,
   ].each do |klass|
-    describe "when called on the Attribute subclass #{klass}" do
+    context "when called on the Attribute subclass #{klass}" do
       let(:klass) { klass }
 
       it { should be_kind_of(Attribute) }

@@ -45,7 +45,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     end
   end
 
-  describe "containing a limit(1) operation" do
+  context 'containing a limit(1) operation' do
     let(:original) { relation.order { |r| [ r[:id] ] }   }
     let(:order)    { original.limit(1).order(directions) }
 
