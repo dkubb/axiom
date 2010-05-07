@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#predicate' do
+  subject { rename.predicate }
+
   let(:header)  { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:aliases) { { :id => :other_id }                       }
-
-  subject { rename.predicate }
 
   context 'containing an empty relation' do
     let(:empty)  { Relation::Empty.new(header)         }

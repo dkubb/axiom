@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Inequality#optimize' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { inequality.optimize }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'left and right are attributes' do
     context 'and equivalent' do

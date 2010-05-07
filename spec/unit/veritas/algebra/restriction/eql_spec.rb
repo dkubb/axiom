@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction#eql?' do
+  subject { restriction.eql?(other) }
+
   let(:relation)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:restriction) { relation.restrict { true }                    }
-
-  subject { restriction.eql?(other) }
 
   context 'with the same restriction' do
     let(:other) { restriction }

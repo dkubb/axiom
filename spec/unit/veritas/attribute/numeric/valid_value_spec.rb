@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute::Numeric#valid_value?' do
-  let(:attribute) { Veritas::Attribute::Numeric.new(:numeric, :size => 1..50) }
-
   subject { attribute.valid_value?(value) }
+
+  let(:attribute) { Veritas::Attribute::Numeric.new(:numeric, :size => 1..50) }
 
   context 'with a numeric value' do
     context 'that is within the allowed size range' do

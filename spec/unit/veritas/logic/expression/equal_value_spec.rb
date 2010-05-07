@@ -2,6 +2,8 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Expression#==' do
+  subject { expression == other }
+
   before :all do
     ExpressionSpecs::Object.class_eval do
       def eql?(other)
@@ -9,8 +11,6 @@ describe 'Veritas::Logic::Expression#==' do
       end
     end
   end
-
-  subject { expression == other }
 
   context 'with two equivalent expressions' do
     let(:expression) { ExpressionSpecs::Object.new }

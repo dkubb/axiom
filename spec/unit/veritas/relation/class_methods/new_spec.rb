@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation.new' do
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-
   subject { Relation.new(header, tuples) }
+
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
 
   context 'with an Enumerable responding to #size' do
     let(:tuples) { [ [ 1 ] ] }

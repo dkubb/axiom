@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#predicate' do
+  subject { projection.predicate }
+
   let(:relation) do
     relation = Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])
     relation.restrict { |r| r[:name].eq('Dan Kubb') }
   end
-
-  subject { projection.predicate }
 
   context 'containing a relation with a removed predicate' do
     let(:projection) { relation.project([ :id ]) }

@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#reverse' do
+  subject { directions.reverse }
+
   let(:attribute1) { Attribute::Integer.new(:id)                                              }
   let(:attribute2) { Attribute::String.new(:name)                                             }
   let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute1, attribute2 ]) }
-
-  subject { directions.reverse }
 
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 

@@ -11,11 +11,11 @@ describe 'Veritas::Relation::Header' do
 end
 
 describe 'Veritas::Relation::Header#each' do
+  subject { header.each { |tuple| yields << tuple } }
+
   let(:attribute) { Attribute::Integer.new(:id)         }
   let(:header)    { Relation::Header.new([ attribute ]) }
   let(:yields)    { []                                  }
-
-  subject { header.each { |tuple| yields << tuple } }
 
   it { should equal(header) }
 

@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#optimize' do
-  let(:attribute) { Attribute::Integer.new(:id, :required => false) }
-
   subject { greater_than_or_equal_to.optimize }
+
+  let(:attribute) { Attribute::Integer.new(:id, :required => false) }
 
   context 'left and right are attributes' do
     context 'and equivalent' do

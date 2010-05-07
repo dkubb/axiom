@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Offset#optimize' do
+  subject { offset.optimize }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-
-  subject { offset.optimize }
 
   context 'with an offset of 0' do
     let(:offset) { order.offset(0) }

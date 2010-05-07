@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#each' do
+  subject { rename.each { |tuple| yields << tuple } }
+
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])   }
   let(:rename)   { Algebra::Rename.new(relation, :id => :other_id) }
   let(:yields)   { []                                              }
-
-  subject { rename.each { |tuple| yields << tuple } }
 
   it { should equal(rename) }
 

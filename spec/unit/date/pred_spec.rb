@@ -1,9 +1,9 @@
 require File.expand_path('../../../spec_helper', __FILE__)
 
 describe 'Date#pred' do
-  let(:date) { Date.today }
-
   subject { date.pred }
+
+  let(:date) { Date.today }
 
   it 'returns the date 1 day ago' do
     should == (date - 1)

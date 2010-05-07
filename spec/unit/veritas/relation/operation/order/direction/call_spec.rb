@@ -1,6 +1,8 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::Direction#call' do
+  subject { direction.call(left, right) }
+
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:left)   { Tuple.new(header, [ 1 ])                   }
   let(:right)  { Tuple.new(header, [ 2 ])                   }
@@ -11,8 +13,6 @@ describe 'Veritas::Relation::Operation::Order::Direction#call' do
     end
   end
   let(:direction) { klass.new(header[:id]) }
-
-  subject { direction.call(left, right) }
 
   it 'sends the tuple value to self.class.eval' do
     response = mock('#eval response')

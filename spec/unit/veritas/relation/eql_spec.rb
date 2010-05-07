@@ -1,11 +1,11 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#eql?' do
+  subject { relation.eql?(other) }
+
   let(:header)   { [ [ :id, Integer ] ]         }
   let(:tuples)   { [ [ 1 ] ]                    }
   let(:relation) { Relation.new(header, tuples) }
-
-  subject { relation.eql?(other) }
 
   context 'with the same relation' do
     let(:other) { relation }

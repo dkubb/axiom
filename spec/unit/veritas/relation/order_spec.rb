@@ -1,12 +1,14 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#order' do
+  subject { relation.order(*args, &block) }
+
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
 
   context 'with direction arguments' do
     let(:directions) { [ relation[:id].asc ] }
-
-    subject { relation.order(directions) }
+    let(:args)       { [ directions ]        }
+    let(:block)      { nil                   }
 
     it { should be_kind_of(Relation::Operation::Order) }
 
@@ -20,9 +22,8 @@ describe 'Veritas::Relation#order' do
   end
 
   context 'with a block' do
+    let(:args)  { []                                          }
     let(:block) { lambda { |relation| [ relation[:id].asc ] } }
-
-    subject { relation.order(&block) }
 
     it { should be_kind_of(Relation::Operation::Order) }
 

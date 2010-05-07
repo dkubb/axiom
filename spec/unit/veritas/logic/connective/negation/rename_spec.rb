@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Negation#rename' do
+  subject { negation.rename(aliases) }
+
   let(:attribute) { Attribute::Integer.new(:id)       }
   let(:other)     { Attribute::Integer.new(:other_id) }
   let(:aliases)   { { attribute.name => other.name }  }
-
-  subject { negation.rename(aliases) }
 
   context 'operand is renamed' do
     let(:operand)  { attribute.eq(1)                          }

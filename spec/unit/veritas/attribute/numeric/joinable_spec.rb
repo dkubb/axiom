@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute::Numeric#joinable?' do
-  let(:attribute) { Attribute::Numeric.new(:numeric, :size => 10..20) }
-
   subject { attribute.joinable?(other) }
+
+  let(:attribute) { Attribute::Numeric.new(:numeric, :size => 10..20) }
 
   context 'when the other attribute is the same type' do
     context 'and the start of the other size falls within range' do

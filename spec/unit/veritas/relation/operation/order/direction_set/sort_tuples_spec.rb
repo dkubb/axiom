@@ -1,6 +1,8 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
+  subject { directions.sort_tuples(relation) }
+
   let(:relation) do
     Relation.new(
       [ [ :id, Integer ], [ :name, String ] ],
@@ -9,8 +11,6 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   let(:directions) { Relation::Operation::Order::DirectionSet.new(relation.header) }
-
-  subject { directions.sort_tuples(relation) }
 
   context 'sorted with ascending id and descending name' do
     let(:directions) do

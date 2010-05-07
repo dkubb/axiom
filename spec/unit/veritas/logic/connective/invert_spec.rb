@@ -2,9 +2,9 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective#invert' do
-  let(:connective) { ConnectiveSpecs::Object.new }
-
   subject { connective.invert }
+
+  let(:connective) { ConnectiveSpecs::Object.new }
 
   before do
     def connective.eql?(other)

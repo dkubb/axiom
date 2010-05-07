@@ -1,13 +1,13 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Reverse#wrap' do
+  subject { reverse.wrap { |relation| relation } }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
   let(:reverse)    { Relation::Operation::Reverse.new(order)                     }
   let(:yields)     { []                                                          }
-
-  subject { reverse.wrap { |relation| relation } }
 
   it { should_not be_equal(reverse) }
 

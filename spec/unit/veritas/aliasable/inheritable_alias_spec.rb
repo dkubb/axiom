@@ -2,11 +2,11 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Aliasable#inheritable_alias' do
+  subject { klass.inheritable_alias(aliases) }
+
   let(:klass)     { Class.new(AliasableSpecs::Object) }
   let(:aliasable) { klass.new                         }
   let(:aliases)   { { :test => :other }               }
-
-  subject { klass.inheritable_alias(aliases) }
 
   it 'should return the class' do
     should equal(klass)

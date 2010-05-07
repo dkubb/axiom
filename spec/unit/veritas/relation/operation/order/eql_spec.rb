@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order#eql?' do
+  subject { order.eql?(other) }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:directions) { [ relation[:id] ]                                    }
   let(:order)      { relation.order(directions)                           }
-
-  subject { order.eql?(other) }
 
   context 'with the same order' do
     let(:other) { order }

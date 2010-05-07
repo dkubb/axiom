@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order#optimize' do
+  subject { order.optimize }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
-
-  subject { order.optimize }
 
   context 'containing a relation' do
     let(:order) { relation.order(directions) }

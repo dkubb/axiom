@@ -1,9 +1,9 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#empty?' do
-  let(:header) { [ [ :id, Integer ] ] }
-
   subject { relation.empty? }
+
+  let(:header) { [ [ :id, Integer ] ] }
 
   context 'with a body containing no entries' do
     let(:relation) { Relation.new(header, []) }

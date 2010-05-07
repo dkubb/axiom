@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Limit#optimize' do
+  subject { limit.optimize }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-
-  subject { limit.optimize }
 
   context 'when the limit is 0' do
     let(:limit) { order.limit(0) }

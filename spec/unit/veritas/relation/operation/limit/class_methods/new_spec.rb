@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Limit.new' do
-  let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-
   subject { Relation::Operation::Limit.new(relation, 1) }
+
+  let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
 
   context 'with an ordered relation' do
     let(:relation) { original_relation.order { |r| r[:id] } }

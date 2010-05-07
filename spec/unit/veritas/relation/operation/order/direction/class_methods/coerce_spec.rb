@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::Direction.coerce' do
+  subject { klass.coerce(object) }
+
   let(:attribute) { Attribute::Integer.new(:id)                      }
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
-
-  subject { klass.coerce(object) }
 
   context 'when the object is a Direction' do
     let(:object) { Relation::Operation::Order::Ascending.new(attribute) }

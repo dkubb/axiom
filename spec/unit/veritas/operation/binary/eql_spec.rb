@@ -2,11 +2,11 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Operation::Binary#eql?' do
+  subject { binary_operation.eql?(other) }
+
   let(:left)             { mock('Left')                                  }
   let(:right)            { mock('Right')                                 }
   let(:binary_operation) { BinaryOperationSpecs::Object.new(left, right) }
-
-  subject { binary_operation.eql?(other) }
 
   context 'with the same binary operation' do
     let(:other) { binary_operation }

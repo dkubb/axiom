@@ -1,9 +1,9 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#joinable?' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { attribute.joinable?(other) }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'when the other attribute is the same type' do
     let(:other) { attribute.dup }

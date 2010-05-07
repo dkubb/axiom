@@ -2,11 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::BinaryConnective#rename' do
+  subject { connective.rename(aliases) }
+
   let(:attribute) { Attribute::Integer.new(:id)       }
   let(:other)     { Attribute::Integer.new(:other_id) }
   let(:aliases)   { { attribute.name => other.name }  }
-
-  subject { connective.rename(aliases) }
 
   context 'left and right are renamed' do
     let(:left)       { attribute.eq(1)                                }

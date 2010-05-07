@@ -11,12 +11,12 @@ describe 'Veritas::Relation' do
 end
 
 describe 'Veritas::Relation#each' do
+  subject { relation.each { |tuple| yields << tuple } }
+
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuples)   { [ [ 1 ], [ 2 ], [ 2 ] ]                    }
   let(:relation) { Relation.new(header, tuples)               }
   let(:yields)   { []                                         }
-
-  subject { relation.each { |tuple| yields << tuple } }
 
   it { should equal(relation) }
 

@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#eql?' do
+  subject { header.eql?(other) }
+
   let(:attribute) { [ :id, Integer ]                    }
   let(:header)    { Relation::Header.new([ attribute ]) }
-
-  subject { header.eql?(other) }
 
   context 'with the same header' do
     let(:other) { header }

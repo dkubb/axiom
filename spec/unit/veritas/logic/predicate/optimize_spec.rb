@@ -2,9 +2,9 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate#optimize' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { predicate.optimize }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'left is an attribute' do
     let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }

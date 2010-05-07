@@ -2,10 +2,10 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate#eql?' do
+  subject { predicate.eql?(other) }
+
   let(:attribute) { Attribute::Integer.new(:id)              }
   let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
-
-  subject { predicate.eql?(other) }
 
   context 'with the same predicate' do
     let(:other) { predicate }

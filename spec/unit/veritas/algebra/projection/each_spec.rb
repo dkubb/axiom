@@ -1,6 +1,8 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#each' do
+  subject { projection.each { |tuple| yields << tuple } }
+
   let(:relation) do
     Relation.new(
       [ [ :id, Integer ], [ :name, String ] ],
@@ -15,8 +17,6 @@ describe 'Veritas::Algebra::Projection#each' do
   let(:header)     { relation.header.project([ :id ])          }
   let(:projection) { Algebra::Projection.new(relation, header) }
   let(:yields)     { []                                        }
-
-  subject { projection.each { |tuple| yields << tuple } }
 
   it { should equal(projection) }
 

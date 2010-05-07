@@ -1,9 +1,9 @@
 require File.expand_path('../../../spec_helper', __FILE__)
 
 describe 'Time#pred' do
-  let(:time) { Time.now }
-
   subject { time.pred }
+
+  let(:time) { Time.now }
 
   it 'returns the time 1 second ago' do
     should == (time - 1)

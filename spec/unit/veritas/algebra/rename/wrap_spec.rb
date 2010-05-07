@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#wrap' do
+  subject { rename.wrap { |relation| relation } }
+
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:aliases)  { { :id => :other_id }                          }
   let(:rename)   { Algebra::Rename.new(relation, aliases)        }
   let(:yields)   { []                                            }
-
-  subject { rename.wrap { |relation| relation } }
 
   it { should_not be_equal(rename) }
 

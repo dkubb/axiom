@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate.extract_value' do
+  subject { Logic::Predicate.extract_value(operand, tuple) }
+
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)  { Tuple.new(header, [ 1 ])                   }
-
-  subject { Logic::Predicate.extract_value(operand, tuple) }
 
   context 'when the operand responds to #call' do
     let(:operand) { header[:id] }

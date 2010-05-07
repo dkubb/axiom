@@ -2,11 +2,11 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 
 [ :union, :| ].each do |method|
   describe "Veritas::Relation##{method}" do
+    subject { relation.send(method, other) }
+
     let(:header)   { [ [ :id, Integer ] ]            }
     let(:relation) { Relation.new(header, [ [ 1 ] ]) }
     let(:other)    { Relation.new(header, [ [ 2 ] ]) }
-
-    subject { relation.send(method, other) }
 
     it { should be_kind_of(Algebra::Union) }
 

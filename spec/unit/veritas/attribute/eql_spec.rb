@@ -1,10 +1,10 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#eql?' do
+  subject { attribute.eql?(other) }
+
   let(:name)      { :id                          }
   let(:attribute) { Attribute::Integer.new(name) }
-
-  subject { attribute.eql?(other) }
 
   context 'with the same attribute' do
     let(:other) { attribute }

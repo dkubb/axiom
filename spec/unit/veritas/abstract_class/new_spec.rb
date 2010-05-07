@@ -2,14 +2,16 @@ require File.expand_path('../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::AbstractClass#new' do
+  subject { klass.new }
+
   context 'called on class' do
-    subject { AbstractClassSpecs::Object.new }
+    let(:klass) { AbstractClassSpecs::Object }
 
     specify { method(:subject).should raise_error(NotImplementedError, 'AbstractClassSpecs::Object is an abstract class') }
   end
 
   context 'called on subclass' do
-    subject { AbstractClassSpecs::Subclass.new }
+    let(:klass) { AbstractClassSpecs::Subclass }
 
     it { should be_kind_of(AbstractClassSpecs::Subclass) }
   end

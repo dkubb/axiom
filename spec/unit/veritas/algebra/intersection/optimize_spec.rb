@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Intersection#optimize' do
+  subject { intersection.optimize }
+
   let(:header)         { [ [ :id, Integer ] ]                   }
   let(:original_left)  { Relation.new(header, [ [ 1 ] ])        }
   let(:original_right) { Relation.new(header, [ [ 2 ] ])        }
   let(:intersection)   { Algebra::Intersection.new(left, right) }
-
-  subject { intersection.optimize }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(header) }

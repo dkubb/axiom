@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order#each' do
+  subject { order.each { |tuple| yields << tuple } }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id].desc ]                                      }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
   let(:yields)     { []                                                          }
-
-  subject { order.each { |tuple| yields << tuple } }
 
   it { should equal(order) }
 

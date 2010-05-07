@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order#wrap' do
+  subject { order.wrap(directions) { |relation| relation } }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
   let(:yields)     { []                                                          }
-
-  subject { order.wrap(directions) { |relation| relation } }
 
   it { should_not be_equal(order) }
 

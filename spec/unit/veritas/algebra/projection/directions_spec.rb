@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#directions' do
-  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
-
   subject { projection.directions }
+
+  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
 
   context 'containing a relation' do
     let(:projection) { relation.project([ :id ]) }

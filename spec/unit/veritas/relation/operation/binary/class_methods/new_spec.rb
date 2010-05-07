@@ -2,10 +2,10 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 require File.expand_path('../../fixtures/classes', __FILE__)
 
  context 'Veritas::Relation::Operation::Binary::ClassMethods#new' do
+   subject { BinaryRelationOperationSpecs::Object.new(left, right) }
+
    let(:original_left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
    let(:original_right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
-
-   subject { BinaryRelationOperationSpecs::Object.new(left, right) }
 
    context 'with left and right ordered' do
      let(:left)  { original_left.order  { |r| r[:id]   } }

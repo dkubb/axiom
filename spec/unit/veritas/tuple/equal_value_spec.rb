@@ -1,10 +1,10 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Tuple#==' do
+  subject { tuple == other }
+
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)  { Tuple.new(header, [ 1 ])                   }
-
-  subject { tuple == other }
 
   context 'with the same tuple' do
     let(:other) { tuple }

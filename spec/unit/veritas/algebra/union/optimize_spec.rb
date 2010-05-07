@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Union#optimize' do
+  subject { union.optimize }
+
   let(:header)         { [ [ :id, Integer ] ]            }
   let(:original_left)  { Relation.new(header, [ [ 1 ] ]) }
   let(:original_right) { Relation.new(header, [ [ 2 ] ]) }
   let(:union)          { Algebra::Union.new(left, right) }
-
-  subject { union.optimize }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(header) }

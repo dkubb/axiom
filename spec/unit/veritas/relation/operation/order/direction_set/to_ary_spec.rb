@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#to_ary' do
+  subject { directions.to_ary }
+
   let(:attribute)  { Attribute::Integer.new(:id)                                 }
   let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
-
-  subject { directions.to_ary }
 
   it { should be_instance_of(Array) }
 

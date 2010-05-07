@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Negation#optimize' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { negation.optimize }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'operand is a predicate' do
     let(:operand)  { attribute.gt(1)                          }

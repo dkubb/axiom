@@ -1,6 +1,8 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction#wrap' do
+  subject { restriction.wrap(*args) { |relation| relation } }
+
   let(:relation)           { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:original_predicate) { relation[:id].eq(1)                           }
   let(:yields)             { []                                            }
@@ -8,8 +10,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
   context 'without a predicate' do
     let(:predicate)   { original_predicate                            }
     let(:restriction) { Algebra::Restriction.new(relation, predicate) }
-
-    subject { restriction.wrap { |relation| relation } }
+    let(:args)        { []                                            }
 
     it { should_not be_equal(restriction) }
 
@@ -36,8 +37,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
     let(:rename)      { relation.rename(:id => :other_id)           }
     let(:restriction) { Algebra::Restriction.new(rename, predicate) }
     let(:predicate)   { original_predicate.rename(:id => :other_id) }
-
-    subject { restriction.wrap(predicate) { |relation| relation } }
+    let(:args)        { [ predicate ]                               }
 
     it { should_not be_equal(restriction) }
 

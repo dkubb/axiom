@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction#each' do
+  subject { restriction.each { |tuple| yields << tuple } }
+
   let(:relation)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])     }
   let(:restriction) { Algebra::Restriction.new(relation, proc { true }) }
   let(:yields)      { []                                                }
-
-  subject { restriction.each { |tuple| yields << tuple } }
 
   it { should equal(restriction) }
 

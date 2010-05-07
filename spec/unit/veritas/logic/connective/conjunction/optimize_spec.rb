@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Conjunction#optimize' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { conjunction.optimize }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'left and right are predicates' do
     let(:left)        { attribute.gt(1)                                 }

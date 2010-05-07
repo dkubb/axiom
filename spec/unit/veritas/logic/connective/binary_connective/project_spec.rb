@@ -2,11 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::BinaryConnective#project' do
+  subject { connective.project(attributes) }
+
   let(:attribute)  { Attribute::Integer.new(:id)       }
   let(:other)      { Attribute::Integer.new(:other_id) }
   let(:attributes) { [ attribute ]                     }
-
-  subject { connective.project(attributes) }
 
   context 'left and right is removed' do
     let(:left)       { other.eq(1)                                    }

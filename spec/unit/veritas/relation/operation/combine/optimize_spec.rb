@@ -2,11 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Combine#optimize' do
+  subject { combine_operation.optimize }
+
   let(:original_left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])                         }
   let(:original_right)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
   let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)                               }
-
-  subject { combine_operation.optimize }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(original_left.header) }

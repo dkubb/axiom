@@ -1,11 +1,13 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#first' do
+  subject { ordered.first(*args) }
+
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:ordered)  { relation.order { |r| r[:id] }                               }
 
   context 'with no arguments' do
-    subject { ordered.first }
+    let(:args) { [] }
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
@@ -19,7 +21,7 @@ describe 'Veritas::Relation#first' do
   end
 
   context 'with a limit' do
-    subject { ordered.first(2) }
+    let(:args) { [ 2 ] }
 
     it { should be_kind_of(Relation::Operation::Limit) }
 

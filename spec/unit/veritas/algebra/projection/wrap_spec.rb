@@ -1,12 +1,12 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#wrap' do
+  subject { projection.wrap(header) { |relation| relation } }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:header)     { relation.header                               }
   let(:projection) { Algebra::Projection.new(relation, [ :id ])    }
   let(:yields)     { []                                            }
-
-  subject { projection.wrap(header) { |relation| relation } }
 
   it { should_not be_equal(projection) }
 

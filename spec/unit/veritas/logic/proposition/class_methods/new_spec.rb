@@ -1,20 +1,22 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Proposition.new' do
+  subject { Logic::Proposition.new(*args) }
+
   context 'with no arguments' do
-    subject { Logic::Proposition.new }
+    let(:args) { [] }
 
     it { should be_kind_of(Logic::Proposition) }
   end
 
   context 'with true argument' do
-    subject { Logic::Proposition.new(true) }
+    let(:args) { [ true ] }
 
     it { should equal(Logic::Proposition::True.instance) }
   end
 
   context 'with false argument' do
-    subject { Logic::Proposition.new(false) }
+    let(:args) { [ false ] }
 
     it { should equal(Logic::Proposition::False.instance) }
   end

@@ -2,11 +2,11 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Binary#optimize' do
+  subject { binary_operation.optimize }
+
   let(:original_left)    { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
   let(:original_right)   { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
   let(:binary_operation) { BinaryRelationOperationSpecs::Object.new(left, right)    }
-
-  subject { binary_operation.optimize }
 
   context 'containing optimized relations' do
     let(:left)  { original_left  }

@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Empty#each' do
+  subject { empty.each { |tuple| yields << tuple } }
+
   let(:empty)  { Relation::Empty.new([ [ :id, Integer ] ]) }
   let(:yields) { []                                        }
-
-  subject { empty.each { |tuple| yields << tuple } }
 
   it { should equal(empty) }
 

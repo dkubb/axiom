@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Reverse#optimize' do
+  subject { reverse.optimize }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { relation.order(directions)                                  }
-
-  subject { reverse.optimize }
 
   context 'with a reverse operation' do
     let(:limit)   { order.limit(2)                          }

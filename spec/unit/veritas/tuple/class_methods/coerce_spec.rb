@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Tuple.coerce' do
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-
   subject { Tuple.coerce(header, object) }
+
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
 
   context 'when the object is a Tuple' do
     let(:object) { Tuple.new(header, [ 1 ]) }

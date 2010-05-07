@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
-  let(:left) { Attribute::Integer.new(:id) }
-
   subject { inclusion.optimize }
+
+  let(:left) { Attribute::Integer.new(:id) }
 
   context 'left is an attribute' do
     context 'right is a Range' do

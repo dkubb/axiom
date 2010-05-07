@@ -11,9 +11,9 @@ describe 'Veritas::Attribute' do
 end
 
 describe 'Veritas::Attribute#<=>' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { attribute <=> other }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'with an equivalent attribute' do
     let(:other) { Attribute::Integer.new(:id) }

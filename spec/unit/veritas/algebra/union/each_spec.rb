@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Union#each' do
+  subject { union.each { |tuple| yields << tuple } }
+
   let(:header) { [ [ :id, Integer ] ]            }
   let(:left)   { Relation.new(header, [ [ 1 ] ]) }
   let(:yields) { []                              }
-
-  subject { union.each { |tuple| yields << tuple } }
 
   context 'with relations having similar bodies' do
     let(:union) { Algebra::Union.new(left, left.dup) }

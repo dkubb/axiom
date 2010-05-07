@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#==' do
+  subject { header == other }
+
   let(:attribute) { [ :id, Integer ]                    }
   let(:header)    { Relation::Header.new([ attribute ]) }
-
-  subject { header == other }
 
   context 'with the same header' do
     let(:other) { header }

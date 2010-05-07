@@ -1,9 +1,9 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute#valid_primitive?' do
-  let(:attribute) { Attribute::Integer.new(:id) }
-
   subject { attribute.valid_primitive?(value) }
+
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'with a valid value' do
     let(:value) { 1 }

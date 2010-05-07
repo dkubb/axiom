@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order.new' do
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-
   subject { Relation::Operation::Order.new(relation, directions) }
+
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
 
   context 'with all attributes specified in the directions' do
     let(:directions) { [ relation[:id] ] }

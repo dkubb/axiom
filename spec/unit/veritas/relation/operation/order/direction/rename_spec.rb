@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::Direction#rename' do
+  subject { direction.rename(aliases) }
+
   let(:attribute) { Attribute::Integer.new(:id)                      }
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
   let(:direction) { klass.new(attribute)                             }
-
-  subject { direction.rename(aliases) }
 
   context 'with aliases matching the attribute' do
     let(:aliases) { { :id => :other_id } }

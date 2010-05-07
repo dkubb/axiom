@@ -1,10 +1,10 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#reverse' do
+  subject { ordered.reverse }
+
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:ordered)  { relation.order { |r| r[:id] }                        }
-
-  subject { ordered.reverse }
 
   it { should be_kind_of(Relation::Operation::Reverse) }
 

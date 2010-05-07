@@ -2,12 +2,12 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
+  subject { connective.optimize }
+
   let(:attribute)      { Attribute::Integer.new(:id)                    }
   let(:original_left)  { attribute.gt(1)                                }
   let(:original_right) { attribute.lt(1)                                }
   let(:connective)     { BinaryConnectiveSpecs::Object.new(left, right) }
-
-  subject { connective.optimize }
 
   context 'left and right are the same' do
     let(:left)  { attribute.gt(1) }

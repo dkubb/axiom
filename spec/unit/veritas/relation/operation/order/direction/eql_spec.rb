@@ -2,11 +2,11 @@ require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 [ :eql?, :== ].each do |method|
   describe "Veritas::Relation::Operation::Order::Direction##{method}" do
+    subject { direction.send(method, other) }
+
     let(:attribute) { Attribute::Integer.new(:id)                      }
     let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
     let(:direction) { klass.new(attribute)                             }
-
-    subject { direction.send(method, other) }
 
     context 'with the same direction' do
       let(:other) { direction }

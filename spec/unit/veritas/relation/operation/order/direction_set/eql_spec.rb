@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
+  subject { directions.eql?(other) }
+
   let(:attribute)  { Attribute::Integer.new(:id)                                 }
   let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
-
-  subject { directions.eql?(other) }
 
   context 'with the same direction' do
     let(:other) { directions }

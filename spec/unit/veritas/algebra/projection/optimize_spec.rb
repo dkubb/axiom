@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Projection#optimize' do
-  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ]) }
-
   subject { projection.optimize }
+
+  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ], [ [ 1, 'Dan Kubb', 34 ] ]) }
 
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
     let(:projection) { Algebra::Projection.new(relation, relation.header) }

@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Header#index' do
+  subject { header.index(object) }
+
   let(:attribute) { [ :id, Integer ]                    }
   let(:header)    { Relation::Header.new([ attribute ]) }
-
-  subject { header.index(object) }
 
   context 'with a known attribute' do
     let(:object) { attribute }

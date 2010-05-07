@@ -2,11 +2,11 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate#project' do
+  subject { predicate.project(attributes) }
+
   let(:attribute)  { Attribute::Integer.new(:id)       }
   let(:other)      { Attribute::Integer.new(:other_id) }
   let(:attributes) { [ attribute ]                     }
-
-  subject { predicate.project(attributes) }
 
   context 'when left is an attribute' do
     context 'and it is not removed' do

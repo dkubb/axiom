@@ -2,12 +2,12 @@ require File.expand_path('../../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::BinaryConnective#eql?' do
+  subject { connective.eql?(other) }
+
   let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
   let(:left)       { Logic::Predicate::Equality.new(header[:id], 1)                }
   let(:right)      { Logic::Predicate::Equality.new(header[:id], 2)                }
   let(:connective) { BinaryConnectiveSpecs::Object.new(left, right)                }
-
-  subject { connective.eql?(other) }
 
   context 'with the same connective' do
     let(:other) { connective }

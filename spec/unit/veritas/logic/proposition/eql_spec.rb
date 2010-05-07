@@ -2,9 +2,9 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Proposition#eql?' do
-  let(:proposition) { PropositionSpecs::Object.new }
-
   subject { proposition.eql?(other) }
+
+  let(:proposition) { PropositionSpecs::Object.new }
 
   context 'with the same class' do
     let(:other) { PropositionSpecs::Object.new }

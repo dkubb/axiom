@@ -1,9 +1,9 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#hash' do
-  let(:relation) { Relation.new([ [ :id, Integer ] ], []) }
-
   subject { relation.hash }
+
+  let(:relation) { Relation.new([ [ :id, Integer ] ], []) }
 
   it { should be_kind_of(Integer) }
 

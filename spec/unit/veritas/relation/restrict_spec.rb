@@ -1,12 +1,14 @@
 require File.expand_path('../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation#restrict' do
+  subject { relation.restrict(*args, &block) }
+
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
   context 'with predicate arguments' do
     let(:predicate) { relation[:id].eq(1) }
-
-    subject { relation.restrict(predicate) }
+    let(:args)      { [ predicate ]       }
+    let(:block)     { nil                 }
 
     it { should be_kind_of(Algebra::Restriction) }
 
@@ -20,9 +22,8 @@ describe 'Veritas::Relation#restrict' do
   end
 
   context 'with a block' do
+    let(:args)  { []                                        }
     let(:block) { lambda { |relation| relation[:id].eq(1) } }
-
-    subject { relation.restrict(&block) }
 
     it { should be_kind_of(Algebra::Restriction) }
 

@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Restriction#optimize' do
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-
   subject { restriction.optimize }
+
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
   context 'with a true proposition' do
     let(:proposition) { relation[:id].eq(relation[:id])                 }

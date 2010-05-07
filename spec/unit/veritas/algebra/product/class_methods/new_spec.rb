@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product.new' do
+  subject { Algebra::Product.new(left, right) }
+
   let(:header) { [ [ :id, Integer ] ]            }
   let(:left)   { Relation.new(header, [ [ 1 ] ]) }
-
-  subject { Algebra::Product.new(left, right) }
 
   context 'with relations having headers with common attributes' do
     let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }

@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Logic::Connective::Negation#eql?' do
+  subject { negation.eql?(other) }
+
   let(:attribute) { Attribute::Integer.new(:id)              }
   let(:operand)   { attribute.eq(1)                          }
   let(:negation)  { Logic::Connective::Negation.new(operand) }
-
-  subject { negation.eql?(other) }
 
   context 'with the same negation' do
     let(:other) { negation }

@@ -3,11 +3,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
 [ :and, :& ].each do |method|
   describe "Veritas::Logic::Expression##{method}" do
+    subject { expression.send(method, predicate) }
+
     let(:header)     { Relation::Header.new([ [ :id, Integer ] ])     }
     let(:predicate)  { Logic::Predicate::Equality.new(header[:id], 1) }
     let(:expression) { ExpressionSpecs::Object.new                    }
-
-    subject { expression.send(method, predicate) }
 
     it { should be_kind_of(Logic::Connective::Conjunction) }
   end

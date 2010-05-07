@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Rename#optimize' do
+  subject { rename.optimize }
+
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
   let(:aliases)  { { :id => :other_id }                                                         }
-
-  subject { rename.optimize }
 
   context 'containing a relation' do
     let(:rename) { Algebra::Rename.new(relation, aliases) }

@@ -1,10 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Product#optimize' do
+  subject { product.optimize }
+
   let(:left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
   let(:right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
-
-  subject { product.optimize }
 
   context 'left is a TABLE_DUM' do
     let(:product) { Algebra::Product.new(TABLE_DUM, right) }

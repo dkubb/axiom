@@ -1,11 +1,11 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Algebra::Difference#each' do
+  subject { difference.each { |tuple| yields << tuple } }
+
   let(:header) { [ [ :id, Integer ] ]            }
   let(:left)   { Relation.new(header, [ [ 1 ] ]) }
   let(:yields) { []                              }
-
-  subject { difference.each { |tuple| yields << tuple } }
 
   context 'with relations having similar bodies' do
     let(:difference) { Algebra::Difference.new(left, left.dup) }

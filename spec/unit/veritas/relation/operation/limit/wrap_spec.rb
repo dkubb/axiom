@@ -1,13 +1,13 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Limit#wrap' do
+  subject { limit.wrap { |relation| relation } }
+
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
   let(:limit)      { Relation::Operation::Limit.new(order, 1)                    }
   let(:yields)     { []                                                          }
-
-  subject { limit.wrap { |relation| relation } }
 
   it { should_not be_equal(limit) }
 

@@ -1,8 +1,10 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Attribute.new' do
+  subject { klass.new(:id) }
+
   context 'when called on the Attribute class' do
-    subject { Attribute.new(:id) }
+    let(:klass) { Attribute }
 
     specify { method(:subject).should raise_error(NotImplementedError, 'Veritas::Attribute is an abstract class') }
   end
@@ -21,7 +23,7 @@ describe 'Veritas::Attribute.new' do
     Attribute::Time,
   ].each do |klass|
     describe "when called on the Attribute subclass #{klass}" do
-      subject { klass.new(:id) }
+      let(:klass) { klass }
 
       it { should be_kind_of(Attribute) }
 

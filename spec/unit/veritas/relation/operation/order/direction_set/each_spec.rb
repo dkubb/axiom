@@ -1,9 +1,9 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet' do
-  let(:attributes) { [ Attribute::Integer.new(:id) ] }
-
   subject { Relation::Operation::Order::DirectionSet.new(attributes) }
+
+  let(:attributes) { [ Attribute::Integer.new(:id) ] }
 
   it { should be_kind_of(Enumerable) }
 
@@ -13,11 +13,11 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet' do
 end
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
+  subject { directions.each { |direction| yields << direction } }
+
   let(:attributes) { [ Attribute::Integer.new(:id), Attribute::String.new(:name) ] }
   let(:directions) { Relation::Operation::Order::DirectionSet.new(attributes)      }
   let(:yields)     { []                                                            }
-
-  subject { directions.each { |direction| yields << direction } }
 
   it { should equal(directions) }
 
