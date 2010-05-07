@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift(File.expand_path('../', __FILE__))
 $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 
+require 'rubygems'
 require 'backports'
 require 'veritas'
 require 'spec'
