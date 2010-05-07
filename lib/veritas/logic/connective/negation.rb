@@ -4,6 +4,10 @@ module Veritas
       class Negation < Connective
         attr_reader :operand
 
+        def self.eval(value)
+          !value
+        end
+
         def initialize(operand)
           @operand = operand
         end
@@ -47,10 +51,6 @@ module Veritas
 
         def inspect
           "NOT(#{operand.inspect})"
-        end
-
-        def self.eval(value)
-          !value
         end
 
       end # class Negation

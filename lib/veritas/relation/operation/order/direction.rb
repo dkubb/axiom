@@ -42,23 +42,25 @@ module Veritas
         end # class Direction
 
         class Ascending < Direction
+          def self.eval(left, right)
+            left <=> right
+          end
+
           def invert
             Descending.new(attribute)
           end
 
-          def self.eval(left, right)
-            left <=> right
-          end
         end # class Ascending
 
         class Descending < Direction
+          def self.eval(left, right)
+            right <=> left
+          end
+
           def invert
             Ascending.new(attribute)
           end
 
-          def self.eval(left, right)
-            right <=> left
-          end
         end # class Descending
       end # class Order
     end # module Operation
