@@ -14,9 +14,9 @@ describe 'Veritas::Relation::Operation::Reverse#wrap' do
   it { should be_kind_of(Relation::Operation::Reverse) }
 
   it 'yields the relations' do
-    lambda {
+    expect {
       reverse.wrap { |relation| yields << relation; relation }
-    }.should change { yields.dup }.from([]).to([ order ])
+    }.to change { yields.dup }.from([]).to([ order ])
   end
 
   it 'sets the relation with the block return values' do

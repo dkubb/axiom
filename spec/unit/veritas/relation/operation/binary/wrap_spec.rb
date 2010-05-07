@@ -14,9 +14,9 @@ describe 'Veritas::Relation::Operation::Binary#wrap' do
   it { should be_kind_of(BinaryRelationOperationSpecs::Object) }
 
   it 'yields the relations' do
-    lambda {
+    expect {
       binary_operation.wrap { |relation| yields << relation; relation }
-    }.should change { yields.dup }.from([]).to([ left, right ])
+    }.to change { yields.dup }.from([]).to([ left, right ])
   end
 
   it 'sets the left and right relations with the block return values' do

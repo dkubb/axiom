@@ -13,9 +13,9 @@ describe 'Veritas::Algebra::Rename#wrap' do
   it { should be_kind_of(Algebra::Rename) }
 
   it 'yields the relations' do
-    lambda {
+    expect {
       rename.wrap { |relation| yields << relation; relation }
-    }.should change { yields.dup }.from([]).to([ relation ])
+    }.to change { yields.dup }.from([]).to([ relation ])
   end
 
   it 'sets the relation with the block return values' do

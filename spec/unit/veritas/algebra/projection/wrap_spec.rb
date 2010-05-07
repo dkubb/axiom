@@ -13,9 +13,9 @@ describe 'Veritas::Algebra::Projection#wrap' do
   it { should be_kind_of(Algebra::Projection) }
 
   it 'yields the relations' do
-    lambda {
+    expect {
       projection.wrap(header) { |relation| yields << relation; relation }
-    }.should change { yields.dup }.from([]).to([ relation ])
+    }.to change { yields.dup }.from([]).to([ relation ])
   end
 
   it 'sets the relation with the block return values' do

@@ -15,9 +15,9 @@ describe 'Veritas::Relation::Operation::Offset#wrap' do
 
   it 'yields the relations' do
 
-    lambda {
+    expect {
       offset.wrap { |relation| yields << relation; relation }
-    }.should change { yields.dup }.from([]).to([ relation ])
+    }.to change { yields.dup }.from([]).to([ relation ])
   end
 
   it 'sets the relation with the block return values' do

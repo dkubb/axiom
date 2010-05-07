@@ -16,9 +16,9 @@ describe 'Veritas::Algebra::Restriction#wrap' do
     it { should be_kind_of(Algebra::Restriction) }
 
     it 'yields the relations' do
-      lambda {
+      expect {
         restriction.wrap { |relation| yields << relation; relation }
-      }.should change { yields.dup }.from([]).to([ relation ])
+      }.to change { yields.dup }.from([]).to([ relation ])
     end
 
     it 'sets the relation with the block return values' do
@@ -44,9 +44,9 @@ describe 'Veritas::Algebra::Restriction#wrap' do
     it { should be_kind_of(Algebra::Restriction) }
 
     it 'yields the relations' do
-      lambda {
+      expect {
         restriction.wrap { |relation| yields << relation; relation }
-      }.should change { yields.dup }.from([]).to([ rename ])
+      }.to change { yields.dup }.from([]).to([ rename ])
     end
 
     it 'sets the relation with the block return values' do

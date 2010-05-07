@@ -21,9 +21,9 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
     it { should be(false) }
 
     it 'is not be symmetric' do
-      lambda {
+      expect {
         other.comparable?(attribute)
-      }.should raise_error(NoMethodError)
+      }.to raise_error(NoMethodError)
     end
   end
 
