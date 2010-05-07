@@ -20,6 +20,6 @@ describe 'Veritas::Relation::Operation::Order.new' do
   context 'without all attributes specified in the directions' do
     let(:directions) { [] }
 
-    it { method(:subject).should raise_error(ArgumentError, 'directions must include every attribute in the header') }
+    specify { method(:subject).should raise_error(ArgumentError, 'directions must include every attribute in the header') }
   end
 end

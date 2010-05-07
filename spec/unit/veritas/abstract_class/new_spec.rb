@@ -5,7 +5,7 @@ describe 'Veritas::AbstractClass#new' do
   context 'called on class' do
     subject { AbstractClassSpecs::Object.new }
 
-    it { method(:subject).should raise_error(NotImplementedError, 'AbstractClassSpecs::Object is an abstract class') }
+    specify { method(:subject).should raise_error(NotImplementedError, 'AbstractClassSpecs::Object is an abstract class') }
   end
 
   context 'called on subclass' do

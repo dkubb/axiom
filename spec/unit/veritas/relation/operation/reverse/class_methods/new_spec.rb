@@ -18,6 +18,6 @@ describe 'Veritas::Relation::Operation::Reverse.new' do
   context 'without an ordered relation' do
     let(:relation) { original_relation }
 
-    it { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only reverse an ordered relation') }
+    specify { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only reverse an ordered relation') }
   end
 end

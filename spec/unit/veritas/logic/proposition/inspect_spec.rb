@@ -6,5 +6,5 @@ describe 'Veritas::Logic::Proposition#inspect' do
 
   subject { proposition.inspect }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'Veritas::Logic::Proposition.eval must be implemented') }
+  specify { method(:subject).should raise_error(NotImplementedError, 'Veritas::Logic::Proposition.eval must be implemented') }
 end

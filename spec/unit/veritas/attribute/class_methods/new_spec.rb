@@ -4,7 +4,7 @@ describe 'Veritas::Attribute.new' do
   context 'when called on the Attribute class' do
     subject { Attribute.new(:id) }
 
-    it { method(:subject).should raise_error(NotImplementedError, 'Veritas::Attribute is an abstract class') }
+    specify { method(:subject).should raise_error(NotImplementedError, 'Veritas::Attribute is an abstract class') }
   end
 
   [

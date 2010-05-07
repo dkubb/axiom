@@ -6,5 +6,5 @@ describe 'Veritas::Logic::Connective#inspect' do
 
   subject { connective.inspect }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'ConnectiveSpecs::Object#inspect must be implemented') }
+  specify { method(:subject).should raise_error(NotImplementedError, 'ConnectiveSpecs::Object#inspect must be implemented') }
 end

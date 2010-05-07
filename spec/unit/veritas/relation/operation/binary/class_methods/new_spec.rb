@@ -25,13 +25,13 @@ require File.expand_path('../../fixtures/classes', __FILE__)
      let(:left)  { original_left.order { |r| r[:id] } }
      let(:right) { original_right                     }
 
-     it { method(:subject).should raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
+     specify { method(:subject).should raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
    end
 
    context 'with right ordered, and left unordered' do
      let(:left)  { original_left                         }
      let(:right) { original_right.order { |r| r[:name] } }
 
-     it { method(:subject).should raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
+     specify { method(:subject).should raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
    end
 end

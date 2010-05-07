@@ -13,5 +13,5 @@ describe 'Veritas::Logic::Expression::ClassMethods#eval' do
 
   subject { klass.eval }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'AnonymousClass.eval must be implemented') }
+  specify { method(:subject).should raise_error(NotImplementedError, 'AnonymousClass.eval must be implemented') }
 end

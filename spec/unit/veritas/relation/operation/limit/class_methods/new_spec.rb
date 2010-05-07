@@ -14,6 +14,6 @@ describe 'Veritas::Relation::Operation::Limit.new' do
   context 'without an ordered relation' do
     let(:relation) { original_relation }
 
-    it { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only limit an ordered relation') }
+    specify { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only limit an ordered relation') }
   end
 end

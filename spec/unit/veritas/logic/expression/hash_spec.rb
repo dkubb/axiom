@@ -6,5 +6,5 @@ describe 'Veritas::Logic::Expression#hash' do
 
   subject { expression.hash }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'ExpressionSpecs::Object#hash must be implemented') }
+  specify { method(:subject).should raise_error(NotImplementedError, 'ExpressionSpecs::Object#hash must be implemented') }
 end

@@ -24,6 +24,6 @@ describe 'Veritas::Attribute.name_from' do
   context 'object that is not an Attribute, does not respond to #to_ary or #to_sym' do
     let(:object) { Object.new }
 
-    it { method(:subject).should raise_error(NoMethodError) }
+    specify { method(:subject).should raise_error(NoMethodError) }
   end
 end

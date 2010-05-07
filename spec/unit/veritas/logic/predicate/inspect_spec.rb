@@ -7,5 +7,5 @@ describe 'Veritas::Logic::Predicate#inspect' do
 
   subject { predicate.inspect }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'Veritas::Logic::Predicate#inspect must be implemented') }
+  specify { method(:subject).should raise_error(NotImplementedError, 'Veritas::Logic::Predicate#inspect must be implemented') }
 end

@@ -6,5 +6,5 @@ describe 'Veritas::Logic::Expression#inspect' do
 
   subject { expression.inspect }
 
-  it { method(:subject).should raise_error(NotImplementedError, 'ExpressionSpecs::Object#inspect must be implemented') }
+  specify { method(:subject).should raise_error(NotImplementedError, 'ExpressionSpecs::Object#inspect must be implemented') }
 end
