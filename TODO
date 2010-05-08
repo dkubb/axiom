@@ -1,4 +1,13 @@
-* Remove Time#pred because Time#succ is being deprecated in Ruby 1.9.2-dev
+* Mixin connective methods into Attribute::Boolean
+  * Extract connective methods from Expression and put them in a module
+    that is mixed into Expression, and Attribute::Boolean
+
+* Create Veritas::Literal class to represent literal values passed
+  into a predicate.
+  * Should have subclases for Date, Range and Time, and otherwise use the
+    base class for other values. The new constructor should dynamically
+    dispatch to a matching subclass if one exists.
+  * Remove core_ext library and corresponding specs
 
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
