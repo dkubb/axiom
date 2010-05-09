@@ -46,7 +46,7 @@ module Veritas
             left <=> right
           end
 
-          def invert
+          def reverse
             Descending.new(attribute)
           end
 
@@ -57,7 +57,7 @@ module Veritas
             right <=> left
           end
 
-          def invert
+          def reverse
             Ascending.new(attribute)
           end
 

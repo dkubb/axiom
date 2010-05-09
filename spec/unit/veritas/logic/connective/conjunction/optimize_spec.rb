@@ -23,7 +23,7 @@ describe 'Veritas::Logic::Connective::Conjunction#optimize' do
 
     it { should_not equal(conjunction) }
 
-    it 'inverts the operands' do
+    it 'reverses the operands' do
       should eql(Logic::Connective::Conjunction.new(attribute.lte(1), attribute.gte(3)))
     end
   end

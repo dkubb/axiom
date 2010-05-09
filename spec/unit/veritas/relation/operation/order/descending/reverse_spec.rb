@@ -1,7 +1,7 @@
 require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation::Operation::Order::Descending#invert' do
-  subject { descending.invert }
+describe 'Veritas::Relation::Operation::Order::Descending#reverse' do
+  subject { descending.reverse }
 
   let(:attribute)  { Attribute::Integer.new(:id)                           }
   let(:descending) { Relation::Operation::Order::Descending.new(attribute) }
