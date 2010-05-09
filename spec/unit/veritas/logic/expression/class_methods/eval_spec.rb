@@ -1,12 +1,10 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Logic::Expression::ClassMethods#eval' do
+describe 'Veritas::Logic::Expression.eval' do
   subject { klass.eval }
 
   let(:klass) do
-    Class.new do
-      include Logic::Expression
-
+    Class.new(Logic::Expression) do
       def self.name
         'AnonymousClass'
       end

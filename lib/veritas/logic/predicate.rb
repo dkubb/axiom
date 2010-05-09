@@ -1,7 +1,7 @@
 module Veritas
   module Logic
-    class Predicate
-      include AbstractClass, Expression, Operation::Binary
+    class Predicate < Expression
+      include AbstractClass, Operation::Binary
 
       def call(tuple)
         util = self.class

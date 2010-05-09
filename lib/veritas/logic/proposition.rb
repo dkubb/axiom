@@ -1,7 +1,7 @@
 module Veritas
   module Logic
-    class Proposition
-      include Expression, Singleton
+    class Proposition < Expression
+      include Singleton
 
       def self.new(*args)
         if args.empty?

@@ -1,8 +1,8 @@
 module Veritas
   module Logic
-    module Expression
+    class Expression
       extend Aliasable
-      include Optimizable
+      include AbstractClass, Optimizable
 
       inheritable_alias(
         :and => :&,
@@ -10,8 +10,8 @@ module Veritas
         :not => :-
       )
 
-      def self.included(klass)
-        klass.extend ClassMethods
+      def self.eval(*)
+        raise NotImplementedError, "#{name}.eval must be implemented"
       end
 
       def and(other)
@@ -54,12 +54,6 @@ module Veritas
         raise NotImplementedError, "#{self.class.name}#inspect must be implemented"
       end
 
-      module ClassMethods
-        def eval(*)
-          raise NotImplementedError, "#{name}.eval must be implemented"
-        end
-
-      end # module ClassMethods
-    end # module Expression
+    end # class Expression
   end # module Logic
 end # module Veritas
