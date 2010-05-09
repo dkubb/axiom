@@ -6,7 +6,7 @@ module Veritas
           left < right
         end
 
-        def invert
+        def complement
           GreaterThanOrEqualTo.new(left, right)
         end
 

@@ -8,7 +8,7 @@ module Veritas
           left >= right
         end
 
-        def invert
+        def complement
           LessThan.new(left, right)
         end
 

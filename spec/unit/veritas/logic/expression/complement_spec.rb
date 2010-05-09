@@ -1,8 +1,8 @@
 require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Expression#invert' do
-  subject { expression.invert }
+describe 'Veritas::Logic::Expression#complement' do
+  subject { expression.complement }
 
   let(:expression) { ExpressionSpecs::Object.new }
 

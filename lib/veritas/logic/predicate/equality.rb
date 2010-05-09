@@ -8,7 +8,7 @@ module Veritas
           left == right
         end
 
-        def invert
+        def complement
           Inequality.new(left, right)
         end
 

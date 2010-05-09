@@ -26,7 +26,7 @@ module Veritas
         self.and(Connective::Negation.new(other))
       end
 
-      def invert
+      def complement
         Connective::Negation.new(self)
       end
 

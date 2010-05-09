@@ -1,14 +1,14 @@
 require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Equality#invert' do
-  subject { equality.invert }
+describe 'Veritas::Logic::Predicate::Equality#complement' do
+  subject { equality.complement }
 
   let(:attribute) { Attribute::Integer.new(:id) }
   let(:equality)  { attribute.eq(1)             }
 
   it { should eql(attribute.ne(1)) }
 
-  it 'inverts back to original' do
-    subject.invert.should eql(equality)
+  it 'is reversible' do
+    subject.complement.should eql(equality)
   end
 end

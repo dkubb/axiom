@@ -14,7 +14,7 @@ module Veritas
           self
         end
 
-        def invert
+        def complement
           False.instance
         end
 

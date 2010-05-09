@@ -16,7 +16,7 @@ module Veritas
           self.class.eval(operand.call(tuple))
         end
 
-        def invert
+        def complement
           operand
         end
 
@@ -37,7 +37,7 @@ module Veritas
         end
 
         def optimize
-          operand.optimize.invert
+          operand.optimize.complement
         end
 
         def eql?(other)
