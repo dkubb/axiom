@@ -10,6 +10,9 @@ module Veritas
         :not => :-
       )
 
+      # alias #! to #complement in Ruby 1.9
+      inheritable_alias(:complement => '!') if respond_to?('!')
+
       def self.eval(*)
         raise NotImplementedError, "#{name}.eval must be implemented"
       end
