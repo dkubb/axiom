@@ -4,7 +4,7 @@ module Veritas
       extend Aliasable
       include Comparable
 
-      inheritable_alias(:size => :range)
+      inheritable_alias(:range => :size)
 
       attr_reader :size
 

@@ -11,13 +11,13 @@ module Veritas
     attr_reader :header
 
     inheritable_alias(
-      :join       => :+,
-      :product    => :*,
-      :intersect  => :&,
-      :union      => :|,
-      :difference => :-,
-      :limit      => :take,
-      :offset     => :drop
+      :+    => :join,
+      :*    => :product,
+      :&    => :intersect,
+      :|    => :union,
+      :-    => :difference,
+      :take => :limit,
+      :drop => :offset
     )
 
     def self.new(*args)

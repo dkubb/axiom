@@ -6,7 +6,7 @@ module Veritas
           extend Aliasable
           include Enumerable
 
-          inheritable_alias(:union => :|)
+          inheritable_alias(:| => :union)
 
           def initialize(directions)
             @directions = Array(directions).map do |direction|

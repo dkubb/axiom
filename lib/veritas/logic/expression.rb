@@ -5,13 +5,13 @@ module Veritas
       include AbstractClass, Optimizable
 
       inheritable_alias(
-        :and => :&,
-        :or  => :|,
-        :not => :-
+        :& => :and,
+        :| => :or,
+        :- => :not
       )
 
       # alias #! to #complement in Ruby 1.9
-      inheritable_alias(:complement => '!') if respond_to?('!')
+      inheritable_alias('!' => :complement) if respond_to?('!')
 
       def self.eval(*)
         raise NotImplementedError, "#{name}.eval must be implemented"

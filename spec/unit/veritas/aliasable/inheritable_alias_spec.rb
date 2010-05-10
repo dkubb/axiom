@@ -6,7 +6,7 @@ describe 'Veritas::Aliasable#inheritable_alias' do
 
   let(:klass)     { Class.new(AliasableSpecs::Object) }
   let(:aliasable) { klass.new                         }
-  let(:aliases)   { { :test => :other }               }
+  let(:aliases)   { { :other => :test }               }
 
   it 'should return the class' do
     should equal(klass)

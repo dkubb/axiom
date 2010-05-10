@@ -4,7 +4,7 @@ module Veritas
       extend Aliasable
       include Orderable
 
-      inheritable_alias(:length => :range)
+      inheritable_alias(:range => :length)
 
       attr_reader :length
 

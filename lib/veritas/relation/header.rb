@@ -5,9 +5,9 @@ module Veritas
       include Enumerable
 
       inheritable_alias(
-        :intersect  => :&,
-        :union      => :|,
-        :difference => :-
+        :& => :intersect,
+        :| => :union,
+        :- => :difference
       )
 
       def initialize(attributes = [])
