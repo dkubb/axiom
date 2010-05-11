@@ -38,7 +38,10 @@
   * Should have subclases for Date, Range and Time, and otherwise use the
     base class for other values. The new constructor should dynamically
     dispatch to a matching subclass if one exists.
+    * Should dispatch TrueClass and FalseClass to Proposition
   * Remove core_ext library and corresponding specs
+  * Factor out Predicate#extract_value, since every value will respond to
+    #call, and Predicate#call will become the same as BinaryConnective#call
 
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
