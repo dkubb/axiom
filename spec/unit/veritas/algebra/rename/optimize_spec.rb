@@ -135,7 +135,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     its(:header) { should == [ [ :other_id, Integer ], [ :name, String ] ] }
 
-    its(:predicate) { should == rename[:other_id].eq(1) }
+    its(:predicate) { should eql(rename[:other_id].eq(1)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
