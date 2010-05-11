@@ -2,6 +2,37 @@
   * Extract connective methods from Expression and put them in a module
     that is mixed into Expression, and Attribute::Boolean
 
+* Move factory methods for Logic and Alegbra operations into separate
+  classes underneath the namespace, eg:
+  * Logic::Connective::Conjunction::Method#and should be defined,
+    and the class included into Logic::Expression.
+  * Consider a better suffix than Method. Would Factory work here? I dunno
+    but there must be something better.
+
+* Add aliases for some common operations in Method classes, eg:
+  * Predicates:
+    * Alias #== to #eq
+    * Alias #!= to #ne (in 1.9 only)
+    * Alias #>= to #gte
+    * Alias #> to #gt
+    * Alias #<= to #lte
+    * Alias #< to #lt
+    * Alias #=~ to #match
+  * Direction:
+    * Alias #@+ to #asc
+    * Alias #@- to #desc
+
+* Consider removing Inclusion predicate or replacing it with operations
+  relating to subset/superset matching.
+  * The concept of Inclusion is probably too RDBMS specific
+
+* Consider removing optimizations from Proposition::True#and, #or and
+  Proposition::False#and, #or methods
+  * While these may be somewhat useful, without them the correct answer
+    can still be found, and their #optimize methods should handle
+    factoring out unnecessary operations. They are not consistent with
+    any other operation in Veritas.
+
 * Create Veritas::Literal class to represent literal values passed
   into a predicate.
   * Should have subclases for Date, Range and Time, and otherwise use the
