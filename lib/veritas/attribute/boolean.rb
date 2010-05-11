@@ -1,6 +1,8 @@
 module Veritas
   class Attribute
     class Boolean < Object
+      include Logic::Connective::Methods
+
       def self.primitive
         TrueClass
       end

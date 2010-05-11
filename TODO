@@ -1,7 +1,3 @@
-* Mixin connective methods into Attribute::Boolean
-  * Extract connective methods from Expression and put them in a module
-    that is mixed into Expression, and Attribute::Boolean
-
 * Move factory methods for Logic and Alegbra operations into separate
   classes underneath the namespace, eg:
   * Logic::Connective::Conjunction::Method#and should be defined,

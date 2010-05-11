@@ -1,36 +1,10 @@
 module Veritas
   module Logic
     class Expression
-      extend Aliasable
       include AbstractClass, Optimizable
-
-      inheritable_alias(
-        :& => :and,
-        :| => :or,
-        :- => :not
-      )
-
-      # alias #! to #complement in Ruby 1.9
-      inheritable_alias('!' => :complement) if respond_to?('!')
 
       def self.eval(*)
         raise NotImplementedError, "#{name}.eval must be implemented"
-      end
-
-      def and(other)
-        Connective::Conjunction.new(self, other)
-      end
-
-      def or(other)
-        Connective::Disjunction.new(self, other)
-      end
-
-      def not(other)
-        self.and(Connective::Negation.new(other))
-      end
-
-      def complement
-        Connective::Negation.new(self)
       end
 
       def project(attributes)

@@ -38,9 +38,9 @@ begin
 
     NameMap::MAP['|']['DirectionSet'] = 'union'
 
-    NameMap::MAP['&']['Expression'] = 'and'
-    NameMap::MAP['|']['Expression'] = 'or'
-    NameMap::MAP['-']['Expression'] = 'not'
+    NameMap::MAP['&']['Methods'] = 'and'
+    NameMap::MAP['|']['Methods'] = 'or'
+    NameMap::MAP['-']['Methods'] = 'not'
 
     aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
 
