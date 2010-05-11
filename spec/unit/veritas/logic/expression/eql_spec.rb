@@ -2,7 +2,7 @@ require File.expand_path('../../../../../spec_helper', __FILE__)
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Expression#eql?' do
-  subject { expression == other }
+  subject { expression.eql?(other) }
 
   let(:other)      { ExpressionSpecs::Object.new }
   let(:expression) { ExpressionSpecs::Object.new }
