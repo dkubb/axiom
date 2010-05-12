@@ -1,7 +1,11 @@
 module Veritas
   module Logic
     class Expression
+      extend Aliasable
       include AbstractClass, Optimizable
+
+      # alias #! to #complement in Ruby 1.9
+      inheritable_alias('!' => :complement) if respond_to?('!')
 
       def self.eval(*)
         raise NotImplementedError, "#{name}.eval must be implemented"
@@ -13,6 +17,10 @@ module Veritas
 
       def rename(aliases)
         self
+      end
+
+      def complement
+        raise NotImplementedError, "#{self.class.name}#complement must be implemented"
       end
 
       def ==(other)

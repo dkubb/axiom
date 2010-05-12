@@ -53,6 +53,19 @@ module Veritas
           "NOT(#{operand.inspect})"
         end
 
+        module Methods
+          extend Aliasable
+
+          inheritable_alias(:- => :not)
+
+          def not(other)
+            self.and(Negation.new(other))
+          end
+
+        end # module Methods
+
+        Connective::Methods.class_eval { include Methods }
+
       end # class Negation
     end # class Connective
   end # module Logic

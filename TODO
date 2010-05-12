@@ -1,7 +1,15 @@
-* Move methods for Logic operations into separate classes underneath
-  the namespace, eg:
-  * Logic::Connective::Conjunction::Method#and should be defined,
-    and the class included into Logic::Expression.
+* Move methods for Predicate, Proposition operations into separate modules
+  underneath the namespace
+
+* Consider removing optimizations from Proposition::True#and, #or and
+  Proposition::False#and, #or methods
+  * While these may be somewhat useful, without them the correct answer
+    can still be found, and their #optimize methods should handle
+    factoring out unnecessary operations. They are not consistent with
+    any other operation in Veritas in that they optimize and return
+    the expression.
+
+* Consider adding a complement class to each predicate (and other ops)
 
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
@@ -16,17 +24,6 @@
     * Alias #@+ to #asc
     * Alias #@- to #desc
 
-* Consider removing Inclusion predicate or replacing it with operations
-  relating to subset/superset matching.
-  * The concept of Inclusion is probably too RDBMS specific
-
-* Consider removing optimizations from Proposition::True#and, #or and
-  Proposition::False#and, #or methods
-  * While these may be somewhat useful, without them the correct answer
-    can still be found, and their #optimize methods should handle
-    factoring out unnecessary operations. They are not consistent with
-    any other operation in Veritas.
-
 * Create Veritas::Literal class to represent literal values passed
   into a predicate.
   * Should have subclases for Date, Range and Time, and otherwise use the
@@ -36,6 +33,8 @@
   * Remove core_ext library and corresponding specs
   * Factor out Predicate#extract_value, since every value will respond to
     #call, and Predicate#call will become the same as BinaryConnective#call
+  * Simplify #complement. Instead of Inequality#complement being
+    Equality.new(left, right), it can just be left == right
 
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a

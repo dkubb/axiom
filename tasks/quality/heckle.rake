@@ -48,21 +48,27 @@ begin
       Veritas::Algebra::Rename::Methods
       Veritas::Algebra::Restriction::Methods
       Veritas::Algebra::Union::Methods
-    ].each do |suffix|
-      NameMap::MAP['-'][suffix] = 'difference'
-      NameMap::MAP['&'][suffix] = 'intersect'
-      NameMap::MAP['+'][suffix] = 'join'
-      NameMap::MAP['*'][suffix] = 'product'
-      NameMap::MAP['|'][suffix] = 'union'
+    ].each do |mod|
+      NameMap::MAP['-'][mod] = 'difference'
+      NameMap::MAP['&'][mod] = 'intersect'
+      NameMap::MAP['+'][mod] = 'join'
+      NameMap::MAP['*'][mod] = 'product'
+      NameMap::MAP['|'][mod] = 'union'
     end
 
     NameMap::MAP['==']['Veritas::Relation::Operation::Order::Direction'] = 'eql'
 
     NameMap::MAP['|']['Veritas::Relation::Operation::Order::DirectionSet'] = 'union'
 
-    NameMap::MAP['&']['Veritas::Logic::Connective::Methods'] = 'and'
-    NameMap::MAP['|']['Veritas::Logic::Connective::Methods'] = 'or'
-    NameMap::MAP['-']['Veritas::Logic::Connective::Methods'] = 'not'
+    %w[
+      Veritas::Logic::Connective::Conjunction::Methods
+      Veritas::Logic::Connective::Disjunction::Methods
+      Veritas::Logic::Connective::Negation::Methods
+    ].each do |mod|
+      NameMap::MAP['&'][mod] = 'and'
+      NameMap::MAP['|'][mod] = 'or'
+      NameMap::MAP['-'][mod] = 'not'
+    end
 
     aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
 

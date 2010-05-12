@@ -32,6 +32,19 @@ module Veritas
           optimize_left.kind_of?(Proposition::False) || optimize_right.kind_of?(Proposition::False)
         end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:& => :and)
+
+        def and(other)
+          Conjunction.new(self, other)
+        end
+
+      end # module Methods
+
+      Connective::Methods.class_eval { include Methods }
+
       end # class Conjunction
     end # class Connective
   end # module Logic

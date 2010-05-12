@@ -36,6 +36,10 @@ module Veritas
           end
         end
 
+        def complement
+          Negation.new(self)
+        end
+
         def optimize
           if duplicate_operands?
             optimize_left
@@ -87,37 +91,7 @@ module Veritas
 
       end # module BinaryConnective
 
-      module Methods
-        extend Aliasable
-
-        inheritable_alias(
-          :& => :and,
-          :| => :or,
-          :- => :not
-        )
-
-        # alias #! to #complement in Ruby 1.9
-        inheritable_alias('!' => :complement) if respond_to?('!')
-
-        def and(other)
-          Conjunction.new(self, other)
-        end
-
-        def or(other)
-          Disjunction.new(self, other)
-        end
-
-        def not(other)
-          self.and(Negation.new(other))
-        end
-
-        def complement
-          Negation.new(self)
-        end
-
-      end # module Methods
-
-      Expression.class_eval { include Methods }
+      module Methods; end
 
     end # class Connective
   end # module Logic
@@ -126,3 +100,5 @@ end # module Veritas
 require 'veritas/logic/connective/conjunction'
 require 'veritas/logic/connective/disjunction'
 require 'veritas/logic/connective/negation'
+
+Veritas::Logic::Expression.class_eval { include Veritas::Logic::Connective::Methods }

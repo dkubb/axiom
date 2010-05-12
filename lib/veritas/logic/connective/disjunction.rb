@@ -72,6 +72,19 @@ module Veritas
           !optimize_left.right.eql?(optimize_right.right)
         end
 
+        module Methods
+          extend Aliasable
+
+          inheritable_alias(:| => :or)
+
+          def or(other)
+            Disjunction.new(self, other)
+          end
+
+        end # module Methods
+
+        Connective::Methods.class_eval { include Methods }
+
       end # class Disjunction
     end # class Connective
   end # module Logic
