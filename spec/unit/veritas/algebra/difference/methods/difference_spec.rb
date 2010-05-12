@@ -1,7 +1,7 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
 
 [ :difference, :- ].each do |method|
-  describe "Veritas::Relation##{method}" do
+  describe "Veritas::Algebra::Difference::Methods##{method}" do
     subject { relation.send(method, other) }
 
     let(:header)   { [ [ :id, Integer ] ]            }

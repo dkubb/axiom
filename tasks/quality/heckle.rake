@@ -15,6 +15,18 @@ begin
     raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
   end
 
+  class NameMap
+    def file_name(method, constant)
+      map  = MAP[method]
+      name = if map
+        map[constant] || map[:default]
+      else
+        method.gsub(/[?!=]\z/, '')
+      end
+      "#{name}_spec.rb"
+    end
+  end
+
   desc 'Heckle each module and class'
   task :heckle => :verify_rcov do
     root_module = 'Veritas'
@@ -26,7 +38,17 @@ begin
       NameMap::MAP[op] = { :default => method }
     end
 
-    %w[ Relation Header ].each do |suffix|
+    %w[
+      Veritas::Relation::Header
+      Veritas::Algebra::Difference::Methods
+      Veritas::Algebra::Intersection::Methods
+      Veritas::Algebra::Join::Methods
+      Veritas::Algebra::Product::Methods
+      Veritas::Algebra::Projection::Methods
+      Veritas::Algebra::Rename::Methods
+      Veritas::Algebra::Restriction::Methods
+      Veritas::Algebra::Union::Methods
+    ].each do |suffix|
       NameMap::MAP['-'][suffix] = 'difference'
       NameMap::MAP['&'][suffix] = 'intersect'
       NameMap::MAP['+'][suffix] = 'join'
@@ -34,18 +56,18 @@ begin
       NameMap::MAP['|'][suffix] = 'union'
     end
 
-    NameMap::MAP['==']['Direction'] = 'eql'
+    NameMap::MAP['==']['Veritas::Relation::Operation::Order::Direction'] = 'eql'
 
-    NameMap::MAP['|']['DirectionSet'] = 'union'
+    NameMap::MAP['|']['Veritas::Relation::Operation::Order::DirectionSet'] = 'union'
 
-    NameMap::MAP['&']['Methods'] = 'and'
-    NameMap::MAP['|']['Methods'] = 'or'
-    NameMap::MAP['-']['Methods'] = 'not'
+    NameMap::MAP['&']['Veritas::Logic::Connective::Methods'] = 'and'
+    NameMap::MAP['|']['Veritas::Logic::Connective::Methods'] = 'or'
+    NameMap::MAP['-']['Veritas::Logic::Connective::Methods'] = 'not'
 
     aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
 
-    aliases['Veritas::Relation']['drop'] = 'offset'
-    aliases['Veritas::Relation']['take'] = 'limit'
+    aliases['Veritas::Relation::Operation::Offset::Methods']['drop'] = 'offset'
+    aliases['Veritas::Relation::Operation::Limit::Methods']['take']  = 'limit'
 
     aliases['Veritas::Attribute::Numeric']['range'] = 'size'
     aliases['Veritas::Attribute::String']['range']  = 'length'

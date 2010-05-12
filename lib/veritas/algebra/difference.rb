@@ -21,6 +21,19 @@ module Veritas
         end
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:- => :difference)
+
+        def difference(other)
+          Difference.new(self, other)
+        end
+
+      end # module Methods
+
+      Relation.class_eval { include Methods }
+
     end # class Difference
   end # module Algebra
 end # module Veritas

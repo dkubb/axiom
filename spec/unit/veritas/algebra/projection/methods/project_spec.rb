@@ -1,6 +1,6 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation#project' do
+describe 'Veritas::Algebra::Projection::Methods#project' do
   subject { relation.project([ :id ]) }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }

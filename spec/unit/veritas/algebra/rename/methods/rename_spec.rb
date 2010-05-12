@@ -1,6 +1,6 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation#rename' do
+describe 'Veritas::Algebra::Rename::Methods#rename' do
   subject { relation.rename(:id => :other_id) }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }

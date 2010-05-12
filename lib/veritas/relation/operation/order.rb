@@ -62,6 +62,19 @@ module Veritas
           order.class.new(order.relation, directions)
         end
 
+        module Methods
+          def order(directions = yield(self))
+            Operation::Order.new(self, directions)
+          end
+
+          def directions
+            @directions ||= Operation::Order::DirectionSet.new([])
+          end
+
+        end # module Methods
+
+        Relation.class_eval { include Methods }
+
       end # class Order
     end # module Operation
   end # class Relation

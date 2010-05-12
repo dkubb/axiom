@@ -67,6 +67,19 @@ module Veritas
           self.class.new(offset.relation, to_i + offset.to_i)
         end
 
+        module Methods
+          extend Aliasable
+
+          inheritable_alias(:drop => :offset)
+
+          def offset(offset)
+            Operation::Offset.new(self, offset)
+          end
+
+        end # module Methods
+
+        Relation.class_eval { include Methods }
+
       end # class Offset
     end # module Operation
   end # class Relation

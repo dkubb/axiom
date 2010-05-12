@@ -73,6 +73,27 @@ module Veritas
           self.class.new(limit.relation, [ to_i, limit.to_i ].min)
         end
 
+        module Methods
+          extend Aliasable
+
+          inheritable_alias(:take => :limit)
+
+          def limit(limit)
+            Operation::Limit.new(self, limit)
+          end
+
+          def first(limit = 1)
+            limit(limit)
+          end
+
+          def last(limit = 1)
+            reverse.first(limit).reverse
+          end
+
+        end # module Methods
+
+        Relation.class_eval { include Methods }
+
       end # class Limit
     end # module Operation
   end # class Relation

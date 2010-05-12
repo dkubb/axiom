@@ -1,6 +1,6 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation#order' do
+describe 'Veritas::Relation::Operation::Order::Methods#order' do
   subject { relation.order(*args, &block) }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

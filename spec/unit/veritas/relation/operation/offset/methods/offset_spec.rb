@@ -1,7 +1,7 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
 [ :offset, :drop ].each do |method|
-  describe "Veritas::Relation##{method}" do
+  describe "Veritas::Relation::Operation::Offset::Methods##{method}" do
     subject { ordered.send(method, 1) }
 
     let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

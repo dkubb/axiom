@@ -30,6 +30,19 @@ module Veritas
         end
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:* => :product)
+
+        def product(other)
+          Product.new(self, other)
+        end
+
+      end # module Methods
+
+      Relation.class_eval { include Methods }
+
     end # class Product
   end # module Algebra
 end # module Veritas

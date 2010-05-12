@@ -1,6 +1,6 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation#predicate' do
+describe 'Veritas::Algebra::Restriction::Methods#predicate' do
   subject { relation.predicate }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

@@ -55,6 +55,33 @@ module Veritas
         @remainder_header ||= right.header - join_header
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:+ => :join)
+
+        def join(other, predicate = nil, &block)
+          if predicate || block_given?
+            theta_join(other, predicate, &block)
+          else
+            natural_join(other)
+          end
+        end
+
+      private
+
+        def natural_join(other)
+          Join.new(self, other)
+        end
+
+        def theta_join(other, *args, &block)
+          product(other).restrict(*args.compact, &block)
+        end
+
+      end # module Methods
+
+      Relation.class_eval { include Methods }
+
     end # class Join
   end # module Algebra
 end # module Veritas

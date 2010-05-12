@@ -1,9 +1,7 @@
-* Move factory methods for Logic and Alegbra operations into separate
-  classes underneath the namespace, eg:
+* Move methods for Logic operations into separate classes underneath
+  the namespace, eg:
   * Logic::Connective::Conjunction::Method#and should be defined,
     and the class included into Logic::Expression.
-  * Consider a better suffix than Method. Would Factory work here? I dunno
-    but there must be something better.
 
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:

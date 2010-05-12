@@ -1,6 +1,6 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation#remove' do
+describe 'Veritas::Algebra::Projection::Methods#remove' do
   subject { relation.remove([ :id ]) }
 
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }

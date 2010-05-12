@@ -1,6 +1,6 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require File.expand_path('../../../../../../../spec_helper', __FILE__)
 
-describe 'Veritas::Relation#reverse' do
+describe 'Veritas::Relation::Operation::Reverse::Methods#reverse' do
   subject { ordered.reverse }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

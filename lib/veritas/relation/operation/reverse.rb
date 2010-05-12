@@ -38,6 +38,15 @@ module Veritas
           optimize_relation.relation
         end
 
+        module Methods
+          def reverse
+            Operation::Reverse.new(self)
+          end
+
+        end # module Methods
+
+        Relation.class_eval { include Methods }
+
       end # class Limit
     end # module Operation
   end # class Relation
