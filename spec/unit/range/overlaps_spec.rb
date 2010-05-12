@@ -9,8 +9,8 @@ describe 'Range#overlaps?' do
   # self:   |---|
   # other:         |---|
   context 'before' do
-    let(:range) { 5..10 }
-    let(:other) { 1..4  }
+    let(:range) { 1..4  }
+    let(:other) { 5..10 }
 
     it { should be(false) }
 
@@ -22,8 +22,8 @@ describe 'Range#overlaps?' do
   # self:          |---|
   # other:  |---|
   context 'after' do
-    let(:range) { 5..10  }
-    let(:other) { 11..15 }
+    let(:range) { 5..10 }
+    let(:other) { 1..4  }
 
     it { should be(false) }
 
@@ -35,8 +35,8 @@ describe 'Range#overlaps?' do
   # self:  |---|
   # other:     |---|
   context 'meets' do
-    let(:range) { 5..10  }
-    let(:other) { 10..15 }
+    let(:range) { 1..5  }
+    let(:other) { 5..10 }
 
     it { should be(true) }
 
@@ -61,8 +61,8 @@ describe 'Range#overlaps?' do
   # self:  |---|
   # other:   |---|
   context 'overlaps' do
-    let(:range) { 5..10 }
-    let(:other) { 9..15 }
+    let(:range) { 1..6  }
+    let(:other) { 5..10 }
 
     it { should be(true) }
 
@@ -110,32 +110,6 @@ describe 'Range#overlaps?' do
     end
   end
 
-  # self:    |---|
-  # other: |-----|
-  context 'finishes' do
-    let(:range) { 5..10 }
-    let(:other) { 1..10 }
-
-    it { should be(true) }
-
-    it 'is symmetric' do
-      should == other.overlaps?(range)
-    end
-  end
-
-  # self:  |-----|
-  # other:   |---|
-  context 'finished_by' do
-    let(:range) { 1..10 }
-    let(:other) { 5..10 }
-
-    it { should be(true) }
-
-    it 'is symmetric' do
-      should == other.overlaps?(range)
-    end
-  end
-
   # self:     |---|
   # other:  |-------|
   context 'during' do
@@ -154,6 +128,32 @@ describe 'Range#overlaps?' do
   context 'contains' do
     let(:range) { 1..10 }
     let(:other) { 5..7  }
+
+    it { should be(true) }
+
+    it 'is symmetric' do
+      should == other.overlaps?(range)
+    end
+  end
+
+  # self:    |---|
+  # other: |-----|
+  context 'finishes' do
+    let(:range) { 5..10 }
+    let(:other) { 1..10 }
+
+    it { should be(true) }
+
+    it 'is symmetric' do
+      should == other.overlaps?(range)
+    end
+  end
+
+  # self:  |-----|
+  # other:   |---|
+  context 'finished_by' do
+    let(:range) { 1..10 }
+    let(:other) { 5..10 }
 
     it { should be(true) }
 
