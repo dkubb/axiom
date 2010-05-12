@@ -39,8 +39,9 @@ module Veritas
 
         def optimize_right_range
           right = self.right.to_inclusive
-          return [] if empty_right?           ||
-                       left_max < right.first ||
+          first = right.first
+          return [] if !right.include?(first) ||
+                       left_max < first       ||
                        left_min > right.last
           right
         end
@@ -57,18 +58,21 @@ module Veritas
           self.class.new(left, optimize_right)
         end
 
-        def empty_right?
-          right.each { return false }
-          true
-        end
-
         def not_comparable?
           right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
         end
 
         def includes_nothing?
-          right = optimize_right
-          right.nil? || right.respond_to?(:empty?) && right.empty?
+          right_nil? || right_empty?
+        end
+
+        def right_nil?
+          optimize_right.nil?
+        end
+
+        def right_empty?
+          optimize_right.each { return false }
+          true
         end
 
       end # class Inclusion
