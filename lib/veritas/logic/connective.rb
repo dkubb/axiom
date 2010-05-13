@@ -82,7 +82,7 @@ module Veritas
         end
 
         def optimized?
-          !(optimize_left.equal?(left) && optimize_right.equal?(right))
+          !optimize_left.equal?(left) || !optimize_right.equal?(right)
         end
 
       end # module BinaryConnective
