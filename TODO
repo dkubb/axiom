@@ -1,19 +1,6 @@
-* Move methods for Predicate, Proposition operations into separate modules
-  underneath the namespace
-
-* Consider removing optimizations from Proposition::True#and, #or and
-  Proposition::False#and, #or methods
-  * While these may be somewhat useful, without them the correct answer
-    can still be found, and their #optimize methods should handle
-    factoring out unnecessary operations. They are not consistent with
-    any other operation in Veritas in that they optimize and return
-    the expression.
-
-* Consider adding a complement class to each predicate (and other ops)
-
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
-    * Alias #== to #eq
+    * Alias #== to #eq (may break alot)
     * Alias #!= to #ne (in 1.9 only)
     * Alias #>= to #gte
     * Alias #> to #gt
@@ -35,6 +22,8 @@
     #call, and Predicate#call will become the same as BinaryConnective#call
   * Simplify #complement. Instead of Inequality#complement being
     Equality.new(left, right), it can just be left == right
+
+* Consider adding a complement class to each predicate (and other ops)
 
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a

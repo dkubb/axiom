@@ -26,6 +26,12 @@ module Veritas
           always_equivalent?
         end
 
+        module Methods
+          def ne(other)
+            Inequality.new(self, other)
+          end
+
+        end # module Methods
       end # class Inequality
     end # class Predicate
   end # module Algebra

@@ -26,6 +26,12 @@ module Veritas
           never_equivalent?
         end
 
+        module Methods
+          def eq(other)
+            Equality.new(self, other)
+          end
+
+        end # module Methods
       end # class Equality
     end # class Predicate
   end # module Logic

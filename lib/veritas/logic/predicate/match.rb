@@ -10,6 +10,12 @@ module Veritas
           "#{left.inspect} =~ #{right.inspect}"
         end
 
+        module Methods
+          def match(regexp)
+            Logic::Predicate::Match.new(self, regexp)
+          end
+
+        end # module Methods
       end # class Match
     end # class Predicate
   end # module Logic

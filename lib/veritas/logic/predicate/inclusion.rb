@@ -75,6 +75,12 @@ module Veritas
           true
         end
 
+        module Methods
+          def in(other)
+            Inclusion.new(self, other)
+          end
+
+        end # module Methods
       end # class Inclusion
     end # class Predicate
   end # module Logic

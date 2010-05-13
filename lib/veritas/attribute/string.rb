@@ -2,7 +2,7 @@ module Veritas
   class Attribute
     class String < Object
       extend Aliasable
-      include Orderable
+      include Orderable, Logic::Predicate::Match::Methods
 
       inheritable_alias(:range => :length)
 
@@ -19,10 +19,6 @@ module Veritas
 
       def valid_value?(value)
         validate(value) { super && length.include?(value.length) }
-      end
-
-      def match(regexp)
-        Logic::Predicate::Match.new(self, regexp)
       end
 
       def self.primitive

@@ -36,6 +36,12 @@ module Veritas
           end
         end
 
+        module Methods
+          def gt(other)
+            GreaterThan.new(self, other)
+          end
+
+        end # module Methods
       end # class GreaterThan
     end # class Predicate
   end # module Logic

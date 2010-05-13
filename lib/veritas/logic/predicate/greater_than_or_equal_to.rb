@@ -38,6 +38,12 @@ module Veritas
           end
         end
 
+        module Methods
+          def gte(other)
+            GreaterThanOrEqualTo.new(self, other)
+          end
+
+        end # module Methods
       end # class GreaterThanOrEqualTo
     end # class Predicate
   end # module Logic

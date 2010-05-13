@@ -38,6 +38,12 @@ module Veritas
           end
         end
 
+        module Methods
+          def lte(other)
+            LessThanOrEqualTo.new(self, other)
+          end
+
+        end # module Methods
       end # class LessThanOrEqualTo
     end # class Predicate
   end # module Logic

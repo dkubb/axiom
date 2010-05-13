@@ -36,6 +36,12 @@ module Veritas
           end
         end
 
+        module Methods
+          def lt(other)
+            LessThan.new(self, other)
+          end
+
+        end # module Methods
       end # class LessThan
     end # class Predicate
   end # module Logic
