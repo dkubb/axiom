@@ -48,7 +48,7 @@ module Veritas
     end
 
     def joinable?(other)
-      !(self.class <=> other.class).nil?
+      kind_of?(other.class) || other.kind_of?(self.class)
     end
 
     def <=>(other)

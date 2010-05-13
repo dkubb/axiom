@@ -5,7 +5,7 @@ module Veritas
 
       # TODO: figure out how to dry this up with Attribute#joinable?
       def comparable?(other)
-        !(self.class <=> other.class).nil?
+        kind_of?(other.class) || other.kind_of?(self.class)
       end
 
       def gte(other)
