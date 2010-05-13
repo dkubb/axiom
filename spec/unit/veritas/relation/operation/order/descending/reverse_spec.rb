@@ -8,7 +8,5 @@ describe 'Veritas::Relation::Operation::Order::Descending#reverse' do
 
   it { should be_kind_of(Relation::Operation::Order::Ascending) }
 
-  it 'sets the attribute' do
-    subject.attribute.should equal(attribute)
-  end
+  its(:attribute) { should equal(attribute) }
 end

@@ -24,7 +24,5 @@ describe 'Veritas::Relation::Operation::Order#wrap' do
     operation.relation.should equal(relation)
   end
 
-  it 'sets the directions' do
-    subject.directions.should == directions
-  end
+  its(:directions) { should == directions }
 end

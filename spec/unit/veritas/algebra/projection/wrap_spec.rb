@@ -24,7 +24,5 @@ describe 'Veritas::Algebra::Projection#wrap' do
     operation.relation.should equal(relation)
   end
 
-  it 'sets the header' do
-    subject.header.should == header
-  end
+  its(:header) { should == header }
 end

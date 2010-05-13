@@ -14,7 +14,7 @@ describe 'Veritas::Algebra::Projection' do
     end
 
     it 'returns a relation with a single tuple' do
-      subject.should == [ [ 'Dan Kubb' ] ]
+      should == [ [ 'Dan Kubb' ] ]
     end
 
     it { should have_tuples_matching_predicate }

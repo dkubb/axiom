@@ -25,7 +25,5 @@ describe 'Veritas::Relation::Operation::Limit#wrap' do
     operation.relation.should equal(relation)
   end
 
-  it 'sets the limit' do
-    subject.to_i.should == 1
-  end
+  its(:to_i) { should == 1 }
 end

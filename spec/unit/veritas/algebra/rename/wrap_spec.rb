@@ -24,7 +24,5 @@ describe 'Veritas::Algebra::Rename#wrap' do
     operation.relation.should equal(relation)
   end
 
-  it 'sets the aliases' do
-    subject.aliases.should == aliases
-  end
+  its(:aliases) { should == aliases }
 end

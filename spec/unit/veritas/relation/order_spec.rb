@@ -12,9 +12,7 @@ describe 'Veritas::Relation#order' do
 
     it { should be_kind_of(Relation::Operation::Order) }
 
-    it 'sets the directions' do
-      subject.directions.should == directions
-    end
+    its(:directions) { should == directions }
 
     it 'behaves the same as Array#sort_by' do
       should == relation.to_a.sort_by { |tuple| tuple[:id] }
@@ -27,9 +25,7 @@ describe 'Veritas::Relation#order' do
 
     it { should be_kind_of(Relation::Operation::Order) }
 
-    it 'sets the directions' do
-      subject.directions.should == block.call(relation)
-    end
+    its(:directions) { should == block.call(relation) }
 
     it 'behaves the same as Array#sort_by' do
       should == relation.to_a.sort_by { |tuple| tuple[:id] }

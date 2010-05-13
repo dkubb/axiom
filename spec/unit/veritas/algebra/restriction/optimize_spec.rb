@@ -38,9 +38,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it 'sets the predicate' do
-      subject.predicate.should eql(relation[:id].eq(1))
-    end
+    its(:predicate) { should eql(relation[:id].eq(1)) }
 
     its(:relation) { should equal(relation) }
 
@@ -58,9 +56,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it 'sets the predicate' do
-      subject.predicate.should equal(predicate)
-    end
+    its(:predicate) { should equal(predicate) }
 
     its(:relation) { should equal(relation) }
 
@@ -103,9 +99,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    it 'sets the predicate' do
-      subject.predicate.should eql(other_predicate & predicate)
-    end
+    its(:predicate) { should eql(other_predicate & predicate) }
 
     its(:relation) { should equal(relation) }
 

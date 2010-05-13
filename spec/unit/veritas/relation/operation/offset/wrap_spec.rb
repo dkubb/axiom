@@ -26,7 +26,5 @@ describe 'Veritas::Relation::Operation::Offset#wrap' do
     operation.relation.should equal(relation)
   end
 
-  it 'sets the offset' do
-    subject.to_i.should == 1
-  end
+  its(:to_i) { should == 1 }
 end

@@ -8,13 +8,9 @@ describe 'Veritas::Relation::Operation::Order.new' do
   context 'with all attributes specified in the directions' do
     let(:directions) { [ relation[:id] ] }
 
-    it 'sets the relation' do
-      subject.relation.should equal(relation)
-    end
+    its(:relation) { should equal(relation) }
 
-    it 'sets the directions' do
-      subject.directions.should == [ relation[:id].asc ]
-    end
+    its(:directions) { should == [ relation[:id].asc ] }
   end
 
   context 'without all attributes specified in the directions' do
