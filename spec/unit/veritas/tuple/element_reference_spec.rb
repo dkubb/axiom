@@ -12,7 +12,7 @@ describe 'Veritas::Tuple#[]' do
     it { should == 1 }
   end
 
-  context 'with an known attribute' do
+  context 'with an unknown attribute' do
     let(:attribute) { Attribute::Integer.new(:other_id) }
 
     it { should be_nil }
