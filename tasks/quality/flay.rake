@@ -2,8 +2,9 @@ begin
   require 'flay'
   require 'yaml'
 
-  config    = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
-  threshold = config.fetch('threshold').to_i
+  config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
+  threshold   = config.fetch('threshold').to_i
+  total_score = config.fetch('total_score').to_f
 
   # original code by Marty Andrews:
   # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
@@ -15,7 +16,12 @@ begin
 
     max = flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max
     unless max >= threshold
-      raise "Adjust flay score down to #{max}"
+      raise "Adjust flay threshold down to #{max}"
+    end
+
+    total = flay.masses.inject(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
+    unless total == total_score
+      raise "Flay total is now #{total}, but expected #{total_score}"
     end
 
     # run flay a second time with the threshold set
