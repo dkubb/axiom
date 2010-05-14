@@ -15,6 +15,7 @@ tmtags
 
 ## PROJECT::GENERAL
 coverage
+profiling
 measurements
 rdoc
 pkg
