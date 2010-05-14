@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Limit.new' do
   subject { Relation::Operation::Limit.new(relation, 1) }

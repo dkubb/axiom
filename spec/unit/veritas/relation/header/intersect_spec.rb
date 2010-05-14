@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 [ :intersect, :& ].each do |method|
   describe "Veritas::Relation::Header##{method}" do

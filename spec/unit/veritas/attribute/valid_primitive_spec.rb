@@ -1,4 +1,4 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Attribute#valid_primitive?' do
   subject { attribute.valid_primitive?(value) }

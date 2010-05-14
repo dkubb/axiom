@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Algebra::Projection#wrap' do
   subject { projection.wrap(header) { |relation| relation } }

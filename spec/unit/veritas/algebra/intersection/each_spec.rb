@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Algebra::Intersection#each' do
   subject { intersection.each { |tuple| yields << tuple } }

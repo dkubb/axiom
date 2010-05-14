@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 [ :limit, :take ].each do |method|
   describe "Veritas::Relation::Operation::Limit::Methods##{method}" do

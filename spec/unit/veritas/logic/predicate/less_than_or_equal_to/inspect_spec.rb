@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#inspect' do
   subject { less_than_or_equal_to.inspect }

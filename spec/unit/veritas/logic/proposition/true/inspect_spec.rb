@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition::True#inspect' do
   subject { true_proposition.inspect }

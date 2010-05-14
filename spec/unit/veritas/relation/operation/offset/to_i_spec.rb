@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Offset#to_i' do
   subject { offset.to_i }

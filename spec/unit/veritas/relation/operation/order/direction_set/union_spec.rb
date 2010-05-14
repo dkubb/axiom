@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 [ :union, :| ].each do |method|
   describe "Veritas::Relation::Operation::Order::DirectionSet##{method}" do

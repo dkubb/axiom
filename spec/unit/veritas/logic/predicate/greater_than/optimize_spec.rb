@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::GreaterThan#optimize' do
   subject { greater_than.optimize }

@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Algebra::Join#each' do
   subject { join.each { |tuple| yields << tuple } }

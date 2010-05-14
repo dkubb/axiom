@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Algebra::Rename#each' do
   subject { rename.each { |tuple| yields << tuple } }

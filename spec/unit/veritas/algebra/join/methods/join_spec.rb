@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 [ :join, :+ ].each do |method|
   describe "Veritas::Algebra::Join::Methods##{method}" do

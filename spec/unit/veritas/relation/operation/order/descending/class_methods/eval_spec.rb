@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Descending.eval' do
   subject { Relation::Operation::Order::Descending.eval(left, right) }

@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate.eval' do
   subject { Logic::Predicate.eval(1, 1) }

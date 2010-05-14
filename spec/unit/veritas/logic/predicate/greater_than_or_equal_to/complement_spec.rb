@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#complement' do
   subject { greater_than_or_equal_to.complement }

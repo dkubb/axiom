@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 [ :length, :range ].each do |method|
   describe "Veritas::Attribute::String##{method}" do

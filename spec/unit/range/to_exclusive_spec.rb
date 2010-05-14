@@ -1,4 +1,4 @@
-require File.expand_path('../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Range#to_exclusive' do
   subject { range.to_exclusive }

@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   subject { directions.sort_tuples(relation) }

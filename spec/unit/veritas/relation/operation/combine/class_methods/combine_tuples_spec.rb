@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Combine.combine_tuples' do
   subject { Relation::Operation::Combine.combine_tuples(header, [ 1 ], [ [ 'Dan Kubb' ] ]) { |tuple| yields << tuple } }

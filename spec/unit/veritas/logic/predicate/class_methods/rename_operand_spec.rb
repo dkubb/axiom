@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate.rename_operand' do
   subject { Logic::Predicate.rename_operand(operand, aliases) }

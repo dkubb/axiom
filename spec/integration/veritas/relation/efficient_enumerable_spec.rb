@@ -1,4 +1,4 @@
-require File.expand_path('../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 # use an infinite list to simulate handling a large Array.
 # if any operation is inefficient, then the specs will never exit

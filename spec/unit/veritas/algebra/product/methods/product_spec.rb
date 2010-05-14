@@ -1,4 +1,4 @@
-require File.expand_path('../../../../../../spec_helper', __FILE__)
+require 'spec_helper'
 
 [ :product, :* ].each do |method|
   describe "Veritas::Algebra::Product::Methods##{method}" do
