@@ -3,9 +3,8 @@ source :rubygems
 group :development do
   gem 'rake',      '~> 0.8.7'
   gem 'rspec',     '~> 1.3'
-  gem 'yard',      '~> 0.5'
   gem 'jeweler',   '~> 1.4'
-  gem 'backports', '~> 1.14'
+  gem 'backports', '~> 1.17'
 end
 
 group :quality do
@@ -19,5 +18,6 @@ group :quality do
   gem 'reek',      '~> 1.2.8'
   gem 'roodi',     '~> 2.1'
   gem 'ruby2ruby', '=  1.2.2'
+  gem 'yard',      '~> 0.5'
   gem 'yardstick', '~> 0.1'
 end
