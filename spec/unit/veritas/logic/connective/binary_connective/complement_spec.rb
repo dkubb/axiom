@@ -15,8 +15,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#complement' do
     end
   end
 
-  it 'negates the connective' do
-    should eql(Logic::Connective::Negation.new(connective))
+  it 'complements the connective' do
+    should eql(Logic::Connective::Complement.new(connective))
   end
 
   it 'is reversible' do

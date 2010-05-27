@@ -1,7 +1,7 @@
 module Veritas
   module Logic
     class Connective
-      class Negation < Connective
+      class Complement < Connective
         attr_reader :operand
 
         def self.eval(value)
@@ -59,14 +59,14 @@ module Veritas
           inheritable_alias(:- => :not)
 
           def not(other)
-            self.and(Negation.new(other))
+            self.and(Complement.new(other))
           end
 
         end # module Methods
 
         Connective::Methods.class_eval { include Methods }
 
-      end # class Negation
+      end # class Complement
     end # class Connective
   end # module Logic
 end # module Veritas

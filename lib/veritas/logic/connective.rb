@@ -37,7 +37,7 @@ module Veritas
         end
 
         def complement
-          Negation.new(self)
+          Complement.new(self)
         end
 
         def optimize
@@ -99,6 +99,6 @@ end # module Veritas
 
 require 'veritas/logic/connective/conjunction'
 require 'veritas/logic/connective/disjunction'
-require 'veritas/logic/connective/negation'
+require 'veritas/logic/connective/complement'
 
 Veritas::Logic::Expression.class_eval { include Veritas::Logic::Connective::Methods }

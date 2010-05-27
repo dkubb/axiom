@@ -13,11 +13,11 @@ describe 'Veritas::Logic::Connective::Conjunction#optimize' do
     it { should equal(conjunction) }
   end
 
-  context 'left and right are negated predicates' do
+  context 'left and right are complemented predicates' do
     let(:conjunction) do
       Logic::Connective::Conjunction.new(
-        Logic::Connective::Negation.new(attribute.gt(1)),
-        Logic::Connective::Negation.new(attribute.lt(3))
+        Logic::Connective::Complement.new(attribute.gt(1)),
+        Logic::Connective::Complement.new(attribute.lt(3))
       )
     end
 
