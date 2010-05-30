@@ -162,6 +162,6 @@ begin
   end
 rescue LoadError
   task :heckle do
-    abort 'Heckle is not available. In order to run heckle, you must: gem install heckle'
+    abort 'Heckle or mspec is not available. In order to run heckle, you must: gem install heckle mspec'
   end
 end
