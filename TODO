@@ -3,6 +3,8 @@
     good test isolation. A single error can be shown in a few dozen
     specs, rather than just the spot that is under test.
 
+* Use flay to identify duplicate code and refactor
+
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
@@ -117,8 +119,6 @@
     set the object's error state, and then propagate the status to the
     caller. This will allow a "complex" predicate to set the errors
     on tuples, while still allowing all the same objects to be used.
-
-* Use Flay to identify duplicate code and refactor
 
 * Add Relation#antijoin
 
