@@ -1,3 +1,8 @@
+* Update specs to use a mockist approach rather than a classicist approach
+  * While the current approach is ok, it still doesn't give very
+    good test isolation. A single error can be shown in a few dozen
+    specs, rather than just the spot that is under test.
+
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
