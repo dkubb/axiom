@@ -8,7 +8,7 @@ UncommunicativeParameterName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LargeClass:
-  max_methods: 23
+  max_methods: 23  # TODO: decrease max_methods to 10-15 or less
   exclude: []
   enabled: true
   max_instance_variables: 4
@@ -21,7 +21,7 @@ UncommunicativeMethodName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LongParameterList:
-  max_params: 3
+  max_params: 3  # TODO: decrease max_params to 2
   exclude: []
   enabled: true
   overrides: {}
