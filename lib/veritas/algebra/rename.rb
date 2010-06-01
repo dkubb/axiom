@@ -94,7 +94,7 @@ module Veritas
       end
 
       def optimize_aliases
-        @optimize_aliases ||= optimize_relation.respond_to?(:aliases) ? union_aliases : aliases
+        optimize_relation.respond_to?(:aliases) ? union_aliases : aliases
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method
