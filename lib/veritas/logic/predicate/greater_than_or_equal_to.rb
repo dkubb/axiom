@@ -2,18 +2,14 @@ module Veritas
   module Logic
     class Predicate
       class GreaterThanOrEqualTo < Predicate
-        include ComparisonPredicate
+        include Comparable
 
-        def self.eval(left, right)
-          left >= right
+        def self.operation
+          :>=
         end
 
-        def complement
-          LessThan.new(left, right)
-        end
-
-        def inspect
-          "#{left.inspect} >= #{right.inspect}"
+        def self.complement
+          LessThan
         end
 
       private
@@ -23,11 +19,11 @@ module Veritas
         end
 
         def always_true?
-          always_equivalent? || left_min > right_max
+          always_equivalent? || self.class.complement.eval(right_max, left_min)
         end
 
         def always_false?
-          never_comparable? || left_max < right_min
+          never_comparable? || self.class.complement.eval(left_max, right_min)
         end
 
         def never_comparable?

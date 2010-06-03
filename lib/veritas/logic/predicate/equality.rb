@@ -2,18 +2,14 @@ module Veritas
   module Logic
     class Predicate
       class Equality < Predicate
-        include ComparisonPredicate
+        include Comparable
 
-        def self.eval(left, right)
-          left == right
+        def self.operation
+          :==
         end
 
-        def complement
-          Inequality.new(left, right)
-        end
-
-        def inspect
-          "#{left.inspect} == #{right.inspect}"
+        def self.complement
+          Inequality
         end
 
       private

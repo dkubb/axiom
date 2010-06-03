@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-05-27}
+  s.date = %q{2010-06-02}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -66,6 +66,7 @@ Gem::Specification.new do |s|
      "lib/veritas/logic/connective/disjunction.rb",
      "lib/veritas/logic/expression.rb",
      "lib/veritas/logic/predicate.rb",
+     "lib/veritas/logic/predicate/comparable.rb",
      "lib/veritas/logic/predicate/equality.rb",
      "lib/veritas/logic/predicate/greater_than.rb",
      "lib/veritas/logic/predicate/greater_than_or_equal_to.rb",
@@ -243,6 +244,10 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/logic/predicate/class_methods/extract_value_spec.rb",
      "spec/unit/veritas/logic/predicate/class_methods/range_or_value_spec.rb",
      "spec/unit/veritas/logic/predicate/class_methods/rename_operand_spec.rb",
+     "spec/unit/veritas/logic/predicate/comparable/class_methods/eval_spec.rb",
+     "spec/unit/veritas/logic/predicate/comparable/complement_spec.rb",
+     "spec/unit/veritas/logic/predicate/comparable/fixtures/classes.rb",
+     "spec/unit/veritas/logic/predicate/comparable/inspect_spec.rb",
      "spec/unit/veritas/logic/predicate/eql_spec.rb",
      "spec/unit/veritas/logic/predicate/equality/class_methods/eval_spec.rb",
      "spec/unit/veritas/logic/predicate/equality/complement_spec.rb",
@@ -593,6 +598,10 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/logic/predicate/class_methods/extract_value_spec.rb",
      "spec/unit/veritas/logic/predicate/class_methods/range_or_value_spec.rb",
      "spec/unit/veritas/logic/predicate/class_methods/rename_operand_spec.rb",
+     "spec/unit/veritas/logic/predicate/comparable/class_methods/eval_spec.rb",
+     "spec/unit/veritas/logic/predicate/comparable/complement_spec.rb",
+     "spec/unit/veritas/logic/predicate/comparable/fixtures/classes.rb",
+     "spec/unit/veritas/logic/predicate/comparable/inspect_spec.rb",
      "spec/unit/veritas/logic/predicate/eql_spec.rb",
      "spec/unit/veritas/logic/predicate/equality/class_methods/eval_spec.rb",
      "spec/unit/veritas/logic/predicate/equality/complement_spec.rb",
