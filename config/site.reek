@@ -81,7 +81,7 @@ SimulatedPolymorphism:
 DataClump:
   exclude: []
   enabled: true
-  max_copies: 2
+  max_copies: 1
   min_clump_size: 2
 ControlCouple:
   exclude: *id001
