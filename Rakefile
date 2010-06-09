@@ -19,7 +19,7 @@ begin
     gem.add_development_dependency 'rake',      '~> 0.8.7'
     gem.add_development_dependency 'rspec',     '~> 1.3'
     gem.add_development_dependency 'jeweler',   '~> 1.4'
-    gem.add_development_dependency 'backports', '~> 1.17'
+    gem.add_development_dependency 'backports', '~> 1.17.1'
   end
 
   Jeweler::GemcutterTasks.new
