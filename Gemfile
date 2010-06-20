@@ -4,7 +4,7 @@ group :development do
   gem 'rake',      '~> 0.8.7'
   gem 'rspec',     '~> 1.3'
   gem 'jeweler',   '~> 1.4'
-  gem 'backports', '~> 1.17.1'
+  gem 'backports', '~> 1.18'
 end
 
 group :quality do
