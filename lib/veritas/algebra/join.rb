@@ -4,14 +4,25 @@ module Veritas
       include Relation::Operation::Combine
 
       def self.new(left, right)
-        left_header, right_header = left.header, right.header
-        if (left_header & right_header).empty?
-          raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
-        elsif left_header == right_header
-          raise InvalidHeaderError, 'the headers are identical, use intersection instead'
+        assert_joinable_headers(left, right)
+        assert_not_equivalent_headers(left, right)
+        super
+      end
+
+      class << self
+      private
+
+        def assert_joinable_headers(left, right)
+          if (left.header & right.header).empty?
+            raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
+          end
         end
 
-        super
+        def assert_not_equivalent_headers(left, right)
+          if left.header == right.header
+            raise InvalidHeaderError, 'the headers are identical, use intersection instead'
+          end
+        end
       end
 
       def each(&block)

@@ -10,12 +10,18 @@ module Veritas
 
         module ClassMethods
           def new(left, right)
-            unless left.header == right.header
-              raise InvalidHeaderError, "the headers must be equivalent for #{name}.new"
-            end
-
+            assert_equivalent_headers(left, right)
             super
           end
+
+        private
+
+          def assert_equivalent_headers(left, right)
+            if left.header != right.header
+              raise InvalidHeaderError, "the headers must be equivalent for #{name}.new"
+            end
+          end
+
         end # module ClassMethods
       end # module Set
     end # module Operation

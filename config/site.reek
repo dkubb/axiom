@@ -26,16 +26,21 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: &id001 []
+  exclude: [
+    # both of these methods are utility class methods,
+    # incorrectly identified as instance methods
+    'Veritas::Relation::Operation::Limit#assert_valid_limit',
+    'Veritas::Relation::Operation::Offset#assert_valid_offset'
+  ]
   enabled: true
 ClassVariable:
-  exclude: *id001
+  exclude: []
   enabled: true
 BooleanParameter:
-  exclude: *id001
+  exclude: []
   enabled: true
 IrresponsibleModule:
-  exclude: *id001
+  exclude: []
   enabled: false  # TODO: set to true when all classes/modules are documented
 UncommunicativeModuleName:
   accept: []
@@ -79,12 +84,19 @@ SimulatedPolymorphism:
   enabled: true
   max_ifs: 2
 DataClump:
-  exclude: []
+  exclude: [
+    # all of these classes have utility class methods that are
+    # incorrectly identified as instance methods
+    Veritas::Algebra::Join,
+    Veritas::Relation::Operation::Binary::ClassMethods,
+    Veritas::Relation::Operation::Set::ClassMethods,
+    Veritas::Relation::Operation::Order
+  ]
   enabled: true
   max_copies: 1
   min_clump_size: 2
 ControlCouple:
-  exclude: *id001
+  exclude: []
   enabled: true
 LongYieldList:
   max_params: 1

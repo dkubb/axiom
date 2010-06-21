@@ -8,12 +8,19 @@ module Veritas
 
         def self.new(relation, directions)
           directions = DirectionSet.new(directions)
+          assert_order_by_full_header(relation, directions)
+          super
+        end
 
-          if relation.header.to_set != directions.attributes.to_set
-            raise ArgumentError, 'directions must include every attribute in the header'
+        class << self
+        private
+
+          def assert_order_by_full_header(relation, directions)
+            if relation.header.to_set != directions.attributes.to_set
+              raise InvalidDirectionsError, 'directions must include every attribute in the header'
+            end
           end
 
-          super
         end
 
         def initialize(relation, directions)

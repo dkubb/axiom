@@ -9,7 +9,7 @@ describe 'Veritas::Relation::Operation::Offset.new' do
     let(:relation) { original_relation.order { |r| r[:id] } }
     let(:offset)   { 1                                      }
 
-    it { should be_kind_of(Relation::Operation::Offset)  }
+    it { should be_kind_of(Relation::Operation::Offset) }
   end
 
   context 'without an ordered relation' do

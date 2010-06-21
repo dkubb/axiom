@@ -5,11 +5,26 @@ module Veritas
         include Unary
 
         def self.new(relation, limit)
-          if relation.directions.empty?
-            raise OrderedRelationRequiredError, 'can only limit an ordered relation'
+          assert_ordered_relation(relation)
+          assert_valid_limit(limit)
+          super
+        end
+
+        class << self
+        private
+
+          def assert_ordered_relation(relation)
+            if relation.directions.empty?
+              raise OrderedRelationRequiredError, 'can only limit an ordered relation'
+            end
           end
 
-          super
+          def assert_valid_limit(limit)
+            if limit < 0
+              raise InvalidLimitError, "limit must be greater than or equal to 0, but was #{limit.inspect}"
+            end
+          end
+
         end
 
         def initialize(relation, limit)

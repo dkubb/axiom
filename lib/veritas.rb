@@ -22,7 +22,9 @@ require 'veritas/version'
 
 module Veritas
   class InvalidHeaderError < ArgumentError; end
+  class InvalidLimitError < ArgumentError; end
   class InvalidOffsetError < ArgumentError; end
+  class InvalidDirectionsError < ArgumentError; end
   class OrderedRelationRequiredError < StandardError; end
   class RelationMismatchError < StandardError; end
 

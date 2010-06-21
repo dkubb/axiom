@@ -5,15 +5,26 @@ module Veritas
         include Unary
 
         def self.new(relation, offset)
-          if relation.directions.empty?
-            raise OrderedRelationRequiredError, 'can only offset an ordered relation'
-          end
-
-          unless offset >= 0
-            raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
-          end
-
+          assert_ordered_relation(relation)
+          assert_valid_offset(offset)
           super
+        end
+
+        class << self
+        private
+
+          def assert_ordered_relation(relation)
+            if relation.directions.empty?
+              raise OrderedRelationRequiredError, 'can only offset an ordered relation'
+            end
+          end
+
+          def assert_valid_offset(offset)
+            if offset < 0
+              raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
+            end
+          end
+
         end
 
         def initialize(relation, offset)

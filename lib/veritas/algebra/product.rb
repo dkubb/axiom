@@ -4,11 +4,19 @@ module Veritas
       include Relation::Operation::Combine
 
       def self.new(left, right)
-        unless (left.header & right.header).empty?
-          raise InvalidHeaderError, "the headers must be disjointed for #{name}.new"
+        assert_disjointed_headers(left, right)
+        super
+      end
+
+      class << self
+      private
+
+        def assert_disjointed_headers(left, right)
+          if (left.header & right.header).any?
+            raise InvalidHeaderError, "the headers must be disjointed for #{name}.new"
+          end
         end
 
-        super
       end
 
       def each(&block)

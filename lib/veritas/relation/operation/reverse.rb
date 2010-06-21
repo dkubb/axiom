@@ -3,12 +3,19 @@ module Veritas
     module Operation
       class Reverse < Order
         def self.new(relation)
-          directions = relation.directions
-          if directions.empty?
-            raise OrderedRelationRequiredError, 'can only reverse an ordered relation'
+          assert_ordered_relation(relation)
+          super(relation, relation.directions.reverse)
+        end
+
+        class << self
+        private
+
+          def assert_ordered_relation(relation)
+            if relation.directions.empty?
+              raise OrderedRelationRequiredError, 'can only reverse an ordered relation'
+            end
           end
 
-          super(relation, directions.reverse)
         end
 
         def each(&block)

@@ -48,14 +48,19 @@ module Veritas
 
         module ClassMethods
           def new(left, right)
-            unless left.directions.empty? == right.directions.empty?
-              raise RelationMismatchError, 'both relations must be ordered or neither may be ordered'
-            end
-
+            assert_ordered_match(left, right)
             super
           end
-        end
 
+        private
+
+          def assert_ordered_match(left, right)
+            if left.directions.empty? != right.directions.empty?
+              raise RelationMismatchError, 'both relations must be ordered or neither may be ordered'
+            end
+          end
+
+        end # module ClassMethods
       end # module Binary
     end # module Operation
   end # class Relation
