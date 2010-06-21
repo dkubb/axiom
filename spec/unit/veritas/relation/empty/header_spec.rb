@@ -6,4 +6,6 @@ describe 'Veritas::Relation::Empty#header' do
   let(:empty) { Relation::Empty.new([ [ :id, Integer ] ]) }
 
   it { should == [ [ :id, Integer ] ] }
+
+  it_should_behave_like 'an idempotent method'
 end

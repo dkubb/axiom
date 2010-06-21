@@ -45,6 +45,8 @@ module Veritas
           optimize_relation.relation
         end
 
+        memoize :new_optimized_operation
+
         module Methods
           def reverse
             Operation::Reverse.new(self)

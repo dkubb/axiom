@@ -14,6 +14,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is a TABLE_DUM' do
@@ -24,6 +26,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left is a TABLE_DUM when optimized' do
@@ -34,6 +38,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is a TABLE_DUM when optimized' do
@@ -44,6 +50,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left is a TABLE_DEE' do
@@ -54,6 +62,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is a TABLE_DEE' do
@@ -64,6 +74,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left is a TABLE_DEE when optimized' do
@@ -74,6 +86,8 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is a TABLE_DEE when optimized' do
@@ -84,11 +98,15 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are normal relations' do
     let(:product) { Algebra::Product.new(left, right) }
 
     it { should equal(product) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

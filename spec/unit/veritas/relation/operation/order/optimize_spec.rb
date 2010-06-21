@@ -10,6 +10,8 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     let(:order) { relation.order(directions) }
 
     it { should equal(order) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an optimizable relation' do
@@ -21,6 +23,8 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == order
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an order operation' do
@@ -32,6 +36,8 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == order
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a reverse operation' do
@@ -43,6 +49,8 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == order
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a limit(1) operation' do
@@ -54,5 +62,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == order
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 end

@@ -8,4 +8,6 @@ describe 'Veritas::Relation::Header#hash' do
   it { should be_kind_of(Integer) }
 
   it { should == header.to_ary.hash }
+
+  it_should_behave_like 'an idempotent method'
 end

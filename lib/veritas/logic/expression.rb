@@ -2,7 +2,7 @@ module Veritas
   module Logic
     class Expression
       extend Aliasable
-      include AbstractClass, Optimizable
+      include AbstractClass, Immutable, Optimizable
 
       # alias #! to #complement in Ruby 1.9
       inheritable_alias('!' => :complement) if respond_to?('!')

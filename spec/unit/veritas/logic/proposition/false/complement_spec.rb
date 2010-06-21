@@ -10,4 +10,6 @@ describe 'Veritas::Logic::Proposition::False#complement' do
   it 'is reversible' do
     subject.complement.should eql(false_proposition)
   end
+
+  it_should_behave_like 'an idempotent method'
 end

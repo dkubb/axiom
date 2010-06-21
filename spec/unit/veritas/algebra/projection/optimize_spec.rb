@@ -13,6 +13,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'when the attributes are equivalent to the relation headers, and not in the same order' do
@@ -21,12 +23,16 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'does not factor out the projection, because tuple order is currently significant' do
       should equal(projection)
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'when the attributes are different from the relation headers' do
     let(:projection) { Algebra::Projection.new(relation, [ :id ]) }
 
     it { should equal(projection) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an empty relation' do
@@ -38,6 +44,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an empty relation when optimized' do
@@ -49,6 +57,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an optimizable relation' do
@@ -66,6 +76,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a projection' do
@@ -83,6 +95,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a set operation' do
@@ -101,6 +115,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a set operation containing a projection' do
@@ -116,5 +132,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == projection
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 end

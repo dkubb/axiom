@@ -1,5 +1,6 @@
 module PredicateComparableSpecs
   class Object
+    include Immutable
     include Veritas::Logic::Predicate::Comparable
 
     attr_reader :left, :right
@@ -9,19 +10,12 @@ module PredicateComparableSpecs
     end
 
     def self.complement
-      Complement
+      self
     end
 
     def initialize(left, right)
       @left, @right = left, right
     end
+
   end # class Object
-
-  class Complement
-    attr_reader :left, :right
-
-    def initialize(left, right)
-      @left, @right = left, right
-    end
-  end # class Complement
 end # module PredicateComparableSpecs

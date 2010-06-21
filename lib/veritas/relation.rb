@@ -1,4 +1,11 @@
 require 'veritas/relation/header'
+
+module Veritas
+  class Relation
+    include Immutable
+  end
+end
+
 require 'veritas/relation/materialized'
 require 'veritas/relation/empty'
 
@@ -65,6 +72,8 @@ module Veritas
     def new_empty_relation
       Relation::Empty.new(header)
     end
+
+    memoize :new_empty_relation
 
   end # class Relation
 end # module Veritas

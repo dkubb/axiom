@@ -13,6 +13,8 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == unary_operation
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'with an non-empty relation' do
@@ -34,5 +36,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     it { should be_instance_of(UnaryOperationSpecs::Object) }
 
     its(:relation) { should equal(relation) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

@@ -11,11 +11,15 @@ describe 'Veritas::Relation::Materialized#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == relation
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'with an nonempty Array' do
     let(:relation) { Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
     it { should equal(relation) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

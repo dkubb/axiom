@@ -8,7 +8,7 @@ module Veritas
       end
 
       def predicate
-        @predicate ||= Logic::Proposition::False.instance
+        Logic::Proposition::False.instance
       end
 
     end # class Empty

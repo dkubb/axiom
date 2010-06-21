@@ -78,6 +78,8 @@ module Veritas
           self.class.new(offset.relation, to_i + offset.to_i)
         end
 
+        memoize :new_optimized_operation, :use_offset_sum
+
         module Methods
           extend Aliasable
 

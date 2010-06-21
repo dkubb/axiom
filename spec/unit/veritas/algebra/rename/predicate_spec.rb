@@ -11,6 +11,8 @@ describe 'Veritas::Algebra::Rename#predicate' do
     let(:rename) { Algebra::Rename.new(empty, aliases) }
 
     it { should equal(Logic::Proposition::False.instance) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a relation' do
@@ -18,6 +20,8 @@ describe 'Veritas::Algebra::Rename#predicate' do
     let(:rename)   { Algebra::Rename.new(relation, aliases) }
 
     it { should equal(Logic::Proposition::True.instance) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a relation with a predicate' do
@@ -26,5 +30,7 @@ describe 'Veritas::Algebra::Rename#predicate' do
     let(:rename)      { Algebra::Rename.new(restriction, aliases) }
 
     it { should eql(Attribute::Integer.new(:other_id).eq(1)) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

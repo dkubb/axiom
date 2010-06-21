@@ -24,7 +24,7 @@ module Veritas
       end
 
       def hash
-        @hash ||= call.hash
+        call.hash
       end
 
     end # class Proposition

@@ -11,7 +11,5 @@ describe 'Veritas::Relation::Operation::Order#directions' do
 
   it { should == directions }
 
-  it 'is consistent' do
-    should equal(order.directions)
-  end
+  it_should_behave_like 'an idempotent method'
 end

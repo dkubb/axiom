@@ -9,4 +9,6 @@ describe 'Veritas::Tuple#hash' do
   it { should be_kind_of(Integer) }
 
   it { should == header.hash ^ [ 1 ].hash }
+
+  it_should_behave_like 'an idempotent method'
 end

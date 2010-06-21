@@ -14,4 +14,6 @@ describe 'Veritas::Logic::Connective::Complement#complement' do
   it 'is not reversible' do
     subject.complement.should_not eql(complement)
   end
+
+  it_should_behave_like 'an idempotent method'
 end

@@ -9,4 +9,6 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#hash' do
   it { should be_kind_of(Integer) }
 
   it { should == [ attribute.asc ].hash }
+
+  it_should_behave_like 'an idempotent method'
 end

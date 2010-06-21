@@ -11,7 +11,5 @@ describe 'Veritas::Relation::Operation::Unary#directions' do
 
   it { should equal(relation.directions) }
 
-  it 'is consistent' do
-    should equal(unary_operation.directions)
-  end
+  it_should_behave_like 'an idempotent method'
 end

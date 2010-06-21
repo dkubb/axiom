@@ -9,4 +9,6 @@ describe 'Veritas::Attribute#hash' do
   it { should be_kind_of(Integer) }
 
   it { should == name.hash }
+
+  it_should_behave_like 'an idempotent method'
 end

@@ -64,7 +64,7 @@ module Veritas
       end
 
       def optimize_predicate
-        @optimize_predicate ||= predicate.optimize
+        predicate.optimize
       end
 
       def combine_restrictions
@@ -81,13 +81,15 @@ module Veritas
         optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
       end
 
+      memoize :new_optimized_operation, :combine_restrictions, :wrap_with_operation, :wrap_with_order
+
       module Methods
         def restrict(predicate = yield(self))
           Restriction.new(self, predicate)
         end
 
         def predicate
-          @predicate ||= Logic::Proposition::True.instance
+          Logic::Proposition::True.instance
         end
 
       end # module Methods

@@ -34,6 +34,8 @@ module Veritas
           end
         end
 
+        memoize :swap
+
         module Methods
           def lt(other)
             LessThan.new(self, other)

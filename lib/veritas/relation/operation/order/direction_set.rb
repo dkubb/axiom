@@ -4,7 +4,7 @@ module Veritas
       class Order
         class DirectionSet
           extend Aliasable
-          include Enumerable
+          include Enumerable, Immutable
 
           inheritable_alias(:| => :union)
 
@@ -60,7 +60,7 @@ module Veritas
           end
 
           def hash
-            @hash ||= to_ary.hash
+            to_ary.hash
           end
 
           def empty?

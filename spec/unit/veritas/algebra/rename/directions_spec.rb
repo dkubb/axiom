@@ -13,9 +13,7 @@ describe 'Veritas::Algebra::Rename#directions' do
 
     it { should be_empty }
 
-    it 'is consistent' do
-      should equal(rename.directions)
-    end
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an ordered relation' do
@@ -26,8 +24,6 @@ describe 'Veritas::Algebra::Rename#directions' do
 
     it { should == [ Attribute::Integer.new(:other_id).asc ] }
 
-    it 'is consistent' do
-      should equal(rename.directions)
-    end
+    it_should_behave_like 'an idempotent method'
   end
 end

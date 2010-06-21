@@ -10,6 +10,8 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
     let(:complement) { Logic::Connective::Complement.new(operand) }
 
     it { should eql(attribute.lte(1)) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'operand is a complemented predicate' do
@@ -18,6 +20,8 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
     let(:complement) { Logic::Connective::Complement.new(operand)   }
 
     it { should eql(predicate) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'operand is a true proposition' do
@@ -25,6 +29,8 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
     let(:complement) { Logic::Connective::Complement.new(operand) }
 
     it { should equal(Logic::Proposition::False.instance) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'operand is a false proposition' do
@@ -32,5 +38,7 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
     let(:complement) { Logic::Connective::Complement.new(operand) }
 
     it { should equal(Logic::Proposition::True.instance) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

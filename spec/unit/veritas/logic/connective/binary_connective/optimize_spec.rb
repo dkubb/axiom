@@ -14,6 +14,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     let(:right) { attribute.gt(1) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are the same, after optimizing the left' do
@@ -21,6 +23,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     let(:right) { attribute.gt(1)                                      }
 
     it { should equal(original_left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are the same, after optimizing the right' do
@@ -28,6 +32,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     let(:right) { attribute.gt(1).and(Logic::Proposition::True.instance) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are different' do
@@ -50,6 +56,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     its(:left) { should equal(original_left) }
 
     its(:right) { should equal(right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are different, after optimizing the right' do
@@ -63,22 +71,20 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     its(:left) { should equal(left) }
 
     its(:right) { should equal(original_right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'self and right are the same, and left and right.left are the same' do
-    let(:left)  { attribute.eq(1)                                                     }
-    let(:right) { BinaryConnectiveSpecs::Object.new(attribute.eq(1), attribute.ne(5)) }
+    let(:left)  { attribute.eq(1)                                                                  }
+    let(:right) { mock('BinaryConnective', :class => BinaryConnectiveSpecs::Object, :left => left) }
 
     before do
-      mod = Module.new do
-        def optimize
-          self
-        end
-      end
-
-      right.extend(mod)
+      right.stub!(:optimize => right)
     end
 
     it { should equal(right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

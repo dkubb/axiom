@@ -8,17 +8,17 @@ describe 'Veritas::Aliasable#inheritable_alias' do
   let(:aliasable) { klass.new                         }
   let(:aliases)   { { :other => :test }               }
 
-  it 'should return the class' do
+  it 'returns the class' do
     should equal(klass)
   end
 
-  it 'should create a method #other' do
+  it 'creates a method #other' do
     aliasable.should_not respond_to(:other)
     subject
     aliasable.should respond_to(:other)
   end
 
-  it 'should alias #other to #test' do
+  it 'aliases #other to #test' do
     subject
     retval = mock('Return Value')
     aliasable.should_receive(:test).and_return(retval)
@@ -37,7 +37,7 @@ describe 'Veritas::Aliasable#inheritable_alias' do
     aliasable.other.first.split(':')[0, 2].should == [  File.expand_path('../../../../../lib/veritas/support/aliasable.rb', __FILE__), '7' ]
   end
 
-  it 'should set the file and line number' do
+  it 'sets the file and line number' do
     if RUBY_PLATFORM[/java/]
       pending('Kernel#caller returns the incorrect line number in JRuby', &specification)
     else

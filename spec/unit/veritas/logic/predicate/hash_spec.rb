@@ -10,4 +10,6 @@ describe 'Veritas::Logic::Predicate#hash' do
   it { should be_kind_of(Integer) }
 
   it { should == attribute.hash ^ 1.hash }
+
+  it_should_behave_like 'an idempotent method'
 end

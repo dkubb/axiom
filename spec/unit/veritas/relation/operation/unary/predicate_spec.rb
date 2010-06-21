@@ -8,4 +8,6 @@ describe 'Veritas::Relation::Operation::Unary#predicate' do
   let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
 
   it { should equal(relation.predicate) }
+
+  it_should_behave_like 'an idempotent method'
 end

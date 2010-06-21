@@ -7,4 +7,6 @@ describe 'Veritas::Tuple#header' do
   let(:tuple)  { Tuple.new(header, [ 1 ])                   }
 
   it { should equal(header) }
+
+  it_should_behave_like 'an idempotent method'
 end

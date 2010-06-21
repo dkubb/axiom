@@ -4,6 +4,7 @@ module Veritas
       include AbstractClass
 
       module BinaryConnective
+        include Immutable
         include Operation::Binary
 
         def call(tuple)
@@ -59,7 +60,7 @@ module Veritas
         end
 
         def hash
-          @hash ||= left.hash ^ right.hash
+          left.hash ^ right.hash
         end
 
       private
@@ -74,11 +75,11 @@ module Veritas
         end
 
         def optimize_left
-          @optimize_left ||= left.optimize
+          left.optimize
         end
 
         def optimize_right
-          @optimize_right ||= right.optimize
+          right.optimize
         end
 
         def new_optimized_connective
@@ -88,6 +89,8 @@ module Veritas
         def optimized?
           !optimize_left.equal?(left) || !optimize_right.equal?(right)
         end
+
+        memoize :complement, :new_optimized_connective
 
       end # module BinaryConnective
 

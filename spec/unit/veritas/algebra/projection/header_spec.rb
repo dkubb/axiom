@@ -9,4 +9,6 @@ describe 'Veritas::Algebra::Projection#header' do
   it { should be_kind_of(Relation::Header) }
 
   it { should == [ [ :id, Integer ] ] }
+
+  it_should_behave_like 'an idempotent method'
 end

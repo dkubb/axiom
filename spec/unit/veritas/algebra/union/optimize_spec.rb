@@ -17,6 +17,8 @@ describe 'Veritas::Algebra::Union#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == union
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is an empty relation' do
@@ -28,6 +30,8 @@ describe 'Veritas::Algebra::Union#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == union
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left is an empty relation when optimized' do
@@ -39,6 +43,8 @@ describe 'Veritas::Algebra::Union#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == union
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is an empty relation when optimized' do
@@ -50,6 +56,8 @@ describe 'Veritas::Algebra::Union#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == union
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are not empty relations' do
@@ -57,6 +65,8 @@ describe 'Veritas::Algebra::Union#optimize' do
     let(:right) { original_right }
 
     it { should equal(union) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are equivalent relations' do
@@ -68,5 +78,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == union
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 end

@@ -17,7 +17,7 @@ require 'veritas/attribute/string'
 
 module Veritas
   class Attribute
-    include AbstractClass, ::Comparable
+    include AbstractClass, Immutable, ::Comparable
 
     attr_reader :name
 
@@ -63,7 +63,7 @@ module Veritas
     end
 
     def hash
-      @hash ||= name.hash
+      name.hash
     end
 
     def inspect

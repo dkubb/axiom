@@ -2,7 +2,7 @@ module Veritas
   class Relation
     class Header
       extend Aliasable
-      include Enumerable
+      include Enumerable, Immutable
 
       inheritable_alias(
         :& => :intersect,
@@ -68,7 +68,7 @@ module Veritas
       end
 
       def hash
-        @hash ||= to_ary.hash
+        to_ary.hash
       end
 
       def empty?

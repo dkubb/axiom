@@ -1,5 +1,6 @@
 module CombineOperationSpecs
   class Object
+    include Immutable
     include Veritas::Relation::Operation::Combine
 
     def each

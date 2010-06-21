@@ -1,5 +1,7 @@
 module Veritas
   class Tuple
+    include Immutable
+
     attr_reader :header
 
     def initialize(header, data)
@@ -34,7 +36,7 @@ module Veritas
     end
 
     def hash
-      @hash ||= header.hash ^ to_ary.hash
+      header.hash ^ to_ary.hash
     end
 
     def inspect

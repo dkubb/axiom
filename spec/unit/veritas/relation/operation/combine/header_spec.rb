@@ -13,4 +13,6 @@ describe 'Veritas::Relation::Operation::Combine#header' do
   it 'unions the headers' do
     should == [ [ :id, Integer ], [ :name, String ] ]
   end
+
+  it_should_behave_like 'an idempotent method'
 end

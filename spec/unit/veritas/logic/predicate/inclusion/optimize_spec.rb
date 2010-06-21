@@ -13,6 +13,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
           it { should equal(Logic::Proposition::False.instance) }
+
+          it_should_behave_like 'an idempotent method'
         end
 
         context 'and not empty' do
@@ -20,6 +22,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
           it { should equal(inclusion) }
+
+          it_should_behave_like 'an idempotent method'
         end
       end
 
@@ -29,6 +33,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
           let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
           it { should equal(Logic::Proposition::False.instance) }
+
+          it_should_behave_like 'an idempotent method'
         end
 
         context 'and not empty' do
@@ -38,6 +44,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
           it 'changes the Range to be inclusive' do
             should eql(left.in(1..9))
           end
+
+          it_should_behave_like 'an idempotent method'
         end
       end
 
@@ -46,6 +54,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, 'a'..'z') }
 
         it { should equal(Logic::Proposition::False.instance) }
+
+        it_should_behave_like 'an idempotent method'
       end
 
       context 'that is greater than the left range' do
@@ -53,6 +63,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
+
+        it_should_behave_like 'an idempotent method'
       end
 
       context 'that is less than the left range' do
@@ -60,6 +72,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
+
+        it_should_behave_like 'an idempotent method'
       end
     end
 
@@ -69,6 +83,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
+
+        it_should_behave_like 'an idempotent method'
       end
 
       context 'that is empty after filtering invalid values' do
@@ -76,6 +92,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should equal(Logic::Proposition::False.instance) }
+
+        it_should_behave_like 'an idempotent method'
       end
 
       context 'that is not empty after filtering invalid values' do
@@ -83,6 +101,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
         let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
         it { should eql(left.in([ 1 ])) }
+
+        it_should_behave_like 'an idempotent method'
       end
     end
 
@@ -91,6 +111,8 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
       let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
       it { should equal(Logic::Proposition::False.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
   end
 end

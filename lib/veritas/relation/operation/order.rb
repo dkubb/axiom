@@ -69,14 +69,20 @@ module Veritas
           order.class.new(order.relation, directions)
         end
 
+        memoize :new_optimized_operation, :drop_no_op_order
+
         module Methods
+          include Immutable
+
           def order(directions = yield(self))
             Operation::Order.new(self, directions)
           end
 
           def directions
-            @directions ||= Operation::Order::DirectionSet.new([])
+            Operation::Order::DirectionSet.new([])
           end
+
+          memoize :directions
 
         end # module Methods
 

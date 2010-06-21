@@ -6,9 +6,14 @@ describe 'Veritas::Logic::Proposition#hash' do
 
   let(:proposition) { PropositionSpecs::Object.new }
 
-  it 'hashes the results of self.class.eval' do
-    response = mock('#eval response')
-    PropositionSpecs::Object.should_receive(:eval).with(no_args).and_return(response)
-    should == response.hash
+  before do
+    @response = mock('#eval response')
+    PropositionSpecs::Object.should_receive(:eval).with(no_args).at_least(:once).and_return(@response)
   end
+
+  it 'hashes the results of self.class.eval' do
+    should == @response.hash
+  end
+
+  it_should_behave_like 'an idempotent method'
 end

@@ -12,7 +12,5 @@ describe 'Veritas::Relation::Operation::Binary#directions' do
 
   it { should == [ left[:id].asc, right[:name].asc ] }
 
-  it 'is consistent' do
-    should equal(binary_operation.directions)
-  end
+  it_should_behave_like 'an idempotent method'
 end

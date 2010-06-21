@@ -11,7 +11,7 @@ module Veritas
       end
 
       def header
-        @header ||= relation.header.rename(aliases)
+        relation.header.rename(aliases)
       end
 
       def each(&block)
@@ -22,11 +22,11 @@ module Veritas
       end
 
       def directions
-        @directions ||= relation.directions.rename(aliases)
+        relation.directions.rename(aliases)
       end
 
       def predicate
-        @predicate ||= relation.predicate.rename(aliases)
+        relation.predicate.rename(aliases)
       end
 
       def optimize
@@ -114,6 +114,8 @@ module Veritas
 
         other_aliases
       end
+
+      memoize :header, :directions, :predicate, :new_optimized_operation, :optimize_rename, :wrap_with_projection, :wrap_with_restriction, :wrap_with_operation, :wrap_with_order
 
       module Methods
         def rename(aliases)

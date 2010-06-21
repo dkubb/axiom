@@ -28,7 +28,7 @@ Autotest.add_hook :initialize do |at|
   end
 
   # run all specs if the spec_helper or spec support lib are modified
-  at.add_mapping(%r{\Aspec/(?:spec_helper\.rb|support/.+)\z}) do
+  at.add_mapping(%r{\Aspec/(?:spec_helper\.rb|(?:support|shared)/.+)\z}) do
     at.files_matching MATCH_ALL_SPECS
   end
 

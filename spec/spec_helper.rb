@@ -6,8 +6,8 @@ require 'spec/autorun'
 
 include Veritas
 
-# require spec support files
-Dir[File.expand_path('../support/**/*.rb', __FILE__)].each { |f| require f }
+# require spec support files and shared behavior
+Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each { |f| require f }
 
 Spec::Runner.configure do |config|
 end

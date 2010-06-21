@@ -11,4 +11,6 @@ describe 'Veritas::Relation::Operation::Binary#header' do
   it { should be_kind_of(Relation::Header) }
 
   it { should == [ [ :id, Integer ], [ :name, String ] ] }
+
+  it_should_behave_like 'an idempotent method'
 end

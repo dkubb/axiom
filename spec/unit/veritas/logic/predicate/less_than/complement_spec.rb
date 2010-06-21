@@ -11,4 +11,6 @@ describe 'Veritas::Logic::Predicate::LessThan#complement' do
   it 'is reversible' do
     subject.complement.should eql(less_than)
   end
+
+  it_should_behave_like 'an idempotent method'
 end

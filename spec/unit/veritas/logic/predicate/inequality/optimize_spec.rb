@@ -10,6 +10,8 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
       let(:inequality) { Logic::Predicate::Inequality.new(attribute, attribute) }
 
       it { should equal(Logic::Proposition::False.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
 
     context 'and are not joinable' do
@@ -17,6 +19,8 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
       let(:inequality) { Logic::Predicate::Inequality.new(attribute, other) }
 
       it { should equal(Logic::Proposition::True.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
 
     context 'and are joinable' do
@@ -24,6 +28,8 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
       let(:inequality) { Logic::Predicate::Inequality.new(attribute, other) }
 
       it { should equal(inequality) }
+
+      it_should_behave_like 'an idempotent method'
     end
   end
 
@@ -32,12 +38,16 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
       let(:inequality) { Logic::Predicate::Inequality.new(attribute, 1) }
 
       it { should equal(inequality) }
+
+      it_should_behave_like 'an idempotent method'
     end
 
     context 'right is an invalid value' do
       let(:inequality) { Logic::Predicate::Inequality.new(attribute, 'a') }
 
       it { should equal(Logic::Proposition::True.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
   end
 
@@ -46,12 +56,16 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
       let(:inequality) { Logic::Predicate::Inequality.new(1, attribute) }
 
       it { should eql(Logic::Predicate::Inequality.new(attribute, 1)) }
+
+      it_should_behave_like 'an idempotent method'
     end
 
     context 'left is an invalid value' do
       let(:inequality) { Logic::Predicate::Inequality.new('a', attribute) }
 
       it { should equal(Logic::Proposition::True.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
   end
 
@@ -60,12 +74,16 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
       let(:inequality) { Logic::Predicate::Inequality.new(1, 2) }
 
       it { should equal(Logic::Proposition::True.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
 
     context 'that will evaluate to false' do
       let(:inequality) { Logic::Predicate::Inequality.new(1, 1) }
 
       it { should equal(Logic::Proposition::False.instance) }
+
+      it_should_behave_like 'an idempotent method'
     end
   end
 end

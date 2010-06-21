@@ -15,12 +15,16 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == offset
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an order operation' do
     let(:offset) { Relation::Operation::Offset.new(order, 1) }
 
     it { should equal(offset) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an optimizable order operation' do
@@ -36,6 +40,8 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == offset
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an offset operation' do
@@ -53,5 +59,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == offset
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 end

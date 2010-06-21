@@ -13,6 +13,8 @@ describe 'Veritas::Algebra::Restriction#predicate' do
     end
 
     it { should equal(predicate) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'when the relation has a False proposition' do
@@ -25,6 +27,8 @@ describe 'Veritas::Algebra::Restriction#predicate' do
     end
 
     it { should equal(Logic::Proposition::False.instance) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'when the relation has a predicate' do
@@ -35,5 +39,7 @@ describe 'Veritas::Algebra::Restriction#predicate' do
     it { should be_kind_of(Logic::Connective::Conjunction) }
 
     it { should eql(relation.predicate & predicate) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

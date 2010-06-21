@@ -2,6 +2,8 @@ module Veritas
   class Relation
     module Operation
       module Unary
+        include Immutable
+
         attr_reader :relation
 
         def initialize(relation)
@@ -9,15 +11,15 @@ module Veritas
         end
 
         def header
-          @header ||= relation.header
+          relation.header
         end
 
         def directions
-          @directions ||= relation.directions
+          relation.directions
         end
 
         def predicate
-          @predicate ||= relation.predicate
+          relation.predicate
         end
 
         def optimize
@@ -44,7 +46,7 @@ module Veritas
       private
 
         def optimize_relation
-          @optimize_relation ||= relation.optimize
+          relation.optimize
         end
 
         def new_optimized_operation
@@ -54,6 +56,8 @@ module Veritas
         def optimized?
           !optimize_relation.equal?(relation)
         end
+
+        memoize :new_optimized_operation
 
       end # module Unary
     end # module Operation

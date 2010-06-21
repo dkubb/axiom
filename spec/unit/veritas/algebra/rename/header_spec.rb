@@ -10,4 +10,6 @@ describe 'Veritas::Algebra::Rename#header' do
   it { should be_kind_of(Relation::Header) }
 
   it { should == [ [ :other_id, Integer ] ] }
+
+  it_should_behave_like 'an idempotent method'
 end

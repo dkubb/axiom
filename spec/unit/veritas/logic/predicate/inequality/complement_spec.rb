@@ -11,4 +11,6 @@ describe 'Veritas::Logic::Predicate::Inequality#complement' do
   it 'is reversible' do
     subject.complement.should eql(inequality)
   end
+
+  it_should_behave_like 'an idempotent method'
 end

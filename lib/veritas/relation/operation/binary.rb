@@ -2,6 +2,7 @@ module Veritas
   class Relation
     module Operation
       module Binary
+        include Immutable
         include Veritas::Operation::Binary
 
         def self.included(descendant)
@@ -9,15 +10,15 @@ module Veritas
         end
 
         def header
-          @header ||= left.header | right.header
+          left.header | right.header
         end
 
         def directions
-          @directions ||= left.directions | right.directions
+          left.directions | right.directions
         end
 
         def predicate
-          @predicate ||= left.predicate & right.predicate
+          left.predicate & right.predicate
         end
 
         def optimize
@@ -31,11 +32,11 @@ module Veritas
       private
 
         def optimize_left
-          @optimize_left ||= left.optimize
+          left.optimize
         end
 
         def optimize_right
-          @optimize_right ||= right.optimize
+          right.optimize
         end
 
         def new_optimized_operation
@@ -45,6 +46,8 @@ module Veritas
         def optimized?
           !(optimize_left.equal?(left) && optimize_right.equal?(right))
         end
+
+        memoize :header, :directions, :predicate, :new_optimized_operation
 
         module ClassMethods
           def new(left, right)

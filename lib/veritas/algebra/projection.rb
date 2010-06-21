@@ -9,7 +9,7 @@ module Veritas
       end
 
       def header
-        @header ||= relation.header.project(@attributes)
+        relation.header.project(@attributes)
       end
 
       def each
@@ -22,11 +22,11 @@ module Veritas
       end
 
       def directions
-        @directions ||= relation.directions.project(header)
+        relation.directions.project(header)
       end
 
       def predicate
-        @predicate ||= relation.predicate.project(header) || Logic::Proposition::True.instance
+        relation.predicate.project(header) || Logic::Proposition::True.instance
       end
 
       def optimize
@@ -70,6 +70,8 @@ module Veritas
       def wrap_with_operation
         optimize_relation.wrap { |relation| new(relation) }.optimize
       end
+
+      memoize :header, :directions, :new_optimized_operation, :drop_contained_projection, :wrap_with_operation
 
       module Methods
         def project(attributes)

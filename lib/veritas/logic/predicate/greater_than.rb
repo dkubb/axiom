@@ -34,6 +34,8 @@ module Veritas
           end
         end
 
+        memoize :swap
+
         module Methods
           def gt(other)
             GreaterThan.new(self, other)

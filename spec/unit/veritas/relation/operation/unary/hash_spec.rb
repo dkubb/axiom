@@ -10,4 +10,6 @@ describe 'Veritas::Relation::Operation::Unary#hash' do
   it { should be_kind_of(Integer) }
 
   it { should == relation.hash }
+
+  it_should_behave_like 'an idempotent method'
 end

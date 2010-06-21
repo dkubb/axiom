@@ -2,6 +2,8 @@ module Veritas
   module Logic
     class Predicate
       module Comparable
+        include Immutable
+
         def self.included(descendant)
           descendant.extend ClassMethods
         end
@@ -34,6 +36,8 @@ module Veritas
             !joinable?
           end
         end
+
+        memoize :complement, :swap
 
         module ClassMethods
           def eval(left, right)

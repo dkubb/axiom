@@ -9,7 +9,5 @@ describe 'Veritas::Relation::Operation::Order::Methods#directions' do
 
   it { should be_empty }
 
-  it 'is consistent' do
-    should equal(relation.directions)
-  end
+  it_should_behave_like 'an idempotent method'
 end

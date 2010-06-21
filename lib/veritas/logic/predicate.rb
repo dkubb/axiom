@@ -50,7 +50,7 @@ module Veritas
       end
 
       def hash
-        @hash ||= left.hash ^ right.hash
+        left.hash ^ right.hash
       end
 
     private

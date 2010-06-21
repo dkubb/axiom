@@ -7,4 +7,6 @@ describe 'Veritas::Optimizable#optimize' do
   let(:optimizable) { OptimizableSpecs::Object.new }
 
   it { should equal(optimizable) }
+
+  it_should_behave_like 'an idempotent method'
 end

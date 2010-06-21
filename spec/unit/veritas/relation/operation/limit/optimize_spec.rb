@@ -15,12 +15,16 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an order operation' do
     let(:limit) { Relation::Operation::Limit.new(order, 1) }
 
     it { should equal(limit) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an optimizable order operation' do
@@ -36,6 +40,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a more restrictive limit operation' do
@@ -55,6 +61,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a less restrictive limit operation' do
@@ -72,6 +80,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a similar limit operation' do
@@ -83,5 +93,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 end

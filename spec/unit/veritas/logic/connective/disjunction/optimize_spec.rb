@@ -11,6 +11,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(disjunction) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are complemented predicates' do
@@ -26,6 +28,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it 'reverses the operands' do
       should eql(Logic::Connective::Disjunction.new(attribute.lte(1), attribute.gte(3)))
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are the same' do
@@ -34,6 +38,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are true propositions' do
@@ -42,6 +48,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are false propositions' do
@@ -50,6 +58,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is a true proposition' do
@@ -58,6 +68,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left is a true proposition' do
@@ -66,6 +78,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'right is a false proposition' do
@@ -74,6 +88,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(left) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left is a false proposition' do
@@ -82,6 +98,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should equal(right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are equal predicates for the same attribute and different values' do
@@ -90,6 +108,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should eql(attribute.in([ 1, 3 ])) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are equal predicates for the same attribute and the same values' do
@@ -98,6 +118,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should eql(attribute.eq(1)) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
@@ -107,6 +129,8 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should eql(left | right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
@@ -116,5 +140,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
     it { should eql(left | right) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

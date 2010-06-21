@@ -3,7 +3,7 @@ module Veritas
     module Operation
       class Order
         class Direction
-          include AbstractClass
+          include AbstractClass, Immutable
 
           attr_reader :attribute
 
@@ -32,7 +32,7 @@ module Veritas
           end
 
           def hash
-            @hash ||= attribute.hash
+            attribute.hash
           end
 
           def self.coerce(object)

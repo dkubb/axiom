@@ -10,6 +10,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     let(:rename) { Algebra::Rename.new(relation, aliases) }
 
     it { should equal(rename) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an empty relation' do
@@ -21,6 +23,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an optimizable relation' do
@@ -40,6 +44,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a rename operation' do
@@ -61,6 +67,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a rename operation with overlapping aliases' do
@@ -82,6 +90,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an inverse rename operation' do
@@ -95,6 +105,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a projection' do
@@ -110,6 +122,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a projection, containing a rename that cancels out' do
@@ -123,6 +137,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a restriction' do
@@ -140,6 +156,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a restriction, containing a rename that cancels out' do
@@ -153,6 +171,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a set operation' do
@@ -168,6 +188,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a set operation, containing a rename that cancels out' do
@@ -183,6 +205,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a reverse operation' do
@@ -197,6 +221,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a reverse operation, containing a rename that cancels out' do
@@ -211,6 +237,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an order operation' do
@@ -224,6 +252,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an order operation, containing a rename that cancels out' do
@@ -237,6 +267,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a limit operation' do
@@ -251,6 +283,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a limit operation, containing a rename that cancels out' do
@@ -265,6 +299,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an offset operation' do
@@ -279,6 +315,8 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing an offset operation, containing a rename that cancels out' do
@@ -293,5 +331,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
     end
+
+    it_should_behave_like 'an idempotent method'
   end
 end

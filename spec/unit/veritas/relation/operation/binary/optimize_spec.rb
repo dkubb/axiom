@@ -26,5 +26,7 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     it { should_not eql(BinaryRelationOperationSpecs::Object.new(left, right)) }
 
     it { should eql(BinaryRelationOperationSpecs::Object.new(left.optimize, right.optimize)) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

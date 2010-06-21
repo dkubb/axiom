@@ -11,4 +11,6 @@ describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#complement' do
   it 'is reversible' do
     subject.complement.should eql(greater_than_or_equal_to)
   end
+
+  it_should_behave_like 'an idempotent method'
 end

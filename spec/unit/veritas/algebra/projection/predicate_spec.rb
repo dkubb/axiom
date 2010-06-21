@@ -12,11 +12,15 @@ describe 'Veritas::Algebra::Projection#predicate' do
     let(:projection) { relation.project([ :id ]) }
 
     it { should equal(Logic::Proposition::True.instance) }
+
+    it_should_behave_like 'an idempotent method'
   end
 
   context 'containing a relation without a removed predicate' do
     let(:projection) { relation.project([ :name ]) }
 
     it { should equal(relation.predicate) }
+
+    it_should_behave_like 'an idempotent method'
   end
 end

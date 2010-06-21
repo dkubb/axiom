@@ -23,18 +23,15 @@ module Veritas
       private
 
         def optimize_right
-          @optimize_right ||=
-            begin
-              right = self.right
+          right = self.right
 
-              if right.respond_to?(:to_inclusive)
-                optimize_right_range
-              elsif right.respond_to?(:select)
-                optimize_right_enumerable
-              else
-                right
-              end
-            end
+          if right.respond_to?(:to_inclusive)
+            optimize_right_range
+          elsif right.respond_to?(:select)
+            optimize_right_enumerable
+          else
+            right
+          end
         end
 
         def optimize_right_range
@@ -70,6 +67,8 @@ module Veritas
           optimize_right.each { return false }
           true
         end
+
+        memoize :new_optimized_inclusion
 
         module Methods
           def in(other)
