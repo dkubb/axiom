@@ -4,8 +4,8 @@ module Veritas
       module Binary
         include Veritas::Operation::Binary
 
-        def self.included(klass)
-          klass.extend ClassMethods
+        def self.included(descendant)
+          descendant.extend ClassMethods
         end
 
         def header

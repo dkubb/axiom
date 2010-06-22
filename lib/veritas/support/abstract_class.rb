@@ -1,10 +1,10 @@
 module Veritas
   module AbstractClass
-    def self.included(klass)
-      klass.instance_eval <<-RUBY, __FILE__, __LINE__
+    def self.included(descendant)
+      descendant.instance_eval <<-RUBY, __FILE__, __LINE__
         def new(*)
-          if self == #{klass}
-            raise NotImplementedError, '#{klass} is an abstract class'
+          if self == #{descendant}
+            raise NotImplementedError, '#{descendant} is an abstract class'
           else
             super
           end

@@ -2,8 +2,8 @@ module Veritas
   module Logic
     class Predicate
       module Comparable
-        def self.included(klass)
-          klass.extend ClassMethods
+        def self.included(descendant)
+          descendant.extend ClassMethods
         end
 
         def complement

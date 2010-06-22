@@ -4,8 +4,8 @@ module Veritas
       module Set
         include Binary
 
-        def self.included(klass)
-          klass.extend ClassMethods
+        def self.included(descendant)
+          descendant.extend ClassMethods
         end
 
         module ClassMethods
