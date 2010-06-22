@@ -1,7 +1,5 @@
 $LOAD_PATH.unshift(File.expand_path('../../../lib', __FILE__))
 
-require 'veritas'
-
 # original code by Ashley Moran:
 # http://aviewfromafar.net/2007/11/1/rake-task-for-heckling-your-specs
 
@@ -29,6 +27,7 @@ begin
 
   desc 'Heckle each module and class'
   task :heckle => :verify_rcov do
+    require 'veritas'
     root_module = 'Veritas'
 
     spec_dir = Pathname('spec/unit')
