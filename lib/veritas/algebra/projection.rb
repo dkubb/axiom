@@ -71,28 +71,28 @@ module Veritas
         optimize_relation.wrap { |relation| new(relation) }.optimize
       end
 
-    module Methods
-      def project(attributes)
-        project_relation(self, attributes)
-      end
+      module Methods
+        def project(attributes)
+          project_relation(self, attributes)
+        end
 
-      def remove(attributes)
-        project(header - project_header(attributes))
-      end
+        def remove(attributes)
+          project(header - project_header(attributes))
+        end
 
-    private
+      private
 
-      def project_header(attributes)
-        header.project(attributes)
-      end
+        def project_header(attributes)
+          header.project(attributes)
+        end
 
-      def project_relation(relation, attributes = header)
-        Projection.new(relation, attributes)
-      end
+        def project_relation(relation, attributes = header)
+          Projection.new(relation, attributes)
+        end
 
-    end # module Methods
+      end # module Methods
 
-    Relation.class_eval { include Methods }
+      Relation.class_eval { include Methods }
 
     end # class Projection
   end # module Algebra
