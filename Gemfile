@@ -18,6 +18,6 @@ group :quality do
   gem 'reek',      '~> 1.2.8'
   gem 'roodi',     '~> 2.1'
   gem 'ruby2ruby', '=  1.2.2'
-  gem 'yard',      '~> 0.5.5'
+  gem 'yard',      '~> 0.5.8'
   gem 'yardstick', '~> 0.1'
 end
