@@ -39,11 +39,7 @@ module Veritas
 
         def optimize_right_range
           right = self.right.to_inclusive
-          first = right.first
-          return [] if !right.include?(first) ||
-                       left_max < first       ||
-                       left_min > right.last
-          right
+          right if right.first <= left_max && right.last >= left_min
         end
 
         def optimize_right_enumerable
