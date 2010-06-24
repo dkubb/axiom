@@ -25,6 +25,13 @@ module Veritas
         end
       end
 
+      def initialize(left, right)
+        right_header = right.header
+        @join_header      = left.header  & right_header
+        @remainder_header = right_header - @join_header
+        super
+      end
+
       def each(&block)
         index = build_index
 
@@ -51,19 +58,11 @@ module Veritas
       end
 
       def join_tuple(tuple)
-        tuple.project(join_header)
+        tuple.project(@join_header)
       end
 
       def remainder_tuple(tuple)
-        tuple.project(remainder_header)
-      end
-
-      def join_header
-        @join_header ||= left.header & right.header
-      end
-
-      def remainder_header
-        @remainder_header ||= right.header - join_header
+        tuple.project(@remainder_header)
       end
 
       module Methods
