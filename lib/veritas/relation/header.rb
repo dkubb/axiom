@@ -14,6 +14,7 @@ module Veritas
         @attributes = attributes.to_ary.map do |attribute|
           Attribute.coerce(attribute)
         end
+        @names, @indexes = {}, {}
       end
 
       def each(&block)
@@ -22,11 +23,11 @@ module Veritas
       end
 
       def index(attribute)
-        indexes[attribute] ||= to_ary.index(self[attribute])
+        @indexes[attribute] ||= to_ary.index(self[attribute])
       end
 
       def [](name)
-        names[name] ||=
+        @names[name] ||=
           begin
             name = Attribute.name_from(name)
             detect { |attribute| attribute.name == name }
@@ -86,14 +87,6 @@ module Veritas
 
       def self.coerce(object)
         object.kind_of?(Header) ? object : new(object)
-      end
-
-      def names
-        @names ||= {}
-      end
-
-      def indexes
-        @indexex ||= {}
       end
 
     end # class Header
