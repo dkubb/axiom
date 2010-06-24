@@ -7,6 +7,6 @@ describe 'Veritas::Relation::Operation::Combine.combine_tuples' do
   let(:yields) { []                                                            }
 
   it 'yields each combined tuple' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 1, 'Dan Kubb' ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 1, 'Dan Kubb' ] ])
   end
 end

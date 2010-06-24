@@ -11,6 +11,6 @@ describe 'Veritas::Relation::Operation::Order#each' do
   it { should equal(order) }
 
   it 'yields each tuple in order' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 3 ], [ 2 ], [ 1 ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 3 ], [ 2 ], [ 1 ] ])
   end
 end

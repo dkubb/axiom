@@ -18,6 +18,6 @@ describe 'Veritas::Relation::Header.coerce' do
   context 'when the object is not a Header and does not respond to #to_ary' do
     let(:object) { { :id => Integer } }
 
-    specify { method(:subject).should raise_error(NoMethodError) }
+    specify { expect { subject }.to raise_error(NoMethodError) }
   end
 end

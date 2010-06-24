@@ -15,7 +15,7 @@ describe 'Range#to_inclusive' do
     context 'with values that do not respond to #pred' do
       let(:range) { 'a'...'z' }
 
-      specify { method(:subject).should raise_error(NoMethodError) }
+      specify { expect { subject }.to raise_error(NoMethodError) }
     end
   end
 

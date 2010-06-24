@@ -10,7 +10,7 @@ describe 'Veritas::Algebra::Rename#each' do
   it { should equal(rename) }
 
   it 'yields each tuple' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
   end
 
   it 'changes the header for each tuple' do

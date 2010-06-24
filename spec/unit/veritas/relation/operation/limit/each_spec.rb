@@ -12,6 +12,6 @@ describe 'Veritas::Relation::Operation::Limit#each' do
   it { should equal(limit) }
 
   it 'yields each tuple' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
   end
 end

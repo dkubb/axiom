@@ -20,6 +20,6 @@ describe 'Veritas::Relation::Header#each' do
   it { should equal(header) }
 
   it 'yields each attribute' do
-    method(:subject).should change { yields.dup }.from([]).to([ attribute ])
+    expect { subject }.to change { yields.dup }.from([]).to([ attribute ])
   end
 end

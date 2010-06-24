@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Intersection#each' do
     it { should equal(intersection) }
 
     it 'yields the intersection' do
-      method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
+      expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
     end
   end
 
@@ -24,7 +24,7 @@ describe 'Veritas::Algebra::Intersection#each' do
     it { should equal(intersection) }
 
     it 'yields the intersection' do
-      method(:subject).should_not change { yields.dup }
+      expect { subject }.to_not change { yields.dup }
     end
   end
 end

@@ -16,13 +16,13 @@ describe 'Veritas::Relation::Operation::Offset.new' do
     let(:relation) { original_relation }
     let(:offset)   { 1                 }
 
-    specify { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only offset an ordered relation') }
+    specify { expect { subject }.to raise_error(OrderedRelationRequiredError, 'can only offset an ordered relation') }
   end
 
   context 'with an offset less than 0' do
     let(:relation) { original_relation.order { |r| r[:id] } }
     let(:offset)   { -1                                     }
 
-    specify { method(:subject).should raise_error(InvalidOffsetError, 'offset must be greater than or equal to 0, but was -1') }
+    specify { expect { subject }.to raise_error(InvalidOffsetError, 'offset must be greater than or equal to 0, but was -1') }
   end
 end

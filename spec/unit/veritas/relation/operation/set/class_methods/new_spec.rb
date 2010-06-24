@@ -10,18 +10,18 @@ describe 'Veritas::Relation::Operation::Set::ClassMethods#new' do
   context 'with relations having headers with common attributes' do
     let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
 
-    specify { method(:subject).should raise_error(InvalidHeaderError, 'the headers must be equivalent for SetOperationSpecs::Object.new') }
+    specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must be equivalent for SetOperationSpecs::Object.new') }
   end
 
   context 'with relations having equivalent headers' do
     let(:right) { Relation.new(header, [ [ 2 ] ]) }
 
-    specify { method(:subject).should_not raise_error }
+    specify { expect { subject }.to_not raise_error }
   end
 
   context 'with relations having different headers' do
     let(:right) { Relation.new([ [ :number, Integer ] ], [ [ 2 ] ]) }
 
-    specify { method(:subject).should raise_error(InvalidHeaderError, 'the headers must be equivalent for SetOperationSpecs::Object.new') }
+    specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must be equivalent for SetOperationSpecs::Object.new') }
   end
 end

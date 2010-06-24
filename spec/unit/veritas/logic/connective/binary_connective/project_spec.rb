@@ -38,7 +38,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#project' do
     let(:connective) { BinaryConnectiveSpecs::Object.new(left, right) }
 
     it 'delegates to super, but no #project in superclass' do
-      method(:subject).should raise_error(NoMethodError)
+      expect { subject }.to raise_error(NoMethodError)
     end
   end
 end

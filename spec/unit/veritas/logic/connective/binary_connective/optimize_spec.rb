@@ -41,7 +41,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     let(:right) { attribute.lt(1) }
 
     it 'delegates to super, but no #optimize in superclass' do
-      method(:subject).should raise_error(NoMethodError)
+      expect { subject }.to raise_error(NoMethodError)
     end
   end
 

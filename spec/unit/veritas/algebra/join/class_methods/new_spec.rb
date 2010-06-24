@@ -9,18 +9,18 @@ describe 'Veritas::Algebra::Join.new' do
   context 'with relations having headers with common attributes' do
     let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
 
-    specify { method(:subject).should_not raise_error }
+    specify { expect { subject }.to_not raise_error }
   end
 
   context 'with relations having equivalent headers' do
     let(:right) { left.dup }
 
-    specify { method(:subject).should raise_error(InvalidHeaderError, 'the headers are identical, use intersection instead') }
+    specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers are identical, use intersection instead') }
   end
 
   context 'with relations having different headers' do
     let(:right) { Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]) }
 
-    specify { method(:subject).should raise_error(InvalidHeaderError, 'the headers must have common attributes for Veritas::Algebra::Join.new') }
+    specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must have common attributes for Veritas::Algebra::Join.new') }
   end
 end

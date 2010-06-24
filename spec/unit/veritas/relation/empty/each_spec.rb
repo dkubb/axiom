@@ -9,6 +9,6 @@ describe 'Veritas::Relation::Empty#each' do
   it { should equal(empty) }
 
   it 'does not yield any tuples' do
-    method(:subject).should_not change { yields.dup }
+    expect { subject }.to_not change { yields.dup }
   end
 end

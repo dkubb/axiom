@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { original_right                            }
 
     it 'attempts to delegate new_empty_relation' do
-      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
 
@@ -22,7 +22,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { Relation::Empty.new(original_right.header) }
 
     it 'attempts to delegate new_empty_relation' do
-      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
 
@@ -31,7 +31,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { original_right                                                              }
 
     it 'attempts to delegate new_empty_relation' do
-      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
 
@@ -40,7 +40,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::False.instance) }
 
     it 'attempts to delegate new_empty_relation' do
-      method(:subject).should raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
     end
   end
 
@@ -49,7 +49,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { original_right }
 
     it 'attempts to delegate to the superclass' do
-      method(:subject).should raise_error(NoMethodError)
+      expect { subject }.to raise_error(NoMethodError)
     end
   end
 end

@@ -10,6 +10,6 @@ describe 'Veritas::Algebra::Restriction#each' do
   it { should equal(restriction) }
 
   it 'yields each tuple' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
   end
 end

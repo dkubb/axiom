@@ -13,7 +13,7 @@ describe 'Veritas::Algebra::Difference#each' do
     it { should equal(difference) }
 
     it 'yields the difference' do
-      method(:subject).should_not change { yields.dup }
+      expect { subject }.to_not change { yields.dup }
     end
   end
 
@@ -24,7 +24,7 @@ describe 'Veritas::Algebra::Difference#each' do
     it { should equal(difference) }
 
     it 'yields the difference' do
-      method(:subject).should change { yields.dup }.from([]).to([ [ 1 ] ])
+      expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
     end
   end
 end

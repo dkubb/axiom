@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Join#each' do
   it { should equal(join) }
 
   it 'yields the join' do
-    method(:subject).should change { yields.dup }.
+    expect { subject }.to change { yields.dup }.
       from([]).
       to([ [ 2, 'Dan Kubb' ] ])
   end

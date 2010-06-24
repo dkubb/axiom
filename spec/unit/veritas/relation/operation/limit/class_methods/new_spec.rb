@@ -16,13 +16,13 @@ describe 'Veritas::Relation::Operation::Limit.new' do
     let(:relation) { original_relation }
     let(:limit)    { 1                 }
 
-    specify { method(:subject).should raise_error(OrderedRelationRequiredError, 'can only limit an ordered relation') }
+    specify { expect { subject }.to raise_error(OrderedRelationRequiredError, 'can only limit an ordered relation') }
   end
 
   context 'with an limit less than 0' do
     let(:relation) { original_relation.order { |r| r[:id] } }
     let(:limit)    { -1                                     }
 
-    specify { method(:subject).should raise_error(InvalidLimitError, 'limit must be greater than or equal to 0, but was -1') }
+    specify { expect { subject }.to raise_error(InvalidLimitError, 'limit must be greater than or equal to 0, but was -1') }
   end
 end

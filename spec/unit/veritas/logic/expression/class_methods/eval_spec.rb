@@ -11,5 +11,5 @@ describe 'Veritas::Logic::Expression.eval' do
     end
   end
 
-  specify { method(:subject).should raise_error(NotImplementedError, 'AnonymousClass.eval must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, 'AnonymousClass.eval must be implemented') }
 end

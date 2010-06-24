@@ -10,6 +10,6 @@ methods.each do |method|
 
     let(:proposition) { ExpressionSpecs::Object.new }
 
-    specify { method(:subject).should raise_error(NotImplementedError, 'ExpressionSpecs::Object#complement must be implemented') }
+    specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#complement must be implemented') }
   end
 end

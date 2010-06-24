@@ -7,5 +7,5 @@ describe 'Veritas::Logic::Expression#eql?' do
   let(:other)      { ExpressionSpecs::Object.new }
   let(:expression) { ExpressionSpecs::Object.new }
 
-  specify { method(:subject).should raise_error(NotImplementedError, 'ExpressionSpecs::Object#eql? must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#eql? must be implemented') }
 end

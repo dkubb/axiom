@@ -7,5 +7,5 @@ describe 'Veritas::Logic::Predicate#inspect' do
   let(:attribute) { Attribute::Integer.new(:id)              }
   let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
 
-  specify { method(:subject).should raise_error(NotImplementedError, 'Veritas::Logic::Predicate#inspect must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, 'Veritas::Logic::Predicate#inspect must be implemented') }
 end

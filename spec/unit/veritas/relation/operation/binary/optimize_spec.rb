@@ -13,7 +13,7 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     let(:right) { original_right }
 
     it 'delegates to super, but no #optimize in superclass' do
-      method(:subject).should raise_error(NoMethodError)
+      expect { subject }.to raise_error(NoMethodError)
     end
   end
 

@@ -22,6 +22,6 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
   it { should equal(directions) }
 
   it 'yields each direction' do
-    method(:subject).should change { yields.dup }.from([]).to(directions.to_ary)
+    expect { subject }.to change { yields.dup }.from([]).to(directions.to_ary)
   end
 end

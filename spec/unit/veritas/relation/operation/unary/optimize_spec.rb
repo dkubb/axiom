@@ -22,7 +22,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
 
     it 'attempts to delegate to the superclass' do
-      method(:subject).should raise_error(NoMethodError)
+      expect { subject }.to raise_error(NoMethodError)
     end
   end
 

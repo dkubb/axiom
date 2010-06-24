@@ -21,6 +21,6 @@ describe 'Veritas::Relation#each' do
   it { should equal(relation) }
 
   it 'yields each tuple only once' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 1 ], [ 2 ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ], [ 2 ] ])
   end
 end

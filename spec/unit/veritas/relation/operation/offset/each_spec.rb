@@ -12,6 +12,6 @@ describe 'Veritas::Relation::Operation::Offset#each' do
   it { should equal(offset) }
 
   it 'yields each tuple' do
-    method(:subject).should change { yields.dup }.from([]).to([ [ 2 ], [ 3 ] ])
+    expect { subject }.to change { yields.dup }.from([]).to([ [ 2 ], [ 3 ] ])
   end
 end

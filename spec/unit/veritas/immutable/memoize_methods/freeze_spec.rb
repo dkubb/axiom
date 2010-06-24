@@ -16,7 +16,7 @@ describe 'Veritas::Immutable::MemoizeMethods#freeze' do
     it { should equal(immutable) }
 
     it 'freezes the object' do
-      method(:subject).should change(immutable, :frozen?).from(false).to(true)
+      expect { subject }.to change(immutable, :frozen?).from(false).to(true)
     end
 
     it 'sets a memoization instance variable' do
@@ -32,11 +32,11 @@ describe 'Veritas::Immutable::MemoizeMethods#freeze' do
     it { should equal(immutable) }
 
     it 'does not change the frozen state of the object' do
-      method(:subject).should_not change(immutable, :frozen?)
+      expect { subject }.to_not change(immutable, :frozen?)
     end
 
     it 'does not change the memoization instance variable' do
-      method(:subject).should_not change { immutable.instance_variable_get(:@__memory) }
+      expect { subject }.to_not change { immutable.instance_variable_get(:@__memory) }
     end
 
     it 'sets an instance variable for memoization' do
