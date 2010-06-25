@@ -23,6 +23,10 @@ module Veritas
           self.class.reverse.new(right, left)
         end
 
+        def normalizable?
+          left_constant? && right_attribute?
+        end
+
         def always_equivalent?
           left_attribute? && right_attribute? && same_attributes?
         end

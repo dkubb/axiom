@@ -76,8 +76,7 @@ module Veritas
       end
 
       def normalizable?
-        # normalize if left is a constant, and right is an attribute
-        respond_to?(:normalize, true) && left_constant? && right_attribute?
+        false
       end
 
       def left_attribute?
