@@ -12,6 +12,24 @@ shared_examples_for 'memoizes method' do
     count = klass.private_instance_methods.count
     expect { subject }.to change { klass.private_instance_methods.count }.from(count).to(count + 1)
   end
+
+  specification = proc do
+    klass.send(:define_method, method) do
+      caller
+    end
+
+    subject
+
+    klass.new.send(method).first.split(':')[0, 2].should == [  File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__), '43' ]
+  end
+
+  it 'sets the file and line number properly' do
+    if RUBY_PLATFORM[/java/]
+      pending('Kernel#caller returns the incorrect line number in JRuby', &specification)
+    else
+      instance_eval(&specification)
+    end
+  end
 end
 
 describe 'Veritas::Immutable::ModuleMethods#memoize' do

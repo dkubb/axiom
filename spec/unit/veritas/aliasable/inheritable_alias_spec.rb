@@ -13,9 +13,7 @@ describe 'Veritas::Aliasable#inheritable_alias' do
   end
 
   it 'creates a method #other' do
-    aliasable.should_not respond_to(:other)
-    subject
-    aliasable.should respond_to(:other)
+    expect { subject }.to change { aliasable.respond_to?(:other) }.from(false).to(true)
   end
 
   it 'aliases #other to #test' do
@@ -37,7 +35,7 @@ describe 'Veritas::Aliasable#inheritable_alias' do
     aliasable.other.first.split(':')[0, 2].should == [  File.expand_path('../../../../../lib/veritas/support/aliasable.rb', __FILE__), '7' ]
   end
 
-  it 'sets the file and line number' do
+  it 'sets the file and line number properly' do
     if RUBY_PLATFORM[/java/]
       pending('Kernel#caller returns the incorrect line number in JRuby', &specification)
     else
