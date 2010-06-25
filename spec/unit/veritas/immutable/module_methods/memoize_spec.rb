@@ -7,6 +7,11 @@ shared_examples_for 'memoizes method' do
     object = klass.new
     object.send(method).should equal(object.send(method))
   end
+
+  it 'adds a private method' do
+    count = klass.private_instance_methods.count
+    expect { subject }.to change { klass.private_instance_methods.count }.from(count).to(count + 1)
+  end
 end
 
 describe 'Veritas::Immutable::ModuleMethods#memoize' do
