@@ -37,7 +37,7 @@ module Veritas
         if    left_constant? && right_constant? then fold_constants
         elsif always_false?                     then Proposition::False.instance
         elsif always_true?                      then Proposition::True.instance
-        elsif reversible?                       then reverse
+        elsif normalizable?                     then normalize
         else
           super
         end
@@ -71,9 +71,9 @@ module Veritas
         left.joinable?(right)
       end
 
-      def reversible?
-        # if possible reverse the left and right if left is a constant, and right is an attribute
-        respond_to?(:reverse, true) && left_constant? && right_attribute?
+      def normalizable?
+        # normalize if left is a constant, and right is an attribute
+        respond_to?(:normalize, true) && left_constant? && right_attribute?
       end
 
       def left_attribute?

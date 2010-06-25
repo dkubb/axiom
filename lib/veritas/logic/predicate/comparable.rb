@@ -19,7 +19,7 @@ module Veritas
 
       private
 
-        def reverse
+        def normalize
           self.class.reverse.new(right, left)
         end
 
@@ -38,7 +38,7 @@ module Veritas
           end
         end
 
-        memoize :complement, :reverse
+        memoize :complement, :normalize
 
         module ClassMethods
           def eval(left, right)
