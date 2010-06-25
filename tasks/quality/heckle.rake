@@ -94,10 +94,18 @@ begin
       other_methods = mod.protected_instance_methods(false) |
                       mod.private_instance_methods(false)
 
-      spec_methods.each do |method|
-        method = aliases[mod.name][method]
+      other_methods.reject! do |method|
+        next unless method.to_s =~ /\A__memoized_([a-z](?:_?[a-z])+)\z/ &&
+                    spec_methods.any? { |specced| specced.to_s == $1 }
 
-        spec_file = spec_prefix.join(map.file_name(method, mod.name))
+        spec_methods << method
+      end
+
+      spec_methods.each do |method|
+        method          = aliases[mod.name][method]
+        normalized_name = method.sub(/\A__memoized_/, '')
+
+        spec_file = spec_prefix.join(map.file_name(normalized_name, mod.name))
 
         unless spec_file.file?
           raise "No spec file #{spec_file} for #{mod}##{method}"
