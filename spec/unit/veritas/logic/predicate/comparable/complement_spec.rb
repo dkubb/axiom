@@ -13,5 +13,9 @@ describe 'Veritas::Logic::Predicate::Comparable#complement' do
   its(:left)  { should equal(left)  }
   its(:right) { should equal(right) }
 
+  it 'is reversible' do
+    subject.complement.should equal(comparable)
+  end
+
   it_should_behave_like 'an idempotent method'
 end
