@@ -2,9 +2,8 @@ require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
 shared_examples_for 'memoizes method' do
-  it { should equal(klass) }
-
   it 'memoizes the instance method' do
+    subject
     object = klass.new
     object.send(method).should equal(object.send(method))
   end
@@ -13,10 +12,12 @@ end
 describe 'Veritas::Immutable::ModuleMethods#memoize' do
   subject { klass.memoize(method) }
 
-  let(:klass) { ImmutableSpecs::Object }
+  let(:klass) { Class.new(ImmutableSpecs::Object) }
 
   context 'public method' do
     let(:method) { :public_method }
+
+    it { should equal(klass) }
 
     it_should_behave_like 'memoizes method'
 
@@ -28,6 +29,8 @@ describe 'Veritas::Immutable::ModuleMethods#memoize' do
   context 'protected method' do
     let(:method) { :protected_method }
 
+    it { should equal(klass) }
+
     it_should_behave_like 'memoizes method'
 
     it 'is still a protected method' do
@@ -37,6 +40,8 @@ describe 'Veritas::Immutable::ModuleMethods#memoize' do
 
   context 'private method' do
     let(:method) { :private_method }
+
+    it { should equal(klass) }
 
     it_should_behave_like 'memoizes method'
 

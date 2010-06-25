@@ -4,7 +4,7 @@ require File.expand_path('../../fixtures/classes', __FILE__)
 describe 'Veritas::Immutable::MemoizeMethods#freeze' do
   subject { immutable.freeze }
 
-  let(:klass) { ImmutableSpecs::Object }
+  let(:klass) { Class.new(ImmutableSpecs::Object) }
 
   before do
     klass.memoize(:test)
