@@ -8,5 +8,5 @@ describe 'Veritas::Optimizable#optimize' do
 
   it { should equal(optimizable) }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an optimize method'
 end

@@ -13,7 +13,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
       should equal(predicate)
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is an attribute' do
@@ -23,7 +23,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
       should equal(predicate)
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left and right are constants' do
@@ -37,7 +37,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
       should equal(Logic::Proposition::True.instance)
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'on a subclass that is always true when left and right are not constants' do
@@ -45,7 +45,7 @@ describe 'Veritas::Logic::Predicate#optimize' do
 
     it { should equal(Logic::Proposition::True.instance) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'on a subclass that is always false when left and right are not constants' do
@@ -53,6 +53,6 @@ describe 'Veritas::Logic::Predicate#optimize' do
 
     it { should equal(Logic::Proposition::False.instance) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

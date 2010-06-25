@@ -12,7 +12,7 @@ describe 'Veritas::Relation::Materialized#optimize' do
       should == relation
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an nonempty Array' do
@@ -20,6 +20,6 @@ describe 'Veritas::Relation::Materialized#optimize' do
 
     it { should equal(relation) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

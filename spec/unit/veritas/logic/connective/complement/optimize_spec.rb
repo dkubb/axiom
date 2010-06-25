@@ -11,7 +11,7 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
 
     it { should eql(attribute.lte(1)) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'operand is a complemented predicate' do
@@ -21,7 +21,7 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
 
     it { should eql(predicate) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'operand is a true proposition' do
@@ -30,7 +30,7 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
 
     it { should equal(Logic::Proposition::False.instance) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'operand is a false proposition' do
@@ -39,6 +39,6 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
 
     it { should equal(Logic::Proposition::True.instance) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

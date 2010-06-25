@@ -11,7 +11,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should equal(relation) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a false proposition' do
@@ -24,7 +24,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a predicate' do
@@ -33,7 +33,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should equal(restriction) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an optimizable predicate' do
@@ -52,7 +52,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an optimizable operation' do
@@ -72,7 +72,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an empty relation' do
@@ -86,7 +86,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an empty relation when optimized' do
@@ -100,7 +100,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a restriction' do
@@ -121,7 +121,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a set operation' do
@@ -139,7 +139,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a set operation, containing a restriction with duplicate predicates' do
@@ -156,7 +156,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a reverse operation' do
@@ -173,7 +173,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a reverse operation, containing a restriction with duplicate predicates' do
@@ -190,7 +190,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an order operation' do
@@ -206,7 +206,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an order operation, containing a restriction with duplicate predicates' do
@@ -222,6 +222,6 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

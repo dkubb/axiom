@@ -44,7 +44,7 @@ module Veritas
         end
 
         def optimized?
-          !optimize_right.equal?(right)
+          !optimize_right.eql?(right)
         end
 
         def new_optimized_inclusion

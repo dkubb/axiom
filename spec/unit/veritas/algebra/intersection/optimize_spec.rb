@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       should == intersection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is an empty relation' do
@@ -31,7 +31,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       should == intersection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left is an empty relation when optimized' do
@@ -44,7 +44,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       should == intersection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is an empty relation when optimized' do
@@ -57,7 +57,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       should == intersection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left and right are not empty relations' do
@@ -66,7 +66,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
 
     it { should equal(intersection) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left and right are equivalent relations' do
@@ -79,6 +79,6 @@ describe 'Veritas::Algebra::Intersection#optimize' do
       should == intersection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

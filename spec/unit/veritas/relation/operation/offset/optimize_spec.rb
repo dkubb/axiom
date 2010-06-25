@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       should == offset
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing an order operation' do
@@ -24,7 +24,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it { should equal(offset) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing an optimizable order operation' do
@@ -41,7 +41,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       should == offset
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing an offset operation' do
@@ -60,6 +60,6 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       should == offset
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

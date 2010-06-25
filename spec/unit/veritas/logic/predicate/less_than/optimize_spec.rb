@@ -11,7 +11,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::False.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
 
     context 'and are not comparable' do
@@ -20,7 +20,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::False.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
 
     context 'and left is always less than right' do
@@ -30,7 +30,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::True.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
 
     context 'and left is always greater than or equal to right' do
@@ -40,7 +40,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::False.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
   end
 
@@ -50,7 +50,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(less_than) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
 
     context 'right is an invalid primitive' do
@@ -58,7 +58,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::False.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
   end
 
@@ -68,7 +68,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should eql(Logic::Predicate::GreaterThan.new(attribute, 1)) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
 
     context 'left is an invalid primitive' do
@@ -76,7 +76,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::False.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
   end
 
@@ -86,7 +86,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::True.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
 
     context 'that will evaluate to false' do
@@ -94,7 +94,7 @@ describe 'Veritas::Logic::Predicate::LessThan#optimize' do
 
       it { should equal(Logic::Proposition::False.instance) }
 
-      it_should_behave_like 'an idempotent method'
+      it_should_behave_like 'an optimize method'
     end
   end
 end

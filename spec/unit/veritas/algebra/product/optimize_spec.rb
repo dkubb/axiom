@@ -15,7 +15,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is a TABLE_DUM' do
@@ -27,7 +27,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left is a TABLE_DUM when optimized' do
@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is a TABLE_DUM when optimized' do
@@ -51,7 +51,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left is a TABLE_DEE' do
@@ -63,7 +63,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is a TABLE_DEE' do
@@ -75,7 +75,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left is a TABLE_DEE when optimized' do
@@ -87,7 +87,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'right is a TABLE_DEE when optimized' do
@@ -99,7 +99,7 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left and right are normal relations' do
@@ -107,6 +107,6 @@ describe 'Veritas::Algebra::Product#optimize' do
 
     it { should equal(product) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

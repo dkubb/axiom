@@ -14,7 +14,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'when the attributes are equivalent to the relation headers, and not in the same order' do
@@ -24,7 +24,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should equal(projection)
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'when the attributes are different from the relation headers' do
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should equal(projection) }
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing an empty relation' do
@@ -45,7 +45,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing an empty relation when optimized' do
@@ -58,7 +58,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing an optimizable relation' do
@@ -77,7 +77,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing a projection' do
@@ -96,7 +96,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing a set operation' do
@@ -116,7 +116,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing a set operation containing a projection' do
@@ -133,6 +133,6 @@ describe 'Veritas::Algebra::Projection#optimize' do
       should == projection
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

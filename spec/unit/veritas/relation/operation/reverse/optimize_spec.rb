@@ -20,7 +20,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with a reverse operation when optimized' do
@@ -37,7 +37,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an order operation' do
@@ -49,7 +49,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an order operation when optimized' do
@@ -62,7 +62,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an optimizable operation' do
@@ -76,6 +76,6 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
-    it_should_behave_like 'an idempotent method'
+    it_should_behave_like 'an optimize method'
   end
 end

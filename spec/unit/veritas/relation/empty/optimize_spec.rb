@@ -7,5 +7,5 @@ describe 'Veritas::Relation::Empty#optimize' do
 
   it { should equal(empty) }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an optimize method'
 end

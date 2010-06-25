@@ -36,7 +36,7 @@ module Veritas
 
         def new_inclusion
           left = optimize_left
-          Predicate::Inclusion.new(left.left, [ left.right, optimize_right.right ])
+          Predicate::Inclusion.new(left.left, [ left.right, optimize_right.right ]).optimize
         end
 
         def collapse_to_inclusion?

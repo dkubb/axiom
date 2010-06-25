@@ -10,4 +10,5 @@ include Veritas
 Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each { |f| require f }
 
 Spec::Runner.configure do |config|
+  config.extend AddMethodMissing
 end
