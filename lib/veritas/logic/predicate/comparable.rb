@@ -19,7 +19,7 @@ module Veritas
 
       private
 
-        def swap
+        def reverse
           self.class.new(right, left)
         end
 
@@ -38,7 +38,7 @@ module Veritas
           end
         end
 
-        memoize :complement, :swap
+        memoize :complement, :reverse
 
         module ClassMethods
           def eval(left, right)

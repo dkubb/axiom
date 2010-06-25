@@ -37,7 +37,7 @@ module Veritas
         if    left_constant? && right_constant? then fold_constants
         elsif always_false?                     then Proposition::False.instance
         elsif always_true?                      then Proposition::True.instance
-        elsif swappable?                        then swap
+        elsif reversible?                       then reverse
         else
           super
         end
@@ -71,9 +71,9 @@ module Veritas
         left.joinable?(right)
       end
 
-      def swappable?
-        # if possible swap the left and right if left is a constant, and right is an attribute
-        respond_to?(:swap, true) && left_constant? && right_attribute?
+      def reversible?
+        # if possible reverse the left and right if left is a constant, and right is an attribute
+        respond_to?(:reverse, true) && left_constant? && right_attribute?
       end
 
       def left_attribute?

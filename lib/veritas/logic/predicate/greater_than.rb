@@ -14,7 +14,7 @@ module Veritas
 
       private
 
-        def swap
+        def reverse
           LessThan.new(right, left)
         end
 
