@@ -12,6 +12,10 @@ module Veritas
           Inequality
         end
 
+        def self.reverse
+          self
+        end
+
       private
 
         def always_true?

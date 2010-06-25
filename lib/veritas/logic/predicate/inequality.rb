@@ -8,6 +8,10 @@ module Veritas
           Equality
         end
 
+        def self.reverse
+          self
+        end
+
         def self.eval(left, right)
           left != right
         end

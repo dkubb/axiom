@@ -12,11 +12,11 @@ module Veritas
           GreaterThan
         end
 
-      private
-
-        def reverse
-          GreaterThanOrEqualTo.new(right, left)
+        def self.reverse
+          GreaterThanOrEqualTo
         end
+
+      private
 
         def always_true?
           always_equivalent? || self.class.complement.eval(right_min, left_max)

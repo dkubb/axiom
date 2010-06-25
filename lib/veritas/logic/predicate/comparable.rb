@@ -20,7 +20,7 @@ module Veritas
       private
 
         def reverse
-          self.class.new(right, left)
+          self.class.reverse.new(right, left)
         end
 
         def always_equivalent?
