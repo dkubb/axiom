@@ -8,7 +8,7 @@ describe 'Veritas::Logic::Proposition::True#complement' do
   it { should equal(Logic::Proposition::False.instance) }
 
   it 'is reversible' do
-    subject.complement.should eql(true_proposition)
+    subject.complement.should equal(true_proposition)
   end
 
   it_should_behave_like 'an idempotent method'

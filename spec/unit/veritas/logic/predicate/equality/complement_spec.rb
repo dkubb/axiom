@@ -9,7 +9,7 @@ describe 'Veritas::Logic::Predicate::Equality#complement' do
   it { should eql(attribute.ne(1)) }
 
   it 'is reversible' do
-    subject.complement.should eql(equality)
+    subject.complement.should equal(equality)
   end
 
   it_should_behave_like 'an idempotent method'

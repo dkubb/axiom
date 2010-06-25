@@ -9,7 +9,8 @@ module Veritas
         end
 
         def complement
-          self.class.complement.new(left, right)
+          self.class.complement.new(left, right).
+            memoize(:complement, self)
         end
 
         def inspect

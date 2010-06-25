@@ -14,7 +14,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#complement' do
   end
 
   it 'is reversible' do
-    subject.complement.should eql(connective)
+    subject.complement.should equal(connective)
   end
 
   it_should_behave_like 'an idempotent method'
