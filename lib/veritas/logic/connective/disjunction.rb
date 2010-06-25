@@ -72,7 +72,7 @@ module Veritas
           !optimize_left.right.eql?(optimize_right.right)
         end
 
-        memoize :new_inclusion
+        memoize :optimize
 
         module Methods
           extend Aliasable

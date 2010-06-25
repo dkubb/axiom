@@ -68,7 +68,7 @@ module Veritas
           true
         end
 
-        memoize :new_optimized_inclusion
+        memoize :optimize
 
         module Methods
           def in(other)

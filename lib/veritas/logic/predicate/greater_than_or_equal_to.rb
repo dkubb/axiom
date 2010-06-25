@@ -34,7 +34,7 @@ module Veritas
           end
         end
 
-        memoize :swap
+        memoize :optimize
 
         module Methods
           def gte(other)

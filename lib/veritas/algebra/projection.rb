@@ -71,7 +71,7 @@ module Veritas
         optimize_relation.wrap { |relation| new(relation) }.optimize
       end
 
-      memoize :header, :directions, :new_optimized_operation, :drop_contained_projection, :wrap_with_operation
+      memoize :header, :directions, :optimize
 
       module Methods
         def project(attributes)

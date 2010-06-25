@@ -81,7 +81,7 @@ module Veritas
         optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
       end
 
-      memoize :new_optimized_operation, :combine_restrictions, :wrap_with_operation, :wrap_with_order
+      memoize :optimize
 
       module Methods
         def restrict(predicate = yield(self))

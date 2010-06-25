@@ -115,7 +115,7 @@ module Veritas
         other_aliases
       end
 
-      memoize :header, :directions, :predicate, :new_optimized_operation, :optimize_rename, :wrap_with_projection, :wrap_with_restriction, :wrap_with_operation, :wrap_with_order
+      memoize :header, :directions, :predicate, :optimize
 
       module Methods
         def rename(aliases)

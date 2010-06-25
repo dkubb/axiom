@@ -69,7 +69,7 @@ module Veritas
           order.class.new(order.relation, directions)
         end
 
-        memoize :new_optimized_operation, :drop_no_op_order
+        memoize :optimize
 
         module Methods
           include Immutable

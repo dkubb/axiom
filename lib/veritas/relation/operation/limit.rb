@@ -88,7 +88,7 @@ module Veritas
           self.class.new(limit.relation, [ to_i, limit.to_i ].min)
         end
 
-        memoize :new_optimized_operation, :use_smallest_limit
+        memoize :optimize
 
         module Methods
           extend Aliasable
