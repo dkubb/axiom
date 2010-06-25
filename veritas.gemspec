@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-06-23}
+  s.date = %q{2010-06-24}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -107,8 +107,10 @@ Gem::Specification.new do |s|
      "spec/integration/veritas/relation/efficient_enumerable_spec.rb",
      "spec/rcov.opts",
      "spec/shared/idempotent_method_behavior.rb",
+     "spec/shared/optimize_method_behavior.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
+     "spec/support/add_method_missing.rb",
      "spec/support/matchers/predicate_match.rb",
      "spec/unit/date/pred_spec.rb",
      "spec/unit/range/overlaps_spec.rb",
@@ -205,6 +207,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/immutable/dup_spec.rb",
      "spec/unit/veritas/immutable/fixtures/classes.rb",
      "spec/unit/veritas/immutable/memoize_methods/freeze_spec.rb",
+     "spec/unit/veritas/immutable/memoize_methods/memoize_spec.rb",
      "spec/unit/veritas/immutable/memory/element_reference_spec.rb",
      "spec/unit/veritas/immutable/memory/element_set_spec.rb",
      "spec/unit/veritas/immutable/module_methods/included_spec.rb",
@@ -471,7 +474,9 @@ Gem::Specification.new do |s|
      "spec/integration/veritas/algebra/projection_spec.rb",
      "spec/integration/veritas/relation/efficient_enumerable_spec.rb",
      "spec/shared/idempotent_method_behavior.rb",
+     "spec/shared/optimize_method_behavior.rb",
      "spec/spec_helper.rb",
+     "spec/support/add_method_missing.rb",
      "spec/support/matchers/predicate_match.rb",
      "spec/unit/date/pred_spec.rb",
      "spec/unit/range/overlaps_spec.rb",
@@ -568,6 +573,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/immutable/dup_spec.rb",
      "spec/unit/veritas/immutable/fixtures/classes.rb",
      "spec/unit/veritas/immutable/memoize_methods/freeze_spec.rb",
+     "spec/unit/veritas/immutable/memoize_methods/memoize_spec.rb",
      "spec/unit/veritas/immutable/memory/element_reference_spec.rb",
      "spec/unit/veritas/immutable/memory/element_set_spec.rb",
      "spec/unit/veritas/immutable/module_methods/included_spec.rb",
