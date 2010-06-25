@@ -34,10 +34,10 @@ module Veritas
       end
 
       def optimize
-        if    left_constant? && right_constant? then fold_constants
-        elsif always_false?                     then Proposition::False.instance
-        elsif always_true?                      then Proposition::True.instance
-        elsif normalizable?                     then normalize
+        if    foldable?     then fold_constants
+        elsif always_false? then Proposition::False.instance
+        elsif always_true?  then Proposition::True.instance
+        elsif normalizable? then normalize
         else
           super
         end
@@ -61,6 +61,10 @@ module Veritas
 
       def same_attributes?
         left.eql?(right)
+      end
+
+      def foldable?
+        left_constant? && right_constant?
       end
 
       def comparable?
