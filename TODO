@@ -1,4 +1,14 @@
-* Use flay to identify duplicate code and refactor
+* Create Veritas::Literal class to represent literal values passed
+  into a predicate.
+  * Should have subclases for Date, Range and Time, and otherwise use the
+    base class for other values. The new constructor should dynamically
+    dispatch to a matching subclass if one exists.
+    * Should dispatch TrueClass and FalseClass to Proposition
+  * Remove core_ext library and corresponding specs
+  * Factor out Predicate#extract_value, since every value will respond to
+    #call, and Predicate#call will become the same as BinaryConnective#call
+  * Simplify #complement. Instead of Inequality#complement being
+    Equality.new(left, right), it can just be left == right
 
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
@@ -13,17 +23,7 @@
     * Alias #@+ to #asc
     * Alias #@- to #desc
 
-* Create Veritas::Literal class to represent literal values passed
-  into a predicate.
-  * Should have subclases for Date, Range and Time, and otherwise use the
-    base class for other values. The new constructor should dynamically
-    dispatch to a matching subclass if one exists.
-    * Should dispatch TrueClass and FalseClass to Proposition
-  * Remove core_ext library and corresponding specs
-  * Factor out Predicate#extract_value, since every value will respond to
-    #call, and Predicate#call will become the same as BinaryConnective#call
-  * Simplify #complement. Instead of Inequality#complement being
-    Equality.new(left, right), it can just be left == right
+* Use flay to identify duplicate code and refactor
 
 * Consider adding a complement class to each predicate (and other ops)
 
