@@ -5,11 +5,10 @@ module Veritas
 
       def call(tuple)
         util = self.class
-
-        left_value  = util.extract_value(left,  tuple)
-        right_value = util.extract_value(right, tuple)
-
-        util.eval(left_value, right_value)
+        util.eval(
+          util.extract_value(left,  tuple),
+          util.extract_value(right, tuple)
+        )
       end
 
       def project(attributes)
