@@ -1,6 +1,6 @@
 * Create Veritas::Literal class to represent literal values passed
   into a predicate.
-  * Should have subclases for Date, Range and Time, and otherwise use the
+  * Should have subclasses for Date, Range and Time, and otherwise use the
     base class for other values. The new constructor should dynamically
     dispatch to a matching subclass if one exists.
     * Should dispatch TrueClass and FalseClass to Proposition
