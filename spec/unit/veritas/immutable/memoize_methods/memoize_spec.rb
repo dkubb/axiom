@@ -10,6 +10,7 @@ describe 'Veritas::Immutable::MemoizeMethods#memoize' do
   let(:value)     { mock('Value')                     }
 
   before do
+    value.should_receive(:frozen?).with(no_args).and_return(true)
     klass.memoize(method)
   end
 

@@ -40,7 +40,7 @@ module Veritas
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
           #{method_visibility(method)}
           def #{method}
-            @__memory['@#{method}'] ||= #{memoized_method}
+            @__memory['@#{method}'] ||= #{memoized_method}.freeze
           end
         RUBY
       end
@@ -68,6 +68,7 @@ module Veritas
       end
 
       def memoize(name, value)
+        value = value.dup.freeze unless value.frozen?
         @__memory["@#{name}"] = value
         self
       end

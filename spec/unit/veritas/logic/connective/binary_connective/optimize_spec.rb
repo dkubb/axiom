@@ -85,7 +85,7 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     let(:right) { mock('BinaryConnective', :class => klass, :left => left) }
 
     before do
-      right.stub!(:optimize => right)
+      right.stub!(:optimize => right, :frozen? => true)
     end
 
     it { should equal(right) }
