@@ -3,11 +3,10 @@ module Veritas
     module Operation
       module Unary
         include Immutable
+        include Veritas::Operation::Unary
 
-        attr_reader :relation
-
-        def initialize(relation)
-          @relation = relation
+        def relation
+          operand
         end
 
         def header
@@ -32,15 +31,6 @@ module Veritas
           else
             super
           end
-        end
-
-        def eql?(other)
-          instance_of?(other.class) &&
-          relation.eql?(other.relation)
-        end
-
-        def hash
-          relation.hash
         end
 
       private

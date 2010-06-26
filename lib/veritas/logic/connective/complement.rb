@@ -2,14 +2,10 @@ module Veritas
   module Logic
     class Connective
       class Complement < Connective
-        attr_reader :operand
+        include Operation::Unary
 
         def self.eval(value)
           !value
-        end
-
-        def initialize(operand)
-          @operand = operand
         end
 
         def call(tuple)
@@ -38,15 +34,6 @@ module Veritas
 
         def optimize
           operand.optimize.complement
-        end
-
-        def eql?(other)
-          instance_of?(other.class) &&
-          operand.eql?(other.operand)
-        end
-
-        def hash
-          operand.hash
         end
 
         def inspect

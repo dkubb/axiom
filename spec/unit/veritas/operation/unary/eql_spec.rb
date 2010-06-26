@@ -1,11 +1,11 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Relation::Operation::Unary#eql?' do
+describe 'Veritas::Operation::Unary#eql?' do
   subject { unary_operation.eql?(other) }
 
-  let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
+  let(:klass)           { Class.new { include Operation::Unary } }
+  let(:operand)         { mock('Operand')                        }
+  let(:unary_operation) { klass.new(operand)                     }
 
   context 'with the same unary operation' do
     let(:other) { unary_operation }
@@ -28,7 +28,8 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
   end
 
   context 'with a different unary operation' do
-    let(:other) { UnaryOperationSpecs::Other.new(relation) }
+    let(:other_klass) { Class.new { include Operation::Unary } }
+    let(:other)       { other_klass.new(operand)               }
 
     it { should be(false) }
 
@@ -38,7 +39,8 @@ describe 'Veritas::Relation::Operation::Unary#eql?' do
   end
 
   context 'with an equivalent unary operation of a different class' do
-    let(:other) { Class.new(UnaryOperationSpecs::Object).new(relation) }
+    let(:other_klass) { Class.new(klass)         }
+    let(:other)       { other_klass.new(operand) }
 
     it { should be(false) }
 
