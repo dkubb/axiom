@@ -104,6 +104,15 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
       it_should_behave_like 'an optimize method'
     end
 
+    context 'that has duplicate entries' do
+      let(:right)     { [ 1, 2, 2 ]                                  }
+      let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
+
+      it { should eql(left.in([ 1, 2 ])) }
+
+      it_should_behave_like 'an optimize method'
+    end
+
     context 'that has one entry' do
       let(:right)     { [ 1 ]                                        }
       let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }

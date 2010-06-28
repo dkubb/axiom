@@ -42,7 +42,7 @@ module Veritas
         end
 
         def optimize_right_enumerable
-          right.select { |value| left.valid_value?(value) }
+          right.select { |value| left.valid_value?(value) }.uniq
         end
 
         def optimized?
