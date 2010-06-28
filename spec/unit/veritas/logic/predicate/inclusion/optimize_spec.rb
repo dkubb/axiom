@@ -103,6 +103,15 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
 
       it_should_behave_like 'an optimize method'
     end
+
+    context 'that has one entry' do
+      let(:right)     { [ 1 ]                                        }
+      let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
+
+      it { should eql(left.eq(1)) }
+
+      it_should_behave_like 'an optimize method'
+    end
   end
 
   context 'right is a nil' do

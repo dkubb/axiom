@@ -9,6 +9,8 @@ module Veritas
         def optimize
           if not_comparable? || includes_nothing?
             Proposition::False.instance
+          elsif right_one?
+            Equality.new(left, optimize_right.first)
           elsif optimized?
             new_optimized_inclusion
           else
@@ -66,6 +68,12 @@ module Veritas
         def right_empty?
           optimize_right.each { return false }
           true
+        end
+
+        def right_one?
+          index = 0
+          optimize_right.detect { (index += 1) != 1 }
+          index == 1
         end
 
         memoize :optimize
