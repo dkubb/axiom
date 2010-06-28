@@ -86,7 +86,7 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
       it_should_behave_like 'an optimize method'
     end
 
-    context 'that is empty after filtering invalid values' do
+    context 'that is empty after filtering invalid entries' do
       let(:right)     { [ 'a' ]                                      }
       let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
@@ -95,7 +95,7 @@ describe 'Veritas::Logic::Predicate::Inclusion#optimize' do
       it_should_behave_like 'an optimize method'
     end
 
-    context 'that is not empty after filtering invalid values' do
+    context 'that is not empty after filtering invalid entries' do
       let(:right)     { [ 'a', 1, 2 ]                                }
       let(:inclusion) { Logic::Predicate::Inclusion.new(left, right) }
 
