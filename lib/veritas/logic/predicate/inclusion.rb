@@ -42,7 +42,12 @@ module Veritas
         end
 
         def optimize_right_enumerable
-          right.select { |value| left.valid_value?(value) }.uniq
+          # TODO: consider a data structure that makes matching, sorting
+          # uniquing of large enumerables more efficient.
+          enumerable = right.select { |value| left.valid_value?(value) }
+          enumerable.sort!
+          enumerable.uniq!
+          enumerable
         end
 
         def optimized?
