@@ -38,10 +38,10 @@ module Veritas
 
       def create_memoize_method_for(memoized_method, method)
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          #{method_visibility(method)}
           def #{method}
             @__memory['@#{method}'] ||= #{memoized_method}.freeze
           end
+          #{method_visibility(method)} :#{method}
         RUBY
       end
 
