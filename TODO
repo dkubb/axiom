@@ -98,8 +98,8 @@
   * When a Join contains a Join, and the size of the base relations is
     known, join the smallest with the largest, and then join that result
     with the remaining relation.
-  * Make sure the smallest relation (with a known size) is always the right
-    operation.
+  * Make sure the smallest relation (with a known size) is always the
+    right-most operation.
 
 * Allow Inclusion match to accept a Relation
   * Ensure that Inclusion can have the left/right be an Array of
