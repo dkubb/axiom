@@ -5,7 +5,7 @@ shared_examples_for 'an idempotent method' do
 
   it 'returns a frozen object' do
     case subject
-      when Numeric, Symbol, TrueClass, FalseClass, NilClass
+      when Numeric, TrueClass, FalseClass, NilClass
         # do nothing, cannot freeze these objects
       else
         should be_frozen

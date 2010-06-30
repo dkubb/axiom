@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'Veritas::Immutable::Memory#[]=' do
   subject { memory[key] = value }
 
-  let(:memory) { Immutable::Memory.new }
-  let(:key)    { '@key'                }
-  let(:value)  { mock('Value')         }
+  let(:memory) { Immutable::Memory.new           }
+  let(:key)    { '@key'                          }
+  let(:value)  { mock('Value', :frozen? => true) }
 
   it { should equal(value) }
 

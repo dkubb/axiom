@@ -39,7 +39,7 @@ module Veritas
       def create_memoize_method_for(memoized_method, method)
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
           def #{method}
-            @__memory['@#{method}'] ||= #{memoized_method}.freeze
+            @__memory['@#{method}'] ||= #{memoized_method}
           end
           #{method_visibility(method)} :#{method}
         RUBY
@@ -68,7 +68,6 @@ module Veritas
       end
 
       def memoize(name, value)
-        value = value.dup.freeze unless value.frozen?
         @__memory["@#{name}"] = value
         self
       end
@@ -78,10 +77,21 @@ module Veritas
     class Memory
       extend Aliasable
 
-      inheritable_alias(
-        :[]  => :instance_variable_get,
-        :[]= => :instance_variable_set
-      )
+      inheritable_alias(:[] => :instance_variable_get)
+
+      def []=(key, value)
+        instance_variable_set(key, self.class.memoized_value(value))
+      end
+
+      def self.memoized_value(value)
+        case value
+          when Numeric, TrueClass, FalseClass, NilClass
+            value
+          else
+            value.frozen? ? value : value.dup.freeze
+        end
+      end
+
     end # class Memory
   end # module Immutable
 end # module Veritas
