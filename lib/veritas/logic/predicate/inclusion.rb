@@ -37,8 +37,8 @@ module Veritas
         end
 
         def optimize_right_range
-          right = self.right.to_inclusive
-          right if right.first <= left_max && right.last >= left_min
+          inclusive = right.to_inclusive
+          inclusive if inclusive.overlaps?(left_min..left_max)
         end
 
         def optimize_right_enumerable
