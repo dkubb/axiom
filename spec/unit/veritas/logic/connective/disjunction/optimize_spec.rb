@@ -107,7 +107,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     let(:right)       { attribute.eq(3)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-    it { should eql(attribute.in([ 1, 3 ])) }
+    it { should eql(attribute.include([ 1, 3 ])) }
 
     it_should_behave_like 'an optimize method'
   end

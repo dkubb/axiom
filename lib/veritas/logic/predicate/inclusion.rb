@@ -84,7 +84,7 @@ module Veritas
         memoize :optimize
 
         module Methods
-          def in(other)
+          def include(other)
             Inclusion.new(self, other)
           end
 
