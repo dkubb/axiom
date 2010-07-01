@@ -1,3 +1,5 @@
+* Consider adding a complement class to each predicate (and other ops)
+
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
@@ -12,8 +14,6 @@
     * Alias #@- to #desc
 
 * Use flay to identify duplicate code and refactor
-
-* Consider adding a complement class to each predicate (and other ops)
 
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
