@@ -19,7 +19,7 @@ module Veritas
         end
 
         def inspect
-          "#{left.inspect} includes #{right.inspect}"
+          "#{left.inspect} included in #{right.inspect}"
         end
 
       private

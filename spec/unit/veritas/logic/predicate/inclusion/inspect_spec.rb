@@ -7,5 +7,5 @@ describe 'Veritas::Logic::Predicate::Inclusion#inspect' do
   let(:attribute) { Attribute::Integer.new(:id) }
   let(:inclusion) { klass.new(attribute, [ 1 ]) }
 
-  it { should == "#{attribute.inspect} includes #{[ 1 ].inspect}" }
+  it { should == "#{attribute.inspect} included in #{[ 1 ].inspect}" }
 end
