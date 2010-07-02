@@ -142,8 +142,11 @@ module Veritas
   end # module Logic
 end # module Veritas
 
+require 'veritas/logic/predicate/enumerable'
 require 'veritas/logic/predicate/comparable'
+
 require 'veritas/logic/predicate/equality'
+require 'veritas/logic/predicate/exclusion'
 require 'veritas/logic/predicate/greater_than'
 require 'veritas/logic/predicate/greater_than_or_equal_to'
 require 'veritas/logic/predicate/inclusion'

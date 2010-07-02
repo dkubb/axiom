@@ -3,36 +3,36 @@
 module Veritas
   module Logic
     class Predicate
-      class Inclusion < Predicate
+      class Exclusion < Predicate
         include Enumerable
 
         def self.eval(left, right)
-          right.include?(left)
+          !right.include?(left)
         end
 
         def inspect
-          "#{left.inspect} ∈ #{right.inspect}"
+          "#{left.inspect} ∉ #{right.inspect}"
         end
 
       private
 
         def new_optimized_one
-          Equality.new(left, optimize_right.first)
+          Inequality.new(left, optimize_right.first)
         end
 
         def new_optimized_none
-          Proposition::False.instance
+          Proposition::True.instance
         end
 
         memoize :optimize
 
         module Methods
-          def include(other)
-            Inclusion.new(self, other)
+          def exclude(other)
+            Exclusion.new(self, other)
           end
 
         end # module Methods
-      end # class Inclusion
+      end # class Exclusion
     end # class Predicate
   end # module Logic
 end # module Veritas
