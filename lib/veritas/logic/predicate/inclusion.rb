@@ -7,7 +7,7 @@ module Veritas
         end
 
         def optimize
-          if not_comparable? || includes_nothing?
+          if includes_nothing?
             Proposition::False.instance
           elsif right_one?
             Equality.new(left, optimize_right.first)
@@ -56,10 +56,6 @@ module Veritas
 
         def new_optimized_inclusion
           self.class.new(left, optimize_right)
-        end
-
-        def not_comparable?
-          right.kind_of?(Range) && !left.kind_of?(Attribute::Comparable)
         end
 
         def includes_nothing?
