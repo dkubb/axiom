@@ -1,6 +1,6 @@
 module BinaryConnectiveSpecs
   class Object
-    include Veritas::Logic::Connective::BinaryConnective
+    include Logic::Connective::BinaryConnective
 
     def self.eval(*)
     end

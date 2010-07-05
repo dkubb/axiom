@@ -1,9 +1,9 @@
 require 'spec/mocks'
 
 module PredicateEnumerableSpecs
-  class Object < Veritas::Logic::Predicate
+  class Object < Logic::Predicate
     include Spec::Mocks::ExampleMethods
-    include Veritas::Logic::Predicate::Enumerable
+    include Logic::Predicate::Enumerable
 
     def self.mock_one
       raise NotImplementedError, "#{self}.mock_one should be stubbed"

@@ -1,5 +1,5 @@
 module PropositionSpecs
-  class Object < Veritas::Logic::Proposition
+  class Object < Logic::Proposition
     def self.name
       'Veritas::Logic::Proposition'
     end

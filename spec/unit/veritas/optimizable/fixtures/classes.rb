@@ -1,5 +1,5 @@
 module OptimizableSpecs
   class Object
-    include Veritas::Optimizable
+    include Optimizable
   end # class Object
 end # module OptimizableSpecs

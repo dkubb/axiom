@@ -1,6 +1,6 @@
 module AliasableSpecs
   class Object
-    extend Veritas::Aliasable
+    extend Aliasable
 
     def test; end
   end # class Object

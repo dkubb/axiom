@@ -1,7 +1,7 @@
 module CombineOperationSpecs
   class Object
     include Immutable
-    include Veritas::Relation::Operation::Combine
+    include Relation::Operation::Combine
 
     def each
       left.each  { |tuple| yield tuple.project(header) }

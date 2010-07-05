@@ -1,6 +1,6 @@
 module UnaryOperationSpecs
   class Object
-    include Veritas::Relation::Operation::Unary
+    include Relation::Operation::Unary
 
     def each(&block)
       relation.each(&block)

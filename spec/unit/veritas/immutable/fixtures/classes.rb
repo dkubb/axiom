@@ -1,6 +1,6 @@
 module ImmutableSpecs
   class Object
-    include Veritas::Immutable
+    include Immutable
 
     def test
       rand

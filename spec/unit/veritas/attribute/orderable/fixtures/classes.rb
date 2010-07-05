@@ -1,5 +1,5 @@
 module OrderableSpecs
   class Object
-    include Veritas::Attribute::Orderable
+    include Attribute::Orderable
   end # class Object
 end # module OrderableSpecs

@@ -1,3 +1,3 @@
 module ConnectiveSpecs
-  class Object < Veritas::Logic::Connective; end
+  class Object < Logic::Connective; end
 end # module ConnectiveSpecs

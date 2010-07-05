@@ -1,6 +1,6 @@
 module SetOperationSpecs
   class Object
-    include Veritas::Relation::Operation::Set
+    include Relation::Operation::Set
 
     def each(&block)
       left.each(&block)

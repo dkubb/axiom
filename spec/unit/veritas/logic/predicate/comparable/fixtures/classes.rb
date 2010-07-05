@@ -1,7 +1,7 @@
 module PredicateComparableSpecs
   class Object
     include Immutable
-    include Veritas::Logic::Predicate::Comparable
+    include Logic::Predicate::Comparable
 
     attr_reader :left, :right
 
