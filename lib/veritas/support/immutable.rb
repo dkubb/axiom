@@ -48,7 +48,6 @@ module Veritas
       def method_visibility(method)
         if    private_method_defined?(method)   then 'private'
         elsif protected_method_defined?(method) then 'protected'
-        else                                         'public'
         end
       end
 
