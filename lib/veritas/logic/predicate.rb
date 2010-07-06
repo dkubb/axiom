@@ -32,6 +32,11 @@ module Veritas
         end
       end
 
+      def complement
+        self.class.complement.new(left, right).
+          memoize(:complement, self)
+      end
+
       def optimize
         if    foldable?     then fold_constants
         elsif always_false? then Proposition::False.instance
@@ -137,6 +142,8 @@ module Veritas
       def self.rename_operand(operand, aliases)
         operand.respond_to?(:rename) ? operand.rename(aliases) : operand
       end
+
+      memoize :complement
 
     end # class Predicate
   end # module Logic

@@ -10,6 +10,10 @@ module Veritas
           right.include?(left)
         end
 
+        def self.complement
+          Exclusion
+        end
+
         def inspect
           "#{left.inspect} ∈ #{right.inspect}"
         end

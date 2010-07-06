@@ -6,6 +6,10 @@ module Veritas
           !(right === left)
         end
 
+        def self.complement
+          Match
+        end
+
         def inspect
           "#{left.inspect} !~ #{right.inspect}"
         end

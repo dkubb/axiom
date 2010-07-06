@@ -4,6 +4,10 @@ module PredicateSpecs
       'Veritas::Logic::Predicate'
     end
 
+    def self.complement
+      self
+    end
+
   end # class Object
 
   class AlwaysTrue < Logic::Predicate

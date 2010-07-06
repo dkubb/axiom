@@ -1,20 +1,30 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Comparable#complement' do
-  subject { comparable.complement }
+describe 'Veritas::Logic::Predicate#complement' do
+  subject { predicate.complement }
 
-  let(:left)       { mock('Expression:Left')                           }
-  let(:right)      { mock('Expression:Right')                          }
-  let(:comparable) { PredicateComparableSpecs::Object.new(left, right) }
+  let(:klass)     { Class.new(PredicateSpecs::Object)        }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:predicate) { klass.new(attribute, 1) }
 
-  it { should be_kind_of(PredicateComparableSpecs::Object) }
+  before do
+    klass.class_eval do
+      def inspect
+        "#{left.inspect} op #{right.inspect}"
+      end
+    end
+  end
 
-  its(:left)  { should equal(left)  }
-  its(:right) { should equal(right) }
+  it { should be_kind_of(klass) }
+
+  it { should_not equal(predicate) }
+
+  its(:left)  { should equal(attribute) }
+  its(:right) { should == 1             }
 
   it 'is reversible' do
-    subject.complement.should equal(comparable)
+    subject.complement.should equal(predicate)
   end
 
   it_should_behave_like 'an idempotent method'

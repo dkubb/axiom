@@ -8,11 +8,6 @@ module Veritas
           descendant.extend ClassMethods
         end
 
-        def complement
-          self.class.complement.new(left, right).
-            memoize(:complement, self)
-        end
-
         def inspect
           "#{left.inspect} #{self.class.operation} #{right.inspect}"
         end
@@ -42,7 +37,7 @@ module Veritas
           end
         end
 
-        memoize :complement, :normalize
+        memoize :normalize
 
         module ClassMethods
           def eval(left, right)
