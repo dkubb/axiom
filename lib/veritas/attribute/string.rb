@@ -2,7 +2,9 @@ module Veritas
   class Attribute
     class String < Object
       extend Aliasable
-      include Orderable, Logic::Predicate::Match::Methods
+      include Orderable,
+              Logic::Predicate::Match::Methods,
+              Logic::Predicate::NoMatch::Methods
 
       inheritable_alias(:range => :length)
 
