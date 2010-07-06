@@ -8,7 +8,7 @@ describe 'Veritas::Logic::Proposition#hash' do
 
   before do
     @response = mock('#eval response')
-    PropositionSpecs::Object.should_receive(:eval).with(no_args).at_least(:once).and_return(@response)
+    PropositionSpecs::Object.should_receive(:eval).at_least(:once).and_return(@response)
   end
 
   it 'hashes the results of self.class.eval' do

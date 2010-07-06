@@ -8,7 +8,7 @@ describe 'Veritas::Logic::Proposition#call' do
 
   it 'calls self.class.eval' do
     response = mock('#eval response')
-    PropositionSpecs::Object.should_receive(:eval).with(no_args).and_return(response)
+    PropositionSpecs::Object.should_receive(:eval).and_return(response)
     should equal(response)
   end
 end
