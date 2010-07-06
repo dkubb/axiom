@@ -101,4 +101,36 @@ describe 'Veritas::Logic::Connective::Conjunction#optimize' do
 
     it_should_behave_like 'an optimize method'
   end
+
+  context 'left and right are predicates for the same attribute and the same values' do
+    let(:left)        { attribute.eq(1)                                 }
+    let(:right)       { attribute.eq(1)                                 }
+    let(:conjunction) { Logic::Connective::Conjunction.new(left, right) }
+
+    it { should eql(attribute.eq(1)) }
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'left and right are predicates for the same attribute, but left.right is an attribute' do
+    let(:other)       { Attribute::Integer.new(:other_id)               }
+    let(:left)        { attribute.eq(other)                             }
+    let(:right)       { attribute.eq(1)                                 }
+    let(:conjunction) { Logic::Connective::Conjunction.new(left, right) }
+
+    it { should equal(conjunction) }
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'left and right are predicates for the same attribute, but right.right is an attribute' do
+    let(:other)       { Attribute::Integer.new(:other_id)               }
+    let(:left)        { attribute.eq(1)                                 }
+    let(:right)       { attribute.eq(other)                             }
+    let(:conjunction) { Logic::Connective::Conjunction.new(left, right) }
+
+    it { should equal(conjunction) }
+
+    it_should_behave_like 'an optimize method'
+  end
 end
