@@ -1,3 +1,7 @@
+* Optimize attr.eq(1).and(attr.eq(3)) to False  (cannot match both values)
+* Optimize attr.ne(1).or(attr.ne(3))  to True   (can match any value)
+* Optimize attr.eq(1).and(attr.ne(2)) to False  (cannot match and not match same value)
+
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
@@ -49,7 +53,6 @@
           joins rather than splitting it up like this.
     * Restriction should follow Projection
       * Restriction optimizations:
-        * "attr = ? AND attr = ?", when the value is different -> False
         * "attr = ? AND NOT(attr = ?)", when the value is the same -> False
         * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
           * Do the same for >=, <, <=
