@@ -42,7 +42,7 @@ module Veritas
         def collapse_to_inclusion?
           left_and_right_equality?       &&
           left_and_right_same_attribute? &&
-          left_and_right_values?
+          left_and_right_constants?
         end
 
         def left_and_right_equality?
@@ -54,15 +54,15 @@ module Veritas
           optimize_left.left.eql?(optimize_right.left)
         end
 
-        def left_and_right_values?
-          left_value? && right_value?
+        def left_and_right_constants?
+          left_constant? && right_constant?
         end
 
-        def left_value?
+        def left_constant?
           !optimize_left.right.kind_of?(Attribute)
         end
 
-        def right_value?
+        def right_constant?
           !optimize_right.right.kind_of?(Attribute)
         end
 
