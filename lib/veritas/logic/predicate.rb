@@ -92,11 +92,11 @@ module Veritas
       end
 
       def left_constant?
-        !left_attribute?
+        !left.respond_to?(:call)
       end
 
       def right_constant?
-        !right_attribute?
+        !right.respond_to?(:call)
       end
 
       def left_valid_primitive?
