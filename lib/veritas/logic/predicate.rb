@@ -38,7 +38,7 @@ module Veritas
       end
 
       def optimize
-        if    foldable?     then fold_constants
+        if    constant?     then new_proposition
         elsif always_false? then Proposition::False.instance
         elsif always_true?  then Proposition::True.instance
         elsif normalizable? then normalize
@@ -59,7 +59,7 @@ module Veritas
 
     private
 
-      def fold_constants
+      def new_proposition
         Proposition.new(self.class.eval(left, right))
       end
 
@@ -67,7 +67,7 @@ module Veritas
         left.eql?(right)
       end
 
-      def foldable?
+      def constant?
         left_constant? && right_constant?
       end
 
