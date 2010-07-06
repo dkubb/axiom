@@ -1,5 +1,3 @@
-* Consider adding a complement class to each predicate (and other ops)
-
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
