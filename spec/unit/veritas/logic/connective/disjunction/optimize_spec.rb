@@ -102,7 +102,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are equal predicates for the same attribute and different values' do
+  context 'left and right are Equality predicates for the same attribute and different values' do
     let(:left)        { attribute.eq(1)                                 }
     let(:right)       { attribute.eq(3)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -112,7 +112,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are equal predicates for the same attribute and the same values' do
+  context 'left and right are predicates for the same attribute and the same values' do
     let(:left)        { attribute.eq(1)                                 }
     let(:right)       { attribute.eq(1)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
@@ -122,24 +122,24 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are equal predicates for the same attribute, but left.right is an attribute' do
+  context 'left and right are predicates for the same attribute, but left.right is an attribute' do
     let(:other)       { Attribute::Integer.new(:other_id)               }
     let(:left)        { attribute.eq(other)                             }
     let(:right)       { attribute.eq(1)                                 }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-    it { should eql(left | right) }
+    it { should equal(disjunction) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are equal predicates for the same attribute, but right.right is an attribute' do
+  context 'left and right are predicates for the same attribute, but right.right is an attribute' do
     let(:other)       { Attribute::Integer.new(:other_id)               }
     let(:left)        { attribute.eq(1)                                 }
     let(:right)       { attribute.eq(other)                             }
     let(:disjunction) { Logic::Connective::Disjunction.new(left, right) }
 
-    it { should eql(left | right) }
+    it { should equal(disjunction) }
 
     it_should_behave_like 'an optimize method'
   end
