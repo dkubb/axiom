@@ -59,11 +59,11 @@ module Veritas
         end
 
         def left_constant?
-          !optimize_left.right.kind_of?(Attribute)
+          !optimize_left.right.respond_to?(:call)
         end
 
         def right_constant?
-          !optimize_right.right.kind_of?(Attribute)
+          !optimize_right.right.respond_to?(:call)
         end
 
         memoize :optimize
