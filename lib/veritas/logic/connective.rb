@@ -65,6 +65,22 @@ module Veritas
 
       private
 
+        def left_and_right_same_attribute?
+          optimize_left.left.eql?(optimize_right.left)
+        end
+
+        def left_and_right_constants?
+          left_constant? && right_constant?
+        end
+
+        def left_constant?
+          !optimize_left.right.respond_to?(:call)
+        end
+
+        def right_constant?
+          !optimize_right.right.respond_to?(:call)
+        end
+
         def duplicate_operands?
           optimize_left.eql?(optimize_right)
         end

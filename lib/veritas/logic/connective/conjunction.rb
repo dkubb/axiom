@@ -17,6 +17,8 @@ module Veritas
             left
           elsif left.kind_of?(Proposition::True)
             right
+          elsif collapse_to_exclusion?
+            new_exclusion
           else
             super
           end
@@ -31,6 +33,24 @@ module Veritas
         def always_false?
           optimize_left.kind_of?(Proposition::False) || optimize_right.kind_of?(Proposition::False)
         end
+
+        def new_exclusion
+          left = optimize_left
+          Predicate::Exclusion.new(left.left, [ left.right, optimize_right.right ]).optimize
+        end
+
+        def collapse_to_exclusion?
+          left_and_right_inequality?     &&
+          left_and_right_same_attribute? &&
+          left_and_right_constants?
+        end
+
+        def left_and_right_inequality?
+          optimize_left.kind_of?(Predicate::Inequality) &&
+          optimize_right.kind_of?(Predicate::Inequality)
+        end
+
+        memoize :optimize
 
         module Methods
           extend Aliasable
