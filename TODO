@@ -60,6 +60,7 @@
           * Do the same for >=, <, <=
         * Constant folding, eg:
           "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
+          * This will probably only work across Conjunctions.
         * "attr > 5 AND attr = 6" -> "attr = 6", because attr must be
           equal to 6. this will probably be related to constant folding;
           the first expression will become 6 > 5, which evaluates to
