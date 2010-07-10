@@ -4,8 +4,8 @@ module Veritas
       class Complement < Connective
         include Operation::Unary
 
-        def self.eval(value)
-          !value
+        def self.eval(operand)
+          !operand
         end
 
         def call(tuple)

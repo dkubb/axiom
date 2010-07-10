@@ -7,8 +7,12 @@ module Veritas
         include Immutable
         include Operation::Binary
 
+        def operands
+          [ left, right ]
+        end
+
         def call(tuple)
-          self.class.eval(left.call(tuple), right.call(tuple))
+          self.class.eval(*operands.map { |operand| operand.call(tuple) })
         end
 
         def project(attributes)
@@ -42,7 +46,7 @@ module Veritas
         end
 
         def optimize
-          if duplicate_operands?
+          if duplicate_optimized_operands?
             optimize_left
           elsif redundant?
             optimize_right
@@ -60,28 +64,26 @@ module Veritas
         end
 
         def hash
-          left.hash ^ right.hash
+          operands.inject(0) { |hash, operand| hash ^ operand.hash }
         end
 
       private
 
-        def left_and_right_same_attribute?
+        def optimized_operands
+          [ optimize_left, optimize_right ]
+        end
+
+        def all_same_attribute?
           optimize_left.left.eql?(optimize_right.left)
         end
 
-        def left_and_right_constants?
-          left_constant? && right_constant?
+        def optimized_constants?
+          optimized_operands.all? do |operand|
+            !operand.right.respond_to?(:call)
+          end
         end
 
-        def left_constant?
-          !optimize_left.right.respond_to?(:call)
-        end
-
-        def right_constant?
-          !optimize_right.right.respond_to?(:call)
-        end
-
-        def duplicate_operands?
+        def duplicate_optimized_operands?
           optimize_left.eql?(optimize_right)
         end
 
@@ -99,7 +101,7 @@ module Veritas
         end
 
         def new_optimized_connective
-          self.class.new(optimize_left, optimize_right)
+          self.class.new(*optimized_operands)
         end
 
         def optimized?

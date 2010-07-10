@@ -4,12 +4,12 @@ module Veritas
       class Disjunction < Connective
         include BinaryConnective
 
-        def self.eval(left, right)
-          left || right
+        def self.eval(*operands)
+          operands.any?
         end
 
         def optimize
-          left, right = optimize_left, optimize_right
+          left, right = optimized_operands
 
           if always_true?
             Proposition::True.instance
@@ -25,29 +25,32 @@ module Veritas
         end
 
         def inspect
-          "(#{left.inspect} OR #{right.inspect})"
+          "(#{operands.map { |operand| operand.inspect }.join(' OR ')})"
         end
 
       private
 
         def always_true?
-          optimize_left.kind_of?(Proposition::True) || optimize_right.kind_of?(Proposition::True)
+          optimized_operands.any? do |operand|
+            operand.kind_of?(Proposition::True)
+          end
         end
 
         def new_inclusion
-          left = optimize_left
-          Predicate::Inclusion.new(left.left, [ left.right, optimize_right.right ]).optimize
+          ops = optimized_operands
+          Predicate::Inclusion.new(ops.first.left, ops.map { |op| op.right }).optimize
         end
 
         def collapse_to_inclusion?
-          left_and_right_equality?       &&
-          left_and_right_same_attribute? &&
-          left_and_right_constants?
+          all_equality?       &&
+          all_same_attribute? &&
+          optimized_constants?
         end
 
-        def left_and_right_equality?
-          optimize_left.kind_of?(Predicate::Equality) &&
-          optimize_right.kind_of?(Predicate::Equality)
+        def all_equality?
+          optimized_operands.all? do |operand|
+            operand.kind_of?(Predicate::Equality)
+          end
         end
 
         memoize :optimize

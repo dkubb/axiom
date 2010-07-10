@@ -4,12 +4,12 @@ module Veritas
       class Conjunction < Connective
         include BinaryConnective
 
-        def self.eval(left, right)
-          left && right
+        def self.eval(*operands)
+          operands.all?
         end
 
         def optimize
-          left, right = optimize_left, optimize_right
+          left, right = optimized_operands
 
           if always_false?
             Proposition::False.instance
@@ -25,29 +25,32 @@ module Veritas
         end
 
         def inspect
-          "(#{left.inspect} AND #{right.inspect})"
+          "(#{operands.map { |operand| operand.inspect }.join(' AND ')})"
         end
 
       private
 
         def always_false?
-          optimize_left.kind_of?(Proposition::False) || optimize_right.kind_of?(Proposition::False)
+          optimized_operands.any? do |operand|
+            operand.kind_of?(Proposition::False)
+          end
         end
 
         def new_exclusion
-          left = optimize_left
-          Predicate::Exclusion.new(left.left, [ left.right, optimize_right.right ]).optimize
+          ops = optimized_operands
+          Predicate::Exclusion.new(ops.first.left, ops.map { |op| op.right }).optimize
         end
 
         def collapse_to_exclusion?
-          left_and_right_inequality?     &&
-          left_and_right_same_attribute? &&
-          left_and_right_constants?
+          all_inequality?     &&
+          all_same_attribute? &&
+          optimized_constants?
         end
 
-        def left_and_right_inequality?
-          optimize_left.kind_of?(Predicate::Inequality) &&
-          optimize_right.kind_of?(Predicate::Inequality)
+        def all_inequality?
+          optimized_operands.all? do |operand|
+            operand.kind_of?(Predicate::Inequality)
+          end
         end
 
         memoize :optimize
