@@ -42,9 +42,9 @@ module Veritas
         end
 
         def optimize
-          if duplicate_operands?
+          if duplicate_optimized_operands? || redundant_left?
             optimize_left
-          elsif redundant?
+          elsif redundant_right?
             optimize_right
           elsif optimized?
             new_optimized_connective
@@ -81,11 +81,16 @@ module Veritas
           !optimize_right.right.respond_to?(:call)
         end
 
-        def duplicate_operands?
+        def duplicate_optimized_operands?
           optimize_left.eql?(optimize_right)
         end
 
-        def redundant?
+        def redundant_left?
+          left = optimize_left
+          kind_of?(left.class) && optimize_right.eql?(left.right)
+        end
+
+        def redundant_right?
           right = optimize_right
           kind_of?(right.class) && optimize_left.eql?(right.left)
         end

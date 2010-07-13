@@ -92,4 +92,18 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
 
     it_should_behave_like 'an optimize method'
   end
+
+  context 'self and left are the same, and right and left.right are the same' do
+    let(:left)  { mock('BinaryConnective', :class => klass, :right => right) }
+    let(:right) { attribute.eq(1)                                            }
+
+    before do
+      left.stub!(:optimize => left, :frozen? => true)
+    end
+
+    it { should equal(left) }
+
+    it_should_behave_like 'an optimize method'
+  end
+
 end
