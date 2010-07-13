@@ -20,10 +20,7 @@ shared_examples_for 'memoizes method' do
 
     subject
 
-    file, line = klass.new.send(method).first.split(':')[0, 2]
-
-    File.expand_path(file).should == File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__)
-    line.to_i.should == 42
+    klass.new.send(method).first.split(':')[0, 2].should == [  File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__), '42' ]
   end
 
   it 'sets the file and line number properly' do
