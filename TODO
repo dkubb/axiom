@@ -2,21 +2,6 @@
 * Optimize attr.ne(1).or(attr.ne(3))  to True   (can match any value)
 * Optimize attr.eq(1).and(attr.ne(2)) to False  (cannot match and not match same value)
 
-* Add aliases for some common operations in Method classes, eg:
-  * Predicates:
-    * Alias #== to #eq (may break alot)
-    * Alias #!= to #ne (in 1.9 only)
-    * Alias #>= to #gte
-    * Alias #> to #gt
-    * Alias #<= to #lte
-    * Alias #< to #lt
-    * Alias #=~ to #match
-  * Direction:
-    * Alias #@+ to #asc
-    * Alias #@- to #desc
-
-* Use flay to identify duplicate code and refactor
-
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
     per-operation basis.
@@ -34,6 +19,21 @@
     optimizer. Even just making it so that the Factory object is
     returned from a method that can be easily overridden might make
     it much nicer for the end user.
+
+* Add aliases for some common operations in Method classes, eg:
+  * Predicates:
+    * Alias #== to #eq (may break alot)
+    * Alias #!= to #ne (in 1.9 only)
+    * Alias #>= to #gte
+    * Alias #> to #gt
+    * Alias #<= to #lte
+    * Alias #< to #lt
+    * Alias #=~ to #match
+  * Direction:
+    * Alias #@+ to #asc
+    * Alias #@- to #desc
+
+* Use flay to identify duplicate code and refactor
 
 * Add further optimizations:
   * Operation Order:
