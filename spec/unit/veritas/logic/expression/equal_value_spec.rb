@@ -4,17 +4,23 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Logic::Expression#==' do
   subject { expression == other }
 
-  before :all do
-    ExpressionSpecs::Object.class_eval do
+  let(:klass) { Class.new(ExpressionSpecs::Object) }
+
+  before do
+    klass.class_eval do
       def eql?(other)
         instance_of?(other.class)
+      end
+
+      def hash
+        object_id
       end
     end
   end
 
   context 'with two equivalent expressions' do
-    let(:expression) { ExpressionSpecs::Object.new }
-    let(:other)      { ExpressionSpecs::Object.new }
+    let(:expression) { klass.new }
+    let(:other)      { klass.new }
 
     it { should be(true) }
 
@@ -24,8 +30,8 @@ describe 'Veritas::Logic::Expression#==' do
   end
 
   context 'with two different expressions' do
-    let(:expression) { ExpressionSpecs::Object.new            }
-    let(:other)      { Class.new(ExpressionSpecs::Object).new }
+    let(:expression) { klass.new            }
+    let(:other)      { Class.new(klass).new }
 
     it { should be(false) }
 
@@ -35,8 +41,8 @@ describe 'Veritas::Logic::Expression#==' do
   end
 
   context 'with two equivalent unoptimized expressions' do
-    let(:expression) { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
-    let(:other)      { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
+    let(:expression) { klass.new & klass.new }
+    let(:other)      { klass.new & klass.new }
 
     it { should be(true) }
 
@@ -46,9 +52,9 @@ describe 'Veritas::Logic::Expression#==' do
   end
 
   context 'with two different unoptimized expressions' do
-    let(:expression) { ExpressionSpecs::Object.new & ExpressionSpecs::Object.new }
-    let(:subclass)   { Class.new(ExpressionSpecs::Object)                        }
-    let(:other)      { subclass.new & subclass.new                               }
+    let(:expression) { klass.new & klass.new       }
+    let(:subclass)   { Class.new(klass)            }
+    let(:other)      { subclass.new & subclass.new }
 
     it { should be(false) }
 
