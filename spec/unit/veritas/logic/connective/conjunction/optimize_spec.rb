@@ -102,6 +102,16 @@ describe 'Veritas::Logic::Connective::Conjunction#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
+  context 'left and right are Equality predicates for the same attribute and different values' do
+    let(:left)        { attribute.eq(1)                                 }
+    let(:right)       { attribute.eq(3)                                 }
+    let(:conjunction) { Logic::Connective::Conjunction.new(left, right) }
+
+    it { should equal(Logic::Proposition::False.instance) }
+
+    it_should_behave_like 'an optimize method'
+  end
+
   context 'left and right are Inequality predicates for the same attribute and different values' do
     let(:left)        { attribute.ne(1)                                 }
     let(:right)       { attribute.ne(3)                                 }

@@ -1,6 +1,4 @@
-* Optimize attr.eq(1).and(attr.eq(3)) to False  (cannot match both values)
-* Optimize attr.ne(1).or(attr.ne(3))  to True   (can match any value)
-* Optimize attr.eq(1).and(attr.ne(2)) to False  (cannot match and not match same value)
+* Optimize attr.eq(1).and(attr.ne(1)) to False  (cannot match and not match same value)
 
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a

@@ -106,4 +106,39 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
+  context 'left and right are always true' do
+    let(:left)  { mock('Left') }
+    let(:right) { mock('Right') }
+
+    before do
+      left.stub!(:optimize).and_return(left)
+      right.stub!(:optimize).and_return(right)
+
+      klass.class_eval do
+        def always_true?
+          true
+        end
+      end
+    end
+
+    it { should equal(Logic::Proposition::True.instance) }
+  end
+
+  context 'left and right are always false' do
+    let(:left)  { mock('Left') }
+    let(:right) { mock('Right') }
+
+    before do
+      left.stub!(:optimize).and_return(left)
+      right.stub!(:optimize).and_return(right)
+
+      klass.class_eval do
+        def always_false?
+          true
+        end
+      end
+    end
+
+    it { should equal(Logic::Proposition::False.instance) }
+  end
 end

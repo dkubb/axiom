@@ -48,6 +48,10 @@ module Veritas
             optimize_right
           elsif optimized?
             new_optimized_connective
+          elsif always_true?
+            Proposition::True.instance
+          elsif always_false?
+            Proposition::False.instance
           else
             super
           end
@@ -65,11 +69,33 @@ module Veritas
 
       private
 
-        def left_and_right_same_attribute?
+        def equality_with_same_attributes?
+          equality?        &&
+          same_attributes? &&
+          constants?
+        end
+
+        def inequality_with_same_attributes?
+          inequality?      &&
+          same_attributes? &&
+          constants?
+        end
+
+        def equality?
+          optimize_left.kind_of?(Predicate::Equality) &&
+          optimize_right.kind_of?(Predicate::Equality)
+        end
+
+        def inequality?
+          optimize_left.kind_of?(Predicate::Inequality) &&
+          optimize_right.kind_of?(Predicate::Inequality)
+        end
+
+        def same_attributes?
           optimize_left.left.eql?(optimize_right.left)
         end
 
-        def left_and_right_constants?
+        def constants?
           left_constant? && right_constant?
         end
 
@@ -93,6 +119,14 @@ module Veritas
         def redundant_right?
           right = optimize_right
           kind_of?(right.class) && optimize_left.eql?(right.left)
+        end
+
+        def always_true?
+          false
+        end
+
+        def always_false?
+          false
         end
 
         def optimize_left

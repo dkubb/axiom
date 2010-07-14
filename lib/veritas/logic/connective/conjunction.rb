@@ -11,13 +11,11 @@ module Veritas
         def optimize
           left, right = optimize_left, optimize_right
 
-          if always_false?
-            Proposition::False.instance
-          elsif right.kind_of?(Proposition::True)
+          if right.kind_of?(Proposition::True)
             left
           elsif left.kind_of?(Proposition::True)
             right
-          elsif collapse_to_exclusion?
+          elsif inequality_with_same_attributes?
             new_exclusion
           else
             super
@@ -31,23 +29,14 @@ module Veritas
       private
 
         def always_false?
-          optimize_left.kind_of?(Proposition::False) || optimize_right.kind_of?(Proposition::False)
+          optimize_left.kind_of?(Proposition::False)  ||
+          optimize_right.kind_of?(Proposition::False) ||
+          equality_with_same_attributes?
         end
 
         def new_exclusion
           left = optimize_left
           Predicate::Exclusion.new(left.left, [ left.right, optimize_right.right ]).optimize
-        end
-
-        def collapse_to_exclusion?
-          left_and_right_inequality?     &&
-          left_and_right_same_attribute? &&
-          left_and_right_constants?
-        end
-
-        def left_and_right_inequality?
-          optimize_left.kind_of?(Predicate::Inequality) &&
-          optimize_right.kind_of?(Predicate::Inequality)
         end
 
         memoize :optimize
