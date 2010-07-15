@@ -31,7 +31,8 @@ module Veritas
         def always_false?
           optimize_left.kind_of?(Proposition::False)  ||
           optimize_right.kind_of?(Proposition::False) ||
-          equality_with_same_attributes?
+          equality_with_same_attributes?              ||
+          complementary_predicates?
         end
 
         def new_exclusion

@@ -46,12 +46,12 @@ module Veritas
             optimize_left
           elsif redundant_right?
             optimize_right
-          elsif optimized?
-            new_optimized_connective
           elsif always_true?
             Proposition::True.instance
           elsif always_false?
             Proposition::False.instance
+          elsif optimized?
+            new_optimized_connective
           else
             super
           end
@@ -79,6 +79,10 @@ module Veritas
           inequality?      &&
           same_attributes? &&
           constants?
+        end
+
+        def complementary_predicates?
+          optimize_left.complement.eql?(optimize_right)
         end
 
         def equality?

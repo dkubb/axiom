@@ -1,5 +1,3 @@
-* Optimize attr.eq(1).and(attr.ne(1)) to False  (cannot match and not match same value)
-
 * Extract optimization into Optimizer class
   * Make sure it can be inherited and optimization overridden on a
     per-operation basis.
@@ -51,7 +49,6 @@
           joins rather than splitting it up like this.
     * Restriction should follow Projection
       * Restriction optimizations:
-        * "attr = ? AND NOT(attr = ?)", when the value is the same -> False
         * "attr > ? OR attr > ?" -> "attr > ?", with the least restrictive value
           * Do the same for >=, <, <=
         * "attr > ? AND attr > ?" -> "attr > ?", with the most restrictive value

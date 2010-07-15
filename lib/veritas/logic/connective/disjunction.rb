@@ -31,7 +31,8 @@ module Veritas
         def always_true?
           optimize_left.kind_of?(Proposition::True)  ||
           optimize_right.kind_of?(Proposition::True) ||
-          inequality_with_same_attributes?
+          inequality_with_same_attributes?           ||
+          complementary_predicates?
         end
 
         def new_inclusion
