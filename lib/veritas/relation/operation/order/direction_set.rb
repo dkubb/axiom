@@ -74,7 +74,7 @@ module Veritas
           end
 
           def cmp_tuples(left, right)
-            inject(0) do |cmp, direction|
+            reduce(0) do |cmp, direction|
               break cmp if cmp.nonzero?
               direction.call(left, right)
             end

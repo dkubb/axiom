@@ -19,7 +19,7 @@ begin
       raise "Adjust flay threshold down to #{max}"
     end
 
-    total = flay.masses.inject(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
+    total = flay.masses.reduce(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
     unless total == total_score
       raise "Flay total is now #{total}, but expected #{total_score}"
     end
