@@ -3,8 +3,11 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Product#optimize' do
   subject { product.optimize }
 
-  let(:left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
-  let(:right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
+  let(:left_body)  { [ [ 1 ] ]          }
+  let(:right_body) { [ [ 'Dan Kubb' ] ] }
+
+  let(:left)  { Relation.new([ [ :id,   Integer ] ], left_body)  }
+  let(:right) { Relation.new([ [ :name, String  ] ], right_body) }
 
   context 'left is a TABLE_DUM' do
     let(:product) { Algebra::Product.new(TABLE_DUM, right) }
@@ -13,6 +16,11 @@ describe 'Veritas::Algebra::Product#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -27,6 +35,11 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -37,6 +50,11 @@ describe 'Veritas::Algebra::Product#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -51,6 +69,11 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -61,6 +84,11 @@ describe 'Veritas::Algebra::Product#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -75,6 +103,11 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -85,6 +118,11 @@ describe 'Veritas::Algebra::Product#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == product
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -99,6 +137,11 @@ describe 'Veritas::Algebra::Product#optimize' do
       should == product
     end
 
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -106,6 +149,16 @@ describe 'Veritas::Algebra::Product#optimize' do
     let(:product) { Algebra::Product.new(left, right) }
 
     it { should equal(product) }
+
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
