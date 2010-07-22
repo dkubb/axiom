@@ -1,6 +1,10 @@
 module Veritas
   class Relation
     class Materialized < Relation
+      def empty?
+        tuples.empty?
+      end
+
       def size
         tuples.size
       end
