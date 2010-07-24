@@ -3,13 +3,19 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Order#optimize' do
   subject { order.optimize }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ]                  }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
+  let(:directions) { [ relation[:id] ]                        }
 
   context 'containing a relation' do
     let(:order) { relation.order(directions) }
 
     it { should equal(order) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
@@ -22,6 +28,11 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == order
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -37,6 +48,11 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
       should == order
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -50,6 +66,11 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
       should == order
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -61,6 +82,11 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == order
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

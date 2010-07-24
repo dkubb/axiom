@@ -3,11 +3,10 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Product#optimize' do
   subject { product.optimize }
 
-  let(:left_body)  { [ [ 1 ] ]          }
-  let(:right_body) { [ [ 'Dan Kubb' ] ] }
-
-  let(:left)  { Relation.new([ [ :id,   Integer ] ], left_body)  }
-  let(:right) { Relation.new([ [ :name, String  ] ], right_body) }
+  let(:left_body)  { [ [ 1 ] ]                                        }
+  let(:right_body) { [ [ 'Dan Kubb' ] ]                               }
+  let(:left)       { Relation.new([ [ :id,   Integer ] ], left_body)  }
+  let(:right)      { Relation.new([ [ :name, String  ] ], right_body) }
 
   context 'left is a TABLE_DUM' do
     let(:product) { Algebra::Product.new(TABLE_DUM, right) }

@@ -4,8 +4,10 @@ describe 'Veritas::Algebra::Difference#optimize' do
   subject { difference.optimize }
 
   let(:header)         { [ [ :id, Integer ] ]                 }
-  let(:original_left)  { Relation.new(header, [ [ 1 ] ])      }
-  let(:original_right) { Relation.new(header, [ [ 2 ] ])      }
+  let(:left_body)      { [ [ 1 ] ]                            }
+  let(:right_body)     { [ [ 2 ] ]                            }
+  let(:original_left)  { Relation.new(header, left_body)      }
+  let(:original_right) { Relation.new(header, right_body)     }
   let(:difference)     { Algebra::Difference.new(left, right) }
 
   context 'left is an empty relation' do
@@ -16,6 +18,11 @@ describe 'Veritas::Algebra::Difference#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == difference
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -31,6 +38,11 @@ describe 'Veritas::Algebra::Difference#optimize' do
       should == difference
     end
 
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -42,6 +54,16 @@ describe 'Veritas::Algebra::Difference#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == difference
+    end
+
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -57,6 +79,40 @@ describe 'Veritas::Algebra::Difference#optimize' do
       should == difference
     end
 
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'left and right are equivalent relations' do
+    let(:right_body) { left_body.dup  }
+    let(:left)       { original_left  }
+    let(:right)      { original_right }
+
+    it { should eql(Relation::Empty.new(header)) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == difference
+    end
+
+    it 'executes left_body#each' do
+      left_body.should_receive(:each)
+      subject
+    end
+
+    it 'executes right_body#each' do
+      right_body.should_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -66,17 +122,14 @@ describe 'Veritas::Algebra::Difference#optimize' do
 
     it { should equal(difference) }
 
-    it_should_behave_like 'an optimize method'
-  end
+    it 'executes left_body#each' do
+      left_body.should_receive(:each)
+      subject
+    end
 
-  context 'left and right are equivalent relations' do
-    let(:left)  { original_left }
-    let(:right) { left.dup      }
-
-    it { should eql(Relation::Empty.new(header)) }
-
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == difference
+    it 'executes right_body#each' do
+      right_body.should_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

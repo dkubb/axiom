@@ -3,9 +3,10 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Limit#optimize' do
   subject { limit.optimize }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ]                              }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body)             }
+  let(:directions) { [ relation[:id] ]                                    }
+  let(:order)      { Relation::Operation::Order.new(relation, directions) }
 
   context 'when the limit is 0' do
     let(:limit) { order.limit(0) }
@@ -16,6 +17,11 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       should == limit
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -23,6 +29,11 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     let(:limit) { Relation::Operation::Limit.new(order, 1) }
 
     it { should equal(limit) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
@@ -39,6 +50,11 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -62,6 +78,11 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       should == limit
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -81,6 +102,11 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
       should == limit
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -92,6 +118,11 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == limit
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

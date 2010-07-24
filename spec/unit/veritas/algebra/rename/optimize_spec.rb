@@ -3,13 +3,19 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Rename#optimize' do
   subject { rename.optimize }
 
-  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
-  let(:aliases)  { { :id => :other_id }                                                         }
+  let(:body)     { [ [ 1, 'Dan Kubb' ] ]                                       }
+  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
+  let(:aliases)  { { :id => :other_id }                                        }
 
   context 'containing a relation' do
     let(:rename) { Algebra::Rename.new(relation, aliases) }
 
     it { should equal(rename) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
@@ -22,6 +28,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -43,6 +54,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -68,6 +84,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -91,6 +112,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -104,6 +130,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -123,6 +154,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -136,6 +172,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -157,6 +198,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -170,6 +216,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -189,6 +240,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -204,6 +260,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -222,6 +283,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -236,6 +302,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -253,6 +324,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -266,6 +342,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -284,6 +365,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -298,6 +384,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -316,6 +407,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
       should == rename
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -330,6 +426,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

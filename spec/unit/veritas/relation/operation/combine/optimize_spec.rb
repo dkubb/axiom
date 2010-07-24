@@ -4,9 +4,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Relation::Operation::Combine#optimize' do
   subject { combine_operation.optimize }
 
-  let(:original_left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])                         }
-  let(:original_right)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
-  let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)                               }
+  let(:left_body)         { [ [ 1 ], [ 2 ] ]                                                  }
+  let(:right_body)        { [ [ 2, 'Dan Kubb' ] ]                                             }
+  let(:original_left)     { Relation.new([ [ :id, Integer ] ], left_body)                     }
+  let(:original_right)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], right_body) }
+  let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)                    }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(original_left.header) }

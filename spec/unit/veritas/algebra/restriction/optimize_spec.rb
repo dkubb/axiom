@@ -3,13 +3,19 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Restriction#optimize' do
   subject { restriction.optimize }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:body)     { [ [ 1 ] ]                                }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
 
   context 'with a true proposition' do
     let(:proposition) { relation[:id].eq(relation[:id])                 }
     let(:restriction) { Algebra::Restriction.new(relation, proposition) }
 
     it { should equal(relation) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
@@ -24,6 +30,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -32,6 +43,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     let(:restriction) { Algebra::Restriction.new(relation, predicate) }
 
     it { should equal(restriction) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
@@ -50,6 +66,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == restriction
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -72,6 +93,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -86,6 +112,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -98,6 +129,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == restriction
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -121,6 +157,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -137,6 +178,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == restriction
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -156,6 +202,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -171,6 +222,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == restriction
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -190,6 +246,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -206,6 +267,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
       should == restriction
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -220,6 +286,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == restriction
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

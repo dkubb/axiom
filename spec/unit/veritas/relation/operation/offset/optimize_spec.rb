@@ -3,9 +3,10 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Offset#optimize' do
   subject { offset.optimize }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ]                              }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body)             }
+  let(:directions) { [ relation[:id] ]                                    }
+  let(:order)      { Relation::Operation::Order.new(relation, directions) }
 
   context 'with an offset of 0' do
     let(:offset) { order.offset(0) }
@@ -16,6 +17,11 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
       should == offset
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -23,6 +29,11 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     let(:offset) { Relation::Operation::Offset.new(order, 1) }
 
     it { should equal(offset) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
@@ -39,6 +50,11 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == offset
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -58,6 +74,11 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == offset
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

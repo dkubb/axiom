@@ -3,9 +3,10 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Reverse#optimize' do
   subject { reverse.optimize }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { relation.order(directions)                                  }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ]                  }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
+  let(:directions) { [ relation[:id] ]                        }
+  let(:order)      { relation.order(directions)               }
 
   context 'with a reverse operation' do
     let(:limit)   { order.limit(2)                          }
@@ -18,6 +19,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == reverse
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -37,6 +43,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -47,6 +58,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == reverse
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'
@@ -62,6 +78,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
       should == reverse
     end
 
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
+
     it_should_behave_like 'an optimize method'
   end
 
@@ -74,6 +95,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == reverse
+    end
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
 
     it_should_behave_like 'an optimize method'

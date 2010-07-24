@@ -4,10 +4,12 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Relation::Operation::Binary#optimize' do
   subject { binary_operation.optimize }
 
-  let(:klass)            { Class.new(BinaryRelationOperationSpecs::Object)          }
-  let(:original_left)    { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
-  let(:original_right)   { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
-  let(:binary_operation) { klass.new(left, right)                                   }
+  let(:klass)            { Class.new(BinaryRelationOperationSpecs::Object)  }
+  let(:left_body)        { [ [ 1 ] ]                                        }
+  let(:right_body)       { [ [ 'Dan Kubb' ] ]                               }
+  let(:original_left)    { Relation.new([ [ :id,   Integer ] ], left_body)  }
+  let(:original_right)   { Relation.new([ [ :name, String  ] ], right_body) }
+  let(:binary_operation) { klass.new(left, right)                           }
 
   context 'containing optimized relations' do
     let(:left)  { original_left  }
@@ -29,6 +31,16 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     it { should_not eql(klass.new(left, right)) }
 
     it { should eql(klass.new(left.optimize, right.optimize)) }
+
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
+    end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end

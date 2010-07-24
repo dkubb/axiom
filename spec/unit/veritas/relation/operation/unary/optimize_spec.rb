@@ -29,9 +29,10 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
   end
 
   context 'with an optimizable relation' do
-    let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-    let(:projection)      { relation.project(relation.header)             }
-    let(:unary_operation) { klass.new(projection)                         }
+    let(:body)            { [ [ 1 ] ]                                }
+    let(:relation)        { Relation.new([ [ :id, Integer ] ], body) }
+    let(:projection)      { relation.project(relation.header)        }
+    let(:unary_operation) { klass.new(projection)                    }
 
     add_method_missing
 
@@ -40,6 +41,11 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     it { should be_instance_of(klass) }
 
     its(:relation) { should equal(relation) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
+    end
 
     it_should_behave_like 'an optimize method'
   end
