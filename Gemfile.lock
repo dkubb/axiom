@@ -1,139 +1,139 @@
---- 
+---
 hash: a2da4112d9ec8708132a0c7c79cf67eb671293f5
-sources: 
-- Rubygems: 
+sources:
+- Rubygems:
     uri: http://gemcutter.org
-specs: 
-- rake: 
+specs:
+- rake:
     version: 0.8.7
-- ZenTest: 
+- ZenTest:
     version: 4.3.3
-- RubyInline: 
+- RubyInline:
     version: 3.8.4
-- sexp_processor: 
+- sexp_processor:
     version: 3.0.4
-- ParseTree: 
+- ParseTree:
     version: 3.0.5
-- Saikuro: 
+- Saikuro:
     version: 1.1.0
-- activesupport: 
+- activesupport:
     version: 2.3.8
-- arrayfields: 
+- arrayfields:
     version: 4.7.4
-- backports: 
+- backports:
     version: 1.18.1
-- json_pure: 
+- json_pure:
     version: 1.4.3
-- rubyforge: 
+- rubyforge:
     version: 2.0.4
-- hoe: 
+- hoe:
     version: 2.6.1
-- chronic: 
+- chronic:
     version: 0.2.3
-- hirb: 
+- hirb:
     version: 0.3.2
-- fattr: 
+- fattr:
     version: 2.1.0
-- main: 
+- main:
     version: 4.2.0
-- ruby_parser: 
+- ruby_parser:
     version: 2.0.4
-- churn: 
+- churn:
     version: 0.0.12
-- flay: 
+- flay:
     version: 1.4.0
-- flog: 
+- flog:
     version: 2.2.0
-- gemcutter: 
+- gemcutter:
     version: 0.6.1
-- git: 
+- git:
     version: 1.2.5
-- ruby2ruby: 
+- ruby2ruby:
     version: 1.2.2
-- heckle: 
+- heckle:
     version: 1.4.3
-- jeweler: 
+- jeweler:
     version: 1.4.0
-- json: 
+- json:
     version: 1.4.3
-- rcov: 
+- rcov:
     version: 0.9.8
-- metric_fu: 
+- metric_fu:
     version: 1.3.0
-- mspec: 
+- mspec:
     version: 1.5.17
-- reek: 
+- reek:
     version: 1.2.8
-- roodi: 
+- roodi:
     version: 2.1.0
-- rspec: 
+- rspec:
     version: 1.3.0
-- yard: 
+- yard:
     version: 0.5.8
-- yardstick: 
+- yardstick:
     version: 0.1.0
-dependencies: 
-  rake: 
+dependencies:
+  rake:
     version: ~> 0.8.7
-    group: 
+    group:
     - :development
-  rspec: 
+  rspec:
     version: ~> 1.3
-    group: 
+    group:
     - :development
-  jeweler: 
+  jeweler:
     version: ~> 1.4
-    group: 
+    group:
     - :development
-  backports: 
+  backports:
     version: ~> 1.18.1
-    group: 
+    group:
     - :development
-  flay: 
+  flay:
     version: ~> 1.4.0
-    group: 
+    group:
     - :quality
-  flog: 
+  flog:
     version: ~> 2.2.0
-    group: 
+    group:
     - :quality
-  heckle: 
+  heckle:
     version: ~> 1.4.3
-    group: 
+    group:
     - :quality
-  json: 
+  json:
     version: ~> 1.4.3
-    group: 
+    group:
     - :quality
-  metric_fu: 
+  metric_fu:
     version: ~> 1.3
-    group: 
+    group:
     - :quality
-  mspec: 
+  mspec:
     version: ~> 1.5.17
-    group: 
+    group:
     - :quality
-  rcov: 
+  rcov:
     version: ~> 0.9.8
-    group: 
+    group:
     - :quality
-  reek: 
+  reek:
     version: ~> 1.2.8
-    group: 
+    group:
     - :quality
-  roodi: 
+  roodi:
     version: ~> 2.1
-    group: 
+    group:
     - :quality
-  ruby2ruby: 
+  ruby2ruby:
     version: = 1.2.2
-    group: 
+    group:
     - :quality
-  yard: 
+  yard:
     version: ~> 0.5.8
-    group: 
+    group:
     - :quality
-  yardstick: 
+  yardstick:
     version: ~> 0.1
-    group: 
+    group:
     - :quality
