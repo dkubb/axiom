@@ -6,8 +6,8 @@ module Veritas
       attr_reader :predicate
 
       def initialize(relation, predicate)
-        @predicate = relation.predicate & predicate
         super(relation)
+        @predicate = relation.predicate & predicate
       end
 
       def each

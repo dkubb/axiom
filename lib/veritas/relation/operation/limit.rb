@@ -28,8 +28,8 @@ module Veritas
         end
 
         def initialize(relation, limit)
-          @limit = limit.to_int
           super(relation)
+          @limit = limit.to_int
         end
 
         def each

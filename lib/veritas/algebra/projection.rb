@@ -4,8 +4,8 @@ module Veritas
       include Relation::Operation::Unary
 
       def initialize(relation, attributes)
-        @attributes = attributes.to_ary
         super(relation)
+        @attributes = attributes.to_ary
       end
 
       def header

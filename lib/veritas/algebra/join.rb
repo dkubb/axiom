@@ -26,10 +26,10 @@ module Veritas
       end
 
       def initialize(left, right)
+        super
         right_header = right.header
         @join_header      = left.header  & right_header
         @remainder_header = right_header - @join_header
-        super
       end
 
       def each(&block)

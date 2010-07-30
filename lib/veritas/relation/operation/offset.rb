@@ -28,8 +28,8 @@ module Veritas
         end
 
         def initialize(relation, offset)
-          @offset = offset.to_int
           super(relation)
+          @offset = offset.to_int
         end
 
         def each

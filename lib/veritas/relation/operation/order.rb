@@ -24,8 +24,8 @@ module Veritas
         end
 
         def initialize(relation, directions)
-          @directions = directions
           super(relation)
+          @directions = directions
         end
 
         def each(&block)
