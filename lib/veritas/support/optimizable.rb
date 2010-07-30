@@ -1,7 +1,7 @@
 module Veritas
   module Optimizable
     def optimize
-      freeze
+      self
     end
 
   end # module Optimizable
