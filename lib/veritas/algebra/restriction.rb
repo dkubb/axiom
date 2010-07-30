@@ -22,7 +22,7 @@ module Veritas
         return new_empty_relation if matches_none?
 
         case relation
-          when self.class                   then combine_restrictions
+          when self.class                   then join_predicates
           when Relation::Operation::Set,
                Relation::Operation::Reverse then wrap_with_operation
           when Relation::Operation::Order   then wrap_with_order
@@ -67,7 +67,7 @@ module Veritas
         predicate.optimize
       end
 
-      def combine_restrictions
+      def join_predicates
         restriction = optimize_relation
         predicate   = restriction.predicate & optimize_predicate
         self.class.new(restriction.relation, predicate).optimize
