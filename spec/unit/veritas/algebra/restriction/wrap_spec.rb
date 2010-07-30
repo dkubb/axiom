@@ -5,10 +5,10 @@ describe 'Veritas::Algebra::Restriction#wrap' do
 
   let(:relation)           { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:original_predicate) { relation[:id].eq(1)                           }
+  let(:predicate)          { original_predicate                            }
   let(:yields)             { []                                            }
 
   context 'without a predicate' do
-    let(:predicate)   { original_predicate                            }
     let(:restriction) { Algebra::Restriction.new(relation, predicate) }
     let(:args)        { []                                            }
 
@@ -45,13 +45,13 @@ describe 'Veritas::Algebra::Restriction#wrap' do
 
     it 'yields the relations' do
       expect {
-        restriction.wrap { |relation| yields << relation; relation }
+        restriction.wrap(predicate) { |relation| yields << relation; relation }
       }.to change { yields.dup }.from([]).to([ rename ])
     end
 
     it 'sets the relation with the block return values' do
       relation = mock('relation', :predicate => Logic::Proposition::True.instance)
-      operation = restriction.wrap { relation }
+      operation = restriction.wrap(predicate) { relation }
       operation.relation.should equal(relation)
     end
 
