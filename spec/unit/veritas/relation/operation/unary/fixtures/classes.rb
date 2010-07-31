@@ -1,5 +1,5 @@
 module UnaryOperationSpecs
-  class Object
+  class Object < Relation
     include Relation::Operation::Unary
 
     def each(&block)

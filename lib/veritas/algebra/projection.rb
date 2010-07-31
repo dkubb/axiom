@@ -6,10 +6,9 @@ module Veritas
       def initialize(operand, attributes)
         super(operand)
         @attributes = attributes.to_ary
-      end
-
-      def header
-        operand.header.project(@attributes)
+        @header     = operand.header.project(@attributes)
+        @directions = operand.directions.project(@header)
+        @predicate  = operand.predicate.project(@header) || Logic::Proposition::True.instance
       end
 
       def each
@@ -19,14 +18,6 @@ module Veritas
           yield(seen[tuple] = tuple) unless seen.key?(tuple)
         end
         self
-      end
-
-      def directions
-        operand.directions.project(header)
-      end
-
-      def predicate
-        operand.predicate.project(header) || Logic::Proposition::True.instance
       end
 
       def optimize
@@ -71,7 +62,7 @@ module Veritas
         optimize_operand.wrap { |relation| new(relation) }.optimize
       end
 
-      memoize :header, :directions, :predicate, :optimize
+      memoize :optimize
 
       module Methods
         def project(attributes)

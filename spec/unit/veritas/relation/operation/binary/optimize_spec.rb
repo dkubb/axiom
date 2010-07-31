@@ -15,9 +15,19 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
-    it 'delegates to super, but no #optimize in superclass' do
-      expect { subject }.to raise_error(NoMethodError)
+    it { should equal(binary_operation) }
+
+    it 'does not execute left_body#each' do
+      left_body.should_not_receive(:each)
+      subject
     end
+
+    it 'does not execute right_body#each' do
+      right_body.should_not_receive(:each)
+      subject
+    end
+
+    it_should_behave_like 'an optimize method'
   end
 
   context 'containing optimizable relations' do

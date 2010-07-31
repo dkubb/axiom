@@ -1,6 +1,5 @@
 module CombineOperationSpecs
-  class Object
-    include Immutable
+  class Object < Relation
     include Relation::Operation::Combine
 
     def each

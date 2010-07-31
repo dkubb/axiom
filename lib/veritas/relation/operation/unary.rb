@@ -5,16 +5,11 @@ module Veritas
         include Immutable
         include Veritas::Operation::Unary
 
-        def header
-          operand.header
-        end
-
-        def directions
-          operand.directions
-        end
-
-        def predicate
-          operand.predicate
+        def initialize(operand)
+          super
+          @header     = operand.header
+          @directions = operand.directions
+          @predicate  = operand.predicate
         end
 
         def optimize

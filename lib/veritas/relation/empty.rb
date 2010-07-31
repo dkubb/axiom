@@ -5,10 +5,7 @@ module Veritas
 
       def initialize(header)
         super(header, Set.new)
-      end
-
-      def predicate
-        Logic::Proposition::False.instance
+        @predicate = Logic::Proposition::False.instance
       end
 
     end # class Empty

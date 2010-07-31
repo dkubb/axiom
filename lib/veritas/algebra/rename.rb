@@ -7,11 +7,10 @@ module Veritas
 
       def initialize(operand, aliases)
         super(operand)
-        @aliases = aliases.to_hash
-      end
-
-      def header
-        operand.header.rename(aliases)
+        @aliases    = aliases.to_hash
+        @header     = operand.header.rename(@aliases)
+        @directions = operand.directions.rename(@aliases)
+        @predicate  = operand.predicate.rename(@aliases)
       end
 
       def each(&block)
@@ -19,14 +18,6 @@ module Veritas
           yield Tuple.new(header, tuple.to_ary)
         end
         self
-      end
-
-      def directions
-        operand.directions.rename(aliases)
-      end
-
-      def predicate
-        operand.predicate.rename(aliases)
       end
 
       def optimize
@@ -115,7 +106,7 @@ module Veritas
         other_aliases
       end
 
-      memoize :header, :directions, :predicate, :optimize
+      memoize :optimize
 
       module Methods
         def rename(aliases)

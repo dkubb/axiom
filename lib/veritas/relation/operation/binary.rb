@@ -9,16 +9,11 @@ module Veritas
           descendant.extend ClassMethods
         end
 
-        def header
-          left.header | right.header
-        end
-
-        def directions
-          left.directions | right.directions
-        end
-
-        def predicate
-          left.predicate & right.predicate
+        def initialize(left, right)
+          super
+          @header     = left.header     | right.header
+          @directions = left.directions | right.directions
+          @predicate  = left.predicate  & right.predicate
         end
 
         def optimize
@@ -47,7 +42,7 @@ module Veritas
           !(optimize_left.equal?(left) && optimize_right.equal?(right))
         end
 
-        memoize :header, :directions, :predicate, :new_optimized_operation
+        memoize :new_optimized_operation
 
         module ClassMethods
           def new(left, right)

@@ -20,12 +20,18 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
   end
 
   context 'with an non-empty relation' do
-    let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-    let(:unary_operation) { klass.new(relation)                           }
+    let(:body)            { [ [ 1 ] ]                                }
+    let(:relation)        { Relation.new([ [ :id, Integer ] ], body) }
+    let(:unary_operation) { klass.new(relation)                      }
 
-    it 'attempts to delegate to the superclass' do
-      expect { subject }.to raise_error(NoMethodError)
+    it { should equal(unary_operation) }
+
+    it 'does not execute body#each' do
+      body.should_not_receive(:each)
+      subject
     end
+
+    it_should_behave_like 'an optimize method'
   end
 
   context 'with an optimizable relation' do

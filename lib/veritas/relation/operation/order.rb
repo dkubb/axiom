@@ -4,8 +4,6 @@ module Veritas
       class Order < Relation
         include Unary
 
-        attr_reader :directions
-
         def self.new(operand, directions)
           directions = DirectionSet.new(directions)
           assert_order_by_full_header(operand, directions)
@@ -72,17 +70,9 @@ module Veritas
         memoize :optimize
 
         module Methods
-          include Immutable
-
           def order(directions = yield(self))
             Operation::Order.new(self, directions)
           end
-
-          def directions
-            Operation::Order::DirectionSet.new([])
-          end
-
-          memoize :directions
 
         end # module Methods
 

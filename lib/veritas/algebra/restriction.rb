@@ -3,8 +3,6 @@ module Veritas
     class Restriction < Relation
       include Relation::Operation::Unary
 
-      attr_reader :predicate
-
       def initialize(operand, predicate)
         super(operand)
         @predicate = operand.predicate & predicate
@@ -86,10 +84,6 @@ module Veritas
       module Methods
         def restrict(predicate = yield(self))
           Restriction.new(self, predicate)
-        end
-
-        def predicate
-          Logic::Proposition::True.instance
         end
 
       end # module Methods

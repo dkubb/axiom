@@ -1,6 +1,5 @@
 module BinaryRelationOperationSpecs
-  class Object
-    include Immutable
+  class Object < Relation
     include Relation::Operation::Binary
   end # class Object
 end # module BinaryRelationOperationSpecs
