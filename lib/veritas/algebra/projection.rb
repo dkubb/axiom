@@ -5,8 +5,7 @@ module Veritas
 
       def initialize(operand, attributes)
         super(operand)
-        @attributes = attributes.to_ary
-        @header     = operand.header.project(@attributes)
+        @header     = operand.header.project(attributes.to_ary)
         @directions = operand.directions.project(@header)
         @predicate  = operand.predicate.project(@header) || Logic::Proposition::True.instance
       end
