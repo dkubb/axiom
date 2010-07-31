@@ -14,6 +14,8 @@ module Veritas
             end
           end
 
+          EMPTY = new([])
+
           def project(attributes)
             new select { |direction|
               attributes.include?(direction.attribute)

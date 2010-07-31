@@ -26,7 +26,7 @@ module Veritas
     def initialize(header, tuples)
       @tuples     = tuples
       @header     = Header.coerce(header)
-      @directions = Operation::Order::DirectionSet.new([])
+      @directions = Operation::Order::DirectionSet::EMPTY
       @predicate  = Logic::Proposition::True.instance
     end
 
