@@ -50,7 +50,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       subject.aliases.should == rename.aliases
     end
 
-    its(:relation) { should equal(relation) }
+    its(:operand) { should equal(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
@@ -78,7 +78,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       subject.aliases.should == aliases.merge(:name => :other_name)
     end
 
-    its(:relation) { should equal(relation) }
+    its(:operand) { should equal(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
@@ -106,7 +106,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
       subject.aliases.should == { :id => :another_id }
     end
 
-    its(:relation) { should equal(relation) }
+    its(:operand) { should equal(relation) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == rename
@@ -146,7 +146,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Projection) }
 
-    its(:relation) { should eql(Algebra::Rename.new(relation, aliases)) }
+    its(:operand) { should eql(Algebra::Rename.new(relation, aliases)) }
 
     its(:header) { should == [ [ :other_id, Integer ] ] }
 
@@ -188,7 +188,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    its(:relation) { should eql(Algebra::Rename.new(relation, aliases)) }
+    its(:operand) { should eql(Algebra::Rename.new(relation, aliases)) }
 
     its(:header) { should == [ [ :other_id, Integer ], [ :name, String ] ] }
 

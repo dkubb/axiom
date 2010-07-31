@@ -3,18 +3,18 @@ module Veritas
     class Projection < Relation
       include Relation::Operation::Unary
 
-      def initialize(relation, attributes)
-        super(relation)
+      def initialize(operand, attributes)
+        super(operand)
         @attributes = attributes.to_ary
       end
 
       def header
-        relation.header.project(@attributes)
+        operand.header.project(@attributes)
       end
 
       def each
         seen = {}
-        relation.each do |tuple|
+        operand.each do |tuple|
           tuple = tuple.project(header)
           yield(seen[tuple] = tuple) unless seen.key?(tuple)
         end
@@ -22,17 +22,17 @@ module Veritas
       end
 
       def directions
-        relation.directions.project(header)
+        operand.directions.project(header)
       end
 
       def predicate
-        relation.predicate.project(header) || Logic::Proposition::True.instance
+        operand.predicate.project(header) || Logic::Proposition::True.instance
       end
 
       def optimize
         return drop_current_projection if header_unchanged?
 
-        case optimize_relation
+        case optimize_operand
           when Relation::Empty          then new_empty_relation
           when self.class               then drop_contained_projection
           when Relation::Operation::Set then wrap_with_operation
@@ -42,33 +42,33 @@ module Veritas
       end
 
       def wrap(header)
-        self.class.new(yield(relation), header)
+        self.class.new(yield(operand), header)
       end
 
     private
 
       def header_unchanged?
-        optimize_relation.header.to_a == header.to_a
+        optimize_operand.header.to_a == header.to_a
       end
 
-      def new(relation)
-        self.class.new(relation, header)
+      def new(operand)
+        self.class.new(operand, header)
       end
 
       def new_optimized_operation
-        new(optimize_relation)
+        new(optimize_operand)
       end
 
       def drop_current_projection
-        optimize_relation
+        optimize_operand
       end
 
       def drop_contained_projection
-        new(optimize_relation.relation)
+        new(optimize_operand.operand)
       end
 
       def wrap_with_operation
-        optimize_relation.wrap { |relation| new(relation) }.optimize
+        optimize_operand.wrap { |relation| new(relation) }.optimize
       end
 
       memoize :header, :directions, :predicate, :optimize
@@ -88,8 +88,8 @@ module Veritas
           header.project(attributes)
         end
 
-        def project_relation(relation, attributes = header)
-          Projection.new(relation, attributes)
+        def project_relation(operand, attributes = header)
+          Projection.new(operand, attributes)
         end
 
       end # module Methods

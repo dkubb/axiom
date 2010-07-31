@@ -5,27 +5,23 @@ module Veritas
         include Immutable
         include Veritas::Operation::Unary
 
-        def relation
-          operand
-        end
-
         def header
-          relation.header
+          operand.header
         end
 
         def directions
-          relation.directions
+          operand.directions
         end
 
         def predicate
-          relation.predicate
+          operand.predicate
         end
 
         def optimize
-          relation = optimize_relation
+          operand = optimize_operand
 
-          if relation.kind_of?(Relation::Empty)
-            relation
+          if operand.kind_of?(Relation::Empty)
+            operand
           elsif optimized?
             new_optimized_operation
           else
@@ -35,16 +31,16 @@ module Veritas
 
       private
 
-        def optimize_relation
-          relation.optimize
+        def optimize_operand
+          operand.optimize
         end
 
         def new_optimized_operation
-          self.class.new(optimize_relation)
+          self.class.new(optimize_operand)
         end
 
         def optimized?
-          !optimize_relation.equal?(relation)
+          !optimize_operand.equal?(operand)
         end
 
         memoize :new_optimized_operation

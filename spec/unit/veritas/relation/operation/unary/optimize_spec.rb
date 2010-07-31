@@ -40,7 +40,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
 
     it { should be_instance_of(klass) }
 
-    its(:relation) { should equal(relation) }
+    its(:operand) { should equal(relation) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)

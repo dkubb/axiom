@@ -91,7 +91,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should be_instance_of(Algebra::Projection) }
 
-    its(:relation) { should equal(relation) }
+    its(:operand) { should equal(relation) }
 
     its(:header) { should == projection.header }
 
@@ -115,7 +115,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should be_instance_of(Algebra::Projection) }
 
-    its(:relation) { should equal(relation) }
+    its(:operand) { should equal(relation) }
 
     its(:header) { should == projection.header }
 

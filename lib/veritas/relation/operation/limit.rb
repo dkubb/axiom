@@ -4,8 +4,8 @@ module Veritas
       class Limit < Relation
         include Unary
 
-        def self.new(relation, limit)
-          assert_ordered_relation(relation)
+        def self.new(operand, limit)
+          assert_ordered_operand(operand)
           assert_valid_limit(limit)
           super
         end
@@ -13,9 +13,9 @@ module Veritas
         class << self
         private
 
-          def assert_ordered_relation(relation)
-            if relation.directions.empty?
-              raise OrderedRelationRequiredError, 'can only limit an ordered relation'
+          def assert_ordered_operand(operand)
+            if operand.directions.empty?
+              raise OrderedRelationRequiredError, 'can only limit an ordered operand'
             end
           end
 
@@ -27,13 +27,13 @@ module Veritas
 
         end
 
-        def initialize(relation, limit)
-          super(relation)
+        def initialize(operand, limit)
+          super(operand)
           @limit = limit.to_int
         end
 
         def each
-          relation.each_with_index do |tuple, index|
+          operand.each_with_index do |tuple, index|
             break if @limit == index
             yield tuple
           end
@@ -43,7 +43,7 @@ module Veritas
         def optimize
           return new_empty_relation if to_i == 0
 
-          case optimize_relation
+          case optimize_operand
             when Limit then optimize_limit
             else
               super
@@ -51,7 +51,7 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(relation), to_i)
+          self.class.new(yield(operand), to_i)
         end
 
         def to_i
@@ -61,17 +61,17 @@ module Veritas
         def eql?(other)
           instance_of?(other.class) &&
           to_i.eql?(other.to_i)     &&
-          relation.eql?(other.relation)
+          operand.eql?(other.operand)
         end
 
       private
 
         def new_optimized_operation
-          self.class.new(optimize_relation, to_i)
+          self.class.new(optimize_operand, to_i)
         end
 
         def optimize_limit
-          limit = optimize_relation
+          limit = optimize_operand
           if to_i == limit.to_i
             drop_current_limit
           else
@@ -80,12 +80,12 @@ module Veritas
         end
 
         def drop_current_limit
-          optimize_relation
+          optimize_operand
         end
 
         def use_smallest_limit
-          limit = optimize_relation
-          self.class.new(limit.relation, [ to_i, limit.to_i ].min)
+          limit = optimize_operand
+          self.class.new(limit.operand, [ to_i, limit.to_i ].min)
         end
 
         memoize :optimize

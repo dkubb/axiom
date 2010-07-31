@@ -4,8 +4,8 @@ module Veritas
       class Offset < Relation
         include Unary
 
-        def self.new(relation, offset)
-          assert_ordered_relation(relation)
+        def self.new(operand, offset)
+          assert_ordered_operand(operand)
           assert_valid_offset(offset)
           super
         end
@@ -13,9 +13,9 @@ module Veritas
         class << self
         private
 
-          def assert_ordered_relation(relation)
-            if relation.directions.empty?
-              raise OrderedRelationRequiredError, 'can only offset an ordered relation'
+          def assert_ordered_operand(operand)
+            if operand.directions.empty?
+              raise OrderedRelationRequiredError, 'can only offset an ordered operand'
             end
           end
 
@@ -27,13 +27,13 @@ module Veritas
 
         end
 
-        def initialize(relation, offset)
-          super(relation)
+        def initialize(operand, offset)
+          super(operand)
           @offset = offset.to_int
         end
 
         def each
-          relation.each_with_index do |tuple, index|
+          operand.each_with_index do |tuple, index|
             yield tuple if index >= @offset
           end
           self
@@ -42,7 +42,7 @@ module Veritas
         def optimize
           return drop_current_offset if to_i == 0
 
-          case optimize_relation
+          case optimize_operand
             when Offset then use_offset_sum
             else
               super
@@ -50,7 +50,7 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(relation), to_i)
+          self.class.new(yield(operand), to_i)
         end
 
         def to_i
@@ -60,22 +60,22 @@ module Veritas
         def eql?(other)
           instance_of?(other.class) &&
           to_i.eql?(other.to_i)     &&
-          relation.eql?(other.relation)
+          operand.eql?(other.operand)
         end
 
       private
 
         def new_optimized_operation
-          self.class.new(optimize_relation, to_i)
+          self.class.new(optimize_operand, to_i)
         end
 
         def drop_current_offset
-          optimize_relation
+          optimize_operand
         end
 
         def use_offset_sum
-          offset = optimize_relation
-          self.class.new(offset.relation, to_i + offset.to_i)
+          offset = optimize_operand
+          self.class.new(offset.operand, to_i + offset.to_i)
         end
 
         memoize :optimize

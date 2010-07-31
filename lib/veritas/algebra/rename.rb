@@ -5,32 +5,32 @@ module Veritas
 
       attr_reader :aliases
 
-      def initialize(relation, aliases)
-        super(relation)
+      def initialize(operand, aliases)
+        super(operand)
         @aliases = aliases.to_hash
       end
 
       def header
-        relation.header.rename(aliases)
+        operand.header.rename(aliases)
       end
 
       def each(&block)
-        relation.each do |tuple|
+        operand.each do |tuple|
           yield Tuple.new(header, tuple.to_ary)
         end
         self
       end
 
       def directions
-        relation.directions.rename(aliases)
+        operand.directions.rename(aliases)
       end
 
       def predicate
-        relation.predicate.rename(aliases)
+        operand.predicate.rename(aliases)
       end
 
       def optimize
-        case optimize_relation
+        case optimize_operand
           when Relation::Empty               then new_empty_relation
           when self.class                    then optimize_rename
           when Projection                    then wrap_with_projection
@@ -46,23 +46,23 @@ module Veritas
       end
 
       def wrap
-        self.class.new(yield(relation), aliases)
+        self.class.new(yield(operand), aliases)
       end
 
       def eql?(other)
         instance_of?(other.class)   &&
         aliases.eql?(other.aliases) &&
-        relation.eql?(other.relation)
+        operand.eql?(other.operand)
       end
 
     private
 
-      def new(relation)
-        self.class.new(relation, optimize_aliases)
+      def new(operand)
+        self.class.new(operand, optimize_aliases)
       end
 
       def new_optimized_operation
-        new(optimize_relation)
+        new(optimize_operand)
       end
 
       def optimize_rename
@@ -70,36 +70,36 @@ module Veritas
       end
 
       def drop_no_op_renames
-        optimize_relation.relation
+        optimize_operand.operand
       end
 
       def combine_renames
-        new(optimize_relation.relation)
+        new(optimize_operand.operand)
       end
 
       def wrap_with_operation
-        optimize_relation.wrap { |relation| new(relation) }.optimize
+        optimize_operand.wrap { |relation| new(relation) }.optimize
       end
 
       def wrap_with_projection
-        optimize_relation.wrap(header) { |relation| new(relation) }.optimize
+        optimize_operand.wrap(header) { |relation| new(relation) }.optimize
       end
 
       def wrap_with_restriction
-        optimize_relation.wrap(predicate) { |relation| new(relation) }.optimize
+        optimize_operand.wrap(predicate) { |relation| new(relation) }.optimize
       end
 
       def wrap_with_order
-        optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
+        optimize_operand.wrap(directions) { |relation| new(relation) }.optimize
       end
 
       def optimize_aliases
-        optimize_relation.respond_to?(:aliases) ? union_aliases : aliases
+        optimize_operand.respond_to?(:aliases) ? union_aliases : aliases
       end
 
       # TODO: create Rename::Aliases object, and move this to a #union method
       def union_aliases
-        other_aliases = optimize_relation.aliases.dup
+        other_aliases = optimize_operand.aliases.dup
         inverted      = other_aliases.invert
 
         aliases.each do |old_attribute, new_attribute|

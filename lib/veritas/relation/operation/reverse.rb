@@ -2,29 +2,29 @@ module Veritas
   class Relation
     module Operation
       class Reverse < Order
-        def self.new(relation)
-          assert_ordered_relation(relation)
-          super(relation, relation.directions.reverse)
+        def self.new(operand)
+          assert_ordered_operand(operand)
+          super(operand, operand.directions.reverse)
         end
 
         class << self
         private
 
-          def assert_ordered_relation(relation)
-            if relation.directions.empty?
-              raise OrderedRelationRequiredError, 'can only reverse an ordered relation'
+          def assert_ordered_operand(operand)
+            if operand.directions.empty?
+              raise OrderedRelationRequiredError, 'can only reverse an ordered operand'
             end
           end
 
         end
 
         def each(&block)
-          relation.reverse_each(&block)
+          operand.reverse_each(&block)
           self
         end
 
         def optimize
-          case optimize_relation
+          case optimize_operand
             when Reverse then drop_no_op_reverse
             else
               super
@@ -32,17 +32,17 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(relation))
+          self.class.new(yield(operand))
         end
 
       private
 
         def new_optimized_operation
-          self.class.new(optimize_relation)
+          self.class.new(optimize_operand)
         end
 
         def drop_no_op_reverse
-          optimize_relation.relation
+          optimize_operand.operand
         end
 
         memoize :new_optimized_operation

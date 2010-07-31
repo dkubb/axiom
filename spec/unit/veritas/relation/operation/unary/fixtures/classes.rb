@@ -3,7 +3,7 @@ module UnaryOperationSpecs
     include Relation::Operation::Unary
 
     def each(&block)
-      relation.each(&block)
+      operand.each(&block)
       self
     end
 

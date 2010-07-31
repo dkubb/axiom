@@ -5,23 +5,23 @@ module Veritas
 
       attr_reader :predicate
 
-      def initialize(relation, predicate)
-        super(relation)
-        @predicate = relation.predicate & predicate
+      def initialize(operand, predicate)
+        super(operand)
+        @predicate = operand.predicate & predicate
       end
 
       def each
-        relation.each { |tuple| yield(tuple) if predicate.call(tuple) }
+        operand.each { |tuple| yield(tuple) if predicate.call(tuple) }
         self
       end
 
       def optimize
-        relation = optimize_relation
+        operand = optimize_operand
 
-        return relation           if matches_all? || relation.kind_of?(Relation::Empty)
+        return operand            if matches_all? || operand.kind_of?(Relation::Empty)
         return new_empty_relation if matches_none?
 
-        case relation
+        case operand
           when self.class                   then join_predicates
           when Relation::Operation::Set,
                Relation::Operation::Reverse then wrap_with_operation
@@ -32,23 +32,23 @@ module Veritas
       end
 
       def wrap(predicate = self.predicate)
-        self.class.new(yield(relation), predicate)
+        self.class.new(yield(operand), predicate)
       end
 
       def eql?(other)
         instance_of?(other.class)       &&
         predicate.eql?(other.predicate) &&
-        relation.eql?(other.relation)
+        operand.eql?(other.operand)
       end
 
     private
 
-      def new(relation)
-        self.class.new(relation, optimize_predicate)
+      def new(operand)
+        self.class.new(operand, optimize_predicate)
       end
 
       def new_optimized_operation
-        new(optimize_relation)
+        new(optimize_operand)
       end
 
       def optimized?
@@ -68,17 +68,17 @@ module Veritas
       end
 
       def join_predicates
-        restriction = optimize_relation
+        restriction = optimize_operand
         predicate   = restriction.predicate & optimize_predicate
-        self.class.new(restriction.relation, predicate).optimize
+        self.class.new(restriction.operand, predicate).optimize
       end
 
       def wrap_with_operation
-        optimize_relation.wrap { |relation| new(relation) }.optimize
+        optimize_operand.wrap { |relation| new(relation) }.optimize
       end
 
       def wrap_with_order
-        optimize_relation.wrap(directions) { |relation| new(relation) }.optimize
+        optimize_operand.wrap(directions) { |relation| new(relation) }.optimize
       end
 
       memoize :optimize

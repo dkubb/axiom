@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Offset.new' do
     let(:relation) { original_relation }
     let(:offset)   { 1                 }
 
-    specify { expect { subject }.to raise_error(OrderedRelationRequiredError, 'can only offset an ordered relation') }
+    specify { expect { subject }.to raise_error(OrderedRelationRequiredError, 'can only offset an ordered operand') }
   end
 
   context 'with an offset less than 0' do

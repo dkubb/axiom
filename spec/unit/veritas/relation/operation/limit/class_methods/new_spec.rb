@@ -16,7 +16,7 @@ describe 'Veritas::Relation::Operation::Limit.new' do
     let(:relation) { original_relation }
     let(:limit)    { 1                 }
 
-    specify { expect { subject }.to raise_error(OrderedRelationRequiredError, 'can only limit an ordered relation') }
+    specify { expect { subject }.to raise_error(OrderedRelationRequiredError, 'can only limit an ordered operand') }
   end
 
   context 'with an limit less than 0' do
