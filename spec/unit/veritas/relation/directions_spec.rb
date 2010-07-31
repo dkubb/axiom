@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Methods#directions' do
+describe 'Veritas::Relation#directions' do
   subject { relation.directions }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], []) }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
