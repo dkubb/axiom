@@ -17,7 +17,7 @@ module Veritas
 
           if operand.kind_of?(Relation::Empty)
             operand
-          elsif optimized?
+          elsif !optimized?
             new_optimized_operation
           else
             super
@@ -35,7 +35,7 @@ module Veritas
         end
 
         def optimized?
-          !optimize_operand.equal?(operand)
+          optimize_operand.equal?(operand)
         end
 
         memoize :new_optimized_operation

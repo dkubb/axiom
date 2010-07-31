@@ -8,7 +8,7 @@ module Veritas
             new_optimized_none
           elsif right_one?
             new_optimized_one
-          elsif optimized?
+          elsif !optimized?
             new_optimized_enumerable
           else
             super
@@ -44,7 +44,7 @@ module Veritas
         end
 
         def optimized?
-          !optimize_right.eql?(right)
+          optimize_right.eql?(right)
         end
 
         def new_optimized_enumerable

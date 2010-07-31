@@ -17,7 +17,7 @@ module Veritas
         end
 
         def optimize
-          optimized? ? new_optimized_operation : super
+          optimized? ? super : new_optimized_operation
         end
 
         def wrap
@@ -39,7 +39,7 @@ module Veritas
         end
 
         def optimized?
-          !(optimize_left.equal?(left) && optimize_right.equal?(right))
+          optimize_left.equal?(left) && optimize_right.equal?(right)
         end
 
         memoize :new_optimized_operation

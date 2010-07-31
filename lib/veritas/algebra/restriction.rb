@@ -49,7 +49,7 @@ module Veritas
       end
 
       def optimized?
-        super || !optimize_predicate.equal?(predicate)
+        super && optimize_predicate.equal?(predicate)
       end
 
       def matches_all?

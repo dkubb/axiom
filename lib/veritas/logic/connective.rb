@@ -50,7 +50,7 @@ module Veritas
             Proposition::True.instance
           elsif always_false?
             Proposition::False.instance
-          elsif optimized?
+          elsif !optimized?
             new_optimized_connective
           else
             super
@@ -146,7 +146,7 @@ module Veritas
         end
 
         def optimized?
-          !optimize_left.equal?(left) || !optimize_right.equal?(right)
+          optimize_left.equal?(left) && optimize_right.equal?(right)
         end
 
         memoize :complement, :new_optimized_connective
