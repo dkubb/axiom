@@ -21,7 +21,7 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(left), yield(right))
+          self.class.new(yield(optimize_left), yield(optimize_right))
         end
 
       private

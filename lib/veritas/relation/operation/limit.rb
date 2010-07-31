@@ -51,7 +51,7 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(operand), to_i)
+          self.class.new(yield(optimize_operand), to_i)
         end
 
         def to_i

@@ -43,7 +43,7 @@ module Veritas
         end
 
         def wrap(directions)
-          self.class.new(yield(operand), directions)
+          self.class.new(yield(optimize_operand), directions)
         end
 
         def eql?(other)

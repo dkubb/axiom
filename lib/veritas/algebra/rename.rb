@@ -37,7 +37,7 @@ module Veritas
       end
 
       def wrap
-        self.class.new(yield(operand), aliases)
+        self.class.new(yield(optimize_operand), optimize_aliases)
       end
 
       def eql?(other)

@@ -29,8 +29,8 @@ module Veritas
         end
       end
 
-      def wrap(predicate = self.predicate)
-        self.class.new(yield(operand), predicate)
+      def wrap(predicate = optimize_predicate)
+        self.class.new(yield(optimize_operand), predicate)
       end
 
       def eql?(other)

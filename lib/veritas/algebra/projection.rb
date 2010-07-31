@@ -33,7 +33,7 @@ module Veritas
       end
 
       def wrap(header)
-        self.class.new(yield(operand), header)
+        self.class.new(yield(optimize_operand), header)
       end
 
     private
