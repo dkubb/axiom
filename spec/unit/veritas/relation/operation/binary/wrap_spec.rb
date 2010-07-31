@@ -20,8 +20,6 @@ describe 'Veritas::Relation::Operation::Binary#wrap' do
   end
 
   it 'sets the left and right relations with the block return values' do
-    left      = mock('left',  :directions => [])
-    right     = mock('right', :directions => [])
     relations = [ left, right ]
 
     operation = binary_operation.wrap { relations.shift }

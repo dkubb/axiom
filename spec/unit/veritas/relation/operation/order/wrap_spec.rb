@@ -19,9 +19,8 @@ describe 'Veritas::Relation::Operation::Order#wrap' do
   end
 
   it 'sets the relation with the block return values' do
-    relation = mock('relation', :header => self.relation.header)
     operation = order.wrap(directions) { relation }
-    operation.relation.should equal(relation)
+    operation.operand.should equal(relation)
   end
 
   its(:directions) { should == directions }

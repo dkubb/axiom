@@ -20,9 +20,8 @@ describe 'Veritas::Relation::Operation::Limit#wrap' do
   end
 
   it 'sets the relation with the block return values' do
-    relation = mock('relation', :directions => order.directions)
-    operation = limit.wrap { relation }
-    operation.relation.should equal(relation)
+    operation = limit.wrap { order }
+    operation.operand.should equal(order)
   end
 
   its(:to_i) { should == 1 }

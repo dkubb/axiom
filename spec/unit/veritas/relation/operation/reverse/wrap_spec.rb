@@ -20,8 +20,7 @@ describe 'Veritas::Relation::Operation::Reverse#wrap' do
   end
 
   it 'sets the relation with the block return values' do
-    relation = mock('relation', :header => order.header, :directions => order.directions)
-    operation = reverse.wrap { relation }
-    operation.relation.should equal(relation)
+    operation = reverse.wrap { order }
+    operation.operand.should equal(order)
   end
 end

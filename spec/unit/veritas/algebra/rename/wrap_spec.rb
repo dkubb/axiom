@@ -19,9 +19,8 @@ describe 'Veritas::Algebra::Rename#wrap' do
   end
 
   it 'sets the relation with the block return values' do
-    relation = mock('relation')
     operation = rename.wrap { relation }
-    operation.relation.should equal(relation)
+    operation.operand.should equal(relation)
   end
 
   its(:aliases) { should == aliases }

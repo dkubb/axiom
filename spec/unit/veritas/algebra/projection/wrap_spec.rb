@@ -19,9 +19,8 @@ describe 'Veritas::Algebra::Projection#wrap' do
   end
 
   it 'sets the relation with the block return values' do
-    relation = mock('relation')
     operation = projection.wrap(header) { relation }
-    operation.relation.should equal(relation)
+    operation.operand.should equal(relation)
   end
 
   its(:header) { should == header }
