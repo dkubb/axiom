@@ -3,8 +3,10 @@ module Veritas
     class Empty < Materialized
       include Optimizable  # for no-op #optimize
 
+      ZERO_TUPLE = [].freeze
+
       def initialize(header)
-        super(header, Set.new)
+        super(header, ZERO_TUPLE)
         @predicate = Logic::Proposition::False.instance
       end
 
