@@ -51,7 +51,7 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(optimize_operand), to_i)
+          new(yield(optimize_operand))
         end
 
         def to_i
@@ -66,8 +66,12 @@ module Veritas
 
       private
 
+        def new(operand)
+          self.class.new(operand, to_i)
+        end
+
         def new_optimized_operation
-          self.class.new(optimize_operand, to_i)
+          new(optimize_operand)
         end
 
         def optimize_limit

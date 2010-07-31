@@ -32,13 +32,17 @@ module Veritas
         end
 
         def wrap
-          self.class.new(yield(optimize_operand))
+          new(yield(optimize_operand))
         end
 
       private
 
+        def new(operand)
+          self.class.new(operand)
+        end
+
         def new_optimized_operation
-          self.class.new(optimize_operand)
+          new(optimize_operand)
         end
 
         def drop_no_op_reverse

@@ -42,8 +42,8 @@ module Veritas
           end
         end
 
-        def wrap(directions)
-          self.class.new(yield(optimize_operand), directions)
+        def wrap(directions = self.directions)
+          new(yield(optimize_operand), directions)
         end
 
         def eql?(other)
@@ -54,8 +54,12 @@ module Veritas
 
       private
 
+        def new(operand, directions)
+          self.class.new(operand, directions)
+        end
+
         def new_optimized_operation
-          self.class.new(optimize_operand, directions)
+          new(optimize_operand, directions)
         end
 
         def drop_current_order

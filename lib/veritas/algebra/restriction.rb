@@ -20,17 +20,16 @@ module Veritas
         return new_empty_relation if matches_none?
 
         case operand
-          when self.class                   then join_predicates
+          when self.class                 then join_predicates
           when Relation::Operation::Set,
-               Relation::Operation::Reverse then wrap_with_operation
-          when Relation::Operation::Order   then wrap_with_order
+               Relation::Operation::Order then wrap_with_operation
           else
             super
         end
       end
 
       def wrap(predicate = optimize_predicate)
-        self.class.new(yield(optimize_operand), predicate)
+        new(yield(optimize_operand), predicate)
       end
 
       def eql?(other)
@@ -41,12 +40,12 @@ module Veritas
 
     private
 
-      def new(operand)
-        self.class.new(operand, optimize_predicate)
+      def new(operand, predicate = optimize_predicate)
+        self.class.new(operand, predicate)
       end
 
       def new_optimized_operation
-        new(optimize_operand)
+        new(optimize_operand, optimize_predicate)
       end
 
       def optimized?
@@ -73,10 +72,6 @@ module Veritas
 
       def wrap_with_operation
         optimize_operand.wrap { |relation| new(relation) }.optimize
-      end
-
-      def wrap_with_order
-        optimize_operand.wrap(directions) { |relation| new(relation) }.optimize
       end
 
       memoize :optimize
