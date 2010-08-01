@@ -13,6 +13,8 @@ begin
     raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
   end
 
+  MEMOIZED_PATTERN = /\A__memoized_([a-z](?:_?[a-z])+)\z/.freeze
+
   class NameMap
     def file_name(method, constant)
       map  = MAP[method]
@@ -95,17 +97,17 @@ begin
                       mod.private_instance_methods(false)
 
       other_methods.reject! do |method|
-        next unless method.to_s =~ /\A__memoized_([a-z](?:_?[a-z])+)\z/ &&
+        next unless method.to_s =~ MEMOIZED_PATTERN &&
                     spec_methods.any? { |specced| specced.to_s == $1 }
 
         spec_methods << method
       end
 
       spec_methods.each do |method|
-        method          = aliases[mod.name][method]
-        normalized_name = method.sub(/\A__memoized_/, '')
+        method = aliases[mod.name][method]
+        next if method.to_s =~ MEMOIZED_PATTERN
 
-        spec_file = spec_prefix.join(map.file_name(normalized_name, mod.name))
+        spec_file = spec_prefix.join(map.file_name(method, mod.name))
 
         unless spec_file.file?
           raise "No spec file #{spec_file} for #{mod}##{method}"
