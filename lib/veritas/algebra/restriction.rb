@@ -53,11 +53,11 @@ module Veritas
       end
 
       def matches_all?
-        optimize_predicate.kind_of?(Logic::Proposition::True)
+        optimize_predicate.equal?(Logic::Proposition::True.instance)
       end
 
       def matches_none?
-        optimize_predicate.kind_of?(Logic::Proposition::False)
+        optimize_predicate.equal?(Logic::Proposition::False.instance)
       end
 
       def optimize_predicate

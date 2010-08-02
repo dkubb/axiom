@@ -11,9 +11,9 @@ module Veritas
         def optimize
           left, right = optimize_left, optimize_right
 
-          if right.kind_of?(Proposition::True)
+          if right.equal?(Proposition::True.instance)
             left
-          elsif left.kind_of?(Proposition::True)
+          elsif left.equal?(Proposition::True.instance)
             right
           elsif inequality_with_same_attributes?
             new_exclusion
@@ -29,9 +29,9 @@ module Veritas
       private
 
         def always_false?
-          optimize_left.kind_of?(Proposition::False)  ||
-          optimize_right.kind_of?(Proposition::False) ||
-          equality_with_same_attributes?              ||
+          optimize_left.equal?(Proposition::False.instance)  ||
+          optimize_right.equal?(Proposition::False.instance) ||
+          equality_with_same_attributes?                     ||
           complementary_predicates?
         end
 
