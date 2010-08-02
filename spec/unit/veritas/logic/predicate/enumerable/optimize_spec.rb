@@ -4,10 +4,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
   subject { enumerable.optimize }
 
-  let(:klass) { PredicateEnumerableSpecs::Object }
-  let(:left)  { Attribute::Integer.new(:id)      }
-  let(:one)   { mock('One',  :frozen? => true)   }
-  let(:none)  { mock('None', :frozen? => true)   }
+  let(:klass)      { PredicateEnumerableSpecs::Object }
+  let(:left)       { Attribute::Integer.new(:id)      }
+  let(:one)        { mock('One',  :frozen? => true)   }
+  let(:none)       { mock('None', :frozen? => true)   }
+  let(:enumerable) { klass.new(left, right)           }
 
   before do
     klass.stub!(:mock_one => one, :mock_none => none)
@@ -18,8 +19,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
   context 'right is a Range' do
     context 'that is inclusive' do
       context 'and empty' do
-        let(:right)      { 1..0                   }
-        let(:enumerable) { klass.new(left, right) }
+        let(:right) { 1..0 }
 
         it { should equal(none) }
 
@@ -27,8 +27,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
       end
 
       context 'and not empty' do
-        let(:right)      { 1..10                  }
-        let(:enumerable) { klass.new(left, right) }
+        let(:right) { 1..10 }
 
         it { should equal(enumerable) }
 
@@ -38,8 +37,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
 
     context 'that is exclusive' do
       context 'and empty' do
-        let(:right)      { 1...1                  }
-        let(:enumerable) { klass.new(left, right) }
+        let(:right) { 1...1 }
 
         it { should equal(none) }
 
@@ -47,8 +45,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
       end
 
       context 'and not empty' do
-        let(:right)      { 1...10                 }
-        let(:enumerable) { klass.new(left, right) }
+        let(:right) { 1...10 }
 
         it 'changes the Range to be inclusive' do
           should eql(klass.new(left, 1..9))
@@ -59,8 +56,8 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'using an attribute that is not comparable' do
-      let(:left)       { Attribute::String.new(:string) }
-      let(:enumerable) { klass.new(left, 'a'..'z')      }
+      let(:left)  { Attribute::String.new(:string) }
+      let(:right) { 'a'..'z'                       }
 
       it { should equal(none) }
 
@@ -68,8 +65,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that is greater than the left range' do
-      let(:right)      { 2**31..2**31           }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { 2**31..2**31 }
 
       it { should equal(none) }
 
@@ -77,8 +73,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that is less than the left range' do
-      let(:right)      { -1..-1                 }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { -1..-1 }
 
       it { should equal(none) }
 
@@ -86,8 +81,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that is not optimizable' do
-      let(:right)      { 1..2                   }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { 1..2 }
 
       it { should equal(enumerable) }
 
@@ -97,8 +91,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
 
   context 'right is an Enumerable' do
     context 'that is empty' do
-      let(:right)      { []                     }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [] }
 
       it { should equal(none) }
 
@@ -106,8 +99,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that is empty after filtering invalid entries' do
-      let(:right)      { [ 'a' ]                }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [ 'a' ] }
 
       it { should equal(none) }
 
@@ -115,8 +107,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that is not empty after filtering invalid entries' do
-      let(:right)      { [ 'a', 1, 2 ]          }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [ 'a', 1, 2 ] }
 
       it { should eql(klass.new(left, [ 1, 2 ])) }
 
@@ -124,8 +115,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that has duplicate entries' do
-      let(:right)      { [ 1, 2, 2 ]            }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [ 1, 2, 2 ] }
 
       it { should eql(klass.new(left, [ 1, 2 ])) }
 
@@ -133,8 +123,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that has one entry' do
-      let(:right)      { [ 1 ]                  }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [ 1 ] }
 
       it { should equal(one) }
 
@@ -142,8 +131,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that has unsorted entries' do
-      let(:right)      { [ 2, 1 ]               }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [ 2, 1 ] }
 
       it { should eql(klass.new(left, [ 1, 2 ])) }
 
@@ -151,8 +139,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     end
 
     context 'that is not optimizable' do
-      let(:right)      { [ 1, 2 ]               }
-      let(:enumerable) { klass.new(left, right) }
+      let(:right) { [ 1, 2 ] }
 
       it { should equal(enumerable) }
 
@@ -161,8 +148,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
   end
 
   context 'right is a nil' do
-    let(:right)      { nil                    }
-    let(:enumerable) { klass.new(left, right) }
+    let(:right) { nil }
 
     it { should equal(none) }
 

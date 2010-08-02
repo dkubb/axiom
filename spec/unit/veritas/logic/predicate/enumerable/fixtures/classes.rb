@@ -21,6 +21,11 @@ module PredicateEnumerableSpecs
       self.class.mock_none
     end
 
+    # required for heckle
+    def optimize
+      super
+    end
+
     def inspect
       "#{left.inspect} #{right.inspect}"
     end
