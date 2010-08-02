@@ -4,8 +4,7 @@ module Veritas
       include AbstractClass
 
       module BinaryConnective
-        include Immutable
-        include Operation::Binary
+        include Immutable, Operation::Binary
 
         def call(tuple)
           self.class.eval(left.call(tuple), right.call(tuple))

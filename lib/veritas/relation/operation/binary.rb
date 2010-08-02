@@ -2,8 +2,7 @@ module Veritas
   class Relation
     module Operation
       module Binary
-        include Immutable
-        include Veritas::Operation::Binary
+        include Immutable, Veritas::Operation::Binary
 
         def self.included(descendant)
           descendant.extend ClassMethods
