@@ -21,10 +21,6 @@ module PredicateEnumerableSpecs
       self.class.mock_none
     end
 
-    def optimize
-      super
-    end
-
     def inspect
       "#{left.inspect} #{right.inspect}"
     end
