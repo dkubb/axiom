@@ -16,7 +16,7 @@ module Veritas
     attr_reader :header, :directions, :predicate
 
     def self.new(*args)
-      if args.size == 2 && args.last.respond_to?(:size) && self == Relation
+      if equal?(Relation) && args.last.respond_to?(:size)
         Materialized.new(*args)
       else
         super
