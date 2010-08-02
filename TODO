@@ -16,6 +16,16 @@
     returned from a method that can be easily overridden might make
     it much nicer for the end user.
 
+* Update all #optimize methods so that when the optimized value
+  is returned, it memoizes itself. This will make sure that
+  further calls to #optimize result in an immediate answer
+  without evaluating the optimizer again, eg:
+
+    def optimize(optimizer = self.class.optimizer)
+      optimized = optimizer.call(self, optimize_operand)
+      optimized.memoize(:optimize, optimized)
+    end
+
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
