@@ -14,9 +14,7 @@ module Veritas
       end
 
       def each(&block)
-        operand.each do |tuple|
-          yield Tuple.new(header, tuple.to_ary)
-        end
+        operand.each { |tuple| yield Tuple.new(header, tuple.to_ary) }
         self
       end
 
