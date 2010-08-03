@@ -4,6 +4,10 @@ module Veritas
       class Inequality < Predicate
         include Comparable
 
+        def self.operation
+          :'!='
+        end
+
         def self.complement
           Equality
         end
@@ -14,11 +18,7 @@ module Veritas
 
         def self.eval(left, right)
           left != right
-        end
-
-        def inspect
-          "#{left.inspect} != #{right.inspect}"
-        end
+        end unless Object.method_defined?(operation)
 
       private
 

@@ -4,8 +4,8 @@ module Veritas
       extend Aliasable
       include AbstractClass, Immutable, Optimizable
 
-      # alias #! to #complement in Ruby 1.9
-      inheritable_alias('!' => :complement) if respond_to?('!')
+      # alias #! to #complement when available
+      inheritable_alias('!' => :complement) if Object.method_defined?('!')
 
       def self.eval(*)
         raise NotImplementedError, "#{name}.eval must be implemented"
