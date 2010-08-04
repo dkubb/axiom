@@ -2,7 +2,10 @@ module Veritas
   module Logic
     class Connective
       class Complement < Connective
+        extend Aliasable
         include Operation::Unary
+
+        inheritable_alias(:complement => :operand)
 
         def self.eval(operand)
           !operand
@@ -10,10 +13,6 @@ module Veritas
 
         def call(tuple)
           self.class.eval(operand.call(tuple))
-        end
-
-        def complement
-          operand
         end
 
         def project(attributes)
