@@ -3,8 +3,8 @@ module Veritas
     class Connective < Expression
       include AbstractClass
 
-      module Methods; end
-
+      module Methods
+      end # module Methods
     end # class Connective
   end # module Logic
 end # module Veritas
