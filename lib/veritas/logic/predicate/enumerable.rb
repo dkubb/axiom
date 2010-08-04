@@ -60,14 +60,11 @@ module Veritas
         end
 
         def right_empty?
-          optimize_right.each { return false }
-          true
+          optimize_right.none? { true }
         end
 
         def right_one?
-          index = 0
-          optimize_right.detect { (index += 1) != 1 }
-          index == 1
+          optimize_right.one? { true }
         end
 
       end # module Enumerable
