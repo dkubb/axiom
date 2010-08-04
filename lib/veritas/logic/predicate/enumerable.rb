@@ -47,10 +47,6 @@ module Veritas
           right.eql?(enumerable) ? right : enumerable
         end
 
-        def optimized?
-          optimize_right.equal?(right)
-        end
-
         def new_optimized_enumerable
           self.class.new(left, optimize_right)
         end

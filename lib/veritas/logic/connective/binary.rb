@@ -142,10 +142,6 @@ module Veritas
           self.class.new(optimize_left, optimize_right)
         end
 
-        def optimized?
-          optimize_left.equal?(left) && optimize_right.equal?(right)
-        end
-
         memoize :complement, :new_optimized_connective
 
       end # module Binary
