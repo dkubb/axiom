@@ -2,7 +2,6 @@ module Veritas
   class Relation
     module Operation
       module Unary
-        include Immutable
         include Veritas::Operation::Unary
 
         def initialize(operand)
