@@ -3,6 +3,10 @@ module Veritas
     class Predicate
       module Enumerable
 
+        def initialize(left, right)
+          super(left, right.nil? ? right : right.dup.freeze)
+        end
+
         def optimize
           if includes_nothing?
             new_optimized_none
