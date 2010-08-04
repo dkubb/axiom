@@ -23,7 +23,7 @@ module Veritas
         end
 
         def always_equivalent?
-          left_attribute? && right_attribute? && same_attributes?
+          same_attributes?
         end
 
         def never_equivalent?

@@ -12,8 +12,8 @@ module Veritas
       end
 
       def project(attributes)
-        return if left_attribute?  && !attributes.include?(left)
-        return if right_attribute? && !attributes.include?(right)
+        return if left.kind_of?(Attribute)  && !attributes.include?(left)
+        return if right.kind_of?(Attribute) && !attributes.include?(right)
         super
       end
 
@@ -81,10 +81,6 @@ module Veritas
 
       def normalizable?
         false
-      end
-
-      def left_attribute?
-        left.kind_of?(Attribute)
       end
 
       def right_attribute?
