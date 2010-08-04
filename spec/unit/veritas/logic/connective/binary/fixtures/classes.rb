@@ -1,6 +1,6 @@
-module BinaryConnectiveSpecs
+module BinarySpecs
   class Object
-    include Logic::Connective::BinaryConnective
+    include Logic::Connective::Binary
 
     def self.eval(*)
     end
@@ -13,4 +13,4 @@ module BinaryConnectiveSpecs
     end
 
   end # class Complement
-end # module BinaryConnectiveSpecs
+end # module BinarySpecs

@@ -2,7 +2,7 @@ module Veritas
   module Logic
     class Connective
       class Disjunction < Connective
-        include BinaryConnective
+        include Binary
 
         def self.eval(left, right)
           left || right

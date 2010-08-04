@@ -1,14 +1,14 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
+describe 'Veritas::Logic::Connective::Binary#optimize' do
   subject { connective.optimize }
 
-  let(:klass)          { Class.new(BinaryConnectiveSpecs::Object) }
-  let(:attribute)      { Attribute::Integer.new(:id)              }
-  let(:original_left)  { attribute.gt(1)                          }
-  let(:original_right) { attribute.lt(1)                          }
-  let(:connective)     { klass.new(left, right)                   }
+  let(:klass)          { Class.new(BinarySpecs::Object) }
+  let(:attribute)      { Attribute::Integer.new(:id)    }
+  let(:original_left)  { attribute.gt(1)                }
+  let(:original_right) { attribute.lt(1)                }
+  let(:connective)     { klass.new(left, right)         }
 
   context 'left and right are the same' do
     let(:left)  { attribute.gt(1) }
@@ -81,8 +81,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
   end
 
   context 'self and right are the same, and left and right.left are the same' do
-    let(:left)  { attribute.eq(1)                                          }
-    let(:right) { mock('BinaryConnective', :class => klass, :left => left) }
+    let(:left)  { attribute.eq(1)                                }
+    let(:right) { mock('Binary', :class => klass, :left => left) }
 
     before do
       right.stub!(:optimize => right, :frozen? => true)
@@ -94,8 +94,8 @@ describe 'Veritas::Logic::Connective::BinaryConnective#optimize' do
   end
 
   context 'self and left are the same, and right and left.right are the same' do
-    let(:left)  { mock('BinaryConnective', :class => klass, :right => right) }
-    let(:right) { attribute.eq(1)                                            }
+    let(:left)  { mock('Binary', :class => klass, :right => right) }
+    let(:right) { attribute.eq(1)                                  }
 
     before do
       left.stub!(:optimize => left, :frozen? => true)
