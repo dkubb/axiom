@@ -22,6 +22,10 @@ module Veritas
             renamed.equal?(attribute) ? self : self.class.new(renamed)
           end
 
+          def reverse
+            self.class.reverse.new(attribute)
+          end
+
           def eql?(other)
             instance_of?(other.class) &&
             attribute.eql?(other.attribute)
@@ -42,23 +46,23 @@ module Veritas
         end # class Direction
 
         class Ascending < Direction
-          def self.eval(left, right)
-            left <=> right
+          def self.reverse
+            Descending
           end
 
-          def reverse
-            Descending.new(attribute)
+          def self.eval(left, right)
+            left <=> right
           end
 
         end # class Ascending
 
         class Descending < Direction
-          def self.eval(left, right)
-            right <=> left
+          def self.reverse
+            Ascending
           end
 
-          def reverse
-            Ascending.new(attribute)
+          def self.eval(left, right)
+            right <=> left
           end
 
         end # class Descending
