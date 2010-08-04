@@ -28,6 +28,10 @@ module Veritas
         end
       end
 
+      def optimized?
+        super && optimize_predicate.equal?(predicate)
+      end
+
       def wrap(predicate = optimize_predicate)
         new(yield(optimize_operand), predicate)
       end
@@ -46,10 +50,6 @@ module Veritas
 
       def new_optimized_operation
         new(optimize_operand, optimize_predicate)
-      end
-
-      def optimized?
-        super && optimize_predicate.equal?(predicate)
       end
 
       def matches_all?
