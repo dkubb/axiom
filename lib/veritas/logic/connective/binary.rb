@@ -2,7 +2,7 @@ module Veritas
   module Logic
     class Connective < Expression
       module Binary
-        include Immutable, Operation::Binary
+        include Operation::Binary
 
         def call(tuple)
           self.class.eval(left.call(tuple), right.call(tuple))

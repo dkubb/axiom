@@ -1,6 +1,8 @@
 module Veritas
   module Operation
     module Binary
+      include Immutable
+
       attr_reader :left, :right
 
       def initialize(left, right)

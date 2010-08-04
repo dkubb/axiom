@@ -1,6 +1,8 @@
 module Veritas
   module Operation
     module Unary
+      include Immutable
+
       attr_reader :operand
 
       def initialize(operand)
