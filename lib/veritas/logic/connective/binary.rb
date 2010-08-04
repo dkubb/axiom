@@ -130,14 +130,6 @@ module Veritas
           false
         end
 
-        def optimize_left
-          left.optimize
-        end
-
-        def optimize_right
-          right.optimize
-        end
-
         def new_optimized_connective
           self.class.new(optimize_left, optimize_right)
         end

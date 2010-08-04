@@ -25,14 +25,6 @@ module Veritas
 
       private
 
-        def optimize_left
-          left.optimize
-        end
-
-        def optimize_right
-          right.optimize
-        end
-
         def new_optimized_operation
           self.class.new(optimize_left, optimize_right)
         end
