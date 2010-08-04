@@ -16,7 +16,7 @@ module Veritas
         end
 
         def project(attributes)
-          return nil if operand.project(attributes).nil?
+          return if operand.project(attributes).nil?
           super
         end
 

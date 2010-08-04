@@ -12,8 +12,8 @@ module Veritas
       end
 
       def project(attributes)
-        return nil if left_attribute?  && !attributes.include?(left)
-        return nil if right_attribute? && !attributes.include?(right)
+        return if left_attribute?  && !attributes.include?(left)
+        return if right_attribute? && !attributes.include?(right)
         super
       end
 
