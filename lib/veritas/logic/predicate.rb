@@ -145,8 +145,8 @@ module Veritas
   end # module Logic
 end # module Veritas
 
-require 'veritas/logic/predicate/enumerable'
 require 'veritas/logic/predicate/comparable'
+require 'veritas/logic/predicate/enumerable'
 
 require 'veritas/logic/predicate/equality'
 require 'veritas/logic/predicate/exclusion'
