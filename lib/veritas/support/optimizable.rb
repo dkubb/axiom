@@ -4,5 +4,9 @@ module Veritas
       self
     end
 
+    def optimized?
+      equal?(optimize)
+    end
+
   end # module Optimizable
 end # module Veritas
