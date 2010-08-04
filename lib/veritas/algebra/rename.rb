@@ -34,6 +34,10 @@ module Veritas
         end
       end
 
+      def optimized?
+        super && optimize_aliases.equal?(aliases)
+      end
+
       def wrap
         new(yield(optimize_operand))
       end
