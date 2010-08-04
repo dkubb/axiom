@@ -1,7 +1,7 @@
 module Veritas
   module Operation
     module Binary
-      include Immutable
+      include Immutable, Optimizable
 
       attr_reader :left, :right
 

@@ -1,7 +1,7 @@
 module Veritas
   module Operation
     module Unary
-      include Immutable
+      include Immutable, Optimizable
 
       attr_reader :operand
 

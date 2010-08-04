@@ -41,9 +41,9 @@ describe 'Veritas::Logic::Connective::Binary#optimize' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.lt(1) }
 
-    it 'delegates to super, but no #optimize in superclass' do
-      expect { subject }.to raise_error(NoMethodError)
-    end
+    it { should equal(connective) }
+
+    it_should_behave_like 'an optimize method'
   end
 
   context 'left and right are different, after optimizing the left' do
