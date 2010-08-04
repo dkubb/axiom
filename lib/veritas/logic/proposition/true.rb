@@ -2,6 +2,10 @@ module Veritas
   module Logic
     class Proposition
       class True < Proposition
+        def self.complement
+          False
+        end
+
         def self.eval
           true
         end
@@ -12,10 +16,6 @@ module Veritas
 
         def or(other)
           self
-        end
-
-        def complement
-          False.instance
         end
 
       end # class True

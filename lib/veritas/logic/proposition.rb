@@ -15,6 +15,10 @@ module Veritas
         self.class.eval
       end
 
+      def complement
+        self.class.complement.instance
+      end
+
       def eql?(other)
         instance_of?(other.class)
       end
