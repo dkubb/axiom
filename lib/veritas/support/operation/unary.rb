@@ -9,6 +9,10 @@ module Veritas
         @operand = operand
       end
 
+      def optimized?
+        optimize_operand.equal?(operand)
+      end
+
       def eql?(other)
         instance_of?(other.class) &&
         operand.eql?(other.operand)
@@ -16,6 +20,13 @@ module Veritas
 
       def hash
         operand.hash
+      end
+
+    private
+
+      def optimize_operand
+        operand = self.operand
+        operand.respond_to?(:optimize) ? operand.optimize : operand
       end
 
     end # module Unary

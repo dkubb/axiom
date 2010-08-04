@@ -25,16 +25,8 @@ module Veritas
 
       private
 
-        def optimize_operand
-          operand.optimize
-        end
-
         def new_optimized_operation
           self.class.new(optimize_operand)
-        end
-
-        def optimized?
-          optimize_operand.equal?(operand)
         end
 
         memoize :new_optimized_operation
