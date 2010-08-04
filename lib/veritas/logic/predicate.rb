@@ -64,7 +64,7 @@ module Veritas
       end
 
       def same_attributes?
-        left.eql?(right)
+        left.equal?(right)
       end
 
       def constant?
