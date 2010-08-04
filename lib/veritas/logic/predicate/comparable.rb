@@ -41,7 +41,9 @@ module Veritas
 
         module ClassMethods
           def eval(left, right)
-            left.send(operation, right)
+            # methods ending in ? should return true or false only,
+            # force boolean context using !!
+            !!left.send(operation, right)
           end
 
         end # module Classmethods
