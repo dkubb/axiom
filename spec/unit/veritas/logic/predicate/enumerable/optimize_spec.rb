@@ -4,11 +4,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
   subject { enumerable.optimize }
 
-  let(:klass)      { PredicateEnumerableSpecs::Object }
-  let(:left)       { Attribute::Integer.new(:id)      }
-  let(:one)        { mock('One',  :frozen? => true)   }
-  let(:none)       { mock('None', :frozen? => true)   }
-  let(:enumerable) { klass.new(left, right)           }
+  let(:klass)      { PredicateEnumerableSpecs::Object                    }
+  let(:left)       { Attribute::Integer.new(:id)                         }
+  let(:one)        { mock('One',  :frozen? => true, :optimized? => true) }
+  let(:none)       { mock('None', :frozen? => true, :optimized? => true) }
+  let(:enumerable) { klass.new(left, right)                              }
 
   before do
     klass.stub!(:mock_one => one, :mock_none => none)

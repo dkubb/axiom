@@ -5,4 +5,8 @@ shared_examples_for 'an optimize method' do
     object = subject
     object.optimize.should equal(object)
   end
+
+  it 'returns an optimized object' do
+    should be_optimized
+  end
 end

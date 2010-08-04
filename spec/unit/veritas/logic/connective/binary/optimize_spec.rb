@@ -81,8 +81,8 @@ describe 'Veritas::Logic::Connective::Binary#optimize' do
   end
 
   context 'self and right are the same, and left and right.left are the same' do
-    let(:left)  { attribute.eq(1)                                }
-    let(:right) { mock('Binary', :class => klass, :left => left) }
+    let(:left)  { attribute.eq(1)                                                     }
+    let(:right) { mock('Binary', :class => klass, :left => left, :optimized? => true) }
 
     before do
       right.stub!(:optimize => right, :frozen? => true)
@@ -94,8 +94,8 @@ describe 'Veritas::Logic::Connective::Binary#optimize' do
   end
 
   context 'self and left are the same, and right and left.right are the same' do
-    let(:left)  { mock('Binary', :class => klass, :right => right) }
-    let(:right) { attribute.eq(1)                                  }
+    let(:left)  { mock('Binary', :class => klass, :right => right, :optimized? => true) }
+    let(:right) { attribute.eq(1)                                                       }
 
     before do
       left.stub!(:optimize => left, :frozen? => true)
