@@ -7,6 +7,8 @@ describe 'Veritas::Logic::Connective::Conjunction#optimize' do
   let(:attribute) { Attribute::Integer.new(:id)    }
   let(:object)    { klass.new(left, right)         }
 
+  it_should_behave_like 'Logic::Connective::Binary#optimize'
+
   context 'left and right are predicates' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.lt(3) }
