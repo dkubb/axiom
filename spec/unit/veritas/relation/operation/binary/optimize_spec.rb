@@ -34,7 +34,16 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     let(:left)  { original_left.project(original_left.header)   }
     let(:right) { original_right.project(original_right.header) }
 
-    add_method_missing
+    before do
+      klass.class_eval do
+        def new(left, right)
+          self.class.new(left, right)
+        end
+      end
+
+      # make #optimized idempotent
+      klass.memoize :new_optimized_operation
+    end
 
     it { should_not equal(binary_operation) }
 
@@ -51,5 +60,7 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
       right_body.should_not_receive(:each)
       subject
     end
+
+    it_should_behave_like 'an optimize method'
   end
 end
