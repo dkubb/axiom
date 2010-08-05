@@ -1,12 +1,12 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Operation::Binary#hash' do
   subject { binary_operation.hash }
 
-  let(:left)             { mock('Left')                                  }
-  let(:right)            { mock('Right')                                 }
-  let(:binary_operation) { BinaryOperationSpecs::Object.new(left, right) }
+  let(:klass)            { Class.new { include Operation::Binary } }
+  let(:left)             { mock('Left')                            }
+  let(:right)            { mock('Right')                           }
+  let(:binary_operation) { klass.new(left, right)                  }
 
   it { should be_kind_of(Integer) }
 

@@ -1,12 +1,12 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Operation::Binary#eql?' do
   subject { binary_operation.eql?(other) }
 
-  let(:left)             { mock('Left')                                  }
-  let(:right)            { mock('Right')                                 }
-  let(:binary_operation) { BinaryOperationSpecs::Object.new(left, right) }
+  let(:klass)            { Class.new { include Operation::Binary } }
+  let(:left)             { mock('Left')                            }
+  let(:right)            { mock('Right')                           }
+  let(:binary_operation) { klass.new(left, right)                  }
 
   context 'with the same binary operation' do
     let(:other) { binary_operation }
@@ -29,9 +29,9 @@ describe 'Veritas::Operation::Binary#eql?' do
   end
 
   context 'with a different binary operation' do
-    let(:other_left)  { mock('Other Left')                                        }
-    let(:other_right) { mock('Other Right')                                       }
-    let(:other)       { BinaryOperationSpecs::Object.new(other_left, other_right) }
+    let(:other_left)  { mock('Other Left')                 }
+    let(:other_right) { mock('Other Right')                }
+    let(:other)       { klass.new(other_left, other_right) }
 
     it { should be(false) }
 
@@ -41,7 +41,7 @@ describe 'Veritas::Operation::Binary#eql?' do
   end
 
   context 'with an equivalent binary operation of a different class' do
-    let(:other) { Class.new(BinaryOperationSpecs::Object).new(left, right) }
+    let(:other) { Class.new(klass).new(left, right) }
 
     it { should be(false) }
 
