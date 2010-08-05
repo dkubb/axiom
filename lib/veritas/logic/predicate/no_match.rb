@@ -2,17 +2,19 @@ module Veritas
   module Logic
     class Predicate
       class NoMatch < Predicate
-        def self.eval(left, right)
-          !(right === left)
+        include Comparable
+
+        def self.operation
+          :'!~'
         end
 
         def self.complement
           Match
         end
 
-        def inspect
-          "#{left.inspect} !~ #{right.inspect}"
-        end
+        def self.eval(left, right)
+          left !~ right
+        end unless Object.method_defined?(operation)
 
         module Methods
           def no_match(regexp)

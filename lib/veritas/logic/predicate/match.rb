@@ -2,16 +2,14 @@ module Veritas
   module Logic
     class Predicate
       class Match < Predicate
-        def self.eval(left, right)
-          right === left
+        include Comparable
+
+        def self.operation
+          :=~
         end
 
         def self.complement
           NoMatch
-        end
-
-        def inspect
-          "#{left.inspect} =~ #{right.inspect}"
         end
 
         module Methods
