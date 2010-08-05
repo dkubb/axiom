@@ -52,10 +52,6 @@ module Veritas
         self.class.new(operand, optimize_aliases)
       end
 
-      def new_optimized_operation
-        new(optimize_operand)
-      end
-
       def optimize_rename
         optimize_aliases.empty? ? drop_no_op_renames : combine_renames
       end

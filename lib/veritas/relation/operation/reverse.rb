@@ -41,10 +41,6 @@ module Veritas
           self.class.new(operand)
         end
 
-        def new_optimized_operation
-          new(optimize_operand)
-        end
-
         def drop_no_op_reverse
           optimize_operand.operand
         end

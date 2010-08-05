@@ -69,10 +69,6 @@ module Veritas
           self.class.new(operand, to_i)
         end
 
-        def new_optimized_operation
-          new(optimize_operand)
-        end
-
         def drop_current_offset
           optimize_operand
         end

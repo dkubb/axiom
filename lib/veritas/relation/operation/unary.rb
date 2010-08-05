@@ -23,14 +23,6 @@ module Veritas
           end
         end
 
-      private
-
-        def new_optimized_operation
-          self.class.new(optimize_operand)
-        end
-
-        memoize :new_optimized_operation
-
       end # module Unary
     end # module Operation
   end # class Relation

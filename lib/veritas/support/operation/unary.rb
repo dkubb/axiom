@@ -13,6 +13,10 @@ module Veritas
         optimize_operand.equal?(operand)
       end
 
+      def new_optimized_operation
+        new(optimize_operand)
+      end
+
       def eql?(other)
         instance_of?(other.class) &&
         operand.eql?(other.operand)

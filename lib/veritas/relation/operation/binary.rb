@@ -23,12 +23,6 @@ module Veritas
           self.class.new(yield(optimize_left), yield(optimize_right))
         end
 
-      private
-
-        def new_optimized_operation
-          self.class.new(optimize_left, optimize_right)
-        end
-
         memoize :new_optimized_operation
 
         module ClassMethods

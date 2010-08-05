@@ -54,12 +54,8 @@ module Veritas
 
       private
 
-        def new(operand, directions)
+        def new(operand, directions = self.directions)
           self.class.new(operand, directions)
-        end
-
-        def new_optimized_operation
-          new(optimize_operand, directions)
         end
 
         def drop_current_order

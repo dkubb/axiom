@@ -45,10 +45,6 @@ module Veritas
         self.class.new(operand, header)
       end
 
-      def new_optimized_operation
-        new(optimize_operand)
-      end
-
       def drop_current_projection
         optimize_operand
       end

@@ -46,10 +46,6 @@ module Veritas
         self.class.new(operand, predicate)
       end
 
-      def new_optimized_operation
-        new(optimize_operand, optimize_predicate)
-      end
-
       def matches_all?
         optimize_predicate.equal?(Logic::Proposition::True.instance)
       end

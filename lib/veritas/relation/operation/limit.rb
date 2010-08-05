@@ -70,10 +70,6 @@ module Veritas
           self.class.new(operand, to_i)
         end
 
-        def new_optimized_operation
-          new(optimize_operand)
-        end
-
         def optimize_limit
           limit = optimize_operand
           if to_i == limit.to_i
