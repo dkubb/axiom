@@ -51,7 +51,5 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
       right_body.should_not_receive(:each)
       subject
     end
-
-    it_should_behave_like 'an optimize method'
   end
 end

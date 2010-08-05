@@ -23,8 +23,6 @@ module Veritas
           self.class.new(yield(optimize_left), yield(optimize_right))
         end
 
-        memoize :new_optimized_operation
-
         module ClassMethods
           def new(left, right)
             assert_ordered_match(left, right)
