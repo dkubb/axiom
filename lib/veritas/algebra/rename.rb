@@ -43,9 +43,7 @@ module Veritas
       end
 
       def eql?(other)
-        instance_of?(other.class)   &&
-        aliases.eql?(other.aliases) &&
-        operand.eql?(other.operand)
+        super && aliases.eql?(other.aliases)
       end
 
     private

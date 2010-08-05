@@ -47,16 +47,6 @@ module Veritas
         end
       end
 
-      def eql?(other)
-        instance_of?(other.class) &&
-        left.eql?(other.left)     &&
-        right.eql?(other.right)
-      end
-
-      def hash
-        left.hash ^ right.hash
-      end
-
     private
 
       def new_proposition
