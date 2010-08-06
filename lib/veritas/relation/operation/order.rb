@@ -71,7 +71,7 @@ module Veritas
 
         module Methods
           def order(directions = yield(self))
-            Operation::Order.new(self, directions)
+            Operation::Order.new(self, Array(directions))
           end
 
         end # module Methods

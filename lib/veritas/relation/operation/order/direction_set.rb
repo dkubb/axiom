@@ -9,7 +9,7 @@ module Veritas
           inheritable_alias(:| => :union)
 
           def initialize(directions)
-            @directions = Array(directions).map do |direction|
+            @directions = directions.to_ary.map do |direction|
               Ascending.coerce(direction)
             end
           end
