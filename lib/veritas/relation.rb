@@ -60,8 +60,7 @@ module Veritas
     end
 
     def empty?
-      each { return false }
-      true
+      none? { true }
     end
 
   private
