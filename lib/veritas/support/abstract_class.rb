@@ -3,7 +3,7 @@ module Veritas
     def self.included(descendant)
       descendant.class_eval <<-RUBY, __FILE__, __LINE__
         def self.new(*)
-          if self == #{descendant}
+          if equal?(::#{descendant})
             raise NotImplementedError, '#{descendant} is an abstract class'
           else
             super
