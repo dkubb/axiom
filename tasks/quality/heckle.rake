@@ -91,6 +91,42 @@ begin
 
       specs = []
 
+      # get the public class methods
+      metaclass  = class << mod; self end
+      ancestors  = metaclass.ancestors
+      ancestors << (class << mod.superclass; self end) if mod.respond_to?(:superclass)
+
+      spec_class_methods = metaclass.public_instance_methods(false)
+
+      ancestors.each do |ancestor|
+        spec_class_methods -= ancestor.public_instance_methods(false)
+      end
+
+      spec_class_methods.reject! { |method| method.to_s == 'included' }
+
+      if mod.ancestors.include?(Singleton)
+        spec_class_methods.reject! { |method| method.to_s == 'instance' }
+      end
+
+      # get the protected and private class methods
+      other_class_methods = metaclass.protected_instance_methods(false) |
+                            metaclass.private_instance_methods(false)
+
+      ancestors.each do |ancestor|
+        other_class_methods -= ancestor.protected_instance_methods(false) |
+                               ancestor.private_instance_methods(false)
+      end
+
+      other_class_methods.reject! { |method| method.to_s == 'allocate' }
+
+      other_class_methods.reject! do |method|
+        next unless method.to_s =~ MEMOIZED_PATTERN &&
+                    spec_class_methods.any? { |specced| specced.to_s == $1 }
+
+        spec_class_methods << method
+      end
+
+      # get the instances methods
       spec_methods = mod.public_instance_methods(false)
 
       other_methods = mod.protected_instance_methods(false) |
@@ -103,6 +139,21 @@ begin
         spec_methods << method
       end
 
+      # map the class methods to spec files
+      spec_class_methods.each do |method|
+        method = aliases[mod.name][method]
+        next if method.to_s =~ MEMOIZED_PATTERN
+
+        spec_file = spec_prefix.join('class_methods').join(map.file_name(method, mod.name))
+
+        unless spec_file.file?
+          raise "No spec file #{spec_file} for #{mod}.#{method}"
+        end
+
+        specs << [ ".#{method}", [ spec_file ] ]
+      end
+
+      # map the instance methods to spec files
       spec_methods.each do |method|
         method = aliases[mod.name][method]
         next if method.to_s =~ MEMOIZED_PATTERN
@@ -113,7 +164,7 @@ begin
           raise "No spec file #{spec_file} for #{mod}##{method}"
         end
 
-        specs << [ method, [ spec_file ] ]
+        specs << [ "##{method}", [ spec_file ] ]
       end
 
       # non-public methods are considered covered if they can be mutated
@@ -127,12 +178,24 @@ begin
           descedant_specs.concat(FileList[descedant_spec_prefix.join('*_spec.rb')])
         end
 
-        specs << [ method, descedant_specs ]
+        specs << [ "##{method}", descedant_specs ]
+      end
+
+      other_class_methods.each do |method|
+        descedant_specs = []
+
+        ObjectSpace.each_object(Module) do |descedant|
+          next unless descedant.name =~ /\A#{root_module}(?::|\z)/ && mod >= descedant
+          descedant_spec_prefix = spec_dir.join(descedant.name.underscore)
+          descedant_specs.concat(FileList[descedant_spec_prefix.join('class_methods/*_spec.rb')])
+        end
+
+        specs << [ ".#{method}", descedant_specs ]
       end
 
       specs.sort.each do |(method, spec_files)|
-        puts "Heckling #{mod}##{method}"
-        IO.popen("spec #{spec_files.join(' ')} --heckle '#{mod}##{method}'") do |pipe|
+        puts "Heckling #{mod}#{method}"
+        IO.popen("spec #{spec_files.join(' ')} --heckle '#{mod}#{method}'") do |pipe|
           while line = pipe.gets
             case line = line.chomp
               when "The following mutations didn't cause test failures:"
