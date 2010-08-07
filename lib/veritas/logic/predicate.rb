@@ -12,6 +12,7 @@ module Veritas
       end
 
       def project(attributes)
+        left, right = self.left, self.right
         return if left.kind_of?(Attribute)  && !attributes.include?(left)
         return if right.kind_of?(Attribute) && !attributes.include?(right)
         super

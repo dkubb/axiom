@@ -34,6 +34,7 @@ module Veritas
         end
 
         def optimize_right_range
+          right = self.right
           right.to_inclusive if right.overlaps?(left.range)
         end
 

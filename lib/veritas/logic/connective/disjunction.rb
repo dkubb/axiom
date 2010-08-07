@@ -10,10 +10,11 @@ module Veritas
 
         def optimize
           left, right = optimize_left, optimize_right
+          false_proposition = Proposition::False.instance
 
-          if right.equal?(Proposition::False.instance)
+          if right.equal?(false_proposition)
             left
-          elsif left.equal?(Proposition::False.instance)
+          elsif left.equal?(false_proposition)
             right
           elsif equality_with_same_attributes?
             new_inclusion
@@ -29,9 +30,10 @@ module Veritas
       private
 
         def always_true?
-          optimize_left.equal?(Proposition::True.instance)  ||
-          optimize_right.equal?(Proposition::True.instance) ||
-          inequality_with_same_attributes?                  ||
+          true_proposition = Proposition::True.instance
+          optimize_left.equal?(true_proposition)  ||
+          optimize_right.equal?(true_proposition) ||
+          inequality_with_same_attributes?        ||
           complementary_predicates?
         end
 
