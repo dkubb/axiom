@@ -11,7 +11,7 @@ require 'veritas/relation/empty'
 
 module Veritas
   class Relation
-    include AbstractClass, Enumerable, Optimizable
+    include Enumerable, Optimizable
 
     attr_reader :header, :directions, :predicate
 
