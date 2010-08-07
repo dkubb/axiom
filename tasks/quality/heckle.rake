@@ -94,15 +94,12 @@ begin
       # get the public class methods
       metaclass  = class << mod; self end
       ancestors  = metaclass.ancestors
-      ancestors << (class << mod.superclass; self end) if mod.respond_to?(:superclass)
 
-      spec_class_methods = metaclass.public_instance_methods(false)
+      spec_class_methods = mod.singleton_methods(false)
 
-      ancestors.each do |ancestor|
-        spec_class_methods -= ancestor.public_instance_methods(false)
+      spec_class_methods.reject! do |method|
+        %w[ yaml_new yaml_tag_subclasses? included nesting constants ].include?(method.to_s)
       end
-
-      spec_class_methods.reject! { |method| method.to_s == 'included' }
 
       if mod.ancestors.include?(Singleton)
         spec_class_methods.reject! { |method| method.to_s == 'instance' }
