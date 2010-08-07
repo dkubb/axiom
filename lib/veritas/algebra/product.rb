@@ -8,16 +8,13 @@ module Veritas
         super
       end
 
-      class << self
-      private
-
-        def assert_disjointed_headers(left, right)
-          if (left.header & right.header).any?
-            raise InvalidHeaderError, "the headers must be disjointed for #{name}.new"
-          end
+      def self.assert_disjointed_headers(left, right)
+        if (left.header & right.header).any?
+          raise InvalidHeaderError, "the headers must be disjointed for #{name}.new"
         end
-
       end
+
+      private_class_method :assert_disjointed_headers
 
       def each(&block)
         left.each do |tuple|

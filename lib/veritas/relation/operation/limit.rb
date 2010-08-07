@@ -10,22 +10,19 @@ module Veritas
           super
         end
 
-        class << self
-        private
-
-          def assert_ordered_operand(operand)
-            if operand.directions.empty?
-              raise OrderedRelationRequiredError, 'can only limit an ordered operand'
-            end
+        def self.assert_ordered_operand(operand)
+          if operand.directions.empty?
+            raise OrderedRelationRequiredError, 'can only limit an ordered operand'
           end
-
-          def assert_valid_limit(limit)
-            if limit < 0
-              raise InvalidLimitError, "limit must be greater than or equal to 0, but was #{limit.inspect}"
-            end
-          end
-
         end
+
+        def self.assert_valid_limit(limit)
+          if limit < 0
+            raise InvalidLimitError, "limit must be greater than or equal to 0, but was #{limit.inspect}"
+          end
+        end
+
+        private_class_method :assert_ordered_operand, :assert_valid_limit
 
         def initialize(operand, limit)
           super(operand)

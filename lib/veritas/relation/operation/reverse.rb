@@ -7,16 +7,13 @@ module Veritas
           super(operand, operand.directions.reverse)
         end
 
-        class << self
-        private
-
-          def assert_ordered_operand(operand)
-            if operand.directions.empty?
-              raise OrderedRelationRequiredError, 'can only reverse an ordered operand'
-            end
+        def self.assert_ordered_operand(operand)
+          if operand.directions.empty?
+            raise OrderedRelationRequiredError, 'can only reverse an ordered operand'
           end
-
         end
+
+        private_class_method :assert_ordered_operand
 
         def each(&block)
           operand.reverse_each(&block)

@@ -10,16 +10,13 @@ module Veritas
           super
         end
 
-        class << self
-        private
-
-          def assert_order_by_full_header(operand, directions)
-            if operand.header.to_set != directions.attributes.to_set
-              raise InvalidDirectionsError, 'directions must include every attribute in the header'
-            end
+        def self.assert_order_by_full_header(operand, directions)
+          if operand.header.to_set != directions.attributes.to_set
+            raise InvalidDirectionsError, 'directions must include every attribute in the header'
           end
-
         end
+
+        private_class_method :assert_order_by_full_header
 
         def initialize(operand, directions)
           super(operand)

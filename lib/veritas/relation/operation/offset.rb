@@ -10,22 +10,19 @@ module Veritas
           super
         end
 
-        class << self
-        private
-
-          def assert_ordered_operand(operand)
-            if operand.directions.empty?
-              raise OrderedRelationRequiredError, 'can only offset an ordered operand'
-            end
+        def self.assert_ordered_operand(operand)
+          if operand.directions.empty?
+            raise OrderedRelationRequiredError, 'can only offset an ordered operand'
           end
-
-          def assert_valid_offset(offset)
-            if offset < 0
-              raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
-            end
-          end
-
         end
+
+        def self.assert_valid_offset(offset)
+          if offset < 0
+            raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
+          end
+        end
+
+        private_class_method :assert_ordered_operand, :assert_valid_offset
 
         def initialize(operand, offset)
           super(operand)

@@ -9,21 +9,19 @@ module Veritas
         super
       end
 
-      class << self
-      private
-
-        def assert_joinable_headers(left, right)
-          if (left.header & right.header).empty?
-            raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
-          end
-        end
-
-        def assert_not_equivalent_headers(left, right)
-          if left.header == right.header
-            raise InvalidHeaderError, 'the headers are identical, use intersection instead'
-          end
+      def self.assert_joinable_headers(left, right)
+        if (left.header & right.header).empty?
+          raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
         end
       end
+
+      def self.assert_not_equivalent_headers(left, right)
+        if left.header == right.header
+          raise InvalidHeaderError, 'the headers are identical, use intersection instead'
+        end
+      end
+
+      private_class_method :assert_joinable_headers, :assert_not_equivalent_headers
 
       def initialize(left, right)
         super
