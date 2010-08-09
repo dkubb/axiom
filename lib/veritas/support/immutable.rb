@@ -10,6 +10,15 @@ module Veritas
       self
     end
 
+    def self.freeze_value(value)
+      case value
+        when Numeric, TrueClass, FalseClass, NilClass
+          value
+        else
+          value.frozen? ? value : value.dup.freeze
+      end
+    end
+
     module ModuleMethods
       def included(mod)
         Immutable.included(mod)
@@ -79,16 +88,7 @@ module Veritas
       inheritable_alias(:[] => :instance_variable_get)
 
       def []=(key, value)
-        instance_variable_set(key, self.class.memoized_value(value))
-      end
-
-      def self.memoized_value(value)
-        case value
-          when Numeric, TrueClass, FalseClass, NilClass
-            value
-          else
-            value.frozen? ? value : value.dup.freeze
-        end
+        instance_variable_set(key, Immutable.freeze_value(value))
       end
 
     end # class Memory

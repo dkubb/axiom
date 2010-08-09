@@ -1,10 +1,9 @@
 require 'spec_helper'
-require File.expand_path('../../../fixtures/classes', __FILE__)
 
-describe 'Veritas::Immutable::Memory.memoized_value' do
-  subject { klass.memoized_value(value) }
+describe 'Veritas::Immutable.freeze_value' do
+  subject { object.freeze_value(value) }
 
-  let(:klass) { Immutable::Memory }
+  let(:object) { Immutable }
 
   context 'with a numeric value' do
     let(:value) { 1 }

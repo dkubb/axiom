@@ -4,7 +4,7 @@ module Veritas
       module Enumerable
 
         def initialize(left, right)
-          super(left, right.nil? ? right : right.dup.freeze)
+          super(left, Immutable.freeze_value(right))
         end
 
         def optimize
