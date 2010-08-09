@@ -64,7 +64,7 @@ module Veritas
     end
 
     def hash
-      name.hash
+      name.hash ^ options.hash
     end
 
     def inspect
