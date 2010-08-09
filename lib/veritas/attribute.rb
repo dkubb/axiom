@@ -59,8 +59,8 @@ module Veritas
 
     def eql?(other)
       instance_of?(other.class) &&
-      name.eql?(other.name)     &&
-      joinable?(other)
+      name.equal?(other.name)   &&
+      options.eql?(other.options)
     end
 
     def hash

@@ -45,14 +45,4 @@ describe 'Veritas::Attribute#eql?' do
       should == other.eql?(attribute)
     end
   end
-
-  context 'with a joinable attribute' do
-    let(:other) { attribute.class.new(attribute.name, :size => 1..100) }
-
-    it { should be(true) }
-
-    it 'is symmetric' do
-      should == other.eql?(attribute)
-    end
-  end
 end
