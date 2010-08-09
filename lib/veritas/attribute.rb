@@ -76,7 +76,7 @@ module Veritas
         object
       else
         name, type = object
-        const_get(type.name.to_sym).new(name)
+        const_get(type.name).new(name)
       end
     end
 
