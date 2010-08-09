@@ -33,7 +33,7 @@ module Veritas
 
     def rename(aliases)
       name = self.name
-      aliases.key?(name) ? self.class.new(aliases[name]) : self
+      aliases.key?(name) ? self.class.new(aliases[name], options) : self
     end
 
     def required?
