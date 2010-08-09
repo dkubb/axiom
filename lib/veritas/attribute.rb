@@ -19,11 +19,12 @@ module Veritas
   class Attribute
     include AbstractClass, Immutable, ::Comparable
 
-    attr_reader :name
+    attr_reader :name, :options
 
     def initialize(name, options = {})
       @name     = name.to_sym
-      @required = options.fetch(:required, true)
+      @options  = Immutable.freeze_value(options)
+      @required = @options.fetch(:required, true)
     end
 
     def call(tuple)
