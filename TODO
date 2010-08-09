@@ -16,6 +16,13 @@
     returned from a method that can be easily overridden might make
     it much nicer for the end user.
 
+* Rename aliases should become a Hash where the key is the old
+  Attribute, and the value is the new Attribute. This will
+  prevent unnecessary Attribute objects from being created
+  inside operations handling the rename.
+  * Make sure @options are saved in the Attribute so that
+    they can be passed to the renamed Attribute object
+
 * Update all #optimize methods so that when the optimized value
   is returned, it memoizes itself. This will make sure that
   further calls to #optimize result in an immediate answer
