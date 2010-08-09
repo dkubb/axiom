@@ -65,6 +65,10 @@
           * Do the same for >=, <, <=
         * "attr > 5 OR attr == 5" -> "attr >= 5"
         * "attr < 5 OR attr == 5" -> "attr <= 5"
+        * "attr" = "string" AND "attr" =~ /string/ -> "attr" = "string"
+          * If the regexp matches the constant, then it should be
+            optimized down to a constant match. If it does not match
+            then it should be optimized to False.
         * Constant folding, eg:
           "attr1 > attr2 AND attr1 = 5" -> "5 > attr2 AND attr1 = 5"
           * This will probably only work across Conjunctions.
