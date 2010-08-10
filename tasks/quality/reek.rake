@@ -2,7 +2,7 @@ begin
   require 'reek/rake/task'
 
   Reek::Rake::Task.new do |t|
-    t.fail_on_error = false  # TODO: make this true once smells are fixed
+    t.fail_on_error = true
     t.verbose       = false
     t.source_files  = 'lib/**/*.rb'
   end

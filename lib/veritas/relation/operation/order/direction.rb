@@ -18,7 +18,7 @@ module Veritas
 
           def rename(aliases)
             attribute = self.attribute
-            renamed   = aliases.fetch(attribute, attribute)
+            renamed   = aliases[attribute]
             renamed.equal?(attribute) ? self : self.class.new(renamed)
           end
 

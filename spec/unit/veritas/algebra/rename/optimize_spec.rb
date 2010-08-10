@@ -75,7 +75,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it { should be_instance_of(Algebra::Rename) }
 
     it 'sets aliases as a union of both aliases' do
-      subject.aliases.should == aliases.merge(:name => :other_name)
+      subject.aliases.should == Algebra::Rename::Aliases.coerce(
+        relation.header,
+        :id   => :other_id,
+        :name => :other_name
+      )
     end
 
     its(:operand) { should equal(relation) }
@@ -103,7 +107,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it { should be_instance_of(Algebra::Rename) }
 
     it 'sets aliases as a union of both aliases' do
-      subject.aliases.should == { :id => :another_id }
+      subject.aliases.should == Algebra::Rename::Aliases.coerce(
+        relation.header,
+        :id => :another_id
+      )
     end
 
     its(:operand) { should equal(relation) }

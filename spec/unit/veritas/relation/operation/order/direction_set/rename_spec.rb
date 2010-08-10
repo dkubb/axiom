@@ -4,8 +4,9 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#rename' do
   subject { directions.rename(aliases) }
 
   let(:attribute)  { Attribute::Integer.new(:id)                                 }
+  let(:header)     { Relation::Header.new([ attribute ])                         }
   let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
-  let(:aliases)    { { attribute => attribute.rename(:other_id) }                }
+  let(:aliases)    { Algebra::Rename::Aliases.coerce(header, :id => :other_id)   }
 
   it { should_not be_equal(directions) }
 

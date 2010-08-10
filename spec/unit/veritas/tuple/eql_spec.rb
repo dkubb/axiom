@@ -37,8 +37,9 @@ describe 'Veritas::Tuple#eql?' do
   end
 
   context 'with an equivalent tuple with a different header' do
-    let(:other_header) { header.rename(header[:id] => header[:id].rename(:other_id)) }
-    let(:other)        { Tuple.new(other_header, tuple.to_ary)                       }
+    let(:aliases)      { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
+    let(:other_header) { header.rename(aliases)                                    }
+    let(:other)        { Tuple.new(other_header, tuple.to_ary)                     }
 
     it { should be(false) }
 

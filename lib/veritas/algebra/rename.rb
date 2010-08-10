@@ -7,19 +7,11 @@ module Veritas
 
       def initialize(operand, aliases)
         super(operand)
-
-        @aliases = aliases
-
-        # TODO: move this into Rename::Aliases
-        operand_header, renames = operand.header, {}
-        @aliases.to_hash.each do |old_name, new_name|
-          attribute = operand_header[old_name]
-          renames[attribute] = attribute.rename(new_name)
-        end
-
-        @header     = operand.header.rename(renames)
-        @directions = operand.directions.rename(renames)
-        @predicate  = operand.predicate.rename(renames)
+        header      = operand.header
+        @aliases    = Aliases.coerce(header, aliases)
+        @header     = header.rename(@aliases)
+        @directions = operand.directions.rename(@aliases)
+        @predicate  = operand.predicate.rename(@aliases)
       end
 
       def each(&block)
@@ -93,22 +85,8 @@ module Veritas
         optimize_operand.respond_to?(:aliases) ? union_aliases : aliases
       end
 
-      # TODO: create Rename::Aliases object, and move this to a #union method
       def union_aliases
-        other_aliases = optimize_operand.aliases.dup
-        inverted      = other_aliases.invert
-
-        aliases.each do |old_attribute, new_attribute|
-          old_attribute = inverted.fetch(old_attribute, old_attribute)
-
-          if old_attribute == new_attribute
-            other_aliases.delete(new_attribute)
-          else
-            other_aliases[old_attribute] = new_attribute
-          end
-        end
-
-        other_aliases
+        aliases.union(optimize_operand.aliases)
       end
 
       memoize :optimize
@@ -125,3 +103,5 @@ module Veritas
     end # class Rename
   end # module Algebra
 end # module Veritas
+
+require 'veritas/algebra/rename/aliases'

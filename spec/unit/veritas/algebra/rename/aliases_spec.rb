@@ -7,5 +7,5 @@ describe 'Veritas::Algebra::Rename#aliases' do
   let(:aliases)  { { :id => :other_id }                          }
   let(:rename)   { Algebra::Rename.new(relation, aliases)        }
 
-  it { should equal(aliases) }
+  it { should eql(Algebra::Rename::Aliases.coerce(relation.header, aliases)) }
 end

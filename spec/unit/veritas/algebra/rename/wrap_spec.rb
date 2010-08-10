@@ -23,5 +23,5 @@ describe 'Veritas::Algebra::Rename#wrap' do
     operation.operand.should equal(relation)
   end
 
-  its(:aliases) { should == aliases }
+  its(:aliases) { should eql(Algebra::Rename::Aliases.coerce(relation.header, aliases)) }
 end

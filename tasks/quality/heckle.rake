@@ -47,6 +47,7 @@ begin
       Veritas::Algebra::Product::Methods
       Veritas::Algebra::Projection::Methods
       Veritas::Algebra::Rename::Methods
+      Veritas::Algebra::Rename::Aliases
       Veritas::Algebra::Restriction::Methods
       Veritas::Algebra::Union::Methods
     ].each do |mod|

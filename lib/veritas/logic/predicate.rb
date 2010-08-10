@@ -25,8 +25,8 @@ module Veritas
         right = self.right
         util  = self.class
 
-        renamed_left  = aliases.fetch(left,  left)
-        renamed_right = aliases.fetch(right, right)
+        renamed_left  = aliases[left]
+        renamed_right = aliases[right]
 
         if left.equal?(renamed_left) && right.equal?(renamed_right)
           self

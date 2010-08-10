@@ -4,10 +4,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Logic::Connective::Binary#rename' do
   subject { connective.rename(aliases) }
 
-  let(:attribute)  { Attribute::Integer.new(:id)          }
-  let(:other)      { Attribute::Integer.new(:other_id)    }
-  let(:aliases)    { { attribute => other }               }
-  let(:connective) { BinarySpecs::Object.new(left, right) }
+  let(:attribute)  { Attribute::Integer.new(:id)                               }
+  let(:other)      { attribute.rename(:other_id)                               }
+  let(:header)     { Relation::Header.new([ attribute ])                       }
+  let(:aliases)    { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
+  let(:connective) { BinarySpecs::Object.new(left, right)                      }
 
   context 'left and right are renamed' do
     let(:left)  { attribute.eq(1) }

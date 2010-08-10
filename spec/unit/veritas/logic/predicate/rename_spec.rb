@@ -4,9 +4,10 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe 'Veritas::Logic::Predicate#rename' do
   subject { predicate.rename(aliases) }
 
-  let(:attribute) { Attribute::Integer.new(:id)       }
-  let(:other)     { Attribute::Integer.new(:other_id) }
-  let(:aliases)   { { attribute => other }            }
+  let(:attribute) { Attribute::Integer.new(:id)                               }
+  let(:other)     { attribute.rename(:other_id)                               }
+  let(:header)    { Relation::Header.new([ attribute ])                       }
+  let(:aliases)   { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
 
   context 'when the left and right are expressions' do
     let(:predicate) { PredicateSpecs::Object.new(attribute, attribute) }
