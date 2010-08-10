@@ -5,7 +5,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#rename' do
 
   let(:attribute)  { Attribute::Integer.new(:id)                                 }
   let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
-  let(:aliases)    { { :id => :other_id }                                        }
+  let(:aliases)    { { attribute => attribute.rename(:other_id) }                }
 
   it { should_not be_equal(directions) }
 

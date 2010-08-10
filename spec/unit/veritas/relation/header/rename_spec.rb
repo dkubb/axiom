@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#rename' do
-  subject { header.rename(:id => :other_id) }
+  subject { header.rename(aliases) }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:header)  { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:aliases) { { header[:id] => header[:id].rename(:other_id) }              }
 
   it { should be_kind_of(Relation::Header) }
 

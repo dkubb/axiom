@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'Veritas::Logic::Connective::Complement#rename' do
   subject { complement.rename(aliases) }
 
-  let(:attribute) { Attribute::Integer.new(:id)       }
-  let(:other)     { Attribute::Integer.new(:other_id) }
-  let(:aliases)   { { attribute.name => other.name }  }
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:other)     { attribute.rename(:other_id) }
+  let(:aliases)   { { attribute => other }      }
 
   context 'operand is renamed' do
     let(:operand)    { attribute.eq(1)                            }

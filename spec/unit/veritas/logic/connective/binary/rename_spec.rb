@@ -6,7 +6,7 @@ describe 'Veritas::Logic::Connective::Binary#rename' do
 
   let(:attribute)  { Attribute::Integer.new(:id)          }
   let(:other)      { Attribute::Integer.new(:other_id)    }
-  let(:aliases)    { { attribute.name => other.name }     }
+  let(:aliases)    { { attribute => other }               }
   let(:connective) { BinarySpecs::Object.new(left, right) }
 
   context 'left and right are renamed' do

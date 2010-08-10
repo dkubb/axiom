@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Rename#optimized?' do
   subject { rename.optimized? }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:aliases)  { { :id => :other_id }                          }
-  let(:rename)   { operand.rename(aliases)                       }
+  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
+  let(:aliases)  { { :id => :other_id }                                                         }
+  let(:rename)   { operand.rename(aliases)                                                      }
 
   context 'operand and aliases are optimized' do
     let(:operand) { relation }
@@ -16,7 +16,7 @@ describe 'Veritas::Algebra::Rename#optimized?' do
   end
 
   context 'operand is optimized, aliases are not optimized' do
-    let(:operand) { relation.rename(aliases) }
+    let(:operand) { relation.rename(:name => :other_name) }
 
     it { relation.should be_optimized }
 
@@ -32,7 +32,7 @@ describe 'Veritas::Algebra::Rename#optimized?' do
   end
 
   context 'operand and aliases are not optimized' do
-    let(:operand) { relation.project(relation.header).project(relation.header).rename(aliases) }
+    let(:operand) { relation.project(relation.header).project(relation.header).rename(:name => :other_name) }
 
     it { operand.should_not be_optimized }
 

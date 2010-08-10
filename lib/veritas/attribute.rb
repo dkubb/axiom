@@ -31,9 +31,8 @@ module Veritas
       tuple[self]
     end
 
-    def rename(aliases)
-      name = self.name
-      aliases.key?(name) ? self.class.new(aliases[name], options) : self
+    def rename(new_name)
+      name.equal?(new_name) ? self : self.class.new(new_name, options)
     end
 
     def required?

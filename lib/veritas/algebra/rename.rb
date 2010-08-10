@@ -7,10 +7,19 @@ module Veritas
 
       def initialize(operand, aliases)
         super(operand)
-        @aliases    = aliases.to_hash
-        @header     = operand.header.rename(@aliases)
-        @directions = operand.directions.rename(@aliases)
-        @predicate  = operand.predicate.rename(@aliases)
+
+        @aliases = aliases
+
+        # TODO: move this into Rename::Aliases
+        operand_header, renames = operand.header, {}
+        @aliases.to_hash.each do |old_name, new_name|
+          attribute = operand_header[old_name]
+          renames[attribute] = attribute.rename(new_name)
+        end
+
+        @header     = operand.header.rename(renames)
+        @directions = operand.directions.rename(renames)
+        @predicate  = operand.predicate.rename(renames)
       end
 
       def each(&block)

@@ -37,9 +37,9 @@ describe 'Veritas::Tuple#==' do
   end
 
   context 'with an equivalent tuple with a different header' do
-    let(:other_header) { header.rename(:id => :other_id)             }
-    let(:other_tuple)  { Tuple.new(other_header, [ 1 ])              }
-    let(:other)        { Tuple.new(other_header, other_tuple.to_ary) }
+    let(:other_header) { header.rename(header[:id] => header[:id].rename(:other_id)) }
+    let(:other_tuple)  { Tuple.new(other_header, [ 1 ])                              }
+    let(:other)        { Tuple.new(other_header, other_tuple.to_ary)                 }
 
     it { should be(false) }
 

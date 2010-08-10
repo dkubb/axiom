@@ -25,8 +25,8 @@ module Veritas
         right = self.right
         util  = self.class
 
-        renamed_left  = util.rename_operand(left,  aliases)
-        renamed_right = util.rename_operand(right, aliases)
+        renamed_left  = aliases.fetch(left,  left)
+        renamed_right = aliases.fetch(right, right)
 
         if left.equal?(renamed_left) && right.equal?(renamed_right)
           self
@@ -126,10 +126,6 @@ module Veritas
 
       def self.extract_value(operand, tuple)
         operand.respond_to?(:call) ? operand.call(tuple) : operand
-      end
-
-      def self.rename_operand(operand, aliases)
-        operand.respond_to?(:rename) ? operand.rename(aliases) : operand
       end
 
       memoize :complement

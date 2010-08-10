@@ -6,7 +6,7 @@ describe 'Veritas::Logic::Predicate#rename' do
 
   let(:attribute) { Attribute::Integer.new(:id)       }
   let(:other)     { Attribute::Integer.new(:other_id) }
-  let(:aliases)   { { attribute.name => other.name }  }
+  let(:aliases)   { { attribute => other }            }
 
   context 'when the left and right are expressions' do
     let(:predicate) { PredicateSpecs::Object.new(attribute, attribute) }

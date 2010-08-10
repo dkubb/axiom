@@ -39,7 +39,7 @@ module Veritas
       end
 
       def rename(aliases)
-        new(map { |attribute| attribute.rename(aliases) })
+        new(map { |attribute| aliases.fetch(attribute, attribute) })
       end
 
       def intersect(other)
