@@ -3,7 +3,7 @@ module Veritas
     class Rename
       class Aliases
         extend Aliasable
-        include Immutable
+        include Immutable, Enumerable
 
         inheritable_alias(:| => :union)
 
@@ -19,7 +19,7 @@ module Veritas
           other_aliases = other.to_hash.dup
           inverted      = other_aliases.invert
 
-          @aliases.each do |old_attribute, new_attribute|
+          each do |old_attribute, new_attribute|
             old_attribute = inverted.fetch(old_attribute, old_attribute)
 
             if old_attribute.eql?(new_attribute)
@@ -30,6 +30,11 @@ module Veritas
           end
 
           self.class.new(other_aliases)
+        end
+
+        def each(&block)
+          @aliases.each(&block)
+          self
         end
 
         def empty?
