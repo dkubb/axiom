@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Rename#optimize' do
   subject { rename.optimize }
 
-  let(:body)     { [ [ 1, 'Dan Kubb' ] ]                                       }
+  let(:body)     { [ [ 1, 'Dan Kubb' ] ].each                                  }
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
   let(:aliases)  { { :id => :other_id }                                        }
 
@@ -234,10 +234,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing a set operation' do
-    let(:left)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
-    let(:right)  { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
-    let(:union)  { left.union(right)                                                            }
-    let(:rename) { union.rename(aliases)                                                        }
+    let(:left)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
+    let(:right)  { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
+    let(:union)  { left.union(right)                                                                 }
+    let(:rename) { union.rename(aliases)                                                             }
 
     it 'pushes the rename to each relation' do
       should eql(left.rename(aliases).union(right.rename(aliases)))
@@ -256,10 +256,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing a set operation, containing a rename that cancels out' do
-    let(:left)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
-    let(:right)  { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
-    let(:union)  { left.rename(:id => :other_id).union(right.rename(:id => :other_id))          }
-    let(:rename) { union.rename(:other_id => :id)                                               }
+    let(:left)   { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
+    let(:right)  { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
+    let(:union)  { left.rename(:id => :other_id).union(right.rename(:id => :other_id))               }
+    let(:rename) { union.rename(:other_id => :id)                                                    }
 
     it 'pushes the rename to each relation, then cancel it out' do
       should eql(left.union(right))
@@ -438,6 +438,19 @@ describe 'Veritas::Algebra::Rename#optimize' do
     it 'does not execute body#each' do
       body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing a materialized relation' do
+    let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
+    let(:rename)   { Algebra::Rename.new(relation, aliases)                                       }
+
+    it { should eql(Relation::Materialized.new([ [ :other_id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == rename
     end
 
     it_should_behave_like 'an optimize method'

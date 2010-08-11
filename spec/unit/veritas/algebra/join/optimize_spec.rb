@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Join#optimize' do
   subject { join.optimize }
 
-  let(:left_body)      { [ [ 1 ], [ 2 ] ]                                                  }
-  let(:right_body)     { [ [ 2, 'Dan Kubb' ] ]                                             }
-  let(:original_left)  { Relation.new([ [ :id, Integer ] ], left_body)                     }
+  let(:left_body)      { [ [ 1 ], [ 2 ] ].each                                             }
+  let(:right_body)     { [ [ 2, 'Dan Kubb' ] ].each                                        }
+  let(:original_left)  { Relation.new([ [ :id, Integer ] ],                    left_body)  }
   let(:original_right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], right_body) }
   let(:left)           { original_left                                                     }
   let(:right)          { original_right                                                    }
@@ -90,6 +90,19 @@ describe 'Veritas::Algebra::Join#optimize' do
     it 'does not execute right_body#each' do
       right_body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'left and right are materialized relations' do
+    let(:left)  { Relation.new([ [ :id, Integer ] ],                    [ [ 1 ], [ 2 ] ])      }
+    let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == join
     end
 
     it_should_behave_like 'an optimize method'

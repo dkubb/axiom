@@ -75,7 +75,11 @@ module Veritas
       Relation::Empty.new(header)
     end
 
-    memoize :new_empty_relation
+    def new_materialized_relation
+      Relation::Materialized.new(header, to_a)
+    end
+
+    memoize :new_empty_relation, :new_materialized_relation
 
   end # class Relation
 end # module Veritas

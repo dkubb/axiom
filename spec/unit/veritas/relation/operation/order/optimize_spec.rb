@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Order#optimize' do
   subject { order.optimize }
 
-  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ]                  }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
   let(:directions) { [ relation[:id] ]                        }
 
@@ -87,6 +87,19 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
     it 'does not execute body#each' do
       body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing a materialized relation' do
+    let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+    let(:order)    { Relation::Operation::Order.new(relation, directions)        }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == order
     end
 
     it_should_behave_like 'an optimize method'

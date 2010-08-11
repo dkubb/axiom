@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Product#optimize' do
   subject { product.optimize }
 
-  let(:left_body)  { [ [ 1 ] ]                                        }
-  let(:right_body) { [ [ 'Dan Kubb' ] ]                               }
+  let(:left_body)  { [ [ 1 ] ].each                                   }
+  let(:right_body) { [ [ 'Dan Kubb' ] ].each                          }
   let(:left)       { Relation.new([ [ :id,   Integer ] ], left_body)  }
   let(:right)      { Relation.new([ [ :name, String  ] ], right_body) }
   let(:product)    { Algebra::Product.new(left, right)                }
@@ -156,6 +156,19 @@ describe 'Veritas::Algebra::Product#optimize' do
     it 'does not execute right_body#each' do
       right_body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'left and right are materialized relations' do
+    let(:left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
+    let(:right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == product
     end
 
     it_should_behave_like 'an optimize method'

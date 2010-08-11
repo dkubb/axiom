@@ -16,7 +16,13 @@ module Veritas
         end
 
         def optimize
-          optimized? ? super : new_optimized_operation
+          if optimize_left.kind_of?(Relation::Materialized) && optimize_right.kind_of?(Relation::Materialized)
+            new_materialized_relation
+          elsif !optimized?
+            new_optimized_operation
+          else
+            super
+          end
         end
 
         def wrap

@@ -20,7 +20,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
   end
 
   context 'with an non-empty relation' do
-    let(:body)            { [ [ 1 ] ]                                }
+    let(:body)            { [ [ 1 ] ].each                           }
     let(:relation)        { Relation.new([ [ :id, Integer ] ], body) }
     let(:unary_operation) { klass.new(relation)                      }
 
@@ -35,7 +35,7 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
   end
 
   context 'with an optimizable relation' do
-    let(:body)            { [ [ 1 ] ]                                }
+    let(:body)            { [ [ 1 ] ].each                           }
     let(:relation)        { Relation.new([ [ :id, Integer ] ], body) }
     let(:projection)      { relation.project(relation.header)        }
     let(:unary_operation) { klass.new(projection)                    }
@@ -60,6 +60,19 @@ describe 'Veritas::Relation::Operation::Unary#optimize' do
     it 'does not execute body#each' do
       body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing materialized relations' do
+    let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+    let(:unary_operation) { klass.new(relation)                           }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == unary_operation
     end
 
     it_should_behave_like 'an optimize method'

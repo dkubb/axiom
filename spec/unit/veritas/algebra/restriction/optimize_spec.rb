@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Restriction#optimize' do
   subject { restriction.optimize }
 
-  let(:body)     { [ [ 1 ] ]                                }
+  let(:body)     { [ [ 1 ] ].each                           }
   let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
 
   context 'with a true proposition' do
@@ -166,11 +166,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
   end
 
   context 'with a set operation' do
-    let(:left)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-    let(:right)       { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ]) }
-    let(:union)       { left.union(right)                             }
-    let(:predicate)   { union[:id].gte(1)                             }
-    let(:restriction) { Algebra::Restriction.new(union, predicate)    }
+    let(:left)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+    let(:right)       { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each) }
+    let(:union)       { left.union(right)                                  }
+    let(:predicate)   { union[:id].gte(1)                                  }
+    let(:restriction) { Algebra::Restriction.new(union, predicate)         }
 
     it 'pushes the restriction to each relation' do
       should eql(left.restrict { |r| r[:id].gte(1) }.union(right.restrict { |r| r[:id].gte(1) }) )
@@ -189,8 +189,8 @@ describe 'Veritas::Algebra::Restriction#optimize' do
   end
 
   context 'with a set operation, containing a restriction with duplicate predicates' do
-    let(:left)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])                                   }
-    let(:right)       { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ])                                   }
+    let(:left)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)                              }
+    let(:right)       { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each)                              }
     let(:union)       { left.restrict { |r| r[:id].gte(1) }.union(right.restrict { |r| r[:id].gte(1) }) }
     let(:restriction) { union.restrict { |r| r[:id].gte(1) }                                            }
 
@@ -291,6 +291,19 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     it 'does not execute body#each' do
       body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing a materialized relation' do
+    let(:relation)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])    }
+    let(:restriction) { Algebra::Restriction.new(relation, relation[:id].eq(1)) }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == restriction
     end
 
     it_should_behave_like 'an optimize method'

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Limit#optimize' do
   subject { limit.optimize }
 
-  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ]                              }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each                         }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body)             }
   let(:directions) { [ relation[:id] ]                                    }
   let(:order)      { Relation::Operation::Order.new(relation, directions) }
@@ -123,6 +123,20 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     it 'does not execute body#each' do
       body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing a materialized relation' do
+    let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+    let(:order)    { Relation::Operation::Order.new(relation, directions)        }
+    let(:limit)    { order.limit(1)                                              }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == limit
     end
 
     it_should_behave_like 'an optimize method'

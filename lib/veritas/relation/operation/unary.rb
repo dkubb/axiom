@@ -16,6 +16,8 @@ module Veritas
 
           if operand.kind_of?(Relation::Empty)
             operand
+          elsif operand.kind_of?(Relation::Materialized)
+            new_materialized_relation
           elsif !optimized?
             new_optimized_operation
           else

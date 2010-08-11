@@ -4,8 +4,8 @@ describe 'Veritas::Algebra::Union#optimize' do
   subject { union.optimize }
 
   let(:header)         { [ [ :id, Integer ] ]             }
-  let(:left_body)      { [ [ 1 ] ]                        }
-  let(:right_body)     { [ [ 2 ] ]                        }
+  let(:left_body)      { [ [ 1 ] ].each                   }
+  let(:right_body)     { [ [ 2 ] ].each                   }
   let(:original_left)  { Relation.new(header, left_body)  }
   let(:original_right) { Relation.new(header, right_body) }
   let(:union)          { Algebra::Union.new(left, right)  }
@@ -144,11 +144,13 @@ describe 'Veritas::Algebra::Union#optimize' do
     end
 
     it 'executes left_body#each' do
+      pending 'only receive #each once'
       left_body.should_receive(:each)
       subject
     end
 
     it 'executes right_body#each' do
+      pending 'only receive #each once'
       right_body.should_receive(:each)
       subject
     end
@@ -170,6 +172,19 @@ describe 'Veritas::Algebra::Union#optimize' do
     it 'executes right_body#each' do
       right_body.should_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'left and right are materialized relations' do
+    let(:left)  { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
+    let(:right) { Relation.new(header, [ [ 1 ] ])        }
+
+    it { should eql(Relation::Materialized.new(header, [ [ 1 ], [ 2 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == union
     end
 
     it_should_behave_like 'an optimize method'

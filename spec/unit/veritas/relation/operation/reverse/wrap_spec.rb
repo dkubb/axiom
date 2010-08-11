@@ -3,11 +3,12 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Reverse#wrap' do
   subject { reverse.wrap { |relation| relation } }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:reverse)    { Relation::Operation::Reverse.new(order)                     }
-  let(:yields)     { []                                                          }
+  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each                         }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], body)             }
+  let(:directions) { [ relation[:id] ]                                    }
+  let(:order)      { Relation::Operation::Order.new(relation, directions) }
+  let(:reverse)    { Relation::Operation::Reverse.new(order)              }
+  let(:yields)     { []                                                   }
 
   it { should_not be_equal(reverse) }
 

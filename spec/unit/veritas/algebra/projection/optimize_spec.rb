@@ -4,7 +4,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
   subject { projection.optimize }
 
   let(:header)   { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
-  let(:body)     { [ [ 1, 'Dan Kubb', 34 ] ]                                  }
+  let(:body)     { [ [ 1, 'Dan Kubb', 34 ] ].each                             }
   let(:relation) { Relation.new(header, body)                                 }
 
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
@@ -132,10 +132,10 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'containing a set operation' do
-    let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
-    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
-    let(:union)      { left.union(right)                                                            }
-    let(:projection) { union.project([ :name ])                                                     }
+    let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
+    let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
+    let(:union)      { left.union(right)                                                                 }
+    let(:projection) { union.project([ :name ])                                                          }
 
     it 'pushes the projection to each relation' do
       should eql(Algebra::Union.new(
@@ -190,8 +190,8 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'containing a set operation containing a projection of materialized relations' do
-    let(:left_body)  { [ [ 1, 'Dan Kubb', 34 ] ]                                         }
-    let(:right_body) { [ [ 2, 'Dan Kubb', 34 ] ]                                         }
+    let(:left_body)  { [ [ 1, 'Dan Kubb', 34 ] ].each                                    }
+    let(:right_body) { [ [ 2, 'Dan Kubb', 34 ] ].each                                    }
     let(:left)       { Relation.new(header, left_body)                                   }
     let(:right)      { Relation.new(header, right_body)                                  }
     let(:union)      { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
@@ -215,6 +215,19 @@ describe 'Veritas::Algebra::Projection#optimize' do
       pending 'TODO: make sure this is only received once'
       right_body.should_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing a materialized relation' do
+    let(:relation)   { Relation.new(header, [ [ 1, 'Dan Kubb', 34 ] ]) }
+    let(:projection) { Algebra::Projection.new(relation, [ :id ])      }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == projection
     end
 
     it_should_behave_like 'an optimize method'

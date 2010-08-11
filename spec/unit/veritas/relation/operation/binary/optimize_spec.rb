@@ -5,8 +5,8 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
   subject { binary_operation.optimize }
 
   let(:klass)            { Class.new(BinaryRelationOperationSpecs::Object)  }
-  let(:left_body)        { [ [ 1 ] ]                                        }
-  let(:right_body)       { [ [ 'Dan Kubb' ] ]                               }
+  let(:left_body)        { [ [ 1 ] ].each                                   }
+  let(:right_body)       { [ [ 'Dan Kubb' ] ].each                          }
   let(:original_left)    { Relation.new([ [ :id,   Integer ] ], left_body)  }
   let(:original_right)   { Relation.new([ [ :name, String  ] ], right_body) }
   let(:binary_operation) { klass.new(left, right)                           }
@@ -59,6 +59,19 @@ describe 'Veritas::Relation::Operation::Binary#optimize' do
     it 'does not execute right_body#each' do
       right_body.should_not_receive(:each)
       subject
+    end
+
+    it_should_behave_like 'an optimize method'
+  end
+
+  context 'containing materialized relations' do
+    let(:left)  { Relation.new([ [ :id, Integer ] ],  [ [ 1 ] ]) }
+    let(:right) { Relation.new([ [ :id, Integer  ] ], [ [ 2 ] ]) }
+
+    it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])) }
+
+    it 'returns an equivalent relation to the unoptimized operation' do
+      should == binary_operation
     end
 
     it_should_behave_like 'an optimize method'
