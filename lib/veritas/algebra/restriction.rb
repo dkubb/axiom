@@ -33,7 +33,7 @@ module Veritas
       end
 
       def wrap(predicate = optimize_predicate)
-        new(yield(optimize_operand), predicate)
+        self.class.new(yield(optimize_operand), predicate)
       end
 
       def eql?(other)
@@ -42,8 +42,8 @@ module Veritas
 
     private
 
-      def new(operand, predicate = optimize_predicate)
-        self.class.new(operand, predicate)
+      def new(operand)
+        self.class.new(operand, optimize_predicate)
       end
 
       def matches_all?
