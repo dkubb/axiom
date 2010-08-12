@@ -5,7 +5,7 @@ module Veritas
 
       def initialize(operand, predicate)
         super(operand)
-        @predicate = operand.predicate & predicate
+        @predicate &= predicate
       end
 
       def each

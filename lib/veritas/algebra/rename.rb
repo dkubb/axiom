@@ -7,11 +7,10 @@ module Veritas
 
       def initialize(operand, aliases)
         super(operand)
-        header      = operand.header
-        @aliases    = Aliases.coerce(header, aliases)
-        @header     = header.rename(@aliases)
-        @directions = operand.directions.rename(@aliases)
-        @predicate  = operand.predicate.rename(@aliases)
+        @aliases    = Aliases.coerce(@header, aliases)
+        @header     = @header.rename(@aliases)
+        @directions = @directions.rename(@aliases)
+        @predicate  = @predicate.rename(@aliases)
       end
 
       def each(&block)

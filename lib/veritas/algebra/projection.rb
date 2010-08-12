@@ -5,9 +5,9 @@ module Veritas
 
       def initialize(operand, attributes)
         super(operand)
-        @header     = operand.header.project(attributes.to_ary)
-        @directions = operand.directions.project(@header)
-        @predicate  = operand.predicate.project(@header) || Logic::Proposition::True.instance
+        @header     = @header.project(attributes.to_ary)
+        @directions = @directions.project(@header)
+        @predicate  = @predicate.project(@header) || Logic::Proposition::True.instance
       end
 
       def each
