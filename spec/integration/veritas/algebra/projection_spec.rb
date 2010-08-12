@@ -9,14 +9,8 @@ describe 'Veritas::Algebra::Projection' do
     let(:relation)    { left * right                                                                             }
     let(:restriction) { relation.restrict { |r| r[:id].gte(1).and(r[:id].lte(10)).and(r[:name].eq('Dan Kubb')) } }
 
-    it 'removes the predicates with the removed attributes' do
-      subject.predicate.should eql(relation[:name].eq('Dan Kubb'))
-    end
-
     it 'returns a relation with a single tuple' do
       should == [ [ 'Dan Kubb' ] ]
     end
-
-    it { should have_tuples_matching_predicate }
   end
 end

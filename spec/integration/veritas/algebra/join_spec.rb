@@ -10,7 +10,5 @@ describe 'Veritas::Algebra::Join' do
     it 'does not matter which order the relations are joined in' do
       should == right.join(left)
     end
-
-    it { should have_tuples_matching_predicate }
   end
 end

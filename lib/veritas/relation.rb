@@ -13,7 +13,7 @@ module Veritas
   class Relation
     include Enumerable, Optimizable
 
-    attr_reader :header, :directions, :predicate
+    attr_reader :header, :directions
 
     def self.new(*args)
       if equal?(Relation) && args.last.respond_to?(:size)
@@ -27,7 +27,6 @@ module Veritas
       @tuples     = tuples
       @header     = Header.coerce(header)
       @directions = Operation::Order::DirectionSet::EMPTY
-      @predicate  = Logic::Proposition::True.instance
     end
 
     def [](name)

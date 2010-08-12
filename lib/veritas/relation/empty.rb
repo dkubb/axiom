@@ -7,7 +7,6 @@ module Veritas
 
       def initialize(header)
         super(header, ZERO_TUPLE)
-        @predicate = Logic::Proposition::False.instance
       end
 
     end # class Empty

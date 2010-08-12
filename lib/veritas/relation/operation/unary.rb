@@ -8,7 +8,6 @@ module Veritas
           super
           @header     = operand.header
           @directions = operand.directions
-          @predicate  = operand.predicate
         end
 
         def optimize

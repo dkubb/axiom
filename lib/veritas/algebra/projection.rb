@@ -7,7 +7,6 @@ module Veritas
         super(operand)
         @header     = @header.project(attributes.to_ary)
         @directions = @directions.project(@header)
-        @predicate  = @predicate.project(@header) || Logic::Proposition::True.instance
       end
 
       def each

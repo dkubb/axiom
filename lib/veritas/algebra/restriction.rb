@@ -3,9 +3,11 @@ module Veritas
     class Restriction < Relation
       include Relation::Operation::Unary
 
+      attr_reader :predicate
+
       def initialize(operand, predicate)
         super(operand)
-        @predicate &= predicate
+        @predicate = predicate
       end
 
       def each

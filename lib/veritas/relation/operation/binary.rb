@@ -12,7 +12,6 @@ module Veritas
           super
           @header     = left.header     | right.header
           @directions = left.directions | right.directions
-          @predicate  = left.predicate  & right.predicate
         end
 
         def optimize

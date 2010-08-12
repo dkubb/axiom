@@ -10,7 +10,6 @@ module Veritas
         @aliases    = Aliases.coerce(@header, aliases)
         @header     = @header.rename(@aliases)
         @directions = @directions.rename(@aliases)
-        @predicate  = @predicate.rename(@aliases)
       end
 
       def each(&block)
@@ -86,6 +85,10 @@ module Veritas
 
       def union_aliases
         aliases.union(optimize_operand.aliases)
+      end
+
+      def predicate
+        optimize_operand.predicate.rename(@aliases)
       end
 
       memoize :optimize
