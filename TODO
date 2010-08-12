@@ -28,6 +28,26 @@
       optimized.memoize(:optimize, optimized)
     end
 
+* Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
+  * Instead make it so they are proxy classes that wrap Relations, but
+    proxy method calls to the Relation methods, and then wrap the return
+    value (assuming it's a Relation) in a copy of itself.
+  * This will allow the #order method to be the only method added to
+    Relation, and #limit/#take, #offset/#drop, #reverse, #first, and #last
+    will be on a shared module/class for handling Ranking.
+  * Also this will allow knowledge of #directions to be removed from
+    all the Relation classes. Only the Ranking classes will need to know
+    about directions.
+  * We can also do things like optimize away an Order that is not
+    wrapped by a Limit/Offset if it is wrapped in Join or Set relation.
+    We can do this because joining sorted relations results in
+    an undefined sort order depending on the algorithm used to join
+    the tuples. The correct approach to get unambiguous results is to
+    wrap the Join in an Order.
+  * The Reverse class will probably not be needed either. All we need is
+    for the #reverse method to create a new Order with the directions
+    reversed.
+
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
