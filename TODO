@@ -111,6 +111,10 @@
         Into:
 
           "attr1 IN(..) OR attr2 = ?"
+    * Rename should distribute over Join, Product and Set operations
+      * The goal should be to push Rename as close to the base tables
+        as possible so that the names of attribute will be consistent
+        throughout the whole tree.
 
 * A Union of relations with the same base, header, and restrictions should
   try to combine into a single relation with the restrictions using OR.
