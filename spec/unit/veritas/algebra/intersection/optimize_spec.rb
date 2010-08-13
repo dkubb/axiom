@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Intersection#optimize' do
-  subject { intersection.optimize }
+  subject { object.optimize }
 
-  let(:header)         { [ [ :id, Integer ] ]                   }
-  let(:left_body)      { [ [ 1 ] ].each                         }
-  let(:right_body)     { [ [ 2 ] ].each                         }
-  let(:original_left)  { Relation.new(header, left_body)        }
-  let(:original_right) { Relation.new(header, right_body)       }
-  let(:intersection)   { Algebra::Intersection.new(left, right) }
+  let(:klass)          { Algebra::Intersection            }
+  let(:header)         { [ [ :id, Integer ] ]             }
+  let(:left_body)      { [ [ 1 ] ].each                   }
+  let(:right_body)     { [ [ 2 ] ].each                   }
+  let(:original_left)  { Relation.new(header, left_body)  }
+  let(:original_right) { Relation.new(header, right_body) }
+  let(:object)         { klass.new(left, right)           }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(header) }
@@ -17,7 +18,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == intersection
+      should == object
     end
 
     it 'does not execute right_body#each' do
@@ -35,7 +36,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == intersection
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -53,7 +54,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     it { should eql(Relation::Empty.new(left.header | right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == intersection
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -76,7 +77,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     it { should eql(Relation::Empty.new(left.header | right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == intersection
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -100,7 +101,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == intersection
+      should == object
     end
 
     it 'executes left_body#each' do
@@ -120,7 +121,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
-    it { should equal(intersection) }
+    it { should equal(object) }
 
     it 'executed left_body#each' do
       left_body.should_receive(:each)
@@ -142,7 +143,7 @@ describe 'Veritas::Algebra::Intersection#optimize' do
     it { should eql(Relation::Materialized.new(header, [ [ 1 ] ])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == intersection
+      should == object
     end
 
     it_should_behave_like 'an optimize method'

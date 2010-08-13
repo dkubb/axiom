@@ -2,13 +2,13 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
-  subject { enumerable.optimize }
+  subject { object.optimize }
 
-  let(:klass)      { PredicateEnumerableSpecs::Object                    }
-  let(:left)       { Attribute::Integer.new(:id)                         }
-  let(:one)        { mock('One',  :frozen? => true, :optimized? => true) }
-  let(:none)       { mock('None', :frozen? => true, :optimized? => true) }
-  let(:enumerable) { klass.new(left, right)                              }
+  let(:klass)  { PredicateEnumerableSpecs::Object                    }
+  let(:left)   { Attribute::Integer.new(:id)                         }
+  let(:one)    { mock('One',  :frozen? => true, :optimized? => true) }
+  let(:none)   { mock('None', :frozen? => true, :optimized? => true) }
+  let(:object) { klass.new(left, right)                              }
 
   before do
     klass.stub!(:mock_one => one, :mock_none => none)
@@ -29,7 +29,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
       context 'and not empty' do
         let(:right) { 1..10 }
 
-        it { should equal(enumerable) }
+        it { should equal(object) }
 
         it_should_behave_like 'an optimize method'
       end
@@ -83,7 +83,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     context 'that is not optimizable' do
       let(:right) { 1..2 }
 
-      it { should equal(enumerable) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -141,7 +141,7 @@ describe 'Veritas::Logic::Predicate::Enumerable#optimize' do
     context 'that is not optimizable' do
       let(:right) { [ 1, 2 ] }
 
-      it { should equal(enumerable) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end

@@ -2,13 +2,13 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective::Binary#optimize' do
-  subject { connective.optimize }
+  subject { object.optimize }
 
   let(:klass)          { Class.new(BinarySpecs::Object) }
   let(:attribute)      { Attribute::Integer.new(:id)    }
   let(:original_left)  { attribute.gt(1)                }
   let(:original_right) { attribute.lt(1)                }
-  let(:connective)     { klass.new(left, right)         }
+  let(:object)         { klass.new(left, right)         }
 
   context 'left and right are the same' do
     let(:left)  { attribute.gt(1) }
@@ -41,7 +41,7 @@ describe 'Veritas::Logic::Connective::Binary#optimize' do
     let(:left)  { attribute.gt(1) }
     let(:right) { attribute.lt(1) }
 
-    it { should equal(connective) }
+    it { should equal(object) }
 
     it_should_behave_like 'an optimize method'
   end
@@ -52,7 +52,7 @@ describe 'Veritas::Logic::Connective::Binary#optimize' do
 
     add_method_missing
 
-    it { should_not equal(connective) }
+    it { should_not equal(object) }
 
     it { should be_instance_of(klass) }
 
@@ -69,7 +69,7 @@ describe 'Veritas::Logic::Connective::Binary#optimize' do
 
     add_method_missing
 
-    it { should_not equal(connective) }
+    it { should_not equal(object) }
 
     it { should be_instance_of(klass) }
 

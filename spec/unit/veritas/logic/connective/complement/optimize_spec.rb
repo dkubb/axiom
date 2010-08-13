@@ -1,23 +1,23 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Connective::Complement#optimize' do
-  subject { complement.optimize }
+  subject { object.optimize }
 
-  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:klass)     { Logic::Connective::Complement }
+  let(:attribute) { Attribute::Integer.new(:id)   }
+  let(:object)    { klass.new(operand)            }
 
   context 'operand is a predicate' do
-    let(:operand)    { attribute.gt(1)                            }
-    let(:complement) { Logic::Connective::Complement.new(operand) }
+    let(:operand) { attribute.gt(1) }
 
     it { should eql(attribute.lte(1)) }
 
     it_should_behave_like 'an optimize method'
   end
 
-  context 'operand is a complemented predicate' do
-    let(:predicate)  { attribute.gt(1)                              }
-    let(:operand)    { Logic::Connective::Complement.new(predicate) }
-    let(:complement) { Logic::Connective::Complement.new(operand)   }
+  context 'operand is a objected predicate' do
+    let(:predicate) { attribute.gt(1)      }
+    let(:operand)   { klass.new(predicate) }
 
     it { should eql(predicate) }
 
@@ -25,8 +25,7 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
   end
 
   context 'operand is a true proposition' do
-    let(:operand)    { Logic::Proposition::True.instance          }
-    let(:complement) { Logic::Connective::Complement.new(operand) }
+    let(:operand) { Logic::Proposition::True.instance }
 
     it { should equal(Logic::Proposition::False.instance) }
 
@@ -34,8 +33,7 @@ describe 'Veritas::Logic::Connective::Complement#optimize' do
   end
 
   context 'operand is a false proposition' do
-    let(:operand)    { Logic::Proposition::False.instance         }
-    let(:complement) { Logic::Connective::Complement.new(operand) }
+    let(:operand) { Logic::Proposition::False.instance }
 
     it { should equal(Logic::Proposition::True.instance) }
 

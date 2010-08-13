@@ -1,22 +1,23 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Equality#optimize' do
-  subject { equality.optimize }
+  subject { object.optimize }
 
+  let(:klass)     { Logic::Predicate::Equality  }
   let(:attribute) { Attribute::Integer.new(:id) }
+  let(:left)      { attribute                   }
+  let(:right)     { attribute                   }
+  let(:object)    { klass.new(left, right)      }
 
   context 'left and right are attributes' do
     context 'and equivalent' do
-      let(:equality) { Logic::Predicate::Equality.new(attribute, attribute) }
-
       it { should equal(Logic::Proposition::True.instance) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'and are not joinable' do
-      let(:other)    { Attribute::String.new(:other)                    }
-      let(:equality) { Logic::Predicate::Equality.new(attribute, other) }
+      let(:right) { Attribute::String.new(:other) }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -24,10 +25,9 @@ describe 'Veritas::Logic::Predicate::Equality#optimize' do
     end
 
     context 'and are joinable' do
-      let(:other)    { Attribute::Numeric.new(:other)                   }
-      let(:equality) { Logic::Predicate::Equality.new(attribute, other) }
+      let(:right) { Attribute::Numeric.new(:other) }
 
-      it { should equal(equality) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -35,15 +35,15 @@ describe 'Veritas::Logic::Predicate::Equality#optimize' do
 
   context 'left is an attribute' do
     context 'right is a valid value' do
-      let(:equality) { Logic::Predicate::Equality.new(attribute, 1) }
+      let(:right) { 1 }
 
-      it { should equal(equality) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'right is an invalid value' do
-      let(:equality) { Logic::Predicate::Equality.new(attribute, 'a') }
+      let(:right) { 'a' }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -53,15 +53,15 @@ describe 'Veritas::Logic::Predicate::Equality#optimize' do
 
   context 'right is an attribute' do
     context 'left is a valid value' do
-      let(:equality) { Logic::Predicate::Equality.new(1, attribute) }
+      let(:left) { 1 }
 
-      it { should eql(Logic::Predicate::Equality.new(attribute, 1)) }
+      it { should eql(klass.new(attribute, 1)) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'left is an invalid value' do
-      let(:equality) { Logic::Predicate::Equality.new('a', attribute) }
+      let(:left) { 'a' }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -71,7 +71,8 @@ describe 'Veritas::Logic::Predicate::Equality#optimize' do
 
   context 'left and right are constants' do
     context 'that will evaluate to true' do
-      let(:equality) { Logic::Predicate::Equality.new(1, 1) }
+      let(:left)  { 1 }
+      let(:right) { 1 }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -79,7 +80,8 @@ describe 'Veritas::Logic::Predicate::Equality#optimize' do
     end
 
     context 'that will evaluate to false' do
-      let(:equality) { Logic::Predicate::Equality.new(1, 2) }
+      let(:left)  { 1 }
+      let(:right) { 2 }
 
       it { should equal(Logic::Proposition::False.instance) }
 

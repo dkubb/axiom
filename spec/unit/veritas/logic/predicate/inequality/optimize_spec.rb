@@ -1,22 +1,23 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Inequality#optimize' do
-  subject { inequality.optimize }
+  subject { object.optimize }
 
-  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:klass)     { Logic::Predicate::Inequality }
+  let(:attribute) { Attribute::Integer.new(:id)  }
+  let(:left)      { attribute                    }
+  let(:right)     { attribute                    }
+  let(:object)    { klass.new(left, right)       }
 
   context 'left and right are attributes' do
     context 'and equivalent' do
-      let(:inequality) { Logic::Predicate::Inequality.new(attribute, attribute) }
-
       it { should equal(Logic::Proposition::False.instance) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'and are not joinable' do
-      let(:other)      { Attribute::String.new(:other)                      }
-      let(:inequality) { Logic::Predicate::Inequality.new(attribute, other) }
+      let(:right) { Attribute::String.new(:other) }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -24,10 +25,9 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
     end
 
     context 'and are joinable' do
-      let(:other)      { Attribute::Numeric.new(:other)                     }
-      let(:inequality) { Logic::Predicate::Inequality.new(attribute, other) }
+      let(:right) { Attribute::Numeric.new(:other) }
 
-      it { should equal(inequality) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end
@@ -35,15 +35,15 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
 
   context 'left is an attribute' do
     context 'right is a valid value' do
-      let(:inequality) { Logic::Predicate::Inequality.new(attribute, 1) }
+      let(:right) { 1 }
 
-      it { should equal(inequality) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'right is an invalid value' do
-      let(:inequality) { Logic::Predicate::Inequality.new(attribute, 'a') }
+      let(:right) { 'a' }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -53,15 +53,15 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
 
   context 'right is an attribute' do
     context 'left is a valid value' do
-      let(:inequality) { Logic::Predicate::Inequality.new(1, attribute) }
+      let(:left) { 1 }
 
-      it { should eql(Logic::Predicate::Inequality.new(attribute, 1)) }
+      it { should eql(klass.new(attribute, 1)) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'left is an invalid value' do
-      let(:inequality) { Logic::Predicate::Inequality.new('a', attribute) }
+      let(:left) { 'a' }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -71,7 +71,8 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
 
   context 'left and right are constants' do
     context 'that will evaluate to true' do
-      let(:inequality) { Logic::Predicate::Inequality.new(1, 2) }
+      let(:left)  { 1 }
+      let(:right) { 2 }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -79,7 +80,8 @@ describe 'Veritas::Logic::Predicate::Inequality#optimize' do
     end
 
     context 'that will evaluate to false' do
-      let(:inequality) { Logic::Predicate::Inequality.new(1, 1) }
+      let(:left)  { 1 }
+      let(:right) { 1 }
 
       it { should equal(Logic::Proposition::False.instance) }
 

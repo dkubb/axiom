@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Union#optimize' do
-  subject { union.optimize }
+  subject { object.optimize }
 
+  let(:klass)          { Algebra::Union                   }
   let(:header)         { [ [ :id, Integer ] ]             }
   let(:left_body)      { [ [ 1 ] ].each                   }
   let(:right_body)     { [ [ 2 ] ].each                   }
   let(:original_left)  { Relation.new(header, left_body)  }
   let(:original_right) { Relation.new(header, right_body) }
-  let(:union)          { Algebra::Union.new(left, right)  }
+  let(:object)         { klass.new(left, right)           }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(header) }
@@ -17,7 +18,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -40,7 +41,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -63,7 +64,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -86,7 +87,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -111,7 +112,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -140,7 +141,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it 'executes left_body#each' do
@@ -162,7 +163,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
-    it { should equal(union) }
+    it { should equal(object) }
 
     it 'executes left_body#each' do
       left_body.should_receive(:each)
@@ -184,7 +185,7 @@ describe 'Veritas::Algebra::Union#optimize' do
     it { should eql(Relation::Materialized.new(header, [ [ 1 ], [ 2 ] ])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == union
+      should == object
     end
 
     it_should_behave_like 'an optimize method'

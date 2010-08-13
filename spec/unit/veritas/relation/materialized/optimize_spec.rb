@@ -1,17 +1,18 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Materialized#optimize' do
-  subject { relation.optimize }
+  subject { object.optimize }
 
-  let(:relation) { Relation::Materialized.new([ [ :id, Integer ] ], body) }
+  let(:klass)  { Relation::Materialized                }
+  let(:object) { klass.new([ [ :id, Integer ] ], body) }
 
   context 'with an empty Array' do
     let(:body) { [] }
 
-    it { should eql(Relation::Empty.new(relation.header)) }
+    it { should eql(Relation::Empty.new(object.header)) }
 
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == relation
+    it 'returns an equivalent object to the unoptimized operation' do
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -25,7 +26,7 @@ describe 'Veritas::Relation::Materialized#optimize' do
   context 'with an nonempty Array' do
     let(:body) { [ [ 1 ] ] }
 
-    it { should equal(relation) }
+    it { should equal(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)

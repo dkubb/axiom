@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Product#optimize' do
-  subject { product.optimize }
+  subject { object.optimize }
 
+  let(:klass)      { Algebra::Product                                 }
   let(:left_body)  { [ [ 1 ] ].each                                   }
   let(:right_body) { [ [ 'Dan Kubb' ] ].each                          }
   let(:left)       { Relation.new([ [ :id,   Integer ] ], left_body)  }
   let(:right)      { Relation.new([ [ :name, String  ] ], right_body) }
-  let(:product)    { Algebra::Product.new(left, right)                }
+  let(:object)     { klass.new(left, right)                           }
 
   context 'left is a TABLE_DUM' do
     let(:left) { TABLE_DUM }
@@ -15,7 +16,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should eql(Relation::Empty.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute right_body#each' do
@@ -32,7 +33,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should eql(Relation::Empty.new(left.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -49,7 +50,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should eql(Relation::Empty.new(right.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute right_body#each' do
@@ -66,7 +67,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should eql(Relation::Empty.new(left.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -83,7 +84,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute right_body#each' do
@@ -100,7 +101,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -117,7 +118,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should equal(right) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute right_body#each' do
@@ -134,7 +135,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should equal(left) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -146,7 +147,7 @@ describe 'Veritas::Algebra::Product#optimize' do
   end
 
   context 'left and right are normal relations' do
-    it { should equal(product) }
+    it { should equal(object) }
 
     it 'does not execute left_body#each' do
       left_body.should_not_receive(:each)
@@ -168,7 +169,7 @@ describe 'Veritas::Algebra::Product#optimize' do
     it { should eql(Relation::Materialized.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == product
+      should == object
     end
 
     it_should_behave_like 'an optimize method'

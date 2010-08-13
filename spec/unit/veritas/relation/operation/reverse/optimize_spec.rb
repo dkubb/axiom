@@ -1,24 +1,26 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Reverse#optimize' do
-  subject { reverse.optimize }
+  subject { object.optimize }
 
+  let(:klass)      { Relation::Operation::Reverse             }
   let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
   let(:directions) { [ relation[:id] ]                        }
   let(:order)      { relation.order(directions)               }
+  let(:operand)    { order                                    }
+  let(:object)     { klass.new(operand)                       }
 
-  context 'with a reverse operation' do
-    let(:limit)   { order.limit(2)                          }
-    let(:other)   { limit.reverse                           }
-    let(:reverse) { Relation::Operation::Reverse.new(other) }
+  context 'with a object operation' do
+    let(:limit)   { order.limit(2) }
+    let(:operand) { limit.reverse  }
 
     it 'cancels out the operations and return the contained operation' do
       should equal(limit)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == reverse
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -29,18 +31,16 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'with a reverse operation when optimized' do
-    let(:limit)      { order.limit(2)                               }
-    let(:other)      { limit.reverse                                }
-    let(:projection) { other.project(other.header)                  }
-    let(:reverse)    { Relation::Operation::Reverse.new(projection) }
+  context 'with a object operation when optimized' do
+    let(:limit)   { order.limit(2)                      }
+    let(:operand) { limit.reverse.project(limit.header) }
 
     it 'cancels out the operations and return the contained operation' do
       should equal(limit)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == reverse
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -52,12 +52,10 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
   end
 
   context 'with an order operation' do
-    let(:reverse) { Relation::Operation::Reverse.new(order) }
-
-    it { should eql(relation.order(reverse.directions)) }
+    it { should eql(relation.order(object.directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == reverse
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -69,13 +67,12 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
   end
 
   context 'with an order operation when optimized' do
-    let(:projection) { order.project(order.header)                  }
-    let(:reverse)    { Relation::Operation::Reverse.new(projection) }
+    let(:operand) { order.project(order.header) }
 
-    it { should eql(relation.order(reverse.directions)) }
+    it { should eql(relation.order(object.directions)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == reverse
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -87,14 +84,13 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
   end
 
   context 'with an optimizable operation' do
-    let(:limit)      { order.limit(2)                               }
-    let(:projection) { limit.project(limit.header)                  }
-    let(:reverse)    { Relation::Operation::Reverse.new(projection) }
+    let(:limit)   { order.limit(2)              }
+    let(:operand) { limit.project(limit.header) }
 
     it { should eql(order.limit(2).reverse) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == reverse
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -107,13 +103,11 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
   context 'containing a materialized relation' do
     let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-    let(:order)    { Relation::Operation::Order.new(relation, directions)        }
-    let(:reverse)  { Relation::Operation::Reverse.new(order)                     }
 
     it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 3 ], [ 2 ], [ 1 ] ])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == reverse
+      should == object
     end
 
     it_should_behave_like 'an optimize method'

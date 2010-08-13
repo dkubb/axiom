@@ -1,19 +1,22 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Projection#optimize' do
-  subject { projection.optimize }
+  subject { object.optimize }
 
+  let(:klass)    { Algebra::Projection                                        }
   let(:header)   { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
   let(:body)     { [ [ 1, 'Dan Kubb', 34 ] ].each                             }
   let(:relation) { Relation.new(header, body)                                 }
+  let(:operand)  { relation                                                   }
+  let(:object)   { klass.new(operand, attributes)                             }
 
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
-    let(:projection) { Algebra::Projection.new(relation, header) }
+    let(:attributes) { header }
 
-    it { should equal(relation) }
+    it { should equal(operand) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -25,10 +28,10 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'when the attributes are equivalent to the relation headers, and not in the same order' do
-    let(:projection) { Algebra::Projection.new(relation, [ :name, :id ]) }
+    let(:attributes) { [ :name, :id ] }
 
-    it 'does not factor out the projection, because tuple order is currently significant' do
-      should equal(projection)
+    it 'does not factor out the object, because tuple order is currently significant' do
+      should equal(object)
     end
 
     it 'does not execute body#each' do
@@ -40,9 +43,9 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'when the attributes are different from the relation headers' do
-    let(:projection) { Algebra::Projection.new(relation, [ :id ]) }
+    let(:attributes) { [ :id ] }
 
-    it { should equal(projection) }
+    it { should equal(object) }
 
     it 'does not execute body#each' do
       body.should_not_receive(:each)
@@ -53,26 +56,26 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'containing an empty relation' do
-    let(:empty)      { Relation::Empty.new(header)             }
-    let(:projection) { Algebra::Projection.new(empty, [ :id ]) }
+    let(:operand)    { Relation::Empty.new(header) }
+    let(:attributes) { [ :id ]                     }
 
-    it { should eql(Relation::Empty.new(projection.header)) }
+    it { should eql(Relation::Empty.new(object.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it_should_behave_like 'an optimize method'
   end
 
   context 'containing an empty relation when optimized' do
-    let(:restriction) { Algebra::Restriction.new(relation, Logic::Proposition::False.instance) }
-    let(:projection)  { Algebra::Projection.new(restriction, [ :id ])                          }
+    let(:operand)    { Algebra::Restriction.new(relation, Logic::Proposition::False.instance) }
+    let(:attributes) { [ :id ]                                                                }
 
-    it { should eql(Relation::Empty.new(projection.header)) }
+    it { should eql(Relation::Empty.new(object.header)) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -84,19 +87,19 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'containing an optimizable relation' do
-    let(:restriction) { Algebra::Restriction.new(relation, Logic::Proposition::True.instance) }
-    let(:projection)  { Algebra::Projection.new(restriction, [ :id ])                         }
+    let(:operand)    { Algebra::Restriction.new(relation, Logic::Proposition::True.instance) }
+    let(:attributes) { [ :id ]                                                               }
 
-    it { should_not equal(projection) }
+    it { should_not equal(object) }
 
-    it { should be_instance_of(Algebra::Projection) }
+    it { should be_instance_of(klass) }
 
     its(:operand) { should equal(relation) }
 
-    its(:header) { should == projection.header }
+    its(:header) { should == object.header }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -107,20 +110,20 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing a projection' do
-    let(:other)      { relation.project([ :id, :name ]) }
-    let(:projection) { other.project([ :id ])           }
+  context 'containing a object' do
+    let(:operand)    { relation.project([ :id, :name ])  }
+    let(:attributes) { [ :id ]                           }
 
-    it { should_not equal(projection) }
+    it { should_not equal(object) }
 
-    it { should be_instance_of(Algebra::Projection) }
+    it { should be_instance_of(klass) }
 
     its(:operand) { should equal(relation) }
 
-    its(:header) { should == projection.header }
+    its(:header) { should == object.header }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -134,18 +137,18 @@ describe 'Veritas::Algebra::Projection#optimize' do
   context 'containing a set operation' do
     let(:left)       { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
     let(:right)      { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ].each) }
-    let(:union)      { left.union(right)                                                                 }
-    let(:projection) { union.project([ :name ])                                                          }
+    let(:operand)    { left.union(right)                                                                 }
+    let(:attributes) { [ :name ]                                                                         }
 
-    it 'pushes the projection to each relation' do
+    it 'pushes the object to each relation' do
       should eql(Algebra::Union.new(
-         Algebra::Projection.new(left,  projection.header),
-         Algebra::Projection.new(right, projection.header)
+         klass.new(left,  object.header),
+         klass.new(right, object.header)
       ))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'does not execute body#each' do
@@ -156,20 +159,20 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing a set operation containing a projection of relations' do
+  context 'containing a set operation containing a object of relations' do
     let(:left_body)  { [ [ 1, 'Dan Kubb', 34 ] ].each                                    }
     let(:right_body) { [ [ 2, 'Dan Kubb', 34 ] ].each                                    }
     let(:left)       { Relation.new(header, left_body)                                   }
     let(:right)      { Relation.new(header, right_body)                                  }
-    let(:union)      { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
-    let(:projection) { union.project([ :name ])                                          }
+    let(:operand)    { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
+    let(:attributes) { [ :name ]                                                         }
 
-    it 'pushes the projection to each relation, and combine the nested projections' do
+    it 'pushes the object to each relation, and combine the nested objects' do
       should eql(left.project([ :name ]).union(right.project([ :name ])))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'does not execute left_body#each' do
@@ -189,20 +192,20 @@ describe 'Veritas::Algebra::Projection#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'containing a set operation containing a projection of materialized relations' do
+  context 'containing a set operation containing a object of materialized relations' do
     let(:left_body)  { [ [ 1, 'Dan Kubb', 34 ] ].each                                    }
     let(:right_body) { [ [ 2, 'Dan Kubb', 34 ] ].each                                    }
     let(:left)       { Relation.new(header, left_body)                                   }
     let(:right)      { Relation.new(header, right_body)                                  }
-    let(:union)      { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
-    let(:projection) { union.project([ :name ])                                          }
+    let(:operand)    { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
+    let(:attributes) { [ :name ]                                                         }
 
-    it 'pushes the projection to each relation, and combine the nested projections' do
+    it 'pushes the object to each relation, and combine the nested objects' do
       should eql(left.project([ :name ]).union(right.project([ :name ])))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it 'executes left_body#each' do
@@ -221,13 +224,13 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'containing a materialized relation' do
-    let(:relation)   { Relation.new(header, [ [ 1, 'Dan Kubb', 34 ] ]) }
-    let(:projection) { Algebra::Projection.new(relation, [ :id ])      }
+    let(:operand)    { Relation.new(header, [ [ 1, 'Dan Kubb', 34 ] ]) }
+    let(:attributes) { [ :id ]                                         }
 
     it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ] ])) }
 
     it 'returns an equivalent relation to the unoptimized operation' do
-      should == projection
+      should == object
     end
 
     it_should_behave_like 'an optimize method'

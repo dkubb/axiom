@@ -1,22 +1,23 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
-  subject { less_than_or_equal_to.optimize }
+  subject { object.optimize }
 
+  let(:klass)     { Logic::Predicate::LessThanOrEqualTo             }
   let(:attribute) { Attribute::Integer.new(:id, :required => false) }
+  let(:left)      { attribute                                       }
+  let(:right)     { attribute                                       }
+  let(:object)    { klass.new(left, right)                          }
 
   context 'left and right are attributes' do
     context 'and equivalent' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(attribute, attribute) }
-
       it { should equal(Logic::Proposition::True.instance) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'and are not comparable' do
-      let(:other)                 { Attribute::Float.new(:float)                              }
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(attribute, other) }
+      let(:right) { Attribute::Float.new(:float) }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -24,9 +25,8 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
     end
 
     context 'and left is always less than right' do
-      let(:left)                  { attribute                                             }
-      let(:right)                 { Attribute::Integer.new(:right, :size => 2**31..2**31) }
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(left, right)  }
+      let(:left)  { attribute                                             }
+      let(:right) { Attribute::Integer.new(:right, :size => 2**31..2**31) }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -34,9 +34,8 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
     end
 
     context 'and left is always greater than right' do
-      let(:left)                  { attribute                                            }
-      let(:right)                 { Attribute::Integer.new(:right, :size => -1..-1)      }
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(left, right) }
+      let(:left)  { attribute                                       }
+      let(:right) { Attribute::Integer.new(:right, :size => -1..-1) }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -46,15 +45,15 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
 
   context 'left is an attribute' do
     context 'right is a valid value' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(attribute, 1) }
+      let(:right) { 1 }
 
-      it { should equal(less_than_or_equal_to) }
+      it { should equal(object) }
 
       it_should_behave_like 'an optimize method'
     end
 
     context 'right is an invalid primitive' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(attribute, nil) }
+      let(:right) { nil }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -64,7 +63,7 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
 
   context 'right is an attribute' do
     context 'left is a valid value' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(1, attribute) }
+      let(:left) { 1 }
 
       it { should eql(Logic::Predicate::GreaterThanOrEqualTo.new(attribute, 1)) }
 
@@ -72,7 +71,7 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
     end
 
     context 'left is an invalid primitive' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(nil, attribute) }
+      let(:left) { nil }
 
       it { should equal(Logic::Proposition::False.instance) }
 
@@ -82,7 +81,8 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
 
   context 'left and right are constants' do
     context 'that will evaluate to true' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(1, 1) }
+      let(:left)  { 1 }
+      let(:right) { 1 }
 
       it { should equal(Logic::Proposition::True.instance) }
 
@@ -90,7 +90,8 @@ describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
     end
 
     context 'that will evaluate to false' do
-      let(:less_than_or_equal_to) { Logic::Predicate::LessThanOrEqualTo.new(2, 1) }
+      let(:left)  { 2 }
+      let(:right) { 1 }
 
       it { should equal(Logic::Proposition::False.instance) }
 

@@ -2,20 +2,21 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Combine#optimize' do
-  subject { combine_operation.optimize }
+  subject { object.optimize }
 
-  let(:left_body)         { [ [ 1 ], [ 2 ] ].each                                             }
-  let(:right_body)        { [ [ 2, 'Dan Kubb' ] ].each                                        }
-  let(:original_left)     { Relation.new([ [ :id, Integer ] ], left_body)                     }
-  let(:original_right)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], right_body) }
-  let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)                    }
+  let(:klass)          { CombineOperationSpecs::Object                                     }
+  let(:left_body)      { [ [ 1 ], [ 2 ] ].each                                             }
+  let(:right_body)     { [ [ 2, 'Dan Kubb' ] ].each                                        }
+  let(:original_left)  { Relation.new([ [ :id, Integer ] ], left_body)                     }
+  let(:original_right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], right_body) }
+  let(:object)         { klass.new(left, right)                                            }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(original_left.header) }
     let(:right) { original_right                            }
 
     it 'attempts to delegate new_empty_relation' do
-      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, "#{klass}#new_empty_relation")
     end
   end
 
@@ -24,7 +25,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { Relation::Empty.new(original_right.header) }
 
     it 'attempts to delegate new_empty_relation' do
-      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, "#{klass}#new_empty_relation")
     end
   end
 
@@ -33,7 +34,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { original_right                                                              }
 
     it 'attempts to delegate new_empty_relation' do
-      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, "#{klass}#new_empty_relation")
     end
   end
 
@@ -42,7 +43,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:right) { Algebra::Restriction.new(original_right, Logic::Proposition::False.instance) }
 
     it 'attempts to delegate new_empty_relation' do
-      expect { subject }.to raise_error(NotImplementedError, 'CombineOperationSpecs::Object#new_empty_relation')
+      expect { subject }.to raise_error(NotImplementedError, "#{klass}#new_empty_relation")
     end
   end
 
@@ -50,7 +51,7 @@ describe 'Veritas::Relation::Operation::Combine#optimize' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
-    it { should equal(combine_operation) }
+    it { should equal(object) }
 
     it 'does not execute left_body#each' do
       left_body.should_not_receive(:each)
