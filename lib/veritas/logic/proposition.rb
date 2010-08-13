@@ -31,6 +31,8 @@ module Veritas
         call.hash
       end
 
+      memoize :hash
+
     end # class Proposition
   end # module Algebra
 end # module Veritas

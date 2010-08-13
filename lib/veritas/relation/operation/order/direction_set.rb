@@ -86,6 +86,8 @@ module Veritas
             object.kind_of?(DirectionSet) ? object : new(object)
           end
 
+          memoize :hash
+
         end # class DirectionSet
       end # class Order
     end # module Operation

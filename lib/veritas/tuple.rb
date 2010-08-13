@@ -47,5 +47,7 @@ module Veritas
       object.kind_of?(Tuple) ? object : new(header, object)
     end
 
+    memoize :hash
+
   end # class Tuple
 end # module Veritas

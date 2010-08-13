@@ -43,6 +43,8 @@ module Veritas
             object.kind_of?(Direction) ? object : new(object)
           end
 
+          memoize :hash
+
         end # class Direction
 
         class Ascending < Direction

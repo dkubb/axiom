@@ -16,8 +16,6 @@
     returned from a method that can be easily overridden might make
     it much nicer for the end user.
 
-* Automatically memoize #hash in immutable objects
-
 * Update all #optimize methods so that when the optimized value
   is returned, it memoizes itself. This will make sure that
   further calls to #optimize result in an immediate answer

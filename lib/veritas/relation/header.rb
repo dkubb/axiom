@@ -89,6 +89,8 @@ module Veritas
         object.kind_of?(Header) ? object : new(object)
       end
 
+      memoize :hash
+
     end # class Header
   end # class Relation
 end # module Veritas

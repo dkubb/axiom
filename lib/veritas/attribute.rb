@@ -95,5 +95,7 @@ module Veritas
       value.nil? ? !required? : yield
     end
 
+    memoize :hash
+
   end # class Attribute
 end # module Veritas

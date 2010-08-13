@@ -39,6 +39,8 @@ module Veritas
         right.respond_to?(:optimize) ? right.optimize : right
       end
 
+      memoize :hash
+
     end # module Binary
   end # module Operation
 end # module Veritas

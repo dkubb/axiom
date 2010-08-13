@@ -75,6 +75,8 @@ module Veritas
 
         private_class_method :coerce_alias_pair
 
+        memoize :hash
+
       end # class Aliases
     end # class Rename
   end # module Algebra

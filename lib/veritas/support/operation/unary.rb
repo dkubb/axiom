@@ -33,6 +33,8 @@ module Veritas
         operand.respond_to?(:optimize) ? operand.optimize : operand
       end
 
+      memoize :hash
+
     end # module Unary
   end # module Operation
 end # module Veritas
