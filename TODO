@@ -16,6 +16,14 @@
     returned from a method that can be easily overridden might make
     it much nicer for the end user.
 
+* Add Immutable#memoized?
+  * Should check to see if there's a "slot" for the method
+  * Could use attr_reader to add the accessor to the Memory
+    subclass, and then use respond_to? to test whether the
+    method is memoized.
+  * Update spec to make sure #optimize methods return
+    an object that has #optimize memoized.
+
 * Update all #optimize methods so that when the optimized value
   is returned, it memoizes itself. This will make sure that
   further calls to #optimize result in an immediate answer
