@@ -11,7 +11,7 @@ describe 'Veritas::Relation::Operation::Order#wrap' do
   context 'without directions' do
     let(:args) { [] }
 
-    it { should_not be_equal(order) }
+    it { should_not equal(order) }
 
     it { should be_kind_of(Relation::Operation::Order) }
 
@@ -32,7 +32,7 @@ describe 'Veritas::Relation::Operation::Order#wrap' do
   context 'with directions' do
     let(:args) { [ directions ] }
 
-    it { should_not be_equal(order) }
+    it { should_not equal(order) }
 
     it { should be_kind_of(Relation::Operation::Order) }
 

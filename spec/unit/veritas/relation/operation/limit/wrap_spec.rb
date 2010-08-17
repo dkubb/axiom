@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Limit#wrap' do
   let(:limit)      { Relation::Operation::Limit.new(order, 1)             }
   let(:yields)     { []                                                   }
 
-  it { should_not be_equal(limit) }
+  it { should_not equal(limit) }
 
   it { should be_kind_of(Relation::Operation::Limit) }
 

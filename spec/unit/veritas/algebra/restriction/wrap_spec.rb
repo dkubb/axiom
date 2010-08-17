@@ -12,7 +12,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
     let(:restriction) { Algebra::Restriction.new(relation, predicate) }
     let(:args)        { []                                            }
 
-    it { should_not be_equal(restriction) }
+    it { should_not equal(restriction) }
 
     it { should be_kind_of(Algebra::Restriction) }
 
@@ -38,7 +38,7 @@ describe 'Veritas::Algebra::Restriction#wrap' do
     let(:predicate)   { original_predicate.rename(:id => :other_id) }
     let(:args)        { [ predicate ]                               }
 
-    it { should_not be_equal(restriction) }
+    it { should_not equal(restriction) }
 
     it { should be_kind_of(Algebra::Restriction) }
 

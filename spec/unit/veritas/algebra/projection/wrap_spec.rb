@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Projection#wrap' do
   let(:projection) { Algebra::Projection.new(relation, [ :id ])    }
   let(:yields)     { []                                            }
 
-  it { should_not be_equal(projection) }
+  it { should_not equal(projection) }
 
   it { should be_kind_of(Algebra::Projection) }
 

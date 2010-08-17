@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Rename#wrap' do
   let(:rename)   { Algebra::Rename.new(relation, aliases)        }
   let(:yields)   { []                                            }
 
-  it { should_not be_equal(rename) }
+  it { should_not equal(rename) }
 
   it { should be_kind_of(Algebra::Rename) }
 

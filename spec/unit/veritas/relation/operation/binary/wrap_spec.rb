@@ -9,7 +9,7 @@ describe 'Veritas::Relation::Operation::Binary#wrap' do
   let(:binary_operation) { BinaryRelationOperationSpecs::Object.new(left, right)    }
   let(:yields)           { []                                                       }
 
-  it { should_not be_equal(binary_operation) }
+  it { should_not equal(binary_operation) }
 
   it { should be_kind_of(BinaryRelationOperationSpecs::Object) }
 

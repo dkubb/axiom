@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Reverse#wrap' do
   let(:reverse)    { Relation::Operation::Reverse.new(order)              }
   let(:yields)     { []                                                   }
 
-  it { should_not be_equal(reverse) }
+  it { should_not equal(reverse) }
 
   it { should be_kind_of(Relation::Operation::Reverse) }
 

@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Offset#wrap' do
   let(:offset)     { Relation::Operation::Offset.new(order, 1)            }
   let(:yields)     { []                                                   }
 
-  it { should_not be_equal(offset) }
+  it { should_not equal(offset) }
 
   it { should be_kind_of(Relation::Operation::Offset) }
 
