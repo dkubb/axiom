@@ -31,6 +31,13 @@
     and the MySQL optimizer will be able to transform it into a Join
     without raising an exception.
 
+* Consider making it so Relation::Order.new defaults to using the
+  operand's header if none was provided. This is a decent default and
+  will also allow things like #limit or #offset to automatically order
+  by the header rather than throw an exception when called on an
+  unordered Relation. This is also very similar to how DM::Query
+  currently works.
+
 * Update all #optimize methods so that when the optimized value
   is returned, it memoizes itself. This will make sure that
   further calls to #optimize result in an immediate answer
@@ -45,9 +52,6 @@
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
     value (assuming it's a Relation) in a copy of itself.
-  * This will allow the #order method to be the only method added to
-    Relation, and #limit/#take, #offset/#drop, #reverse, #first, and #last
-    will be on a shared module/class for handling Ranking.
   * Also this will allow knowledge of #directions to be removed from
     all the Relation classes. Only the Ranking classes will need to know
     about directions.
