@@ -24,6 +24,13 @@
   * Update spec to make sure #optimize methods return
     an object that has #optimize memoized.
 
+* Allow two relations to be joined even if they have identical headers.
+  * Update the Join optimizer so that it transforms into an Intersection
+    when the headers are identical.
+  * This will allow the query to be constructed with an Intersection,
+    and the MySQL optimizer will be able to transform it into a Join
+    without raising an exception.
+
 * Update all #optimize methods so that when the optimized value
   is returned, it memoizes itself. This will make sure that
   further calls to #optimize result in an immediate answer
