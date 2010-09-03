@@ -6,9 +6,9 @@ describe 'Veritas::Logic::Proposition#call' do
 
   let(:proposition) { PropositionSpecs::Object.new }
 
-  it 'calls self.class.eval' do
-    response = mock('#eval response')
-    PropositionSpecs::Object.should_receive(:eval).and_return(response)
+  it 'calls self.class.call' do
+    response = mock('#call response')
+    PropositionSpecs::Object.should_receive(:call).and_return(response)
     should equal(response)
   end
 end

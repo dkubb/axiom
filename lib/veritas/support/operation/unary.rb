@@ -1,20 +1,12 @@
 module Veritas
   module Operation
     module Unary
-      include Immutable, Optimizable
+      include Immutable
 
       attr_reader :operand
 
       def initialize(operand)
         @operand = operand
-      end
-
-      def optimized?
-        optimize_operand.equal?(operand)
-      end
-
-      def new_optimized_operation
-        new(optimize_operand)
       end
 
       def eql?(other)
@@ -24,13 +16,6 @@ module Veritas
 
       def hash
         operand.hash
-      end
-
-    private
-
-      def optimize_operand
-        operand = self.operand
-        operand.respond_to?(:optimize) ? operand.optimize : operand
       end
 
       memoize :hash

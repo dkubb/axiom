@@ -8,10 +8,10 @@ UncommunicativeParameterName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LargeClass:
-  max_methods: 22  # TODO: decrease max_methods to 10-15 or less
+  max_methods: 16  # TODO: decrease max_methods to 10-15 or less
   exclude: []
   enabled: true
-  max_instance_variables: 4
+  max_instance_variables: 3
 UncommunicativeMethodName:
   accept: []
   exclude: []
@@ -26,12 +26,7 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: [
-    # both of these methods are utility class methods,
-    # incorrectly identified as instance methods
-    'Veritas::Relation::Operation::Limit#assert_valid_limit',
-    'Veritas::Relation::Operation::Offset#assert_valid_offset'
-  ]
+  exclude: []
   enabled: true
 ClassVariable:
   exclude: []
@@ -56,8 +51,7 @@ NestedIterators:
   max_allowed_nesting: 1
 LongMethod:
   max_statements: 7  # TODO: decrease max_statements to 5 or less
-  exclude:
-  - initialize
+  exclude: []
   enabled: true
 Duplication:
   allow_calls: []
@@ -82,15 +76,13 @@ UncommunicativeVariableName:
 SimulatedPolymorphism:
   exclude: []
   enabled: true
-  max_ifs: 2
+  max_ifs: 1
 DataClump:
   exclude: [
     # all of these classes have utility class methods that are
     # incorrectly identified as instance methods
-    Veritas::Algebra::Join,
     Veritas::Relation::Operation::Binary::ClassMethods,
-    Veritas::Relation::Operation::Set::ClassMethods,
-    Veritas::Relation::Operation::Order
+    Veritas::Relation::Operation::Set::ClassMethods
   ]
   enabled: true
   max_copies: 1

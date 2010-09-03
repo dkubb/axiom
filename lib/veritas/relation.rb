@@ -70,16 +70,6 @@ module Veritas
       tuples.kind_of?(Relation) ? tuples : Relation.new(header, tuples)
     end
 
-    def new_empty_relation
-      Relation::Empty.new(header)
-    end
-
-    def new_materialized_relation
-      Relation::Materialized.new(header, to_a)
-    end
-
-    memoize :new_empty_relation, :new_materialized_relation
-
   end # class Relation
 end # module Veritas
 

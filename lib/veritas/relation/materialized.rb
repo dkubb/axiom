@@ -9,10 +9,6 @@ module Veritas
         tuples.size
       end
 
-      def optimize
-        empty? ? new_empty_relation : super
-      end
-
     end # class Materialized
   end # class Relation
 end # module Veritas

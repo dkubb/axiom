@@ -5,7 +5,7 @@ module Veritas
         include Unary
 
         def self.new(operand, directions)
-          directions = DirectionSet.new(directions)
+          directions = DirectionSet.coerce(directions)
           assert_order_by_full_header(operand, directions)
           super
         end
@@ -28,21 +28,6 @@ module Veritas
           self
         end
 
-        def optimize
-          operand = optimize_operand
-          if operand.kind_of?(Order)
-            drop_no_op_order
-          elsif operand.kind_of?(Limit) && operand.to_i == 1
-            drop_current_order
-          else
-            super
-          end
-        end
-
-        def wrap(directions = self.directions)
-          self.class.new(yield(optimize_operand), directions)
-        end
-
         def eql?(other)
           instance_of?(other.class)         &&
           directions.eql?(other.directions) &&
@@ -51,23 +36,8 @@ module Veritas
 
       private
 
-        def new(operand)
-          self.class.new(operand, directions)
-        end
-
-        def drop_current_order
-          optimize_operand
-        end
-
-        def drop_no_op_order
-          order = optimize_operand
-          order.class.new(order.operand, directions)
-        end
-
-        memoize :optimize
-
         module Methods
-          def order(directions = yield(self))
+          def order(directions = block_given? ? yield(self) : header)
             Operation::Order.new(self, Array(directions))
           end
 

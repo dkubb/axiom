@@ -12,7 +12,7 @@ module Veritas
           Match
         end
 
-        def self.eval(left, right)
+        def self.call(left, right)
           left !~ right
         end unless Object.method_defined?(operation)
 

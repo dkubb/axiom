@@ -6,6 +6,11 @@ module Veritas
       self
     end
 
+    # a noop when there are no memoized methods
+    def memoize(name, value)
+      self
+    end
+
     def dup
       self
     end
@@ -26,11 +31,7 @@ module Veritas
 
       def memoize(*methods)
         include_memoize_methods
-        methods.each do |method|
-          memoized_method = "__memoized_#{method}"
-          alias_private_method(memoized_method, method)
-          create_memoize_method_for(memoized_method, method)
-        end
+        methods.each { |method| memoize_method(method) }
         self
       end
 
@@ -40,6 +41,12 @@ module Veritas
         include MemoizeMethods unless include?(MemoizeMethods)
       end
 
+      def memoize_method(method)
+        memoized_method = "__memoized_#{method}"
+        alias_private_method(memoized_method, method)
+        create_memoize_method_for(memoized_method, method)
+      end
+
       def alias_private_method(new_method, old_method)
         alias_method new_method, old_method
         private new_method
@@ -47,10 +54,10 @@ module Veritas
 
       def create_memoize_method_for(memoized_method, method)
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          def #{method}                                     # def name
-            @__memory['@#{method}'] ||= #{memoized_method}  #   @__memory['@name'] ||= name
-          end                                               # end
-          #{method_visibility(method)} :#{method}           # private :name
+          def #{method}(*args)                                     # def name(*args)
+            @__memory['@#{method}'] ||= #{memoized_method}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
+          end                                                      # end
+          #{method_visibility(method)} :#{method}                  # private :name
         RUBY
       end
 
@@ -80,15 +87,17 @@ module Veritas
         self
       end
 
+      def memoized(name)
+        @__memory["@#{name}"]
+      end
+
     end # module MemoizeMethods
 
     class Memory
-      extend Aliasable
+      alias [] instance_variable_get
 
-      inheritable_alias(:[] => :instance_variable_get)
-
-      def []=(key, value)
-        instance_variable_set(key, Immutable.freeze_value(value))
+      def []=(ivar, value)
+        instance_variable_set(ivar, Immutable.freeze_value(value))
       end
 
     end # class Memory

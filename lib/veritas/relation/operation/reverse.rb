@@ -20,27 +20,7 @@ module Veritas
           self
         end
 
-        def optimize
-          case optimize_operand
-            when Reverse then drop_no_op_reverse
-            else
-              super
-          end
-        end
-
-        def wrap
-          new(yield(optimize_operand))
-        end
-
       private
-
-        def new(operand)
-          self.class.new(operand)
-        end
-
-        def drop_no_op_reverse
-          optimize_operand.operand
-        end
 
         module Methods
           def reverse

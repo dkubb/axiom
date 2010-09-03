@@ -9,10 +9,6 @@ begin
   require 'mspec'
   require 'mspec/utils/name_map'
 
-  unless Ruby2Ruby::VERSION == '1.2.2'
-    raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
-  end
-
   MEMOIZED_PATTERN = /\A__memoized_([a-z](?:_?[a-z])+)\z/.freeze
 
   class NameMap
@@ -29,6 +25,10 @@ begin
 
   desc 'Heckle each module and class'
   task :heckle => :verify_rcov do
+    unless Ruby2Ruby::VERSION == '1.2.2'
+      raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
+    end
+
     require 'veritas'
     root_module = 'Veritas'
 

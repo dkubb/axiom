@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Projection#header' do
-  subject { projection.header }
+  subject { object.header }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:projection) { Algebra::Projection.new(relation, [ :id ])    }
+  let(:klass)    { Algebra::Projection                           }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:object)   { klass.new(relation, [ :id ])                  }
 
   it { should be_kind_of(Relation::Header) }
 

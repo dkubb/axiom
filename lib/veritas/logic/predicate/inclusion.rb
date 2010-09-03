@@ -6,7 +6,7 @@ module Veritas
       class Inclusion < Predicate
         include Enumerable
 
-        def self.eval(left, right)
+        def self.call(left, right)
           right.include?(left)
         end
 
@@ -17,18 +17,6 @@ module Veritas
         def inspect
           "#{left.inspect} ∈ #{right.inspect}"
         end
-
-      private
-
-        def new_optimized_one
-          Equality.new(left, optimize_right.first)
-        end
-
-        def new_optimized_none
-          Proposition::False.instance
-        end
-
-        memoize :optimize
 
         module Methods
           def include(other)

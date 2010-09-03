@@ -18,46 +18,6 @@ module Veritas
         self
       end
 
-      def optimize
-        return drop_current_projection if header_unchanged?
-
-        case optimize_operand
-          when Relation::Empty          then new_empty_relation
-          when self.class               then drop_contained_projection
-          when Relation::Operation::Set then wrap_with_operation
-          else
-            super
-        end
-      end
-
-      def wrap(header)
-        self.class.new(yield(optimize_operand), header)
-      end
-
-    private
-
-      def header_unchanged?
-        optimize_operand.header.to_a == header.to_a
-      end
-
-      def new(operand)
-        self.class.new(operand, header)
-      end
-
-      def drop_current_projection
-        optimize_operand
-      end
-
-      def drop_contained_projection
-        new(optimize_operand.operand)
-      end
-
-      def wrap_with_operation
-        optimize_operand.wrap { |relation| new(relation) }.optimize
-      end
-
-      memoize :optimize
-
       module Methods
         def project(attributes)
           project_relation(self, attributes)

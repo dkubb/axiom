@@ -9,6 +9,7 @@ module Veritas
       def self.primitive
         ::Object
       end
+
     end # class Object
   end # class Attribute
 end # module Veritas

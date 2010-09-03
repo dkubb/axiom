@@ -8,11 +8,11 @@ describe 'Veritas::Logic::Connective::Binary#call' do
   let(:left)       { Logic::Predicate::Equality.new(header[:id], 1) }
   let(:right)      { Logic::Predicate::Equality.new(header[:id], 2) }
   let(:tuple)      { Tuple.new(header, [ 1 ])                       }
-  let(:response)   { mock('#eval response')                         }
+  let(:response)   { mock('#call response')                         }
   let(:connective) { BinarySpecs::Object.new(left, right)           }
 
   before do
-    BinarySpecs::Object.should_receive(:eval).with(true, false).and_return(response)
+    BinarySpecs::Object.should_receive(:call).with(true, false).and_return(response)
   end
 
   it { should equal(response) }

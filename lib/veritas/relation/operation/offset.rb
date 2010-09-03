@@ -36,20 +36,6 @@ module Veritas
           self
         end
 
-        def optimize
-          return drop_current_offset if to_i == 0
-
-          case optimize_operand
-            when Offset then use_offset_sum
-            else
-              super
-          end
-        end
-
-        def wrap
-          new(yield(optimize_operand))
-        end
-
         def to_i
           @offset
         end
@@ -61,21 +47,6 @@ module Veritas
         end
 
       private
-
-        def new(operand)
-          self.class.new(operand, to_i)
-        end
-
-        def drop_current_offset
-          optimize_operand
-        end
-
-        def use_offset_sum
-          offset = optimize_operand
-          self.class.new(offset.operand, to_i + offset.to_i)
-        end
-
-        memoize :optimize
 
         module Methods
           extend Aliasable

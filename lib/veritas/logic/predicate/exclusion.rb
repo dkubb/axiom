@@ -6,7 +6,7 @@ module Veritas
       class Exclusion < Predicate
         include Enumerable
 
-        def self.eval(left, right)
+        def self.call(left, right)
           !right.include?(left)
         end
 
@@ -17,18 +17,6 @@ module Veritas
         def inspect
           "#{left.inspect} ∉ #{right.inspect}"
         end
-
-      private
-
-        def new_optimized_one
-          Inequality.new(left, optimize_right.first)
-        end
-
-        def new_optimized_none
-          Proposition::True.instance
-        end
-
-        memoize :optimize
 
         module Methods
           def exclude(other)

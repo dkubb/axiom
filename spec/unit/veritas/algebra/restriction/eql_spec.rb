@@ -1,48 +1,49 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Restriction#eql?' do
-  subject { restriction.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:relation)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:restriction) { relation.restrict { true }                    }
+  let(:klass)    { Algebra::Restriction                          }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:object)   { klass.new(relation, proc { true })            }
 
   context 'with the same restriction' do
-    let(:other) { restriction }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(restriction)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent restriction' do
-    let(:other) { restriction.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(restriction)
+      should == other.eql?(object)
     end
   end
 
   context 'with a different restriction' do
-    let(:other) { relation.restrict { false } }
+    let(:other) { klass.new(relation, proc { false }) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(restriction)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent restriction of a different class' do
-    let(:other) { Class.new(Algebra::Restriction).new(relation, proc { true }) }
+    let(:other) { Class.new(klass).new(relation, proc { true }) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(restriction)
+      should == other.eql?(object)
     end
   end
 end

@@ -4,6 +4,7 @@ module Veritas
       def self.primitive
         ::Float
       end
+
     end # class Float
   end # class Attribute
 end # module Veritas

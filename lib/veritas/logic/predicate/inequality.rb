@@ -16,19 +16,9 @@ module Veritas
           self
         end
 
-        def self.eval(left, right)
+        def self.call(left, right)
           left != right
         end unless Object.method_defined?(operation)
-
-      private
-
-        def always_true?
-          never_equivalent?
-        end
-
-        def always_false?
-          always_equivalent?
-        end
 
         module Methods
           def ne(other)

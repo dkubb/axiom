@@ -10,18 +10,6 @@ module Veritas
         self
       end
 
-      def optimize
-        left, right = optimize_left, optimize_right
-
-        if left.eql?(right) || right.kind_of?(Relation::Empty)
-          left
-        elsif left.kind_of?(Relation::Empty)
-          right
-        else
-          super
-        end
-      end
-
       module Methods
         extend Aliasable
 

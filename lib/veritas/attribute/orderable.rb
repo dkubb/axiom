@@ -8,6 +8,7 @@ module Veritas
       def desc
         Relation::Operation::Order::Descending.new(self)
       end
-    end
-  end
-end
+
+    end # module Orderable
+  end #class Attribute
+end # module Veritas

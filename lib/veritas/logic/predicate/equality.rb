@@ -16,16 +16,6 @@ module Veritas
           self
         end
 
-      private
-
-        def always_true?
-          always_equivalent?
-        end
-
-        def always_false?
-          never_equivalent?
-        end
-
         module Methods
           def eq(other)
             Equality.new(self, other)

@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Rename#each' do
-  subject { rename.each { |tuple| yields << tuple } }
+  subject { object.each { |tuple| yields << tuple } }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])   }
-  let(:rename)   { Algebra::Rename.new(relation, :id => :other_id) }
-  let(:yields)   { []                                              }
+  let(:klass)    { Algebra::Rename                               }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:object)   { klass.new(relation, :id => :other_id)         }
+  let(:yields)   { []                                            }
 
-  it { should equal(rename) }
+  it { should equal(object) }
 
   it 'yields each tuple' do
     expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
@@ -15,6 +16,6 @@ describe 'Veritas::Algebra::Rename#each' do
 
   it 'changes the header for each tuple' do
     subject
-    yields.first.header.should equal(rename.header)
+    yields.first.header.should equal(object.header)
   end
 end

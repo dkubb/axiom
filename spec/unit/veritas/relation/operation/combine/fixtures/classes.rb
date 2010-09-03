@@ -8,9 +8,5 @@ module CombineOperationSpecs
       self
     end
 
-    def new_empty_relation
-      raise NotImplementedError, "#{self.class}#new_empty_relation"
-    end
-
   end # class Object
 end # module CombineOperationSpecs

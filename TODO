@@ -16,13 +16,17 @@
     returned from a method that can be easily overridden might make
     it much nicer for the end user.
 
-* Add Immutable#memoized?
-  * Should check to see if there's a "slot" for the method
-  * Could use attr_reader to add the accessor to the Memory
-    subclass, and then use respond_to? to test whether the
-    method is memoized.
-  * Update spec to make sure #optimize methods return
-    an object that has #optimize memoized.
+* Allow materialized relations to work with #reverse, #limit, #offset
+  if they have directions (this can happen when optimizing an ordered,
+  materialized relation). If they are not ordered, then #order should
+  be used before #reverse, #limit, #offet, etc can be used with them.
+
+* Update memoization to take into account the arguments passed into
+  the method. It should memoize differently for different
+  methods. Perhaps it could have a special case for methods
+  with a 0-arity vs n-arity methods, but it needs to handle cases
+  like with #hash that accept no args, and #optimize that accepts
+  1 arg.
 
 * Allow two relations to be joined even if they have identical headers.
   * Update the Join optimizer so that it transforms into an Intersection
@@ -30,23 +34,6 @@
   * This will allow the query to be constructed with an Intersection,
     and the MySQL optimizer will be able to transform it into a Join
     without raising an exception.
-
-* Consider making it so Relation::Order.new defaults to using the
-  operand's header if none was provided. This is a decent default and
-  will also allow things like #limit or #offset to automatically order
-  by the header rather than throw an exception when called on an
-  unordered Relation. This is also very similar to how DM::Query
-  currently works.
-
-* Update all #optimize methods so that when the optimized value
-  is returned, it memoizes itself. This will make sure that
-  further calls to #optimize result in an immediate answer
-  without evaluating the optimizer again, eg:
-
-    def optimize(optimizer = self.class.optimizer)
-      optimized = optimizer.call(self, optimize_operand)
-      optimized.memoize(:optimize, optimized)
-    end
 
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but

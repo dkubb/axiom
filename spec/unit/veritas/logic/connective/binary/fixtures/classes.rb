@@ -2,7 +2,7 @@ module BinarySpecs
   class Object
     include Logic::Connective::Binary
 
-    def self.eval(*)
+    def self.call(*)
     end
 
   end # class Object

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Reverse#each' do
   subject { reverse.each { |tuple| yields << tuple } }
 
+  let(:klass)      { Relation::Operation::Reverse                                }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:reverse)    { Relation::Operation::Reverse.new(order)                     }
+  let(:order)      { relation.order                                              }
+  let(:reverse)    { klass.new(order)                                            }
   let(:yields)     { []                                                          }
 
   it { should equal(reverse) }

@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Rename#directions' do
-  subject { rename.directions }
+  subject { object.directions }
 
+  let(:klass)    { Algebra::Rename                               }
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:aliases)  { { :id => :other_id }                          }
+  let(:object)   { klass.new(operand, :id => :other_id)          }
 
   context 'containing a relation' do
-    let(:rename) { Algebra::Rename.new(relation, aliases) }
+    let(:operand) { relation }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
@@ -17,8 +18,7 @@ describe 'Veritas::Algebra::Rename#directions' do
   end
 
   context 'containing an ordered relation' do
-    let(:order)  { relation.order([ relation[:id] ])   }
-    let(:rename) { Algebra::Rename.new(order, aliases) }
+    let(:operand) { relation.order([ relation[:id] ]) }
 
     it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 

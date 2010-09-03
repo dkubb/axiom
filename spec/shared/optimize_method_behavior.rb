@@ -6,7 +6,8 @@ shared_examples_for 'an optimize method' do
     optimized.optimize.should equal(optimized)
   end
 
-  it 'returns an optimized object' do
-    should be_optimized
+  it 'it memoizes itself for #optimize' do
+    optimized = subject
+    optimized.memoized('optimize').should equal(optimized)
   end
 end

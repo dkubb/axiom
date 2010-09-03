@@ -8,6 +8,11 @@ module Veritas
           descendant.extend ClassMethods
         end
 
+        def initialize(left, right)
+          super
+          @header = left.header
+        end
+
         module ClassMethods
           def new(left, right)
             assert_equivalent_headers(left, right)

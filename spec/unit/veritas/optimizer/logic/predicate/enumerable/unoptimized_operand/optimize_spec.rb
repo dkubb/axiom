@@ -1,0 +1,38 @@
+require 'spec_helper'
+
+describe 'Veritas::Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand#optimize' do
+  subject { object.optimize }
+
+  let(:klass)     { Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand }
+  let(:attribute) { Attribute::Integer.new(:id)                                 }
+  let(:predicate) { attribute.include(operand)                                  }
+  let(:object)    { klass.new(predicate)                                        }
+
+  before do
+    predicate.should be_kind_of(Veritas::Logic::Predicate::Enumerable)
+  end
+
+  context 'when the operand contains an unsorted Enumerable' do
+    let(:operand) { [ 2, 1 ] }
+
+    it { should eql(attribute.include([ 1, 2 ])) }
+  end
+
+  context 'when the operand contains an exclusive Range' do
+    let(:operand) { 1...3 }
+
+    it { should eql(attribute.include(1..2)) }
+  end
+
+  context 'when the operand contains an Enumerable after filtering invalid entries' do
+    let(:operand) { [ 'a', 1, 2 ] }
+
+    it { should eql(attribute.include([ 1, 2 ])) }
+  end
+
+  context 'when the operand contains an Enumerable after filtering duplicate entries' do
+    let(:operand) { [ 1, 1, 2, 2 ] }
+
+    it { should eql(attribute.include([ 1, 2 ])) }
+  end
+end

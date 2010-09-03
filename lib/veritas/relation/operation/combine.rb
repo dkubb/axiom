@@ -10,16 +10,6 @@ module Veritas
           end
         end
 
-        def optimize
-          left, right = optimize_left, optimize_right
-
-          if left.kind_of?(Relation::Empty) || right.kind_of?(Relation::Empty)
-            new_empty_relation
-          else
-            super
-          end
-        end
-
       end # module Combine
     end # module Operation
   end # class Relation

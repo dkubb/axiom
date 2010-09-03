@@ -4,6 +4,7 @@ module Veritas
       def self.primitive
         ::BigDecimal
       end
+
     end # class Decimal
   end # class Attribute
 end # module Veritas

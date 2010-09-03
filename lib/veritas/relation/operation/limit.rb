@@ -37,20 +37,6 @@ module Veritas
           self
         end
 
-        def optimize
-          return new_empty_relation if to_i == 0
-
-          case optimize_operand
-            when Limit then optimize_limit
-            else
-              super
-          end
-        end
-
-        def wrap
-          new(yield(optimize_operand))
-        end
-
         def to_i
           @limit
         end
@@ -62,30 +48,6 @@ module Veritas
         end
 
       private
-
-        def new(operand)
-          self.class.new(operand, to_i)
-        end
-
-        def optimize_limit
-          limit = optimize_operand
-          if to_i == limit.to_i
-            drop_current_limit
-          else
-            use_smallest_limit
-          end
-        end
-
-        def drop_current_limit
-          optimize_operand
-        end
-
-        def use_smallest_limit
-          limit = optimize_operand
-          self.class.new(limit.operand, [ to_i, limit.to_i ].min)
-        end
-
-        memoize :optimize
 
         module Methods
           extend Aliasable

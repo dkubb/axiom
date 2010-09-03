@@ -7,12 +7,12 @@ module Veritas
 
         inheritable_alias(:complement => :operand)
 
-        def self.eval(operand)
+        def self.call(operand)
           !operand
         end
 
         def call(tuple)
-          self.class.eval(operand.call(tuple))
+          self.class.call(operand.call(tuple))
         end
 
         def project(attributes)
@@ -29,10 +29,6 @@ module Veritas
           else
             self.class.new(renamed_operand)
           end
-        end
-
-        def optimize
-          operand.optimize.complement
         end
 
         def inspect

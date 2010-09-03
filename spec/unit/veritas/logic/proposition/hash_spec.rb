@@ -7,11 +7,11 @@ describe 'Veritas::Logic::Proposition#hash' do
   let(:proposition) { PropositionSpecs::Object.new }
 
   before do
-    @response = mock('#eval response')
-    PropositionSpecs::Object.should_receive(:eval).at_least(:once).and_return(@response)
+    @response = mock('#call response')
+    PropositionSpecs::Object.should_receive(:call).at_least(:once).and_return(@response)
   end
 
-  it 'hashes the results of self.class.eval' do
+  it 'hashes the results of self.class.call' do
     should == @response.hash
   end
 

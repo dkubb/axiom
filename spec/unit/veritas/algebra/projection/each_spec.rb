@@ -1,24 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Projection#each' do
-  subject { projection.each { |tuple| yields << tuple } }
+  subject { object.each { |tuple| yields << tuple } }
 
-  let(:relation) do
-    Relation.new(
-      [ [ :id, Integer ], [ :name, String ] ],
-      [
-        [ 1, 'Dan Kubb' ],
-        [ 2, 'Dan Kubb' ],
-        [ 2, 'Alex Kubb'],
-      ]
-    )
-  end
+  let(:klass)    { Algebra::Projection                                         }
+  let(:body)     { [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb'] ] }
+  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
+  let(:object)   { klass.new(relation, [ :id ])                                }
+  let(:yields)   { []                                                          }
 
-  let(:header)     { relation.header.project([ :id ])          }
-  let(:projection) { Algebra::Projection.new(relation, header) }
-  let(:yields)     { []                                        }
-
-  it { should equal(projection) }
+  it { should equal(object) }
 
   it 'yields each tuple only once' do
     expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ], [ 2 ] ])

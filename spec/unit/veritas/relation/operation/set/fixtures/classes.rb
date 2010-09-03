@@ -1,5 +1,5 @@
 module SetOperationSpecs
-  class Object
+  class Object < Relation
     include Relation::Operation::Set
 
     def each(&block)

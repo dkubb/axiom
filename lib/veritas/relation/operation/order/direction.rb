@@ -13,7 +13,7 @@ module Veritas
 
           def call(left, right)
             attribute = self.attribute
-            self.class.eval(left[attribute], right[attribute])
+            self.class.call(left[attribute], right[attribute])
           end
 
           def rename(aliases)
@@ -52,7 +52,7 @@ module Veritas
             Descending
           end
 
-          def self.eval(left, right)
+          def self.call(left, right)
             left <=> right
           end
 
@@ -63,7 +63,7 @@ module Veritas
             Ascending
           end
 
-          def self.eval(left, right)
+          def self.call(left, right)
             right <=> left
           end
 

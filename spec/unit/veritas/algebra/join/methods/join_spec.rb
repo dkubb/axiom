@@ -7,7 +7,7 @@ require 'spec_helper'
     let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String  ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ]) }
 
     context 'without predicate arguments or a block' do
-      let(:other) { Relation.new([ [ :id, Integer ], [ :age, Integer ] ], [ [ 1, 34 ] ]) }
+      let(:other) { Relation.new([ [ :id, Integer ], [ :age, Integer ] ], [ [ 1, 35 ] ]) }
       let(:args)  { []                                                                   }
       let(:block) { nil                                                                  }
 

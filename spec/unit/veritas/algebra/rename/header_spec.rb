@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Rename#header' do
-  subject { rename.header }
+  subject { object.header }
 
+  let(:klass)    { Algebra::Rename                               }
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:aliases)  { { :id => :other_id }                          }
-  let(:rename)   { Algebra::Rename.new(relation, aliases)        }
+  let(:object)   { klass.new(relation, :id => :other_id)         }
 
   it { should be_kind_of(Relation::Header) }
 

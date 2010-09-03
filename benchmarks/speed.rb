@@ -16,8 +16,8 @@ TIMES = 5_000
 header   = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
 array    = (1..100).map { |n| Tuple.new(header, [ n, 'Dan Kubb' ]) }
 relation = Relation.new(header, array)
-join     = Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 34 ] ])
-product  = Relation.new([ [ :age, Integer ] ], [ [ 34 ] ])
+join     = Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 35 ] ])
+product  = Relation.new([ [ :age, Integer ] ], [ [ 35 ] ])
 ordered  = relation.order(relation.header)
 
 RBench.run(TIMES) do

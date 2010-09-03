@@ -8,9 +8,9 @@ describe 'Veritas::Logic::Predicate#call' do
   let(:tuple)     { Tuple.new(header, [ 1 ])                   }
   let(:predicate) { PredicateSpecs::Object.new(header[:id], 1) }
 
-  it 'sends the left and right value to self.class.eval' do
-    response = mock('#eval response')
-    PredicateSpecs::Object.should_receive(:eval).with(1, 1).and_return(response)
+  it 'sends the left and right value to self.class.call' do
+    response = mock('#call response')
+    PredicateSpecs::Object.should_receive(:call).with(1, 1).and_return(response)
     should equal(response)
   end
 end

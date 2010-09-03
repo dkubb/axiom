@@ -8,15 +8,15 @@ describe 'Veritas::Relation::Operation::Order::Direction#call' do
   let(:right)  { Tuple.new(header, [ 2 ])                   }
   let(:klass) do
     Class.new(Relation::Operation::Order::Direction) do
-      def self.eval(*)
+      def self.call(*)
       end
     end
   end
   let(:direction) { klass.new(header[:id]) }
 
-  it 'sends the tuple value to self.class.eval' do
-    response = mock('#eval response')
-    klass.should_receive(:eval).with(1, 2).and_return(response)
+  it 'sends the tuple value to self.class.call' do
+    response = mock('#call response')
+    klass.should_receive(:call).with(1, 2).and_return(response)
     should equal(response)
   end
 end

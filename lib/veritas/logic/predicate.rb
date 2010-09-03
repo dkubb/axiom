@@ -5,7 +5,7 @@ module Veritas
 
       def call(tuple)
         util = self.class
-        util.eval(
+        util.call(
           util.extract_value(left,  tuple),
           util.extract_value(right, tuple)
         )
@@ -38,90 +38,6 @@ module Veritas
       def complement
         self.class.complement.new(left, right).
           memoize(:complement, self)
-      end
-
-      def optimize
-        if    constant?     then new_proposition
-        elsif always_false? then Proposition::False.instance
-        elsif always_true?  then Proposition::True.instance
-        elsif normalizable? then normalize
-        else
-          super
-        end
-      end
-
-    private
-
-      def new_proposition
-        Proposition.new(self.class.eval(left, right))
-      end
-
-      def same_attributes?
-        left.equal?(right)
-      end
-
-      def constant?
-        left_constant? && right_constant?
-      end
-
-      def comparable?
-        left.comparable?(right)
-      end
-
-      def joinable?
-        left.joinable?(right)
-      end
-
-      def normalizable?
-        false
-      end
-
-      def right_attribute?
-        right.kind_of?(Attribute)
-      end
-
-      def left_constant?
-        !left.respond_to?(:call)
-      end
-
-      def right_constant?
-        !right.respond_to?(:call)
-      end
-
-      def left_valid_primitive?
-        right.valid_primitive?(left)
-      end
-
-      def right_valid_primitive?
-        left.valid_primitive?(right)
-      end
-
-      def always_false?
-        false
-      end
-
-      def always_true?
-        false
-      end
-
-      def left_min
-        self.class.range_or_value(left, :first)
-      end
-
-      def left_max
-        self.class.range_or_value(left, :last)
-      end
-
-      def right_min
-        self.class.range_or_value(right, :first)
-      end
-
-      def right_max
-        self.class.range_or_value(right, :last)
-      end
-
-      def self.range_or_value(value, method)
-        value.respond_to?(:range) ? value.range.send(method) : value
       end
 
       def self.extract_value(operand, tuple)

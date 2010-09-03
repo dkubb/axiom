@@ -12,7 +12,7 @@ module Veritas
       end
 
       def call(*)
-        self.class.eval
+        self.class.call
       end
 
       def complement

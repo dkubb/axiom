@@ -100,13 +100,13 @@ end
 
 each_count do |array, relation, count|
   gc_statistics "join (#{count} tuples)" do
-    relation.join(Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 34 ] ])).each {}
+    relation.join(Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 35 ] ])).each {}
   end
 end
 
 each_count do |array, relation, count|
   gc_statistics "product (#{count} tuples)" do
-    relation.product(Relation.new([ [ :age, Integer ] ], [ [ 34 ] ])).each {}
+    relation.product(Relation.new([ [ :age, Integer ] ], [ [ 35 ] ])).each {}
   end
 end
 

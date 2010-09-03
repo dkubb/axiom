@@ -14,20 +14,6 @@ module Veritas
           @directions = left.directions | right.directions
         end
 
-        def optimize
-          if optimize_left.kind_of?(Relation::Materialized) && optimize_right.kind_of?(Relation::Materialized)
-            new_materialized_relation
-          elsif !optimized?
-            new_optimized_operation
-          else
-            super
-          end
-        end
-
-        def wrap
-          self.class.new(yield(optimize_left), yield(optimize_right))
-        end
-
         module ClassMethods
           def new(left, right)
             assert_ordered_match(left, right)

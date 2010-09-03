@@ -77,7 +77,7 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
     let(:right) { mock('Binary', :class => klass, :left => left, :optimized? => true) }
 
     before do
-      right.stub!(:optimize => right, :frozen? => true)
+      right.stub!(:optimize => right, :frozen? => true, :memoize => right, :memoized => right)
     end
 
     it { should equal(right) }
@@ -90,7 +90,7 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
     let(:right) { attribute.eq(1)                                                       }
 
     before do
-      left.stub!(:optimize => left, :frozen? => true)
+      left.stub!(:optimize => left, :frozen? => true, :memoize => left, :memoized => left)
     end
 
     it { should equal(left) }

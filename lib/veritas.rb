@@ -19,6 +19,7 @@ require 'veritas/logic'
 require 'veritas/relation'
 require 'veritas/algebra'
 
+require 'veritas/optimizer'
 require 'veritas/attribute'
 require 'veritas/tuple'
 require 'veritas/version'

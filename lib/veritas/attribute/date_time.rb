@@ -12,6 +12,7 @@ module Veritas
       def self.primitive
         ::DateTime
       end
+
     end # class DateTime
   end # class Attribute
 end # module Veritas

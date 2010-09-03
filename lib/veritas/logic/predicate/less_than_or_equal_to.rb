@@ -16,26 +16,6 @@ module Veritas
           GreaterThanOrEqualTo
         end
 
-      private
-
-        def always_true?
-          always_equivalent? || self.class.complement.eval(right_min, left_max)
-        end
-
-        def always_false?
-          never_comparable? || self.class.complement.eval(left_min, right_max)
-        end
-
-        def never_comparable?
-          if    right_constant? then !right_valid_primitive?
-          elsif left_constant?  then !left_valid_primitive?
-          else
-            !comparable?
-          end
-        end
-
-        memoize :optimize
-
         module Methods
           def lte(other)
             LessThanOrEqualTo.new(self, other)

@@ -12,35 +12,8 @@ module Veritas
           "#{left.inspect} #{self.class.operation} #{right.inspect}"
         end
 
-      private
-
-        def normalize
-          self.class.reverse.new(right, left)
-        end
-
-        def normalizable?
-          left_constant? && right_attribute?
-        end
-
-        def always_equivalent?
-          same_attributes?
-        end
-
-        def never_equivalent?
-          left  = self.left
-          right = self.right
-
-          if    right_constant? then !left.valid_value?(right)
-          elsif left_constant?  then !right.valid_value?(left)
-          else
-            !joinable?
-          end
-        end
-
-        memoize :normalize
-
         module ClassMethods
-          def eval(left, right)
+          def call(left, right)
             # methods ending in ? should return true or false only,
             # force boolean context using !!
             !!left.send(operation, right)

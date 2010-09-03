@@ -11,6 +11,7 @@ module Veritas
       def comparable?(other)
         kind_of?(other.class) || other.kind_of?(self.class)
       end
-    end
-  end
-end
+
+    end # module Comparable
+  end # class Attribute
+end # module Veritas

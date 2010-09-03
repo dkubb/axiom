@@ -7,5 +7,9 @@ module UnaryOperationSpecs
       self
     end
 
+    def new(relation)
+      self.class.new(relation)
+    end
+
   end # class Object
 end # module UnaryOperationSpecs

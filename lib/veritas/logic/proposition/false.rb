@@ -6,7 +6,7 @@ module Veritas
           True
         end
 
-        def self.eval
+        def self.call
           false
         end
 

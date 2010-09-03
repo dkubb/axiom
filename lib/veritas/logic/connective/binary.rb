@@ -5,7 +5,7 @@ module Veritas
         include Operation::Binary
 
         def call(tuple)
-          self.class.eval(left.call(tuple), right.call(tuple))
+          self.class.call(left.call(tuple), right.call(tuple))
         end
 
         def project(attributes)
@@ -38,93 +38,7 @@ module Veritas
           Complement.new(self)
         end
 
-        def optimize
-          if duplicate_optimized_operands? || redundant_left?
-            optimize_left
-          elsif redundant_right?
-            optimize_right
-          elsif always_true?
-            Proposition::True.instance
-          elsif always_false?
-            Proposition::False.instance
-          elsif !optimized?
-            new_optimized_connective
-          else
-            super
-          end
-        end
-
-      private
-
-        def equality_with_same_attributes?
-          equality?        &&
-          same_attributes? &&
-          constants?
-        end
-
-        def inequality_with_same_attributes?
-          inequality?      &&
-          same_attributes? &&
-          constants?
-        end
-
-        def complementary_predicates?
-          optimize_left.complement.eql?(optimize_right)
-        end
-
-        def equality?
-          optimize_left.kind_of?(Predicate::Equality) &&
-          optimize_right.kind_of?(Predicate::Equality)
-        end
-
-        def inequality?
-          optimize_left.kind_of?(Predicate::Inequality) &&
-          optimize_right.kind_of?(Predicate::Inequality)
-        end
-
-        def same_attributes?
-          optimize_left.left.eql?(optimize_right.left)
-        end
-
-        def constants?
-          left_constant? && right_constant?
-        end
-
-        def left_constant?
-          !optimize_left.right.respond_to?(:call)
-        end
-
-        def right_constant?
-          !optimize_right.right.respond_to?(:call)
-        end
-
-        def duplicate_optimized_operands?
-          optimize_left.eql?(optimize_right)
-        end
-
-        def redundant_left?
-          left = optimize_left
-          kind_of?(left.class) && optimize_right.eql?(left.right)
-        end
-
-        def redundant_right?
-          right = optimize_right
-          kind_of?(right.class) && optimize_left.eql?(right.left)
-        end
-
-        def always_true?
-          false
-        end
-
-        def always_false?
-          false
-        end
-
-        def new_optimized_connective
-          self.class.new(optimize_left, optimize_right)
-        end
-
-        memoize :complement, :new_optimized_connective
+        memoize :complement
 
       end # module Binary
     end # class Connective
