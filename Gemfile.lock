@@ -1,139 +1,24 @@
----
-hash: a2da4112d9ec8708132a0c7c79cf67eb671293f5
-sources:
-- Rubygems:
-    uri: http://gemcutter.org
-specs:
-- rake:
-    version: 0.8.7
-- ZenTest:
-    version: 4.3.3
-- RubyInline:
-    version: 3.8.4
-- sexp_processor:
-    version: 3.0.4
-- ParseTree:
-    version: 3.0.5
-- Saikuro:
-    version: 1.1.0
-- activesupport:
-    version: 2.3.8
-- arrayfields:
-    version: 4.7.4
-- backports:
-    version: 1.18.1
-- json_pure:
-    version: 1.4.3
-- rubyforge:
-    version: 2.0.4
-- hoe:
-    version: 2.6.1
-- chronic:
-    version: 0.2.3
-- hirb:
-    version: 0.3.2
-- fattr:
-    version: 2.1.0
-- main:
-    version: 4.2.0
-- ruby_parser:
-    version: 2.0.4
-- churn:
-    version: 0.0.12
-- flay:
-    version: 1.4.0
-- flog:
-    version: 2.2.0
-- gemcutter:
-    version: 0.6.1
-- git:
-    version: 1.2.5
-- ruby2ruby:
-    version: 1.2.2
-- heckle:
-    version: 1.4.3
-- jeweler:
-    version: 1.4.0
-- json:
-    version: 1.4.3
-- rcov:
-    version: 0.9.8
-- metric_fu:
-    version: 1.3.0
-- mspec:
-    version: 1.5.17
-- reek:
-    version: 1.2.8
-- roodi:
-    version: 2.1.0
-- rspec:
-    version: 1.3.0
-- yard:
-    version: 0.5.8
-- yardstick:
-    version: 0.1.0
-dependencies:
-  rake:
-    version: ~> 0.8.7
-    group:
-    - :development
-  rspec:
-    version: ~> 1.3
-    group:
-    - :development
-  jeweler:
-    version: ~> 1.4
-    group:
-    - :development
-  backports:
-    version: ~> 1.18.1
-    group:
-    - :development
-  flay:
-    version: ~> 1.4.0
-    group:
-    - :quality
-  flog:
-    version: ~> 2.2.0
-    group:
-    - :quality
-  heckle:
-    version: ~> 1.4.3
-    group:
-    - :quality
-  json:
-    version: ~> 1.4.3
-    group:
-    - :quality
-  metric_fu:
-    version: ~> 1.3
-    group:
-    - :quality
-  mspec:
-    version: ~> 1.5.17
-    group:
-    - :quality
-  rcov:
-    version: ~> 0.9.8
-    group:
-    - :quality
-  reek:
-    version: ~> 1.2.8
-    group:
-    - :quality
-  roodi:
-    version: ~> 2.1
-    group:
-    - :quality
-  ruby2ruby:
-    version: = 1.2.2
-    group:
-    - :quality
-  yard:
-    version: ~> 0.5.8
-    group:
-    - :quality
-  yardstick:
-    version: ~> 0.1
-    group:
-    - :quality
+GEM
+  remote: http://rubygems.org/
+  specs:
+    backports (1.18.1)
+    gemcutter (0.6.1)
+    git (1.2.5)
+    jeweler (1.4.0)
+      gemcutter (>= 0.1.0)
+      git (>= 1.2.5)
+      rubyforge (>= 2.0.0)
+    json_pure (1.4.6)
+    rake (0.8.7)
+    rspec (1.3.0)
+    rubyforge (2.0.4)
+      json_pure (>= 1.1.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  backports (~> 1.18.1)
+  jeweler (~> 1.4)
+  rake (~> 0.8.7)
+  rspec (~> 1.3)
