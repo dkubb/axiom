@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-08-12}
+  s.date = %q{2010-09-05}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -941,18 +941,18 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.4"])
-      s.add_development_dependency(%q<backports>, ["~> 1.18"])
+      s.add_development_dependency(%q<backports>, ["~> 1.18.1"])
     else
       s.add_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_dependency(%q<rspec>, ["~> 1.3"])
       s.add_dependency(%q<jeweler>, ["~> 1.4"])
-      s.add_dependency(%q<backports>, ["~> 1.18"])
+      s.add_dependency(%q<backports>, ["~> 1.18.1"])
     end
   else
     s.add_dependency(%q<rake>, ["~> 0.8.7"])
     s.add_dependency(%q<rspec>, ["~> 1.3"])
     s.add_dependency(%q<jeweler>, ["~> 1.4"])
-    s.add_dependency(%q<backports>, ["~> 1.18"])
+    s.add_dependency(%q<backports>, ["~> 1.18.1"])
   end
 end
 
