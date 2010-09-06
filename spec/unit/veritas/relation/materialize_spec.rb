@@ -10,6 +10,8 @@ describe 'Veritas::Relation#materialize' do
 
   its(:header) { should equal(header) }
 
+  its(:directions) { should == [ header[:id] ] }
+
   it 'returns an equivalent relation to the unmaterialized operation' do
     should == object
   end

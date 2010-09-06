@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Materialized.new' do
-  subject { object.new(header, tuples, directions) }
+  subject { object.new(header, tuples, *args) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuples) { [ [ 1 ] ]                                  }
@@ -9,6 +9,7 @@ describe 'Veritas::Relation::Materialized.new' do
 
   context 'with directions' do
     let(:directions) { [ header[:id] ] }
+    let(:args)       { [ directions ]  }
 
     it { should be_instance_of(Relation::Materialized) }
 
@@ -20,7 +21,7 @@ describe 'Veritas::Relation::Materialized.new' do
   end
 
   context 'without directions' do
-    let(:directions) { nil }
+    let(:args) { [] }
 
     it { should be_instance_of(Relation::Materialized) }
 

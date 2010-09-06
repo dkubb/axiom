@@ -43,7 +43,7 @@ module Veritas
     end
 
     def materialize
-      Materialized.new(header, to_a)
+      Materialized.new(header, to_a, directions)
     end
 
     def ==(other)
