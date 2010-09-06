@@ -1,8 +1,3 @@
-* Allow materialized relations to work with #reverse, #limit, #offset
-  if they have directions (this can happen when optimizing an ordered,
-  materialized relation). If they are not ordered, then #order should
-  be used before #reverse, #limit, #offet, etc can be used with them.
-
 * Update memoization to take into account the arguments passed into
   the method. It should memoize differently for different
   methods. Perhaps it could have a special case for methods
@@ -33,6 +28,9 @@
   * The Reverse class will probably not be needed either. All we need is
     for the #reverse method to create a new Order with the directions
     reversed.
+  * Remove the knowledge of directions from materialized relations
+    and instead wrap materialized relations in the Order object
+    if any.
 
 * Add aliases for some common operations in Method classes, eg:
   * Predicates:
