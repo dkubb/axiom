@@ -26,10 +26,8 @@ module Veritas
               operand.kind_of?(Veritas::Relation::Materialized)
             end
 
-            # TODO: add Relation#materialize and change to use it
             def optimize
-              operation = self.operation
-              Veritas::Relation::Materialized.new(operation.header, operation.to_a)
+              operation.materialize
             end
 
           end # class MaterializedOperand

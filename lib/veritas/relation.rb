@@ -42,6 +42,10 @@ module Veritas
       self
     end
 
+    def materialize
+      Materialized.new(header, to_a)
+    end
+
     def ==(other)
       other = coerce(other)
       header == other.header &&
