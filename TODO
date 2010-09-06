@@ -1,16 +1,16 @@
-* Update memoization to take into account the arguments passed into
-  the method. It should memoize differently for different
-  methods. Perhaps it could have a special case for methods
-  with a 0-arity vs n-arity methods, but it needs to handle cases
-  like with #hash that accept no args, and #optimize that accepts
-  1 arg.
-
 * Allow two relations to be joined even if they have identical headers.
   * Update the Join optimizer so that it transforms into an Intersection
     when the headers are identical.
   * This will allow the query to be constructed with an Intersection,
     and the MySQL optimizer will be able to transform it into a Join
     without raising an exception.
+
+* Update memoization to take into account the arguments passed into
+  the method. It should memoize differently for different
+  methods. Perhaps it could have a special case for methods
+  with a 0-arity vs n-arity methods, but it needs to handle cases
+  like with #hash that accept no args, and #optimize that accepts
+  1 arg.
 
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
