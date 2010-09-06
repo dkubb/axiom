@@ -10,7 +10,7 @@ module Veritas
 
     def [](attribute)
       index = header.index(attribute)
-      to_ary[index] if index
+      to_ary.at(index) if index
     end
 
     def project(header)
