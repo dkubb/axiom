@@ -14,7 +14,7 @@ module Veritas
       end
 
       def joinable?(other)
-        super && size.overlaps?(other.size)
+        super && size.eql?(other.size)
       end
 
       def valid_value?(value)

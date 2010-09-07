@@ -5,39 +5,27 @@ describe 'Veritas::Attribute::Numeric#joinable?' do
 
   let(:attribute) { Attribute::Numeric.new(:numeric, :size => 10..20) }
 
-  context 'when the other attribute is the same type' do
-    context 'and the start of the other size falls within range' do
-      let(:other) { Attribute::Numeric.new(:numeric, :size => 20..30) }
+  context 'when the attribute types and sizes are the same' do
+    let(:other) { Attribute::Numeric.new(:numeric, :size => 10..20) }
 
-      it { should be(true) }
+    it { should be(true) }
 
-      it 'is symmetric' do
-        should == other.joinable?(attribute)
-      end
-    end
-
-    context 'and the end of the other size falls within range' do
-      let(:other) { Attribute::Numeric.new(:numeric, :size => 1..10) }
-
-      it { should be(true) }
-
-      it 'is symmetric' do
-        should == other.joinable?(attribute)
-      end
-    end
-
-    context 'and the other size is outside the range' do
-      let(:other) { Attribute::Numeric.new(:numeric, :size => 21..30) }
-
-      it { should be(false) }
-
-      it 'is symmetric' do
-        should == other.joinable?(attribute)
-      end
+    it 'is symmetric' do
+      should == other.joinable?(attribute)
     end
   end
 
-  context 'when the other attribute is a different class' do
+  context 'when the attribute types are the same and the sizes are different' do
+    let(:other) { Attribute::Numeric.new(:numeric, :size => 1..20) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should == other.joinable?(attribute)
+    end
+  end
+
+  context 'when the attribute types are different' do
     let(:other) { Attribute::String.new(:different) }
 
     it { should be(false) }
