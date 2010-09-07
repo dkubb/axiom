@@ -18,20 +18,17 @@
     and instead wrap materialized relations in the Order object
     if any.
 
-* Add aliases for some common operations in Method classes, eg:
-  * Predicates:
-    * Alias #== to #eq (may break alot)
-    * Alias #!= to #ne (in 1.9 only)
-    * Alias #>= to #gte
-    * Alias #> to #gt
-    * Alias #<= to #lte
-    * Alias #< to #lt
-    * Alias #=~ to #match
-  * Direction:
-    * Alias #@+ to #asc
-    * Alias #@- to #desc
+* Add Relation#extend
+  * Adds a computed attribute based on the other values in the tuple
+  * The object added responds to #call, and accepts the tuple as an
+    argument. The return value is used as the value in the tuple.
 
-* Use flay to identify duplicate code and refactor
+* Add Relation#summarize
+  * Adds a computed attribute that summarizes other values in the tuple
+    and projects away attributes.
+  * The values from each tuple that are being "folded" together are
+    passed into the #call method, which can perform any operation
+    on the values. The return value is used as the value in the tuple.
 
 * Add further optimizations:
   * Operation Order:
@@ -85,23 +82,19 @@
       * The goal should be to push Rename as close to the base tables
         as possible so that the names of attribute will be consistent
         throughout the whole tree.
-
-* A Union of relations with the same base, header, and restrictions should
-  try to combine into a single relation with the restrictions using OR.
-
-* An Intersection of relations with the same base, header, and restrictions
-  should try to combine into a single relation with the restrictions using
-  AND.
-
-* A Difference of relations with the same base and restrictions should
-  try to combine into a single relation with the restrictions using NOT.
-
-* Join Optimizations
-  * When a Join contains a Join, and the size of the base relations is
-    known, join the smallest with the largest, and then join that result
-    with the remaining relation.
-  * Make sure the smallest relation (with a known size) is always the
-    right-most operation.
+  * A Union of relations with the same base, header, and restrictions should
+    try to combine into a single relation with the restrictions using OR.
+  * An Intersection of relations with the same base, header, and restrictions
+    should try to combine into a single relation with the restrictions using
+    AND.
+  * A Difference of relations with the same base and restrictions should
+    try to combine into a single relation with the restrictions using NOT.
+  * Join Optimizations
+    * When a Join contains a Join, and the size of the base relations is
+      known, join the smallest with the largest, and then join that result
+      with the remaining relation.
+    * Make sure the smallest relation (with a known size) is always the
+      right-most operation.
 
 * Allow Inclusion match to accept a Relation
   * Ensure that Inclusion can have the left/right be an Array of
@@ -120,6 +113,19 @@
 * Add Relation#antijoin
 
 * Add Relation#nest and Relation#unnest
+
+* Add aliases for some common operations in Method classes, eg:
+  * Predicates:
+    * Alias #== to #eq (may break alot)
+    * Alias #!= to #ne (in 1.9 only)
+    * Alias #>= to #gte
+    * Alias #> to #gt
+    * Alias #<= to #lte
+    * Alias #< to #lt
+    * Alias #=~ to #match
+  * Direction:
+    * Alias #@+ to #asc
+    * Alias #@- to #desc
 
 * Update memoization to take into account the arguments passed into
   the method. It should memoize differently for different
