@@ -5,7 +5,6 @@ module Veritas
 
       def self.new(left, right)
         assert_joinable_headers(left, right)
-        assert_not_equivalent_headers(left, right)
         super
       end
 
@@ -15,13 +14,7 @@ module Veritas
         end
       end
 
-      def self.assert_not_equivalent_headers(left, right)
-        if left.header == right.header
-          raise InvalidHeaderError, 'the headers are identical, use intersection instead'
-        end
-      end
-
-      private_class_method :assert_joinable_headers, :assert_not_equivalent_headers
+      private_class_method :assert_joinable_headers
 
       def initialize(left, right)
         super

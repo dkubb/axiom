@@ -15,7 +15,7 @@ describe 'Veritas::Algebra::Join.new' do
   context 'with relations having equivalent headers' do
     let(:right) { left.dup }
 
-    specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers are identical, use intersection instead') }
+    specify { expect { subject }.to_not raise_error }
   end
 
   context 'with relations having different headers' do
