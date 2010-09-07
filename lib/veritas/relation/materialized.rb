@@ -6,6 +6,10 @@ module Veritas
         @directions = Operation::Order::DirectionSet.coerce(directions)
       end
 
+      def materialize
+        self
+      end
+
       def empty?
         tuples.empty?
       end
