@@ -53,17 +53,19 @@ module Veritas
       end
 
       def create_memoize_method_for(memoized_method, method)
+        visibility = method_visibility(method)
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
           def #{method}(*args)                                     # def name(*args)
             @__memory['@#{method}'] ||= #{memoized_method}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
           end                                                      # end
-          #{method_visibility(method)} :#{method}                  # private :name
         RUBY
+        send(visibility, method)
       end
 
       def method_visibility(method)
         if    private_method_defined?(method)   then 'private'
         elsif protected_method_defined?(method) then 'protected'
+        else                                         'public'
         end
       end
 
