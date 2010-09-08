@@ -27,11 +27,9 @@ module Veritas
       end
 
       def each
-        header = self.header
-        operand.each do |tuple|
-          values = extensions.map { |extension| extension.call(tuple) }
-          yield tuple.class.new(header, tuple.to_ary + values)
-        end
+        header     = self.header
+        extensions = self.extensions
+        operand.each { |tuple| yield tuple.extend(header, extensions) }
         self
       end
 
