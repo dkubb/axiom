@@ -1,3 +1,15 @@
+* Add Relation#extend
+  * Adds a computed attribute based on the other values in the tuple
+  * The object added responds to #call, and accepts the tuple as an
+    argument. The return value is used as the value in the tuple.
+
+* Add Relation#summarize
+  * Adds a computed attribute that summarizes other values in the tuple
+    and projects away attributes.
+  * The values from each tuple that are being "folded" together are
+    passed into the #call method, which can perform any operation
+    on the values. The return value is used as the value in the tuple.
+
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
@@ -17,18 +29,6 @@
   * Remove the knowledge of directions from materialized relations
     and instead wrap materialized relations in the Order object
     if any.
-
-* Add Relation#extend
-  * Adds a computed attribute based on the other values in the tuple
-  * The object added responds to #call, and accepts the tuple as an
-    argument. The return value is used as the value in the tuple.
-
-* Add Relation#summarize
-  * Adds a computed attribute that summarizes other values in the tuple
-    and projects away attributes.
-  * The values from each tuple that are being "folded" together are
-    passed into the #call method, which can perform any operation
-    on the values. The return value is used as the value in the tuple.
 
 * Add further optimizations:
   * Operation Order:
