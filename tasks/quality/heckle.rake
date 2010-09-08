@@ -5,6 +5,7 @@ $LOAD_PATH.unshift(File.expand_path('../../../lib', __FILE__))
 
 begin
   require 'pathname'
+  require 'active_support/inflector'
   require 'heckle'
   require 'mspec'
   require 'mspec/utils/name_map'
