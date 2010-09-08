@@ -31,6 +31,7 @@ module Veritas
   class InvalidDirectionsError       < ArgumentError; end
   class OrderedRelationRequiredError < StandardError; end
   class RelationMismatchError        < StandardError; end
+  class DuplicateHeaderName          < StandardError; end
 
   TABLE_DUM = Relation.new([], [    ]).optimize
   TABLE_DEE = Relation.new([], [ [] ]).optimize

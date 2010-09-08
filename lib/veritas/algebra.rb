@@ -1,4 +1,5 @@
 require 'veritas/algebra/difference'
+require 'veritas/algebra/extension'
 require 'veritas/algebra/intersection'
 require 'veritas/algebra/join'
 require 'veritas/algebra/product'
