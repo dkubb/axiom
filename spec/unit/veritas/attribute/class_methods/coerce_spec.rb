@@ -14,4 +14,16 @@ describe 'Veritas::Attribute.coerce' do
 
     it { should eql(Attribute::Integer.new(:id)) }
   end
+
+  context 'when the object does not respond to #to_ary, but does respond to #to_sym' do
+    let(:object) { :id }
+
+    it { should eql(Attribute::Object.new(:id)) }
+  end
+
+  context 'when the object does not respond to #to_ary or #to_sym' do
+    let(:object) { Integer }
+
+    specify { expect { subject }.to raise_error(NoMethodError) }
+  end
 end

@@ -75,7 +75,8 @@ module Veritas
         object
       else
         name, type = object
-        const_get(type.name).new(name)
+        klass = type.nil? ? Object : const_get(type.name)
+        klass.new(name)
       end
     end
 
