@@ -34,8 +34,8 @@ module Veritas
       end
 
       module Methods
-        def extend(extenders = yield(self))
-          Extension.new(self, extenders)
+        def extend(extensions = yield(self))
+          Extension.new(self, extensions)
         end
 
       end # module Methods
