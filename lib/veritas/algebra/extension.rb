@@ -22,7 +22,7 @@ module Veritas
 
       def initialize(operand, extensions)
         super(operand)
-        @header    |= extensions.keys.map { |name| Attribute::Object.new(name) }
+        @header     |= extensions.keys.map { |name| Attribute::Object.new(name) }
         @extensions  = Immutable.freeze_value(extensions.values)
       end
 
