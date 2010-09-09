@@ -8,9 +8,9 @@ describe 'Veritas::Algebra::Extension#extensions' do
   let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
   let(:object)     { klass.new(operand, extensions)                       }
 
-  it { should be_kind_of(Array) }
+  it { should_not equal(extensions) }
 
-  it { should == extensions.values }
+  it { should eql(extensions) }
 
   it { should be_frozen }
 

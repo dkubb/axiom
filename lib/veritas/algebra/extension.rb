@@ -22,13 +22,13 @@ module Veritas
 
       def initialize(operand, extensions)
         super(operand)
-        @header     |= extensions.keys.map { |attribute| Attribute.coerce(attribute) }
-        @extensions  = Immutable.freeze_value(extensions.values)
+        @extensions  = Immutable.freeze_value(extensions)
+        @header     |= @extensions.keys.map { |attribute| Attribute.coerce(attribute) }
       end
 
       def each
         header     = self.header
-        extensions = self.extensions
+        extensions = self.extensions.values
         operand.each { |tuple| yield tuple.extend(header, extensions) }
         self
       end
