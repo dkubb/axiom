@@ -1,4 +1,5 @@
 require 'veritas/optimizer/algebra/difference'
+require 'veritas/optimizer/algebra/extension'
 require 'veritas/optimizer/algebra/intersection'
 require 'veritas/optimizer/algebra/join'
 require 'veritas/optimizer/algebra/product'
