@@ -6,9 +6,9 @@ describe 'Veritas::Optimizer::Algebra::Extension::UnoptimizedOperand#optimize' d
   let(:klass)      { Optimizer::Algebra::Extension::UnoptimizedOperand }
   let(:header)     { Relation::Header.new([ [ :id, Integer ] ])        }
   let(:base)       { Relation.new(header, [ [ 1 ] ].each)              }
-  let(:extensions) { { :text => lambda { |tuple| 1 } }                 }
+  let(:extensions) { [ :text, lambda { |tuple| 1 } ]                   }
   let(:operand)    { base.project(header)                              }
-  let(:relation)   { operand.extend(extensions)                        }
+  let(:relation)   { operand.extend { |r| r.add(*extensions) }         }
   let(:object)     { klass.new(relation)                               }
 
   before do
@@ -17,7 +17,7 @@ describe 'Veritas::Optimizer::Algebra::Extension::UnoptimizedOperand#optimize' d
 
   it { should_not equal(operand) }
 
-  it { should eql(base.extend(extensions)) }
+  it { should eql(base.extend { |r| r.add(*extensions) }) }
 
-  its(:extensions) { should == extensions }
+  its(:extensions) { should == Hash[ [extensions] ] }
 end

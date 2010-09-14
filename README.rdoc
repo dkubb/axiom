@@ -69,6 +69,9 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
 
   # NOTE: theta-join is effectively restricting a product of the relations
 
+  # extend
+  new_relation = relation.extend { |r| r.add(:count, r[:a].count) }
+
   # Non-Relational Operators
   # ------------------------
 

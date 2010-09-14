@@ -34,8 +34,9 @@ module Veritas
       end
 
       module Methods
-        def extend(extensions = yield(self))
-          Extension.new(self, extensions)
+        def extend(&block)
+          evaluator = Evaluator::Expression.new(&block)
+          Extension.new(self, evaluator.expressions)
         end
 
       end # module Methods

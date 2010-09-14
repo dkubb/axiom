@@ -6,8 +6,8 @@ describe 'Veritas::Optimizer::Algebra::Extension::UnoptimizedOperand#optimizable
   let(:klass)      { Optimizer::Algebra::Extension::UnoptimizedOperand }
   let(:header)     { Relation::Header.new([ [ :id, Integer ] ])        }
   let(:base)       { Relation.new(header, [ [ 1 ] ].each)              }
-  let(:extensions) { { :text => lambda { |tuple| 1 } }                 }
-  let(:relation)   { operand.extend(extensions)                        }
+  let(:extensions) { [ :text, lambda { |tuple| 1 } ]                   }
+  let(:relation)   { operand.extend { |r| r.add(*extensions) }         }
   let(:object)     { klass.new(relation)                               }
 
   before do
