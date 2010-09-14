@@ -15,6 +15,8 @@ require 'veritas/support/optimizable'
 require 'veritas/support/operation/binary'
 require 'veritas/support/operation/unary'
 
+require 'veritas/support/evaluator'
+
 require 'veritas/logic'
 require 'veritas/relation'
 require 'veritas/algebra'
