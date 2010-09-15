@@ -19,8 +19,8 @@ describe 'Veritas::Logic::Connective::Conjunction#optimize' do
   end
 
   context 'left and right are inverse predicates' do
-    let(:left)  { Logic::Connective::Complement.new(attribute.gt(1)) }
-    let(:right) { Logic::Connective::Complement.new(attribute.lt(3)) }
+    let(:left)  { Logic::Connective::Negation.new(attribute.gt(1)) }
+    let(:right) { Logic::Connective::Negation.new(attribute.lt(3)) }
 
     it { should_not equal(object) }
 

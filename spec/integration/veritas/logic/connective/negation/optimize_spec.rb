@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Complement#optimize' do
+describe 'Veritas::Logic::Connective::Negation#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Logic::Connective::Complement }
-  let(:attribute) { Attribute::Integer.new(:id)   }
-  let(:object)    { klass.new(operand)            }
+  let(:klass)     { Logic::Connective::Negation }
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:object)    { klass.new(operand)          }
 
   context 'operand is a predicate' do
     let(:operand) { attribute.gt(1) }

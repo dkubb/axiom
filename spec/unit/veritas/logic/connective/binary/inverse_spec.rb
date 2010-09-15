@@ -7,10 +7,10 @@ describe 'Veritas::Logic::Connective::Binary#inverse' do
   let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
   let(:left)       { Logic::Predicate::Equality.new(header[:id], 1)                }
   let(:right)      { Logic::Predicate::Equality.new(header[:id], 2)                }
-  let(:connective) { BinarySpecs::Complement.new(left, right)                      }
+  let(:connective) { BinarySpecs::Negation.new(left, right)                        }
 
   it 'inverts the connective' do
-    should eql(Logic::Connective::Complement.new(connective))
+    should eql(Logic::Connective::Negation.new(connective))
   end
 
   it 'is invertible' do

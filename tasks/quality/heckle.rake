@@ -66,7 +66,7 @@ begin
     %w[
       Veritas::Logic::Connective::Conjunction::Methods
       Veritas::Logic::Connective::Disjunction::Methods
-      Veritas::Logic::Connective::Complement::Methods
+      Veritas::Logic::Connective::Negation::Methods
     ].each do |mod|
       NameMap::MAP['&'][mod] = 'and'
       NameMap::MAP['|'][mod] = 'or'

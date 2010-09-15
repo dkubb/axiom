@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Complement.call' do
-  subject { Logic::Connective::Complement.call(operand) }
+describe 'Veritas::Logic::Connective::Negation.call' do
+  subject { Logic::Connective::Negation.call(operand) }
 
   context 'when operand is true' do
     let(:operand) { true }

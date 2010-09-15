@@ -8,7 +8,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction.optimize_predicate' do
   let(:object)    { Optimizer::Algebra::Restriction }
 
   context 'when the predicate is optimizable' do
-    let(:predicate) { Logic::Connective::Complement.new(attribute.eq(1)) }
+    let(:predicate) { Logic::Connective::Negation.new(attribute.eq(1)) }
 
     it { should eql(attribute.ne(1)) }
   end

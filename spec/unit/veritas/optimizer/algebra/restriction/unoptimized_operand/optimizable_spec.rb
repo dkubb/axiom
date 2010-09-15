@@ -14,8 +14,8 @@ describe 'Veritas::Optimizer::Algebra::Restriction::UnoptimizedOperand#optimizab
   end
 
   context 'when the operand and predicate is optimizable' do
-    let(:predicate) { Logic::Connective::Complement.new(header[:id].eq(1)) }
-    let(:operand)   { base.project(header)                                 }
+    let(:predicate) { Logic::Connective::Negation.new(header[:id].eq(1)) }
+    let(:operand)   { base.project(header)                               }
 
     it { should be(true) }
   end
@@ -28,8 +28,8 @@ describe 'Veritas::Optimizer::Algebra::Restriction::UnoptimizedOperand#optimizab
   end
 
   context 'when the operand is not optimizable, but the predicate is optimizable' do
-    let(:predicate) { Logic::Connective::Complement.new(header[:id].eq(1)) }
-    let(:operand)   { base                                                 }
+    let(:predicate) { Logic::Connective::Negation.new(header[:id].eq(1)) }
+    let(:operand)   { base                                               }
 
     it { should be(true) }
   end

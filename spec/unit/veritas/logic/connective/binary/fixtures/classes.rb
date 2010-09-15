@@ -7,10 +7,10 @@ module BinarySpecs
 
   end # class Object
 
-  class Complement < Object
+  class Negation < Object
     def eql?(other)
       equal?(other)
     end
 
-  end # class Complement
+  end # class Negation
 end # module BinarySpecs

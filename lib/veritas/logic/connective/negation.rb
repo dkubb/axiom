@@ -1,7 +1,7 @@
 module Veritas
   module Logic
     class Connective
-      class Complement < Connective
+      class Negation < Connective
         extend Aliasable
         include Operation::Unary
 
@@ -41,14 +41,14 @@ module Veritas
           inheritable_alias(:- => :not)
 
           def not(other)
-            self.and(Complement.new(other))
+            self.and(Negation.new(other))
           end
 
         end # module Methods
 
         Connective::Methods.class_eval { include Methods }
 
-      end # class Complement
+      end # class Negation
     end # class Connective
   end # module Logic
 end # module Veritas

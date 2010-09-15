@@ -13,6 +13,6 @@ require 'veritas/logic/connective/binary'
 
 require 'veritas/logic/connective/conjunction'
 require 'veritas/logic/connective/disjunction'
-require 'veritas/logic/connective/complement'
+require 'veritas/logic/connective/negation'
 
 Veritas::Logic::Expression.class_eval { include Veritas::Logic::Connective::Methods }

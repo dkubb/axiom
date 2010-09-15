@@ -35,7 +35,7 @@ module Veritas
         end
 
         def inverse
-          Complement.new(self)
+          Negation.new(self)
         end
 
         memoize :inverse
