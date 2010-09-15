@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Connective::Negation.call' do
-  subject { Logic::Connective::Negation.call(operand) }
+  subject { object.call(operand) }
+
+  let(:object) { Logic::Connective::Negation }
 
   context 'when operand is true' do
     let(:operand) { true }

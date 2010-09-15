@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Connective::Negation#inspect' do
-  subject { negation.inspect }
+  subject { object.inspect }
 
-  let(:attribute) { Attribute::Integer.new(:id)              }
-  let(:operand)   { attribute.eq(1)                          }
-  let(:negation)  { Logic::Connective::Negation.new(operand) }
+  let(:klass)     { Logic::Connective::Negation }
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:operand)   { attribute.eq(1)             }
+  let(:object)    { klass.new(operand)          }
 
   it { should == "NOT(#{operand.inspect})" }
 end
