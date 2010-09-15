@@ -15,8 +15,8 @@ module Veritas
         self.class.call
       end
 
-      def complement
-        self.class.complement.instance
+      def inverse
+        self.class.inverse.instance
       end
 
       def eql?(other)

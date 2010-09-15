@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Inequality#complement' do
-  subject { inequality.complement }
+describe 'Veritas::Logic::Predicate::Inequality#inverse' do
+  subject { inequality.inverse }
 
   let(:attribute)  { Attribute::Integer.new(:id) }
   let(:inequality) { attribute.ne(1)             }
 
   it { should eql(attribute.eq(1)) }
 
-  it 'is reversible' do
-    subject.complement.should equal(inequality)
+  it 'is invertible' do
+    subject.inverse.should equal(inequality)
   end
 
   it_should_behave_like 'an idempotent method'

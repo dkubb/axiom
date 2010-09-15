@@ -15,7 +15,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
       end
     end
 
-    it 'returns a conjunction of the proposition and a complemented predicate' do
+    it 'returns a conjunction of the proposition and a inverted predicate' do
       should eql(Logic::Connective::Conjunction.new(proposition, Logic::Connective::Complement.new(predicate)))
     end
   end

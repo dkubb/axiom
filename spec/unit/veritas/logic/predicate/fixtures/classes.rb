@@ -4,7 +4,7 @@ module PredicateSpecs
       'Veritas::Logic::Predicate'
     end
 
-    def self.complement
+    def self.inverse
       self
     end
 

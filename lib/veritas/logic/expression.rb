@@ -4,8 +4,8 @@ module Veritas
       extend Aliasable
       include AbstractClass, Optimizable, Immutable
 
-      # alias #! to #complement when available
-      inheritable_alias('!' => :complement) if Object.method_defined?('!')
+      # alias #! to #inverse when available
+      inheritable_alias('!' => :inverse) if Object.method_defined?('!')
 
       def self.call(*)
         raise NotImplementedError, "#{name}.call must be implemented"
@@ -19,8 +19,8 @@ module Veritas
         self
       end
 
-      def complement
-        raise NotImplementedError, "#{self.class}#complement must be implemented"
+      def inverse
+        raise NotImplementedError, "#{self.class}#inverse must be implemented"
       end
 
       def ==(other)

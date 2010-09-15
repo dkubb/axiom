@@ -34,11 +34,11 @@ module Veritas
           end
         end
 
-        def complement
+        def inverse
           Complement.new(self)
         end
 
-        memoize :complement
+        memoize :inverse
 
       end # module Binary
     end # class Connective

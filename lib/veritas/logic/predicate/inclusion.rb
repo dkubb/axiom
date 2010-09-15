@@ -10,7 +10,7 @@ module Veritas
           right.include?(left)
         end
 
-        def self.complement
+        def self.inverse
           Exclusion
         end
 

@@ -19,11 +19,11 @@ module Veritas
 
           class ComplementableOperand < self
             def optimizable?
-              operand.respond_to?(:complement)
+              operand.respond_to?(:inverse)
             end
 
             def optimize
-              operand.complement
+              operand.inverse
             end
 
           end # class ComplementableOperand

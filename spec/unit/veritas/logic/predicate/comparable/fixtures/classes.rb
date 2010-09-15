@@ -9,7 +9,7 @@ module PredicateComparableSpecs
       :==
     end
 
-    def self.complement
+    def self.inverse
       self
     end
 

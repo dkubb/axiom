@@ -18,7 +18,7 @@ describe 'Veritas::Logic::Connective::Disjunction#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are complemented predicates' do
+  context 'left and right are inverse predicates' do
     let(:left)  { Logic::Connective::Complement.new(attribute.gt(1)) }
     let(:right) { Logic::Connective::Complement.new(attribute.lt(3)) }
 

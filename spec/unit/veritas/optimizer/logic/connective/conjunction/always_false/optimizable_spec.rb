@@ -33,7 +33,7 @@ describe 'Veritas::Optimizer::Logic::Connective::Conjunction::AlwaysFalse#optimi
     it { should be(true) }
   end
 
-  context 'when left and right are complements' do
+  context 'when left and right are inverses' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.ne(1) }
 

@@ -5,7 +5,7 @@ module Veritas
         extend Aliasable
         include Operation::Unary
 
-        inheritable_alias(:complement => :operand)
+        inheritable_alias(:inverse => :operand)
 
         def self.call(operand)
           !operand

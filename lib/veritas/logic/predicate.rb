@@ -35,16 +35,16 @@ module Veritas
         end
       end
 
-      def complement
-        self.class.complement.new(left, right).
-          memoize(:complement, self)
+      def inverse
+        self.class.inverse.new(left, right).
+          memoize(:inverse, self)
       end
 
       def self.extract_value(operand, tuple)
         operand.respond_to?(:call) ? operand.call(tuple) : operand
       end
 
-      memoize :complement
+      memoize :inverse
 
     end # class Predicate
   end # module Logic

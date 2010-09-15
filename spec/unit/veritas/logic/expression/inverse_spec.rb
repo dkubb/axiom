@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-methods = [ :complement ]
+methods = [ :inverse ]
 methods << '!' if respond_to?('!')  # available in Ruby 1.9
 
 methods.each do |method|
@@ -10,6 +10,6 @@ methods.each do |method|
 
     let(:proposition) { ExpressionSpecs::Object.new }
 
-    specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#complement must be implemented') }
+    specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#inverse must be implemented') }
   end
 end

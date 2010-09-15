@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Complement#complement' do
-  subject { complement.complement }
+describe 'Veritas::Logic::Connective::Complement#inverse' do
+  subject { complement.inverse }
 
   let(:attribute)  { Attribute::Integer.new(:id)                }
   let(:operand)    { attribute.eq(1)                            }
@@ -11,8 +11,8 @@ describe 'Veritas::Logic::Connective::Complement#complement' do
     should equal(operand)
   end
 
-  it 'is not reversible' do
-    subject.complement.should_not eql(complement)
+  it 'is not invertible' do
+    subject.inverse.should_not eql(complement)
   end
 
   it_should_behave_like 'an idempotent method'

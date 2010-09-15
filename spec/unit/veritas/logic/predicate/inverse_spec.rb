@@ -1,12 +1,12 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate#complement' do
-  subject { predicate.complement }
+describe 'Veritas::Logic::Predicate#inverse' do
+  subject { predicate.inverse }
 
-  let(:klass)     { Class.new(PredicateSpecs::Object)        }
-  let(:attribute) { Attribute::Integer.new(:id)              }
-  let(:predicate) { klass.new(attribute, 1) }
+  let(:klass)     { Class.new(PredicateSpecs::Object) }
+  let(:attribute) { Attribute::Integer.new(:id)       }
+  let(:predicate) { klass.new(attribute, 1)           }
 
   before do
     klass.class_eval do
@@ -23,8 +23,8 @@ describe 'Veritas::Logic::Predicate#complement' do
   its(:left)  { should equal(attribute) }
   its(:right) { should == 1             }
 
-  it 'is reversible' do
-    subject.complement.should equal(predicate)
+  it 'is invertible' do
+    subject.inverse.should equal(predicate)
   end
 
   it_should_behave_like 'an idempotent method'

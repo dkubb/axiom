@@ -2,7 +2,7 @@ module Veritas
   module Logic
     class Proposition
       class True < Proposition
-        def self.complement
+        def self.inverse
           False
         end
 

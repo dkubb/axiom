@@ -42,7 +42,7 @@ module Veritas
               left_false?                    ||
               right_false?                   ||
               equality_with_same_attributes? ||
-              left.complement.eql?(right)
+              left.inverse.eql?(right)
             end
 
             def optimize

@@ -10,7 +10,7 @@ module Veritas
             include Predicate::AlwaysFalse
 
             def optimizable?
-              super || LessThan::AlwaysTrue.new(operation.complement).optimizable?
+              super || LessThan::AlwaysTrue.new(operation.inverse).optimizable?
             end
 
           end # class AlwaysFalse

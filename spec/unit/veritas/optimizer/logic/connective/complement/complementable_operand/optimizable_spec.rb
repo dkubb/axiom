@@ -12,13 +12,13 @@ describe 'Veritas::Optimizer::Logic::Connective::Complement::ComplementableOpera
     object.operation.should be_kind_of(Logic::Connective::Complement)
   end
 
-  context 'when operand is complementable' do
+  context 'when operand is invertible' do
     let(:operand) { attribute.eq(1) }
 
     it { should be(true) }
   end
 
-  context 'when operand is not complementable' do
+  context 'when operand is not invertible' do
     let(:operand) { proc { true } }
 
     it { should be(false) }

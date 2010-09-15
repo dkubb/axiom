@@ -8,7 +8,7 @@ module Veritas
           :>
         end
 
-        def self.complement
+        def self.inverse
           LessThanOrEqualTo
         end
 
