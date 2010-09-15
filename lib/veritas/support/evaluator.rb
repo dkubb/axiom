@@ -8,6 +8,7 @@ module Veritas
       def initialize
         @expressions = {}
         yield self
+        @expressions.freeze
       end
 
       def add(attribute, expression = nil, &block)

@@ -9,4 +9,6 @@ describe 'Veritas::Evaluator::Expression#expressions' do
   let(:object)    { klass.new { |o| o.add(attribute, function) } }
 
   it { should == { attribute => function } }
+
+  it { should be_frozen }
 end

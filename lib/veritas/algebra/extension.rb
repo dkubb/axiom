@@ -22,7 +22,7 @@ module Veritas
 
       def initialize(operand, extensions)
         super(operand)
-        @extensions  = Immutable.freeze_value(extensions)
+        @extensions  = extensions
         @header     |= @extensions.keys
       end
 
