@@ -12,7 +12,7 @@ module Veritas
 
       def self.assert_unique_header(operand, extensions)
         header     = operand.header
-        duplicates = extensions.keys.select { |name| header[name] }.sort
+        duplicates = extensions.keys.select { |attribute| header[attribute] }.sort
         if duplicates.any?
           raise DuplicateHeaderName, "extensions with duplicate header names: #{duplicates.join(', ')}"
         end
@@ -23,7 +23,7 @@ module Veritas
       def initialize(operand, extensions)
         super(operand)
         @extensions  = Immutable.freeze_value(extensions)
-        @header     |= @extensions.keys.map { |attribute| Attribute.coerce(attribute) }
+        @header     |= @extensions.keys
       end
 
       def each

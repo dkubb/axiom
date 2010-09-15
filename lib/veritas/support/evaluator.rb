@@ -11,7 +11,7 @@ module Veritas
       end
 
       def add(attribute, expression = nil, &block)
-        expressions[attribute] = expression || block
+        expressions[Attribute.coerce(attribute)] = expression || block
         self
       end
 
