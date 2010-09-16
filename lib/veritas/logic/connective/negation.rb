@@ -32,7 +32,7 @@ module Veritas
         end
 
         def inspect
-          "NOT(#{operand.inspect})"
+          "not(#{operand.inspect})"
         end
 
         module Methods

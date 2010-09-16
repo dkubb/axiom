@@ -8,5 +8,5 @@ describe 'Veritas::Logic::Connective::Negation#inspect' do
   let(:operand)   { attribute.eq(1)             }
   let(:object)    { klass.new(operand)          }
 
-  it { should == "NOT(#{operand.inspect})" }
+  it { should == "not(#{operand.inspect})" }
 end
