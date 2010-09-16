@@ -17,9 +17,12 @@ module Veritas
       self.class.new(header, header.map { |attribute| self[attribute] })
     end
 
+    def join(header, values)
+      self.class.new(header, to_ary + values)
+    end
+
     def extend(header, extensions)
-      data = to_ary + extensions.map { |extension| extension.call(self) }
-      self.class.new(header, data)
+      join(header, extensions.map { |extension| extension.call(self) })
     end
 
     def to_ary

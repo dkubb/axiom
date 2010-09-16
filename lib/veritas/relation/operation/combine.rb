@@ -6,7 +6,7 @@ module Veritas
 
         def self.combine_tuples(header, left_tuple, right_tuples)
           right_tuples.each do |right_tuple|
-            yield Tuple.new(header, left_tuple.to_ary + right_tuple.to_ary)
+            yield left_tuple.join(header, right_tuple)
           end
         end
 
