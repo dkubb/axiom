@@ -50,8 +50,19 @@ module Veritas
 
       module Methods
         def summarize(summarize_by, &block)
+          relation  = summarize_by_relation(summarize_by)
           evaluator = Evaluator::Expression.new(&block)
-          Summarization.new(self, summarize_by, evaluator.expressions)
+          Summarization.new(self, relation, evaluator.expressions)
+        end
+
+      private
+
+        def summarize_by_relation(summarize_by)
+          if summarize_by.kind_of?(Relation)
+            summarize_by
+          else
+            project(Relation::Header.coerce(summarize_by))
+          end
         end
 
       end # module Methods

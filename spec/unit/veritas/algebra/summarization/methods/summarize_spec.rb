@@ -1,16 +1,30 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Summarization::Methods#summarize' do
-  subject { object.summarize(object, &block) }
+  subject { object.summarize(summarize_by, &block) }
 
   let(:klass)       { Relation                                   }
   let(:summarizers) { [ :test, lambda { |tuple, acc| 1 } ]       }
   let(:block)       { lambda { |r| r.add(*summarizers) }         }
   let(:object)      { klass.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
-  it { should be_kind_of(Algebra::Summarization) }
+  context 'when summarizing by a relation' do
+    let(:summarize_by) { object }
 
-  its(:operand) { should equal(object) }
+    it { should be_kind_of(Algebra::Summarization) }
 
-  its(:summarize_by) { should equal(object) }
+    its(:operand) { should equal(object) }
+
+    its(:summarize_by) { should equal(summarize_by) }
+  end
+
+  context 'when summarizing by a header' do
+    let(:summarize_by) { [ :id ] }
+
+    it { should be_kind_of(Algebra::Summarization) }
+
+    its(:operand) { should equal(object) }
+
+    its(:summarize_by) { should == object.project(summarize_by) }
+  end
 end
