@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Summarization#each' do
 
   let(:klass)       { Algebra::Summarization                               }
   let(:operand)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:summarizers) { { :count => lambda { |tuple, acc| acc + 1 } }        }
+  let(:summarizers) { { :count => lambda { |tuple, acc| acc.to_i + 1 } }   }
   let(:object)      { klass.new(operand, operand.project([]), summarizers) }
   let(:yields)      { []                                                   }
 

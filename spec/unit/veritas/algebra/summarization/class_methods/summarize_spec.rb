@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Summarization.summarize' do
 
   let(:header)     { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)      { Tuple.new(header, [ 1 ])                   }
-  let(:summarizer) { lambda { |tuple, acc| acc + 1 }            }
+  let(:summarizer) { lambda { |tuple, acc| acc.to_i + 1 }       }
   let(:object)     { Algebra::Summarization                     }
 
   context 'when the accumulator is uninitialized' do

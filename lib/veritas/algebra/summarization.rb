@@ -44,8 +44,7 @@ module Veritas
       end
 
       def self.summarize(tuple, summary, summarizer)
-        acc = summary.fetch(summarizer, 0)  # TODO: get the default from summarizer
-        summary[summarizer] = summarizer.call(tuple, acc)
+        summary[summarizer] = summarizer.call(tuple, summary[summarizer])
         self
       end
 
