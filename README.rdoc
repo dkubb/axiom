@@ -74,7 +74,7 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.extend { |r| r.add(:total) { |t| t[:unit_price] * t[:quantity] } }
 
   # summarize
-  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count) { |acc, t| acc + 1 } }
+  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count) { |t, acc| acc + 1 } }
   new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count, r[:name].count)
 
   # Non-Relational Operators
