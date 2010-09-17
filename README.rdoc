@@ -18,7 +18,7 @@ Not only does this work nicely with associations, but it will allow DataMapper t
 
 The first phase of this project will be to implement all the operations listed below using in-memory data structures. I'm focusing on the API, and making sure the specs ensure the desired results are obtained from each operation.
 
-This is approximately *90% Complete*
+This has been marked as 90% complete for some time. In actuality most of the features below are completed besides the first examples for #extend and #summarize. Those will require a system to define functions as objects that can be introspected and walked to "visit" and generate SQL or other query languages from them. The Proc based functions are opaque and will probably never be possible to generate native queries from them. For this reason they will only be recommended when they depends on functionality not available in the datastore.
 
 === Phase 2: RDBMS Engines
 
@@ -74,8 +74,8 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.extend { |r| r.add(:total) { |t| t[:unit_price] * t[:quantity] } }
 
   # summarize
-  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count) { |t, acc| acc.to_i + 1 } }
   new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count, r[:name].count)
+  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count) { |t, acc| acc.to_i + 1 } }
 
   # Non-Relational Operators
   # ------------------------
