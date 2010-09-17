@@ -7,7 +7,7 @@ describe 'Veritas::Optimizer::Algebra::Summarization::UnoptimizedOperand#optimiz
   let(:header)    { Relation::Header.new([ [ :id, Integer ] ])                    }
   let(:base)      { Relation.new(header, [ [ 1 ] ].each)                          }
   let(:attribute) { Attribute::Object.new(:text)                                  }
-  let(:function)  { lambda { |tuple, acc| 1 }                                     }
+  let(:function)  { lambda { |acc, tuple| 1 }                                     }
   let(:operand)   { base.project(header)                                          }
   let(:relation)  { operand.summarize(operand) { |r| r.add(attribute, function) } }
   let(:object)    { klass.new(relation)                                           }

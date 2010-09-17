@@ -44,7 +44,7 @@ module Veritas
       end
 
       def self.summarize(tuple, summary, summarizer)
-        summary[summarizer] = summarizer.call(tuple, summary[summarizer])
+        summary[summarizer] = summarizer.call(summary[summarizer], tuple)
         self
       end
 

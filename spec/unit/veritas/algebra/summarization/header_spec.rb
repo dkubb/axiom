@@ -5,7 +5,7 @@ describe 'Veritas::Algebra::Summarization#header' do
 
   let(:klass)       { Algebra::Summarization                               }
   let(:operand)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:summarizers) { { :test => lambda { |tuple, acc| 1 } }               }
+  let(:summarizers) { { :test => lambda { |acc, tuple| 1 } }               }
   let(:object)      { klass.new(operand, operand, summarizers)             }
 
   it { should be_kind_of(Relation::Header) }

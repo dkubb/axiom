@@ -6,7 +6,7 @@ describe 'Veritas::Optimizer::Algebra::Summarization::UnoptimizedOperand#optimiz
   let(:klass)       { Optimizer::Algebra::Summarization::UnoptimizedOperand  }
   let(:header)      { Relation::Header.new([ [ :id, Integer ] ])             }
   let(:base)        { Relation.new(header, [ [ 1 ] ].each)                   }
-  let(:summarizers) { [ :text, lambda { |tuple, acc| 1 } ]                   }
+  let(:summarizers) { [ :text, lambda { |acc, tuple| 1 } ]                   }
   let(:relation)    { operand.summarize(operand) { |r| r.add(*summarizers) } }
   let(:object)      { klass.new(relation)                                    }
 
