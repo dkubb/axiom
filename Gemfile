@@ -7,17 +7,19 @@ group :development do
   gem 'backports', '~> 1.18.1'
 end
 
-#group :quality do
-#  gem 'flay',      '~> 1.4.0'
-#  gem 'flog',      '~> 2.2.0'
-#  gem 'heckle',    '~> 1.4.3'
-#  gem 'json',      '~> 1.4.6'
-#  gem 'metric_fu', '~> 1.5.1'
-#  gem 'mspec',     '~> 1.5.17'
-#  gem 'rcov',      '~> 0.9.8'
-#  gem 'reek',      '~> 1.2.8'
-#  gem 'roodi',     '~> 2.1'
-#  gem 'ruby2ruby', '=  1.2.2'
-#  gem 'yard',      '~> 0.5.8'
-#  gem 'yardstick', '~> 0.1'
-#end
+if RUBY_VERSION < '1.9'
+  group :quality do
+    gem 'flay',      '~> 1.4.0'
+    gem 'flog',      '~> 2.2.0'
+    gem 'heckle',    '~> 1.4.3'
+    gem 'json',      '~> 1.4.6'
+    gem 'metric_fu', '~> 1.5.1'
+    gem 'mspec',     '~> 1.5.17'
+    gem 'rcov',      '~> 0.9.8'
+    gem 'reek',      '~> 1.2.8'
+    gem 'roodi',     '~> 2.1'
+    gem 'ruby2ruby', '=  1.2.2'
+    gem 'yard',      '~> 0.5.8'
+    gem 'yardstick', '~> 0.1'
+  end
+end
