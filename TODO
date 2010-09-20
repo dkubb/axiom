@@ -1,3 +1,6 @@
+* Add Extension and Summarization Functions
+  * Overview: http://gist.github.com/584588
+
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
