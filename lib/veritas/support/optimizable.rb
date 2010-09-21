@@ -1,4 +1,6 @@
 module Veritas
+
+  # Allow operations to be optimizable
   module Optimizable
     include Immutable
 
@@ -6,6 +8,17 @@ module Veritas
       descendant.extend ClassMethods
     end
 
+    # Optimize the operation
+    #
+    # @example
+    #   optimized = operation.optimize
+    #
+    # @param [Optimizer] optimizer
+    #   optional optimizer
+    #
+    # @return [Optimizable]
+    #
+    # @api public
     def optimize(optimizer = self.class.optimizer)
       return self if optimizer.nil?
       optimized = optimizer.call(self)
@@ -15,6 +28,12 @@ module Veritas
     memoize :optimize
 
     module ClassMethods
+
+      # The Optimizer for the operation
+      #
+      # @return [Optimizable]
+      #
+      # @api private
       attr_accessor :optimizer
     end # module ClassMethods
   end # module Optimizable
