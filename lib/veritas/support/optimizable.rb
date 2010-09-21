@@ -17,6 +17,7 @@ module Veritas
     #   optional optimizer
     #
     # @return [Optimizable]
+    #   the optimized operation
     #
     # @api public
     def optimize(optimizer = self.class.optimizer)

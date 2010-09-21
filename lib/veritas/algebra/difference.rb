@@ -1,8 +1,24 @@
 module Veritas
   module Algebra
+
+    # The difference between relations
     class Difference < Relation
       include Relation::Operation::Set
 
+      # Iterate over each tuple in the set
+      #
+      # @example
+      #   difference = relation.difference(other)
+      #   difference.each { |tuple| ... }
+      #
+      # @yield [tuple]
+      #
+      # @yieldparam [Tuple] tuple
+      #   each tuple in the set
+      #
+      # @return [self]
+      #
+      # @api public
       def each
         right_set = right.to_set
         left.each { |tuple| yield(tuple) unless right_set.include?(tuple) }
@@ -14,6 +30,16 @@ module Veritas
 
         inheritable_alias(:- => :difference)
 
+        # Return the difference between relations
+        #
+        # @example
+        #   difference = relation.difference(other)
+        #
+        # @param [Relation] other
+        #
+        # @return [Difference]
+        #
+        # @api public
         def difference(other)
           Difference.new(self, other)
         end
