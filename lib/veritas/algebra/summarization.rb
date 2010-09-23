@@ -8,7 +8,7 @@ module Veritas
       def initialize(operand, summarize_by, summarizers)
         super(operand)
         @summarize_by = summarize_by
-        @summarizers  = summarizers
+        @summarizers  = summarizers.to_hash
         @header       = @summarize_by.header | @summarizers.keys
       end
 
