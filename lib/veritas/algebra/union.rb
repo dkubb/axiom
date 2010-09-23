@@ -1,8 +1,24 @@
 module Veritas
   module Algebra
+
+    # The union between relations
     class Union < Relation
       include Relation::Operation::Set
 
+      # Iterate over each tuple in the set
+      #
+      # @example
+      #   union = Union.new(left, right)
+      #   union.each { |tuple| ... }
+      #
+      # @yield [tuple]
+      #
+      # @yieldparam [Tuple] tuple
+      #   each tuple in the set
+      #
+      # @return [self]
+      #
+      # @api public
       def each
         seen = {}
         left.each  { |tuple| yield(seen[tuple] = tuple)           }
@@ -15,6 +31,16 @@ module Veritas
 
         inheritable_alias(:| => :union)
 
+        # Return the union between relations
+        #
+        # @example
+        #   union = relation.union(other)
+        #
+        # @param [Relation] other
+        #
+        # @return [Union]
+        #
+        # @api public
         def union(other)
           Union.new(self, other)
         end
