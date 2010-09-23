@@ -23,3 +23,7 @@ if RUBY_VERSION < '1.9'
     gem 'yardstick', '~> 0.1'
   end
 end
+
+group :benchmarks do
+  gem 'rbench', '~> 0.2.3'
+end
