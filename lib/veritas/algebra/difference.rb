@@ -8,7 +8,7 @@ module Veritas
       # Iterate over each tuple in the set
       #
       # @example
-      #   difference = relation.difference(other)
+      #   difference = Difference.new(left, right)
       #   difference.each { |tuple| ... }
       #
       # @yield [tuple]

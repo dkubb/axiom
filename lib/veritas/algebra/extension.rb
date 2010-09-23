@@ -97,7 +97,7 @@ module Veritas
         #
         # @param [Relation] other
         #
-        # @return [Difference]
+        # @return [Extension]
         #
         # @api public
         def extend(&block)
