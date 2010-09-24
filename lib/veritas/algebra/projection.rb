@@ -55,7 +55,6 @@ module Veritas
         #   the attributes to keep in the header
         #
         # @return [Projection]
-        #   a relation containing only the specified attributes
         #
         # @api public
         def project(attributes)
@@ -71,7 +70,6 @@ module Veritas
         #   the attributes to remove from the header
         #
         # @return [Projection]
-        #   a relation containing everything except the specified attributes
         #
         # @api public
         def remove(attributes)

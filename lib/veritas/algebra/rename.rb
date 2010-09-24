@@ -74,7 +74,6 @@ module Veritas
         #   the old and new attribute names
         #
         # @return [Rename]
-        #   a relation with renamed attributes
         #
         # @api public
         def rename(aliases)

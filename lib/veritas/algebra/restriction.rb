@@ -75,7 +75,6 @@ module Veritas
         #   optional predicate to restrict the tuples with
         #
         # @return [Restriction]
-        #   a relation with restricted tuples
         #
         # @api public
         def restrict(predicate = yield(self))
