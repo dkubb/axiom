@@ -95,7 +95,11 @@ module Veritas
         #     expression.add(:total, expression[:unit_price] * expression[:quantity])
         #   end
         #
-        # @param [Relation] other
+        # @yield [expression]
+        #   Evaluate an extension expression
+        #
+        # @yieldparam [Evaluator::Expression] expression
+        #   the context to evaluate the extension with
         #
         # @return [Extension]
         #
