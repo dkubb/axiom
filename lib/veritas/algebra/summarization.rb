@@ -1,10 +1,36 @@
 module Veritas
   module Algebra
+
+    # Summarize a relation by specific attributes
     class Summarization < Relation
       include Relation::Operation::Unary
 
-      attr_reader :summarize_by, :summarizers
+      # The relation to summarize by
+      #
+      # @return [Relation]
+      #
+      # @api private
+      attr_reader :summarize_by
 
+      # The summarizers for the relation
+      #
+      # @return [Hash]
+      #
+      # @api private
+      attr_reader :summarizers
+
+      # Initialize a Summarization
+      #
+      # @param [Relation] operand
+      #   the relation to summarize
+      # @param [Relation] summarize_by
+      #   the relation to summarize by
+      # @param [#to_hash] summarizers
+      #   the summarizers to add
+      #
+      # @return [undefined]
+      #
+      # @api private
       def initialize(operand, summarize_by, summarizers)
         super(operand)
         @summarize_by = summarize_by
@@ -12,6 +38,20 @@ module Veritas
         @header       = @summarize_by.header | @summarizers.keys
       end
 
+      # Iterate over each tuple in the set
+      #
+      # @example
+      #   summarization = Summarization.new(self, relation, evaluator.expressions)
+      #   summarization.each { |tuple| ... }
+      #
+      # @yield [tuple]
+      #
+      # @yieldparam [Tuple] tuple
+      #   each tuple in the set
+      #
+      # @return [self]
+      #
+      # @api public
       def each
         header      = self.header
         summaries   = calculate_summaries
@@ -49,6 +89,23 @@ module Veritas
       end
 
       module Methods
+
+        # Return a summarized relation
+        #
+        # @example
+        #   summarization = relation.summarize(relation.project([ :name ])) do |expression|
+        #     expression.add(:count, expression[:name].count)
+        #   end
+        #
+        # @yield [expression]
+        #   Evaluate an summarization expression
+        #
+        # @yieldparam [Evaluator::Expression] expression
+        #   the context to evaluate the summarization with
+        #
+        # @return [Summarization]
+        #
+        # @api public
         def summarize(summarize_by, &block)
           relation  = summarize_by_relation(summarize_by)
           evaluator = Evaluator::Expression.new(&block)
