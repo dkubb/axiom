@@ -1,13 +1,36 @@
 module Veritas
   module Algebra
+
+    # The join between relations
     class Join < Relation
       include Relation::Operation::Combine
 
+      # Instantiate a new Join
+      #
+      # @example
+      #   join = Join.new(left, right)
+      #
+      # @param [Relation] left
+      #   a relation to join
+      # @param [Relation] right
+      #   a relation to join
+      #
+      # @return [Join]
+      #
+      # @api public
       def self.new(left, right)
         assert_joinable_headers(left, right)
         super
       end
 
+      # Assert the headers have common attributes
+      #
+      # @return [undefined]
+      #
+      # @raise [InvalidHeaderError]
+      #   raised if there are no common attributes between the headers
+      #
+      # @api private
       def self.assert_joinable_headers(left, right)
         if (left.header & right.header).empty?
           raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
@@ -16,6 +39,16 @@ module Veritas
 
       private_class_method :assert_joinable_headers
 
+      # Initialize a Join
+      #
+      # @param [Relation] left
+      #   a relation to join
+      # @param [Relation] right
+      #   a relation to join
+      #
+      # @return [undefined]
+      #
+      # @api private
       def initialize(left, right)
         super
         right_header      = right.header
@@ -23,6 +56,20 @@ module Veritas
         @remainder_header = right_header - @join_header
       end
 
+      # Iterate over each tuple in the set
+      #
+      # @example
+      #   join = Join.new(left, right)
+      #   join.each { |tuple| ... }
+      #
+      # @yield [tuple]
+      #
+      # @yieldparam [Tuple] tuple
+      #   each tuple in the set
+      #
+      # @return [self]
+      #
+      # @api public
       def each(&block)
         index = build_index
 
@@ -61,6 +108,31 @@ module Veritas
 
         inheritable_alias(:+ => :join)
 
+        # Return a relation that is the join of two relations
+        #
+        # @example natural join
+        #   join = relation.join(other)
+        #
+        # @example theta-join using a predicate
+        #   join = relation.join(other, relation[:a].gte(other[:b]))
+        #
+        # @example theta-join using a block
+        #   join = relation.join(other) { |r| r[:a].gte(r[:b]) }
+        #
+        # @param [Relation] other
+        #   the other relation to join
+        # @param [Expression, #call] predicate
+        #   the predicate to restrict the tuples with
+        #
+        # @yield [relation]
+        #   optional block to restrict the tuples with
+        #
+        # @yieldparam [Relation] relation
+        #   the context to evaluate the restriction with
+        #
+        # @return [Projection, Product]
+        #
+        # @api public
         def join(other, predicate = nil, &block)
           if predicate || block_given?
             theta_join(other, predicate, &block)
