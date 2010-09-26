@@ -11,9 +11,7 @@ module Veritas
       #   join = Join.new(left, right)
       #
       # @param [Relation] left
-      #   a relation to join
       # @param [Relation] right
-      #   a relation to join
       #
       # @return [Join]
       #
@@ -42,9 +40,7 @@ module Veritas
       # Initialize a Join
       #
       # @param [Relation] left
-      #   a relation to join
       # @param [Relation] right
-      #   a relation to join
       #
       # @return [undefined]
       #
