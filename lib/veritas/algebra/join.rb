@@ -126,7 +126,7 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
-        # @return [Projection, Product]
+        # @return [Join, Product]
         #
         # @api public
         def join(other, predicate = nil, &block)
