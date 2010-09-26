@@ -74,6 +74,12 @@ module Veritas
         # @param [Expression, #call] predicate
         #   optional predicate to restrict the tuples with
         #
+        # @yield [relation]
+        #   optional block to restrict the tuples with
+        #
+        # @yieldparam [Relation] relation
+        #   the context to evaluate the restriction with
+        #
         # @return [Restriction]
         #
         # @api public
