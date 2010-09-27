@@ -66,6 +66,11 @@ module Veritas
 
     private
 
+      # Return the summaries for each tuple, grouped by the summarize_by header
+      #
+      # @return [Hash]
+      #
+      # @api private
       def summarize_relation
         header    = summarize_by.header
         summaries = {}
@@ -77,12 +82,34 @@ module Veritas
         summaries
       end
 
+      # Calculate the summary for each function and tuple
+      #
+      # @param [Tuple] tuple
+      #   a tuple from the base relation
+      # @param [Hash] summary
+      #   the summary for a group of matching tuples
+      #
+      # @return [undefined]
+      #
+      # @api private
       def summarize_tuple(tuple, summary)
         summarizers.each_value do |summarizer|
           self.class.summarize(tuple, summary, summarizer)
         end
       end
 
+      # Calculate the summary for a function and tuple
+      #
+      # @param [Tuple] tuple
+      #   a tuple from the base relation
+      # @param [Hash] summary
+      #   the summary for a group of matching tuples
+      # @param [#call] summarizer
+      #   the function to call with the summary and tuple
+      #
+      # @return [self]
+      #
+      # @api private
       def self.summarize(tuple, summary, summarizer)
         summary[summarizer] = summarizer.call(summary[summarizer], tuple)
         self
@@ -114,6 +141,14 @@ module Veritas
 
       private
 
+        # Coerce the argument into a Relation
+        #
+        # @param [Relation, Header, #to_ary] summarize_by
+        #   the relation, header or attributes to summarize by
+        #
+        # @return [Relation]
+        #
+        # @api private
         def coerce_to_relation(summarize_by)
           if summarize_by.kind_of?(Relation)
             summarize_by
