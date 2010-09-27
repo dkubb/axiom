@@ -81,6 +81,11 @@ module Veritas
 
     private
 
+      # Build an index using every tuple in the right relation
+      #
+      # @return [Hash]
+      #
+      # @api private
       def build_index
         index = {}
 
@@ -91,10 +96,20 @@ module Veritas
         index
       end
 
+      # Generate a tuple with only the common attributes used for the join
+      #
+      # @return [Tuple]
+      #
+      # @api private
       def join_tuple(tuple)
         tuple.project(@join_header)
       end
 
+      # Generate a tuple with the disjoint attributes to use in the join
+      #
+      # @return [Tuple]
+      #
+      # @api private
       def remainder_tuple(tuple)
         tuple.project(@remainder_header)
       end
@@ -139,10 +154,34 @@ module Veritas
 
       private
 
+        # Return a relation that is the natural join
+        #
+        # @param [Relation] other
+        #   the other relation to join
+        #
+        # @return [Join]
+        #
+        # @api private
         def natural_join(other)
           Join.new(self, other)
         end
 
+        # Return a relation that is a restricted cartesian product
+        #
+        # @param [Relation] other
+        #   the other relation to join
+        # @param [Array] *args
+        #   optional arguments to pass to Relation#restrict
+        #
+        # @yield [relation]
+        #   optional block to restrict the tuples with
+        #
+        # @yieldparam [Relation] relation
+        #   the context to evaluate the restriction with
+        #
+        # @return [Restriction]
+        #
+        # @api private
         def theta_join(other, *args, &block)
           product(other).restrict(*args.compact, &block)
         end
