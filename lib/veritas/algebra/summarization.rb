@@ -107,14 +107,14 @@ module Veritas
         #
         # @api public
         def summarize(summarize_by, &block)
-          relation  = summarize_by_relation(summarize_by)
+          relation  = coerce_to_relation(summarize_by)
           evaluator = Evaluator::Expression.new(&block)
           Summarization.new(self, relation, evaluator.expressions)
         end
 
       private
 
-        def summarize_by_relation(summarize_by)
+        def coerce_to_relation(summarize_by)
           if summarize_by.kind_of?(Relation)
             summarize_by
           else
