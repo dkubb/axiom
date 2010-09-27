@@ -78,10 +78,28 @@ module Veritas
 
       private
 
+        # Return a header with only the attributes specified
+        #
+        # @param [#to_ary] attributes
+        #   the attributes to keep in the header
+        #
+        # @return [Header]
+        #
+        # @api private
         def project_header(attributes)
           header.project(attributes)
         end
 
+        # Return a relation with only the attribtues specified
+        #
+        # @param [Relation] operand
+        #   the relation to project
+        # @param [#to_ary] attributes
+        #   optional attributes to keep in the projection
+        #
+        # @return [Projection]
+        #
+        # @api private
         def project_relation(operand, attributes = header)
           Projection.new(operand, attributes)
         end
