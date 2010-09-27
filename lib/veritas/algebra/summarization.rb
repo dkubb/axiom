@@ -54,7 +54,7 @@ module Veritas
       # @api public
       def each
         header      = self.header
-        summaries   = calculate_summaries
+        summaries   = summarize_relation
         summarizers = self.summarizers.values
 
         summarize_by.each do |tuple|
@@ -66,7 +66,7 @@ module Veritas
 
     private
 
-      def calculate_summaries
+      def summarize_relation
         header    = summarize_by.header
         summaries = {}
 
