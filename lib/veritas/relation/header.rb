@@ -14,7 +14,8 @@ module Veritas
         @attributes = attributes.to_ary.map do |attribute|
           Attribute.coerce(attribute)
         end
-        @names, @indexes = {}, {}
+        @names   = {}
+        @indexes = {}
       end
 
       def each(&block)
