@@ -15,12 +15,12 @@ module Veritas
       self
     end
 
-    def self.freeze_value(value)
-      case value
+    def self.freeze_object(object)
+      case object
         when Numeric, TrueClass, FalseClass, NilClass
-          value
+          object
         else
-          value.frozen? ? value : value.dup.freeze
+          object.frozen? ? object : object.dup.freeze
       end
     end
 
@@ -99,7 +99,7 @@ module Veritas
       alias [] instance_variable_get
 
       def []=(ivar, value)
-        instance_variable_set(ivar, Immutable.freeze_value(value))
+        instance_variable_set(ivar, Immutable.freeze_object(value))
       end
 
     end # class Memory

@@ -4,7 +4,7 @@ module Veritas
       module Enumerable
 
         def initialize(left, right)
-          super(left, Immutable.freeze_value(right))
+          super(left, Immutable.freeze_object(right))
         end
 
       end # module Enumerable

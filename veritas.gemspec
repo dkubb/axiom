@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-09-25}
+  s.date = %q{2010-09-27}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -289,7 +289,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/attribute/valid_value_spec.rb",
      "spec/unit/veritas/evaluator/expression/add_spec.rb",
      "spec/unit/veritas/evaluator/expression/expressions_spec.rb",
-     "spec/unit/veritas/immutable/class_methods/freeze_value_spec.rb",
+     "spec/unit/veritas/immutable/class_methods/freeze_object_spec.rb",
      "spec/unit/veritas/immutable/class_methods/new_spec.rb",
      "spec/unit/veritas/immutable/dup_spec.rb",
      "spec/unit/veritas/immutable/fixtures/classes.rb",
@@ -891,7 +891,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/attribute/valid_value_spec.rb",
      "spec/unit/veritas/evaluator/expression/add_spec.rb",
      "spec/unit/veritas/evaluator/expression/expressions_spec.rb",
-     "spec/unit/veritas/immutable/class_methods/freeze_value_spec.rb",
+     "spec/unit/veritas/immutable/class_methods/freeze_object_spec.rb",
      "spec/unit/veritas/immutable/class_methods/new_spec.rb",
      "spec/unit/veritas/immutable/dup_spec.rb",
      "spec/unit/veritas/immutable/fixtures/classes.rb",

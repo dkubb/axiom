@@ -16,7 +16,7 @@ module Veritas
         #
         # @api public
         def initialize(aliases)
-          @aliases = Immutable.freeze_value(aliases.to_hash)
+          @aliases = Immutable.freeze_object(aliases.to_hash)
         end
 
         # Lookup the new attribute given the old attribute
