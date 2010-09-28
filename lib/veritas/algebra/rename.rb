@@ -48,7 +48,7 @@ module Veritas
         self
       end
 
-      # Tests if the relation is a Rename with the same aliases
+      # Compare the Rename with other relation for equality
       #
       # @example
       #   rename.eql?(other)  # => true or false

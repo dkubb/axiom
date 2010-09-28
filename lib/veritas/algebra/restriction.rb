@@ -46,7 +46,7 @@ module Veritas
         self
       end
 
-      # Tests if the relation is a Restriction with the same predicate
+      # Compare the Restriction with other relation for equality
       #
       # @example
       #   restriction.eql?(other)  # => true or false
