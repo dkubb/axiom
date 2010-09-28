@@ -218,14 +218,14 @@ module Veritas
 
     # Extract the attribute name from the object
     #
-    # @param [Attribute, #to_ary, #to_sym] object
+    # @param [#name, #to_ary, #to_sym] object
     #   the object to extract a name from
     #
     # @return [Symbol]
     #
     # @api private
     def self.name_from(object)
-      if object.kind_of?(self)
+      if object.respond_to?(:name)
         object.name
       elsif object.respond_to?(:to_ary)
         object.to_ary.first
