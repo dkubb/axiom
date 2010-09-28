@@ -79,7 +79,7 @@ module Veritas
     end # module ModuleMethods
 
     module ClassMethods
-      def new(*args)
+      def new(*)
         super.freeze
       end
 
