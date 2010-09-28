@@ -20,18 +20,18 @@ module Veritas
 
     def self.chain(*optimizers)
       optimizers.reverse_each.reduce(Noop) do |successor, optimizer|
-        create_optimizer(optimizer, successor)
+        link_optimizers(optimizer, successor)
       end
     end
 
-    def self.create_optimizer(optimizer, successor)
+    def self.link_optimizers(optimizer, successor)
       lambda do |operation|
         op = optimizer.new(operation)
         op.optimizable? ? op.optimize : successor.call(operation)
       end
     end
 
-    private_class_method :create_optimizer
+    private_class_method :link_optimizers
 
   end # class Optimizer
 end # module Veritas
