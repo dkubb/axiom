@@ -20,9 +20,15 @@ module Veritas
         when Numeric, TrueClass, FalseClass, NilClass
           object
         else
-          object.frozen? ? object : object.dup.freeze
+          freeze_value(object)
       end
     end
+
+    def self.freeze_value(value)
+      value.frozen? ? value : value.dup.freeze
+    end
+
+    private_class_method :freeze_value
 
     module ModuleMethods
       def included(mod)
