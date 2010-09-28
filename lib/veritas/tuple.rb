@@ -152,7 +152,7 @@ module Veritas
     # Return a string representing the tuple data
     #
     # @example
-    #   tuple.inspect  # => [ 1, 2, 3 ]
+    #   tuple.inspect  # => "[1, 2, 3]"
     #
     # @return [String]
     #
