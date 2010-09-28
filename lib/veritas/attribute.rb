@@ -40,7 +40,7 @@ module Veritas
     end
 
     def valid_primitive?(value)
-      self.class.primitive === value
+      value.kind_of?(self.class.primitive)
     end
 
     def valid_value?(value)
