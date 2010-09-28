@@ -81,13 +81,13 @@ module Veritas
       end
     end
 
-    def self.name_from(attribute)
-      if attribute.kind_of?(self)
-        attribute.name
-      elsif attribute.respond_to?(:to_ary)
-        attribute.to_ary.first
+    def self.name_from(object)
+      if object.kind_of?(self)
+        object.name
+      elsif object.respond_to?(:to_ary)
+        object.to_ary.first
       else
-        attribute.to_sym
+        object.to_sym
       end
     end
 
