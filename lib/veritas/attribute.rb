@@ -23,7 +23,7 @@ module Veritas
 
     def initialize(name, options = {})
       @name     = name.to_sym
-      @options  = Immutable.freeze_object(options)
+      @options  = Immutable.freeze_object(options.to_hash)
       @required = @options.fetch(:required, true)
     end
 
