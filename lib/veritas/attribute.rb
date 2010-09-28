@@ -44,7 +44,7 @@ module Veritas
     end
 
     def valid_value?(value)
-      validate(value) { valid_primitive?(value) }
+      valid_or_optional?(value) { valid_primitive?(value) }
     end
 
     def joinable?(other)
@@ -93,7 +93,7 @@ module Veritas
 
   private
 
-    def validate(value)
+    def valid_or_optional?(value)
       value.nil? ? !required? : yield
     end
 

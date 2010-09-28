@@ -8,7 +8,7 @@ module Veritas
       end
 
       def valid_value?(value)
-        validate(value) { super || FalseClass === value }
+        valid_or_optional?(value) { super || FalseClass === value }
       end
 
     end # class Boolean

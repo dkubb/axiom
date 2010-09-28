@@ -18,7 +18,7 @@ module Veritas
       end
 
       def valid_value?(value)
-        validate(value) { super && size.include?(value) }
+        valid_or_optional?(value) { super && size.include?(value) }
       end
 
       def self.primitive
