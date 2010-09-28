@@ -51,8 +51,10 @@ module Veritas
       kind_of?(other.class) || other.kind_of?(self.class)
     end
 
-    def <=>(other)
-      name.to_s <=> Attribute.coerce(other).name.to_s
+    def ==(other)
+      other = Attribute.coerce(other)
+      name.equal?(other.name) &&
+      options == other.options
     end
 
     def eql?(other)

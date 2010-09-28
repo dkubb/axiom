@@ -23,8 +23,12 @@ module Veritas
         self
       end
 
-      def index(attribute)
-        @indexes[attribute] ||= to_ary.index(self[attribute])
+      def index(name)
+        @indexes[name] ||=
+          begin
+            attribute = self[name]
+            to_ary.index(attribute) if attribute
+          end
       end
 
       def [](name)
