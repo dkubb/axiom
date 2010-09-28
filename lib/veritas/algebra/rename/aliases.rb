@@ -1,6 +1,8 @@
 module Veritas
   module Algebra
     class Rename
+
+      # Aliases that map old attributes to new renamed attributes
       class Aliases
         extend Aliasable
         include Immutable, Enumerable
