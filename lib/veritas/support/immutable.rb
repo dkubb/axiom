@@ -140,7 +140,7 @@ module Veritas
 
       # Create an alias to a method
       #
-      # @param [String, Symbol] method
+      # @param [String, Symbol] original_method
       #   the name of the original method
       # @param [String, Symbol] alias_name
       #   the name of the new alias to create
@@ -148,14 +148,14 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def create_alias_for(method, alias_name)
-        alias_method alias_name, method
+      def create_alias_for(original_method, alias_name)
+        alias_method alias_name, original_method
         private alias_name
       end
 
       # Create a memoized method that delegates to the original method
       #
-      # @param [String, Symbol] method
+      # @param [String, Symbol] new_method
       #   the name of the new method
       # @param [String, Symbol] alias_name
       #   the name of the alias to the original method
@@ -163,14 +163,14 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def create_memoize_method_for(method, alias_name)
-        visibility = method_visibility(method)
+      def create_memoize_method_for(new_method, alias_name)
+        visibility = method_visibility(new_method)
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          def #{method}(*args)                                # def name(*args)
-            @__memory['@#{method}'] ||= #{alias_name}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
-          end                                                 # end
+          def #{new_method}(*args)                                # def name(*args)
+            @__memory['@#{new_method}'] ||= #{alias_name}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
+          end                                                     # end
         RUBY
-        send(visibility, method)
+        send(visibility, new_method)
       end
 
       # Return the method visibility of a method
