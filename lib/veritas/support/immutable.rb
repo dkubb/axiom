@@ -1,4 +1,6 @@
 module Veritas
+
+  # Allows objects to be made immutable
   module Immutable
 
     # Hook called when module is included
@@ -81,6 +83,7 @@ module Veritas
 
     private_class_method :freeze_value
 
+    # Methods mixed in to immutable modules
     module ModuleMethods
 
       # Hook called when module is included
@@ -190,6 +193,7 @@ module Veritas
 
     end # module ModuleMethods
 
+    # Methods mixed in to immutable classes
     module ClassMethods
 
       # Instantiate a new frozen object
@@ -206,6 +210,7 @@ module Veritas
 
     end # module ClassMethods
 
+    # Methods mixed in to memoizable immutable instances
     module MemoizeMethods
 
       # Freeze the object
@@ -256,6 +261,7 @@ module Veritas
 
     end # module MemoizeMethods
 
+    # Tracks the values for memoized methods
     class Memory
 
       # Get a frozen value from memory
