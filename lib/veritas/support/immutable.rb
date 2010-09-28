@@ -91,13 +91,13 @@ module Veritas
         super
       end
 
+      def memoized(name)
+        @__memory["@#{name}"]
+      end
+
       def memoize(name, value)
         @__memory["@#{name}"] = value
         self
-      end
-
-      def memoized(name)
-        @__memory["@#{name}"]
       end
 
     end # module MemoizeMethods
