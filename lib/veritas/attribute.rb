@@ -68,7 +68,7 @@ module Veritas
     end
 
     def inspect
-      "<#{self.class.name.gsub('Veritas::', '')} name: #{name}>"
+      "<#{self.class.name.sub(/\AVeritas::/, '')} name: #{name}>"
     end
 
     def self.coerce(object)
