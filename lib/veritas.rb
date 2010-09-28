@@ -27,13 +27,27 @@ require 'veritas/tuple'
 require 'veritas/version'
 
 module Veritas
-  class InvalidHeaderError           < ArgumentError; end
-  class InvalidLimitError            < ArgumentError; end
-  class InvalidOffsetError           < ArgumentError; end
-  class InvalidDirectionsError       < ArgumentError; end
+
+  # Raised when the headers are invalid for Join and Product
+  class InvalidHeaderError < ArgumentError; end
+
+  # Raised when the limit is not a positive integer
+  class InvalidLimitError < ArgumentError; end
+
+  # Raised when the offset is not a positive integer
+  class InvalidOffsetError < ArgumentError; end
+
+  # Raised when the order does not include every attribute in the header
+  class InvalidDirectionsError < ArgumentError; end
+
+  # Raised when a method requiring ordering is called on an unordered relation
   class OrderedRelationRequiredError < StandardError; end
-  class RelationMismatchError        < StandardError; end
-  class DuplicateHeaderName          < StandardError; end
+
+  # Raised when a binary operation mixes ordered and unordered relations
+  class RelationMismatchError < StandardError; end
+
+  # Raised when an attribute is added to a relation that already exists
+  class DuplicateHeaderName < StandardError; end
 
   TABLE_DUM = Relation.new([], [    ]).optimize
   TABLE_DEE = Relation.new([], [ [] ]).optimize
