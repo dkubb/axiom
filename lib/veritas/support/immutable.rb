@@ -49,22 +49,22 @@ module Veritas
       end
 
       def memoize_method(method)
-        memoized_method = "__memoized_#{method}"
-        alias_private_method(memoized_method, method)
-        create_memoize_method_for(memoized_method, method)
+        alias_name = "__memoized_#{method}"
+        create_alias_for(method, alias_name)
+        create_memoize_method_for(method, alias_name)
       end
 
-      def alias_private_method(new_method, old_method)
-        alias_method new_method, old_method
-        private new_method
+      def create_alias_for(method, alias_name)
+        alias_method alias_name, method
+        private alias_name
       end
 
-      def create_memoize_method_for(memoized_method, method)
+      def create_memoize_method_for(method, alias_name)
         visibility = method_visibility(method)
         class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          def #{method}(*args)                                     # def name(*args)
-            @__memory['@#{method}'] ||= #{memoized_method}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
-          end                                                      # end
+          def #{method}(*args)                                # def name(*args)
+            @__memory['@#{method}'] ||= #{alias_name}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
+          end                                                 # end
         RUBY
         send(visibility, method)
       end
