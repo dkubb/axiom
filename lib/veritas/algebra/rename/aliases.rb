@@ -163,7 +163,7 @@ module Veritas
         #
         # @return [Aliases]
         #
-        # @api public
+        # @api private
         def self.coerce(attributes, aliases)
           return aliases if aliases.kind_of?(Aliases)
           renames = aliases.map do |old_attr, new_attr|

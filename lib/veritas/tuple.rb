@@ -173,7 +173,7 @@ module Veritas
     #
     # @return [Tuple]
     #
-    # @api public
+    # @api private
     def self.coerce(header, object)
       object.kind_of?(Tuple) ? object : new(header, object)
     end
