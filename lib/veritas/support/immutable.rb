@@ -33,6 +33,7 @@ module Veritas
     module ModuleMethods
       def included(mod)
         Immutable.included(mod)
+        self
       end
 
       def memoize(*methods)
