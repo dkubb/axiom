@@ -13,7 +13,7 @@ module Veritas
           super
         end
       end
-    end
 
+    end # module ClassMethods
   end # module AbstractClass
 end # module Veritas
