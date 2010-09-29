@@ -2,7 +2,7 @@ module Veritas
   class Attribute
     class Decimal < Numeric
       def self.primitive
-        ::BigDecimal
+        BigDecimal
       end
 
     end # class Decimal
