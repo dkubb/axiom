@@ -3,19 +3,65 @@ module Veritas
     module Binary
       include Immutable
 
-      attr_reader :left, :right
+      # The left operand for the operation
+      #
+      # @example
+      #   left = binary.left
+      #
+      # @return [Object]
+      #
+      # @api public
+      attr_reader :left
 
+      # The right operand for the operation
+      #
+      # @example
+      #   right = binary.right
+      #
+      # @return [Object]
+      #
+      # @api public
+      attr_reader :right
+
+      # Initialize Binary Operation
+      #
+      # @param [Object] left
+      #   the left operand for the operation
+      # @param [Object] right
+      #   the right operand for the operation
+      #
+      # @return [undefined]
+      #
+      # @api private
       def initialize(left, right)
         @left  = left
         @right = right
       end
 
+      # Compare the operation with the other operation for equality
+      #
+      # @example
+      #   binary.eql?(other)  # => true or false
+      #
+      # @param [Object] other
+      #
+      # @return [Boolean]
+      #
+      # @api public
       def eql?(other)
         instance_of?(other.class) &&
         left.eql?(other.left)     &&
         right.eql?(other.right)
       end
 
+      # Return the hash of the left and right operands
+      #
+      # @example
+      #   numeric_hash = binary.hash
+      #
+      # @return [Integer]
+      #
+      # @api public
       def hash
         left.hash ^ right.hash
       end
