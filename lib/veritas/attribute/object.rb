@@ -1,11 +1,21 @@
 module Veritas
   class Attribute
+
+    # Represents an Object value in a relation tuple
     class Object < Attribute
       include Logic::Predicate::Equality::Methods,
               Logic::Predicate::Exclusion::Methods,
               Logic::Predicate::Inequality::Methods,
               Logic::Predicate::Inclusion::Methods
 
+      # The Object primitive
+      #
+      # @example
+      #   Object.primitive  # => ::Object
+      #
+      # @return [::Object]
+      #
+      # @api public
       def self.primitive
         ::Object
       end
