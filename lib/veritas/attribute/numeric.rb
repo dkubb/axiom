@@ -19,12 +19,12 @@ module Veritas
         @size = @options.fetch(:size, DEFAULT_SIZE).to_inclusive
       end
 
-      def joinable?(other)
-        super && size.eql?(other.size)
-      end
-
       def valid_value?(value)
         valid_or_optional?(value) { super && size.include?(value) }
+      end
+
+      def joinable?(other)
+        super && size.eql?(other.size)
       end
 
     end # class Numeric
