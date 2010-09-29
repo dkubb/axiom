@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-09-27}
+  s.date = %q{2010-09-29}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -254,7 +254,6 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/attribute/class_methods/new_spec.rb",
      "spec/unit/veritas/attribute/comparable/comparable_spec.rb",
      "spec/unit/veritas/attribute/comparable/fixtures/classes.rb",
-     "spec/unit/veritas/attribute/comparison_spec.rb",
      "spec/unit/veritas/attribute/date/class_methods/primitive_spec.rb",
      "spec/unit/veritas/attribute/date/range_spec.rb",
      "spec/unit/veritas/attribute/date_time/class_methods/primitive_spec.rb",
@@ -856,7 +855,6 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/attribute/class_methods/new_spec.rb",
      "spec/unit/veritas/attribute/comparable/comparable_spec.rb",
      "spec/unit/veritas/attribute/comparable/fixtures/classes.rb",
-     "spec/unit/veritas/attribute/comparison_spec.rb",
      "spec/unit/veritas/attribute/date/class_methods/primitive_spec.rb",
      "spec/unit/veritas/attribute/date/range_spec.rb",
      "spec/unit/veritas/attribute/date_time/class_methods/primitive_spec.rb",
