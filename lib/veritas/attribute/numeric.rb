@@ -14,9 +14,9 @@ module Veritas
         ::Numeric
       end
 
-      def initialize(name, options = {})
+      def initialize(*)
         super
-        @size = options.fetch(:size, DEFAULT_SIZE).to_inclusive
+        @size = @options.fetch(:size, DEFAULT_SIZE).to_inclusive
       end
 
       def joinable?(other)

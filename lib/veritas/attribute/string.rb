@@ -16,9 +16,9 @@ module Veritas
         ::String
       end
 
-      def initialize(name, options = {})
+      def initialize(*)
         super
-        @length = options.fetch(:length, DEFAULT_LENGTH).to_inclusive
+        @length = @options.fetch(:length, DEFAULT_LENGTH).to_inclusive
       end
 
       def joinable?(other)
