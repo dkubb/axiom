@@ -4,6 +4,14 @@ module Veritas
   module Optimizable
     include Immutable
 
+    # Hook called when module is included
+    #
+    # @param [Module] descendant
+    #   the module or class including Optimizable
+    #
+    # @return [self]
+    #
+    # @api private
     def self.included(descendant)
       descendant.extend ClassMethods
       self
