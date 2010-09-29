@@ -3,14 +3,14 @@ module Veritas
     class Time < Object
       include Comparable
 
-      RANGE = ::Time.at(0)..::Time.at(2**31-1)
-
-      def range
-        RANGE
-      end
+      DEFAULT_RANGE = (::Time.at(0)..::Time.at(2**31-1)).freeze
 
       def self.primitive
         ::Time
+      end
+
+      def range
+        DEFAULT_RANGE
       end
 
     end # class Time

@@ -3,14 +3,14 @@ module Veritas
     class Date < Object
       include Comparable
 
-      RANGE = ::Date.new..::Date::Infinity.new
-
-      def range
-        RANGE
-      end
+      DEFAULT_RANGE = (::Date.new..::Date::Infinity.new).freeze
 
       def self.primitive
         ::Date
+      end
+
+      def range
+        DEFAULT_RANGE
       end
 
     end # class Date

@@ -4,13 +4,19 @@ module Veritas
       extend Aliasable
       include Comparable
 
+      DEFAULT_SIZE = (0..2**31-1).freeze
+
       inheritable_alias(:range => :size)
 
       attr_reader :size
 
+      def self.primitive
+        ::Numeric
+      end
+
       def initialize(name, options = {})
         super
-        @size = options.fetch(:size, 0..2**31-1).to_inclusive
+        @size = options.fetch(:size, DEFAULT_SIZE).to_inclusive
       end
 
       def joinable?(other)
@@ -19,10 +25,6 @@ module Veritas
 
       def valid_value?(value)
         valid_or_optional?(value) { super && size.include?(value) }
-      end
-
-      def self.primitive
-        ::Numeric
       end
 
     end # class Numeric

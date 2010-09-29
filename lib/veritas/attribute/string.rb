@@ -6,13 +6,19 @@ module Veritas
               Logic::Predicate::Match::Methods,
               Logic::Predicate::NoMatch::Methods
 
+      DEFAULT_LENGTH = (0..50).freeze
+
       inheritable_alias(:range => :length)
 
       attr_reader :length
 
+      def self.primitive
+        ::String
+      end
+
       def initialize(name, options = {})
         super
-        @length = options.fetch(:length, 0..50).to_inclusive
+        @length = options.fetch(:length, DEFAULT_LENGTH).to_inclusive
       end
 
       def joinable?(other)
@@ -21,10 +27,6 @@ module Veritas
 
       def valid_value?(value)
         valid_or_optional?(value) { super && length.include?(value.length) }
-      end
-
-      def self.primitive
-        ::String
       end
 
     end # class String
