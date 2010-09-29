@@ -6,7 +6,8 @@ module Veritas
       attr_reader :left, :right
 
       def initialize(left, right)
-        @left, @right = left, right
+        @left  = left
+        @right = right
       end
 
       def eql?(other)
