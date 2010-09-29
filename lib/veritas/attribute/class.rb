@@ -1,6 +1,17 @@
 module Veritas
   class Attribute
+
+    # Represents a Class value in a relation tuple
     class Class < Object
+
+      # The Class primitive
+      #
+      # @example
+      #   Class.primitive  # => ::Class
+      #
+      # @return [::Class]
+      #
+      # @api public
       def self.primitive
         ::Class
       end
