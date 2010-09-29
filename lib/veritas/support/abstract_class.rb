@@ -2,6 +2,7 @@ module Veritas
   module AbstractClass
     def self.included(descendant)
       descendant.extend ClassMethods
+      self
     end
 
     module ClassMethods

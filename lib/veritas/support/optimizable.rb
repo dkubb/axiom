@@ -6,6 +6,7 @@ module Veritas
 
     def self.included(descendant)
       descendant.extend ClassMethods
+      self
     end
 
     # Optimize the operation
