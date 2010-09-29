@@ -24,8 +24,8 @@ module Veritas
     end
 
     def initialize(header, tuples)
-      @tuples     = tuples
       @header     = Header.coerce(header)
+      @tuples     = tuples
       @directions = Operation::Order::DirectionSet::EMPTY
     end
 
