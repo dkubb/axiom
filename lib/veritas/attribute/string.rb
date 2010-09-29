@@ -27,7 +27,7 @@ module Veritas
       # @example
       #   String.primitive  # => ::String
       #
-      # @return [::String]
+      # @return [Class<::String>]
       #
       # @api public
       def self.primitive

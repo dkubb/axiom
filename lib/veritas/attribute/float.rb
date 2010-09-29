@@ -9,7 +9,7 @@ module Veritas
       # @example
       #   Float.primitive  # => ::Float
       #
-      # @return [::Float]
+      # @return [Class<::Float>]
       #
       # @api public
       def self.primitive

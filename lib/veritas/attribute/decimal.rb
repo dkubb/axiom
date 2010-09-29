@@ -9,7 +9,7 @@ module Veritas
       # @example
       #   Decimal.primitive  # => BigDecimal
       #
-      # @return [BigDecimal]
+      # @return [Class<BigDecimal>]
       #
       # @api public
       def self.primitive

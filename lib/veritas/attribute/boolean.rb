@@ -10,7 +10,7 @@ module Veritas
       # @example
       #   Boolean.primitive  # => TrueClass
       #
-      # @return [TrueClass]
+      # @return [Class<TrueClass>]
       #
       # @api public
       def self.primitive

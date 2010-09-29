@@ -12,7 +12,7 @@ module Veritas
       # @example
       #   Time.primitive  # => ::Time
       #
-      # @return [::Time]
+      # @return [Class<::Time>]
       #
       # @api public
       def self.primitive

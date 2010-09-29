@@ -25,7 +25,7 @@ module Veritas
       # @example
       #   Numeric.primitive  # => ::Numeric
       #
-      # @return [::Numeric]
+      # @return [Class<::Numeric>]
       #
       # @api public
       def self.primitive

@@ -12,7 +12,7 @@ module Veritas
       # @example
       #   Date.primitive  # => ::Date
       #
-      # @return [::Date]
+      # @return [Class<::Date>]
       #
       # @api public
       def self.primitive

@@ -13,7 +13,7 @@ module Veritas
       # @example
       #   Object.primitive  # => ::Object
       #
-      # @return [::Object]
+      # @return [Class<::Object>]
       #
       # @api public
       def self.primitive

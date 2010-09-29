@@ -55,7 +55,7 @@ module Veritas
     # @example
     #   Optimizer.chain(Optimizer::Foo, Optimizer::Bar)
     #
-    # @param [Array<Class>] *optimizers
+    # @param [Array<Class<Optimizer>>] *optimizers
     #   a list of optimizer classes to apply
     #
     # @return [#call]
@@ -69,7 +69,7 @@ module Veritas
 
     # Link an optimizer to a successor
     #
-    # @param [Class] optimizer
+    # @param [Class<Optimizer>] optimizer
     #   the optimizer to link to the successor
     # @param [#proc] successor
     #   the next optimizer to call if the current optimizer is not applied
