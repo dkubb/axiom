@@ -36,6 +36,7 @@ module Veritas
       #
       # @api private
       attr_accessor :optimizer
+
     end # module ClassMethods
   end # module Optimizable
 end # module Veritas
