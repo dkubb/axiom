@@ -104,7 +104,7 @@ module Veritas
     # Compare the tuple with other tuple for equivalency
     #
     # @example
-    #   tuple.eql?(other)  # => true or false
+    #   tuple == other  # => true or false
     #
     # @param [Tuple] other
     #   the other tuple to compare with

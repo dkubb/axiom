@@ -128,7 +128,7 @@ module Veritas
     # Compare the relation with other relation for equivalency
     #
     # @example
-    #   relation.eql?(other)  # => true or false
+    #   relation == other  # => true or false
     #
     # @param [Relation] other
     #   the other relation to compare with
