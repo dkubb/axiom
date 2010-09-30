@@ -49,6 +49,9 @@ module Veritas
         module Methods
           extend Aliasable
 
+          # alias #! to #inverse when available
+          inheritable_alias('!' => :inverse) if Object.method_defined?('!')
+
           inheritable_alias(:- => :not)
 
           # Logically negate then AND the expression

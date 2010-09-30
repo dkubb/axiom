@@ -6,9 +6,6 @@ module Veritas
       extend Aliasable
       include AbstractClass, Optimizable, Immutable
 
-      # alias #! to #inverse when available
-      inheritable_alias('!' => :inverse) if Object.method_defined?('!')
-
       # Evaluate the expression using the operands
       #
       # @return [undefined]
