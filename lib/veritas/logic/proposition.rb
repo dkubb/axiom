@@ -23,12 +23,12 @@ module Veritas
         instance_of?(other.class)
       end
 
-      def inspect
-        call.inspect
-      end
-
       def hash
         call.hash
+      end
+
+      def inspect
+        call.inspect
       end
 
       memoize :hash
