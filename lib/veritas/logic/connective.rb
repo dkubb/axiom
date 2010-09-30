@@ -1,5 +1,7 @@
 module Veritas
   module Logic
+
+    # Abstract base class for logical connectives
     class Connective < Expression
       include AbstractClass
     end # class Connective
