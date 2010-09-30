@@ -2,7 +2,6 @@ module Veritas
   module Logic
     class Connective
       class Negation < Connective
-        extend Aliasable
         include Operation::Unary
 
         inheritable_alias(:inverse => :operand)

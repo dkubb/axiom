@@ -1,6 +1,6 @@
 module Veritas
   module Logic
-    class Connective < Expression
+    class Connective
       module Binary
         include Operation::Binary
 
