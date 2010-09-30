@@ -85,7 +85,7 @@ module Veritas
         raise NotImplementedError, "#{self.class}#hash must be implemented"
       end
 
-      # Return a string representing the attribute
+      # Return a string representing the expression
       #
       # @example
       #   expression.inspect  # (String representation of Expression)
