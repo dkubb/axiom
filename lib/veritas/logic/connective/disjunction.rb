@@ -23,7 +23,7 @@ module Veritas
 
         end # module Methods
 
-        Connective::Methods.class_eval { include Methods }
+        Expression.class_eval { include Methods }
 
       end # class Disjunction
     end # class Connective

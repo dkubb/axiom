@@ -3,7 +3,9 @@ module Veritas
 
     # Represents a Boolean value in a relation tuple
     class Boolean < Object
-      include Logic::Connective::Methods
+      include Logic::Connective::Conjunction::Methods,
+              Logic::Connective::Disjunction::Methods,
+              Logic::Connective::Negation::Methods
 
       # The Boolean primitive
       #
