@@ -9,4 +9,6 @@ describe 'Veritas::Relation::Header#to_ary' do
   it { should be_instance_of(Array) }
 
   it { should == [ attribute ] }
+
+  it { should be_frozen }
 end

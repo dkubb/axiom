@@ -13,7 +13,7 @@ module Veritas
       def initialize(attributes = [])
         @attributes = attributes.to_ary.map do |attribute|
           Attribute.coerce(attribute)
-        end
+        end.freeze
         @names   = {}
         @indexes = {}
       end
