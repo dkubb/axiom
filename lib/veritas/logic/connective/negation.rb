@@ -14,11 +14,6 @@ module Veritas
           self.class.call(operand.call(tuple))
         end
 
-        def project(attributes)
-          return if operand.project(attributes).nil?
-          super
-        end
-
         def rename(aliases)
           operand         = self.operand
           renamed_operand = operand.rename(aliases)

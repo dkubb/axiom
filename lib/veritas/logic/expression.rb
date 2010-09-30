@@ -11,10 +11,6 @@ module Veritas
         raise NotImplementedError, "#{name}.call must be implemented"
       end
 
-      def project(attributes)
-        self
-      end
-
       def rename(aliases)
         self
       end

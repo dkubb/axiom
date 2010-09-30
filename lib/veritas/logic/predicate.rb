@@ -11,15 +11,6 @@ module Veritas
         )
       end
 
-      def project(attributes)
-        left  = self.left
-        right = self.right
-
-        return if left.kind_of?(Attribute)  && !attributes.include?(left)
-        return if right.kind_of?(Attribute) && !attributes.include?(right)
-        super
-      end
-
       def rename(aliases)
         left  = self.left
         right = self.right
