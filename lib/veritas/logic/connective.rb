@@ -24,6 +24,7 @@ module Veritas
 end # module Veritas
 
 require 'veritas/logic/connective/binary'
+require 'veritas/logic/connective/unary'
 
 require 'veritas/logic/connective/conjunction'
 require 'veritas/logic/connective/disjunction'

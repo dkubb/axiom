@@ -1,28 +1,14 @@
 module Veritas
   module Logic
     class Connective
-      class Negation < Connective
-        include Operation::Unary
-
-        inheritable_alias(:inverse => :operand)
+      class Negation < Unary
 
         def self.call(operand)
           !operand
         end
 
-        def call(tuple)
-          self.class.call(operand.call(tuple))
-        end
-
-        def rename(aliases)
-          operand         = self.operand
-          renamed_operand = operand.rename(aliases)
-
-          if operand.equal?(renamed_operand)
-            self
-          else
-            self.class.new(renamed_operand)
-          end
+        def inverse
+          operand
         end
 
         def inspect

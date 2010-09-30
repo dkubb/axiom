@@ -1,9 +1,10 @@
 require 'spec_helper'
+require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Connective::Negation#rename' do
+describe 'Veritas::Logic::Connective::Unary#rename' do
   subject { object.rename(aliases) }
 
-  let(:klass)     { Logic::Connective::Negation                               }
+  let(:klass)     { UnarySpecs::Object                                        }
   let(:attribute) { Attribute::Integer.new(:id)                               }
   let(:other)     { attribute.rename(:other_id)                               }
   let(:header)    { Relation::Header.new([ attribute ])                       }
