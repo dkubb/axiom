@@ -8,7 +8,7 @@ module Veritas
         # Initialize an Enumerable predicate
         #
         # @param [Object] left
-        #   the attribute or value to test for in the Enumerable
+        #   the attribute or object to test for in the Enumerable
         # @param [Enumerable] right
         #   the enumerable to test
         #
