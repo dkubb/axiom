@@ -2,9 +2,9 @@ module Veritas
   module Logic
     class Connective
 
-      # A mixin for connectives that have two operands
-      module Binary
-        include Operation::Binary
+      # Abstract base class for binary connectives
+      class Binary < Connective
+        include AbstractClass, Operation::Binary
 
         # Evaluate the binary connective using the tuple
         #
@@ -62,7 +62,7 @@ module Veritas
 
         memoize :inverse
 
-      end # module Binary
+      end # class Binary
     end # class Connective
   end # module Logic
 end # module Veritas

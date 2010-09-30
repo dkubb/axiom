@@ -1,9 +1,7 @@
 module Veritas
   module Logic
     class Connective
-      class Conjunction < Connective
-        include Binary
-
+      class Conjunction < Binary
         def self.call(left, right)
           left && right
         end

@@ -1,9 +1,7 @@
 module Veritas
   module Logic
     class Connective
-      class Disjunction < Connective
-        include Binary
-
+      class Disjunction < Binary
         def self.call(left, right)
           left || right
         end

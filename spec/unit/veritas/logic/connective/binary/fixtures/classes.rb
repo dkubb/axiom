@@ -1,8 +1,10 @@
 module BinarySpecs
-  class Object
-    include Logic::Connective::Binary
-
+  class Object < Logic::Connective::Binary
     def self.call(*)
+    end
+
+    def inspect
+      "Binary(#{left.inspect}, #{right.inspect})"
     end
 
   end # class Object
