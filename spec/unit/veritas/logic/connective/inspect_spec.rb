@@ -1,10 +1,10 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Connective#inspect' do
-  subject { connective.inspect }
+  subject { object.inspect }
 
-  let(:connective) { ConnectiveSpecs::Object.new }
+  let(:klass)  { Class.new(Logic::Connective) }
+  let(:object) { klass.new                    }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'ConnectiveSpecs::Object#inspect must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{klass}#inspect must be implemented") }
 end

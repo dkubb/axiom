@@ -48,20 +48,6 @@ module Veritas
           end
         end
 
-        # Return the inverse connective
-        #
-        # @example
-        #   negation = binary.inverse
-        #
-        # @return [Negation]
-        #
-        # @api public
-        def inverse
-          Negation.new(self)
-        end
-
-        memoize :inverse
-
       end # class Binary
     end # class Connective
   end # module Logic
