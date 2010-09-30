@@ -11,7 +11,7 @@ module Veritas
         # Test an enumerable to see if a value is excluded
         #
         # @example
-        #   Exclusion.call(1, [ 1, 2, 3 ])  # => true
+        #   Exclusion.call(1, [ 1, 2, 3 ])  # => false
         #
         # @param [Object] left
         #   the object to test for in the Enumerable
