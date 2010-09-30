@@ -30,7 +30,7 @@ module Veritas
         # @example
         #   Exclusion.inverse  # => Inclusion
         #
-        # @return [Inclusion]
+        # @return [Class<Inclusion>]
         #
         # @api public
         def self.inverse
@@ -51,14 +51,14 @@ module Veritas
 
         module Methods
 
-          # Compare whether the Attribute is excluded from the Enumerable
+          # Compare the left to see if it is excluded from the right
           #
           # @example
-          #   equality = attribute.exclude([ 1, 2, 3 ])
+          #   exclusion = attribute.exclude([ 1, 2, 3 ])
           #
           # @param [Expression] other
           #
-          # @return [Equality]
+          # @return [Exclusion]
           #
           # @api public
           def exclude(other)

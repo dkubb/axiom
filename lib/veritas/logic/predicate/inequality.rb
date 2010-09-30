@@ -23,7 +23,7 @@ module Veritas
         # @example
         #   Inequality.inverse  # => Equality
         #
-        # @return [Equality]
+        # @return [Class<Equality>]
         #
         # @api public
         def self.inverse
@@ -59,7 +59,7 @@ module Veritas
 
         module Methods
 
-          # Compare the expressions for Inequality
+          # Compare the left to see if it is not equal to the right
           #
           # @example
           #   inequality = expression.eq(other)
