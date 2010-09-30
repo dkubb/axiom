@@ -88,7 +88,7 @@ module Veritas
       # Return a string representing the attribute
       #
       # @example
-      #   attribute.inspect  # (String representation of Expression)
+      #   expression.inspect  # (String representation of Expression)
       #
       # @return [String]
       #
