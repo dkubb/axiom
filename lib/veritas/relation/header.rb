@@ -1,5 +1,7 @@
 module Veritas
   class Relation
+
+    # A set of attributes that correspond to values in each tuple
     class Header
       extend Aliasable
       include Enumerable, Immutable

@@ -1,7 +1,7 @@
 module Veritas
   module Logic
 
-    # Abstract base class for logical predicate
+    # Abstract base class for logical predicates
     class Predicate < Expression
       include AbstractClass, Operation::Binary
 

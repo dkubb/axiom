@@ -1,5 +1,7 @@
 module Veritas
   class Relation
+
+    # A materialized relation
     class Materialized < Relation
 
       # Initialize a materialized Relation

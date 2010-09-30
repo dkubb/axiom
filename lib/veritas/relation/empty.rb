@@ -1,5 +1,7 @@
 module Veritas
   class Relation
+
+    # An empty relation
     class Empty < Materialized
       ZERO_TUPLE = [].freeze
 

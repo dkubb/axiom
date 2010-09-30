@@ -1,5 +1,7 @@
 module Veritas
   module Logic
+
+    # Abstract base class for logical propositions
     class Proposition < Expression
       include Singleton
 
