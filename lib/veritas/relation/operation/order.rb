@@ -38,7 +38,7 @@ module Veritas
 
         module Methods
           def order(directions = block_given? ? yield(self) : header)
-            Operation::Order.new(self, Array(directions))
+            Order.new(self, Array(directions))
           end
 
         end # module Methods

@@ -24,7 +24,7 @@ module Veritas
 
         module Methods
           def reverse
-            Operation::Reverse.new(self)
+            Reverse.new(self)
           end
 
         end # module Methods

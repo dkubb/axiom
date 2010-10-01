@@ -55,7 +55,7 @@ module Veritas
           inheritable_alias(:take => :limit)
 
           def limit(limit)
-            Operation::Limit.new(self, limit)
+            Limit.new(self, limit)
           end
 
           def first(limit = 1)

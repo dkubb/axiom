@@ -54,7 +54,7 @@ module Veritas
           inheritable_alias(:drop => :offset)
 
           def offset(offset)
-            Operation::Offset.new(self, offset)
+            Offset.new(self, offset)
           end
 
         end # module Methods
