@@ -55,6 +55,9 @@ module Veritas
 
           # Assert that ordered and unordered relations are not mixed
           #
+          # @param [Relation] left
+          # @param [Relation] right
+          #
           # @return [undefined]
           #
           # @raise [RelationMismatchError]

@@ -23,6 +23,9 @@ module Veritas
 
       # Assert the headers do not have common attributes
       #
+      # @param [Relation] left
+      # @param [Relation] right
+      #
       # @return [undefined]
       #
       # @raise [InvalidHeaderError]
