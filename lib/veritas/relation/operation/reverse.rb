@@ -2,11 +2,32 @@ module Veritas
   class Relation
     module Operation
       class Reverse < Order
+
+        # Instantiate a new Reverse relation
+        #
+        # @example
+        #   reverse = Reverse.new(operand)
+        #
+        # @param [Relation] operand
+        #
+        # @return [Reverse]
+        #
+        # @api public
         def self.new(operand)
           assert_ordered_operand(operand)
           super(operand, operand.directions.reverse)
         end
 
+        # Assert the operand is ordered
+        #
+        # @param [Relation] operand
+        #
+        # @return [undefined]
+        #
+        # @raise [OrderedRelationRequiredError]
+        #   raise if the operand is unordered
+        #
+        # @api private
         def self.assert_ordered_operand(operand)
           if operand.directions.empty?
             raise OrderedRelationRequiredError, 'can only reverse an ordered operand'
@@ -15,6 +36,20 @@ module Veritas
 
         private_class_method :assert_ordered_operand
 
+        # Iterate over each tuple in the set
+        #
+        # @example
+        #   reverse = Reverse.new(operand)
+        #   reverse.each { |tuple| ... }
+        #
+        # @yield [tuple]
+        #
+        # @yieldparam [Tuple] tuple
+        #   each tuple in the set
+        #
+        # @return [self]
+        #
+        # @api public
         def each(&block)
           operand.reverse_each(&block)
           self
@@ -23,6 +58,17 @@ module Veritas
       private
 
         module Methods
+
+          # Return the reversed relation
+          #
+          # @example
+          #   reverse = relation.reverse
+          #
+          # @param [Relation] other
+          #
+          # @return [Reverse]
+          #
+          # @api public
           def reverse
             Reverse.new(self)
           end
