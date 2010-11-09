@@ -174,10 +174,10 @@ begin
         ObjectSpace.each_object(Module) do |descedant|
           next unless descedant.name =~ /\A#{root_module}(?::|\z)/ && mod >= descedant
           descedant_spec_prefix = spec_dir.join(descedant.name.underscore)
-          descedant_specs.concat(FileList[descedant_spec_prefix.join('*_spec.rb')])
+          descedant_specs.concat(Pathname.glob(descedant_spec_prefix.join('*_spec.rb')))
 
           if method.to_s == 'initialize'
-            descedant_specs.concat(FileList[descedant_spec_prefix.join('class_methods/new_spec.rb')])
+            descedant_specs.concat(Pathname.glob(descedant_spec_prefix.join('class_methods/new_spec.rb')))
           end
         end
 
@@ -190,7 +190,7 @@ begin
         ObjectSpace.each_object(Module) do |descedant|
           next unless descedant.name =~ /\A#{root_module}(?::|\z)/ && mod >= descedant
           descedant_spec_prefix = spec_dir.join(descedant.name.underscore)
-          descedant_specs.concat(FileList[descedant_spec_prefix.join('class_methods/*_spec.rb')])
+          descedant_specs.concat(Pathname.glob(descedant_spec_prefix.join('class_methods/*_spec.rb')))
         end
 
         specs << [ ".#{method}", descedant_specs ]
