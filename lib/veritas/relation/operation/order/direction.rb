@@ -26,13 +26,13 @@ module Veritas
             self.class.reverse.new(attribute)
           end
 
+          def ==(other)
+            eql?(other)
+          end
+
           def eql?(other)
             instance_of?(other.class) &&
             attribute.eql?(other.attribute)
-          end
-
-          def ==(other)
-            eql?(other)
           end
 
           def hash
