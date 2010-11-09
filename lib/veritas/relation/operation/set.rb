@@ -1,6 +1,8 @@
 module Veritas
   class Relation
     module Operation
+
+      # A mixin for Set relations
       module Set
         include Binary
 

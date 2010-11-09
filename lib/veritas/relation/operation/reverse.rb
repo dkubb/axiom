@@ -1,6 +1,8 @@
 module Veritas
   class Relation
     module Operation
+
+      # A class representing a reverse sorted relation
       class Reverse < Order
 
         # Instantiate a new Reverse relation
