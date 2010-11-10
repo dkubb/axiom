@@ -6,14 +6,14 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::UnoptimizedOperand#opt
   let(:klass)    { Optimizer::Relation::Operation::Limit::UnoptimizedOperand }
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ])                }
   let(:order)    { Relation.new(header, [ [ 1 ] ].each).order                }
-  let(:relation) { order.project(header).limit(1)                            }
+  let(:relation) { order.project(header).take(1)                             }
   let(:object)   { klass.new(relation)                                       }
 
   before do
     object.operation.should be_kind_of(Relation::Operation::Limit)
   end
 
-  it { should eql(order.limit(1)) }
+  it { should eql(order.take(1)) }
 
   its(:operand) { should equal(order) }
 end

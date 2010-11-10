@@ -19,7 +19,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::OrderOperand#optimiz
   end
 
   context 'when the operand is not ordered' do
-    let(:operand) { base.order.limit(2) }
+    let(:operand) { base.order.take(2) }
 
     it { should be(false) }
   end

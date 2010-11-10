@@ -6,7 +6,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:limit)      { order.limit(1)                                              }
+  let(:limit)      { order.take(1)                                               }
 
   context 'with the same limit' do
     let(:other) { limit }
@@ -29,7 +29,7 @@ describe 'Veritas::Relation::Operation::Limit#eql?' do
   end
 
   context 'with a different limit' do
-    let(:other) { order.limit(2) }
+    let(:other) { order.take(2) }
 
     it { should be(false) }
 

@@ -5,7 +5,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::InequalLimitOperand#op
 
   let(:klass)    { Optimizer::Relation::Operation::Limit::InequalLimitOperand }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order   }
-  let(:relation) { operand.limit(1)                                           }
+  let(:relation) { operand.take(1)                                            }
   let(:object)   { klass.new(relation)                                        }
 
   before do
@@ -13,13 +13,13 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::InequalLimitOperand#op
   end
 
   context 'when the operand is limited and not equal to the operation' do
-    let(:operand) { base.limit(2) }
+    let(:operand) { base.take(2) }
 
     it { should be(true) }
   end
 
   context 'when the operand is limited and equal to the operation' do
-    let(:operand) { base.limit(1) }
+    let(:operand) { base.take(1) }
 
     it { should be(false) }
   end

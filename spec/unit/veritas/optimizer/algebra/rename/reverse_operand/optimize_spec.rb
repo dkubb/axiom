@@ -13,7 +13,7 @@ describe 'Veritas::Optimizer::Algebra::Rename::ReverseOperand#optimize' do
   end
 
   context 'when the operand is a reverse containing a rename operation' do
-    let(:limit)    { base.order.limit(2)                    }
+    let(:limit)    { base.order.take(2)                     }
     let(:operand)  { limit.rename(:id => :other_id).reverse }
     let(:relation) { operand.rename(:other_id => :id)       }
 
@@ -25,12 +25,12 @@ describe 'Veritas::Optimizer::Algebra::Rename::ReverseOperand#optimize' do
   end
 
   context 'when the operand is a reverse not containing a rename operation' do
-    let(:operand)  { base.order.limit(2).reverse      }
+    let(:operand)  { base.order.take(2).reverse       }
     let(:relation) { operand.rename(:id => :other_id) }
 
     it { should be_kind_of(Relation::Operation::Reverse) }
 
-    its(:operand) { should eql(base.rename(:id => :other_id).order.limit(2)) }
+    its(:operand) { should eql(base.rename(:id => :other_id).order.take(2)) }
 
     its(:directions) { should == [ relation[:other_id].desc ] }
   end

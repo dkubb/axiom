@@ -205,9 +205,9 @@ describe 'Veritas::Algebra::Restriction#optimize' do
   end
 
   context 'with a reverse operation' do
-    let(:limit)     { relation.order.limit(2) }
-    let(:operand)   { limit.reverse           }
-    let(:predicate) { operand[:id].gte(1)     }
+    let(:limit)     { relation.order.take(2) }
+    let(:operand)   { limit.reverse          }
+    let(:predicate) { operand[:id].gte(1)    }
 
     it 'pushes the object under the reverse' do
       should eql(limit.restrict(predicate).reverse)
@@ -226,7 +226,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
   end
 
   context 'with a reverse operation, containing a object with duplicate predicates' do
-    let(:limit)     { relation.order.limit(2)                      }
+    let(:limit)     { relation.order.take(2)                       }
     let(:operand)   { limit.restrict { |r| r[:id].gte(1) }.reverse }
     let(:predicate) { operand[:id].gte(1)                          }
 

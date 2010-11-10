@@ -14,7 +14,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction::ReverseOperand#optimizable?'
   end
 
   context 'when the operand is a reverse operation' do
-    let(:operand) { base.limit(2).reverse }
+    let(:operand) { base.take(2).reverse }
 
     it { should be(true) }
   end

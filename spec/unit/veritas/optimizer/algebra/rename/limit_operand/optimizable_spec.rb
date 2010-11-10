@@ -14,7 +14,7 @@ describe 'Veritas::Optimizer::Algebra::Rename::LimitOperand#optimizable?' do
   end
 
   context 'when the operand is an limit operation' do
-    let(:operand) { base.order.limit(1) }
+    let(:operand) { base.order.take(1) }
 
     it { should be(true) }
   end

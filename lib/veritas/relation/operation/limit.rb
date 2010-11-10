@@ -50,20 +50,17 @@ module Veritas
       private
 
         module Methods
-          extend Aliasable
 
-          inheritable_alias(:take => :limit)
-
-          def limit(limit)
+          def take(limit)
             Limit.new(self, limit)
           end
 
           def first(limit = 1)
-            limit(limit)
+            take(limit)
           end
 
           def last(limit = 1)
-            reverse.first(limit).reverse
+            reverse.take(limit).reverse
           end
 
         end # module Methods

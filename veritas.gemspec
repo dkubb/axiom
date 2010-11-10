@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-07}
+  s.date = %q{2010-11-09}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -669,7 +669,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/relation/operation/limit/eql_spec.rb",
      "spec/unit/veritas/relation/operation/limit/methods/first_spec.rb",
      "spec/unit/veritas/relation/operation/limit/methods/last_spec.rb",
-     "spec/unit/veritas/relation/operation/limit/methods/limit_spec.rb",
+     "spec/unit/veritas/relation/operation/limit/methods/take_spec.rb",
      "spec/unit/veritas/relation/operation/limit/to_i_spec.rb",
      "spec/unit/veritas/relation/operation/offset/class_methods/new_spec.rb",
      "spec/unit/veritas/relation/operation/offset/each_spec.rb",
@@ -1263,7 +1263,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/relation/operation/limit/eql_spec.rb",
      "spec/unit/veritas/relation/operation/limit/methods/first_spec.rb",
      "spec/unit/veritas/relation/operation/limit/methods/last_spec.rb",
-     "spec/unit/veritas/relation/operation/limit/methods/limit_spec.rb",
+     "spec/unit/veritas/relation/operation/limit/methods/take_spec.rb",
      "spec/unit/veritas/relation/operation/limit/to_i_spec.rb",
      "spec/unit/veritas/relation/operation/offset/class_methods/new_spec.rb",
      "spec/unit/veritas/relation/operation/offset/each_spec.rb",

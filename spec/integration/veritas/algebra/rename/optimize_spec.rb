@@ -266,11 +266,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing a reverse operation' do
-    let(:limit)   { relation.order.limit(2) }
-    let(:operand) { limit.reverse           }
+    let(:limit)   { relation.order.take(2) }
+    let(:operand) { limit.reverse          }
 
     it 'pushes the object under the order, limit and reverse' do
-      should eql(relation.rename(aliases).order.limit(2).reverse)
+      should eql(relation.rename(aliases).order.take(2).reverse)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -286,12 +286,12 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing a reverse operation, containing a object that cancels out' do
-    let(:limit)   { relation.order.limit(2)                }
+    let(:limit)   { relation.order.take(2)                 }
     let(:operand) { limit.rename(:id => :other_id).reverse }
     let(:aliases) { { :other_id => :id }                   }
 
     it 'pushes the object under the order, limit and reverse, and then cancel it out' do
-      should eql(relation.order.limit(2).reverse)
+      should eql(relation.order.take(2).reverse)
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -347,10 +347,10 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
   context 'containing a limit operation' do
     let(:order)   { relation.order }
-    let(:operand) { order.limit(2) }
+    let(:operand) { order.take(2)  }
 
     it 'pushes the object under the limit and order' do
-      should eql(relation.rename(aliases).order.limit(2))
+      should eql(relation.rename(aliases).order.take(2))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -366,12 +366,12 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing a limit operation, containing a object that cancels out' do
-    let(:order)   { relation.order                          }
-    let(:operand) { order.rename(:id => :other_id).limit(2) }
-    let(:aliases) { { :other_id => :id }                    }
+    let(:order)   { relation.order                         }
+    let(:operand) { order.rename(:id => :other_id).take(2) }
+    let(:aliases) { { :other_id => :id }                   }
 
     it 'pushes the object under the limit and order, and then cancel it out' do
-      should eql(relation.order.limit(2))
+      should eql(relation.order.take(2))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

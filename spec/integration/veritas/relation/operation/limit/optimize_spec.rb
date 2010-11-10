@@ -62,8 +62,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
   end
 
   context 'containing a more restrictive object operation' do
-    let(:operand) { order.limit(5) }
-    let(:limit)   { 10             }
+    let(:operand) { order.take(5) }
+    let(:limit)   { 10            }
 
     it { should be_instance_of(klass) }
 
@@ -86,8 +86,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
   end
 
   context 'containing a less restrictive object operation' do
-    let(:operand) { order.limit(10) }
-    let(:limit)   { 5               }
+    let(:operand) { order.take(10) }
+    let(:limit)   { 5              }
 
     it { should be_instance_of(klass) }
 
@@ -110,8 +110,8 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
   end
 
   context 'containing a similar object operation' do
-    let(:operand) { order.limit(10) }
-    let(:limit)   { 10              }
+    let(:operand) { order.take(10) }
+    let(:limit)   { 10             }
 
     it { should equal(operand) }
 

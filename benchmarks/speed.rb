@@ -74,14 +74,14 @@ RBench.run(TIMES) do
     veritas { relation.order { |r| [ r[:id].desc, r[:name] ] }.each {} }
   end
 
-  report 'limit' do
+  report 'take' do
     ruby    { array.take(1).each {} }
-    veritas { ordered.limit(1).each {} }
+    veritas { ordered.take(1).each {} }
   end
 
   report 'offset' do
     ruby    { array.drop(1).each {} }
-    veritas { ordered.offset(1).each {} }
+    veritas { ordered.drop(1).each {} }
   end
 
   report 'first' do

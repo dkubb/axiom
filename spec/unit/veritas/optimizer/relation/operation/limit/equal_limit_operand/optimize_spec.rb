@@ -5,8 +5,8 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::EqualLimitOperand#opti
 
   let(:klass)    { Optimizer::Relation::Operation::Limit::EqualLimitOperand }
   let(:order)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
-  let(:limit)    { order.limit(1)                                           }
-  let(:relation) { limit.limit(1)                                           }
+  let(:limit)    { order.take(1)                                            }
+  let(:relation) { limit.take(1)                                            }
   let(:object)   { klass.new(relation)                                      }
 
   before do

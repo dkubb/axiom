@@ -137,8 +137,8 @@ end
 each_count do |array, relation, count|
   relation = relation.order(relation.header)
 
-  gc_statistics "limit (#{count} tuples)" do
-    relation.limit(count).each {}
+  gc_statistics "take (#{count} tuples)" do
+    relation.take(count).each {}
   end
 end
 
@@ -146,7 +146,7 @@ each_count do |array, relation, count|
   relation = relation.order(relation.header)
 
   gc_statistics "offset (#{count} tuples)" do
-    relation.offset(1).each {}
+    relation.drop(1).each {}
   end
 end
 

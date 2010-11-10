@@ -5,7 +5,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::ZeroLimit#optimizable?
 
   let(:klass)    { Optimizer::Relation::Operation::Limit::ZeroLimit         }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
-  let(:relation) { base.limit(limit)                                        }
+  let(:relation) { base.take(limit)                                         }
   let(:object)   { klass.new(relation)                                      }
 
   before do

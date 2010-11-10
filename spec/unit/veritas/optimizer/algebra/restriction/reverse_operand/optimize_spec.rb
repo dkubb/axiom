@@ -14,18 +14,18 @@ describe 'Veritas::Optimizer::Algebra::Restriction::ReverseOperand#optimize' do
   end
 
   context 'when new operation is optimizable' do
-    let(:relation) { order.limit(2).restrict(predicate).reverse.restrict(predicate) }
+    let(:relation) { order.take(2).restrict(predicate).reverse.restrict(predicate) }
 
     it { should be_kind_of(Relation::Operation::Reverse) }
 
-    its(:operand) { should eql(order.limit(2).restrict(predicate)) }
+    its(:operand) { should eql(order.take(2).restrict(predicate)) }
   end
 
   context 'when new operation is not optimizable' do
-    let(:relation) { order.limit(2).reverse.restrict(predicate) }
+    let(:relation) { order.take(2).reverse.restrict(predicate) }
 
     it { should be_kind_of(Relation::Operation::Reverse) }
 
-    its(:operand) { should eql(order.limit(2).restrict(predicate)) }
+    its(:operand) { should eql(order.take(2).restrict(predicate)) }
   end
 end

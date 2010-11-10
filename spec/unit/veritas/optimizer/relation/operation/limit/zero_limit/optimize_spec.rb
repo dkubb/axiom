@@ -6,7 +6,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize' do
   let(:klass)    { Optimizer::Relation::Operation::Limit::ZeroLimit }
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ])       }
   let(:order)    { Relation.new(header, [ [ 1 ] ].each).order       }
-  let(:relation) { order.limit(0)                                   }
+  let(:relation) { order.take(0)                                    }
   let(:object)   { klass.new(relation)                              }
 
   before do

@@ -13,13 +13,13 @@ describe 'Veritas::Optimizer::Relation::Operation::Order::OneLimitOperand#optimi
   end
 
   context 'when the operand is limited to 1' do
-    let(:operand) { base.order.limit(1) }
+    let(:operand) { base.order.take(1) }
 
     it { should be(true) }
   end
 
   context 'when the operand is not limited to 1' do
-    let(:operand) { base.order.limit(2) }
+    let(:operand) { base.order.take(2) }
 
     it { should be(false) }
   end

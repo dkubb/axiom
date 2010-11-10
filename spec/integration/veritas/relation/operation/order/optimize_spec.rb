@@ -73,7 +73,7 @@ describe 'Veritas::Relation::Operation::Order#optimize' do
   end
 
   context 'containing a limit(1) operation' do
-    let(:operand) { relation.order.limit(1) }
+    let(:operand) { relation.order.take(1) }
 
     it { should equal(operand) }
 

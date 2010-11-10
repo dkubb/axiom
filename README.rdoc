@@ -94,7 +94,7 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
 
   # limiting (only allowed if ordered)
-  new_relation = relation.limit(10)
+  new_relation = relation.take(10)
 
   # offset (only allowed if ordered)
   new_relation = relation.offset(0)
