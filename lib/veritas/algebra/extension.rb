@@ -33,9 +33,7 @@ module Veritas
       # Assert the extensions are uniquely named
       #
       # @param [Relation] operand
-      #   the relation to extend
       # @param [Hash] extensions
-      #   the extensions to add
       #
       # @return [undefined]
       #

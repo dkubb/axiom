@@ -103,6 +103,7 @@ module Veritas
         #   aliases == other  # => true or false
         #
         # @param [Aliases] other
+        #   the other aliases to compare with
         #
         # @return [Boolean]
         #
@@ -118,6 +119,7 @@ module Veritas
         #   aliases.eql?(other)  # => true or false
         #
         # @param [Aliases] other
+        #   the other aliases to compare with
         #
         # @return [Boolean]
         #
