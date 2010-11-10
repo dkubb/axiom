@@ -97,7 +97,7 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.take(10)
 
   # offset (only allowed if ordered)
-  new_relation = relation.offset(0)
+  new_relation = relation.drop(5)
 
   # get the first n tuples (only allowed if ordered)
   new_relation = relation.first     # default is 1

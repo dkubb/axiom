@@ -6,7 +6,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::UnoptimizedOperand#op
   let(:klass)    { Optimizer::Relation::Operation::Offset::UnoptimizedOperand }
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ])                 }
   let(:base)     { Relation.new(header, [ [ 1 ] ].each).order                 }
-  let(:relation) { operand.offset(1)                                          }
+  let(:relation) { operand.drop(1)                                            }
   let(:object)   { klass.new(relation)                                        }
 
   before do

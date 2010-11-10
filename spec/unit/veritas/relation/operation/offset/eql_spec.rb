@@ -6,7 +6,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
   let(:directions) { [ relation[:id] ]                                           }
   let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:offset)     { order.offset(1)                                             }
+  let(:offset)     { order.drop(1)                                               }
 
   context 'with the same offset' do
     let(:other) { offset }
@@ -29,7 +29,7 @@ describe 'Veritas::Relation::Operation::Offset#eql?' do
   end
 
   context 'with a different offset' do
-    let(:other) { offset.offset(0) }
+    let(:other) { offset.drop(0) }
 
     it { should be(false) }
 

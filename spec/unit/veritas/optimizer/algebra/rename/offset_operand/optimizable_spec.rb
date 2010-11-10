@@ -14,7 +14,7 @@ describe 'Veritas::Optimizer::Algebra::Rename::OffsetOperand#optimizable?' do
   end
 
   context 'when the operand is an offset operation' do
-    let(:operand) { base.order.offset(1) }
+    let(:operand) { base.order.drop(1) }
 
     it { should be(true) }
   end

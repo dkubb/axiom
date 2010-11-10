@@ -13,7 +13,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::ReverseOperand#optim
   end
 
   context 'when the operand is reversed' do
-    let(:operand) { base.offset(1).reverse }
+    let(:operand) { base.drop(1).reverse }
 
     it { should be(true) }
   end

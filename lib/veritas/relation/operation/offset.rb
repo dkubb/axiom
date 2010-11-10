@@ -49,11 +49,7 @@ module Veritas
       private
 
         module Methods
-          extend Aliasable
-
-          inheritable_alias(:drop => :offset)
-
-          def offset(offset)
+          def drop(offset)
             Offset.new(self, offset)
           end
 

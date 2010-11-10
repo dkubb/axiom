@@ -145,7 +145,7 @@ end
 each_count do |array, relation, count|
   relation = relation.order(relation.header)
 
-  gc_statistics "offset (#{count} tuples)" do
+  gc_statistics "drop (#{count} tuples)" do
     relation.drop(1).each {}
   end
 end

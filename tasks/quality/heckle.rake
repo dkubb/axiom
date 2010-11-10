@@ -75,8 +75,6 @@ begin
 
     aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
 
-    aliases['Veritas::Relation::Operation::Offset::Methods']['drop'] = 'offset'
-
     aliases['Veritas::Attribute::Numeric']['range'] = 'size'
     aliases['Veritas::Attribute::String']['range']  = 'length'
 

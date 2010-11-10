@@ -387,11 +387,11 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing an offset operation' do
-    let(:order)   { relation.order  }
-    let(:operand) { order.offset(1) }
+    let(:order)   { relation.order }
+    let(:operand) { order.drop(1)  }
 
     it 'pushes the object under the offset and order' do
-      should eql(relation.rename(aliases).order.offset(1))
+      should eql(relation.rename(aliases).order.drop(1))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -407,12 +407,12 @@ describe 'Veritas::Algebra::Rename#optimize' do
   end
 
   context 'containing an offset operation, containing a object that cancels out' do
-    let(:order)   { relation.order                           }
-    let(:operand) { order.rename(:id => :other_id).offset(1) }
-    let(:aliases) { { :other_id => :id }                     }
+    let(:order)   { relation.order                         }
+    let(:operand) { order.rename(:id => :other_id).drop(1) }
+    let(:aliases) { { :other_id => :id }                   }
 
     it 'pushes the object under the offset and order, and then cancel it out' do
-      should eql(relation.order.offset(1))
+      should eql(relation.order.drop(1))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

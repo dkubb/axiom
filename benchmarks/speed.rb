@@ -79,7 +79,7 @@ RBench.run(TIMES) do
     veritas { ordered.take(1).each {} }
   end
 
-  report 'offset' do
+  report 'drop' do
     ruby    { array.drop(1).each {} }
     veritas { ordered.drop(1).each {} }
   end

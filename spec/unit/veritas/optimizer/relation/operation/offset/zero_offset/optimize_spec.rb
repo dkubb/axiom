@@ -5,7 +5,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::ZeroOffset#optimize' 
 
   let(:klass)    { Optimizer::Relation::Operation::Offset::ZeroOffset       }
   let(:order)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
-  let(:relation) { order.offset(0)                                          }
+  let(:relation) { order.drop(0)                                            }
   let(:object)   { klass.new(relation)                                      }
 
   before do

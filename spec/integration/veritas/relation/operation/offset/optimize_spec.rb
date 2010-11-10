@@ -62,8 +62,8 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
   end
 
   context 'containing an object operation' do
-    let(:operand) { order.offset(5) }
-    let(:offset)  { 10              }
+    let(:operand) { order.drop(5) }
+    let(:offset)  { 10            }
 
     it { should be_instance_of(klass) }
 
