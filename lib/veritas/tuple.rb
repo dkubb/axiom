@@ -163,9 +163,6 @@ module Veritas
 
     # Coerce an Array-like object into a Tuple
     #
-    # @example
-    #   tuple = Tuple.coerce(header, [ 1, 2, 3 ])
-    #
     # @param [Header] header
     #   the tuple header
     # @param [Tuple, #to_ary]

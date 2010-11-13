@@ -155,9 +155,6 @@ module Veritas
 
         # Coerce a Hash of old and new attributes into Aliases
         #
-        # @example
-        #    aliases = Aliases.coerce(attributes, :old => :new)
-        #
         # @param [Header] attributes
         #   the header containing the old attributes
         # @param [Aliases, #map] aliases

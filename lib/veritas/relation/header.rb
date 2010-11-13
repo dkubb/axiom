@@ -250,9 +250,6 @@ module Veritas
 
       # Coerce an Array-like object into a Header
       #
-      # @example
-      #   header = Header.coerce([ [ :id, Integer ] ])
-      #
       # @param [Header, #to_ary]
       #   the header or attributes
       #
