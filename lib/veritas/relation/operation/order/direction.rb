@@ -26,7 +26,7 @@ module Veritas
             @attribute = attribute
           end
 
-          # Compare the attributes for each Tuple
+          # Compare the left and right Tuple attribute values
           #
           # @example
           #   comparison = direction.call(left, right)
