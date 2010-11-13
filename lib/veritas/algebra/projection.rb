@@ -49,7 +49,7 @@ module Veritas
         # Return a relation with only the attributes specified
         #
         # @example
-        #   projection = relation.project([ :a, b, c ])
+        #   projection = relation.project([ :a, :b, :c ])
         #
         # @param [#to_ary] attributes
         #   the attributes to keep in the header
