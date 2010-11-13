@@ -4,7 +4,7 @@ module Veritas
       class Join < Relation::Operation::Combine
         class EqualHeaders < self
           def optimizable?
-            left.header == right.header
+            left.header.eql?(right.header)
           end
 
           def optimize
