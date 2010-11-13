@@ -1,6 +1,8 @@
 module Veritas
   module Logic
     class Proposition
+
+      # A class representing a tautology
       class True < Proposition
 
         # Return the inverse proposition class

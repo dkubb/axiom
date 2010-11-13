@@ -1,6 +1,8 @@
 module Veritas
   module Logic
     class Proposition
+
+      # A class representing a contradiction
       class False < Proposition
 
         # Return the inverse proposition class
