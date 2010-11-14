@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-09}
+  s.date = %q{2010-11-13}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -1068,6 +1068,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/optimizer/algebra/rename/class_methods/union_aliases_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimize_spec.rb",
+     "spec/unit/veritas/optimizer/algebra/rename/header_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/limit_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/limit_operand/optimize_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/offset_operand/optimizable_spec.rb",

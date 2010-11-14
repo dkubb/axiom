@@ -2,10 +2,12 @@ module Veritas
   class Optimizer
     module Algebra
       class Rename < Relation::Operation::Unary
+        attr_reader :header
         attr_reader :aliases
 
         def initialize(*)
           super
+          @header  = operation.header
           @aliases = self.class.union_aliases(operation.aliases, operand)
         end
 
@@ -51,7 +53,7 @@ module Veritas
           end
 
           def optimize
-            operand.class.new(wrap_operand, operation.header).optimize
+            operand.class.new(wrap_operand, header).optimize
           end
 
         end # class ProjectionOperand
@@ -146,7 +148,7 @@ module Veritas
           end
 
           def optimize
-            Veritas::Relation::Empty.new(operation.header)
+            Veritas::Relation::Empty.new(header)
           end
 
         end # class EmptyOperand
