@@ -8,7 +8,7 @@ module Veritas
         # Optimize when operands are optimizable
         class UnoptimizedOperand < self
 
-          # Test if the Extension has an unoptimized operand
+          # Test if the operand is unoptimized
           #
           # @return [Boolean]
           #
@@ -17,7 +17,7 @@ module Veritas
             !operand.equal?(operation.operand)
           end
 
-          # Return an Extension with optimized operands
+          # Return an Extension with an optimized operand
           #
           # @return [Algebra::Extension]
           #

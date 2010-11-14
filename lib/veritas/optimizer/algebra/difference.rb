@@ -5,7 +5,7 @@ module Veritas
       # Abstract base class representing Difference optimizations
       class Difference < Relation::Operation::Binary
 
-        # Optimize when operands are equal in a Difference
+        # Optimize when operands are equal
         class EqualOperands < self
           include Relation::Operation::Binary::EqualOperands
 
@@ -20,7 +20,7 @@ module Veritas
 
         end # class EqualOperands
 
-        # Optimize when the left operand is empty in a Difference
+        # Optimize when the left operand is empty
         class EmptyLeft < self
           include Relation::Operation::Binary::EmptyLeft
 
@@ -35,7 +35,7 @@ module Veritas
 
         end # class EmptyLeft
 
-        # Optimize when the right operand is empty in a Difference
+        # Optimize when the right operand is empty
         class EmptyRight < self
           include Relation::Operation::Binary::EmptyRight
 
