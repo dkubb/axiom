@@ -21,10 +21,12 @@ module Veritas
 
         # Initialize an Rename optimizer
         #
+        # @param [Relation] operation
+        #
         # @return [undefined]
         #
         # @api private
-        def initialize(*)
+        def initialize(operation)
           super
           @header  = operation.header
           @aliases = self.class.union_aliases(operation.aliases, operand)
