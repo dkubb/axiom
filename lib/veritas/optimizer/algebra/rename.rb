@@ -34,7 +34,7 @@ module Veritas
 
       private
 
-        # Wrap the operand in a Rename
+        # Wrap the operand's operand in a Rename
         #
         # @return [Rename]
         #
@@ -119,9 +119,9 @@ module Veritas
             operand.kind_of?(Veritas::Algebra::Projection)
           end
 
-          # Wrap the operand in a Rename
+          # Wrap the Rename in a Projection
           #
-          # @return [Relation]
+          # @return [Projection]
           #
           # @api private
           def optimize
@@ -142,7 +142,7 @@ module Veritas
             operand.kind_of?(Veritas::Algebra::Restriction)
           end
 
-          # Wrap the operand in a Rename
+          # Wrap the Rename in a Restriction
           #
           # @return [Restriction]
           #
@@ -219,7 +219,7 @@ module Veritas
             operand.kind_of?(Veritas::Relation::Operation::Reverse)
           end
 
-          # Wrap the operand in a Rename
+          # Wrap the Rename in a Reverse
           #
           # @return [Reverse]
           #
@@ -242,7 +242,7 @@ module Veritas
             operand.kind_of?(Veritas::Relation::Operation::Order)
           end
 
-          # Wrap the operand in a Rename
+          # Wrap the Rename in an Order
           #
           # @return [Order]
           #
@@ -265,7 +265,7 @@ module Veritas
             operand.kind_of?(Veritas::Relation::Operation::Limit)
           end
 
-          # Wrap the operand in a Rename
+          # Wrap the Rename in a Limit
           #
           # @return [Limit]
           #
@@ -289,7 +289,7 @@ module Veritas
             operand.kind_of?(Veritas::Relation::Operation::Offset)
           end
 
-          # Wrap the operand in a Rename
+          # Wrap the Rename in an Offset
           #
           # @return [Offset]
           #
