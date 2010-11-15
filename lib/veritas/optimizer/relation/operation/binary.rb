@@ -21,6 +21,13 @@ module Veritas
             operation.right.optimize
           end
 
+          module EqualOperands
+            def optimizable?
+              left.eql?(right)
+            end
+
+          end # module EqualOperands
+
           module EmptyLeft
             def optimizable?
               left.kind_of?(Veritas::Relation::Empty)
@@ -34,13 +41,6 @@ module Veritas
             end
 
           end # module EmptyRight
-
-          module EqualOperands
-            def optimizable?
-              left.eql?(right)
-            end
-
-          end # module EqualOperands
 
           class MaterializedOperand < self
             def optimizable?
