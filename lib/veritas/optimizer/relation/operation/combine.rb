@@ -3,22 +3,16 @@ module Veritas
     module Relation
       module Operation
         class Combine < Binary
+          def optimize
+            Veritas::Relation::Empty.new(operation.header)
+          end
+
           class EmptyLeft < self
             include Binary::EmptyLeft
-
-            def optimize
-              Veritas::Relation::Empty.new(operation.header)
-            end
-
           end # class EmptyLeft
 
           class EmptyRight < self
             include Binary::EmptyRight
-
-            def optimize
-              Veritas::Relation::Empty.new(operation.header)
-            end
-
           end # class EmptyRight
         end # class Combine
       end # module Operation
