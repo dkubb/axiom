@@ -7,7 +7,13 @@ module Veritas
 
           def initialize(*)
             super
-            @operand = operation.operand.optimize
+            @operand = optimize_operand
+          end
+
+        private
+
+          def optimize_operand
+            operation.operand.optimize
           end
 
           class EmptyOperand < self
