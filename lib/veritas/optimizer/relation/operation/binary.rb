@@ -126,9 +126,7 @@ module Veritas
             #
             # @api private
             def optimizable?
-              operation = self.operation
-              !left.equal?(operation.left) ||
-              !right.equal?(operation.right)
+              left_optimizable? || right_optimizable?
             end
 
             # Return a Relation with optimized operands
@@ -138,6 +136,26 @@ module Veritas
             # @api private
             def optimize
               operation.class.new(left, right)
+            end
+
+          private
+
+            # Test if the left operand is optimizable
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def left_optimizable?
+              !left.equal?(operation.left)
+            end
+
+            # Test if the right operand is optimizable
+            #
+            # @return [Boolean]
+            #
+            # @api private
+            def right_optimizable?
+              !right.equal?(operation.right)
             end
 
           end # class UnoptimizedOperand
