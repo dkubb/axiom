@@ -2,7 +2,7 @@ source :rubygems
 
 gemspec
 
-if RUBY_VERSION < '1.9'
+platforms :mri_18 do
   group :quality do
     gem 'activesupport', '~> 2.3.10'
     gem 'flay',          '~> 1.4.1'
