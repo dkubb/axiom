@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-13}
+  s.date = %q{2010-11-15}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
      ".document",
      ".gitignore",
      "Gemfile",
+     "Gemfile.lock",
      "LICENSE",
      "README.rdoc",
      "Rakefile",
@@ -474,6 +475,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/optimizer/algebra/rename/class_methods/union_aliases_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/empty_operand/optimize_spec.rb",
+     "spec/unit/veritas/optimizer/algebra/rename/header_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/limit_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/limit_operand/optimize_spec.rb",
      "spec/unit/veritas/optimizer/algebra/rename/offset_operand/optimizable_spec.rb",
@@ -592,8 +594,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/optimizer/relation/operation/binary/right_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/binary/unoptimized_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/binary/unoptimized_operand/optimize_spec.rb",
-     "spec/unit/veritas/optimizer/relation/operation/combine/empty_left/optimize_spec.rb",
-     "spec/unit/veritas/optimizer/relation/operation/combine/empty_right/optimize_spec.rb",
+     "spec/unit/veritas/optimizer/relation/operation/combine/optimize_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/limit/equal_limit_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/limit/equal_limit_operand/optimize_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/limit/inequal_limit_operand/optimizable_spec.rb",
@@ -1187,8 +1188,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/optimizer/relation/operation/binary/right_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/binary/unoptimized_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/binary/unoptimized_operand/optimize_spec.rb",
-     "spec/unit/veritas/optimizer/relation/operation/combine/empty_left/optimize_spec.rb",
-     "spec/unit/veritas/optimizer/relation/operation/combine/empty_right/optimize_spec.rb",
+     "spec/unit/veritas/optimizer/relation/operation/combine/optimize_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/limit/equal_limit_operand/optimizable_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/limit/equal_limit_operand/optimize_spec.rb",
      "spec/unit/veritas/optimizer/relation/operation/limit/inequal_limit_operand/optimizable_spec.rb",
@@ -1332,18 +1332,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.1"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.4"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.4.0"])
       s.add_development_dependency(%q<backports>, ["~> 1.18.2"])
     else
       s.add_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_dependency(%q<rspec>, ["~> 1.3.1"])
-      s.add_dependency(%q<jeweler>, ["~> 1.4"])
+      s.add_dependency(%q<jeweler>, ["~> 1.4.0"])
       s.add_dependency(%q<backports>, ["~> 1.18.2"])
     end
   else
     s.add_dependency(%q<rake>, ["~> 0.8.7"])
     s.add_dependency(%q<rspec>, ["~> 1.3.1"])
-    s.add_dependency(%q<jeweler>, ["~> 1.4"])
+    s.add_dependency(%q<jeweler>, ["~> 1.4.0"])
     s.add_dependency(%q<backports>, ["~> 1.18.2"])
   end
 end
