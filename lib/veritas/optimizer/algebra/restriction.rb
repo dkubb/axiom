@@ -7,7 +7,7 @@ module Veritas
 
         # The optimized predicate
         #
-        # @return [Predicate]
+        # @return [Expression]
         #
         # @api private
         attr_reader :predicate
@@ -35,9 +35,9 @@ module Veritas
 
         # Optimize the predicate if possible
         #
-        # @param [Predicate] predicate
+        # @param [Expression] predicate
         #
-        # @return [Predicate]
+        # @return [Expression]
         #
         # @api private
         def self.optimize_predicate(predicate)
@@ -115,7 +115,7 @@ module Veritas
 
           # Join the operand and operation predicates and optimize them
           #
-          # @return [Predicate]
+          # @return [Expression]
           #
           # @api private
           def optimized_predicate
