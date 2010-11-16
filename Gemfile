@@ -1,11 +1,6 @@
 source :rubygems
 
-group :development do
-  gem 'rake',      '~> 0.8.7'
-  gem 'rspec',     '~> 1.3.1'
-  gem 'jeweler',   '~> 1.4.0'
-  gem 'backports', '~> 1.18.2'
-end
+gemspec
 
 if RUBY_VERSION < '1.9'
   group :quality do
