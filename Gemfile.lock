@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/dkubb/flog.git
+  revision: 4522d547d0f2977dd581be24a8a9985d78699e4c
+  specs:
+    flog (2.4.0)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+
 PATH
   remote: .
   specs:
@@ -28,9 +36,6 @@ GEM
     colored (1.2)
     fattr (2.2.0)
     flay (1.4.1)
-      ruby_parser (~> 2.0)
-      sexp_processor (~> 3.0)
-    flog (2.5.0)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
     gemcutter (0.6.1)
@@ -99,7 +104,7 @@ DEPENDENCIES
   activesupport (~> 2.3.10)
   backports (~> 1.18.2)
   flay (~> 1.4.1)
-  flog (~> 2.5.0)
+  flog (~> 2.4.0)!
   heckle (~> 1.4.3)
   jeweler (~> 1.4.0)
   json (~> 1.4.6)

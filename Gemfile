@@ -6,7 +6,7 @@ platforms :mri_18 do
   group :quality do
     gem 'activesupport', '~> 2.3.10'
     gem 'flay',          '~> 1.4.1'
-    gem 'flog',          '~> 2.5.0'
+    gem 'flog',          '~> 2.4.0', :git => 'git://github.com/dkubb/flog.git'
     gem 'heckle',        '~> 1.4.3'
     gem 'json',          '~> 1.4.6'
     gem 'metric_fu',     '~> 2.0.1'
