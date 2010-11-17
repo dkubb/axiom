@@ -36,7 +36,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule:
   exclude: []
-  enabled: false  # TODO: set to true when all classes/modules are documented
+  enabled: true
 UncommunicativeModuleName:
   accept: []
   exclude: []
