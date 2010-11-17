@@ -93,11 +93,11 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.order([ relation[:a].desc, relation[:b] ])
   new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
 
-  # limiting (only allowed if ordered)
-  new_relation = relation.take(10)
-
   # offset (only allowed if ordered)
   new_relation = relation.drop(5)
+
+  # limiting (only allowed if ordered)
+  new_relation = relation.take(10)
 
   # get the first n tuples (only allowed if ordered)
   new_relation = relation.first     # default is 1
