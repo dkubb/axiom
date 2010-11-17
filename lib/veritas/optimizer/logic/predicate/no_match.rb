@@ -2,6 +2,8 @@ module Veritas
   class Optimizer
     module Logic
       class Predicate
+
+        # Abstract base class representing NoMatch optimizations
         class NoMatch < self
 
           Veritas::Logic::Predicate::NoMatch.optimizer = chain(
