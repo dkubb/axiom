@@ -117,7 +117,7 @@ module Veritas
 
           end # class MaterializedOperand
 
-          # Optimize when the operands are optimizable
+          # Optimize when the operands are unoptimized
           class UnoptimizedOperand < self
 
             # Test if the operands are unoptimized

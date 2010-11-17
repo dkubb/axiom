@@ -203,7 +203,7 @@ module Veritas
 
           end # class RedundantRightOperand
 
-          # Optimize when the operands are optimizable
+          # Optimize when the operands are unoptimized
           class UnoptimizedOperand < self
 
             # Test if the operands are unoptimized
