@@ -743,7 +743,7 @@ Gem::Specification.new do |s|
      "veritas.gemspec"
   ]
   s.has_rdoc = %q{yard}
-  s.homepage = %q{http://github.com/dkubb/veritas}
+  s.homepage = %q{https://github.com/dkubb/veritas}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}

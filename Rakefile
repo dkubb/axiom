@@ -11,7 +11,7 @@ begin
     gem.summary     = 'Ruby Relational Algebra'
     gem.description = 'Simplifies querying of structured data using relational algebra'
     gem.email       = 'dan.kubb@gmail.com'
-    gem.homepage    = 'http://github.com/dkubb/veritas'
+    gem.homepage    = 'https://github.com/dkubb/veritas'
     gem.authors     = [ 'Dan Kubb' ]
     gem.has_rdoc    = 'yard'
 
