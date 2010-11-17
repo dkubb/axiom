@@ -93,6 +93,9 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.order([ relation[:a].desc, relation[:b] ])
   new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
 
+  # reverse the relation (only allowed if ordered)
+  new_relation = relation.reverse
+
   # offset (only allowed if ordered)
   new_relation = relation.drop(5)
 
@@ -106,9 +109,6 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   # get the last n tuples (only allowed if ordered)
   new_relation = relation.last      # default is 1
   new_relation = relation.last(5)
-
-  # reverse the relation (only allowed if ordered)
-  new_relation = relation.reverse
 
   # CRUD Operators
   # --------------
