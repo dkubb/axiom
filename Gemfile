@@ -2,6 +2,10 @@ source :rubygems
 
 gemspec
 
+group :benchmarks do
+  gem 'rbench', '~> 0.2.3'
+end
+
 platforms :mri_18 do
   group :quality do
     gem 'activesupport', '~> 2.3.10'
@@ -22,8 +26,4 @@ end
 
 platforms :jruby do
   gem 'jruby-openssl', '~> 0.7.2'
-end
-
-group :benchmarks do
-  gem 'rbench', '~> 0.2.3'
 end
