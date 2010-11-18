@@ -24,6 +24,7 @@ GEM
     activesupport (2.3.10)
     arrayfields (4.7.4)
     backports (1.18.2)
+    bouncy-castle-java (1.5.0145.2)
     chronic (0.2.3)
       hoe (>= 1.2.1)
     churn (0.0.12)
@@ -52,6 +53,8 @@ GEM
       gemcutter (>= 0.1.0)
       git (>= 1.2.5)
       rubyforge (>= 2.0.0)
+    jruby-openssl (0.7.2)
+      bouncy-castle-java
     json (1.4.6)
     json_pure (1.4.6)
     main (4.3.0)
@@ -107,6 +110,7 @@ DEPENDENCIES
   flog (~> 2.4.0)!
   heckle (~> 1.4.3)
   jeweler (~> 1.4.0)
+  jruby-openssl (~> 0.7.2)
   json (~> 1.4.6)
   metric_fu (~> 2.0.1)
   mspec (~> 1.5.17)

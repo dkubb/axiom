@@ -20,6 +20,10 @@ platforms :mri_18 do
   end
 end
 
+platforms :jruby do
+  gem 'jruby-openssl', '~> 0.7.2'
+end
+
 group :benchmarks do
   gem 'rbench', '~> 0.2.3'
 end
