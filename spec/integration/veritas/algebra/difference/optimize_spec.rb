@@ -93,28 +93,30 @@ describe 'Veritas::Algebra::Difference#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'left and right are equivalent relations' do
-    let(:right_body) { left_body.dup  }
-    let(:left)       { original_left  }
-    let(:right)      { original_right }
+  unless defined?(JRUBY_VERSION) && JRUBY_VERSION < '1.6'
+    context 'left and right are equivalent relations' do
+      let(:right_body) { left_body.dup  }
+      let(:left)       { original_left  }
+      let(:right)      { original_right }
 
-    it { should eql(Relation::Empty.new(header)) }
+      it { should eql(Relation::Empty.new(header)) }
 
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == object
+      it 'returns an equivalent relation to the unoptimized operation' do
+        should == object
+      end
+
+      it 'executes left_body#each' do
+        left_body.should_receive(:each)
+        subject
+      end
+
+      it 'executes right_body#each' do
+        right_body.should_receive(:each)
+        subject
+      end
+
+      it_should_behave_like 'an optimize method'
     end
-
-    it 'executes left_body#each' do
-      left_body.should_receive(:each)
-      subject
-    end
-
-    it 'executes right_body#each' do
-      right_body.should_receive(:each)
-      subject
-    end
-
-    it_should_behave_like 'an optimize method'
   end
 
   context 'left and right are not empty relations' do
