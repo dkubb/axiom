@@ -9,9 +9,11 @@ describe 'Veritas::Algebra::Rename::Aliases#each' do
   let(:object)    { klass.new(aliases)                           }
   let(:yields)    { []                                           }
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'yields each alias' do
-    expect { subject }.to change { yields.dup }.from([]).to(aliases.to_a)
+    expect { subject }.to change { yields.dup }.
+      from([]).
+      to(aliases.to_a)
   end
 end

@@ -1,30 +1,33 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Difference#each' do
-  subject { difference.each { |tuple| yields << tuple } }
+  subject { object.each { |tuple| yields << tuple } }
 
+  let(:klass)  { Algebra::Difference             }
   let(:header) { [ [ :id, Integer ] ]            }
   let(:left)   { Relation.new(header, [ [ 1 ] ]) }
+  let(:object) { klass.new(left, right)          }
   let(:yields) { []                              }
 
   context 'with relations having similar bodies' do
-    let(:difference) { Algebra::Difference.new(left, left.dup) }
+    let(:right) { left.dup }
 
-    it { should equal(difference) }
+    it_should_behave_like 'a command method'
 
-    it 'yields the difference' do
+    it 'yields no tuples' do
       expect { subject }.to_not change { yields.dup }
     end
   end
 
   context 'with relations having different bodies' do
-    let(:right)      { Relation.new(header, [ [ 2 ] ])      }
-    let(:difference) { Algebra::Difference.new(left, right) }
+    let(:right) { Relation.new(header, [ [ 2 ] ]) }
 
-    it { should equal(difference) }
+    it_should_behave_like 'a command method'
 
-    it 'yields the difference' do
-      expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
+    it 'yields each tuple' do
+      expect { subject }.to change { yields.dup }.
+        from([]).
+        to([ [ 1 ] ])
     end
   end
 end

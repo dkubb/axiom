@@ -1,17 +1,19 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Limit#each' do
-  subject { limit.each { |tuple| yields << tuple } }
+  subject { object.each { |tuple| yields << tuple } }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:limit)      { Relation::Operation::Limit.new(order, 1)                    }
-  let(:yields)     { []                                                          }
+  let(:klass)    { Relation::Operation::Limit                                  }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:order)    { relation.order                                              }
+  let(:object)   { klass.new(order, 1)                                         }
+  let(:yields)   { []                                                          }
 
-  it { should equal(limit) }
+  it_should_behave_like 'a command method'
 
   it 'yields each tuple' do
-    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
+    expect { subject }.to change { yields.dup }.
+      from([]).
+      to([ [ 1 ] ])
   end
 end

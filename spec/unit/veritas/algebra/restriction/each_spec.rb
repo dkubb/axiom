@@ -8,9 +8,11 @@ describe 'Veritas::Algebra::Restriction#each' do
   let(:object)   { klass.new(relation, proc { true })            }
   let(:yields)   { []                                            }
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'yields each tuple' do
-    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
+    expect { subject }.to change { yields.dup }.
+      from([]).
+      to([ [ 1 ] ])
   end
 end

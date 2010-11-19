@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Empty#each' do
-  subject { empty.each { |tuple| yields << tuple } }
+  subject { object.each { |tuple| yields << tuple } }
 
-  let(:empty)  { Relation::Empty.new([ [ :id, Integer ] ]) }
-  let(:yields) { []                                        }
+  let(:klass)  { Relation::Empty                 }
+  let(:object) { klass.new([ [ :id, Integer ] ]) }
+  let(:yields) { []                              }
 
-  it { should equal(empty) }
+  it_should_behave_like 'a command method'
 
-  it 'does not yield any tuples' do
+  it 'yields no tuples' do
     expect { subject }.to_not change { yields.dup }
   end
 end

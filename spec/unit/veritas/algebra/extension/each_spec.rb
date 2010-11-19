@@ -9,9 +9,11 @@ describe 'Veritas::Algebra::Extension#each' do
   let(:object)     { klass.new(operand, extensions)                       }
   let(:yields)     { []                                                   }
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'yields each tuple' do
-    expect { subject }.to change { yields.dup }.from([]).to([ [ 1, 1 ], [ 2, 1 ] ])
+    expect { subject }.to change { yields.dup }.
+      from([]).
+      to([ [ 1, 1 ], [ 2, 1 ] ])
   end
 end

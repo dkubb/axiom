@@ -8,14 +8,16 @@ describe 'Veritas::Algebra::Rename#each' do
   let(:object)   { klass.new(relation, :id => :other_id)         }
   let(:yields)   { []                                            }
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'yields each tuple' do
-    expect { subject }.to change { yields.dup }.from([]).to([ [ 1 ] ])
+    expect { subject }.to change { yields.dup }.
+      from([]).
+      to([ [ 1 ] ])
   end
 
-  it 'changes the header for each tuple' do
+  it 'each tuple has a renamed header' do
     subject
-    yields.first.header.should equal(object.header)
+    yields.each { |tuple| tuple.header.should equal(object.header) }
   end
 end
