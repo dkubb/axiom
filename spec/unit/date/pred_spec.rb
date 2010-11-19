@@ -1,15 +1,18 @@
 require 'spec_helper'
 
 describe 'Date#pred' do
-  subject { date.pred }
+  subject { object.pred }
 
-  let(:date) { Date.today }
+  let(:klass)  { Date        }
+  let(:object) { klass.today }
+
+  it { should be_kind_of(klass) }
 
   it 'returns the date 1 day ago' do
-    should == (date - 1)
+    should == (object - 1)
   end
 
   it 'is the inverse of #succ' do
-    subject.succ.should == date
+    subject.succ.should == object
   end
 end
