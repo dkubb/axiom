@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-16}
+  s.date = %q{2010-11-18}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -196,7 +196,6 @@ Gem::Specification.new do |s|
      "spec/unit/range/to_inclusive_spec.rb",
      "spec/unit/time/pred_spec.rb",
      "spec/unit/veritas/abstract_class/class_methods/new_spec.rb",
-     "spec/unit/veritas/abstract_class/fixtures/classes.rb",
      "spec/unit/veritas/algebra/difference/each_spec.rb",
      "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",
      "spec/unit/veritas/algebra/extension/class_methods/new_spec.rb",
@@ -790,7 +789,6 @@ Gem::Specification.new do |s|
      "spec/unit/range/to_inclusive_spec.rb",
      "spec/unit/time/pred_spec.rb",
      "spec/unit/veritas/abstract_class/class_methods/new_spec.rb",
-     "spec/unit/veritas/abstract_class/fixtures/classes.rb",
      "spec/unit/veritas/algebra/difference/each_spec.rb",
      "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",
      "spec/unit/veritas/algebra/extension/class_methods/new_spec.rb",
