@@ -8,11 +8,11 @@ describe 'Veritas::Relation::Operation::Combine#header' do
   let(:right)             { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
   let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)           }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Relation::Header) }
 
   it 'unions the headers' do
     should == [ [ :id, Integer ], [ :name, String ] ]
   end
-
-  it_should_behave_like 'an idempotent method'
 end

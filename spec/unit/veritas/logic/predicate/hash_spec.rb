@@ -7,9 +7,9 @@ describe 'Veritas::Logic::Predicate#hash' do
   let(:attribute) { Attribute::Integer.new(:id)              }
   let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Integer) }
 
   it { should == attribute.hash ^ 1.hash }
-
-  it_should_behave_like 'an idempotent method'
 end

@@ -7,9 +7,9 @@ describe 'Veritas::Relation::Operation::Order#directions' do
   let(:directions) { [ relation[:id].asc ]                                }
   let(:order)      { Relation::Operation::Order.new(relation, directions) }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
   it { should == directions }
-
-  it_should_behave_like 'an idempotent method'
 end

@@ -8,9 +8,9 @@ describe 'Veritas::Relation::Operation::Binary#directions' do
   let(:right)            { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]).order { |r| r[:name] } }
   let(:binary_operation) { BinaryRelationOperationSpecs::Object.new(left, right)                           }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
   it { should == [ left[:id].asc, right[:name].asc ] }
-
-  it_should_behave_like 'an idempotent method'
 end

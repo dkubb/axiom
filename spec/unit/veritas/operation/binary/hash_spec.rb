@@ -8,9 +8,9 @@ describe 'Veritas::Operation::Binary#hash' do
   let(:right)            { mock('Right')                           }
   let(:binary_operation) { klass.new(left, right)                  }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Integer) }
 
   it { should == left.hash ^ right.hash }
-
-  it_should_behave_like 'an idempotent method'
 end

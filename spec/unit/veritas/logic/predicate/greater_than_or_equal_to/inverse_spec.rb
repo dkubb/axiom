@@ -6,11 +6,11 @@ describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo#inverse' do
   let(:attribute)                { Attribute::Integer.new(:id) }
   let(:greater_than_or_equal_to) { attribute.gte(1)            }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should eql(attribute.lt(1)) }
 
   it 'is invertible' do
     subject.inverse.should equal(greater_than_or_equal_to)
   end
-
-  it_should_behave_like 'an idempotent method'
 end

@@ -7,9 +7,9 @@ describe 'Veritas::Relation::Operation::Unary#header' do
   let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Relation::Header) }
 
   it { should equal(relation.header) }
-
-  it_should_behave_like 'an idempotent method'
 end

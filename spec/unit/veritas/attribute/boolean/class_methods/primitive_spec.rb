@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::Boolean.primitive' do
-  subject { Attribute::Boolean.primitive }
+  subject { object.primitive }
+
+  let(:object) { Attribute::Boolean }
+
+  it_should_behave_like 'an idempotent method'
 
   it { should equal(TrueClass) }
 end

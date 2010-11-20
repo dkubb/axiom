@@ -9,7 +9,7 @@ describe 'Veritas::Relation::Operation::Set#header' do
   let(:right)  { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:object) { klass.new(left, right)                        }
 
-  it { should equal(left.header) }
-
   it_should_behave_like 'an idempotent method'
+
+  it { should equal(left.header) }
 end

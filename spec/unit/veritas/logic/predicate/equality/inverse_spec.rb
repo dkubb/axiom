@@ -6,11 +6,11 @@ describe 'Veritas::Logic::Predicate::Equality#inverse' do
   let(:attribute) { Attribute::Integer.new(:id) }
   let(:equality)  { attribute.eq(1)             }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should eql(attribute.ne(1)) }
 
   it 'is invertible' do
     subject.inverse.should equal(equality)
   end
-
-  it_should_behave_like 'an idempotent method'
 end

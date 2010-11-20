@@ -7,9 +7,9 @@ describe 'Veritas::Attribute#hash' do
   let(:options)   { { :size => 1..10 }                    }
   let(:attribute) { Attribute::Integer.new(name, options) }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Integer) }
 
   it { should == name.hash ^ options.hash }
-
-  it_should_behave_like 'an idempotent method'
 end

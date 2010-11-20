@@ -7,9 +7,9 @@ describe 'Veritas::Operation::Unary#hash' do
   let(:operand)         { mock('Operand')                        }
   let(:unary_operation) { klass.new(operand)                     }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Integer) }
 
   it { should == operand.hash }
-
-  it_should_behave_like 'an idempotent method'
 end

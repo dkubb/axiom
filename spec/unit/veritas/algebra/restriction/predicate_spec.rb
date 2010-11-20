@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Restriction#predicate' do
   let(:predicate) { relation[:id].ne(0)                           }
   let(:object)    { klass.new(relation, predicate)                }
 
-  it { should equal(predicate) }
-
   it_should_behave_like 'an idempotent method'
+
+  it { should equal(predicate) }
 end

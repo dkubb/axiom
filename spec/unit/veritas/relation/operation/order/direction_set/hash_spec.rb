@@ -6,9 +6,9 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#hash' do
   let(:attribute)  { Attribute::Integer.new(:id)                                 }
   let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Integer) }
 
   it { should == [ attribute.asc ].hash }
-
-  it_should_behave_like 'an idempotent method'
 end

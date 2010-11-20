@@ -11,9 +11,9 @@ describe 'Veritas::Logic::Proposition#hash' do
     PropositionSpecs::Object.should_receive(:call).at_least(:once).and_return(@response)
   end
 
+  it_should_behave_like 'an idempotent method'
+
   it 'hashes the results of self.class.call' do
     should == @response.hash
   end
-
-  it_should_behave_like 'an idempotent method'
 end

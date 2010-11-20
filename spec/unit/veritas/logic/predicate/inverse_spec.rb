@@ -16,6 +16,8 @@ describe 'Veritas::Logic::Predicate#inverse' do
     end
   end
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(klass) }
 
   it { should_not equal(predicate) }
@@ -26,6 +28,4 @@ describe 'Veritas::Logic::Predicate#inverse' do
   it 'is invertible' do
     subject.inverse.should equal(predicate)
   end
-
-  it_should_behave_like 'an idempotent method'
 end

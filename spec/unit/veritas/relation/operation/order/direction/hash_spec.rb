@@ -7,9 +7,9 @@ describe 'Veritas::Relation::Operation::Order::Direction#hash' do
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
   let(:direction) { klass.new(attribute)                             }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Integer) }
 
   it { should == direction.attribute.hash }
-
-  it_should_behave_like 'an idempotent method'
 end

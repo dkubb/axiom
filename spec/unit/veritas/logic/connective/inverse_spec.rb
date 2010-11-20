@@ -14,6 +14,8 @@ describe 'Veritas::Logic::Connective#inverse' do
   let(:klass)  { Class.new(Logic::Connective) }
   let(:object) { klass.new                    }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(Logic::Connective::Negation) }
 
   its(:operand) { should equal(object) }
@@ -21,6 +23,4 @@ describe 'Veritas::Logic::Connective#inverse' do
   it 'is invertible' do
     subject.inverse.should equal(object)
   end
-
-  it_should_behave_like 'an idempotent method'
 end

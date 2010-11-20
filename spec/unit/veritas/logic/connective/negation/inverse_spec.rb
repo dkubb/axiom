@@ -8,6 +8,8 @@ describe 'Veritas::Logic::Connective::Negation#inverse' do
   let(:operand)   { attribute.eq(1)             }
   let(:object)    { klass.new(operand)          }
 
+  it_should_behave_like 'an idempotent method'
+
   it 'returns the operand' do
     should equal(operand)
   end
@@ -15,6 +17,4 @@ describe 'Veritas::Logic::Connective::Negation#inverse' do
   it 'is not invertible' do
     subject.inverse.should_not eql(object)
   end
-
-  it_should_behave_like 'an idempotent method'
 end

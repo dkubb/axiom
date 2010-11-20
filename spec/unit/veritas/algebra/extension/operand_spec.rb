@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Extension#operand' do
   let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
   let(:object)     { klass.new(operand, extensions)                       }
 
-  it { should equal(operand) }
-
   it_should_behave_like 'an idempotent method'
+
+  it { should equal(operand) }
 end

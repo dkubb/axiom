@@ -5,11 +5,11 @@ describe 'Veritas::Logic::Proposition::False#inverse' do
 
   let(:false_proposition) { Logic::Proposition::False.instance }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should equal(Logic::Proposition::True.instance) }
 
   it 'is invertible' do
     subject.inverse.should equal(false_proposition)
   end
-
-  it_should_behave_like 'an idempotent method'
 end

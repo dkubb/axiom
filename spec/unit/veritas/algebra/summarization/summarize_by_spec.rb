@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Summarization#summarize_by' do
   let(:summarizers) { { :test => lambda { |acc, tuple| 1 } }               }
   let(:object)      { klass.new(operand, operand, summarizers)             }
 
-  it { should equal(operand) }
-
   it_should_behave_like 'an idempotent method'
+
+  it { should equal(operand) }
 end
