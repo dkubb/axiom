@@ -1,7 +1,9 @@
-begin
-  require 'autotest/fsevent'
-rescue LoadError
-  # do nothing
+%w[ fsevent growl ].each do |autotest_ext|
+  begin
+    require "autotest/#{autotest_ext}"
+  rescue LoadError
+    # do nothing
+  end
 end
 
 MATCH_ALL_SPECS = %r{\Aspec/.+_spec\.rb\z}.freeze
