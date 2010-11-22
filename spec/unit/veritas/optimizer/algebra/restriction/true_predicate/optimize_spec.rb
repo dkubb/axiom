@@ -6,7 +6,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction::TruePredicate#optimize' do
   let(:klass)     { Optimizer::Algebra::Restriction::TruePredicate }
   let(:header)    { Relation::Header.new([ [ :id, Integer ] ])     }
   let(:base)      { Relation.new(header, [ [ 1 ] ].each)           }
-  let(:predicate) { Veritas::Logic::Proposition::True.instance     }
+  let(:predicate) { Logic::Proposition::True.instance              }
   let(:relation)  { base.restrict(predicate)                       }
   let(:object)    { klass.new(relation)                            }
 

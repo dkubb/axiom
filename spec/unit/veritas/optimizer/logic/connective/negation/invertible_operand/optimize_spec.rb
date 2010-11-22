@@ -13,5 +13,9 @@ describe 'Veritas::Optimizer::Logic::Connective::Negation::InvertibleOperand#opt
     object.operation.should be_kind_of(Logic::Connective::Negation)
   end
 
-  it { should eql(attribute.ne(1)) }
+  it { should be_kind_of(Logic::Predicate::Inequality) }
+
+  its(:left) { should equal(attribute) }
+
+  its(:right) { should == 1 }
 end

@@ -10,7 +10,7 @@ describe 'Veritas::Algebra::Rename::Aliases#hash' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Integer) }
+  it { should be_kind_of(Fixnum) }
 
   it { should == aliases.hash }
 end

@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#[]' do
-  subject { header[name] }
+  subject { object[name] }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:klass)  { Relation::Header                }
+  let(:object) { klass.new([ [ :id, Integer ] ]) }
 
   context 'with a known attribute name' do
     let(:name) { :id }

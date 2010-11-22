@@ -1,36 +1,32 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation.new' do
-  subject { Relation.new(header, tuples) }
+  subject { object.new(header, body) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:object) { Relation                                   }
 
   context 'with an Enumerable responding to #size' do
-    let(:tuples) { [ [ 1 ] ] }
+    let(:body) { [ [ 1 ] ] }
 
     before do
-      tuples.should respond_to(:size)
+      body.should respond_to(:size)
     end
 
-    it { should be_instance_of(Relation::Materialized) }
+    it { should be_kind_of(Relation::Materialized) }
 
-    it { should == tuples }
+    it { should == body }
   end
 
   context 'with an Enumerable that does not respond to #size' do
-    let(:range) { 1..5 }
-    let(:tuples) do
-      Enumerator.new do |yielder|
-        range.each { |n| yielder.yield [ n ] }
-      end
-    end
+    let(:body) { [ [ 1 ] ].each }  # use an Enumerator
 
     before do
-      tuples.should_not respond_to(:size)
+      body.should_not respond_to(:size)
     end
 
-    it { should be_instance_of(Relation) }
+    it { should be_kind_of(object) }
 
-    it { should == range.map { |n| [ n ] } }
+    it { should == [ [ 1 ] ] }
   end
 end

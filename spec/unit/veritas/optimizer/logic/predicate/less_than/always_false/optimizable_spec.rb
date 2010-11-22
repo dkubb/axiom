@@ -9,7 +9,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::LessThan::AlwaysFalse#optimizabl
   let(:object)    { klass.new(predicate)                               }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::LessThan)
+    predicate.should be_kind_of(Logic::Predicate::LessThan)
   end
 
   context 'when left and right are equal' do

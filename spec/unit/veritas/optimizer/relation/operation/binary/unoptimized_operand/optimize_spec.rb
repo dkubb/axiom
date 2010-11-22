@@ -9,7 +9,11 @@ describe 'Veritas::Optimizer::Relation::Operation::Binary::UnoptimizedOperand#op
   let(:relation) { left.union(right)                                          }
   let(:object)   { klass.new(relation)                                        }
 
+  it { should be_kind_of(Algebra::Union) }
+
   it { should_not equal(relation) }
 
-  it { should eql(relation) }
+  its(:left) { should equal(left) }
+
+  its(:right) { should equal(right) }
 end

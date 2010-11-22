@@ -1,16 +1,17 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#rename' do
-  subject { directions.rename(aliases) }
+  subject { object.rename(aliases) }
 
-  let(:attribute)  { Attribute::Integer.new(:id)                                 }
-  let(:header)     { Relation::Header.new([ attribute ])                         }
-  let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
-  let(:aliases)    { Algebra::Rename::Aliases.coerce(header, :id => :other_id)   }
+  let(:klass)     { Relation::Operation::Order::DirectionSet                  }
+  let(:attribute) { Attribute::Integer.new(:id)                               }
+  let(:header)    { Relation::Header.new([ attribute ])                       }
+  let(:aliases)   { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
+  let(:object)    { klass.new([ attribute ])                                  }
 
-  it { should_not equal(directions) }
+  it { should_not equal(object) }
 
-  it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
+  it { should be_kind_of(klass) }
 
   it { should == [ Attribute::Integer.new(:other_id) ] }
 end

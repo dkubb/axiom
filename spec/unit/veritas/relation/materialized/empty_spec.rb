@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Materialized#empty?' do
-  subject { relation.empty? }
+  subject { object.empty? }
 
-  let(:header)   { [ [ :id, Integer ] ]                     }
-  let(:relation) { Relation::Materialized.new(header, body) }
+  let(:klass)  { Relation::Materialized  }
+  let(:header) { [ [ :id, Integer ] ]    }
+  let(:object) { klass.new(header, body) }
 
   context 'with a body containing no entries' do
     let(:body) { [] }

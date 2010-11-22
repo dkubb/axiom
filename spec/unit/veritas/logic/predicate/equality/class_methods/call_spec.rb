@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Equality.call' do
-  subject { Logic::Predicate::Equality.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Logic::Predicate::Equality }
 
   context 'when left is equal to right' do
     let(:left)  { true }

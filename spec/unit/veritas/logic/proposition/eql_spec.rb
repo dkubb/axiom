@@ -1,18 +1,18 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Proposition#eql?' do
-  subject { proposition.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:proposition) { PropositionSpecs::Object.new }
+  let(:klass)  { Class.new(Logic::Proposition) }
+  let(:object) { klass.new                     }
 
   context 'with the same class' do
-    let(:other) { PropositionSpecs::Object.new }
+    let(:other) { klass.new }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(proposition)
+      should == other.eql?(object)
     end
   end
 
@@ -22,7 +22,7 @@ describe 'Veritas::Logic::Proposition#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(proposition)
+      should == other.eql?(object)
     end
   end
 end

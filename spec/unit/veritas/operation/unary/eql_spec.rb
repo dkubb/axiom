@@ -1,29 +1,29 @@
 require 'spec_helper'
 
 describe 'Veritas::Operation::Unary#eql?' do
-  subject { unary_operation.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:klass)           { Class.new { include Operation::Unary } }
-  let(:operand)         { mock('Operand')                        }
-  let(:unary_operation) { klass.new(operand)                     }
+  let(:klass)   { Class.new { include Operation::Unary } }
+  let(:operand) { mock('Operand')                        }
+  let(:object)  { klass.new(operand)                     }
 
   context 'with the same unary operation' do
-    let(:other) { unary_operation }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(unary_operation)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent unary operation' do
-    let(:other) { unary_operation.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(unary_operation)
+      should == other.eql?(object)
     end
   end
 
@@ -34,7 +34,7 @@ describe 'Veritas::Operation::Unary#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(unary_operation)
+      should == other.eql?(object)
     end
   end
 
@@ -45,7 +45,7 @@ describe 'Veritas::Operation::Unary#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(unary_operation)
+      should == other.eql?(object)
     end
   end
 end

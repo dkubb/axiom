@@ -75,7 +75,7 @@ module Veritas
       # @example
       #   numeric_hash = expression.hash
       #
-      # @return [Integer]
+      # @return [Fixnum]
       #
       # @api public
       def hash

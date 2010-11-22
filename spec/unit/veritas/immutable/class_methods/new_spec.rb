@@ -2,11 +2,11 @@ require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
 describe 'Veritas::Immutable::ClassMethods#new' do
-  subject { klass.new }
+  subject { object.new }
 
-  let(:klass) { ImmutableSpecs::Object }
+  let(:object) { ImmutableSpecs::Object }
 
-  it { should be_kind_of(klass) }
+  it { should be_kind_of(object) }
 
   it { should be_frozen }
 end

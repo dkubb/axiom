@@ -15,5 +15,9 @@ describe 'Veritas::Optimizer::Algebra::Rename::RestrictionOperand#optimize' do
     object.operand.should be_kind_of(Algebra::Restriction)
   end
 
-  it { should eql(base.rename(:id => :other_id).restrict { |r| r[:other_id].eq(1) }) }
+  it { should be_kind_of(Algebra::Restriction) }
+
+  its(:operand) { should eql(base.rename(:id => :other_id)) }
+
+  its(:predicate) { should == header[:id].rename(:other_id).eq(1) }
 end

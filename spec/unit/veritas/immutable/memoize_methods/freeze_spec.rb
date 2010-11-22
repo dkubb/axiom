@@ -2,7 +2,7 @@ require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
 describe 'Veritas::Immutable::MemoizeMethods#freeze' do
-  subject { immutable.freeze }
+  subject { object.freeze }
 
   let(:klass) { Class.new(ImmutableSpecs::Object) }
 
@@ -11,32 +11,34 @@ describe 'Veritas::Immutable::MemoizeMethods#freeze' do
   end
 
   context 'with an unfrozen object' do
-    let(:immutable) { klass.allocate }
+    let(:object) { klass.allocate }
 
-    it { should equal(immutable) }
+    it { should equal(object) }
 
     it 'freezes the object' do
-      expect { subject }.to change(immutable, :frozen?).from(false).to(true)
+      expect { subject }.to change(object, :frozen?).
+        from(false).
+        to(true)
     end
 
     it 'sets a memoization instance variable' do
-      immutable.should_not be_instance_variable_defined(:@__memory)
+      object.should_not be_instance_variable_defined(:@__memory)
       subject
-      immutable.instance_variable_get(:@__memory).should be_kind_of(Immutable::Memory)
+      object.instance_variable_get(:@__memory).should be_kind_of(Immutable::Memory)
     end
   end
 
   context 'with a frozen object' do
-    let(:immutable) { klass.new }
+    let(:object) { klass.new }
 
-    it { should equal(immutable) }
+    it { should equal(object) }
 
     it 'does not change the frozen state of the object' do
-      expect { subject }.to_not change(immutable, :frozen?)
+      expect { subject }.to_not change(object, :frozen?)
     end
 
     it 'does not change the memoization instance variable' do
-      expect { subject }.to_not change { immutable.instance_variable_get(:@__memory) }
+      expect { subject }.to_not change { object.instance_variable_get(:@__memory) }
     end
 
     it 'sets an instance variable for memoization' do

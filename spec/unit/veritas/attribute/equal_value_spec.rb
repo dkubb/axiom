@@ -1,28 +1,29 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute#==' do
-  subject { attribute == other }
+  subject { object == other }
 
-  let(:name)      { :id                          }
-  let(:attribute) { Attribute::Integer.new(name) }
+  let(:klass)  { Attribute::Integer }
+  let(:name)   { :id                }
+  let(:object) { klass.new(name)    }
 
   context 'with the same attribute' do
-    let(:other) { attribute }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == attribute)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent attribute' do
-    let(:other) { attribute.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == attribute)
+      should == (other == object)
     end
   end
 
@@ -32,17 +33,17 @@ describe 'Veritas::Attribute#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == attribute)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent attribute of a different class' do
-    let(:other) { Class.new(Attribute::Integer).new(name) }
+    let(:other) { Class.new(klass).new(name) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == attribute)
+      should == (other == object)
     end
   end
 end

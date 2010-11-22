@@ -12,9 +12,11 @@ describe 'Veritas::Optimizer::Algebra::Rename::UnoptimizedOperand#optimize' do
     object.operation.should be_kind_of(Algebra::Rename)
   end
 
+  it { should be_kind_of(Algebra::Rename) }
+
   it { should_not equal(relation) }
 
-  it { should eql(relation) }
+  its(:operand) { should equal(base) }
 
   its(:aliases) { should equal(relation.aliases) }
 end

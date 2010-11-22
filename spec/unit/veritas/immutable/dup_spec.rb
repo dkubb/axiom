@@ -2,10 +2,10 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Immutable#dup' do
-  subject { immutable.dup }
+  subject { object.dup }
 
-  let(:klass)     { ImmutableSpecs::Object }
-  let(:immutable) { klass.new              }
+  let(:klass)  { ImmutableSpecs::Object }
+  let(:object) { klass.new              }
 
-  it { should equal(immutable) }
+  it { should equal(object) }
 end

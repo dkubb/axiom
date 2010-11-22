@@ -2,10 +2,11 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Inclusion::Methods#include' do
-  subject { expression.include(enumerable) }
+  subject { object.include(other) }
 
-  let(:expression) { InclusionMethodsSpecs::Object.new }
-  let(:enumerable) { [ true, false ]                   }
+  let(:klass)  { InclusionMethodsSpecs::Object }
+  let(:other)  { [ true, false ]               }
+  let(:object) { klass.new                     }
 
   it { should be_kind_of(Logic::Predicate::Inclusion) }
 end

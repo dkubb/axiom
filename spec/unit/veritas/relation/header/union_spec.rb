@@ -2,14 +2,15 @@ require 'spec_helper'
 
 [ :union, :| ].each do |method|
   describe "Veritas::Relation::Header##{method}" do
-    subject { header.send(method, other) }
+    subject { object.send(method, other) }
 
-    let(:attribute1) { [ :id,   Integer ]                   }
-    let(:attribute2) { [ :name, String  ]                   }
-    let(:header)     { Relation::Header.new([ attribute1 ]) }
-    let(:other)      { Relation::Header.new([ attribute2 ]) }
+    let(:klass)      { Relation::Header          }
+    let(:attribute1) { [ :id,   Integer ]        }
+    let(:attribute2) { [ :name, String  ]        }
+    let(:other)      { klass.new([ attribute2 ]) }
+    let(:object)     { klass.new([ attribute1 ]) }
 
-    it { should be_kind_of(Relation::Header) }
+    it { should be_kind_of(klass) }
 
     it { should == [ attribute1, attribute2 ] }
   end

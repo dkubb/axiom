@@ -2,9 +2,10 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Expression#hash' do
-  subject { expression.hash }
+  subject { object.hash }
 
-  let(:expression) { ExpressionSpecs::Object.new }
+  let(:klass)  { ExpressionSpecs::Object }
+  let(:object) { klass.new               }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#hash must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{klass}#hash must be implemented") }
 end

@@ -34,7 +34,7 @@ module Veritas
       # @api private
       def self.assert_disjointed_headers(left, right)
         if (left.header & right.header).any?
-          raise InvalidHeaderError, "the headers must be disjointed for #{name}.new"
+          raise InvalidHeaderError, 'the headers must be disjointed'
         end
       end
 

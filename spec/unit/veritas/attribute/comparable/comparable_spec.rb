@@ -1,17 +1,18 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::Comparable#comparable?' do
-  subject { attribute.comparable?(other) }
+  subject { object.comparable?(other) }
 
-  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:klass)  { Attribute::Integer }
+  let(:object) { klass.new(:id)     }
 
   context 'when the other attribute is the same type' do
-    let(:other) { attribute.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.comparable?(attribute)
+      should == other.comparable?(object)
     end
   end
 
@@ -22,28 +23,28 @@ describe 'Veritas::Attribute::Comparable#comparable?' do
 
     it 'is not be symmetric' do
       expect {
-        other.comparable?(attribute)
+        other.comparable?(object)
       }.to raise_error(NoMethodError)
     end
   end
 
   context 'when the other attribute is a descendant type' do
-    let(:other) { Class.new(Attribute::Integer).new(:descendant) }
+    let(:other) { Class.new(klass).new(:descendant) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.comparable?(attribute)
+      should == other.comparable?(object)
     end
   end
 
   context 'when the other attribute shares a common type' do
-    let(:other) { Attribute::Numeric.new(:ancestor) }
+    let(:other) { klass.superclass.new(:ancestor) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.comparable?(attribute)
+      should == other.comparable?(object)
     end
   end
 end

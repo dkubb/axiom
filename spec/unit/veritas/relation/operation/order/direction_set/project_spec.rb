@@ -1,14 +1,16 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#project' do
-  subject { directions.project([ header[:id] ]) }
+  subject { object.project(attributes) }
 
+  let(:klass)      { Relation::Operation::Order::DirectionSet                      }
   let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:directions) { Relation::Operation::Order::DirectionSet.new(header)          }
+  let(:attributes) { [ header[:id] ]                                               }
+  let(:object)     { klass.new(header)                                             }
 
-  it { should_not equal(directions) }
+  it { should_not equal(object) }
 
-  it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
+  it { should be_kind_of(klass) }
 
   it { should == [ header[:id] ] }
 end

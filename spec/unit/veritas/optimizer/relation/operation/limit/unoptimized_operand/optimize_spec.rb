@@ -13,7 +13,9 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::UnoptimizedOperand#opt
     object.operation.should be_kind_of(Relation::Operation::Limit)
   end
 
-  it { should eql(order.take(1)) }
+  it { should be_kind_of(Relation::Operation::Limit) }
 
   its(:operand) { should equal(order) }
+
+  its(:to_i) { should == 1 }
 end

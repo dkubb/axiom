@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#rename' do
-  subject { header.rename(aliases) }
+  subject { object.rename(aliases) }
 
-  let(:header)  { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:aliases) { Algebra::Rename::Aliases.coerce(header, :id => :other_id)     }
+  let(:klass)   { Relation::Header                                          }
+  let(:aliases) { Algebra::Rename::Aliases.coerce(object, :id => :other_id) }
+  let(:object)  { klass.new([ [ :id, Integer ], [ :name, String ] ])        }
 
-  it { should be_kind_of(Relation::Header) }
+  it { should be_kind_of(klass) }
 
-  it { should_not equal(header) }
+  it { should_not equal(object) }
 
-  its(:to_ary) { should == [ [ :other_id, Integer ], [ :name, String ] ] }
+  it { should == [ [ :other_id, Integer ], [ :name, String ] ] }
 end

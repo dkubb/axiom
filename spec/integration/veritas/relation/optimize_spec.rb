@@ -6,6 +6,10 @@ describe 'Veritas::Relation#optimize' do
   let(:klass)  { Relation                                        }
   let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 
+  before do
+    object.should be_instance_of(klass)
+  end
+
   context 'with no optimizer' do
     let(:args) { [] }
 

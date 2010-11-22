@@ -1,16 +1,21 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::LessThan#inverse' do
-  subject { less_than.inverse }
+  subject { object.inverse }
 
+  let(:klass)     { Logic::Predicate::LessThan  }
   let(:attribute) { Attribute::Integer.new(:id) }
-  let(:less_than) { attribute.lt(1)             }
+  let(:object)    { klass.new(attribute, 1)     }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should eql(attribute.gte(1)) }
+  it { should be_kind_of(Logic::Predicate::GreaterThanOrEqualTo) }
+
+  its(:left) { should equal(attribute) }
+
+  its(:right) { should == 1 }
 
   it 'is invertible' do
-    subject.inverse.should equal(less_than)
+    subject.inverse.should equal(object)
   end
 end

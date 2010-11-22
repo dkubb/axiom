@@ -121,8 +121,8 @@ module Veritas
           # @return [Order]
           #
           # @api public
-          def order(directions = block_given? ? yield(self) : header)
-            Order.new(self, Array(directions))
+          def order(directions = block_given? ? Array(yield(self)) : header)
+            Order.new(self, directions)
           end
 
         end # module Methods

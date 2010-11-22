@@ -1,16 +1,21 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Inequality#inverse' do
-  subject { inequality.inverse }
+  subject { object.inverse }
 
-  let(:attribute)  { Attribute::Integer.new(:id) }
-  let(:inequality) { attribute.ne(1)             }
+  let(:klass)     { Logic::Predicate::Inequality }
+  let(:attribute) { Attribute::Integer.new(:id)  }
+  let(:object)    { klass.new(attribute, 1)      }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should eql(attribute.eq(1)) }
+  it { should be_kind_of(Logic::Predicate::Equality) }
+
+  its(:left) { should equal(attribute) }
+
+  its(:right) { should == 1 }
 
   it 'is invertible' do
-    subject.inverse.should equal(inequality)
+    subject.inverse.should equal(object)
   end
 end

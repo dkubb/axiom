@@ -1,17 +1,18 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute#joinable?' do
-  subject { attribute.joinable?(other) }
+  subject { object.joinable?(other) }
 
-  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:klass)  { Attribute::Integer }
+  let(:object) { klass.new(:id)     }
 
   context 'when the other attribute is the same type' do
-    let(:other) { attribute.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.joinable?(attribute)
+      should == other.joinable?(object)
     end
   end
 
@@ -21,17 +22,17 @@ describe 'Veritas::Attribute#joinable?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.joinable?(attribute)
+      should == other.joinable?(object)
     end
   end
 
   context 'when the other attribute is a descendant type' do
-    let(:other) { Class.new(Attribute::Integer).new(:descendant) }
+    let(:other) { Class.new(klass).new(:descendant) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.joinable?(attribute)
+      should == other.joinable?(object)
     end
   end
 
@@ -41,7 +42,7 @@ describe 'Veritas::Attribute#joinable?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.joinable?(attribute)
+      should == other.joinable?(object)
     end
   end
 end

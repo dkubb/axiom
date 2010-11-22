@@ -1,13 +1,17 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Projection::Methods#project' do
-  subject { relation.project([ :id ]) }
+  subject { object.project(attributes) }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:klass)      { Relation                                                                       }
+  let(:attributes) { [ :id ]                                                                        }
+  let(:object)     { klass.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
 
   it { should be_kind_of(Algebra::Projection) }
 
+  its(:header) { should == [ [ :id, Integer ] ] }
+
   it 'behaves the same as Enumerable#map with Tuple#[]' do
-    should == relation.map { |tuple| [ tuple[:id] ] }
+    should == object.map { |tuple| [ tuple[:id] ] }
   end
 end

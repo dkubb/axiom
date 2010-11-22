@@ -2,14 +2,15 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Unary#directions' do
-  subject { unary_operation.directions }
+  subject { object.directions }
 
-  let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
+  let(:klass)      { UnaryOperationSpecs::Object                                   }
+  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])                 }
+  let(:directions) { Relation::Operation::Order::DirectionSet.new(relation.header) }
+  let(:order)      { relation.order(directions)                                    }
+  let(:object)     { klass.new(order)                                              }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
-
-  it { should equal(relation.directions) }
+  it { should equal(directions) }
 end

@@ -10,7 +10,11 @@ describe 'Veritas::Optimizer::Algebra::Restriction.optimize_predicate' do
   context 'when the predicate is optimizable' do
     let(:predicate) { Logic::Connective::Negation.new(attribute.eq(1)) }
 
-    it { should eql(attribute.ne(1)) }
+    it { should be_kind_of(Logic::Predicate::Inequality) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == 1 }
   end
 
   context 'when the predicate is optimizable, but already optimized' do

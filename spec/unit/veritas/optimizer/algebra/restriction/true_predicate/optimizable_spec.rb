@@ -13,13 +13,13 @@ describe 'Veritas::Optimizer::Algebra::Restriction::TruePredicate#optimizable?' 
   end
 
   context 'when the predicate is true' do
-    let(:predicate) { Veritas::Logic::Proposition::True.instance }
+    let(:predicate) { Logic::Proposition::True.instance }
 
     it { should be(true) }
   end
 
   context 'when the predicate is not true' do
-    let(:predicate) { Veritas::Logic::Proposition::False.instance }
+    let(:predicate) { Logic::Proposition::False.instance }
 
     it { should be(false) }
   end

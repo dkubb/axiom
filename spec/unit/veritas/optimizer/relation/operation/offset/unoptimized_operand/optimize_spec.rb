@@ -13,7 +13,9 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::UnoptimizedOperand#op
     object.operation.should be_kind_of(Relation::Operation::Offset)
   end
 
-  it { should eql(order.drop(1)) }
+  it { should be_kind_of(Relation::Operation::Offset) }
 
   its(:operand) { should equal(order) }
+
+  its(:to_i) { should == 1 }
 end

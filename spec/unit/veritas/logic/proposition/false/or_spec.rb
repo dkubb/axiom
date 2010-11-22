@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition::False#or' do
-  subject { false_proposition.or(other) }
+  subject { object.or(other) }
 
-  let(:other)             { mock('other')                      }
-  let(:false_proposition) { Logic::Proposition::False.instance }
+  let(:klass)  { Logic::Proposition::False }
+  let(:other)  { mock('other')             }
+  let(:object) { klass.instance            }
 
   it { should equal(other) }
 end

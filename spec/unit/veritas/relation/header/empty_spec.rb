@@ -1,16 +1,18 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#empty?' do
-  subject { header.empty? }
+  subject { object.empty? }
+
+  let(:klass) { Relation::Header }
 
   context 'with attributes' do
-    let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+    let(:object) { klass.new([ [ :id, Integer ] ]) }
 
     it { should be(false) }
   end
 
   context 'without attributes' do
-    let(:header) { Relation::Header.new }
+    let(:object) { klass.new }
 
     it { should be(true) }
   end

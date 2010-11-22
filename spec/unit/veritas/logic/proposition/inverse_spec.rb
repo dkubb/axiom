@@ -1,13 +1,12 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Proposition#inverse' do
-  subject { proposition.inverse }
+  subject { object.inverse }
 
-  let(:klass)            { Class.new(PropositionSpecs::Object)                  }
-  let(:proposition)      { klass.new                                            }
+  let(:klass)            { Class.new(Logic::Proposition)                        }
   let(:inverse_class)    { mock('Inverse Class', :instance => inverse_instance) }
   let(:inverse_instance) { mock('Inverse Instance')                             }
+  let(:object)           { klass.new                                            }
 
   before do
     klass.stub!(:inverse).and_return(inverse_class)

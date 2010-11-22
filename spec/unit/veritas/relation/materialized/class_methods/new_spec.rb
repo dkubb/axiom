@@ -1,17 +1,16 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Materialized.new' do
-  subject { object.new(header, tuples, *args) }
-
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuples) { [ [ 1 ] ]                                  }
   let(:object) { Relation::Materialized                     }
 
   context 'with directions' do
-    let(:directions) { [ header[:id] ] }
-    let(:args)       { [ directions ]  }
+    subject { object.new(header, tuples, directions) }
 
-    it { should be_instance_of(Relation::Materialized) }
+    let(:directions) { [ header[:id] ] }
+
+    it { should be_kind_of(object) }
 
     its(:header) { should equal(header) }
 
@@ -20,10 +19,10 @@ describe 'Veritas::Relation::Materialized.new' do
     it { should == tuples }
   end
 
-  context 'without directions' do
-    let(:args) { [] }
+  context 'with no directions' do
+    subject { object.new(header, tuples) }
 
-    it { should be_instance_of(Relation::Materialized) }
+    it { should be_kind_of(object) }
 
     its(:header) { should equal(header) }
 

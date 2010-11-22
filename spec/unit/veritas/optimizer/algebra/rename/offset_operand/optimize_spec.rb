@@ -14,5 +14,9 @@ describe 'Veritas::Optimizer::Algebra::Rename::OffsetOperand#optimize' do
     object.operand.should be_kind_of(Relation::Operation::Offset)
   end
 
-  it { should eql(base.rename(:id => :other_id).order.drop(1)) }
+  it { should be_kind_of(Relation::Operation::Offset) }
+
+  its(:operand) { should eql(base.rename(:id => :other_id).order) }
+
+  its(:to_i) { should == 1 }
 end

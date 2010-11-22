@@ -1,20 +1,22 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Direction.coerce' do
-  subject { klass.coerce(object) }
+  subject { object.coerce(argument) }
 
   let(:attribute) { Attribute::Integer.new(:id)                      }
-  let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
+  let(:object)    { Class.new(Relation::Operation::Order::Direction) }
 
-  context 'when the object is a Direction' do
-    let(:object) { Relation::Operation::Order::Ascending.new(attribute) }
+  context 'when the argument is a Direction' do
+    let(:argument) { Relation::Operation::Order::Ascending.new(attribute) }
 
-    it { should equal(object) }
+    it { should equal(argument) }
   end
 
-  context 'when the object is an Attribute' do
-    let(:object) { attribute }
+  context 'when the argument is an Attribute' do
+    let(:argument) { attribute }
 
-    it { should eql(klass.new(attribute)) }
+    it { should be_kind_of(object) }
+
+    its(:attribute) { should equal(attribute) }
   end
 end

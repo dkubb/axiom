@@ -14,7 +14,9 @@ describe 'Veritas::Logic::Connective::Unary#rename' do
   context 'operand is renamed' do
     let(:operand) { attribute.eq(1) }
 
-    it { should eql(klass.new(other.eq(1))) }
+    it { should be_kind_of(klass) }
+
+    its(:operand) { should == other.eq(1) }
   end
 
   context 'operand is not renamed' do

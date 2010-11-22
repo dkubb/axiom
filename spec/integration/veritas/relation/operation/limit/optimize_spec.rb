@@ -43,7 +43,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
   context 'containing an optimizable order operation' do
     let(:operand) { order.project(order.header) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(order) }
 
@@ -65,7 +65,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     let(:operand) { order.take(5) }
     let(:limit)   { 10            }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(order) }
 
@@ -89,7 +89,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     let(:operand) { order.take(10) }
     let(:limit)   { 5              }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(order) }
 

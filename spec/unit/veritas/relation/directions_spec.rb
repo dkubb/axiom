@@ -1,9 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation#directions' do
-  subject { relation.directions }
+  subject { object.directions }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:klass)  { Relation                              }
+  let(:body)   { [ [ 1 ] ].each                        }  # use an Enumerator
+  let(:object) { klass.new([ [ :id, Integer ] ], body) }
+
+  before do
+    object.should be_instance_of(klass)
+  end
 
   it_should_behave_like 'an idempotent method'
 

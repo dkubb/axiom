@@ -1,14 +1,17 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation#header' do
-  subject { relation.header }
+  subject { object.header }
 
-  let(:header)   { [ [ :id, Integer ] ]            }
-  let(:relation) { Relation.new(header, [ [ 1 ] ]) }
+  let(:klass)  { Relation                                   }
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:object) { klass.new(header, [].each)                 }
+
+  before do
+    object.should be_instance_of(klass)
+  end
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Relation::Header) }
-
-  it { should == header }
+  it { should equal(header) }
 end

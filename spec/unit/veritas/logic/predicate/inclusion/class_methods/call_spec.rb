@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Inclusion.call' do
-  subject { Logic::Predicate::Inclusion.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Logic::Predicate::Inclusion }
 
   context 'when left is included in right' do
     let(:left)  { 1     }

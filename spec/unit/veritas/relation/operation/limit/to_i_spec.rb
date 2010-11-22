@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Limit#to_i' do
-  subject { limit.to_i }
+  subject { object.to_i }
 
+  let(:klass)      { Relation::Operation::Limit                                  }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:limit)      { Relation::Operation::Limit.new(order, 1)                    }
+  let(:order)      { relation.order                                              }
+  let(:object)     { klass.new(order, 1)                                         }
 
   it { should == 1 }
 end

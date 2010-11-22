@@ -2,9 +2,10 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Attribute::Orderable#asc' do
-  subject { comparable.asc }
+  subject { object.asc }
 
-  let(:comparable) { OrderableSpecs::Object.new }
+  let(:klass)  { OrderableSpecs::Object }
+  let(:object) { klass.new              }
 
   it { should be_kind_of(Relation::Operation::Order::Ascending) }
 end

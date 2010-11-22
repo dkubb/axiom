@@ -1,13 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute.new' do
-  subject { klass.new(:id) }
+  subject { object.new(name) }
 
-  context 'when called on the Attribute class' do
-    let(:klass) { Attribute }
-
-    specify { expect { subject }.to raise_error(NotImplementedError, 'Veritas::Attribute is an abstract class') }
-  end
+  let(:name) { :id }
 
   [
     Attribute::Boolean,
@@ -23,11 +19,15 @@ describe 'Veritas::Attribute.new' do
     Attribute::Time,
   ].each do |klass|
     context "when called on the Attribute subclass #{klass}" do
-      let(:klass) { klass }
+      let(:object) { klass }
 
-      it { should be_kind_of(Attribute) }
-
-      it { should be_kind_of(klass) }
+      it { should be_kind_of(object) }
     end
+  end
+
+  context 'when called on the Attribute class' do
+    let(:object) { Attribute }
+
+    specify { expect { subject }.to raise_error(NotImplementedError, "#{object} is an abstract class") }
   end
 end

@@ -1,15 +1,13 @@
 require 'spec_helper'
 
 describe 'Veritas::Optimizer.chain' do
-  subject { object.chain(*optimizers) }
-
+  let(:operation)       { mock('Operation')    }
   let(:object)          { Optimizer            }
   let(:noop)            { object::Noop         }
   let(:optimizer_class) { Class.new(Optimizer) }
-  let(:operation)       { mock('Operation')    }
 
   context 'with no optimizers' do
-    let(:optimizers) { [] }
+    subject { object.chain }
 
     it { should equal(noop) }
 
@@ -19,8 +17,9 @@ describe 'Veritas::Optimizer.chain' do
   end
 
   context 'with an optimizer that can optimize the operation' do
-    let(:optimizers) { [ optimizer_class ] }
-    let(:optimized)  { mock('Optimized')   }
+    subject { object.chain(optimizer_class) }
+
+    let(:optimized) { mock('Optimized') }
 
     before do
       optimized = self.optimized
@@ -38,7 +37,7 @@ describe 'Veritas::Optimizer.chain' do
   end
 
   context 'with an optimizer that cannot optimize the operation' do
-    let(:optimizers) { [ optimizer_class ] }
+    subject { object.chain(optimizer_class) }
 
     before do
       optimizer_class.send(:define_method, :optimizable?) { false }

@@ -6,10 +6,11 @@ methods << '!' if respond_to?('!')  # available in Ruby 1.9
 
 methods.each do |method|
   describe "Veritas::Logic::Expression##{method}" do
-    subject { proposition.send(method) }
+    subject { object.send(method) }
 
-    let(:proposition) { ExpressionSpecs::Object.new }
+    let(:klass)  { ExpressionSpecs::Object }
+    let(:object) { klass.new               }
 
-    specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#inverse must be implemented') }
+    specify { expect { subject }.to raise_error(NotImplementedError, "#{klass}#inverse must be implemented") }
   end
 end

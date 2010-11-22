@@ -18,7 +18,9 @@ describe 'Veritas::Optimizer::Algebra::Extension::UnoptimizedOperand#optimize' d
 
   it { should_not equal(operand) }
 
-  it { should eql(base.extend { |r| r.add(attribute, function) }) }
+  it { should be_kind_of(Algebra::Extension) }
+
+  its(:operand) { should equal(base) }
 
   its(:extensions) { should == { attribute => function } }
 end

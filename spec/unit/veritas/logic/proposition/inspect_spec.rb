@@ -1,10 +1,14 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Proposition#inspect' do
-  subject { proposition.inspect }
+  subject { object.inspect }
 
-  let(:proposition) { PropositionSpecs::Object.new }
+  let(:klass)  { Class.new(Logic::Proposition) }
+  let(:object) { klass.new                     }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'Veritas::Logic::Proposition.call must be implemented') }
+  before do
+    klass.stub!(:name).and_return('Veritas::Logic::Proposition')
+  end
+
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{klass.name}.call must be implemented") }
 end

@@ -1,12 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order.new' do
-  subject { Relation::Operation::Order.new(relation, directions) }
+  subject { object.new(relation, directions) }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
+  let(:object)   { Relation::Operation::Order                           }
 
   context 'with all attributes specified in the directions' do
     let(:directions) { [ relation[:id] ] }
+
+    it { should be_kind_of(object) }
 
     its(:operand) { should equal(relation) }
 

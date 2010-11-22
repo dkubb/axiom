@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::DateTime.primitive' do
-  subject { Attribute::DateTime.primitive }
+  subject { object.primitive }
+
+  let(:object) { Attribute::DateTime }
+
+  it_should_behave_like 'an idempotent method'
 
   it { should equal(DateTime) }
 end

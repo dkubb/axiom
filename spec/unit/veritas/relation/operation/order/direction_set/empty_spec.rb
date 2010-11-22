@@ -1,17 +1,19 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#empty?' do
-  subject { directions.empty? }
+  subject { object.empty? }
+
+  let(:klass)  { Relation::Operation::Order::DirectionSet }
+  let(:object) { klass.new(attributes)                    }
 
   context 'with an empty set' do
-    let(:directions) { Relation::Operation::Order::DirectionSet.new([]) }
+    let(:attributes) { [] }
 
     it { should be(true) }
   end
 
   context 'with directions' do
-    let(:attribute)  { Attribute::Integer.new(:id)                                 }
-    let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
+    let(:attributes) { [ Attribute::Integer.new(:id) ] }
 
     it { should be(false) }
   end

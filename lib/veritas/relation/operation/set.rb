@@ -65,7 +65,7 @@ module Veritas
           # @api private
           def assert_equivalent_headers(left, right)
             if left.header != right.header
-              raise InvalidHeaderError, "the headers must be equivalent for #{name}.new"
+              raise InvalidHeaderError, 'the headers must be equivalent'
             end
           end
 

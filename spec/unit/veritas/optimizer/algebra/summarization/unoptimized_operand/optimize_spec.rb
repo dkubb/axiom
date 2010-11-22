@@ -16,9 +16,13 @@ describe 'Veritas::Optimizer::Algebra::Summarization::UnoptimizedOperand#optimiz
     object.operation.should be_kind_of(Algebra::Summarization)
   end
 
+  it { should be_kind_of(Algebra::Summarization) }
+
   it { should_not equal(operand) }
 
-  it { should eql(base.summarize(base) { |r| r.add(attribute, function) }) }
+  its(:operand) { should equal(base) }
+
+  its(:summarize_by) { should equal(operand) }
 
   its(:summarizers) { should == { attribute => function } }
 end

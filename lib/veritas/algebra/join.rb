@@ -34,7 +34,7 @@ module Veritas
       # @api private
       def self.assert_joinable_headers(left, right)
         if (left.header & right.header).empty?
-          raise InvalidHeaderError, "the headers must have common attributes for #{name}.new"
+          raise InvalidHeaderError, 'the headers must have common attributes'
         end
       end
 

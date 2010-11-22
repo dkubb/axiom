@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Connective::Disjunction.call' do
-  subject { Logic::Connective::Disjunction.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Logic::Connective::Disjunction }
 
   context 'when left is true and right is true' do
     let(:left)  { true }

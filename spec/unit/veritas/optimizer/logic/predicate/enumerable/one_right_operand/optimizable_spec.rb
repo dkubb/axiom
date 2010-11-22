@@ -11,7 +11,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Enumerable::OneRightOperand#opti
   before do
     klass.class_eval { include Optimizer::Logic::Predicate::Enumerable::OneRightOperand }
 
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Enumerable)
+    predicate.should be_kind_of(Logic::Predicate::Enumerable)
   end
 
   context 'when the operand contains a one entry Enumerable' do

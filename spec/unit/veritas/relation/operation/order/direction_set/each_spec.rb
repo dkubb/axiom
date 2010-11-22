@@ -18,9 +18,10 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
 end
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet' do
-  subject { Relation::Operation::Order::DirectionSet.new(attributes) }
+  subject { object.new(attributes) }
 
-  let(:attributes) { [ Attribute::Integer.new(:id) ] }
+  let(:attributes) { [ Attribute::Integer.new(:id) ]          }
+  let(:object)     { Relation::Operation::Order::DirectionSet }
 
   it { should be_kind_of(Enumerable) }
 

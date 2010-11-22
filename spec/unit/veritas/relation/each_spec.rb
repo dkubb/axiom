@@ -5,9 +5,13 @@ describe 'Veritas::Relation#each' do
 
   let(:klass)  { Relation                                   }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuples) { [ [ 1 ], [ 2 ], [ 2 ] ]                    }
-  let(:object) { klass.new(header, tuples)                  }
+  let(:body)   { [ [ 1 ], [ 2 ], [ 2 ] ].each               }  # use an Enumerator
+  let(:object) { klass.new(header, body)                    }
   let(:yields) { []                                         }
+
+  before do
+    object.should be_instance_of(klass)
+  end
 
   it_should_behave_like 'a command method'
 
@@ -19,7 +23,15 @@ describe 'Veritas::Relation#each' do
 end
 
 describe 'Veritas::Relation' do
-  subject { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  subject { object.new(header, body) }
+
+  let(:header) { [ [ :id, Integer ] ] }
+  let(:body)   { [ [ 1 ] ].each       }
+  let(:object) { Relation             }
+
+  before do
+    subject.should be_instance_of(object)
+  end
 
   it { should be_kind_of(Enumerable) }
 

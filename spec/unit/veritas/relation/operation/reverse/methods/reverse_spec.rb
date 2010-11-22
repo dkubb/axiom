@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Reverse::Methods#reverse' do
-  subject { ordered.reverse }
+  subject { object.reverse }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:ordered)  { relation.order { |r| r[:id] }                        }
+  let(:klass)    { Relation                                               }
+  let(:relation) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
+  let(:object)   { relation.order                                         }
 
   it { should be_kind_of(Relation::Operation::Reverse) }
 

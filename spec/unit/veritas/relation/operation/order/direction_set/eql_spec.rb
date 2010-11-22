@@ -1,49 +1,49 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
-  subject { directions.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:attribute)  { Attribute::Integer.new(:id)                                 }
-  let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
+  let(:klass)     { Relation::Operation::Order::DirectionSet }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:object)    { klass.new([ attribute ])                 }
 
-  context 'with the same direction' do
-    let(:other) { directions }
-
-    it { should be(true) }
-
-    it 'is symmetric' do
-      should == other.eql?(directions)
-    end
-  end
-
-  context 'with an equivalent directions' do
-    let(:other) { directions.dup }
+  context 'with the same directions' do
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(directions)
+      should == other.eql?(object)
     end
   end
 
-  context 'with a different directions' do
-    let(:other_attribute) { Attribute::Integer.new(:name)                                     }
-    let(:other)           { Relation::Operation::Order::DirectionSet.new([ other_attribute ]) }
+  context 'with equivalent directions' do
+    let(:other) { object.dup }
+
+    it { should be(true) }
+
+    it 'is symmetric' do
+      should == other.eql?(object)
+    end
+  end
+
+  context 'with different directions' do
+    let(:other) { klass.new([ attribute.desc ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(directions)
+      should == other.eql?(object)
     end
   end
 
-  context 'with an equivalent directions of a different class' do
-    let(:other) { Class.new(Relation::Operation::Order::DirectionSet).new([ attribute ]) }
+  context 'with equivalent directions of a different class' do
+    let(:other) { Class.new(klass).new([ attribute ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(directions)
+      should == other.eql?(object)
     end
   end
 end

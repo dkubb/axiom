@@ -1,31 +1,36 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute#options' do
-  subject { attribute.options }
+  subject { object.options }
 
-  let(:name)      { :id                                   }
-  let(:attribute) { Attribute::Integer.new(name, options) }
+  let(:klass) { Attribute::Integer }
 
   context 'when no options are provided' do
-    let(:attribute) { Attribute::Integer.new(name) }
+    let(:object) { klass.new(:id) }
 
-    it { should eql({}) }
+    it { should be_kind_of(Hash) }
+
+    it { should be_empty }
 
     it { should be_frozen }
   end
 
   context 'when options are frozen' do
-    let(:options) { {}.freeze }
+    let(:options) { {}.freeze               }
+    let(:object)  { klass.new(:id, options) }
 
     it { should equal(options) }
   end
 
   context 'when options are not frozen' do
-    let(:options) { {} }
+    let(:options) { {}                      }
+    let(:object)  { klass.new(:id, options) }
 
     it { should_not equal(options) }
 
-    it { should eql(options) }
+    it { should be_kind_of(Hash) }
+
+    it { should == options }
 
     it { should be_frozen }
   end

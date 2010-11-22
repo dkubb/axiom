@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Tuple#[]' do
-  subject { tuple[attribute] }
+  subject { object[attribute] }
 
+  let(:klass)  { Tuple                                      }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
+  let(:object) { klass.new(header, [ 1 ])                   }
 
   context 'with a known attribute' do
     let(:attribute) { header[:id] }

@@ -9,7 +9,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand#o
   let(:object)    { klass.new(predicate)                                        }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Enumerable)
+    predicate.should be_kind_of(Logic::Predicate::Enumerable)
   end
 
   context 'when the operand contains an unsorted Enumerable' do

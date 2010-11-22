@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::Decimal.primitive' do
-  subject { Attribute::Decimal.primitive }
+  subject { object.primitive }
+
+  let(:object) { Attribute::Decimal }
+
+  it_should_behave_like 'an idempotent method'
 
   it { should equal(BigDecimal) }
 end

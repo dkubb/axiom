@@ -13,5 +13,9 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::OrderOperand#optimiz
     object.operation.should be_kind_of(Relation::Operation::Reverse)
   end
 
-  it { should eql(base.order(relation.directions)) }
+  it { should be_kind_of(Relation::Operation::Order) }
+
+  its(:operand) { should equal(base) }
+
+  its(:directions) { should equal(relation.directions) }
 end

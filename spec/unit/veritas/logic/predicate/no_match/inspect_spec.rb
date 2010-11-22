@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::NoMatch#inspect' do
-  subject { no_match.inspect }
+  subject { object.inspect }
 
-  let(:attribute) { Attribute::String.new(:name)   }
-  let(:no_match)  { attribute.no_match(/Dan Kubb/) }
+  let(:klass)     { Logic::Predicate::NoMatch        }
+  let(:attribute) { Attribute::String.new(:name)     }
+  let(:object)    { klass.new(attribute, /Dan Kubb/) }
 
   it { should == "#{attribute.inspect} !~ #{/Dan Kubb/.inspect}" }
 end

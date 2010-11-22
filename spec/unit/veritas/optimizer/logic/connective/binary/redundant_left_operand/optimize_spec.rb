@@ -14,5 +14,9 @@ describe 'Veritas::Optimizer::Logic::Connective::Binary::RedundantLeftOperand#op
     object.operation.should be_kind_of(Logic::Connective::Binary)
   end
 
-  it { should eql(attribute.eq(1).and(attribute.ne(2))) }
+  it { should be_kind_of(Logic::Connective::Conjunction) }
+
+  its(:left) { should eql(attribute.eq(1)) }
+
+  its(:right) { should eql(attribute.ne(2)) }
 end

@@ -9,7 +9,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Inclusion::EmptyRightOperand#opt
   let(:object)    { klass.new(predicate)                                      }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Inclusion)
+    predicate.should be_kind_of(Logic::Predicate::Inclusion)
   end
 
   context 'when the operand contains a nil' do

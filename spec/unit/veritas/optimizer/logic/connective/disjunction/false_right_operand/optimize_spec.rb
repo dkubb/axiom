@@ -6,7 +6,7 @@ describe 'Veritas::Optimizer::Logic::Connective::Disjunction::FalseRightOperand#
   let(:klass)      { Optimizer::Logic::Connective::Disjunction::FalseRightOperand }
   let(:attribute)  { Attribute::Integer.new(:id)                                  }
   let(:left)       { attribute.eq(1)                                              }
-  let(:right)      { Veritas::Logic::Proposition::False.instance                  }
+  let(:right)      { Logic::Proposition::False.instance                           }
   let(:connective) { left.or(right)                                               }
   let(:object)     { klass.new(connective)                                        }
 

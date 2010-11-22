@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Offset.new' do
-  subject { Relation::Operation::Offset.new(relation, offset) }
+  subject { object.new(relation, offset) }
 
   let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
+  let(:object)            { Relation::Operation::Offset                          }
 
   context 'with an ordered relation' do
     let(:relation) { original_relation.order { |r| r[:id] } }
     let(:offset)   { 1                                      }
 
-    it { should be_kind_of(Relation::Operation::Offset) }
+    it { should be_kind_of(object) }
   end
 
   context 'without an ordered relation' do

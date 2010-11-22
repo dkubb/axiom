@@ -1,13 +1,14 @@
 require 'spec_helper'
 
 describe 'Veritas::Tuple#project' do
-  subject { tuple.project(reversed_header) }
+  subject { object.project(reversed_header) }
 
+  let(:klass)           { Tuple                                                         }
   let(:header)          { Relation::Header.new([ [ :name, String ], [ :id, Integer ] ]) }
   let(:reversed_header) { Relation::Header.new(header.to_a.reverse)                     }
-  let(:tuple)           { Tuple.new(header, [ 'Dan Kubb', 1 ])                          }
+  let(:object)          { klass.new(header, [ 'Dan Kubb', 1 ])                          }
 
-  it { should be_kind_of(Tuple) }
+  it { should be_kind_of(klass) }
 
   its(:header) { should equal(reversed_header) }
 

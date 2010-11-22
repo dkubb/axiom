@@ -5,7 +5,7 @@ describe 'Veritas::Optimizer::Logic::Connective::Conjunction::TrueLeftOperand#op
 
   let(:klass)      { Optimizer::Logic::Connective::Conjunction::TrueLeftOperand }
   let(:attribute)  { Attribute::Integer.new(:id)                                }
-  let(:left)       { Veritas::Logic::Proposition::True.instance                 }
+  let(:left)       { Logic::Proposition::True.instance                          }
   let(:right)      { attribute.eq(1)                                            }
   let(:connective) { Logic::Connective::Conjunction.new(left, right)            }
   let(:object)     { klass.new(connective)                                      }

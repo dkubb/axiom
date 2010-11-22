@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Equality.operation' do
-  subject { Logic::Predicate::Equality.operation }
+  subject { object.operation }
+
+  let(:object) { Logic::Predicate::Equality }
 
   it { should be(:==) }
 end

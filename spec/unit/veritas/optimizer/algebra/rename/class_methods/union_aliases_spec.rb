@@ -13,7 +13,9 @@ describe 'Veritas::Optimizer::Algebra::Rename.union_aliases' do
     let(:operand)  { base.rename(:id => :other_id)            }
     let(:relation) { operand.rename(:other_id => :another_id) }
 
-    it { should eql(Algebra::Rename::Aliases.coerce(header, :id => :another_id)) }
+    it { should be_kind_of(Algebra::Rename::Aliases) }
+
+    it { should == { attribute => attribute.rename(:another_id) } }
   end
 
   context 'when the operand is not a rename' do

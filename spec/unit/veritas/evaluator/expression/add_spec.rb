@@ -1,21 +1,21 @@
 require 'spec_helper'
 
 describe 'Veritas::Evaluator::Expression#add' do
-  subject { klass.new(&expression) }
-
-  let(:klass)     { Veritas::Evaluator::Expression }
-  let(:attribute) { Attribute::Integer.new(:id)    }
+  let(:klass)     { Evaluator::Expression       }
+  let(:attribute) { Attribute::Integer.new(:id) }
 
   context 'when a function is provided' do
-    let(:function)   { mock('Function')                          }
-    let(:expression) { lambda { |o| o.add(attribute, function) } }
+    subject { klass.new { |object| object.add(attribute, function) } }
+
+    let(:function) { mock('Function') }
 
     its(:expressions) { should == { attribute => function } }
   end
 
   context 'when a block is provided' do
-    let(:block)      { proc {}                                 }
-    let(:expression) { lambda { |o| o.add(attribute, &block) } }
+    subject { klass.new { |object| object.add(attribute, &block) } }
+
+    let(:block) { proc {} }
 
     its(:expressions) { should == { attribute => block } }
   end

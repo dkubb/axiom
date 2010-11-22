@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::GreaterThan.operation' do
-  subject { Logic::Predicate::GreaterThan.operation }
+  subject { object.operation }
+
+  let(:object) { Logic::Predicate::GreaterThan }
 
   it { should be(:>) }
 end

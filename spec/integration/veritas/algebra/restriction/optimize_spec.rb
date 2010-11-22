@@ -57,7 +57,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:predicate) { should eql(relation[:id].eq(1)) }
 
@@ -81,7 +81,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:predicate) { should equal(predicate) }
 
@@ -142,7 +142,7 @@ describe 'Veritas::Algebra::Restriction#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:predicate) { should eql(other_predicate & predicate) }
 

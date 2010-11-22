@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Inequality.operation' do
-  subject { Logic::Predicate::Inequality.operation }
+  subject { object.operation }
+
+  let(:object) { Logic::Predicate::Inequality }
 
   it { should be(:'!=') }
 end

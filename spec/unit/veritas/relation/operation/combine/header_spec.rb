@@ -2,11 +2,12 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Combine#header' do
-  subject { combine_operation.header }
+  subject { object.header }
 
-  let(:left)              { Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])   }
-  let(:right)             { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
-  let(:combine_operation) { CombineOperationSpecs::Object.new(left, right)           }
+  let(:klass)  { CombineOperationSpecs::Object                            }
+  let(:left)   { Relation.new([ [ :id,   Integer ] ], [ [ 1 ], [ 2 ] ])   }
+  let(:right)  { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
+  let(:object) { klass.new(left, right)                                   }
 
   it_should_behave_like 'an idempotent method'
 

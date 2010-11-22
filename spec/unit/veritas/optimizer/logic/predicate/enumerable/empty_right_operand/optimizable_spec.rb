@@ -11,7 +11,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Enumerable::EmptyRightOperand#op
   before do
     klass.class_eval { include Optimizer::Logic::Predicate::Enumerable::EmptyRightOperand }
 
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Enumerable)
+    predicate.should be_kind_of(Logic::Predicate::Enumerable)
   end
 
   context 'when the operand contains a nil' do

@@ -2,18 +2,21 @@ require 'spec_helper'
 
 [ :length, :range ].each do |method|
   describe "Veritas::Attribute::String##{method}" do
-    subject { attribute.send(method) }
+    subject { object.send(method) }
+
+    let(:klass) { Attribute::String }
 
     context 'without :length option passed to constructor' do
-      let(:attribute) { Attribute::String.new(:name) }
+      let(:object) { klass.new(:name) }
 
       it { should == (0..50) }
     end
 
     context 'with :length option passed to constructor' do
-      let(:attribute) { Attribute::String.new(:name, :length => 1..100) }
+      let(:length) { 1..100                              }
+      let(:object) { klass.new(:name, :length => length) }
 
-      it { should == (1..100) }
+      it { should == length }
     end
   end
 end

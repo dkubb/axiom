@@ -2,7 +2,7 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Expression#==' do
-  subject { expression == other }
+  subject { object == other }
 
   let(:klass) { Class.new(ExpressionSpecs::Object) }
 
@@ -19,47 +19,47 @@ describe 'Veritas::Logic::Expression#==' do
   end
 
   context 'with two equivalent expressions' do
-    let(:expression) { klass.new }
-    let(:other)      { klass.new }
+    let(:object) { klass.new }
+    let(:other)  { klass.new }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(expression)
+      should == other.eql?(object)
     end
   end
 
   context 'with two different expressions' do
-    let(:expression) { klass.new            }
-    let(:other)      { Class.new(klass).new }
+    let(:object) { klass.new            }
+    let(:other)  { Class.new(klass).new }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(expression)
+      should == other.eql?(object)
     end
   end
 
   context 'with two equivalent unoptimized expressions' do
-    let(:expression) { klass.new & klass.new }
-    let(:other)      { klass.new & klass.new }
+    let(:object) { klass.new & klass.new }
+    let(:other)  { klass.new & klass.new }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(expression)
+      should == other.eql?(object)
     end
   end
 
   context 'with two different unoptimized expressions' do
-    let(:expression) { klass.new & klass.new       }
-    let(:subclass)   { Class.new(klass)            }
-    let(:other)      { subclass.new & subclass.new }
+    let(:object)   { klass.new & klass.new       }
+    let(:subclass) { Class.new(klass)            }
+    let(:other)    { subclass.new & subclass.new }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(expression)
+      should == other.eql?(object)
     end
   end
 end

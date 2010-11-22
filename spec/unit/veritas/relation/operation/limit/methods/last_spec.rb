@@ -1,36 +1,37 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Limit::Methods#last' do
-  subject { ordered.last(*args) }
-
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:ordered)  { relation.order { |r| r[:id] }                               }
+  let(:klass)    { Relation                                                      }
+  let(:relation) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ].each) }
+  let(:object)   { relation.order                                                }
 
   context 'with no arguments' do
-    let(:args) { [] }
+    subject { object.last }
 
-    it { should be_kind_of(Relation::Operation::Order) }
+    it { should be_kind_of(Relation::Operation::Reverse) }
 
     it 'returns the expected tuples' do
       should == [ [ 3 ] ]
     end
 
-    it 'behaves the same as Array#last' do
-      should == [ ordered.to_a.last ]
+    it 'behaves similar to Array#last' do
+      should == [ object.to_a.last ]
     end
   end
 
   context 'with a limit' do
-    let(:args) { [ 2 ] }
+    subject { object.last(limit) }
 
-    it { should be_kind_of(Relation::Operation::Order) }
+    let(:limit) { 2 }
+
+    it { should be_kind_of(Relation::Operation::Reverse) }
 
     it 'returns the expected tuples' do
       should == [ [ 2 ], [ 3 ] ]
     end
 
     it 'behaves the same as Array#last' do
-      should == ordered.to_a.last(2)
+      should == object.to_a.last(limit)
     end
   end
 end

@@ -3,11 +3,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Exclusion#inspect' do
-  subject { exclusion.inspect }
+  subject { object.inspect }
 
   let(:klass)     { Logic::Predicate::Exclusion }
   let(:attribute) { Attribute::Integer.new(:id) }
-  let(:exclusion) { klass.new(attribute, [ 1 ]) }
+  let(:object)    { klass.new(attribute, [ 1 ]) }
 
   it { should == "#{attribute.inspect} ∉ #{[ 1 ].inspect}" }
 end

@@ -1,10 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation#empty?' do
-  subject { relation.empty? }
+  subject { object.empty? }
 
-  let(:header)   { [ [ :id, Integer ] ]       }
-  let(:relation) { Relation.new(header, body) }
+  let(:klass)  { Relation                }
+  let(:header) { [ [ :id, Integer ] ]    }
+  let(:object) { klass.new(header, body) }
+
+  before do
+    object.should be_instance_of(klass)
+  end
 
   context 'with a body containing no entries' do
     let(:body) { [].each }  # use an Enumerator

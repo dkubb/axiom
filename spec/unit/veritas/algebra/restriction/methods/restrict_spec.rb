@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Restriction::Methods#restrict' do
-  subject { relation.restrict(*args, &block) }
-
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:klass)  { Relation                                        }
+  let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 
   context 'with predicate arguments' do
-    let(:predicate) { relation[:id].eq(1) }
-    let(:args)      { [ predicate ]       }
-    let(:block)     { nil                 }
+    subject { object.restrict(predicate) }
+
+    let(:predicate) { object[:id].eq(1) }
 
     it { should be_kind_of(Algebra::Restriction) }
 
@@ -17,22 +16,23 @@ describe 'Veritas::Algebra::Restriction::Methods#restrict' do
     end
 
     it 'behaves the same as Enumerable#select' do
-      should == relation.select { |tuple| tuple[:id] == 1 }
+      should == object.select { |tuple| tuple[:id] == 1 }
     end
   end
 
   context 'with a block' do
-    let(:args)  { []                                        }
+    subject { object.restrict(&block) }
+
     let(:block) { lambda { |relation| relation[:id].eq(1) } }
 
     it { should be_kind_of(Algebra::Restriction) }
 
     it 'sets the predicate' do
-      subject.predicate.should eql(block.call(relation))
+      subject.predicate.should eql(block.call(object))
     end
 
     it 'behaves the same as Enumerable#select' do
-      should == relation.select { |tuple| tuple[:id] == 1 }
+      should == object.select { |tuple| tuple[:id] == 1 }
     end
   end
 end

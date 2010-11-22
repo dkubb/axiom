@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition.call' do
-  subject { Logic::Proposition.call }
+  subject { object.call }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'Veritas::Logic::Proposition.call must be implemented') }
+  let(:object) { Logic::Proposition }
+
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{object}.call must be implemented") }
 end

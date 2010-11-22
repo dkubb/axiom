@@ -2,7 +2,11 @@ require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Comparable.call' do
-  subject { PredicateComparableSpecs::Object.call(1, 1) }
+  subject { object.call(left, right) }
+
+  let(:left)   { 1                                }
+  let(:right)  { 1                                }
+  let(:object) { PredicateComparableSpecs::Object }
 
   it { should be(true) }
 end

@@ -9,7 +9,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::GreaterThanOrEqualTo::AlwaysFals
   let(:object)    { klass.new(predicate)                                           }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::GreaterThanOrEqualTo)
+    predicate.should be_kind_of(Logic::Predicate::GreaterThanOrEqualTo)
   end
 
   context 'when left and right are equal' do

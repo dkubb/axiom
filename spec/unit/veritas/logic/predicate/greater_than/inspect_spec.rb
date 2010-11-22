@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::GreaterThan#inspect' do
-  subject { greater_than.inspect }
+  subject { object.inspect }
 
-  let(:attribute)    { Attribute::Integer.new(:id) }
-  let(:greater_than) { attribute.gt(1)             }
+  let(:klass)     { Logic::Predicate::GreaterThan }
+  let(:attribute) { Attribute::Integer.new(:id)   }
+  let(:object)    { klass.new(attribute, 1)       }
 
   it { should == "#{attribute.inspect} > 1" }
 end

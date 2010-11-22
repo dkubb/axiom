@@ -1,14 +1,14 @@
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Proposition#hash' do
-  subject { proposition.hash }
+  subject { object.hash }
 
-  let(:proposition) { PropositionSpecs::Object.new }
+  let(:klass)  { Class.new(Logic::Proposition) }
+  let(:object) { klass.new                     }
 
   before do
     @response = mock('#call response')
-    PropositionSpecs::Object.should_receive(:call).at_least(:once).and_return(@response)
+    klass.should_receive(:call).at_least(:once).and_return(@response)
   end
 
   it_should_behave_like 'an idempotent method'

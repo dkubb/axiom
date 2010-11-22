@@ -3,12 +3,13 @@ require 'spec_helper'
 describe 'Veritas::Tuple#join' do
   subject { object.join(new_header, values) }
 
+  let(:klass)      { Tuple                                      }
   let(:header)     { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:new_header) { header | [ [ :name, String ] ]             }
   let(:values)     { [ 'Dan Kubb' ]                             }
-  let(:object)     { Tuple.new(header, [ 1 ])                   }
+  let(:object)     { klass.new(header, [ 1 ])                   }
 
-  it { should be_kind_of(Tuple) }
+  it { should be_kind_of(klass) }
 
   its(:header) { should equal(new_header) }
 

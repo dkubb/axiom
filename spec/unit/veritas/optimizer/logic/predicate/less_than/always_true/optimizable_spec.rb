@@ -8,7 +8,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::LessThan::AlwaysTrue#optimizable
   let(:object)    { klass.new(predicate)                              }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::LessThan)
+    predicate.should be_kind_of(Logic::Predicate::LessThan)
   end
 
   context 'when left is always less than right' do

@@ -2,9 +2,11 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Match::Methods#match' do
-  subject { expression.match(/Dan Kubb/) }
+  subject { object.match(other) }
 
-  let(:expression) { MatchMethodsSpecs::Object.new }
+  let(:klass)  { MatchMethodsSpecs::Object }
+  let(:other)  { /Dan Kubb/                }
+  let(:object) { klass.new                 }
 
   it { should be_kind_of(Logic::Predicate::Match) }
 end

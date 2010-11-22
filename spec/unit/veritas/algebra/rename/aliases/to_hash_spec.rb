@@ -3,9 +3,9 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Rename::Aliases#to_hash' do
   subject { object.to_hash }
 
-  let(:klass)     { Algebra::Rename::Aliases                     }
-  let(:attribute) { Attribute::Integer.new(:id)                  }
-  let(:object)    { klass.new(aliases)                           }
+  let(:klass)     { Algebra::Rename::Aliases    }
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:object)    { klass.new(aliases)          }
 
   context 'when aliases is frozen' do
     let(:aliases) { { attribute => attribute.rename(:other_id) }.freeze }
@@ -22,6 +22,10 @@ describe 'Veritas::Algebra::Rename::Aliases#to_hash' do
 
     it { should_not equal(aliases) }
 
-    it { should eql(aliases) }
+    it { should be_kind_of(Hash) }
+
+    it { should == aliases }
+
+    it { should be_frozen }
   end
 end

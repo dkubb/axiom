@@ -13,8 +13,8 @@ describe 'Veritas::Optimizer::Logic::Connective::Disjunction::FalseLeftOperand#o
   end
 
   context 'when right is true' do
-    let(:left)  { Veritas::Logic::Proposition::False.instance }
-    let(:right) { attribute.eq(1)                             }
+    let(:left)  { Logic::Proposition::False.instance }
+    let(:right) { attribute.eq(1)                    }
 
     it { should be(true) }
   end

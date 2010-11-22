@@ -40,6 +40,10 @@ describe 'Veritas::Immutable.freeze_object' do
 
     it { should_not equal(value) }
 
-    it { should eql(value) }
+    it { should be_kind_of(String) }
+
+    it { should == value }
+
+    it { should be_frozen }
   end
 end

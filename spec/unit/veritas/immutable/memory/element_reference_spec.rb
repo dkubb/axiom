@@ -1,16 +1,17 @@
 require 'spec_helper'
 
 describe 'Veritas::Immutable::Memory#[]' do
-  subject { memory[key] }
+  subject { object[key] }
 
-  let(:memory) { Immutable::Memory.new }
+  let(:klass)  { Immutable::Memory }
+  let(:object) { klass.new         }
 
   context 'with known key' do
     let(:key)   { '@key'        }
     let(:value) { mock('Value') }
 
     before do
-      memory.instance_variable_set(key, value)
+      object.instance_variable_set(key, value)
     end
 
     it { should equal(value) }

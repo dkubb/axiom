@@ -2,10 +2,11 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate::Exclusion::Methods#exclude' do
-  subject { expression.exclude(enumerable) }
+  subject { object.exclude(other) }
 
-  let(:expression) { ExclusionMethodsSpecs::Object.new }
-  let(:enumerable) { [ true, false ]                   }
+  let(:klass)  { ExclusionMethodsSpecs::Object }
+  let(:other)  { [ true, false ]               }
+  let(:object) { klass.new                     }
 
   it { should be_kind_of(Logic::Predicate::Exclusion) }
 end

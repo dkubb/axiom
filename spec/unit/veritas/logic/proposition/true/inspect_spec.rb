@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition::True#inspect' do
-  subject { true_proposition.inspect }
+  subject { object.inspect }
 
-  let(:true_proposition) { Logic::Proposition::True.instance }
+  let(:klass)  { Logic::Proposition::True }
+  let(:object) { klass.instance           }
 
   it { should == 'true' }
 end

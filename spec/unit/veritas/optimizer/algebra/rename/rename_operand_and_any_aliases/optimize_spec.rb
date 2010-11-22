@@ -14,5 +14,9 @@ describe 'Veritas::Optimizer::Algebra::Rename::RenameOperandAndAnyAliases#optimi
     object.operand.should be_kind_of(Algebra::Rename)
   end
 
-  it { should eql(base.rename(:id => :other_id, :name => :other_name)) }
+  it { should be_kind_of(Algebra::Rename) }
+
+  its(:operand) { should equal(base) }
+
+  its(:header) { should == [ [ :other_id, Integer ], [ :other_name, String ] ] }
 end

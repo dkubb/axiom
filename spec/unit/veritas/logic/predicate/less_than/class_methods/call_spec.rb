@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::LessThan.call' do
-  subject { Logic::Predicate::LessThan.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Logic::Predicate::LessThan }
 
   context 'when left is equal to right' do
     let(:left)  { 1 }

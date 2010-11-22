@@ -1,50 +1,50 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Limit#eql?' do
-  subject { limit.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:limit)      { order.take(1)                                               }
+  let(:klass)    { Relation::Operation::Limit                                  }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:order)    { relation.order                                              }
+  let(:object)   { klass.new(order, 1)                                         }
 
   context 'with the same limit' do
-    let(:other) { limit }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(limit)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent limit' do
-    let(:other) { limit.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(limit)
+      should == other.eql?(object)
     end
   end
 
   context 'with a different limit' do
-    let(:other) { order.take(2) }
+    let(:other) { klass.new(order, 2) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(limit)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent limit of a different class' do
-    let(:other) { Class.new(Relation::Operation::Limit).new(order, 1) }
+    let(:other) { Class.new(klass).new(order, 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(limit)
+      should == other.eql?(object)
     end
   end
 end

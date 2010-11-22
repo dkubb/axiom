@@ -7,7 +7,7 @@ describe 'Veritas::Immutable::ModuleMethods#included' do
   let(:object) { ImmutableSpecs::Object }
 
   before do
-    Veritas::Immutable.should_receive(:included).with(object).and_return(Veritas::Immutable)
+    Immutable.should_receive(:included).with(object).and_return(Immutable)
   end
 
   it { should equal(object) }

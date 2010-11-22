@@ -43,7 +43,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
   context 'containing an optimizable order operation' do
     let(:operand) { order.project(order.header) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(order) }
 
@@ -65,7 +65,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     let(:operand) { order.drop(5) }
     let(:offset)  { 10            }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(order) }
 

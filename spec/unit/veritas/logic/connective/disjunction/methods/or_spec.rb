@@ -3,14 +3,15 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
 [ :or, :| ].each do |method|
   describe "Veritas::Logic::Connective::Disjunction::Methods##{method}" do
-    subject { proposition.send(method, predicate) }
+    subject { object.send(method, predicate) }
 
-    let(:header)      { Relation::Header.new([ [ :id, Integer ] ])     }
-    let(:predicate)   { Logic::Predicate::Equality.new(header[:id], 1) }
-    let(:proposition) { DisjunctionMethodsSpecs::Object.new            }
+    let(:klass)     { DisjunctionMethodsSpecs::Object            }
+    let(:header)    { Relation::Header.new([ [ :id, Integer ] ]) }
+    let(:predicate) { header[:id].eq(1)                          }
+    let(:object)    { klass.new                                  }
 
     it 'returns a disjunction of the proposition and predicate' do
-      should eql(Logic::Connective::Disjunction.new(proposition, predicate))
+      should eql(Logic::Connective::Disjunction.new(object, predicate))
     end
   end
 end

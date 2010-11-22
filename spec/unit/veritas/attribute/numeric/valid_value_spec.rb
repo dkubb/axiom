@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::Numeric#valid_value?' do
-  subject { attribute.valid_value?(value) }
+  subject { object.valid_value?(value) }
 
-  let(:attribute) { Veritas::Attribute::Numeric.new(:numeric, :size => 1..50) }
+  let(:klass)  { Attribute::Numeric                  }
+  let(:object) { klass.new(:numeric, :size => 1..50) }
 
   context 'with a numeric value' do
     context 'that is within the allowed size range' do

@@ -9,7 +9,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Comparable::NormalizableOperands
   let(:object)    { klass.new(predicate)                                          }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Comparable)
+    predicate.should be_kind_of(Logic::Predicate::Comparable)
   end
 
   context 'when left and right is a constant' do

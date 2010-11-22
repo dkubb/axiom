@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#project' do
-  subject { header.project([ :id ]) }
+  subject { object.project(attributes) }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:klass)      { Relation::Header                                   }
+  let(:attributes) { [ :id ]                                            }
+  let(:object)     { klass.new([ [ :id, Integer ], [ :name, String ] ]) }
 
-  it { should be_kind_of(Relation::Header) }
+  it { should be_kind_of(klass) }
 
   it { should == [ [ :id, Integer ] ] }
 end

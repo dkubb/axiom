@@ -20,7 +20,9 @@ describe 'Veritas::Algebra::Rename::Aliases.coerce' do
     let(:new_attr) { :other_id                }
     let(:aliases)  { { old_attr => new_attr } }
 
-    it { should eql(object.new(attribute => attribute.rename(:other_id))) }
+    it { should be_kind_of(object) }
+
+    it { should == { attribute => attribute.rename(:other_id) } }
   end
 
   context 'the old attribute is a Symbol, and the new attribute is an Attribute' do
@@ -28,7 +30,9 @@ describe 'Veritas::Algebra::Rename::Aliases.coerce' do
     let(:new_attr) { attribute.rename(:other_id) }
     let(:aliases)  { { old_attr => new_attr }    }
 
-    it { should eql(object.new(attribute => attribute.rename(:other_id))) }
+    it { should be_kind_of(object) }
+
+    it { should == { attribute => attribute.rename(:other_id) } }
   end
 
   context 'the old attribute is an Attribute, and the new attribute is a Symbol' do
@@ -36,7 +40,9 @@ describe 'Veritas::Algebra::Rename::Aliases.coerce' do
     let(:new_attr) { :other_id                }
     let(:aliases)  { { old_attr => new_attr } }
 
-    it { should eql(object.new(attribute => attribute.rename(:other_id))) }
+    it { should be_kind_of(object) }
+
+    it { should == { attribute => attribute.rename(:other_id) } }
   end
 
   context 'the old and new attributes are Attributes' do
@@ -44,6 +50,8 @@ describe 'Veritas::Algebra::Rename::Aliases.coerce' do
     let(:new_attr) { attribute.rename(:other_id) }
     let(:aliases)  { { old_attr => new_attr }    }
 
-    it { should eql(object.new(attribute => attribute.rename(:other_id))) }
+    it { should be_kind_of(object) }
+
+    it { should == { attribute => attribute.rename(:other_id) } }
   end
 end

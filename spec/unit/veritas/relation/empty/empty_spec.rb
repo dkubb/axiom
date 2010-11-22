@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Empty#empty?' do
-  subject { empty.empty? }
+  subject { object.empty? }
 
-  let(:empty) { Relation::Empty.new([ [ :id, Integer ] ]) }
+  let(:klass)  { Relation::Empty                 }
+  let(:object) { klass.new([ [ :id, Integer ] ]) }
 
   it { should be(true) }
 end

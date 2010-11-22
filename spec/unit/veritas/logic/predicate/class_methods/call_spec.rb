@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate.call' do
-  subject { Logic::Predicate.call(1, 1) }
+  subject { object.call(left, right) }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'Veritas::Logic::Predicate.call must be implemented') }
+  let(:left)   { 1                }
+  let(:right)  { 1                }
+  let(:object) { Logic::Predicate }
+
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{object}.call must be implemented") }
 end

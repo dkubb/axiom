@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Ascending#reverse' do
-  subject { ascending.reverse }
+  subject { object.reverse }
 
-  let(:attribute) { Attribute::Integer.new(:id)                          }
-  let(:ascending) { Relation::Operation::Order::Ascending.new(attribute) }
+  let(:klass)     { Relation::Operation::Order::Ascending }
+  let(:attribute) { Attribute::Integer.new(:id)           }
+  let(:object)    { klass.new(attribute)                  }
 
   it { should be_kind_of(Relation::Operation::Order::Descending) }
 

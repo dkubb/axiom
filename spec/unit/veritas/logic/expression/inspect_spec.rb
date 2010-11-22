@@ -2,9 +2,10 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Expression#inspect' do
-  subject { expression.inspect }
+  subject { object.inspect }
 
-  let(:expression) { ExpressionSpecs::Object.new }
+  let(:klass)  { ExpressionSpecs::Object }
+  let(:object) { klass.new               }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#inspect must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{klass}#inspect must be implemented") }
 end

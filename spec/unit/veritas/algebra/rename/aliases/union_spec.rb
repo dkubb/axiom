@@ -15,7 +15,7 @@ require 'spec_helper'
       it { should be_kind_of(klass) }
 
       it 'does nothing' do
-        should eql(object)
+        should == object
       end
     end
 
@@ -25,7 +25,7 @@ require 'spec_helper'
       it { should be_kind_of(klass) }
 
       it 'ignores duplicate attributes' do
-        should eql(klass.new(attribute => attribute.rename(:other_id)))
+        should == klass.new(attribute => attribute.rename(:other_id))
       end
     end
 
@@ -36,7 +36,7 @@ require 'spec_helper'
       it { should be_kind_of(klass) }
 
       it 'allows new attributes' do
-        should eql(klass.new(attribute => attribute.rename(:other_id), other_attribute => other_attribute.rename(:other_name)))
+        should == klass.new(attribute => attribute.rename(:other_id), other_attribute => other_attribute.rename(:other_name))
       end
     end
 
@@ -47,7 +47,7 @@ require 'spec_helper'
       it { should be_kind_of(klass) }
 
       it 'simplifies the rename' do
-        should eql(klass.new(other_attribute => attribute.rename(:other_id)))
+        should == klass.new(other_attribute => attribute.rename(:other_id))
       end
     end
 
@@ -58,7 +58,7 @@ require 'spec_helper'
       it { should be_kind_of(klass) }
 
       it 'eliminates the name' do
-        should eql(klass.new({}))
+        should == klass.new({})
       end
     end
   end

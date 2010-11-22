@@ -45,7 +45,7 @@ module Veritas
       # @example
       #   numeric_hash = unary.hash
       #
-      # @return [Integer]
+      # @return [Fixnum]
       #
       # @api public
       def hash

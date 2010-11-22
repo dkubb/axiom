@@ -1,28 +1,34 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute.coerce' do
-  subject { Attribute.coerce(object) }
+  subject { object.coerce(argument) }
 
-  context 'when the object is an Attribute' do
-    let(:object) { Attribute::Integer.new(:id) }
+  let(:object) { Attribute }
 
-    it { should equal(object) }
+  context 'when the argument is an Attribute' do
+    let(:argument) { Attribute::Integer.new(:id) }
+
+    it { should equal(argument) }
   end
 
-  context 'when the object responds to #to_ary' do
-    let(:object) { [ :id, Integer ] }
+  context 'when the argument responds to #to_ary' do
+    let(:argument) { [ :id, Integer ] }
 
-    it { should eql(Attribute::Integer.new(:id)) }
+    it { should be_kind_of(Attribute::Integer) }
+
+    its(:name) { should == :id }
   end
 
-  context 'when the object does not respond to #to_ary, but does respond to #to_sym' do
-    let(:object) { :id }
+  context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
+    let(:argument) { :id }
 
-    it { should eql(Attribute::Object.new(:id)) }
+    it { should be_kind_of(Attribute::Object) }
+
+    its(:name) { should == :id }
   end
 
-  context 'when the object does not respond to #to_ary or #to_sym' do
-    let(:object) { Integer }
+  context 'when the argument does not respond to #to_ary or #to_sym' do
+    let(:argument) { Integer }
 
     specify { expect { subject }.to raise_error(NoMethodError) }
   end

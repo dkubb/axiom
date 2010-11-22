@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition::True.inverse' do
-  subject { Logic::Proposition::True.inverse }
+  subject { object.inverse }
+
+  let(:object) { Logic::Proposition::True }
 
   it { should equal(Logic::Proposition::False) }
 end

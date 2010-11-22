@@ -1,13 +1,18 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation#hash' do
-  subject { relation.hash }
+  subject { object.hash }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], []) }
+  let(:klass)  { Relation                                 }
+  let(:object) { klass.new([ [ :id, Integer ] ], [].each) }
+
+  before do
+    object.should be_instance_of(klass)
+  end
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Integer) }
+  it { should be_kind_of(Fixnum) }
 
-  it { should == relation.header.hash ^ relation.to_set.hash }
+  it { should == object.header.hash ^ object.to_set.hash }
 end

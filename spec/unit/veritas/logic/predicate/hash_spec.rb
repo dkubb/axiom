@@ -2,14 +2,15 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Logic::Predicate#hash' do
-  subject { predicate.hash }
+  subject { object.hash }
 
-  let(:attribute) { Attribute::Integer.new(:id)              }
-  let(:predicate) { PredicateSpecs::Object.new(attribute, 1) }
+  let(:klass)     { PredicateSpecs::Object      }
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:object)    { klass.new(attribute, 1)     }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Integer) }
+  it { should be_kind_of(Fixnum) }
 
   it { should == attribute.hash ^ 1.hash }
 end

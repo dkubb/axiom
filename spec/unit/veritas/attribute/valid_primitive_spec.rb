@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute#valid_primitive?' do
-  subject { attribute.valid_primitive?(value) }
+  subject { object.valid_primitive?(value) }
 
-  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:klass)  { Attribute::Integer }
+  let(:object) { klass.new(:id)     }
 
   context 'with a valid value' do
     let(:value) { 1 }

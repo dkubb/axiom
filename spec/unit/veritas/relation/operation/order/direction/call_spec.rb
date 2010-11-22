@@ -1,18 +1,13 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Direction#call' do
-  subject { direction.call(left, right) }
+  subject { object.call(left, right) }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:left)   { Tuple.new(header, [ 1 ])                   }
-  let(:right)  { Tuple.new(header, [ 2 ])                   }
-  let(:klass) do
-    Class.new(Relation::Operation::Order::Direction) do
-      def self.call(*)
-      end
-    end
-  end
-  let(:direction) { klass.new(header[:id]) }
+  let(:klass)  { Class.new(Relation::Operation::Order::Direction) }
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ])       }
+  let(:left)   { Tuple.new(header, [ 1 ])                         }
+  let(:right)  { Tuple.new(header, [ 2 ])                         }
+  let(:object) { klass.new(header[:id])                           }
 
   it 'sends the tuple value to self.class.call' do
     response = mock('#call response')

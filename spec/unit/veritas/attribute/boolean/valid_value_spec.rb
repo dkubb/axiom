@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::Boolean#valid_value?' do
-  subject { attribute.valid_value?(value) }
+  subject { object.valid_value?(value) }
 
-  let(:attribute) { Veritas::Attribute::Boolean.new(:boolean) }
+  let(:klass)  { Attribute::Boolean  }
+  let(:object) { klass.new(:boolean) }
 
   context 'with a true value' do
     let(:value) { true }

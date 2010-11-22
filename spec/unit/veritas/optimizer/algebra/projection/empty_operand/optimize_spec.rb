@@ -13,5 +13,7 @@ describe 'Veritas::Optimizer::Algebra::Projection::EmptyOperand#optimize' do
     object.operation.should be_kind_of(Algebra::Projection)
   end
 
-  it { should eql(Relation::Empty.new([ [ :id, Integer ] ])) }
+  it { should be_kind_of(Relation::Empty) }
+
+  its(:header) { should equal(relation.header) }
 end

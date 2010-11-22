@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Direction#attribute' do
-  subject { direction.attribute }
+  subject { object.attribute }
 
-  let(:attribute) { Attribute::Integer.new(:id)                      }
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
-  let(:direction) { klass.new(attribute)                             }
+  let(:attribute) { Attribute::Integer.new(:id)                      }
+  let(:object)    { klass.new(attribute)                             }
 
   it { should equal(attribute) }
 end

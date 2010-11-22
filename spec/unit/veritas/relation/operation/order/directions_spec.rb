@@ -1,15 +1,14 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order#directions' do
-  subject { order.directions }
+  subject { object.directions }
 
+  let(:klass)      { Relation::Operation::Order                           }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:directions) { [ relation[:id].asc ]                                }
-  let(:order)      { Relation::Operation::Order.new(relation, directions) }
+  let(:directions) { klass::DirectionSet.new(relation.header)             }
+  let(:object)     { klass.new(relation, directions)                      }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
-
-  it { should == directions }
+  it { should equal(directions) }
 end

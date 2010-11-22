@@ -1,61 +1,62 @@
 require 'spec_helper'
 
 describe 'Veritas::Tuple#==' do
-  subject { tuple == other }
+  subject { object == other }
 
+  let(:klass)  { Tuple                                      }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
+  let(:object) { klass.new(header, [ 1 ])                   }
 
   context 'with the same tuple' do
-    let(:other) { tuple }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent tuple' do
-    let(:other) { tuple.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 
   context 'with a different tuple' do
-    let(:other) { Tuple.new(header, [ 2 ]) }
+    let(:other) { klass.new(header, [ 2 ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent tuple with a different header' do
     let(:aliases)      { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
     let(:other_header) { header.rename(aliases)                                    }
-    let(:other_tuple)  { Tuple.new(other_header, [ 1 ])                            }
-    let(:other)        { Tuple.new(other_header, other_tuple.to_ary)               }
+    let(:other_object) { klass.new(other_header, [ 1 ])                            }
+    let(:other)        { klass.new(other_header, other_object.to_ary)              }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent tuple of a different class' do
-    let(:other) { Class.new(Tuple).new(header, [ 1 ]) }
+    let(:other) { Class.new(klass).new(header, [ 1 ]) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 
@@ -65,7 +66,7 @@ describe 'Veritas::Tuple#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 
@@ -75,7 +76,7 @@ describe 'Veritas::Tuple#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == tuple)
+      should == (other == object)
     end
   end
 end

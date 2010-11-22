@@ -1,48 +1,49 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#==' do
-  subject { header == other }
+  subject { object == other }
 
-  let(:attribute) { [ :id, Integer ]                    }
-  let(:header)    { Relation::Header.new([ attribute ]) }
+  let(:klass)     { Relation::Header         }
+  let(:attribute) { [ :id, Integer ]         }
+  let(:object)    { klass.new([ attribute ]) }
 
   context 'with the same header' do
-    let(:other) { header }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent header' do
-    let(:other) { header.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 
   context 'with a different header' do
-    let(:other) { Relation::Header.new([ [ :name, String ] ]) }
+    let(:other) { klass.new([ [ :name, String ] ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent header of different classes' do
-    let(:other) { Class.new(Relation::Header).new([ attribute ]) }
+    let(:other) { Class.new(klass).new([ attribute ]) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 
@@ -52,7 +53,7 @@ describe 'Veritas::Relation::Header#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 
@@ -62,20 +63,20 @@ describe 'Veritas::Relation::Header#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 
   context 'with equivalent attributes in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                               }
-    let(:attribute2) { [ :name, String  ]                               }
-    let(:header)     { Relation::Header.new([ attribute1, attribute2 ]) }
-    let(:other)      { Relation::Header.new([ attribute2, attribute1 ]) }
+    let(:attribute1) { [ :id,   Integer ]                    }
+    let(:attribute2) { [ :name, String  ]                    }
+    let(:object)     { klass.new([ attribute1, attribute2 ]) }
+    let(:other)      { klass.new([ attribute2, attribute1 ]) }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == header)
+      should == (other == object)
     end
   end
 end

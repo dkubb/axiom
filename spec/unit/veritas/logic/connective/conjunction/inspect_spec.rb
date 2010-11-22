@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Connective::Conjunction#inspect' do
-  subject { conjunction.inspect }
+  subject { object.inspect }
 
-  let(:attribute)   { Attribute::Integer.new(:id)                     }
-  let(:left)        { attribute.gt(1)                                 }
-  let(:right)       { attribute.lt(3)                                 }
-  let(:conjunction) { Logic::Connective::Conjunction.new(left, right) }
+  let(:klass)     { Logic::Connective::Conjunction }
+  let(:attribute) { Attribute::Integer.new(:id)    }
+  let(:left)      { attribute.gt(1)                }
+  let(:right)     { attribute.lt(3)                }
+  let(:object)    { klass.new(left, right)         }
 
   it { should == "(#{left.inspect} AND #{right.inspect})"}
 end

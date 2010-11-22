@@ -1,15 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Expression.call' do
-  subject { klass.call }
+  subject { object.call }
 
-  let(:klass) do
-    Class.new(Logic::Expression) do
-      def self.name
-        'AnonymousClass'
-      end
-    end
-  end
+  let(:object) { Logic::Expression }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, 'AnonymousClass.call must be implemented') }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{object}.call must be implemented") }
 end

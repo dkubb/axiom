@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Header#inspect' do
-  subject { header.inspect }
+  subject { object.inspect }
 
-  let(:attribute) { [ :id, Integer ]                    }
-  let(:header)    { Relation::Header.new([ attribute ]) }
+  let(:klass)     { Relation::Header         }
+  let(:attribute) { [ :id, Integer ]         }
+  let(:object)    { klass.new([ attribute ]) }
 
   it { should be_kind_of(String) }
 

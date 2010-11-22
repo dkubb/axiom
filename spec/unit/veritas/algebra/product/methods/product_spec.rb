@@ -2,10 +2,11 @@ require 'spec_helper'
 
 [ :product, :* ].each do |method|
   describe "Veritas::Algebra::Product::Methods##{method}" do
-    subject { relation.send(method, other) }
+    subject { object.send(method, other) }
 
-    let(:relation) { Relation.new([ [ :id,   Integer ] ], [ [ 1          ] ]) }
-    let(:other)    { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
+    let(:klass)  { Relation                                                   }
+    let(:object) { klass.new([ [ :id,   Integer ] ], [ [ 1          ] ].each) }
+    let(:other)  { klass.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ].each) }
 
     it { should be_kind_of(Algebra::Product) }
   end

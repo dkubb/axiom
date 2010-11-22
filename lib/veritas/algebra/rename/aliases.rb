@@ -109,7 +109,6 @@ module Veritas
         #
         # @api public
         def ==(other)
-          (kind_of?(other.class) || other.kind_of?(self.class)) &&
           to_hash == other.to_hash
         end
 
@@ -134,7 +133,7 @@ module Veritas
         # @example
         #   numeric_hash = aliases.hash
         #
-        # @return [Integer]
+        # @return [Fixnum]
         #
         # @api public
         def hash

@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate.extract_value' do
-  subject { Logic::Predicate.extract_value(operand, tuple) }
+  subject { object.extract_value(operand, tuple) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)  { Tuple.new(header, [ 1 ])                   }
+  let(:object) { Logic::Predicate                           }
 
   context 'when the operand responds to #call' do
     let(:operand) { header[:id] }

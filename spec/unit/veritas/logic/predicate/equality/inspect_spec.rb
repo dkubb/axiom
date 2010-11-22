@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Equality#inspect' do
-  subject { equality.inspect }
+  subject { object.inspect }
 
+  let(:klass)     { Logic::Predicate::Equality  }
   let(:attribute) { Attribute::Integer.new(:id) }
-  let(:equality)  { attribute.eq(1)             }
+  let(:object)    { klass.new(attribute, 1)     }
 
   it { should == "#{attribute.inspect} == 1" }
 end

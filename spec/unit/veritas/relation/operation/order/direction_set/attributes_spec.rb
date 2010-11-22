@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#attributes' do
-  subject { directions.attributes }
+  subject { object.attributes }
 
-  let(:attribute)  { Attribute::Integer.new(:id)                                 }
-  let(:directions) { Relation::Operation::Order::DirectionSet.new([ attribute ]) }
+  let(:klass)     { Relation::Operation::Order::DirectionSet }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:object)    { klass.new([ attribute ])                 }
 
   it { should be_kind_of(Array) }
 

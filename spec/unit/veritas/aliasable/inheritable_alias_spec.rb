@@ -2,18 +2,18 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Aliasable#inheritable_alias' do
-  subject { klass.inheritable_alias(aliases) }
+  subject { object.inheritable_alias(aliases) }
 
-  let(:klass)     { Class.new(AliasableSpecs::Object) }
-  let(:aliasable) { klass.new                         }
   let(:aliases)   { { :other => :test }               }
+  let(:object)    { Class.new(AliasableSpecs::Object) }
+  let(:aliasable) { object.new                        }
 
-  it 'returns the class' do
-    should equal(klass)
-  end
+  it_should_behave_like 'a command method'
 
   it 'creates a method #other' do
-    expect { subject }.to change { aliasable.respond_to?(:other) }.from(false).to(true)
+    expect { subject }.to change { aliasable.respond_to?(:other) }.
+      from(false).
+      to(true)
   end
 
   it 'aliases #other to #test' do
@@ -24,7 +24,7 @@ describe 'Veritas::Aliasable#inheritable_alias' do
   end
 
   specification = proc do
-    klass.class_eval do
+    object.class_eval do
       def test
         caller
       end

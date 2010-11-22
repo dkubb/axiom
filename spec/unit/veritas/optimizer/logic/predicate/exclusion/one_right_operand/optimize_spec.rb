@@ -9,36 +9,56 @@ describe 'Veritas::Optimizer::Logic::Predicate::Exclusion::OneRightOperand#optim
   let(:object)    { klass.new(predicate)                                    }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Exclusion)
+    predicate.should be_kind_of(Logic::Predicate::Exclusion)
   end
 
   context 'when the operand contains a one entry Enumerable' do
     let(:operand) { [ 1 ] }
 
-    it { should eql(attribute.ne(1)) }
+    it { should be_kind_of(Logic::Predicate::Inequality) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == 1 }
   end
 
   context 'when the operand contains a one entry inclusive Range' do
     let(:operand) { 1..1 }
 
-    it { should eql(attribute.ne(1)) }
+    it { should be_kind_of(Logic::Predicate::Inequality) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == 1 }
   end
 
   context 'when the operand contains a one entry exclusive Range' do
     let(:operand) { 1...2 }
 
-    it { should eql(attribute.ne(1)) }
+    it { should be_kind_of(Logic::Predicate::Inequality) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == 1 }
   end
 
   context 'when the operand contains one entry after filtering invalid entries' do
     let(:operand) { [ 'a', 1 ] }
 
-    it { should eql(attribute.ne(1)) }
+    it { should be_kind_of(Logic::Predicate::Inequality) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == 1 }
   end
 
   context 'when the operand contains one entry after filtering duplicate entries' do
     let(:operand) { [ 1, 1 ] }
 
-    it { should eql(attribute.ne(1)) }
+    it { should be_kind_of(Logic::Predicate::Inequality) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == 1 }
   end
 end

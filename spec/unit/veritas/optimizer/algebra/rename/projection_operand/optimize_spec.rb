@@ -14,5 +14,9 @@ describe 'Veritas::Optimizer::Algebra::Rename::ProjectionOperand#optimize' do
     object.operand.should be_kind_of(Algebra::Projection)
   end
 
-  it { should eql(base.rename(:id => :other_id).project([ :other_id ])) }
+  it { should be_kind_of(Algebra::Projection) }
+
+  its(:operand) { should eql(base.rename(:id => :other_id)) }
+
+  its(:header) { should == [ [ :other_id, Integer ] ] }
 end

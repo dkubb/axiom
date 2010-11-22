@@ -12,9 +12,11 @@ describe 'Veritas::Optimizer::Relation::Operation::Order::UnoptimizedOperand#opt
     object.operation.should be_kind_of(Relation::Operation::Order)
   end
 
+  it { should be_kind_of(Relation::Operation::Order) }
+
   it { should_not equal(relation) }
 
-  it { should eql(relation) }
-
   its(:operand) { should equal(base) }
+
+  its(:directions) { should equal(relation.directions) }
 end

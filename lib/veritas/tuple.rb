@@ -142,7 +142,7 @@ module Veritas
     # @example
     #   numeric_hash = tuple.hash
     #
-    # @return [Integer]
+    # @return [Fixnum]
     #
     # @api public
     def hash

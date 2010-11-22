@@ -15,21 +15,33 @@ describe 'Veritas::Logic::Connective::Binary#rename' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.eq(2) }
 
-    it { should eql(klass.new(other.eq(1), other.eq(2))) }
+    it { should be_kind_of(klass) }
+
+    its(:left) { should == other.eq(1) }
+
+    its(:right) { should == other.eq(2) }
   end
 
   context 'left is renamed' do
     let(:left)  { attribute.eq(1) }
     let(:right) { other.eq(2)     }
 
-    it { should eql(klass.new(other.eq(1), other.eq(2))) }
+    it { should be_kind_of(klass) }
+
+    its(:left) { should == other.eq(1) }
+
+    its(:right) { should equal(right) }
   end
 
   context 'right is renamed' do
     let(:left)  { other.eq(1)     }
     let(:right) { attribute.eq(2) }
 
-    it { should eql(klass.new(other.eq(1), other.eq(2))) }
+    it { should be_kind_of(klass) }
+
+    its(:left) { should equal(left) }
+
+    its(:right) { should == other.eq(2) }
   end
 
   context 'right and right are not renamed' do

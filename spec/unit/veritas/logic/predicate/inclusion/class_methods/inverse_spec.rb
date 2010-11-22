@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Inclusion.inverse' do
-  subject { Logic::Predicate::Inclusion.inverse }
+  subject { object.inverse }
+
+  let(:object) { Logic::Predicate::Inclusion }
 
   it { should equal(Logic::Predicate::Exclusion) }
 end

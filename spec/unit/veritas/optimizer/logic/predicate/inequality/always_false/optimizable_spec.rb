@@ -9,7 +9,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Inequality::AlwaysFalse#optimiza
   let(:object)    { klass.new(predicate)                                 }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Inequality)
+    predicate.should be_kind_of(Logic::Predicate::Inequality)
   end
 
   context 'when left and right are equal' do

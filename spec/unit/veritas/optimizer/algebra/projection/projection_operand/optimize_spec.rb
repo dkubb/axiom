@@ -13,5 +13,9 @@ describe 'Veritas::Optimizer::Algebra::Projection::ProjectionOperand#optimize' d
     object.operation.should be_kind_of(Algebra::Projection)
   end
 
-  it { should eql(base.project([ :id ])) }
+  it { should be_kind_of(Algebra::Projection) }
+
+  its(:operand) { should equal(base) }
+
+  its(:header) { should == [ header[:id] ] }
 end

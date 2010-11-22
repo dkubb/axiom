@@ -16,15 +16,22 @@ describe 'Veritas::Optimizer::Logic::Connective::Disjunction::OptimizableToInclu
     let(:left)  { attribute.eq(2) }
     let(:right) { attribute.eq(1) }
 
-    it 'reorders the operands by optimizing the inclusion' do
-      should eql(attribute.include([ 1, 2 ]))
-    end
+    it { should be_kind_of(Logic::Predicate::Inclusion) }
+
+    its(:left) { should equal(attribute) }
+
+    # enumerable order is normalized
+    its(:right) { should == [ 1, 2 ] }
   end
 
   context 'when the right operands are not optimizable' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.eq(2) }
 
-    it { should eql(attribute.include([ 1, 2 ])) }
+    it { should be_kind_of(Logic::Predicate::Inclusion) }
+
+    its(:left) { should equal(attribute) }
+
+    its(:right) { should == [ 1, 2 ] }
   end
 end

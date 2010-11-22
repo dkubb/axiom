@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Direction#rename' do
-  subject { direction.rename(aliases) }
+  subject { object.rename(aliases) }
 
   let(:attribute) { Attribute::Integer.new(:id)                      }
   let(:header)    { Relation::Header.new([ attribute ])              }
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
-  let(:direction) { klass.new(attribute)                             }
+  let(:object)    { klass.new(attribute)                             }
 
   context 'with aliases matching the attribute' do
     let(:aliases) { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
 
     it { should be_kind_of(klass) }
 
-    it { should eql(klass.new(Attribute::Integer.new(:other_id))) }
+    its(:attribute) { should == attribute.rename(:other_id) }
   end
 
   context 'with aliases not matching the attribute' do
@@ -21,8 +21,6 @@ describe 'Veritas::Relation::Operation::Order::Direction#rename' do
     let(:other_header)    { Relation::Header.new([ other_attribute ])                           }
     let(:aliases)         { Algebra::Rename::Aliases.coerce(other_header, :name => :other_name) }
 
-    it { should be_kind_of(klass) }
-
-    it { should equal(direction) }
+    it { should equal(object) }
   end
 end

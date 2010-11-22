@@ -1,15 +1,17 @@
 require 'spec_helper'
 
 describe 'Veritas::Algebra::Projection::Methods#remove' do
-  subject { relation.remove([ :id ]) }
+  subject { object.remove(attributes) }
 
-  let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
+  let(:klass)      { Relation                                                                       }
+  let(:attributes) { [ :id ]                                                                        }
+  let(:object)     { klass.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
 
   it { should be_kind_of(Algebra::Projection) }
 
   its(:header) { should == [ [ :name, String ] ] }
 
   it 'behaves the same as Enumerable#map with Tuple#[]' do
-    should == relation.map { |tuple| [ tuple[:name] ] }
+    should == object.map { |tuple| [ tuple[:name] ] }
   end
 end

@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute#inspect' do
-  subject { attribute.inspect }
+  subject { object.inspect }
 
-  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:klass)  { Attribute::Integer }
+  let(:object) { klass.new(:id)     }
 
   it { should be_kind_of(String) }
 

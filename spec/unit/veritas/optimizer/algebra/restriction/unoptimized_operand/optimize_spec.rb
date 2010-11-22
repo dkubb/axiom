@@ -13,9 +13,11 @@ describe 'Veritas::Optimizer::Algebra::Restriction::UnoptimizedOperand#optimize'
     object.operation.should be_kind_of(Algebra::Restriction)
   end
 
+  it { should be_kind_of(Algebra::Restriction) }
+
   it { should_not equal(relation) }
 
-  it { should eql(relation) }
-
   its(:operand) { should equal(base) }
+
+  its(:predicate) { should == base[:id].eq(1) }
 end

@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Inequality.inverse' do
-  subject { Logic::Predicate::Inequality.inverse }
+  subject { object.inverse }
+
+  let(:object) { Logic::Predicate::Inequality }
 
   it { should equal(Logic::Predicate::Equality) }
 end

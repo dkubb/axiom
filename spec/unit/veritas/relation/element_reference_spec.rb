@@ -1,12 +1,16 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation#[]' do
-  subject { relation[:id] }
+  subject { object[name] }
 
-  let(:header)   { [ [ :id, Integer ] ]     }
-  let(:relation) { Relation.new(header, []) }
+  let(:klass)     { Relation                          }
+  let(:name)      { :id                               }
+  let(:attribute) { Attribute::Integer.new(name)      }
+  let(:object)    { klass.new([ attribute ], [].each) }
 
-  it { should be_kind_of(Attribute::Integer) }
+  before do
+    object.should be_instance_of(klass)
+  end
 
-  it { should == [ :id, Integer ] }
+  it { should equal(attribute) }
 end

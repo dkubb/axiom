@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Match.call' do
-  subject { Logic::Predicate::Match.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Logic::Predicate::Match }
 
   context 'when right regexp matches left' do
     let(:left)  { 'Dan Kubb' }

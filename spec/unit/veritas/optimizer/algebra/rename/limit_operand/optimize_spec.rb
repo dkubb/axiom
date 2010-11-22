@@ -14,5 +14,9 @@ describe 'Veritas::Optimizer::Algebra::Rename::LimitOperand#optimize' do
     object.operand.should be_kind_of(Relation::Operation::Limit)
   end
 
-  it { should eql(base.rename(:id => :other_id).order.take(2)) }
+  it { should be_kind_of(Relation::Operation::Limit) }
+
+  its(:operand) { should eql(base.rename(:id => :other_id).order) }
+
+  its(:to_i) { should == 2 }
 end

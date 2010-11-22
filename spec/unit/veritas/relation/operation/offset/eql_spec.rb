@@ -1,50 +1,50 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Offset#eql?' do
-  subject { offset.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:directions) { [ relation[:id] ]                                           }
-  let(:order)      { Relation::Operation::Order.new(relation, directions)        }
-  let(:offset)     { order.drop(1)                                               }
+  let(:klass)    { Relation::Operation::Offset                                 }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
+  let(:order)    { relation.order                                              }
+  let(:object)   { klass.new(order, 1)                                         }
 
   context 'with the same offset' do
-    let(:other) { offset }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(offset)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent offset' do
-    let(:other) { offset.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(offset)
+      should == other.eql?(object)
     end
   end
 
   context 'with a different offset' do
-    let(:other) { offset.drop(0) }
+    let(:other) { object.drop(0) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(offset)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent offset of a different class' do
-    let(:other) { Class.new(Relation::Operation::Offset).new(offset, 1) }
+    let(:other) { Class.new(Relation::Operation::Offset).new(object, 1) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(offset)
+      should == other.eql?(object)
     end
   end
 

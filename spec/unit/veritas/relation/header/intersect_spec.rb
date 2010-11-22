@@ -2,12 +2,13 @@ require 'spec_helper'
 
 [ :intersect, :& ].each do |method|
   describe "Veritas::Relation::Header##{method}" do
-    subject { header.send(method, other) }
+    subject { object.send(method, other) }
 
-    let(:header) { Relation::Header.new([ [ :id,   Integer ] ]) }
-    let(:other)  { Relation::Header.new([ [ :name, String  ] ]) }
+    let(:klass)  { Relation::Header                  }
+    let(:other)  { klass.new([ [ :name, String  ] ]) }
+    let(:object) { klass.new([ [ :id,   Integer ] ]) }
 
-    it { should be_kind_of(Relation::Header) }
+    it { should be_kind_of(klass) }
 
     it { should be_empty }
   end

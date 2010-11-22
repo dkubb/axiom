@@ -1,60 +1,61 @@
 require 'spec_helper'
 
 describe 'Veritas::Tuple#eql?' do
-  subject { tuple.eql?(other) }
+  subject { object.eql?(other) }
 
+  let(:klass)  { Tuple                                      }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
+  let(:object) { klass.new(header, [ 1 ])                   }
 
   context 'with the same tuple' do
-    let(:other) { tuple }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent tuple' do
-    let(:other) { tuple.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
   end
 
   context 'with a different tuple' do
-    let(:other) { Tuple.new(header, [ 2 ]) }
+    let(:other) { klass.new(header, [ 2 ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent tuple with a different header' do
     let(:aliases)      { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
     let(:other_header) { header.rename(aliases)                                    }
-    let(:other)        { Tuple.new(other_header, tuple.to_ary)                     }
+    let(:other)        { klass.new(other_header, object.to_ary)                    }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent tuple of a different class' do
-    let(:other) { Class.new(Tuple).new(header, [ 1 ]) }
+    let(:other) { Class.new(klass).new(header, [ 1 ]) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
   end
 
@@ -64,7 +65,7 @@ describe 'Veritas::Tuple#eql?' do
     it { should be(false) }
 
     specification = proc do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
 
     it 'is symmetric' do
@@ -82,7 +83,7 @@ describe 'Veritas::Tuple#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(tuple)
+      should == other.eql?(object)
     end
   end
 end

@@ -1,23 +1,16 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
-  subject { directions.sort_tuples(relation) }
+  subject { object.sort_tuples(relation) }
 
-  let(:relation) do
-    Relation.new(
-      [ [ :id, Integer ], [ :name, String ] ],
-      [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ] ]
-    )
-  end
-
-  let(:directions) { Relation::Operation::Order::DirectionSet.new(relation.header) }
+  let(:klass)    { Relation::Operation::Order::DirectionSet                     }
+  let(:header)   { [ [ :id, Integer ], [ :name, String ] ]                      }
+  let(:body)     { [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ] ] }
+  let(:relation) { Relation.new(header, body)                                   }
+  let(:object)   { klass.new(header)                                            }
 
   context 'sorted with ascending id and descending name' do
-    let(:directions) do
-      Relation::Operation::Order::DirectionSet.new(
-        [ relation[:id].asc, relation[:name].desc ]
-      )
-    end
+    let(:object) { klass.new([ relation[:id].asc, relation[:name].desc ]) }
 
     it { should be_kind_of(Array) }
 
@@ -25,11 +18,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   context 'sorted with ascending id and ascending name' do
-    let(:directions) do
-      Relation::Operation::Order::DirectionSet.new(
-        [ relation[:id].asc, relation[:name].asc ]
-      )
-    end
+    let(:object) { klass.new([ relation[:id].asc, relation[:name].asc ]) }
 
     it { should be_kind_of(Array) }
 
@@ -37,11 +26,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   context 'sorted with descending id and ascending name' do
-    let(:directions) do
-      Relation::Operation::Order::DirectionSet.new(
-        [ relation[:id].desc, relation[:name].asc ]
-      )
-    end
+    let(:object) { klass.new([ relation[:id].desc, relation[:name].asc ]) }
 
     it { should be_kind_of(Array) }
 
@@ -49,11 +34,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
   end
 
   context 'sorted with descending id and descending name' do
-    let(:directions) do
-      Relation::Operation::Order::DirectionSet.new(
-        [ relation[:id].desc, relation[:name].desc ]
-      )
-    end
+    let(:object) { klass.new([ relation[:id].desc, relation[:name].desc ]) }
 
     it { should be_kind_of(Array) }
 

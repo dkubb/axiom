@@ -18,7 +18,9 @@ describe 'Veritas::Relation::Header#each' do
 end
 
 describe 'Veritas::Relation::Header' do
-  subject { Relation::Header.new }
+  subject { object.new }
+
+  let(:object) { Relation::Header }
 
   it { should be_kind_of(Enumerable) }
 

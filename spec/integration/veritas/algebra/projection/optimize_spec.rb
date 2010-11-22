@@ -92,7 +92,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(relation) }
 
@@ -116,7 +116,7 @@ describe 'Veritas::Algebra::Projection#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:operand) { should equal(relation) }
 

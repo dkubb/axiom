@@ -6,6 +6,14 @@ describe 'Veritas::Logic::Expression#optimize' do
   let(:klass)  { Class.new(Logic::Expression) }
   let(:object) { klass.new                    }
 
+  before do
+    klass.class_eval do
+      def eql?(other)
+        instance_of?(other.class)
+      end
+    end
+  end
+
   context 'with no optimizer' do
     let(:args) { [] }
 

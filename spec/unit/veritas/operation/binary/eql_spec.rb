@@ -1,30 +1,30 @@
 require 'spec_helper'
 
 describe 'Veritas::Operation::Binary#eql?' do
-  subject { binary_operation.eql?(other) }
+  subject { object.eql?(other) }
 
-  let(:klass)            { Class.new { include Operation::Binary } }
-  let(:left)             { mock('Left')                            }
-  let(:right)            { mock('Right')                           }
-  let(:binary_operation) { klass.new(left, right)                  }
+  let(:klass)  { Class.new { include Operation::Binary } }
+  let(:left)   { mock('Left')                            }
+  let(:right)  { mock('Right')                           }
+  let(:object) { klass.new(left, right)                  }
 
   context 'with the same binary operation' do
-    let(:other) { binary_operation }
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(binary_operation)
+      should == other.eql?(object)
     end
   end
 
   context 'with an equivalent binary operation' do
-    let(:other) { binary_operation.dup }
+    let(:other) { object.dup }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(binary_operation)
+      should == other.eql?(object)
     end
   end
 
@@ -36,7 +36,7 @@ describe 'Veritas::Operation::Binary#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(binary_operation)
+      should == other.eql?(object)
     end
   end
 
@@ -46,7 +46,7 @@ describe 'Veritas::Operation::Binary#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(binary_operation)
+      should == other.eql?(object)
     end
   end
 end

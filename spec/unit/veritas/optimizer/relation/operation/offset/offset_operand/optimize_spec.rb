@@ -12,7 +12,9 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::OffsetOperand#optimiz
     object.operation.should be_kind_of(Relation::Operation::Offset)
   end
 
-  it { should eql(order.drop(3)) }
+  it { should be_kind_of(Relation::Operation::Offset) }
 
   its(:operand) { should equal(order) }
+
+  its(:to_i) { should == 3 }
 end

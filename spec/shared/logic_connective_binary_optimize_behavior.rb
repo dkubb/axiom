@@ -45,7 +45,7 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:left) { should equal(original_left) }
 
@@ -63,7 +63,7 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     its(:left) { should equal(left) }
 

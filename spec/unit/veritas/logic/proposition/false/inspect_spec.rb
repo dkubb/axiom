@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition::False#inspect' do
-  subject { false_proposition.inspect }
+  subject { object.inspect }
 
-  let(:false_proposition) { Logic::Proposition::False.instance }
+  let(:klass)  { Logic::Proposition::False }
+  let(:object) { klass.instance            }
 
   it { should == 'false' }
 end

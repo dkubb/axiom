@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::String.primitive' do
-  subject { Attribute::String.primitive }
+  subject { object.primitive }
+
+  let(:object) { Attribute::String }
+
+  it_should_behave_like 'an idempotent method'
 
   it { should equal(String) }
 end

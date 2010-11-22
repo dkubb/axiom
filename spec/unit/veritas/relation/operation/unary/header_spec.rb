@@ -2,14 +2,14 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 describe 'Veritas::Relation::Operation::Unary#header' do
-  subject { unary_operation.header }
+  subject { object.header }
 
-  let(:relation)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:unary_operation) { UnaryOperationSpecs::Object.new(relation)     }
+  let(:klass)    { UnaryOperationSpecs::Object                }
+  let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:relation) { Relation.new(header, [ [ 1 ] ])            }
+  let(:object)   { klass.new(relation)                        }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Relation::Header) }
-
-  it { should equal(relation.header) }
+  it { should equal(header) }
 end

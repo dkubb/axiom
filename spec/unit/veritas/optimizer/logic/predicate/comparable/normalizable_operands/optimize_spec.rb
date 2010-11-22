@@ -9,8 +9,12 @@ describe 'Veritas::Optimizer::Logic::Predicate::Comparable::NormalizableOperands
   let(:object)    { klass.new(predicate)                                          }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Comparable)
+    predicate.should be_kind_of(Logic::Predicate::Comparable)
   end
 
-  it { should eql(attribute.eq(1)) }
+  it { should be_kind_of(Logic::Predicate::Equality) }
+
+  its(:left) { should equal(attribute) }
+
+  its(:right) { should == 1 }
 end

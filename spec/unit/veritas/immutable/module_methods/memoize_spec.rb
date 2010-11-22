@@ -4,23 +4,23 @@ require File.expand_path('../../fixtures/classes', __FILE__)
 shared_examples_for 'memoizes method' do
   it 'memoizes the instance method' do
     subject
-    object = klass.new
-    object.send(method).should equal(object.send(method))
+    instance = object.new
+    instance.send(method).should equal(instance.send(method))
   end
 
   it 'adds a private method' do
-    count = klass.private_instance_methods.count
-    expect { subject }.to change { klass.private_instance_methods.count }.from(count).to(count + 1)
+    count = object.private_instance_methods.count
+    expect { subject }.to change { object.private_instance_methods.count }.from(count).to(count + 1)
   end
 
   specification = proc do
-    klass.send(:define_method, method) do
+    object.send(:define_method, method) do
       caller
     end
 
     subject
 
-    file, line = klass.new.send(method).first.split(':')[0, 2]
+    file, line = object.new.send(method).first.split(':')[0, 2]
 
     File.expand_path(file).should == File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__)
     line.to_i.should == 173
@@ -36,14 +36,14 @@ shared_examples_for 'memoizes method' do
 end
 
 describe 'Veritas::Immutable::ModuleMethods#memoize' do
-  subject { klass.memoize(method) }
+  subject { object.memoize(method) }
 
-  let(:klass) { Class.new(ImmutableSpecs::Object) }
+  let(:object) { Class.new(ImmutableSpecs::Object) }
 
   context 'public method' do
     let(:method) { :public_method }
 
-    it { should equal(klass) }
+    it { should equal(object) }
 
     it_should_behave_like 'memoizes method'
 
@@ -55,7 +55,7 @@ describe 'Veritas::Immutable::ModuleMethods#memoize' do
   context 'protected method' do
     let(:method) { :protected_method }
 
-    it { should equal(klass) }
+    it { should equal(object) }
 
     it_should_behave_like 'memoizes method'
 
@@ -67,7 +67,7 @@ describe 'Veritas::Immutable::ModuleMethods#memoize' do
   context 'private method' do
     let(:method) { :private_method }
 
-    it { should equal(klass) }
+    it { should equal(object) }
 
     it_should_behave_like 'memoizes method'
 

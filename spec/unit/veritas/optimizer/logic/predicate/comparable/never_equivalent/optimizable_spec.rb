@@ -11,7 +11,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::Comparable::NeverEquivalent#opti
   before do
     klass.class_eval { include Optimizer::Logic::Predicate::Comparable::NeverEquivalent }
 
-    predicate.should be_kind_of(Veritas::Logic::Predicate::Comparable)
+    predicate.should be_kind_of(Logic::Predicate::Comparable)
   end
 
   context 'when left is a constant and is valid' do

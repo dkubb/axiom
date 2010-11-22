@@ -1,16 +1,22 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::NoMatch#inverse' do
-  subject { no_match.inverse }
+  subject { object.inverse }
 
-  let(:attribute) { Attribute::String.new(:name)   }
-  let(:no_match)  { attribute.no_match(/Dan Kubb/) }
+  let(:klass)     { Logic::Predicate::NoMatch    }
+  let(:attribute) { Attribute::String.new(:name) }
+  let(:regexp)    { /Dan Kubb/                   }
+  let(:object)    { klass.new(attribute, regexp) }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should eql(attribute.match(/Dan Kubb/)) }
+  it { should be_kind_of(Logic::Predicate::Match) }
+
+  its(:left) { should equal(attribute) }
+
+  its(:right) { should equal(regexp) }
 
   it 'is invertible' do
-    subject.inverse.should equal(no_match)
+    subject.inverse.should equal(object)
   end
 end

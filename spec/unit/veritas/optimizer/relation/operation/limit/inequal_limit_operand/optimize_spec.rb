@@ -16,12 +16,20 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::InequalLimitOperand#op
   context 'when the operand has a larger limit than the operation' do
     let(:relation) { limit.take(1) }
 
-    it { should eql(order.take(1)) }
+    it { should be_kind_of(Relation::Operation::Limit) }
+
+    its(:operand) { should equal(order) }
+
+    its(:to_i) { should == 1 }
   end
 
   context 'when the operand has a smaller limit than the operation' do
     let(:relation) { limit.take(3) }
 
-    it { should eql(order.take(2)) }
+    it { should be_kind_of(Relation::Operation::Limit) }
+
+    its(:operand) { should equal(order) }
+
+    its(:to_i) { should == 2 }
   end
 end

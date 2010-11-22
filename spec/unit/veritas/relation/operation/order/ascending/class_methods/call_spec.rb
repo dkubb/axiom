@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Ascending.call' do
-  subject { Relation::Operation::Order::Ascending.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Relation::Operation::Order::Ascending }
 
   context 'when left is equal to right' do
     let(:left)  { 1 }

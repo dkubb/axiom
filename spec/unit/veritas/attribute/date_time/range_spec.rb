@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute::DateTime#range' do
-  subject { attribute.range }
+  subject { object.range }
 
-  let(:attribute) { Veritas::Attribute::DateTime.new(:datetime) }
+  let(:klass)  { Attribute::DateTime  }
+  let(:object) { klass.new(:datetime) }
 
   it { should == (DateTime.new..DateTime::Infinity.new) }
 end

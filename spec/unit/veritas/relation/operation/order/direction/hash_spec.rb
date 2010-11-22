@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe 'Veritas::Relation::Operation::Order::Direction#hash' do
-  subject { direction.hash }
+  subject { object.hash }
 
-  let(:attribute) { Attribute::Integer.new(:id)                      }
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }
-  let(:direction) { klass.new(attribute)                             }
+  let(:attribute) { Attribute::Integer.new(:id)                      }
+  let(:object)    { klass.new(attribute)                             }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Integer) }
+  it { should be_kind_of(Fixnum) }
 
-  it { should == direction.attribute.hash }
+  it { should == object.attribute.hash }
 end

@@ -1,28 +1,30 @@
 require 'spec_helper'
 
 describe 'Veritas::Attribute.name_from' do
-  subject { Attribute.name_from(object) }
+  subject { object.name_from(argument) }
 
-  context 'object is an Attribute' do
-    let(:object) { Attribute::Integer.new(:id) }
+  let(:object) { Attribute }
 
-    it { should == :id }
-  end
-
-  context 'object that responds to #to_ary' do
-    let(:object) { [ :id, Integer ] }
+  context 'argument is an Attribute' do
+    let(:argument) { Attribute::Integer.new(:id) }
 
     it { should == :id }
   end
 
-  context 'object that responds to #to_sym' do
-    let(:object) { 'id' }
+  context 'argument that responds to #to_ary' do
+    let(:argument) { [ :id, Integer ] }
 
     it { should == :id }
   end
 
-  context 'object that is not an Attribute, does not respond to #to_ary or #to_sym' do
-    let(:object) { Object.new }
+  context 'argument that responds to #to_sym' do
+    let(:argument) { 'id' }
+
+    it { should == :id }
+  end
+
+  context 'argument that is not an Attribute, does not respond to #to_ary or #to_sym' do
+    let(:argument) { Object.new }
 
     specify { expect { subject }.to raise_error(NoMethodError) }
   end

@@ -12,9 +12,11 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::UnoptimizedOperand#o
     object.operation.should be_kind_of(Relation::Operation::Reverse)
   end
 
+  it { should be_kind_of(Relation::Operation::Reverse) }
+
   it { should_not equal(relation) }
 
-  it { should eql(relation) }
-
   its(:operand) { should equal(order) }
+
+  its(:directions) { should eql(relation.directions) }
 end

@@ -115,7 +115,7 @@ module Veritas
           # @example
           #   numeric_hash = direction.hash
           #
-          # @return [Integer]
+          # @return [Fixnum]
           #
           # @api public
           def hash

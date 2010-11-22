@@ -1,15 +1,16 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Proposition::True#inverse' do
-  subject { true_proposition.inverse }
+  subject { object.inverse }
 
-  let(:true_proposition) { Logic::Proposition::True.instance }
+  let(:klass)  { Logic::Proposition::True }
+  let(:object) { klass.instance           }
 
   it_should_behave_like 'an idempotent method'
 
   it { should equal(Logic::Proposition::False.instance) }
 
   it 'is invertible' do
-    subject.inverse.should equal(true_proposition)
+    subject.inverse.should equal(object)
   end
 end

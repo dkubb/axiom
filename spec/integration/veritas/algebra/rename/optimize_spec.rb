@@ -43,7 +43,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     it 'sets aliases the same as the original object' do
       subject.aliases.should == object.aliases
@@ -69,7 +69,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     it 'sets aliases as a union of both aliases' do
       subject.aliases.should == klass::Aliases.coerce(
@@ -99,7 +99,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_instance_of(klass) }
+    it { should be_kind_of(klass) }
 
     it 'sets aliases as a union of both aliases' do
       subject.aliases.should == klass::Aliases.coerce(
@@ -143,7 +143,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
   context 'containing a projection' do
     let(:operand) { relation.project([ :id ]) }
 
-    it { should be_instance_of(Algebra::Projection) }
+    it { should be_kind_of(Algebra::Projection) }
 
     its(:operand) { should eql(klass.new(relation, aliases)) }
 
@@ -184,7 +184,7 @@ describe 'Veritas::Algebra::Rename#optimize' do
   context 'containing a restriction' do
     let(:operand) { relation.restrict { |r| r[:id].eq(1) } }
 
-    it { should be_instance_of(Algebra::Restriction) }
+    it { should be_kind_of(Algebra::Restriction) }
 
     its(:operand) { should eql(klass.new(relation, aliases)) }
 

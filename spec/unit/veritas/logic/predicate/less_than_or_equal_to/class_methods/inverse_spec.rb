@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::LessThanOrEqualTo.inverse' do
-  subject { Logic::Predicate::LessThanOrEqualTo.inverse }
+  subject { object.inverse }
+
+  let(:object) { Logic::Predicate::LessThanOrEqualTo }
 
   it { should equal(Logic::Predicate::GreaterThan) }
 end

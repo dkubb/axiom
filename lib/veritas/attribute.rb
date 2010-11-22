@@ -179,7 +179,7 @@ module Veritas
     # @example
     #   numeric_hash = attribute.hash
     #
-    # @return [Integer]
+    # @return [Fixnum]
     #
     # @api public
     def hash

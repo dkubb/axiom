@@ -8,7 +8,7 @@ describe 'Veritas::Optimizer::Logic::Predicate::GreaterThan::AlwaysTrue#optimiza
   let(:object)    { klass.new(predicate)                                 }
 
   before do
-    predicate.should be_kind_of(Veritas::Logic::Predicate::GreaterThan)
+    predicate.should be_kind_of(Logic::Predicate::GreaterThan)
   end
 
   context 'when left is always greater than right' do

@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Exclusion.call' do
-  subject { Logic::Predicate::Exclusion.call(left, right) }
+  subject { object.call(left, right) }
+
+  let(:object) { Logic::Predicate::Exclusion }
 
   context 'when left is excluded from right' do
     let(:left)  { 1     }

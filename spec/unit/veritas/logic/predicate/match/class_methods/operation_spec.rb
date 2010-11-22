@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe 'Veritas::Logic::Predicate::Match.operation' do
-  subject { Logic::Predicate::Match.operation }
+  subject { object.operation }
+
+  let(:object) { Logic::Predicate::Match }
 
   it { should be(:=~) }
 end
