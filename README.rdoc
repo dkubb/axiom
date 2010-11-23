@@ -2,32 +2,6 @@
 
 Simplifies querying of structured data using relational algebra
 
-== Goals
-
-The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
-
-Most of the design is heavily inspired from koios[http://github.com/carllerche/koios] and arel[http://github.com/rails/arel]. The reason I decided to write my own and not just build on top of those systems was not so much because I don't like the code/API in those projects, it's more because I wanted to gain a depth of understanding that can only be earned by trying to solve the problem myself.
-
-I should note though that I don't plan to just re-implement those systems with a different API, or different internals, I plan to make something that surpasses them in several areas. For example, I want to be able to join information from multiple datastores and represent it as a single relation. I want to be able to insert, update or delete from that relation and have those changes propagated back to the right datastore. This is not an easy feat, since it is basically the writable view problem that RDBMS' struggle with. While I do think there are some cases where relations will become read-only, I think it will be possible to propagate writes properly in this manner. I certainly think for the current use cases in DataMapper this should work quite well.
-
-The ability to join data from multiple datastores and have it presented in a consistent manner will solve one of the longest standing problems in DataMapper, namely how do we do cross repository joins. It should be possible to construct one query for one datastore, and then another query for another datastore and then join them. Since they are using different engines veritas will know to perform each query *natively* and then join the results in-memory seamlessly. It should also be possible to reorganize the queries so that as much work as possible is done natively as opposed to in-memory, which is considered the last resort.
-
-Not only does this work nicely with associations, but it will allow DataMapper to perform mapping in a more powerful way. You'll be able to construct a join from multiple datastores, and set that as the base for your model. Each DM Resource would work as normal, but again writes could be propagated back to the appropriate datastore. You'd be able to split your data up between different datastores, but assemble it into one coherent view.
-
-=== Phase 1: In-Memory Operations
-
-The first phase of this project will be to implement all the operations listed below using in-memory data structures. I'm focusing on the API, and making sure the specs ensure the desired results are obtained from each operation.
-
-This has been marked as 90% complete for some time. In actuality most of the features below are completed besides the first examples for #extend and #summarize. Those will require a system to define functions as objects that can be introspected and walked to "visit" and generate SQL or other query languages from them. The Proc based functions are opaque and will probably never be possible to generate native queries from them. For this reason they will only be recommended when they depends on functionality not available in the datastore.
-
-=== Phase 2: RDBMS Engines
-
-The second phase of this project will be to add an RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
-
-=== Phase 3: DataMapper Integration
-
-The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
-
 == Usage
 
   relation = Veritas::Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
@@ -117,6 +91,32 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   new_relation = relation.create(:a => 'test', :b => 'other', :c => 'yet another')
   new_relation = relation.update(:a => 'test', :b => 'other', :c => 'yet another')
   new_relation = relation.delete
+
+== Goals
+
+The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
+
+Most of the design is heavily inspired from koios[http://github.com/carllerche/koios] and arel[http://github.com/rails/arel]. The reason I decided to write my own and not just build on top of those systems was not so much because I don't like the code/API in those projects, it's more because I wanted to gain a depth of understanding that can only be earned by trying to solve the problem myself.
+
+I should note though that I don't plan to just re-implement those systems with a different API, or different internals, I plan to make something that surpasses them in several areas. For example, I want to be able to join information from multiple datastores and represent it as a single relation. I want to be able to insert, update or delete from that relation and have those changes propagated back to the right datastore. This is not an easy feat, since it is basically the writable view problem that RDBMS' struggle with. While I do think there are some cases where relations will become read-only, I think it will be possible to propagate writes properly in this manner. I certainly think for the current use cases in DataMapper this should work quite well.
+
+The ability to join data from multiple datastores and have it presented in a consistent manner will solve one of the longest standing problems in DataMapper, namely how do we do cross repository joins. It should be possible to construct one query for one datastore, and then another query for another datastore and then join them. Since they are using different engines veritas will know to perform each query *natively* and then join the results in-memory seamlessly. It should also be possible to reorganize the queries so that as much work as possible is done natively as opposed to in-memory, which is considered the last resort.
+
+Not only does this work nicely with associations, but it will allow DataMapper to perform mapping in a more powerful way. You'll be able to construct a join from multiple datastores, and set that as the base for your model. Each DM Resource would work as normal, but again writes could be propagated back to the appropriate datastore. You'd be able to split your data up between different datastores, but assemble it into one coherent view.
+
+=== Phase 1: In-Memory Operations
+
+The first phase of this project will be to implement all the operations listed below using in-memory data structures. I'm focusing on the API, and making sure the specs ensure the desired results are obtained from each operation.
+
+This has been marked as 90% complete for some time. In actuality most of the features below are completed besides the first examples for #extend and #summarize. Those will require a system to define functions as objects that can be introspected and walked to "visit" and generate SQL or other query languages from them. The Proc based functions are opaque and will probably never be possible to generate native queries from them. For this reason they will only be recommended when they depends on functionality not available in the datastore.
+
+=== Phase 2: RDBMS Engines
+
+The second phase of this project will be to add an RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
+
+=== Phase 3: DataMapper Integration
+
+The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
 
 == Note on Patches/Pull Requests
 
