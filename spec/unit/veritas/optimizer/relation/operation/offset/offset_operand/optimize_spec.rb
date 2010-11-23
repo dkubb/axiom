@@ -16,5 +16,5 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::OffsetOperand#optimiz
 
   its(:operand) { should equal(order) }
 
-  its(:to_i) { should == 3 }
+  its(:offset) { should == 3 }
 end

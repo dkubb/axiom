@@ -20,7 +20,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::LimitOperand#optimize'
 
     its(:operand) { should equal(order) }
 
-    its(:to_i) { should == 1 }
+    its(:limit) { should == 1 }
   end
 
   context 'when the operand has a smaller limit than the operation' do
@@ -30,6 +30,6 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::LimitOperand#optimize'
 
     its(:operand) { should equal(order) }
 
-    its(:to_i) { should == 2 }
+    its(:limit) { should == 2 }
   end
 end

@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Offset::Methods#drop' do
 
   it { should be_kind_of(Relation::Operation::Offset) }
 
-  its(:to_i) { should == offset }
+  its(:offset) { should == offset }
 
   it 'behaves the same as Array#drop' do
     should == object.to_a.drop(1)

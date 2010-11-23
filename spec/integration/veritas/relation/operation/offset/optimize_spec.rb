@@ -47,7 +47,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
 
     its(:operand) { should equal(order) }
 
-    its(:to_i) { should == 1 }
+    its(:offset) { should == 1 }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -70,7 +70,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
     its(:operand) { should equal(order) }
 
     it 'adds the object of the operations' do
-      subject.to_i.should == 15
+      subject.offset.should == 15
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Limit::Methods#first' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    its(:to_i) { should == 1 }
+    its(:limit) { should == 1 }
 
     it 'returns the expected tuples' do
       should == [ [ 1 ] ]
@@ -28,7 +28,7 @@ describe 'Veritas::Relation::Operation::Limit::Methods#first' do
 
     it { should be_kind_of(Relation::Operation::Limit) }
 
-    its(:to_i) { should == limit }
+    its(:limit) { should == limit }
 
     it 'returns the expected tuples' do
       should == [ [ 1 ], [ 2 ] ]

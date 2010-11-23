@@ -47,7 +47,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
 
     its(:operand) { should equal(order) }
 
-    its(:to_i) { should == 1 }
+    its(:limit) { should == 1 }
 
     it 'returns an equivalent relation to the unoptimized operation' do
       should == object
@@ -70,7 +70,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     its(:operand) { should equal(order) }
 
     it 'uses the more restrictive object' do
-      subject.to_i.should == 5
+      subject.limit.should == 5
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
@@ -94,7 +94,7 @@ describe 'Veritas::Relation::Operation::Limit#optimize' do
     its(:operand) { should equal(order) }
 
     it 'uses the more restrictive object' do
-      subject.to_i.should == 5
+      subject.limit.should == 5
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do

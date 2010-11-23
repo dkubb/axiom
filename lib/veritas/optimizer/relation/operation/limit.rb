@@ -14,7 +14,7 @@ module Veritas
           #
           # @api private
           def limit
-            operation.to_i
+            operation.limit
           end
 
           # Optimize when the limit is zero
@@ -69,7 +69,7 @@ module Veritas
             #
             # @api private
             def equal_limit?
-              limit == operand.to_i
+              limit == operand.limit
             end
 
           end # class EqualLimitOperand
@@ -103,7 +103,7 @@ module Veritas
             #
             # @api private
             def min_limit
-              [ limit, operand.to_i ].min
+              [ limit, operand.limit ].min
             end
 
           end # class LimitOperand

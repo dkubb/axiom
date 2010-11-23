@@ -18,5 +18,5 @@ describe 'Veritas::Optimizer::Algebra::Rename::LimitOperand#optimize' do
 
   its(:operand) { should eql(base.rename(:id => :other_id).order) }
 
-  its(:to_i) { should == 2 }
+  its(:limit) { should == 2 }
 end

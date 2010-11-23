@@ -18,5 +18,5 @@ describe 'Veritas::Optimizer::Algebra::Rename::OffsetOperand#optimize' do
 
   its(:operand) { should eql(base.rename(:id => :other_id).order) }
 
-  its(:to_i) { should == 1 }
+  its(:offset) { should == 1 }
 end

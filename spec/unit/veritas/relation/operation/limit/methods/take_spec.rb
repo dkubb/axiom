@@ -10,7 +10,7 @@ describe 'Veritas::Relation::Operation::Limit::Methods#take' do
 
   it { should be_kind_of(Relation::Operation::Limit) }
 
-  its(:to_i) { should == limit }
+  its(:limit) { should == limit }
 
   it 'behaves the same as Array#take' do
     should == object.to_a.take(limit)

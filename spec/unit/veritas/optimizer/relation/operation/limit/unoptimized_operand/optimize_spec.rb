@@ -17,5 +17,5 @@ describe 'Veritas::Optimizer::Relation::Operation::Limit::UnoptimizedOperand#opt
 
   its(:operand) { should equal(order) }
 
-  its(:to_i) { should == 1 }
+  its(:limit) { should == 1 }
 end

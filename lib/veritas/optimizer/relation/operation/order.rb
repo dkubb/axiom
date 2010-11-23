@@ -41,7 +41,7 @@ module Veritas
             def optimizable?
               operand = self.operand
               operand.kind_of?(Veritas::Relation::Operation::Limit) &&
-              operand.to_i == 1
+              operand.limit == 1
             end
 
             # An Order of a Limit with a limit of 1 is a noop

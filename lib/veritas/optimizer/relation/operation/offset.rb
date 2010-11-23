@@ -14,7 +14,7 @@ module Veritas
           #
           # @api private
           def offset
-            operation.to_i
+            operation.offset
           end
 
           # Optimize when the offset is zero
@@ -69,7 +69,7 @@ module Veritas
             #
             # @api private
             def sum_offset
-              offset + operand.to_i
+              offset + operand.offset
             end
 
           end # class OffsetOperand

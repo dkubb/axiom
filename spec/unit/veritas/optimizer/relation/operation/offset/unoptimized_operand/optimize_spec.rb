@@ -17,5 +17,5 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::UnoptimizedOperand#op
 
   its(:operand) { should equal(order) }
 
-  its(:to_i) { should == 1 }
+  its(:offset) { should == 1 }
 end

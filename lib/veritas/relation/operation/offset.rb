@@ -6,6 +6,16 @@ module Veritas
       class Offset < Relation
         include Unary
 
+        # Return the offset
+        #
+        # @example
+        #   offset = offset_relation.offset
+        #
+        # @return [Integer]
+        #
+        # @api public
+        attr_reader :offset
+
         # Instantiate a new Offset
         #
         # @example
@@ -95,18 +105,6 @@ module Veritas
           self
         end
 
-        # Return the offset
-        #
-        # @example
-        #   offset = offset_relation.to_i
-        #
-        # @return [Integer]
-        #
-        # @api public
-        def to_i
-          @offset
-        end
-
         # Compare the Offset with other relation for equality
         #
         # @example
@@ -120,7 +118,7 @@ module Veritas
         # @api public
         def eql?(other)
           instance_of?(other.class) &&
-          to_i.eql?(other.to_i)     &&
+          offset.eql?(other.offset) &&
           operand.eql?(other.operand)
         end
 

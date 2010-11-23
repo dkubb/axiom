@@ -272,7 +272,7 @@ module Veritas
           # @api private
           def optimize
             operand = self.operand
-            operand.class.new(wrap_operand, operand.to_i).optimize
+            operand.class.new(wrap_operand, operand.limit).optimize
           end
 
         end # class LimitOperand
@@ -296,7 +296,7 @@ module Veritas
           # @api private
           def optimize
             operand = self.operand
-            operand.class.new(wrap_operand, operand.to_i).optimize
+            operand.class.new(wrap_operand, operand.offset).optimize
           end
 
         end # class OffsetOperand

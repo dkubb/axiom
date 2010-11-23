@@ -6,6 +6,16 @@ module Veritas
       class Limit < Relation
         include Unary
 
+        # Return the limit
+        #
+        # @example
+        #   limit = limited_relation.limit
+        #
+        # @return [Integer]
+        #
+        # @api public
+        attr_reader :limit
+
         # Instantiate a new Limit
         #
         # @example
@@ -96,18 +106,6 @@ module Veritas
           self
         end
 
-        # Return the limit
-        #
-        # @example
-        #   limit = limited_relation.to_i
-        #
-        # @return [Integer]
-        #
-        # @api public
-        def to_i
-          @limit
-        end
-
         # Compare the Limit with other relation for equality
         #
         # @example
@@ -121,7 +119,7 @@ module Veritas
         # @api public
         def eql?(other)
           instance_of?(other.class) &&
-          to_i.eql?(other.to_i)     &&
+          limit.eql?(other.limit)   &&
           operand.eql?(other.operand)
         end
 
