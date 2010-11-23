@@ -75,7 +75,7 @@ module Veritas
           end # class EqualLimitOperand
 
           # Optimize when the operand is a Limit
-          class InequalLimitOperand < self
+          class LimitOperand < self
 
             # Test if the operand is a Limit
             #
@@ -83,7 +83,7 @@ module Veritas
             #
             # @api private
             def optimizable?
-              operand.kind_of?(operation.class) && inequal_limit?
+              operand.kind_of?(operation.class)
             end
 
             # Flatten Limit operations using the minimum limit
@@ -97,15 +97,6 @@ module Veritas
 
           private
 
-            # Test if the operation and operand limits are not equal
-            #
-            # @return [Boolean]
-            #
-            # @api private
-            def inequal_limit?
-              limit != operand.to_i
-            end
-
             # Return the minimum limit between the operation and operand
             #
             # @return [Integer]
@@ -115,7 +106,7 @@ module Veritas
               [ limit, operand.to_i ].min
             end
 
-          end # class InequalLimitOperand
+          end # class LimitOperand
 
           # Optimize when operand is optimizable
           class UnoptimizedOperand < self
@@ -143,7 +134,7 @@ module Veritas
           Veritas::Relation::Operation::Limit.optimizer = chain(
             ZeroLimit,
             EqualLimitOperand,
-            InequalLimitOperand,
+            LimitOperand,
             EmptyOperand,
             MaterializedOperand,
             UnoptimizedOperand
