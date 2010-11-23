@@ -85,7 +85,7 @@ module Veritas
         end # class RenameOperandAndEmptyAliases
 
         # Optimize when the operand is a Rename
-        class RenameOperandAndAnyAliases < self
+        class RenameOperand < self
 
           # Test if the operand is a Rename
           #
@@ -93,7 +93,7 @@ module Veritas
           #
           # @api private
           def optimizable?
-            operand.kind_of?(operation.class) && aliases.any?
+            operand.kind_of?(operation.class)
           end
 
           # Flatten nested Renames into a single Rename
@@ -105,7 +105,7 @@ module Veritas
             operation.class.new(operand.operand, aliases)
           end
 
-        end # class RenameOperandAndAnyAliases
+        end # class RenameOperand
 
         # Optimize when the operand is a Projection
         class ProjectionOperand < self
@@ -351,7 +351,7 @@ module Veritas
 
         Veritas::Algebra::Rename.optimizer = chain(
           RenameOperandAndEmptyAliases,
-          RenameOperandAndAnyAliases,
+          RenameOperand,
           ProjectionOperand,
           RestrictionOperand,
           SetOperand,

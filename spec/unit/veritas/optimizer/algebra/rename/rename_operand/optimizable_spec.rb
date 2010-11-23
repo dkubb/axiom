@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename::RenameOperandAndAnyAliases#optimizable?' do
+describe 'Veritas::Optimizer::Algebra::Rename::RenameOperand#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Algebra::Rename::RenameOperandAndAnyAliases        }
+  let(:klass)    { Optimizer::Algebra::Rename::RenameOperand                     }
   let(:header)   { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
   let(:base)     { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)              }
   let(:relation) { operand.rename(aliases)                                       }
@@ -13,18 +13,11 @@ describe 'Veritas::Optimizer::Algebra::Rename::RenameOperandAndAnyAliases#optimi
     object.operation.should be_kind_of(Algebra::Rename)
   end
 
-  context 'when the operand is a rename and there are aliases' do
+  context 'when the operand is a rename' do
     let(:aliases) { { :id => :other_id }              }
     let(:operand) { base.rename(:name => :other_name) }
 
     it { should be(true) }
-  end
-
-  context 'when the operand is a rename and there no aliases' do
-    let(:aliases) { { :other_id => :id }          }
-    let(:operand) { base.rename(:id => :other_id) }
-
-    it { should be(false) }
   end
 
   context 'when the operand is not a rename' do
