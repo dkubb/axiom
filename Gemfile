@@ -16,7 +16,7 @@ platforms :mri_18 do
     gem 'metric_fu',     '~> 2.0.1'
     gem 'mspec',         '~> 1.5.17'
     gem 'rcov',          '~> 0.9.9'
-    gem 'reek',          '~> 1.2.8'
+    gem 'reek',          '~> 1.2.8', :git => 'git://github.com/dkubb/reek.git'
     gem 'roodi',         '~> 2.1.0'
     gem 'ruby2ruby',     '=  1.2.2'
     gem 'yard',          '~> 0.6.1'
