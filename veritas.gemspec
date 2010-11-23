@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-18}
+  s.date = %q{2010-11-22}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -427,7 +427,6 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/logic/proposition/false/inspect_spec.rb",
      "spec/unit/veritas/logic/proposition/false/inverse_spec.rb",
      "spec/unit/veritas/logic/proposition/false/or_spec.rb",
-     "spec/unit/veritas/logic/proposition/fixtures/classes.rb",
      "spec/unit/veritas/logic/proposition/hash_spec.rb",
      "spec/unit/veritas/logic/proposition/inspect_spec.rb",
      "spec/unit/veritas/logic/proposition/inverse_spec.rb",
@@ -1021,7 +1020,6 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/logic/proposition/false/inspect_spec.rb",
      "spec/unit/veritas/logic/proposition/false/inverse_spec.rb",
      "spec/unit/veritas/logic/proposition/false/or_spec.rb",
-     "spec/unit/veritas/logic/proposition/fixtures/classes.rb",
      "spec/unit/veritas/logic/proposition/hash_spec.rb",
      "spec/unit/veritas/logic/proposition/inspect_spec.rb",
      "spec/unit/veritas/logic/proposition/inverse_spec.rb",
