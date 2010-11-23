@@ -3,7 +3,7 @@ module Veritas
     module Algebra
 
       # Abstract base class representing Product optimizations
-      class Product < Relation::Operation::Combine
+      class Product < Relation::Operation::Combination
 
         # Optimize when left operand is a TABLE DEE
         class TableDeeLeft < self

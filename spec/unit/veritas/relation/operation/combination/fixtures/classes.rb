@@ -1,6 +1,6 @@
-module CombineOperationSpecs
+module CombinationOperationSpecs
   class Object < Relation
-    include Relation::Operation::Combine
+    include Relation::Operation::Combination
 
     def each
       left.each  { |tuple| yield tuple.project(header) }
@@ -9,4 +9,4 @@ module CombineOperationSpecs
     end
 
   end # class Object
-end # module CombineOperationSpecs
+end # module CombinationOperationSpecs

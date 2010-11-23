@@ -4,7 +4,7 @@ module Veritas
       module Operation
 
         # Abstract base class representing combinations of relations
-        class Combine < Binary
+        class Combination < Binary
 
           # Any relation combined with an empty relation is an empty relation
           #
@@ -24,7 +24,7 @@ module Veritas
           class EmptyRight < self
             include Binary::EmptyRight
           end # class EmptyRight
-        end # class Combine
+        end # class Combination
       end # module Operation
     end # module Relation
   end # class Optimizer

@@ -3,7 +3,7 @@ module Veritas
 
     # The cartesian product between relations
     class Product < Relation
-      include Relation::Operation::Combine
+      include Relation::Operation::Combination
 
       # Instantiate a new Product
       #
@@ -56,7 +56,7 @@ module Veritas
       # @api public
       def each(&block)
         left.each do |tuple|
-          Relation::Operation::Combine.combine_tuples(header, tuple, right, &block)
+          Relation::Operation::Combination.combine_tuples(header, tuple, right, &block)
         end
         self
       end

@@ -3,7 +3,7 @@ module Veritas
 
     # The join between relations
     class Join < Relation
-      include Relation::Operation::Combine
+      include Relation::Operation::Combination
 
       # Instantiate a new Join
       #
@@ -75,7 +75,7 @@ module Veritas
         left.each do |tuple|
           right_tuples = index[join_tuple(tuple)]
           if right_tuples
-            Relation::Operation::Combine.combine_tuples(header, tuple, right_tuples, &block)
+            Relation::Operation::Combination.combine_tuples(header, tuple, right_tuples, &block)
           end
         end
 

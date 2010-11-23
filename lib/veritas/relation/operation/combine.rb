@@ -3,7 +3,7 @@ module Veritas
     module Operation
 
       # A mixin for relations that combine their operands
-      module Combine
+      module Combination
         include Binary
 
         # Combine tuples together and yield the joined tuple
@@ -29,7 +29,7 @@ module Veritas
           end
         end
 
-      end # module Combine
+      end # module Combination
     end # module Operation
   end # class Relation
 end # module Veritas

@@ -3,7 +3,7 @@ module Veritas
     module Algebra
 
       # Abstract base class representing Join optimizations
-      class Join < Relation::Operation::Combine
+      class Join < Relation::Operation::Combination
 
         # Optimize when operand headers are equivalent
         class EqualHeaders < self
