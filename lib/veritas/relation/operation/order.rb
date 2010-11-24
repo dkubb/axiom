@@ -93,9 +93,7 @@ module Veritas
         #
         # @api public
         def eql?(other)
-          instance_of?(other.class)         &&
-          directions.eql?(other.directions) &&
-          operand.eql?(other.operand)
+          super && directions.eql?(other.directions)
         end
 
         # Return the hash of the order
