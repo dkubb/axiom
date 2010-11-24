@@ -85,7 +85,7 @@ module Veritas
       #
       # @api public
       def hash
-        call.hash
+        self.class.hash
       end
 
       # Return a string representing the proposition
