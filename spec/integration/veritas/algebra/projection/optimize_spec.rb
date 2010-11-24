@@ -193,15 +193,15 @@ describe 'Veritas::Algebra::Projection#optimize' do
   end
 
   context 'containing a set operation containing a projection of materialized relations' do
-    let(:left_body)  { [ [ 1, 'Dan Kubb', 35 ] ].each                                    }
-    let(:right_body) { [ [ 2, 'Dan Kubb', 35 ] ].each                                    }
+    let(:left_body)  { [ [ 1, 'Dan Kubb', 35 ] ]                                         }
+    let(:right_body) { [ [ 2, 'Dan Kubb', 35 ] ]                                         }
     let(:left)       { Relation.new(header, left_body)                                   }
     let(:right)      { Relation.new(header, right_body)                                  }
     let(:operand)    { left.project([ :id, :name ]).union(right.project([ :id, :name ])) }
     let(:attributes) { [ :name ]                                                         }
 
-    it 'pushes the object to each relation, and combine the nested objects' do
-      should eql(left.project([ :name ]).union(right.project([ :name ])))
+    it 'pushes the object to each relation, and combine the nested objects, then materializes' do
+      should eql(Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]))
     end
 
     it 'returns an equivalent relation to the unoptimized operation' do
