@@ -118,9 +118,7 @@ module Veritas
         #
         # @api public
         def eql?(other)
-          instance_of?(other.class) &&
-          limit.eql?(other.limit)   &&
-          operand.eql?(other.operand)
+          super && limit.eql?(other.limit)
         end
 
         # Return the hash of the limit
