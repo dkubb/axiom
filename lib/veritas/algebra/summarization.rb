@@ -64,6 +64,23 @@ module Veritas
         self
       end
 
+      # Compare the Summarization with other relation for equality
+      #
+      # @example
+      #   summarization.eql?(other)  # => true or false
+      #
+      # @param [Relation] other
+      #   the other relation to compare with
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def eql?(other)
+        super                                 &&
+        summarize_by.eql?(other.summarize_by) &&
+        summarizers.eql?(other.summarizers)
+      end
+
     private
 
       # Return the summaries for each tuple, grouped by the summarize_by header
