@@ -81,6 +81,18 @@ module Veritas
         summarizers.eql?(other.summarizers)
       end
 
+      # Return the hash of the summarization
+      #
+      # @example
+      #   numeric_hash = summarization.hash
+      #
+      # @return [Fixnum]
+      #
+      # @api public
+      def hash
+        super ^ summarize_by.hash ^ summarizers.hash
+      end
+
     private
 
       # Return the summaries for each tuple, grouped by the summarize_by header
