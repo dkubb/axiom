@@ -117,9 +117,7 @@ module Veritas
         #
         # @api public
         def eql?(other)
-          instance_of?(other.class) &&
-          offset.eql?(other.offset) &&
-          operand.eql?(other.operand)
+          super && offset.eql?(other.offset)
         end
 
         # Return the hash of the offset
