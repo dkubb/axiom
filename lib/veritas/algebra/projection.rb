@@ -59,6 +59,18 @@ module Veritas
         super && header.eql?(other.header)
       end
 
+      # Return the hash of the projection
+      #
+      # @example
+      #   numeric_hash = projection.hash
+      #
+      # @return [Fixnum]
+      #
+      # @api public
+      def hash
+        super ^ header.hash
+      end
+
       module Methods
 
         # Return a relation with only the attributes specified
