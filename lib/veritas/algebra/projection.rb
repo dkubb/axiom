@@ -44,6 +44,21 @@ module Veritas
         self
       end
 
+      # Compare the Projection with other relation for equality
+      #
+      # @example
+      #   projection.eql?(other)  # => true or false
+      #
+      # @param [Relation] other
+      #   the other relation to compare with
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def eql?(other)
+        super && header.eql?(other.header)
+      end
+
       module Methods
 
         # Return a relation with only the attributes specified
