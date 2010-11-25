@@ -123,7 +123,17 @@ module Veritas
           operand.eql?(other.operand)
         end
 
-      private
+        # Return the hash of the limit
+        #
+        # @example
+        #   numeric_hash = limit.hash
+        #
+        # @return [Fixnum]
+        #
+        # @api public
+        def hash
+          super ^ limit.hash
+        end
 
         module Methods
 
