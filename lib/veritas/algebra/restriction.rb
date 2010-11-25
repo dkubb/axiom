@@ -61,6 +61,18 @@ module Veritas
         super && predicate.eql?(other.predicate)
       end
 
+      # Return the hash of the restriction
+      #
+      # @example
+      #   numeric_hash = restriction.hash
+      #
+      # @return [Fixnum]
+      #
+      # @api public
+      def hash
+        super ^ predicate.hash
+      end
+
       module Methods
 
         # Return a relation with restricted tuples
