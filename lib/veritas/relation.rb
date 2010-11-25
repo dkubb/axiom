@@ -204,6 +204,8 @@ module Veritas
       tuples.kind_of?(Relation) ? tuples : Relation.new(header, tuples)
     end
 
+    memoize :hash
+
   end # class Relation
 end # module Veritas
 
