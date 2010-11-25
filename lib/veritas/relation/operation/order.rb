@@ -98,7 +98,17 @@ module Veritas
           operand.eql?(other.operand)
         end
 
-      private
+        # Return the hash of the order
+        #
+        # @example
+        #   numeric_hash = order.hash
+        #
+        # @return [Fixnum]
+        #
+        # @api public
+        def hash
+          super ^ directions.hash
+        end
 
         module Methods
 
