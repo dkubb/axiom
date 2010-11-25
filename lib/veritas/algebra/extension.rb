@@ -89,6 +89,21 @@ module Veritas
         self
       end
 
+      # Compare the Extension with other relation for equality
+      #
+      # @example
+      #   extension.eql?(other)  # => true or false
+      #
+      # @param [Relation] other
+      #   the other relation to compare with
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def eql?(other)
+        super && extensions.eql?(other.extensions)
+      end
+
       module Methods
 
         # Return an extended relation
