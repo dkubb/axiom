@@ -104,6 +104,18 @@ module Veritas
         super && extensions.eql?(other.extensions)
       end
 
+      # Return the hash of the projection
+      #
+      # @example
+      #   numeric_hash = extension.hash
+      #
+      # @return [Fixnum]
+      #
+      # @api public
+      def hash
+        super ^ extensions.hash
+      end
+
       module Methods
 
         # Return an extended relation
