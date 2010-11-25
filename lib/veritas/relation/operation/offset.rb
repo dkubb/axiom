@@ -122,7 +122,17 @@ module Veritas
           operand.eql?(other.operand)
         end
 
-      private
+        # Return the hash of the offset
+        #
+        # @example
+        #   numeric_hash = offset.hash
+        #
+        # @return [Fixnum]
+        #
+        # @api public
+        def hash
+          super ^ offset.hash
+        end
 
         module Methods
 
