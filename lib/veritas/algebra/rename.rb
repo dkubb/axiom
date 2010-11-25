@@ -63,6 +63,18 @@ module Veritas
         super && aliases.eql?(other.aliases)
       end
 
+      # Return the hash of the rename
+      #
+      # @example
+      #   numeric_hash = rename.hash
+      #
+      # @return [Fixnum]
+      #
+      # @api public
+      def hash
+        super ^ aliases.hash
+      end
+
       module Methods
 
         # Return a relation with the header renamed
