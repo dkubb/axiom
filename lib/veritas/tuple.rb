@@ -146,7 +146,7 @@ module Veritas
     #
     # @api public
     def hash
-      header.hash ^ to_ary.hash
+      self.class.hash ^ header.hash ^ to_ary.hash
     end
 
     # Return a string representing the tuple data

@@ -12,5 +12,5 @@ describe 'Veritas::Algebra::Extension#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == operand.hash ^ extensions.hash }
+  it { should == klass.hash ^ operand.hash ^ extensions.hash }
 end

@@ -11,5 +11,5 @@ describe 'Veritas::Operation::Unary#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == operand.hash }
+  it { should == klass.hash ^ operand.hash }
 end

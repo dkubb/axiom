@@ -12,5 +12,5 @@ describe 'Veritas::Attribute#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == name.hash ^ options.hash }
+  it { should == klass.hash ^ name.hash ^ options.hash }
 end

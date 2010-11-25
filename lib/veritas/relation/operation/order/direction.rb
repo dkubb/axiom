@@ -119,7 +119,7 @@ module Veritas
           #
           # @api public
           def hash
-            attribute.hash
+            self.class.hash ^ attribute.hash
           end
 
           # Coerce an object into a Direction

@@ -183,7 +183,7 @@ module Veritas
     #
     # @api public
     def hash
-      name.hash ^ options.hash
+      self.class.hash ^ name.hash ^ options.hash
     end
 
     # Return a string representing the attribute

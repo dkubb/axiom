@@ -49,7 +49,7 @@ module Veritas
       #
       # @api public
       def hash
-        operand.hash
+        self.class.hash ^ operand.hash
       end
 
       memoize :hash

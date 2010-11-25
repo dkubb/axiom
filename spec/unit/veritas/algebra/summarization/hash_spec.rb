@@ -13,5 +13,5 @@ describe 'Veritas::Algebra::Summarization#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == operand.hash ^ summarize_by.hash ^ summarizers.hash }
+  it { should == klass.hash ^ operand.hash ^ summarize_by.hash ^ summarizers.hash }
 end

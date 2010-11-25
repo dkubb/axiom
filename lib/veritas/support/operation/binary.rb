@@ -63,7 +63,7 @@ module Veritas
       #
       # @api public
       def hash
-        left.hash ^ right.hash
+        self.class.hash ^ left.hash ^ right.hash
       end
 
       memoize :hash

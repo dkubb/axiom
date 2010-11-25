@@ -168,7 +168,7 @@ module Veritas
     #
     # @api public
     def hash
-      header.hash ^ to_set.hash
+      self.class.hash ^ header.hash ^ to_set.hash
     end
 
     # Test if there are no tuples

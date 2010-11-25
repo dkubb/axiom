@@ -12,5 +12,5 @@ describe 'Veritas::Operation::Binary#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == left.hash ^ right.hash }
+  it { should == klass.hash ^ left.hash ^ right.hash }
 end

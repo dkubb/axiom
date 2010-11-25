@@ -137,7 +137,7 @@ module Veritas
         #
         # @api public
         def hash
-          @aliases.hash
+          self.class.hash ^ @aliases.hash
         end
 
         # Convert the aliases to a Hash

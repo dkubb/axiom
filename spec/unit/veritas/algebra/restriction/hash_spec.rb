@@ -12,5 +12,5 @@ describe 'Veritas::Algebra::Restriction#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == operand.hash ^ predicate.hash }
+  it { should == klass.hash ^ operand.hash ^ predicate.hash }
 end

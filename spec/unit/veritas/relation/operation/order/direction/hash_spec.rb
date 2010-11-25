@@ -11,5 +11,5 @@ describe 'Veritas::Relation::Operation::Order::Direction#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == object.attribute.hash }
+  it { should == klass.hash ^ attribute.hash }
 end

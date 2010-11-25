@@ -13,5 +13,5 @@ describe 'Veritas::Algebra::Projection#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == operand.hash ^ object.header.hash }
+  it { should == klass.hash ^ operand.hash ^ object.header.hash }
 end

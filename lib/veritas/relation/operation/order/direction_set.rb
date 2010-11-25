@@ -176,7 +176,7 @@ module Veritas
           #
           # @api public
           def hash
-            to_ary.hash
+            self.class.hash ^ to_ary.hash
           end
 
           # Test if there are no directions

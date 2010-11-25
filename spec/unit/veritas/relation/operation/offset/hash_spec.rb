@@ -13,5 +13,5 @@ describe 'Veritas::Relation::Operation::Offset#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == operand.hash ^ offset.hash }
+  it { should == klass.hash ^ operand.hash ^ offset.hash }
 end

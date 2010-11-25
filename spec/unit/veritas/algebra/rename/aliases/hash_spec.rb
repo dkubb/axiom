@@ -12,5 +12,5 @@ describe 'Veritas::Algebra::Rename::Aliases#hash' do
 
   it { should be_kind_of(Fixnum) }
 
-  it { should == aliases.hash }
+  it { should == klass.hash ^ aliases.hash }
 end
