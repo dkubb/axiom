@@ -66,7 +66,7 @@ GEM
       bouncy-castle-java
     json (1.4.6)
     json_pure (1.4.6)
-    main (4.3.0)
+    main (4.4.0)
       arrayfields (>= 4.7.4)
       fattr (>= 2.1.0)
     metric_fu (2.0.1)
