@@ -8,11 +8,6 @@ shared_examples_for 'memoizes method' do
     instance.send(method).should equal(instance.send(method))
   end
 
-  it 'adds a private method' do
-    count = object.private_instance_methods.count
-    expect { subject }.to change { object.private_instance_methods.count }.from(count).to(count + 1)
-  end
-
   specification = proc do
     object.send(:define_method, method) do
       caller
@@ -23,7 +18,7 @@ shared_examples_for 'memoizes method' do
     file, line = object.new.send(method).first.split(':')[0, 2]
 
     File.expand_path(file).should == File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__)
-    line.to_i.should == 173
+    line.to_i.should == 156
   end
 
   it 'sets the file and line number properly' do

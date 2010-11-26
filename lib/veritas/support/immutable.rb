@@ -136,44 +136,25 @@ module Veritas
       #
       # @api private
       def memoize_method(method)
-        alias_name = "__memoized_#{method}"
-        create_alias_for(method, alias_name)
-        create_memoize_method_for(method, alias_name)
-      end
-
-      # Create an alias to a method
-      #
-      # @param [String, Symbol] original_method
-      #   the name of the original method
-      # @param [String, Symbol] alias_name
-      #   the name of the new alias to create
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def create_alias_for(original_method, alias_name)
-        alias_method alias_name, original_method
-        private alias_name
+        visibility = method_visibility(method)
+        create_memoize_method_for(method)
+        send(visibility, method)
       end
 
       # Create a memoized method that delegates to the original method
       #
-      # @param [String, Symbol] new_method
-      #   the name of the new method
-      # @param [String, Symbol] alias_name
-      #   the name of the alias to the original method
+      # @param [String, Symbol] method
+      #   the name of the method
       #
       # @return [undefined]
       #
       # @api private
-      def create_memoize_method_for(new_method, alias_name)
-        visibility = method_visibility(new_method)
-        class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          def #{new_method}(*args)                                # def name(*args)
-            @__memory['@#{new_method}'] ||= #{alias_name}(*args)  #   @__memory['@name'] ||= __memoized_name(*args)
-          end                                                     # end
-        RUBY
-        send(visibility, new_method)
+      def create_memoize_method_for(method)
+        original = instance_method(method)
+        ivar     = "@#{method}"
+        send(:define_method, method) do |*args|
+          @__memory[ivar] ||= original.bind(self).call(*args)
+        end
       end
 
       # Return the method visibility of a method
