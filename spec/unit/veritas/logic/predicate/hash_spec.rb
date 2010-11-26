@@ -9,9 +9,7 @@ describe 'Veritas::Logic::Predicate#hash' do
   let(:right)  { 1                           }
   let(:object) { klass.new(left, right)      }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ left.hash ^ right.hash }
 end

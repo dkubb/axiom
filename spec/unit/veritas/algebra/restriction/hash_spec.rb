@@ -8,9 +8,7 @@ describe 'Veritas::Algebra::Restriction#hash' do
   let(:predicate) { proc { true }                                 }
   let(:object)    { klass.new(operand, predicate)                 }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ operand.hash ^ predicate.hash }
 end

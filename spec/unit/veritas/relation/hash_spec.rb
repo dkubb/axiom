@@ -12,9 +12,7 @@ describe 'Veritas::Relation#hash' do
     object.should be_instance_of(klass)
   end
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ header.hash ^ body.to_set.hash }
 end

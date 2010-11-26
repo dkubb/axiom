@@ -9,9 +9,7 @@ describe 'Veritas::Relation::Operation::Limit#hash' do
   let(:limit)    { 1                                                           }
   let(:object)   { klass.new(operand, limit)                                   }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ operand.hash ^ limit.hash }
 end

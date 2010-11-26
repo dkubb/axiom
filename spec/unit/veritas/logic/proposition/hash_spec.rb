@@ -6,9 +6,7 @@ describe 'Veritas::Logic::Proposition#hash' do
   let(:klass)  { Class.new(Logic::Proposition) }
   let(:object) { klass.new                     }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'a hash method'
 
-  it 'hashes the results of self.class' do
-    should == klass.hash
-  end
+  it { should == klass.hash }
 end

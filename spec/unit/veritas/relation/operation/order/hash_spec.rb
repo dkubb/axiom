@@ -8,9 +8,7 @@ describe 'Veritas::Relation::Operation::Order#hash' do
   let(:directions) { klass::DirectionSet.new(operand.header)              }
   let(:object)     { klass.new(operand, directions)                       }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ operand.hash ^ directions.hash }
 end

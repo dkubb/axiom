@@ -8,9 +8,7 @@ describe 'Veritas::Algebra::Rename::Aliases#hash' do
   let(:aliases)   { { attribute => attribute.rename(:other_id) } }
   let(:object)    { klass.new(aliases)                           }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ aliases.hash }
 end

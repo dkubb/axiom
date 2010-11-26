@@ -9,9 +9,7 @@ describe 'Veritas::Relation::Operation::Offset#hash' do
   let(:offset)   { 1                                                           }
   let(:object)   { klass.new(operand, offset)                                  }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ operand.hash ^ offset.hash }
 end

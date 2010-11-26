@@ -8,9 +8,7 @@ describe 'Veritas::Algebra::Extension#hash' do
   let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
   let(:object)     { klass.new(operand, extensions)                       }
 
-  it_should_behave_like 'an idempotent method'
-
-  it { should be_kind_of(Fixnum) }
+  it_should_behave_like 'a hash method'
 
   it { should == klass.hash ^ operand.hash ^ extensions.hash }
 end
