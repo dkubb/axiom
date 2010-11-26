@@ -201,7 +201,7 @@ module Veritas
       # Return the hash of the header
       #
       # @example
-      #   numeric_hash = header.hash
+      #   hash = header.hash
       #
       # @return [Fixnum]
       #

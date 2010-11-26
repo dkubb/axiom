@@ -124,7 +124,7 @@ module Veritas
         # Return the hash of the limit
         #
         # @example
-        #   numeric_hash = limit.hash
+        #   hash = limit.hash
         #
         # @return [Fixnum]
         #

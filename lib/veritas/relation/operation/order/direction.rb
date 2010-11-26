@@ -113,7 +113,7 @@ module Veritas
           # Return the hash of the direction
           #
           # @example
-          #   numeric_hash = direction.hash
+          #   hash = direction.hash
           #
           # @return [Fixnum]
           #

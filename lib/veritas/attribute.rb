@@ -177,7 +177,7 @@ module Veritas
     # Return the hash of the attribute
     #
     # @example
-    #   numeric_hash = attribute.hash
+    #   hash = attribute.hash
     #
     # @return [Fixnum]
     #

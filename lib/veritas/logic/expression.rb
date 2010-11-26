@@ -73,7 +73,7 @@ module Veritas
       # Return the hash of the expression
       #
       # @example
-      #   numeric_hash = expression.hash
+      #   hash = expression.hash
       #
       # @return [Fixnum]
       #

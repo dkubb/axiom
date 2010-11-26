@@ -66,7 +66,7 @@ module Veritas
       # Return the hash of the rename
       #
       # @example
-      #   numeric_hash = rename.hash
+      #   hash = rename.hash
       #
       # @return [Fixnum]
       #

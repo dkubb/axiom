@@ -62,7 +62,7 @@ module Veritas
       # Return the hash of the projection
       #
       # @example
-      #   numeric_hash = projection.hash
+      #   hash = projection.hash
       #
       # @return [Fixnum]
       #

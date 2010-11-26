@@ -57,7 +57,7 @@ module Veritas
       # Return the hash of the left and right operands
       #
       # @example
-      #   numeric_hash = binary.hash
+      #   hash = binary.hash
       #
       # @return [Fixnum]
       #

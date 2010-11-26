@@ -107,7 +107,7 @@ module Veritas
       # Return the hash of the projection
       #
       # @example
-      #   numeric_hash = extension.hash
+      #   hash = extension.hash
       #
       # @return [Fixnum]
       #

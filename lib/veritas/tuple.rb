@@ -140,7 +140,7 @@ module Veritas
     # Return the hash of the tuple
     #
     # @example
-    #   numeric_hash = tuple.hash
+    #   hash = tuple.hash
     #
     # @return [Fixnum]
     #

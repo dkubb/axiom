@@ -170,7 +170,7 @@ module Veritas
           # Return the hash of the aliases
           #
           # @example
-          #   numeric_hash = directions.hash
+          #   hash = directions.hash
           #
           # @return [Fixnum]
           #

@@ -79,7 +79,7 @@ module Veritas
       # Return the hash of the proposition
       #
       # @example
-      #   numeric_hash = proposition.hash
+      #   hash = proposition.hash
       #
       # @return [Fixnum]
       #

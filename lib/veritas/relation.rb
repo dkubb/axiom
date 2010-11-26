@@ -162,7 +162,7 @@ module Veritas
     # Return the hash of the relation
     #
     # @example
-    #   numeric_hash = relation.hash
+    #   hash = relation.hash
     #
     # @return [Fixnum]
     #

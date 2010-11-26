@@ -43,7 +43,7 @@ module Veritas
       # Return the hash of the operand
       #
       # @example
-      #   numeric_hash = unary.hash
+      #   hash = unary.hash
       #
       # @return [Fixnum]
       #

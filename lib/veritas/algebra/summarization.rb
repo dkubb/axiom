@@ -84,7 +84,7 @@ module Veritas
       # Return the hash of the summarization
       #
       # @example
-      #   numeric_hash = summarization.hash
+      #   hash = summarization.hash
       #
       # @return [Fixnum]
       #

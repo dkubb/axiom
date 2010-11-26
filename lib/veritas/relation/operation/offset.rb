@@ -123,7 +123,7 @@ module Veritas
         # Return the hash of the offset
         #
         # @example
-        #   numeric_hash = offset.hash
+        #   hash = offset.hash
         #
         # @return [Fixnum]
         #

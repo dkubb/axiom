@@ -99,7 +99,7 @@ module Veritas
         # Return the hash of the order
         #
         # @example
-        #   numeric_hash = order.hash
+        #   hash = order.hash
         #
         # @return [Fixnum]
         #

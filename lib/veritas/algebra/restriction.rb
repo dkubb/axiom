@@ -64,7 +64,7 @@ module Veritas
       # Return the hash of the restriction
       #
       # @example
-      #   numeric_hash = restriction.hash
+      #   hash = restriction.hash
       #
       # @return [Fixnum]
       #
