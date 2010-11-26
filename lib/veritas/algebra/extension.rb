@@ -143,6 +143,8 @@ module Veritas
 
       Relation.class_eval { include Methods }
 
+      memoize :hash
+
     end # class Extension
   end # module Algebra
 end # module Veritas

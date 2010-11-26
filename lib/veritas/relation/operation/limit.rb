@@ -190,6 +190,8 @@ module Veritas
 
         Relation.class_eval { include Methods }
 
+        memoize :hash
+
       end # class Limit
     end # module Operation
   end # class Relation

@@ -137,6 +137,8 @@ module Veritas
 
         Relation.class_eval { include Methods }
 
+        memoize :hash
+
       end # class Order
     end # module Operation
   end # class Relation

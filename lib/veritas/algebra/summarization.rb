@@ -190,6 +190,8 @@ module Veritas
 
       Relation.class_eval { include Methods }
 
+      memoize :hash
+
     end # class Summarization
   end # module Algebra
 end # module Veritas
