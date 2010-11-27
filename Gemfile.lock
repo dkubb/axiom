@@ -15,10 +15,11 @@ GIT
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
 
-PATH
-  remote: .
+GIT
+  remote: git://github.com/dkubb/rspec.git
+  revision: 8735031bc262bb2f5f40c6d579e9000c8f8e5ad3
   specs:
-    veritas (0.0.2)
+    rspec (1.3.1)
 
 GEM
   remote: http://rubygems.org/
@@ -92,7 +93,6 @@ GEM
     rcov (0.9.9)
     roodi (2.1.0)
       ruby_parser
-    rspec (1.3.1)
     ruby2ruby (1.2.2)
       ParseTree (~> 3.0)
     ruby_parser (2.0.5)
@@ -124,8 +124,7 @@ DEPENDENCIES
   rcov (~> 0.9.9)
   reek (~> 1.2.8)!
   roodi (~> 2.1.0)
-  rspec (~> 1.3.1)
+  rspec (~> 1.3.1)!
   ruby2ruby (= 1.2.2)
-  veritas!
   yard (~> 0.6.1)
   yardstick (~> 0.2.0)

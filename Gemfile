@@ -1,6 +1,11 @@
 source :rubygems
 
-gemspec
+group :development do
+  gem 'rake',      '~> 0.8.7'
+  gem 'rspec',     '~> 1.3.1', :git => 'git://github.com/dkubb/rspec.git'
+  gem 'jeweler',   '~> 1.4.0'
+  gem 'backports', '~> 1.18.2'
+end
 
 group :benchmarks do
   gem 'rbench', '~> 0.2.3'
