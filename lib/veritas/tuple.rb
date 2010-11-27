@@ -22,7 +22,8 @@ module Veritas
     #
     # @api private
     def initialize(header, data)
-      @header, @data = header, data.to_ary
+      @header = header
+      @data   = data.to_ary
     end
 
     # Lookup a value in the tuple given an attribute
