@@ -10,7 +10,7 @@ begin
   require 'mspec'
   require 'mspec/utils/name_map'
 
-  MEMOIZED_PATTERN = /\A__memoized_([a-z](?:_?[a-z])+)\z/.freeze
+  SKIP_METHODS = %w[ blank_slate_method_added ].freeze
 
   class NameMap
     def file_name(method, constant)
@@ -113,11 +113,12 @@ begin
                                ancestor.private_instance_methods(false)
       end
 
-      other_class_methods.reject! { |method| method.to_s == 'allocate' }
+      other_class_methods.reject! do |method|
+        method.to_s == 'allocate' || SKIP_METHODS.include?(method.to_s)
+      end
 
       other_class_methods.reject! do |method|
-        next unless method.to_s =~ MEMOIZED_PATTERN &&
-                    spec_class_methods.any? { |specced| specced.to_s == $1 }
+        next unless spec_class_methods.any? { |specced| specced.to_s == $1 }
 
         spec_class_methods << method
       end
@@ -129,8 +130,7 @@ begin
                       mod.private_instance_methods(false)
 
       other_methods.reject! do |method|
-        next unless method.to_s =~ MEMOIZED_PATTERN &&
-                    spec_methods.any? { |specced| specced.to_s == $1 }
+        next unless spec_methods.any? { |specced| specced.to_s == $1 }
 
         spec_methods << method
       end
@@ -138,7 +138,7 @@ begin
       # map the class methods to spec files
       spec_class_methods.each do |method|
         method = aliases[mod.name][method]
-        next if method.to_s =~ MEMOIZED_PATTERN
+        next if SKIP_METHODS.include?(method.to_s)
 
         spec_file = spec_prefix.join('class_methods').join(map.file_name(method, mod.name))
 
@@ -152,7 +152,7 @@ begin
       # map the instance methods to spec files
       spec_methods.each do |method|
         method = aliases[mod.name][method]
-        next if method.to_s =~ MEMOIZED_PATTERN
+        next if SKIP_METHODS.include?(method.to_s)
 
         spec_file = spec_prefix.join(map.file_name(method, mod.name))
 
