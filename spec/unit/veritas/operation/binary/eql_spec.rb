@@ -8,7 +8,7 @@ describe 'Veritas::Operation::Binary#eql?' do
   let(:right)  { mock('Right')                           }
   let(:object) { klass.new(left, right)                  }
 
-  context 'with the same binary operation' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -18,7 +18,7 @@ describe 'Veritas::Operation::Binary#eql?' do
     end
   end
 
-  context 'with an equivalent binary operation' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -28,9 +28,19 @@ describe 'Veritas::Operation::Binary#eql?' do
     end
   end
 
-  context 'with a different binary operation' do
+  context 'with an equivalent object of a subclass' do
+    let(:other) { Class.new(klass).new(left, right) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should == other.eql?(object)
+    end
+  end
+
+  context 'with an object having a different left' do
     let(:other_left)  { mock('Other Left')                 }
-    let(:other_right) { mock('Other Right')                }
+    let(:other_right) { right                              }
     let(:other)       { klass.new(other_left, other_right) }
 
     it { should be(false) }
@@ -40,8 +50,10 @@ describe 'Veritas::Operation::Binary#eql?' do
     end
   end
 
-  context 'with an equivalent binary operation of a different class' do
-    let(:other) { Class.new(klass).new(left, right) }
+  context 'with an object having a different right' do
+    let(:other_left)  { left                               }
+    let(:other_right) { mock('Other Right')                }
+    let(:other)       { klass.new(other_left, other_right) }
 
     it { should be(false) }
 

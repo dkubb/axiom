@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::Summarization#eql?' do
   let(:summarizers)  { { :count => lambda { |acc, tuple| acc.to_i + 1 } }   }
   let(:object)       { klass.new(operand, summarize_by, summarizers)        }
 
-  context 'with the same summarization' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -19,7 +19,7 @@ describe 'Veritas::Algebra::Summarization#eql?' do
     end
   end
 
-  context 'with an equivalent summarization' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -29,7 +29,7 @@ describe 'Veritas::Algebra::Summarization#eql?' do
     end
   end
 
-  context 'with an equivalent summarization of a different class' do
+  context 'with an equivalent object of a subclass' do
     let(:other) { Class.new(klass).new(operand, operand.project([]), summarizers) }
 
     it { should be(false) }
@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Summarization#eql?' do
     end
   end
 
-  context 'with a summarization having a different operand' do
+  context 'with an object having a different operand' do
     let(:other_operand)      { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ])                   }
     let(:other_summarize_by) { summarize_by                                                    }
     let(:other_summarizers)  { summarizers                                                     }
@@ -52,7 +52,7 @@ describe 'Veritas::Algebra::Summarization#eql?' do
     end
   end
 
-  context 'with a summarization having a different summarize_by' do
+  context 'with an object having a different summarize_by' do
     let(:other_operand)      { operand                                                         }
     let(:other_summarize_by) { operand.project([]).order                                       }
     let(:other_summarizers)  { summarizers                                                     }
@@ -65,7 +65,7 @@ describe 'Veritas::Algebra::Summarization#eql?' do
     end
   end
 
-  context 'with a summarization having different summarizers' do
+  context 'with an object having different summarizers' do
     let(:other_operand)      { operand                                                         }
     let(:other_summarize_by) { summarize_by                                                    }
     let(:other_summarizers)  { {}                                                              }

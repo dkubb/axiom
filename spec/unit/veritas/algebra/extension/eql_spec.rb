@@ -8,7 +8,7 @@ describe 'Veritas::Algebra::Extension#eql?' do
   let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
   let(:object)     { klass.new(operand, extensions)                       }
 
-  context 'with the same extension' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Extension#eql?' do
     end
   end
 
-  context 'with an equivalent extension' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -28,7 +28,7 @@ describe 'Veritas::Algebra::Extension#eql?' do
     end
   end
 
-  context 'with an equivalent extension of a different class' do
+  context 'with an equivalent object of a subclass' do
     let(:other) { Class.new(klass).new(operand, extensions) }
 
     it { should be(false) }
@@ -38,7 +38,7 @@ describe 'Veritas::Algebra::Extension#eql?' do
     end
   end
 
-  context 'with an extension having a different operand' do
+  context 'with an object having a different operand' do
     let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ]) }
     let(:other_extensions) { extensions                                    }
     let(:other)            { klass.new(other_operand, other_extensions)    }
@@ -50,7 +50,7 @@ describe 'Veritas::Algebra::Extension#eql?' do
     end
   end
 
-  context 'with an extension having different extensions' do
+  context 'with an object having different extensions' do
     let(:other_operand)    { operand                                    }
     let(:other_extensions) { { :text => lambda { |tuple| 2 } }          }
     let(:other)            { klass.new(other_operand, other_extensions) }

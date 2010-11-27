@@ -12,7 +12,7 @@ describe 'Veritas::Relation#eql?' do
     object.should be_instance_of(klass)
   end
 
-  context 'with the same relation' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -22,7 +22,7 @@ describe 'Veritas::Relation#eql?' do
     end
   end
 
-  context 'with an equivalent relation' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -32,8 +32,8 @@ describe 'Veritas::Relation#eql?' do
     end
   end
 
-  context 'with a different relation' do
-    let(:other) { Relation.new(header, [ [ 2 ] ]) }
+  context 'with an equivalent object of a subclass' do
+    let(:other) { Class.new(Relation).new(header, body) }
 
     it { should be(false) }
 
@@ -42,8 +42,22 @@ describe 'Veritas::Relation#eql?' do
     end
   end
 
-  context 'with an equivalent relation of a different class' do
-    let(:other) { Class.new(Relation).new(header, body) }
+  context 'with an object having a different header' do
+    let(:other_header) { [ [ :id, Numeric ] ]                   }
+    let(:other_body)   { body                                   }
+    let(:other)        { Relation.new(other_header, other_body) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should == other.eql?(object)
+    end
+  end
+
+  context 'with an object having a different body' do
+    let(:other_header) { header                                 }
+    let(:other_body)   { [ [ 2 ] ].each                         }
+    let(:other)        { Relation.new(other_header, other_body) }
 
     it { should be(false) }
 

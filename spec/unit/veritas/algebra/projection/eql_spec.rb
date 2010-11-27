@@ -9,7 +9,7 @@ describe 'Veritas::Algebra::Projection#eql?' do
   let(:attributes) { [ :id ]                                                     }
   let(:object)     { klass.new(operand, attributes)                              }
 
-  context 'with the same projection' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -19,7 +19,7 @@ describe 'Veritas::Algebra::Projection#eql?' do
     end
   end
 
-  context 'with an equivalent projection' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -29,7 +29,7 @@ describe 'Veritas::Algebra::Projection#eql?' do
     end
   end
 
-  context 'with an equivalent projection of a different class' do
+  context 'with an equivalent object of a subclass' do
     let(:other) { Class.new(klass).new(operand, attributes) }
 
     it { should be(false) }
@@ -39,7 +39,7 @@ describe 'Veritas::Algebra::Projection#eql?' do
     end
   end
 
-  context 'with an projection having a different operand' do
+  context 'with an object having a different operand' do
     let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ]) }
     let(:other_attributes) { attributes                                    }
     let(:other)            { klass.new(other_operand, other_attributes)    }
@@ -51,7 +51,7 @@ describe 'Veritas::Algebra::Projection#eql?' do
     end
   end
 
-  context 'with an projection having different attributes' do
+  context 'with an object having different attributes' do
     let(:other_operand)    { operand                                    }
     let(:other_attributes) { []                                         }
     let(:other)            { klass.new(other_operand, other_attributes) }

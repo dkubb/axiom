@@ -3,11 +3,11 @@ require 'spec_helper'
 describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)     { Relation::Operation::Order::DirectionSet }
-  let(:attribute) { Attribute::Integer.new(:id)              }
-  let(:object)    { klass.new([ attribute ])                 }
+  let(:klass)      { Relation::Operation::Order::DirectionSet }
+  let(:attributes) { [ Attribute::Integer.new(:id) ]          }
+  let(:object)     { klass.new(attributes)                    }
 
-  context 'with the same directions' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
     end
   end
 
-  context 'with equivalent directions' do
+  context 'with equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -27,8 +27,8 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
     end
   end
 
-  context 'with different directions' do
-    let(:other) { klass.new([ attribute.desc ]) }
+  context 'with equivalent object of a subclass' do
+    let(:other) { Class.new(klass).new(attributes) }
 
     it { should be(false) }
 
@@ -37,8 +37,9 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
     end
   end
 
-  context 'with equivalent directions of a different class' do
-    let(:other) { Class.new(klass).new([ attribute ]) }
+  context 'with an object having different attributes' do
+    let(:other_attributes) { [ Attribute::Integer.new(:other_id) ] }
+    let(:other)            { klass.new(other_attributes)           }
 
     it { should be(false) }
 

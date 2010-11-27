@@ -3,12 +3,12 @@ require 'spec_helper'
 describe 'Veritas::Algebra::Rename#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)    { Algebra::Rename                               }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:aliases)  { { :id => :other_id }                          }
-  let(:object)   { klass.new(relation, aliases)                  }
+  let(:klass)   { Algebra::Rename                               }
+  let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:aliases) { { :id => :other_id }                          }
+  let(:object)  { klass.new(operand, aliases)                   }
 
-  context 'with the same rename' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -18,7 +18,7 @@ describe 'Veritas::Algebra::Rename#eql?' do
     end
   end
 
-  context 'with an equivalent rename' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -28,8 +28,8 @@ describe 'Veritas::Algebra::Rename#eql?' do
     end
   end
 
-  context 'with a different rename' do
-    let(:other) { klass.new(relation, :id => :another_id) }
+  context 'with an equivalent object of a subclass' do
+    let(:other) { Class.new(klass).new(operand, aliases) }
 
     it { should be(false) }
 
@@ -38,8 +38,22 @@ describe 'Veritas::Algebra::Rename#eql?' do
     end
   end
 
-  context 'with an equivalent rename of a different class' do
-    let(:other) { Class.new(klass).new(relation, aliases) }
+  context 'with an object having a different operand' do
+    let(:other_operand) { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ]) }
+    let(:other_aliases) { aliases                                       }
+    let(:other)         { klass.new(other_operand, other_aliases)       }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should == other.eql?(object)
+    end
+  end
+
+  context 'with an object having different aliases' do
+    let(:other_operand) { operand                                 }
+    let(:other_aliases) { { :id => :another_id }                  }
+    let(:other)         { klass.new(other_operand, other_aliases) }
 
     it { should be(false) }
 
