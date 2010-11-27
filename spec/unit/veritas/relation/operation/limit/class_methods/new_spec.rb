@@ -13,6 +13,13 @@ describe 'Veritas::Relation::Operation::Limit.new' do
     it { should be_kind_of(object) }
   end
 
+  context 'with an ordered relation having an empty header' do
+    let(:relation) { original_relation.order { |r| r[:id] }.project([]) }
+    let(:limit)    { 1                                                  }
+
+    it { should be_kind_of(object) }
+  end
+
   context 'without an ordered relation' do
     let(:relation) { original_relation }
     let(:limit)    { 1                 }
