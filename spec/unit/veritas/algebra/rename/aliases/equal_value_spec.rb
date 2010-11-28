@@ -28,20 +28,21 @@ describe 'Veritas::Algebra::Rename::Aliases#==' do
     end
   end
 
-  context 'with a different object' do
-    let(:other) { klass.new(attribute => attribute.rename(:another_id)) }
+  context 'with an equivalent object of a subclass' do
+    let(:other) { Class.new(klass).new(aliases) }
 
-    it { should be(false) }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (other == object)
     end
   end
 
-  context 'with an equivalent object of a different class' do
-    let(:other) { Class.new(klass).new(aliases) }
+  context 'with an object having different aliases' do
+    let(:other_aliases) { { attribute => attribute.rename(:another_id) } }
+    let(:other)         { klass.new(other_aliases)                       }
 
-    it { should be(true) }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (other == object)

@@ -65,4 +65,19 @@ describe 'Veritas::Relation#eql?' do
       should == other.eql?(object)
     end
   end
+
+  context 'with an object having an equivalent header in a different order' do
+    let(:attribute1) { [ :id,   Integer ]                               }
+    let(:attribute2) { [ :name, String  ]                               }
+    let(:header1)    { Relation::Header.new([ attribute1, attribute2 ]) }
+    let(:header2)    { Relation::Header.new([ attribute2, attribute1 ]) }
+    let(:object)     { klass.new(header1, [ [ 1, 'Dan Kubb' ] ].each)   }
+    let(:other)      { klass.new(header2, [ [ 'Dan Kubb', 1 ] ].each)   }
+
+    it { should be(true) }
+
+    it 'is symmetric' do
+      should == other.eql?(object)
+    end
+  end
 end

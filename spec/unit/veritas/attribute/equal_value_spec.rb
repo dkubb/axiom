@@ -7,7 +7,7 @@ describe 'Veritas::Attribute#==' do
   let(:name)   { :id                }
   let(:object) { klass.new(name)    }
 
-  context 'with the same attribute' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -17,7 +17,7 @@ describe 'Veritas::Attribute#==' do
     end
   end
 
-  context 'with an equivalent attribute' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -27,20 +27,21 @@ describe 'Veritas::Attribute#==' do
     end
   end
 
-  context 'with a different attribute' do
-    let(:other) { Attribute::String.new(:name) }
+  context 'with an equivalent object of a subclass' do
+    let(:other) { Class.new(klass).new(name) }
 
-    it { should be(false) }
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (other == object)
     end
   end
 
-  context 'with an equivalent attribute of a different class' do
-    let(:other) { Class.new(klass).new(name) }
+  context 'with an object having a different name' do
+    let(:other_name) { :other_id             }
+    let(:other)      { klass.new(other_name) }
 
-    it { should be(true) }
+    it { should be(false) }
 
     it 'is symmetric' do
       should == (other == object)

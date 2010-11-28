@@ -12,7 +12,7 @@ describe 'Veritas::Relation#==' do
     object.should be_instance_of(klass)
   end
 
-  context 'with the same relation' do
+  context 'with the same object' do
     let(:other) { object }
 
     it { should be(true) }
@@ -22,7 +22,7 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  context 'with an equivalent relation' do
+  context 'with an equivalent object' do
     let(:other) { object.dup }
 
     it { should be(true) }
@@ -32,8 +32,20 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  context 'with an equivalent header and different body' do
-    let(:other) { klass.new(header, [ [ 2 ] ]) }
+  context 'with an equivalent object of a subclass' do
+    let(:other) { Class.new(klass).new(header, body) }
+
+    it { should be(true) }
+
+    it 'is symmetric' do
+      should == (other == object)
+    end
+  end
+
+  context 'with an object having a different header' do
+    let(:other_header) { [ [ :id, Numeric ] ]                   }
+    let(:other_body)   { body                                   }
+    let(:other)        { Relation.new(other_header, other_body) }
 
     it { should be(false) }
 
@@ -42,10 +54,27 @@ describe 'Veritas::Relation#==' do
     end
   end
 
-  context 'with a different header' do
-    let(:other) { klass.new([ [ :name, String ] ], object) }
+  context 'with an object having a different body' do
+    let(:other_header) { header                                 }
+    let(:other_body)   { [ [ 2 ] ].each                         }
+    let(:other)        { Relation.new(other_header, other_body) }
 
     it { should be(false) }
+
+    it 'is symmetric' do
+      should == (other == object)
+    end
+  end
+
+  context 'with an object having an equivalent header in a different order' do
+    let(:attribute1) { [ :id,   Integer ]                               }
+    let(:attribute2) { [ :name, String  ]                               }
+    let(:header1)    { Relation::Header.new([ attribute1, attribute2 ]) }
+    let(:header2)    { Relation::Header.new([ attribute2, attribute1 ]) }
+    let(:object)     { klass.new(header1, [ [ 1, 'Dan Kubb' ] ].each)   }
+    let(:other)      { klass.new(header2, [ [ 'Dan Kubb', 1 ] ].each)   }
+
+    it { should be(true) }
 
     it 'is symmetric' do
       should == (other == object)
@@ -68,31 +97,6 @@ describe 'Veritas::Relation#==' do
     let(:other) { Set[ [ 2 ] ] }
 
     it { should be(false) }
-
-    it 'is symmetric' do
-      should == (other == object)
-    end
-  end
-
-  context 'with an equivalent header and equivalent body with attributes in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                               }
-    let(:attribute2) { [ :name, String  ]                               }
-    let(:header1)    { Relation::Header.new([ attribute1, attribute2 ]) }
-    let(:header2)    { Relation::Header.new([ attribute2, attribute1 ]) }
-    let(:object)     { klass.new(header1, [ [ 1, 'Dan Kubb' ] ].each)   }
-    let(:other)      { klass.new(header2, [ [ 'Dan Kubb', 1 ] ].each)   }
-
-    it { should be(true) }
-
-    it 'is symmetric' do
-      should == (other == object)
-    end
-  end
-
-  context 'with an equivalent relation of a different class' do
-    let(:other) { Class.new(klass).new(header, body) }
-
-    it { should be(true) }
 
     it 'is symmetric' do
       should == (other == object)

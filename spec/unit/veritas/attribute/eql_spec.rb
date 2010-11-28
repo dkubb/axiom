@@ -38,7 +38,7 @@ describe 'Veritas::Attribute#eql?' do
   end
 
   context 'with an object having a different name' do
-    let(:other_name) { :name                 }
+    let(:other_name) { :other_id             }
     let(:other)      { klass.new(other_name) }
 
     it { should be(false) }
