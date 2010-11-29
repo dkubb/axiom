@@ -86,6 +86,11 @@
       with the remaining relation.
     * Make sure the smallest relation (with a known size) is always the
       right-most operation.
+  * When a restriction uses a unique index:
+    * Order can be factored out
+    * Limit with a limit >= 1 can be factored out
+    * Offset with an offset > 0 can be transformed into an empty
+      relation, since at most there can be only one match.
 
 * Allow Inclusion match to accept a Relation
   * Ensure that Inclusion can have the left/right be an Array of
