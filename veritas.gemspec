@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-11-25}
+  s.date = %q{2010-12-23}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -123,7 +123,7 @@ Gem::Specification.new do |s|
      "lib/veritas/optimizer/relation/materialized.rb",
      "lib/veritas/optimizer/relation/operation.rb",
      "lib/veritas/optimizer/relation/operation/binary.rb",
-     "lib/veritas/optimizer/relation/operation/combine.rb",
+     "lib/veritas/optimizer/relation/operation/combination.rb",
      "lib/veritas/optimizer/relation/operation/limit.rb",
      "lib/veritas/optimizer/relation/operation/offset.rb",
      "lib/veritas/optimizer/relation/operation/order.rb",
@@ -135,7 +135,7 @@ Gem::Specification.new do |s|
      "lib/veritas/relation/materialized.rb",
      "lib/veritas/relation/operation.rb",
      "lib/veritas/relation/operation/binary.rb",
-     "lib/veritas/relation/operation/combine.rb",
+     "lib/veritas/relation/operation/combination.rb",
      "lib/veritas/relation/operation/limit.rb",
      "lib/veritas/relation/operation/offset.rb",
      "lib/veritas/relation/operation/order.rb",
