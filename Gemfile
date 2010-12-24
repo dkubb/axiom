@@ -29,6 +29,4 @@ platforms :mri_18 do
   end
 end
 
-platforms :jruby do
-  gem 'jruby-openssl', '~> 0.7.2'
-end
+gem 'jruby-openssl', '~> 0.7.2', :platforms => :jruby
