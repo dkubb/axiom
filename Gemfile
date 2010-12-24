@@ -24,7 +24,7 @@ platforms :mri_18 do
     gem 'reek',          '~> 1.2.8', :git => 'git://github.com/dkubb/reek.git'
     gem 'roodi',         '~> 2.1.0'
     gem 'ruby2ruby',     '=  1.2.2'
-    gem 'yard',          '~> 0.6.1'
+    gem 'yard',          '~> 0.6.4'
     gem 'yardstick',     '~> 0.2.0'
   end
 end
