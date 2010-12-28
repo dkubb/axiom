@@ -19,7 +19,7 @@ module Veritas
 
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
-    include AbstractClass, Immutable, ::Comparable
+    include AbstractClass, Immutable, ::Comparable, Visitable
 
     # The attribute name
     #

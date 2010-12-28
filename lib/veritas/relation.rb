@@ -13,7 +13,7 @@ require 'veritas/relation/empty'
 
 module Veritas
   class Relation
-    include Enumerable, Optimizable
+    include Enumerable, Optimizable, Visitable
 
     # The relation header
     #

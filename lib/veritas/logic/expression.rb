@@ -4,7 +4,7 @@ module Veritas
     # Abstract base class for logical expressions
     class Expression
       extend Aliasable
-      include AbstractClass, Optimizable, Immutable
+      include AbstractClass, Optimizable, Immutable, Visitable
 
       # Evaluate the expression using the operands
       #
