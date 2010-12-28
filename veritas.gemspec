@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2010-12-26}
+  s.date = %q{2010-12-27}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -150,6 +150,7 @@ Gem::Specification.new do |s|
      "lib/veritas/support/operation/binary.rb",
      "lib/veritas/support/operation/unary.rb",
      "lib/veritas/support/optimizable.rb",
+     "lib/veritas/support/visitable.rb",
      "lib/veritas/tuple.rb",
      "lib/veritas/version.rb",
      "spec/integration/veritas/algebra/difference/optimize_spec.rb",
@@ -739,6 +740,7 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/tuple/join_spec.rb",
      "spec/unit/veritas/tuple/project_spec.rb",
      "spec/unit/veritas/tuple/to_ary_spec.rb",
+     "spec/unit/veritas/visitable/accept_spec.rb",
      "tasks/ci.rake",
      "tasks/clean.rake",
      "tasks/quality/flay.rake",
@@ -1343,7 +1345,8 @@ Gem::Specification.new do |s|
      "spec/unit/veritas/tuple/inspect_spec.rb",
      "spec/unit/veritas/tuple/join_spec.rb",
      "spec/unit/veritas/tuple/project_spec.rb",
-     "spec/unit/veritas/tuple/to_ary_spec.rb"
+     "spec/unit/veritas/tuple/to_ary_spec.rb",
+     "spec/unit/veritas/visitable/accept_spec.rb"
   ]
 
   if s.respond_to? :specification_version then

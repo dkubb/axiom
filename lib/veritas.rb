@@ -11,6 +11,7 @@ require 'veritas/support/abstract_class'
 require 'veritas/support/aliasable'
 require 'veritas/support/immutable'
 require 'veritas/support/optimizable'
+require 'veritas/support/visitable'
 
 require 'veritas/support/operation/binary'
 require 'veritas/support/operation/unary'
