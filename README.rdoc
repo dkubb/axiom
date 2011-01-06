@@ -130,7 +130,7 @@ The third phase of this project will be to add a few NoSQL engines (like MongoDB
   them is laid, or may be more applicable in a plugin.
 * Fork the project.
 * Make your feature addition or bug fix.
-  * Follow this styleguide: https://github.com/dkubb/styleguide
+  * Follow this "style guide"[https://github.com/dkubb/styleguide].
 * Add specs for it. This is important so I don't break it in a
   future version unintentionally. Tests must cover all branches
   within the code, and code must be fully covered.
