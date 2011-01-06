@@ -1,3 +1,7 @@
+* Rename usage of "range" for attributes to "domain"
+  * Functions will have both a range and domain, but attributes
+    only have a domain.
+
 * Add Extension and Summarization Functions
   * Overview: http://gist.github.com/584588
 
