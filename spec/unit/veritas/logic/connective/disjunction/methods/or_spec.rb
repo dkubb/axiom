@@ -8,7 +8,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
     let(:klass)     { DisjunctionMethodsSpecs::Object            }
     let(:header)    { Relation::Header.new([ [ :id, Integer ] ]) }
     let(:predicate) { header[:id].eq(1)                          }
-    let(:object)    { klass.new                                  }
+    let(:object)    { klass.new.freeze                           }
 
     it 'returns a disjunction of the proposition and predicate' do
       should eql(Logic::Connective::Disjunction.new(object, predicate))

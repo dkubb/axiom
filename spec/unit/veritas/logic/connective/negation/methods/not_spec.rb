@@ -14,6 +14,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
       def object.eql?(other)
         equal?(other)
       end
+      object.freeze
     end
 
     it 'returns a conjunction of the proposition and a inverted predicate' do

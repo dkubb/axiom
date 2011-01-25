@@ -22,7 +22,7 @@ module Veritas
       #
       # @api private
       def initialize(operand)
-        @operand = operand
+        @operand = Immutable.freeze_object(operand)
       end
 
       # Compare the operation with the other operation for equality

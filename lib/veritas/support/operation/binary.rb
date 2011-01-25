@@ -34,8 +34,8 @@ module Veritas
       #
       # @api private
       def initialize(left, right)
-        @left  = left
-        @right = right
+        @left  = Immutable.freeze_object(left)
+        @right = Immutable.freeze_object(right)
       end
 
       # Compare the operation with the other operation for equality

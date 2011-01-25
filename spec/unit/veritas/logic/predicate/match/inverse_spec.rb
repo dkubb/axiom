@@ -5,7 +5,7 @@ describe 'Veritas::Logic::Predicate::Match#inverse' do
 
   let(:klass)     { Logic::Predicate::Match      }
   let(:attribute) { Attribute::String.new(:name) }
-  let(:regexp)    { /Dan Kubb/                   }
+  let(:regexp)    { /Dan Kubb/.freeze            }
   let(:object)    { klass.new(attribute, regexp) }
 
   it_should_behave_like 'an idempotent method'
