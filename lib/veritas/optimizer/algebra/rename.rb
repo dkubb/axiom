@@ -43,7 +43,7 @@ module Veritas
           operation.class.new(operand.operand, aliases)
         end
 
-        # Union the operaation aliases with any operand aliases
+        # Union the operation aliases with any operand aliases
         #
         # @param [Rename::Aliases]
         #   the original aliases

@@ -35,7 +35,7 @@ module Veritas
             Predicate.optimize_operand(operation.operand)
           end
 
-          # Optimzie when the operand can be inverted
+          # Optimize when the operand can be inverted
           class InvertibleOperand < self
 
             # Test if the operand can be inverted

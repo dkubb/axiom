@@ -117,7 +117,7 @@ module Veritas
           header.project(attributes)
         end
 
-        # Return a relation with only the attribtues specified
+        # Return a relation with only the attributes specified
         #
         # @param [Relation] operand
         #   the relation to project

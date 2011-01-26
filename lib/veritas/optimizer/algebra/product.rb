@@ -18,7 +18,7 @@ module Veritas
             left.header.empty? && !left.kind_of?(Veritas::Relation::Empty)
           end
 
-          # A Product wih a left TABLE DEE is equivalent to the right operand
+          # A Product with a left TABLE DEE is equivalent to the right operand
           #
           # @return [Relation]
           #
@@ -42,7 +42,7 @@ module Veritas
             right.header.empty? && !right.kind_of?(Veritas::Relation::Empty)
           end
 
-          # A Product wih a right TABLE DEE is equivalent to the left operand
+          # A Product with a right TABLE DEE is equivalent to the left operand
           #
           # @return [Relation]
           #
