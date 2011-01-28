@@ -27,6 +27,8 @@
 
 * Add further optimizations:
   * Operation Order:
+    * Projection containing an Order
+      * Should remove the Order, since it is a noop
     * Projection should follow Rename
       * When a Projection contains a Restriction, wrap the Projection
         in the Restriction, projecting away any attributes not used in
