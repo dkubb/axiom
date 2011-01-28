@@ -7,14 +7,12 @@ describe 'Veritas::Algebra::Projection#directions' do
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
   let(:object)   { klass.new(operand, [ :id ])                                                  }
 
-  context 'containing a relation' do
+  context 'containing an unordered relation' do
     let(:operand) { relation }
 
     it_should_behave_like 'an idempotent method'
 
-    it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
-
-    it { should be_empty }
+    it { should equal(Relation::Operation::Order::DirectionSet::EMPTY) }
   end
 
   context 'containing an ordered relation' do
@@ -22,8 +20,6 @@ describe 'Veritas::Algebra::Projection#directions' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
-
-    it { should == [ operand[:id].asc ] }
+    it { should equal(Relation::Operation::Order::DirectionSet::EMPTY) }
   end
 end
