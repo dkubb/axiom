@@ -61,6 +61,29 @@ module Veritas
           end
         end
 
+        # Optimize when the headers are not changed
+        class UnchangedHeader < self
+
+          # Test if the renamed headers are the same as the operand's
+          #
+          # @return [Boolean]
+          #
+          # @api private
+          def optimizable?
+            header.to_a == operand.header.to_a
+          end
+
+          # A Rename with unchanged headers is a noop
+          #
+          # @return [Relation]
+          #
+          # @api private
+          def optimize
+            operand
+          end
+
+        end # class UnchangedHeader
+
         # Optimize when the operand is a Rename with aliases that cancel out
         class RenameOperandAndEmptyAliases < self
 
@@ -350,6 +373,7 @@ module Veritas
         end # class UnoptimizedOperand
 
         Veritas::Algebra::Rename.optimizer = chain(
+          UnchangedHeader,
           RenameOperandAndEmptyAliases,
           RenameOperand,
           ProjectionOperand,
