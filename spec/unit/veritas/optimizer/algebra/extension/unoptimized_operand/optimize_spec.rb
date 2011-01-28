@@ -8,7 +8,7 @@ describe 'Veritas::Optimizer::Algebra::Extension::UnoptimizedOperand#optimize' d
   let(:base)      { Relation.new(header, [ [ 1 ] ].each)              }
   let(:attribute) { Attribute::Object.new(:text)                      }
   let(:function)  { lambda { |tuple| 1 }                              }
-  let(:operand)   { base.project(header)                              }
+  let(:operand)   { base.rename({})                                   }
   let(:relation)  { operand.extend { |r| r.add(attribute, function) } }
   let(:object)    { klass.new(relation)                               }
 

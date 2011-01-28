@@ -15,14 +15,14 @@ describe 'Veritas::Optimizer::Algebra::Restriction::UnoptimizedOperand#optimizab
 
   context 'when the operand and predicate is optimizable' do
     let(:predicate) { Logic::Connective::Negation.new(header[:id].eq(1)) }
-    let(:operand)   { base.project(header)                               }
+    let(:operand)   { base.rename({})                                    }
 
     it { should be(true) }
   end
 
   context 'when the operand is optimizable, but the predicate is not optimizable' do
-    let(:predicate) { header[:id].eq(1)    }
-    let(:operand)   { base.project(header) }
+    let(:predicate) { header[:id].eq(1) }
+    let(:operand)   { base.rename({})   }
 
     it { should be(true) }
   end

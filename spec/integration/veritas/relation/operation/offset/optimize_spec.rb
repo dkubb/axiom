@@ -41,7 +41,7 @@ describe 'Veritas::Relation::Operation::Offset#optimize' do
   end
 
   context 'containing an optimizable order operation' do
-    let(:operand) { order.project(order.header) }
+    let(:operand) { order.rename({}) }
 
     it { should be_kind_of(klass) }
 

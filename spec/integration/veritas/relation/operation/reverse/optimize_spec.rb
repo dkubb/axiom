@@ -32,7 +32,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
 
   context 'with a object operation when optimized' do
     let(:limit)   { order.take(2)                       }
-    let(:operand) { limit.reverse.project(limit.header) }
+    let(:operand) { limit.reverse.rename({}) }
 
     it 'cancels out the operations and return the contained operation' do
       should equal(limit)
@@ -66,7 +66,7 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
   end
 
   context 'with an order operation when optimized' do
-    let(:operand) { order.project(order.header) }
+    let(:operand) { order.rename({}) }
 
     it { should eql(relation.order(object.directions)) }
 
@@ -83,8 +83,8 @@ describe 'Veritas::Relation::Operation::Reverse#optimize' do
   end
 
   context 'with an optimizable operation' do
-    let(:limit)   { order.take(2)               }
-    let(:operand) { limit.project(limit.header) }
+    let(:limit)   { order.take(2)    }
+    let(:operand) { limit.rename({}) }
 
     it { should eql(order.take(2).reverse) }
 

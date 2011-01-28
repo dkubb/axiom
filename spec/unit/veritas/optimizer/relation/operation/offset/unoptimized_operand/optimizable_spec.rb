@@ -14,7 +14,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Offset::UnoptimizedOperand#op
   end
 
   context 'when the operand is optimizable' do
-    let(:operand) { base.project(header) }
+    let(:operand) { base.rename({}) }
 
     it { should be(true) }
   end
