@@ -20,6 +20,7 @@ module Veritas
         #
         # @api public
         def self.new(operand, directions)
+          directions = operand.header if directions.empty?
           directions = DirectionSet.coerce(directions)
           assert_order_by_full_header(operand, directions)
           super
