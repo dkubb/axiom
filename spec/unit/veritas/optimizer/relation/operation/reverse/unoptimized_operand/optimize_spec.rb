@@ -4,7 +4,8 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::UnoptimizedOperand#o
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Relation::Operation::Reverse::UnoptimizedOperand }
-  let(:order)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order    }
+  let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)          }
+  let(:order)    { base.order                                                  }
   let(:relation) { order.reverse                                               }
   let(:object)   { klass.new(relation)                                         }
 
@@ -12,11 +13,11 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::UnoptimizedOperand#o
     object.operation.should be_kind_of(Relation::Operation::Reverse)
   end
 
-  it { should be_kind_of(Relation::Operation::Reverse) }
+  it { should be_kind_of(Relation::Operation::Order) }
 
   it { should_not equal(relation) }
 
-  its(:operand) { should equal(order) }
+  its(:operand) { should equal(base) }
 
   its(:directions) { should eql(relation.directions) }
 end

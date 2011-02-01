@@ -25,7 +25,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.reverse.new(right, left)
+              operation.class.reverse.new(right, left).optimize
             end
 
           end # class NormalizableOperands

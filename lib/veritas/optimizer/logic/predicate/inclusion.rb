@@ -32,7 +32,7 @@ module Veritas
             #
             # @api private
             def optimize
-              Veritas::Logic::Predicate::Equality.new(left, right.first)
+              Veritas::Logic::Predicate::Equality.new(left, right.first).optimize
             end
 
           end # class OneRightOperand

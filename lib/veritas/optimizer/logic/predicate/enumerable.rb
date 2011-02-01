@@ -128,7 +128,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.new(left, right)
+              operation.class.new(left, right).optimize
             end
 
           end # class UnoptimizedOperand

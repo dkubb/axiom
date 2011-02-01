@@ -40,7 +40,7 @@ module Veritas
         #
         # @api private
         def wrap_operand
-          operation.class.new(operand.operand, aliases)
+          operation.class.new(operand.operand, aliases).optimize
         end
 
         # Union the operation aliases with any operand aliases
@@ -125,7 +125,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, aliases)
+            operation.class.new(operand.operand, aliases).optimize
           end
 
         end # class RenameOperand
@@ -216,7 +216,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, aliases)
+            operation.class.new(operand.left, aliases).optimize
           end
 
           # Utility method to wrap the right operand in a Rename
@@ -225,7 +225,7 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, aliases)
+            operation.class.new(operand.right, aliases).optimize
           end
 
         end # class SetOperand
@@ -367,7 +367,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, aliases)
+            operation.class.new(operand, aliases).optimize
           end
 
         end # class UnoptimizedOperand

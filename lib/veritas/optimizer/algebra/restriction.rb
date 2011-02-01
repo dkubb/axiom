@@ -30,7 +30,7 @@ module Veritas
         #
         # @api private
         def wrap_operand
-          operation.class.new(operand.operand, predicate)
+          operation.class.new(operand.operand, predicate).optimize
         end
 
         # Optimize the predicate if possible
@@ -108,7 +108,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, optimized_predicate)
+            operation.class.new(operand.operand, optimized_predicate).optimize
           end
 
         private
@@ -153,7 +153,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, predicate)
+            operation.class.new(operand.left, predicate).optimize
           end
 
           # Utility method to wrap the right operand in a Restriction
@@ -162,7 +162,7 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, predicate)
+            operation.class.new(operand.right, predicate).optimize
           end
 
         end # class SetOperand
@@ -234,7 +234,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, predicate)
+            operation.class.new(operand, predicate).optimize
           end
 
         end # class UnoptimizedOperand

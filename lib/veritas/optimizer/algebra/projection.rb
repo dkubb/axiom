@@ -63,7 +63,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, header)
+            operation.class.new(operand.operand, header).optimize
           end
 
         end # class ProjectionOperand
@@ -97,7 +97,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, header)
+            operation.class.new(operand.left, header).optimize
           end
 
           # Utility method to wrap the right operand in a Projection
@@ -106,7 +106,7 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, header)
+            operation.class.new(operand.right, header).optimize
           end
 
         end # class SetOperand
@@ -152,7 +152,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, header)
+            operation.class.new(operand, header).optimize
           end
 
         end # class UnoptimizedOperand
