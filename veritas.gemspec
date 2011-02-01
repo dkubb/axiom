@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2011-01-27}
+  s.date = %q{2011-01-31}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -163,6 +163,7 @@ Gem::Specification.new do |s|
      "spec/integration/veritas/algebra/projection_spec.rb",
      "spec/integration/veritas/algebra/rename/optimize_spec.rb",
      "spec/integration/veritas/algebra/restriction/optimize_spec.rb",
+     "spec/integration/veritas/algebra/summarization_spec.rb",
      "spec/integration/veritas/algebra/union/optimize_spec.rb",
      "spec/integration/veritas/logic/connective/conjunction/optimize_spec.rb",
      "spec/integration/veritas/logic/connective/disjunction/optimize_spec.rb",
@@ -773,6 +774,7 @@ Gem::Specification.new do |s|
      "spec/integration/veritas/algebra/projection_spec.rb",
      "spec/integration/veritas/algebra/rename/optimize_spec.rb",
      "spec/integration/veritas/algebra/restriction/optimize_spec.rb",
+     "spec/integration/veritas/algebra/summarization_spec.rb",
      "spec/integration/veritas/algebra/union/optimize_spec.rb",
      "spec/integration/veritas/logic/connective/conjunction/optimize_spec.rb",
      "spec/integration/veritas/logic/connective/disjunction/optimize_spec.rb",
