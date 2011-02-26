@@ -1,3 +1,8 @@
+* Raise an exception if a rename is going to duplicate and existing
+  header attribute.
+
+* Raise an exception if a rename has aliases with duplicate names.
+
 * Rename usage of "range" for attributes to "domain"
   * Functions will have both a range and domain, but attributes
     only have a domain.
@@ -26,6 +31,9 @@
     if any.
 
 * Add further optimizations:
+  * Projection
+    * When it contains a Rename, if the renamed attributes are projected
+      away, then the rename can be removed.
   * Operation Order:
     * Projection containing an Order
       * Should remove the Order, since it is a noop
