@@ -5,8 +5,8 @@ module Veritas
   # Abstract base class for Relation operations
   class Relation
     include Immutable
-  end
-end
+  end # class Relation
+end # module Veritas
 
 require 'veritas/relation/materialized'
 require 'veritas/relation/empty'
