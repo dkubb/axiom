@@ -20,6 +20,7 @@ tmtags
 *.gem
 coverage
 profiling
+turbulence
 rdoc
 pkg
 tmp
