@@ -5,6 +5,17 @@ module Veritas
       # A mixin for predicates matching an enumerable
       module Enumerable
 
+        # Return the method to test the enumerable with
+        #
+        # @param [#cover?, #include?] enumerable
+        #
+        # @return [Symbol]
+        #
+        # @api private
+        def self.compare_method(enumerable)
+          enumerable.respond_to?(:cover?) ? :cover? : :include?
+        end
+
         # Initialize an Enumerable predicate
         #
         # @param [Object] left

@@ -63,7 +63,7 @@ module Veritas
       #
       # @api public
       def valid_value?(value)
-        valid_or_optional?(value) { super && size.include?(value) }
+        valid_or_optional?(value) { super && size.cover?(value) }
       end
 
       # Test if the attribute can be joined with the other attribute

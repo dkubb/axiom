@@ -29,7 +29,7 @@ class Range
   #
   # @api public
   def overlaps?(other)
-    include?(other.first) || other.include?(first)
+    cover?(other.first) || other.cover?(first)
   end unless method_defined? :overlaps?
 
 end # class Range
