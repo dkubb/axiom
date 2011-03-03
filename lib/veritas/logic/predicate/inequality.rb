@@ -62,7 +62,7 @@ module Veritas
           # Compare the left to see if it is not equal to the right
           #
           # @example
-          #   inequality = expression.eq(other)
+          #   inequality = expression.ne(other)
           #
           # @param [Expression] other
           #

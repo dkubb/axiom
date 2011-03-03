@@ -54,11 +54,11 @@ module Veritas
           # Compare the left to see if it is included in the right
           #
           # @example
-          #   exclusion = attribute.exclude([ 1, 2, 3 ])
+          #   inclusion = attribute.include([ 1, 2, 3 ])
           #
           # @param [Expression] other
           #
-          # @return [Exclusion]
+          # @return [Inclusion]
           #
           # @api public
           def include(other)
