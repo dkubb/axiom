@@ -29,8 +29,8 @@ module Veritas
         # @api private
         def initialize(left, right)
           super
-          @header     = left.header     | right.header
-          @directions = left.directions | right.directions
+          @header     = left.header | right.header
+          @directions = Relation::Operation::Order::DirectionSet::EMPTY
         end
 
         module ClassMethods

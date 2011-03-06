@@ -13,5 +13,5 @@ describe 'Veritas::Relation::Operation::Binary#directions' do
 
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
-  it { should == [ left[:id].asc, right[:name].asc ] }
+  it { should be_empty }
 end
