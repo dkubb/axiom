@@ -1,7 +1,7 @@
 source :rubygems
 
 group :development do
-  gem 'backports', '~> 2.0.1'
+  gem 'backports', '=  1.8.2'  # TODO: upgrade once rbx bug is resolved
   gem 'jeweler',   '~> 1.5.2'
   gem 'rake',      '~> 0.8.7'
   gem 'rspec',     '~> 1.3.1'
