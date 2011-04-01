@@ -30,7 +30,7 @@ module Veritas
         #
         # @api private
         def wrap_operand
-          operation.class.new(operand.operand, predicate).optimize
+          operation.class.new(operand.operand, predicate)
         end
 
         # Optimize the predicate if possible
@@ -108,7 +108,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, optimized_predicate).optimize
+            operation.class.new(operand.operand, optimized_predicate)
           end
 
         private
@@ -142,7 +142,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_left, wrap_right).optimize
+            operand.class.new(wrap_left, wrap_right)
           end
 
         private
@@ -153,7 +153,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, predicate).optimize
+            operation.class.new(operand.left, predicate)
           end
 
           # Utility method to wrap the right operand in a Restriction
@@ -162,7 +162,7 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, predicate).optimize
+            operation.class.new(operand.right, predicate)
           end
 
         end # class SetOperand
@@ -185,7 +185,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_operand).optimize
+            operand.class.new(wrap_operand)
           end
 
         end # class ReverseOperand
@@ -209,7 +209,7 @@ module Veritas
           # @api private
           def optimize
             operand = self.operand
-            operand.class.new(wrap_operand, operand.directions).optimize
+            operand.class.new(wrap_operand, operand.directions)
           end
 
         end # class OrderOperand
@@ -234,7 +234,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, predicate).optimize
+            operation.class.new(operand, predicate)
           end
 
         end # class UnoptimizedOperand

@@ -40,7 +40,7 @@ module Veritas
         #
         # @api private
         def wrap_operand
-          operation.class.new(operand.operand, aliases).optimize
+          operation.class.new(operand.operand, aliases)
         end
 
         # Union the operation aliases with any operand aliases
@@ -125,7 +125,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand.operand, aliases).optimize
+            operation.class.new(operand.operand, aliases)
           end
 
         end # class RenameOperand
@@ -148,7 +148,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_operand, header).optimize
+            operand.class.new(wrap_operand, header)
           end
 
         end # class ProjectionOperand
@@ -171,7 +171,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_operand, rename_predicate).optimize
+            operand.class.new(wrap_operand, rename_predicate)
           end
 
         private
@@ -205,7 +205,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_left, wrap_right).optimize
+            operand.class.new(wrap_left, wrap_right)
           end
 
         private
@@ -216,7 +216,7 @@ module Veritas
           #
           # @api private
           def wrap_left
-            operation.class.new(operand.left, aliases).optimize
+            operation.class.new(operand.left, aliases)
           end
 
           # Utility method to wrap the right operand in a Rename
@@ -225,7 +225,7 @@ module Veritas
           #
           # @api private
           def wrap_right
-            operation.class.new(operand.right, aliases).optimize
+            operation.class.new(operand.right, aliases)
           end
 
         end # class SetOperand
@@ -248,7 +248,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_operand).optimize
+            operand.class.new(wrap_operand)
           end
 
         end # class ReverseOperand
@@ -271,7 +271,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operand.class.new(wrap_operand, operation.directions).optimize
+            operand.class.new(wrap_operand, operation.directions)
           end
 
         end # class OrderOperand
@@ -295,7 +295,7 @@ module Veritas
           # @api private
           def optimize
             operand = self.operand
-            operand.class.new(wrap_operand, operand.limit).optimize
+            operand.class.new(wrap_operand, operand.limit)
           end
 
         end # class LimitOperand
@@ -319,7 +319,7 @@ module Veritas
           # @api private
           def optimize
             operand = self.operand
-            operand.class.new(wrap_operand, operand.offset).optimize
+            operand.class.new(wrap_operand, operand.offset)
           end
 
         end # class OffsetOperand
@@ -367,7 +367,7 @@ module Veritas
           #
           # @api private
           def optimize
-            operation.class.new(operand, aliases).optimize
+            operation.class.new(operand, aliases)
           end
 
         end # class UnoptimizedOperand

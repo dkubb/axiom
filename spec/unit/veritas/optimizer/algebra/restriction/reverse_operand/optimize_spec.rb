@@ -6,6 +6,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction::ReverseOperand#optimize' do
   let(:klass)     { Optimizer::Algebra::Restriction::ReverseOperand          }
   let(:order)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
   let(:predicate) { order[:id].eq(1)                                         }
+  let(:relation)  { order.take(2).reverse.restrict(predicate)                }
   let(:object)    { klass.new(relation)                                      }
 
   before do
@@ -13,19 +14,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction::ReverseOperand#optimize' do
     object.operand.should be_kind_of(Relation::Operation::Reverse)
   end
 
-  context 'when new operation is optimizable' do
-    let(:relation) { order.take(2).restrict(predicate).reverse.restrict(predicate) }
+  it { should be_kind_of(Relation::Operation::Reverse) }
 
-    it { should be_kind_of(Relation::Operation::Reverse) }
-
-    its(:operand) { should eql(order.take(2).restrict(predicate)) }
-  end
-
-  context 'when new operation is not optimizable' do
-    let(:relation) { order.take(2).reverse.restrict(predicate) }
-
-    it { should be_kind_of(Relation::Operation::Reverse) }
-
-    its(:operand) { should eql(order.take(2).restrict(predicate)) }
-  end
+  its(:operand) { should eql(order.take(2).restrict(predicate)) }
 end

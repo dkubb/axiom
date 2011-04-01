@@ -92,7 +92,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.new(operand.operand, min_limit).optimize
+              operation.class.new(operand.operand, min_limit)
             end
 
           private
@@ -126,7 +126,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.new(operand, limit).optimize
+              operation.class.new(operand, limit)
             end
 
           end # class UnoptimizedOperand

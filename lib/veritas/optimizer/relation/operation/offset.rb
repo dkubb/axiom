@@ -58,7 +58,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.new(operand.operand, sum_offset).optimize
+              operation.class.new(operand.operand, sum_offset)
             end
 
           private
@@ -92,7 +92,7 @@ module Veritas
             #
             # @api private
             def optimize
-              operation.class.new(operand, offset).optimize
+              operation.class.new(operand, offset)
             end
 
           end # class UnoptimizedOperand

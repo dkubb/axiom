@@ -6,7 +6,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::UnoptimizedOperand#o
   let(:klass)    { Optimizer::Relation::Operation::Reverse::UnoptimizedOperand }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)          }
   let(:order)    { base.order                                                  }
-  let(:relation) { order.reverse                                               }
+  let(:relation) { order.rename({}).reverse                                    }
   let(:object)   { klass.new(relation)                                         }
 
   before do
@@ -17,7 +17,7 @@ describe 'Veritas::Optimizer::Relation::Operation::Reverse::UnoptimizedOperand#o
 
   it { should_not equal(relation) }
 
-  its(:operand) { should equal(base) }
+  its(:operand) { should equal(order) }
 
   its(:directions) { should eql(relation.directions) }
 end

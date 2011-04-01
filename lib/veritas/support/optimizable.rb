@@ -29,10 +29,11 @@ module Veritas
     #   the optimized operation
     #
     # @api public
-    def optimize(optimizer = self.class.optimizer)
-      return self if optimizer.nil?
+    #
+    # @todo simplify by setting a default Noop optimizer for all relations
+    def optimize(optimizer = self.class.optimizer || Optimizer::Noop)
       optimized = optimizer.call(self)
-      optimized.memoize(:optimize, optimized)
+      equal?(optimized) ? self : optimized.optimize
     end
 
     memoize :optimize

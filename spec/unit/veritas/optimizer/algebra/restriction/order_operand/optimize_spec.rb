@@ -6,6 +6,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction::OrderOperand#optimize' do
   let(:klass)     { Optimizer::Algebra::Restriction::OrderOperand      }
   let(:base)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:predicate) { base[:id].eq(1)                                    }
+  let(:relation)  { base.order.restrict(predicate)                     }
   let(:object)    { klass.new(relation)                                }
 
   before do
@@ -13,19 +14,7 @@ describe 'Veritas::Optimizer::Algebra::Restriction::OrderOperand#optimize' do
     object.operand.should be_kind_of(Relation::Operation::Order)
   end
 
-  context 'when new operation is optimizable' do
-    let(:relation) { base.restrict(predicate).order.restrict(predicate) }
+  it { should be_kind_of(Relation::Operation::Order) }
 
-    it { should be_kind_of(Relation::Operation::Order) }
-
-    its(:operand) { should eql(base.restrict(predicate)) }
-  end
-
-  context 'when new operation is not optimizable' do
-    let(:relation) { base.order.restrict(predicate) }
-
-    it { should be_kind_of(Relation::Operation::Order) }
-
-    its(:operand) { should eql(base.restrict(predicate)) }
-  end
+  its(:operand) { should eql(base.restrict(predicate)) }
 end

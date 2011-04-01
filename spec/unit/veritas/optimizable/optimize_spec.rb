@@ -18,7 +18,7 @@ describe 'Veritas::Optimizable#optimize' do
 
     before do
       klass.optimizer = optimizer
-      optimized.stub!(:memoize).and_return(optimized)
+      optimized.stub!(:optimize).and_return(optimized)
     end
 
     it { should equal(optimized) }
@@ -28,8 +28,8 @@ describe 'Veritas::Optimizable#optimize' do
       should equal(optimized)
     end
 
-    it "memoizes the optimized value for it's own #optimize" do
-      optimized.should_receive(:memoize).with(:optimize, optimized).and_return(optimized)
+    it '#optimize the optimized object' do
+      optimized.should_receive(:optimize).with(no_args).and_return(optimized)
       should equal(optimized)
     end
   end

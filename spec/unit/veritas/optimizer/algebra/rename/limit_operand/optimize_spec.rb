@@ -6,7 +6,8 @@ describe 'Veritas::Optimizer::Algebra::Rename::LimitOperand#optimize' do
   let(:klass)    { Optimizer::Algebra::Rename::LimitOperand    }
   let(:header)   { Relation::Header.new([ [ :id, Integer ] ])  }
   let(:base)     { Relation.new(header, [ [ 1 ] ].each)        }
-  let(:relation) { base.order.take(2).rename(:id => :other_id) }
+  let(:order)    { base.order                                  }
+  let(:relation) { order.take(2).rename(:id => :other_id)      }
   let(:object)   { klass.new(relation)                         }
 
   before do
@@ -16,7 +17,7 @@ describe 'Veritas::Optimizer::Algebra::Rename::LimitOperand#optimize' do
 
   it { should be_kind_of(Relation::Operation::Limit) }
 
-  its(:operand) { should eql(base.rename(:id => :other_id).order) }
+  its(:operand) { should eql(order.rename(:id => :other_id)) }
 
   its(:limit) { should == 2 }
 end

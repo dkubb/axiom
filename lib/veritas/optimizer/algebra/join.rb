@@ -23,7 +23,7 @@ module Veritas
           #
           # @api private
           def optimize
-            Veritas::Algebra::Intersection.new(left, right).optimize
+            Veritas::Algebra::Intersection.new(left, right)
           end
 
         end # class EqualHeaders

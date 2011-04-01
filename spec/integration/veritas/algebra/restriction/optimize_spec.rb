@@ -182,95 +182,11 @@ describe 'Veritas::Algebra::Restriction#optimize' do
     it_should_behave_like 'an optimize method'
   end
 
-  context 'with a set operation, containing a object with duplicate predicates' do
-    let(:left)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)                              }
-    let(:right)     { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each)                              }
-    let(:operand)   { left.restrict { |r| r[:id].gte(1) }.union(right.restrict { |r| r[:id].gte(1) }) }
-    let(:predicate) { operand[:id].gte(1)                                                             }
-
-    it 'pushes the object to each relation, and then removes duplicate predicates' do
-      should eql(left.restrict { |r| r[:id].gte(1) }.union(right.restrict { |r| r[:id].gte(1) }))
-    end
-
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == object
-    end
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
-
-    it_should_behave_like 'an optimize method'
-  end
-
-  context 'with a reverse operation' do
-    let(:limit)     { relation.order.take(2) }
-    let(:operand)   { limit.reverse          }
-    let(:predicate) { operand[:id].gte(1)    }
-
-    it 'pushes the object under the reverse' do
-      should eql(limit.restrict(predicate).reverse)
-    end
-
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == object
-    end
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
-
-    it_should_behave_like 'an optimize method'
-  end
-
-  context 'with a reverse operation, containing a object with duplicate predicates' do
-    let(:limit)     { relation.order.take(2)                       }
-    let(:operand)   { limit.restrict { |r| r[:id].gte(1) }.reverse }
-    let(:predicate) { operand[:id].gte(1)                          }
-
-    it 'pushes the object under the reverse, and then removes duplicate predicates' do
-      should eql(limit.restrict(predicate).reverse)
-    end
-
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == object
-    end
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
-
-    it_should_behave_like 'an optimize method'
-  end
-
   context 'with an order operation' do
     let(:operand)   { relation.order      }
     let(:predicate) { operand[:id].gte(1) }
 
     it 'pushes the object under the order' do
-      should eql(relation.restrict(predicate).order)
-    end
-
-    it 'returns an equivalent relation to the unoptimized operation' do
-      should == object
-    end
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
-
-    it_should_behave_like 'an optimize method'
-  end
-
-  context 'with an order operation, containing a object with duplicate predicates' do
-    let(:operand)   { relation.restrict { |r| r[:id].gte(1) }.order }
-    let(:predicate) { operand[:id].gte(1)                           }
-
-    it 'pushes the object under the order, and then removes duplicate predicates' do
       should eql(relation.restrict(predicate).order)
     end
 
