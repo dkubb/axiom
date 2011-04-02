@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Unary::MaterializedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Optimizer::Relation::Operation::Unary::MaterializedOperand          }
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).project([ :id ]) }
-  let(:object)   { klass.new(relation)                                                 }
+  let(:object)   { described_class.new(relation)                                       }
 
   it { should be_kind_of(Relation::Materialized) }
 

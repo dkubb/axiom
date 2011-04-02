@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::RenameOperandAndEmptyAliases, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Algebra::Rename::RenameOperandAndEmptyAliases      }
   let(:header)   { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
   let(:base)     { Relation.new(header, [ [ 1, 'Dan Kubb' ] ].each)              }
   let(:relation) { operand.rename(aliases)                                       }
-  let(:object)   { klass.new(relation)                                           }
+  let(:object)   { described_class.new(relation)                                 }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

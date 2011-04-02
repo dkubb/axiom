@@ -3,18 +3,17 @@ require 'spec_helper'
 describe Relation, '#optimize' do
   subject { object.optimize(*args) }
 
-  let(:klass)  { Relation                                        }
-  let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+  let(:object) { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 
   before do
-    object.should be_instance_of(klass)
+    object.should be_instance_of(described_class)
   end
 
   context 'with no optimizer' do
     let(:args) { [] }
 
     it 'calls self.class.optimizer' do
-      klass.should_receive(:optimizer).and_return(nil)
+      described_class.should_receive(:optimizer).and_return(nil)
       subject
     end
 
@@ -24,8 +23,8 @@ describe Relation, '#optimize' do
   end
 
   context 'with an optimizer' do
-    let(:optimized) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-    let(:args)      { [ lambda { |relation| optimized } ]             }
+    let(:optimized) { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+    let(:args)      { [ lambda { |relation| optimized } ]                       }
 
     it { should equal(optimized) }
 

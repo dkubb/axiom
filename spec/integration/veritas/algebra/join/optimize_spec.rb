@@ -3,14 +3,13 @@ require 'spec_helper'
 describe Algebra::Join, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)          { Algebra::Join                                                     }
   let(:left_body)      { [ [ 1 ], [ 2 ] ].each                                             }
   let(:right_body)     { [ [ 2, 'Dan Kubb' ] ].each                                        }
   let(:original_left)  { Relation.new([ [ :id, Integer ] ],                    left_body)  }
   let(:original_right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], right_body) }
   let(:left)           { original_left                                                     }
   let(:right)          { original_right                                                    }
-  let(:object)         { klass.new(left, right)                                            }
+  let(:object)         { described_class.new(left, right)                                  }
 
   context 'left is an empty relation' do
     let(:left) { Relation::Empty.new(original_left.header) }

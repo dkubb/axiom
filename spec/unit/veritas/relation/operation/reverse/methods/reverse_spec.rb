@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Relation::Operation::Reverse::Methods, '#reverse' do
   subject { object.reverse }
 
-  let(:klass)    { Relation                                               }
-  let(:relation) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
-  let(:object)   { relation.order                                         }
+  let(:described_class) { Relation                                                         }
+  let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
+  let(:object)          { relation.order                                                   }
 
   it { should be_kind_of(Relation::Operation::Reverse) }
 

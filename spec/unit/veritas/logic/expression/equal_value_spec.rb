@@ -4,11 +4,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Logic::Expression, '#==' do
   subject { object == other }
 
-  let(:klass)  { Class.new(ExpressionSpecs::Object) }
-  let(:object) { klass.new                          }
+  let(:described_class) { Class.new(ExpressionSpecs::Object) }
+  let(:object)          { described_class.new                }
 
   before do
-    klass.class_eval do
+    described_class.class_eval do
       def eql?(other)
         instance_of?(other.class)
       end
@@ -36,8 +36,8 @@ describe Logic::Expression, '#==' do
   end
 
   context 'with two equivalent unoptimized object' do
-    let(:object) { klass.new & klass.new }
-    let(:other)  { klass.new & klass.new }
+    let(:object) { described_class.new & described_class.new }
+    let(:other)  { described_class.new & described_class.new }
 
     it { should be(true) }
 
@@ -47,9 +47,9 @@ describe Logic::Expression, '#==' do
   end
 
   context 'with two different unoptimized object' do
-    let(:object)   { klass.new & klass.new       }
-    let(:subclass) { Class.new(klass)            }
-    let(:other)    { subclass.new & subclass.new }
+    let(:object)   { described_class.new & described_class.new }
+    let(:subclass) { Class.new(described_class)                }
+    let(:other)    { subclass.new & subclass.new               }
 
     it { should be(false) }
 

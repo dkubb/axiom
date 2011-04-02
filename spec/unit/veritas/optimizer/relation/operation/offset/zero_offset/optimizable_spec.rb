@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Offset::ZeroOffset, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Relation::Operation::Offset::ZeroOffset       }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
   let(:relation) { base.drop(offset)                                        }
-  let(:object)   { klass.new(relation)                                      }
+  let(:object)   { described_class.new(relation)                            }
 
   before do
     object.operation.should be_kind_of(Relation::Operation::Offset)

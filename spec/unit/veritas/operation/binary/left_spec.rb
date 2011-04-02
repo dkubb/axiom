@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Operation::Binary, '#left' do
   subject { object.left }
 
-  let(:klass)  { Class.new { include Operation::Binary } }
-  let(:right)  { 'Right'                                 }
-  let(:object) { klass.new(left, right)                  }
+  let(:described_class) { Class.new { include Operation::Binary } }
+  let(:right)           { 'Right'                                 }
+  let(:object)          { described_class.new(left, right)        }
 
   context 'when left operand is frozen' do
     let(:left) { 'Left'.freeze }

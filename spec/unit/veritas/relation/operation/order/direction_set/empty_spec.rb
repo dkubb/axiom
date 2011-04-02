@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '#empty?' do
   subject { object.empty? }
 
-  let(:klass)  { Relation::Operation::Order::DirectionSet }
-  let(:object) { klass.new(attributes)                    }
+  let(:object) { described_class.new(attributes) }
 
   context 'with an empty set' do
     let(:attributes) { [] }

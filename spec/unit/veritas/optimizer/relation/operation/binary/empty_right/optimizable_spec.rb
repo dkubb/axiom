@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::EmptyRight, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Class.new(Optimizer::Relation::Operation::Binary) }
-  let(:relation) { mock('Relation', :left => left, :right => right)  }
-  let(:left)     { mock('Left')                                      }
-  let(:object)   { klass.new(relation)                               }
+  let(:described_class) { Class.new(Optimizer::Relation::Operation::Binary) }
+  let(:relation)        { mock('Relation', :left => left, :right => right)  }
+  let(:left)            { mock('Left')                                      }
+  let(:object)          { described_class.new(relation)                     }
 
   before do
-    klass.class_eval { include superclass::EmptyRight }
+    described_class.class_eval { include superclass::EmptyRight }
   end
 
   before do

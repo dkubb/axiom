@@ -1,18 +1,17 @@
 require 'spec_helper'
 
 [ :union, :| ].each do |method|
-  describe "Veritas::Algebra::Rename::Aliases##{method}" do
+  describe Algebra::Rename::Aliases, "##{method}" do
     subject { object.send(method, other) }
 
-    let(:klass)     { Algebra::Rename::Aliases                     }
     let(:attribute) { Attribute::Integer.new(:id)                  }
     let(:aliases)   { { attribute => attribute.rename(:other_id) } }
-    let(:object)    { klass.new(aliases)                           }
+    let(:object)    { described_class.new(aliases)                 }
 
     context 'when other is empty' do
       let(:other) { {} }
 
-      it { should be_kind_of(klass) }
+      it { should be_kind_of(described_class) }
 
       it 'does nothing' do
         should == object
@@ -20,45 +19,45 @@ require 'spec_helper'
     end
 
     context 'when other contains duplicate attributes' do
-      let(:other) { klass.new(attribute => attribute.rename(:another_id)) }
+      let(:other) { described_class.new(attribute => attribute.rename(:another_id)) }
 
-      it { should be_kind_of(klass) }
+      it { should be_kind_of(described_class) }
 
       it 'ignores duplicate attributes' do
-        should == klass.new(attribute => attribute.rename(:other_id))
+        should == described_class.new(attribute => attribute.rename(:other_id))
       end
     end
 
     context 'when other contains new attributes' do
-      let(:other_attribute) { Attribute::String.new(:name) }
-      let(:other)           { klass.new(other_attribute => other_attribute.rename(:other_name)) }
+      let(:other_attribute) { Attribute::String.new(:name)                                                }
+      let(:other)           { described_class.new(other_attribute => other_attribute.rename(:other_name)) }
 
-      it { should be_kind_of(klass) }
+      it { should be_kind_of(described_class) }
 
       it 'allows new attributes' do
-        should == klass.new(attribute => attribute.rename(:other_id), other_attribute => other_attribute.rename(:other_name))
+        should == described_class.new(attribute => attribute.rename(:other_id), other_attribute => other_attribute.rename(:other_name))
       end
     end
 
     context 'when other has an original attribute that is renamed to a different name' do
-      let(:other_attribute) { Attribute::Integer.new(:original_id) }
-      let(:other)           { klass.new(other_attribute => other_attribute.rename(:id)) }
+      let(:other_attribute) { Attribute::Integer.new(:original_id)                                }
+      let(:other)           { described_class.new(other_attribute => other_attribute.rename(:id)) }
 
-      it { should be_kind_of(klass) }
+      it { should be_kind_of(described_class) }
 
       it 'simplifies the rename' do
-        should == klass.new(other_attribute => attribute.rename(:other_id))
+        should == described_class.new(other_attribute => attribute.rename(:other_id))
       end
     end
 
     context 'when other has an original attribute that is renamed to the same name' do
-      let(:other_attribute) { Attribute::Integer.new(:other_id) }
-      let(:other)           { klass.new(other_attribute => other_attribute.rename(:id)) }
+      let(:other_attribute) { Attribute::Integer.new(:other_id)                                   }
+      let(:other)           { described_class.new(other_attribute => other_attribute.rename(:id)) }
 
-      it { should be_kind_of(klass) }
+      it { should be_kind_of(described_class) }
 
       it 'eliminates the name' do
-        should == klass.new({})
+        should == described_class.new({})
       end
     end
   end

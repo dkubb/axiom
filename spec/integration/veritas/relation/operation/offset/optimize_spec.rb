@@ -3,14 +3,13 @@ require 'spec_helper'
 describe Relation::Operation::Offset, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Relation::Operation::Offset              }
   let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
   let(:directions) { [ relation[:id] ]                        }
   let(:order)      { relation.order(directions)               }
   let(:operand)    { order                                    }
   let(:offset)     { 1                                        }
-  let(:object)     { klass.new(operand, offset)               }
+  let(:object)     { described_class.new(operand, offset)     }
 
   context 'with an object of 0' do
     let(:offset) { 0 }
@@ -43,7 +42,7 @@ describe Relation::Operation::Offset, '#optimize' do
   context 'containing an optimizable order operation' do
     let(:operand) { order.rename({}) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(order) }
 
@@ -65,7 +64,7 @@ describe Relation::Operation::Offset, '#optimize' do
     let(:operand) { order.drop(5) }
     let(:offset)  { 10            }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(order) }
 

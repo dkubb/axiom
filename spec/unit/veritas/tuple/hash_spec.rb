@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Tuple, '#hash' do
   subject { object.hash }
 
-  let(:klass)  { Tuple                                      }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:data)   { [ 1 ]                                      }
-  let(:object) { klass.new(header, data)                    }
+  let(:object) { described_class.new(header, data)          }
 
   it_should_behave_like 'a hash method'
 
-  it { should == klass.hash ^ header.hash ^ data.hash }
+  it { should == described_class.hash ^ header.hash ^ data.hash }
 end

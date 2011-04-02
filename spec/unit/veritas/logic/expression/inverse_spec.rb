@@ -5,12 +5,12 @@ methods = [ :inverse ]
 methods << '!' if respond_to?('!')  # available in Ruby 1.9
 
 methods.each do |method|
-  describe "Veritas::Logic::Expression##{method}" do
+  describe Logic::Expression, "##{method}" do
     subject { object.send(method) }
 
-    let(:klass)  { ExpressionSpecs::Object }
-    let(:object) { klass.new               }
+    let(:described_class) { ExpressionSpecs::Object }
+    let(:object)          { described_class.new     }
 
-    specify { expect { subject }.to raise_error(NotImplementedError, "#{klass}#inverse must be implemented") }
+    specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#inverse must be implemented") }
   end
 end

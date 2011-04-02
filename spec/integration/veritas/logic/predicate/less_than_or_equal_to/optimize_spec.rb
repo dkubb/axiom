@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Logic::Predicate::LessThanOrEqualTo, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Logic::Predicate::LessThanOrEqualTo             }
   let(:attribute) { Attribute::Integer.new(:id, :required => false) }
   let(:left)      { attribute                                       }
   let(:right)     { attribute                                       }
-  let(:object)    { klass.new(left, right)                          }
+  let(:object)    { described_class.new(left, right)                }
 
   context 'left and right are attributes' do
     context 'and equivalent' do

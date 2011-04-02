@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Attribute, '#valid_primitive?' do
   subject { object.valid_primitive?(value) }
 
-  let(:klass)  { Attribute::Integer }
-  let(:object) { klass.new(:id)     }
+  let(:described_class) { Attribute::Integer       }
+  let(:object)          { described_class.new(:id) }
 
   context 'with a valid value' do
     let(:value) { 1 }

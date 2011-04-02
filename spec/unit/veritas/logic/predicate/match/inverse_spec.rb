@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Logic::Predicate::Match, '#inverse' do
   subject { object.inverse }
 
-  let(:klass)     { Logic::Predicate::Match      }
-  let(:attribute) { Attribute::String.new(:name) }
-  let(:regexp)    { /Dan Kubb/.freeze            }
-  let(:object)    { klass.new(attribute, regexp) }
+  let(:attribute) { Attribute::String.new(:name)           }
+  let(:regexp)    { /Dan Kubb/.freeze                      }
+  let(:object)    { described_class.new(attribute, regexp) }
 
   it_should_behave_like 'an idempotent method'
 

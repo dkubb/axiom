@@ -3,14 +3,13 @@ require 'spec_helper'
 describe Relation::Operation::Limit, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Relation::Operation::Limit               }
   let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
   let(:directions) { [ relation[:id] ]                        }
   let(:order)      { relation.order(directions)               }
   let(:operand)    { order                                    }
   let(:limit)      { 1                                        }
-  let(:object)     { klass.new(operand, limit)                }
+  let(:object)     { described_class.new(operand, limit)      }
 
   context 'when the limit is 0' do
     let(:limit) { 0 }
@@ -43,7 +42,7 @@ describe Relation::Operation::Limit, '#optimize' do
   context 'containing an optimizable order operation' do
     let(:operand) { order.rename({}) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(order) }
 
@@ -65,7 +64,7 @@ describe Relation::Operation::Limit, '#optimize' do
     let(:operand) { order.take(5) }
     let(:limit)   { 10            }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(order) }
 
@@ -89,7 +88,7 @@ describe Relation::Operation::Limit, '#optimize' do
     let(:operand) { order.take(10) }
     let(:limit)   { 5              }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(order) }
 

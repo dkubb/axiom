@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Attribute::Comparable, '#comparable?' do
   subject { object.comparable?(other) }
 
-  let(:klass)  { Attribute::Integer }
-  let(:object) { klass.new(:id)     }
+  let(:described_class) { Attribute::Integer       }
+  let(:object)          { described_class.new(:id) }
 
   context 'when the other attribute is the same type' do
     let(:other) { object.dup }
@@ -29,7 +29,7 @@ describe Attribute::Comparable, '#comparable?' do
   end
 
   context 'when the other attribute is a descendant type' do
-    let(:other) { Class.new(klass).new(:descendant) }
+    let(:other) { Class.new(described_class).new(:descendant) }
 
     it { should be(true) }
 
@@ -39,7 +39,7 @@ describe Attribute::Comparable, '#comparable?' do
   end
 
   context 'when the other attribute shares a common type' do
-    let(:other) { klass.superclass.new(:ancestor) }
+    let(:other) { described_class.superclass.new(:ancestor) }
 
     it { should be(true) }
 

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Algebra::Restriction::Methods, '#restrict' do
-  let(:klass)  { Relation                                        }
-  let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+  let(:described_class) { Relation                                                  }
+  let(:object)          { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 
   context 'with predicate arguments' do
     subject { object.restrict(predicate) }

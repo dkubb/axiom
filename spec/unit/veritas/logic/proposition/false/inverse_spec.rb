@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Logic::Proposition::False, '#inverse' do
   subject { object.inverse }
 
-  let(:klass)  { Logic::Proposition::False }
-  let(:object) { klass.instance            }
+  let(:object) { described_class.instance }
 
   it_should_behave_like 'an idempotent method'
 

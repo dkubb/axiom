@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Optimizer::Relation::Materialized::EmptyOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Relation::Materialized::EmptyOperand }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], body)        }
-  let(:object)   { klass.new(relation)                             }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
+  let(:object)   { described_class.new(relation)            }
 
   context 'with a body containing no entries' do
     let(:body) { [] }

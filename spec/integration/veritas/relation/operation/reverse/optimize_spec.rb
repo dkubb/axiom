@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Relation::Operation::Reverse, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Relation::Operation::Reverse             }
-  let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
-  let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
-  let(:order)      { relation.order                           }
-  let(:operand)    { order                                    }
-  let(:object)     { klass.new(operand)                       }
+  let(:body)     { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
+  let(:order)    { relation.order                           }
+  let(:operand)  { order                                    }
+  let(:object)   { described_class.new(operand)             }
 
   context 'with a object operation' do
     let(:limit)   { order.take(2) }

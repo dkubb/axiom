@@ -2,13 +2,13 @@ require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
 [ :not, :- ].each do |method|
-  describe "Veritas::Logic::Connective::Negation::Methods##{method}" do
+  describe Logic::Connective::Negation::Methods, "##{method}" do
     subject { object.send(method, predicate) }
 
-    let(:klass)     { NegationMethodsSpecs::Object                   }
-    let(:header)    { Relation::Header.new([ [ :id, Integer ] ])     }
-    let(:predicate) { Logic::Predicate::Equality.new(header[:id], 1) }
-    let(:object)    { klass.new                                      }
+    let(:described_class) { NegationMethodsSpecs::Object                   }
+    let(:header)          { Relation::Header.new([ [ :id, Integer ] ])     }
+    let(:predicate)       { Logic::Predicate::Equality.new(header[:id], 1) }
+    let(:object)          { described_class.new                            }
 
     before do
       def object.eql?(other)

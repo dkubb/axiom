@@ -3,16 +3,16 @@ require 'spec_helper'
 describe Logic::Connective, '#inverse' do
   subject { object.inverse }
 
+  let(:described_class) { Class.new(Logic::Connective) }
+  let(:object)          { described_class.new          }
+
   before do
-    klass.class_eval do
+    described_class.class_eval do
       def inspect
         'Connective()'
       end
     end
   end
-
-  let(:klass)  { Class.new(Logic::Connective) }
-  let(:object) { klass.new                    }
 
   it_should_behave_like 'an idempotent method'
 

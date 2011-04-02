@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Relation::Operation::Limit::Methods, '#take' do
   subject { object.take(limit) }
 
-  let(:klass)    { Relation                                               }
-  let(:limit)    { 1                                                      }
-  let(:relation) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
-  let(:object)   { relation.order                                         }
+  let(:described_class) { Relation                                                         }
+  let(:limit)           { 1                                                                }
+  let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
+  let(:object)          { relation.order                                                   }
 
   it { should be_kind_of(Relation::Operation::Limit) }
 

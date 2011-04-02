@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Logic::Connective::Negation, '#inverse' do
   subject { object.inverse }
 
-  let(:klass)     { Logic::Connective::Negation }
-  let(:attribute) { Attribute::Integer.new(:id) }
-  let(:operand)   { attribute.eq(1)             }
-  let(:object)    { klass.new(operand)          }
+  let(:attribute) { Attribute::Integer.new(:id)  }
+  let(:operand)   { attribute.eq(1)              }
+  let(:object)    { described_class.new(operand) }
 
   it_should_behave_like 'an idempotent method'
 

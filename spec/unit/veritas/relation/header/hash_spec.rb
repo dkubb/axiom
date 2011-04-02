@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Relation::Header, '#hash' do
   subject { object.hash }
 
-  let(:klass)      { Relation::Header                }
   let(:attributes) { [ Attribute::Integer.new(:id) ] }
-  let(:object)     { klass.new(attributes)           }
+  let(:object)     { described_class.new(attributes) }
 
   it_should_behave_like 'a hash method'
 
-  it { should == klass.hash ^ attributes.hash }
+  it { should == described_class.hash ^ attributes.hash }
 end

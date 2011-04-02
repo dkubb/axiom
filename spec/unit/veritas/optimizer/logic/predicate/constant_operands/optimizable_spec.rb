@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::ConstantOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Optimizer::Logic::Predicate::ConstantOperands }
-  let(:predicate) { Logic::Predicate::Equality.new(left, right)   }
-  let(:object)    { klass.new(predicate)                          }
+  let(:predicate) { Logic::Predicate::Equality.new(left, right) }
+  let(:object)    { described_class.new(predicate)              }
 
   context 'when left and right are constants' do
     let(:left)  { 1 }

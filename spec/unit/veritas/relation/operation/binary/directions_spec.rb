@@ -4,10 +4,10 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Relation::Operation::Binary, '#directions' do
   subject { object.directions }
 
-  let(:klass)  { BinaryRelationOperationSpecs::Object                                            }
-  let(:left)   { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ]).order  { |r| r[:id]   }         }
-  let(:right)  { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]).order { |r| r[:name] } }
-  let(:object) { klass.new(left, right)                                                          }
+  let(:described_class) { BinaryRelationOperationSpecs::Object                                            }
+  let(:left)            { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ]).order  { |r| r[:id]   }         }
+  let(:right)           { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]).order { |r| r[:name] } }
+  let(:object)          { described_class.new(left, right)                                                }
 
   it_should_behave_like 'an idempotent method'
 

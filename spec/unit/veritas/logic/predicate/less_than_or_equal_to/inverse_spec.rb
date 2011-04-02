@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Predicate::LessThanOrEqualTo, '#inverse' do
   subject { object.inverse }
 
-  let(:klass)     { Logic::Predicate::LessThanOrEqualTo }
-  let(:attribute) { Attribute::Integer.new(:id)         }
-  let(:object)    { klass.new(attribute, 1)             }
+  let(:attribute) { Attribute::Integer.new(:id)       }
+  let(:object)    { described_class.new(attribute, 1) }
 
   it_should_behave_like 'an idempotent method'
 

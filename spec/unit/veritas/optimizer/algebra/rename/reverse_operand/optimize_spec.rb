@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::ReverseOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Optimizer::Algebra::Rename::ReverseOperand         }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:limit)    { base.order.take(2)                                 }
   let(:operand)  { limit.rename({}).reverse                           }
   let(:relation) { operand.rename(:id => :other_id)                   }
-  let(:object)   { klass.new(relation)                                }
+  let(:object)   { described_class.new(relation)                      }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

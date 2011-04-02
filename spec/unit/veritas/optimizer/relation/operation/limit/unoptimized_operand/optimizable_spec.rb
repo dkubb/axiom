@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Limit::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Relation::Operation::Limit::UnoptimizedOperand }
-  let(:header)   { Relation::Header.new([ [ :id, Integer ] ])                }
-  let(:base)     { Relation.new(header, [ [ 1 ] ].each).order                }
-  let(:relation) { operand.take(1)                                           }
-  let(:object)   { klass.new(relation)                                       }
+  let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:base)     { Relation.new(header, [ [ 1 ] ].each).order }
+  let(:relation) { operand.take(1)                            }
+  let(:object)   { described_class.new(relation)              }
 
   before do
     object.operation.should be_kind_of(Relation::Operation::Limit)

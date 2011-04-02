@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::Enumerable::EmptyRightOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Class.new(Optimizer::Logic::Predicate)     }
-  let(:attribute) { Attribute::Integer.new(:id, :size => 1..9) }
-  let(:predicate) { attribute.include(operand)                 }
-  let(:object)    { klass.new(predicate)                       }
+  let(:described_class) { Class.new(Optimizer::Logic::Predicate)     }
+  let(:attribute)       { Attribute::Integer.new(:id, :size => 1..9) }
+  let(:predicate)       { attribute.include(operand)                 }
+  let(:object)          { described_class.new(predicate)             }
 
   before do
-    klass.class_eval { include Optimizer::Logic::Predicate::Enumerable::EmptyRightOperand }
+    described_class.class_eval { include Optimizer::Logic::Predicate::Enumerable::EmptyRightOperand }
 
     predicate.should be_kind_of(Logic::Predicate::Enumerable)
   end

@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Algebra::Restriction, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:klass)    { Algebra::Restriction                          }
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:object)   { klass.new(relation, proc { true })            }
+  let(:object)   { described_class.new(relation, proc { true })  }
   let(:yields)   { []                                            }
 
   it_should_behave_like 'a command method'

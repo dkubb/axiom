@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Time, '#pred' do
   subject { object.pred }
 
-  let(:klass)  { Time      }
-  let(:object) { klass.now }
+  let(:object) { described_class.now }
 
-  it { should be_kind_of(klass) }
+  it { should be_kind_of(described_class) }
 
   it 'returns the time 1 second ago' do
     should == (object - 1)

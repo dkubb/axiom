@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Predicate::Inequality, '#inspect' do
   subject { object.inspect }
 
-  let(:klass)     { Logic::Predicate::Inequality }
-  let(:attribute) { Attribute::Integer.new(:id)  }
-  let(:object)    { klass.new(attribute, 1)      }
+  let(:attribute) { Attribute::Integer.new(:id)       }
+  let(:object)    { described_class.new(attribute, 1) }
 
   it { should == "#{attribute.inspect} != 1" }
 end

@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Limit::LimitOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Relation::Operation::Limit::LimitOperand      }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
   let(:relation) { operand.take(1)                                          }
-  let(:object)   { klass.new(relation)                                      }
+  let(:object)   { described_class.new(relation)                            }
 
   before do
     object.operation.should be_kind_of(Relation::Operation::Limit)

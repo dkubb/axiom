@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::Exclusion::OneRightOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Optimizer::Logic::Predicate::Exclusion::OneRightOperand }
-  let(:attribute) { Attribute::Integer.new(:id)                             }
-  let(:predicate) { attribute.exclude(operand)                              }
-  let(:object)    { klass.new(predicate)                                    }
+  let(:attribute) { Attribute::Integer.new(:id)    }
+  let(:predicate) { attribute.exclude(operand)     }
+  let(:object)    { described_class.new(predicate) }
 
   before do
     predicate.should be_kind_of(Logic::Predicate::Exclusion)

@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand }
-  let(:attribute) { Attribute::Integer.new(:id)                                 }
-  let(:predicate) { attribute.include(operand)                                  }
-  let(:object)    { klass.new(predicate)                                        }
+  let(:attribute) { Attribute::Integer.new(:id)    }
+  let(:predicate) { attribute.include(operand)     }
+  let(:object)    { described_class.new(predicate) }
 
   before do
     predicate.should be_kind_of(Logic::Predicate::Enumerable)

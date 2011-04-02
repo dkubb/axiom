@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Unary::EmptyOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Optimizer::Relation::Operation::Unary::EmptyOperand }
-  let(:operand)  { mock('Empty Operand')                               }
-  let(:relation) { mock('Relation', :operand => operand)               }
-  let(:object)   { klass.new(relation)                                 }
+  let(:operand)  { mock('Empty Operand')                 }
+  let(:relation) { mock('Relation', :operand => operand) }
+  let(:object)   { described_class.new(relation)         }
 
   before do
     operand.stub!(:optimize).and_return(operand)

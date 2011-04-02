@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Attribute, '#rename' do
   subject { object.rename(name) }
 
-  let(:klass)  { Attribute::Integer             }
-  let(:object) { klass.new(:id, :size => 1..10) }
+  let(:described_class) { Attribute::Integer                       }
+  let(:object)          { described_class.new(:id, :size => 1..10) }
 
   context 'when the new name is the same' do
     let(:name) { object.name }
@@ -15,7 +15,7 @@ describe Attribute, '#rename' do
   context 'when the new name is different' do
     let(:name) { :other_id }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     it { should_not equal(object) }
 

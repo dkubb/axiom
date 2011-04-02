@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Algebra::Restriction, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Algebra::Restriction                     }
   let(:body)     { [ [ 1 ] ].each                           }
   let(:relation) { Relation.new([ [ :id, Integer ] ], body) }
   let(:operand)  { relation                                 }
-  let(:object)   { klass.new(operand, predicate)            }
+  let(:object)   { described_class.new(operand, predicate)  }
 
   context 'with a true proposition' do
     let(:predicate) { Logic::Proposition::True.instance }
@@ -57,7 +56,7 @@ describe Algebra::Restriction, '#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:predicate) { should eql(relation[:id].eq(1)) }
 
@@ -81,7 +80,7 @@ describe Algebra::Restriction, '#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:predicate) { should equal(predicate) }
 
@@ -118,8 +117,8 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with an empty relation when optimized' do
-    let(:operand)   { klass.new(relation, Logic::Proposition::False.instance) }
-    let(:predicate) { operand[:id].gte(1)                                     }
+    let(:operand)   { described_class.new(relation, Logic::Proposition::False.instance) }
+    let(:predicate) { operand[:id].gte(1)                                               }
 
     it { should eql(Relation::Empty.new(relation.header)) }
 
@@ -136,13 +135,13 @@ describe Algebra::Restriction, '#optimize' do
   end
 
   context 'with a restriction' do
-    let(:other_predicate) { relation[:id].lt(2)            }
-    let(:operand)   { klass.new(relation, other_predicate) }
-    let(:predicate) { operand[:id].gte(1)                  }
+    let(:other_predicate) { relation[:id].lt(2)                            }
+    let(:operand)         { described_class.new(relation, other_predicate) }
+    let(:predicate)       { operand[:id].gte(1)                            }
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:predicate) { should eql(other_predicate & predicate) }
 

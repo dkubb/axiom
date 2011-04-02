@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Attribute, '#==' do
   subject { object == other }
 
-  let(:klass)  { Attribute::Integer }
-  let(:name)   { :id                }
-  let(:object) { klass.new(name)    }
+  let(:described_class) { Attribute::Integer        }
+  let(:name)            { :id                       }
+  let(:object)          { described_class.new(name) }
 
   context 'with the same object' do
     let(:other) { object }
@@ -28,7 +28,7 @@ describe Attribute, '#==' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(name) }
+    let(:other) { Class.new(described_class).new(name) }
 
     it { should be(true) }
 
@@ -38,8 +38,8 @@ describe Attribute, '#==' do
   end
 
   context 'with an object having a different name' do
-    let(:other_name) { :other_id             }
-    let(:other)      { klass.new(other_name) }
+    let(:other_name) { :other_id                       }
+    let(:other)      { described_class.new(other_name) }
 
     it { should be(false) }
 

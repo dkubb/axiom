@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Reverse::ReverseOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Relation::Operation::Reverse::ReverseOperand  }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each).order }
   let(:relation) { operand.reverse                                          }
-  let(:object)   { klass.new(relation)                                      }
+  let(:object)   { described_class.new(relation)                            }
 
   before do
     object.operation.should be_kind_of(Relation::Operation::Reverse)

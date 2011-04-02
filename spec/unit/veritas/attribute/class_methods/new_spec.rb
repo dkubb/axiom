@@ -17,9 +17,9 @@ describe Attribute, '.new' do
     Attribute::Object,
     Attribute::String,
     Attribute::Time,
-  ].each do |klass|
-    context "when called on the Attribute subclass #{klass}" do
-      let(:object) { klass }
+  ].each do |described_class|
+    context "when called on the Attribute subclass #{described_class}" do
+      let(:object) { described_class }
 
       it { should be_kind_of(object) }
     end

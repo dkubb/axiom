@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate, '#left' do
   subject { object.left }
 
-  let(:klass)     { Optimizer::Logic::Predicate                  }
   let(:right)     { 'Right'                                      }
   let(:predicate) { Class.new(Logic::Predicate).new(left, right) }
-  let(:object)    { klass.new(predicate)                         }
+  let(:object)    { described_class.new(predicate)               }
 
   context 'when left operand is frozen' do
     let(:left) { 'Left'.freeze }

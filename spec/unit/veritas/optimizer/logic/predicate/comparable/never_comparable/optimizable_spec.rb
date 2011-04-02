@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::Comparable::NeverComparable, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Class.new(Optimizer::Logic::Predicate)      }
-  let(:attribute) { Attribute::Integer.new(:id)                 }
-  let(:predicate) { Logic::Predicate::Equality.new(left, right) }
-  let(:object)    { klass.new(predicate)                        }
+  let(:described_class) { Class.new(Optimizer::Logic::Predicate)      }
+  let(:attribute)       { Attribute::Integer.new(:id)                 }
+  let(:predicate)       { Logic::Predicate::Equality.new(left, right) }
+  let(:object)          { described_class.new(predicate)              }
 
   before do
-    klass.class_eval { include Optimizer::Logic::Predicate::Comparable::NeverComparable }
+    described_class.class_eval { include Optimizer::Logic::Predicate::Comparable::NeverComparable }
 
     predicate.should be_kind_of(Logic::Predicate::Comparable)
   end

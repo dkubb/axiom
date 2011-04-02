@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Connective::Conjunction, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Logic::Connective::Conjunction }
-  let(:attribute) { Attribute::Integer.new(:id)    }
-  let(:object)    { klass.new(left, right)         }
+  let(:attribute) { Attribute::Integer.new(:id)      }
+  let(:object)    { described_class.new(left, right) }
 
   it_should_behave_like 'Logic::Connective::Binary#optimize'
 
@@ -25,7 +24,7 @@ describe Logic::Connective::Conjunction, '#optimize' do
     it { should_not equal(object) }
 
     it 'reverses the operands' do
-      should eql(klass.new(attribute.lte(1), attribute.gte(3)))
+      should eql(described_class.new(attribute.lte(1), attribute.gte(3)))
     end
 
     it_should_behave_like 'an optimize method'

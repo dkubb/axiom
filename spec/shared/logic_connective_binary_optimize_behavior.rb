@@ -45,7 +45,7 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:left) { should equal(original_left) }
 
@@ -63,7 +63,7 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:left) { should equal(left) }
 
@@ -73,8 +73,8 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
   end
 
   context 'self and right are the same, and left and right.left are the same' do
-    let(:left)  { attribute.eq(1)                                                     }
-    let(:right) { mock('Binary', :class => klass, :left => left, :optimized? => true) }
+    let(:left)  { attribute.eq(1)                                                               }
+    let(:right) { mock('Binary', :class => described_class, :left => left, :optimized? => true) }
 
     before do
       right.stub!(:optimize => right, :frozen? => true, :memoize => right, :memoized => right)
@@ -86,8 +86,8 @@ shared_examples_for 'Logic::Connective::Binary#optimize' do
   end
 
   context 'self and left are the same, and right and left.right are the same' do
-    let(:left)  { mock('Binary', :class => klass, :right => right, :optimized? => true) }
-    let(:right) { attribute.eq(1)                                                       }
+    let(:left)  { mock('Binary', :class => described_class, :right => right, :optimized? => true) }
+    let(:right) { attribute.eq(1)                                                                 }
 
     before do
       left.stub!(:optimize => left, :frozen? => true, :memoize => left, :memoized => left)

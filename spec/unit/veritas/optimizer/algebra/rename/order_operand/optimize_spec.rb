@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::OrderOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Optimizer::Algebra::Rename::OrderOperand           }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:operand)  { base.order                                         }
   let(:relation) { operand.rename(:id => :other_id)                   }
-  let(:object)   { klass.new(relation)                                }
+  let(:object)   { described_class.new(relation)                      }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

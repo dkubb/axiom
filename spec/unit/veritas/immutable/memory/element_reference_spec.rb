@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Immutable::Memory, '#[]' do
   subject { object[key] }
 
-  let(:klass)  { Immutable::Memory }
-  let(:object) { klass.new         }
+  let(:object) { described_class.new }
 
   context 'with known key' do
     let(:key)   { '@key'        }

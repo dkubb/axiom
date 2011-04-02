@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Relation::Operation::Order, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)      { Relation::Operation::Order                           }
   let(:operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:directions) { operand.header                                       }
-  let(:object)     { klass.new(operand, directions)                       }
+  let(:object)     { described_class.new(operand, directions)             }
 
   context 'with the same object' do
     let(:other) { object }
@@ -29,7 +28,7 @@ describe Relation::Operation::Order, '#eql?' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(object, directions) }
+    let(:other) { Class.new(described_class).new(object, directions) }
 
     it { should be(false) }
 
@@ -39,9 +38,9 @@ describe Relation::Operation::Order, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-    let(:other_directions) { directions                                    }
-    let(:other)            { klass.new(other_operand, other_directions)    }
+    let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])        }
+    let(:other_directions) { directions                                           }
+    let(:other)            { described_class.new(other_operand, other_directions) }
 
     it { should be(false) }
 
@@ -51,9 +50,9 @@ describe Relation::Operation::Order, '#eql?' do
   end
 
   context 'with an object having different directions' do
-    let(:other_operand)    { operand                                    }
-    let(:other_directions) { [ operand[:id].desc ]                      }
-    let(:other)            { klass.new(other_operand, other_directions) }
+    let(:other_operand)    { operand                                              }
+    let(:other_directions) { [ operand[:id].desc ]                                }
+    let(:other)            { described_class.new(other_operand, other_directions) }
 
     it { should be(false) }
 

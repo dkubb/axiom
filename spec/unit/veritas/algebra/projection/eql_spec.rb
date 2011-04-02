@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Algebra::Projection, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)      { Algebra::Projection                                         }
   let(:body)       { [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb'] ] }
   let(:operand)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
   let(:attributes) { [ :id ]                                                     }
-  let(:object)     { klass.new(operand, attributes)                              }
+  let(:object)     { described_class.new(operand, attributes)                    }
 
   context 'with the same object' do
     let(:other) { object }
@@ -30,7 +29,7 @@ describe Algebra::Projection, '#eql?' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(operand, attributes) }
+    let(:other) { Class.new(described_class).new(operand, attributes) }
 
     it { should be(false) }
 
@@ -40,9 +39,9 @@ describe Algebra::Projection, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ]) }
-    let(:other_attributes) { attributes                                    }
-    let(:other)            { klass.new(other_operand, other_attributes)    }
+    let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ])        }
+    let(:other_attributes) { attributes                                           }
+    let(:other)            { described_class.new(other_operand, other_attributes) }
 
     it { should be(false) }
 
@@ -52,9 +51,9 @@ describe Algebra::Projection, '#eql?' do
   end
 
   context 'with an object having different attributes' do
-    let(:other_operand)    { operand                                    }
-    let(:other_attributes) { []                                         }
-    let(:other)            { klass.new(other_operand, other_attributes) }
+    let(:other_operand)    { operand                                              }
+    let(:other_attributes) { []                                                   }
+    let(:other)            { described_class.new(other_operand, other_attributes) }
 
     it { should be(false) }
 

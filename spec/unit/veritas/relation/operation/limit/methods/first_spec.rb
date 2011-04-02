@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Relation::Operation::Limit::Methods, '#first' do
-  let(:klass)    { Relation                                                      }
-  let(:relation) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ].each) }
-  let(:object)   { relation.order                                                }
+  let(:described_class) { Relation                                                                }
+  let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ].each) }
+  let(:object)          { relation.order                                                          }
 
   context 'with no arguments' do
     subject { object.first }

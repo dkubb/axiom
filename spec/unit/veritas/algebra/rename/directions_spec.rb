@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Algebra::Rename, '#directions' do
   subject { object.directions }
 
-  let(:klass)    { Algebra::Rename                               }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:object)   { klass.new(operand, :id => :other_id)          }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])  }
+  let(:object)   { described_class.new(operand, :id => :other_id) }
 
   context 'containing a relation' do
     let(:operand) { relation }

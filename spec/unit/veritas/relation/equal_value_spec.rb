@@ -3,13 +3,12 @@ require 'spec_helper'
 describe Relation, '#==' do
   subject { object == other }
 
-  let(:klass)  { Relation                }
-  let(:header) { [ [ :id, Integer ] ]    }
-  let(:body)   { [ [ 1 ] ].each          }  # use an Enumerator
-  let(:object) { klass.new(header, body) }
+  let(:header) { [ [ :id, Integer ] ]              }
+  let(:body)   { [ [ 1 ] ].each                    }  # use an Enumerator
+  let(:object) { described_class.new(header, body) }
 
   before do
-    object.should be_instance_of(klass)
+    object.should be_instance_of(described_class)
   end
 
   context 'with the same object' do
@@ -33,7 +32,7 @@ describe Relation, '#==' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(header, body) }
+    let(:other) { Class.new(described_class).new(header, body) }
 
     it { should be(true) }
 
@@ -67,12 +66,12 @@ describe Relation, '#==' do
   end
 
   context 'with an object having an equivalent header in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                               }
-    let(:attribute2) { [ :name, String  ]                               }
-    let(:header1)    { Relation::Header.new([ attribute1, attribute2 ]) }
-    let(:header2)    { Relation::Header.new([ attribute2, attribute1 ]) }
-    let(:object)     { klass.new(header1, [ [ 1, 'Dan Kubb' ] ].each)   }
-    let(:other)      { klass.new(header2, [ [ 'Dan Kubb', 1 ] ].each)   }
+    let(:attribute1) { [ :id,   Integer ]                                       }
+    let(:attribute2) { [ :name, String  ]                                       }
+    let(:header1)    { Relation::Header.new([ attribute1, attribute2 ])         }
+    let(:header2)    { Relation::Header.new([ attribute2, attribute1 ])         }
+    let(:object)     { described_class.new(header1, [ [ 1, 'Dan Kubb' ] ].each) }
+    let(:other)      { described_class.new(header2, [ [ 'Dan Kubb', 1 ] ].each) }
 
     it { should be(true) }
 

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Operation::Binary, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)  { Class.new { include Operation::Binary } }
-  let(:left)   { mock('Left')                            }
-  let(:right)  { mock('Right')                           }
-  let(:object) { klass.new(left, right)                  }
+  let(:described_class) { Class.new { include Operation::Binary } }
+  let(:left)            { mock('Left')                            }
+  let(:right)           { mock('Right')                           }
+  let(:object)          { described_class.new(left, right)        }
 
   context 'with the same object' do
     let(:other) { object }
@@ -29,7 +29,7 @@ describe Operation::Binary, '#eql?' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(left, right) }
+    let(:other) { Class.new(described_class).new(left, right) }
 
     it { should be(false) }
 
@@ -39,9 +39,9 @@ describe Operation::Binary, '#eql?' do
   end
 
   context 'with an object having a different left' do
-    let(:other_left)  { mock('Other Left')                 }
-    let(:other_right) { right                              }
-    let(:other)       { klass.new(other_left, other_right) }
+    let(:other_left)  { mock('Other Left')                           }
+    let(:other_right) { right                                        }
+    let(:other)       { described_class.new(other_left, other_right) }
 
     it { should be(false) }
 
@@ -51,9 +51,9 @@ describe Operation::Binary, '#eql?' do
   end
 
   context 'with an object having a different right' do
-    let(:other_left)  { left                               }
-    let(:other_right) { mock('Other Right')                }
-    let(:other)       { klass.new(other_left, other_right) }
+    let(:other_left)  { left                                         }
+    let(:other_right) { mock('Other Right')                          }
+    let(:other)       { described_class.new(other_left, other_right) }
 
     it { should be(false) }
 

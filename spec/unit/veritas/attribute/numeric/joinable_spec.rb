@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Attribute::Numeric, '#joinable?' do
   subject { object.joinable?(other) }
 
-  let(:klass)  { Attribute::Numeric                 }
-  let(:size)   { 10..20                             }
-  let(:object) { klass.new(:numeric, :size => size) }
+  let(:size)   { 10..20                                       }
+  let(:object) { described_class.new(:numeric, :size => size) }
 
   context 'when the attribute types and sizes are the same' do
-    let(:other) { klass.new(:numeric, :size => size) }
+    let(:other) { described_class.new(:numeric, :size => size) }
 
     it { should be(true) }
 
@@ -18,7 +17,7 @@ describe Attribute::Numeric, '#joinable?' do
   end
 
   context 'when the attribute types are the same and the sizes are different' do
-    let(:other) { klass.new(:numeric, :size => 1..20) }
+    let(:other) { described_class.new(:numeric, :size => 1..20) }
 
     it { should be(false) }
 

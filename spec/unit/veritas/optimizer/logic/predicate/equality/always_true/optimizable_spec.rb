@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::Equality::AlwaysTrue, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Optimizer::Logic::Predicate::Equality::AlwaysTrue }
-  let(:attribute) { Attribute::Integer.new(:id)                       }
-  let(:predicate) { left.eq(right)                                    }
-  let(:object)    { klass.new(predicate)                              }
+  let(:attribute) { Attribute::Integer.new(:id)    }
+  let(:predicate) { left.eq(right)                 }
+  let(:object)    { described_class.new(predicate) }
 
   before do
     predicate.should be_kind_of(Logic::Predicate::Equality)

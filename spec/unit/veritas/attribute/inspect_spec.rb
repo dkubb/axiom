@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Attribute, '#inspect' do
   subject { object.inspect }
 
-  let(:klass)  { Attribute::Integer }
-  let(:object) { klass.new(:id)     }
+  let(:described_class) { Attribute::Integer       }
+  let(:object)          { described_class.new(:id) }
 
   it { should be_kind_of(String) }
 

@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Date, '#pred' do
   subject { object.pred }
 
-  let(:klass)  { Date        }
-  let(:object) { klass.today }
+  let(:object) { described_class.today }
 
-  it { should be_kind_of(klass) }
+  it { should be_kind_of(described_class) }
 
   it 'returns the date 1 day ago' do
     should == (object - 1)

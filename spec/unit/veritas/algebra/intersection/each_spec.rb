@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Algebra::Intersection, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:klass)  { Algebra::Intersection           }
-  let(:header) { [ [ :id, Integer ] ]            }
-  let(:left)   { Relation.new(header, [ [ 1 ] ]) }
-  let(:yields) { []                              }
-  let(:object) { klass.new(left, right)          }
+  let(:header) { [ [ :id, Integer ] ]             }
+  let(:left)   { Relation.new(header, [ [ 1 ] ])  }
+  let(:yields) { []                               }
+  let(:object) { described_class.new(left, right) }
 
   context 'with relations having similar bodies' do
     let(:right) { left.dup }

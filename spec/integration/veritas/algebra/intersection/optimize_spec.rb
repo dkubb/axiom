@@ -3,13 +3,12 @@ require 'spec_helper'
 describe Algebra::Intersection, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)          { Algebra::Intersection            }
   let(:header)         { [ [ :id, Integer ] ]             }
   let(:left_body)      { [ [ 1 ] ].each                   }
   let(:right_body)     { [ [ 2 ] ].each                   }
   let(:original_left)  { Relation.new(header, left_body)  }
   let(:original_right) { Relation.new(header, right_body) }
-  let(:object)         { klass.new(left, right)           }
+  let(:object)         { described_class.new(left, right) }
 
   context 'left is an empty relation' do
     let(:left)  { Relation::Empty.new(header) }

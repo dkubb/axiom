@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Connective::Disjunction, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Logic::Connective::Disjunction }
-  let(:attribute) { Attribute::Integer.new(:id)    }
-  let(:object)    { klass.new(left, right)         }
+  let(:attribute) { Attribute::Integer.new(:id)      }
+  let(:object)    { described_class.new(left, right) }
 
   it_should_behave_like 'Logic::Connective::Binary#optimize'
 

@@ -4,12 +4,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Logic::Predicate, '#hash' do
   subject { object.hash }
 
-  let(:klass)  { PredicateSpecs::Object      }
-  let(:left)   { Attribute::Integer.new(:id) }
-  let(:right)  { 1                           }
-  let(:object) { klass.new(left, right)      }
+  let(:left)   { Attribute::Integer.new(:id)      }
+  let(:right)  { 1                                }
+  let(:object) { described_class.new(left, right) }
 
   it_should_behave_like 'a hash method'
 
-  it { should == klass.hash ^ left.hash ^ right.hash }
+  it { should == described_class.hash ^ left.hash ^ right.hash }
 end

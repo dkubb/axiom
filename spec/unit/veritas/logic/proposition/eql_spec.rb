@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Logic::Proposition, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)  { Class.new(Logic::Proposition) }
-  let(:object) { klass.new                     }
+  let(:described_class) { Class.new(Logic::Proposition) }
+  let(:object)          { described_class.new           }
 
   context 'with the same class' do
-    let(:other) { klass.new }
+    let(:other) { described_class.new }
 
     it { should be(true) }
 

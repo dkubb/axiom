@@ -4,14 +4,14 @@ require File.expand_path('../../fixtures/classes', __FILE__)
 describe Immutable::MemoizeMethods, '#freeze' do
   subject { object.freeze }
 
-  let(:klass) { Class.new(ImmutableSpecs::Object) }
+  let(:described_class) { Class.new(ImmutableSpecs::Object) }
 
   before do
-    klass.memoize(:test)
+    described_class.memoize(:test)
   end
 
   context 'with an unfrozen object' do
-    let(:object) { klass.allocate }
+    let(:object) { described_class.allocate }
 
     it { should equal(object) }
 
@@ -29,7 +29,7 @@ describe Immutable::MemoizeMethods, '#freeze' do
   end
 
   context 'with a frozen object' do
-    let(:object) { klass.new }
+    let(:object) { described_class.new }
 
     it { should equal(object) }
 

@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Relation::Header, '#index' do
   subject { object.index(argument) }
 
-  let(:klass)     { Relation::Header         }
-  let(:attribute) { [ :id, Integer ]         }
-  let(:object)    { klass.new([ attribute ]) }
+  let(:attribute) { [ :id, Integer ]                   }
+  let(:object)    { described_class.new([ attribute ]) }
 
   context 'when the argument is a known attribute' do
     let(:argument) { attribute }

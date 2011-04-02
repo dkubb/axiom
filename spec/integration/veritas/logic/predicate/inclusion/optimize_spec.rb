@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Predicate::Inclusion, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)  { Logic::Predicate::Inclusion }
-  let(:left)   { Attribute::Integer.new(:id) }
-  let(:object) { klass.new(left, right)      }
+  let(:left)   { Attribute::Integer.new(:id)      }
+  let(:object) { described_class.new(left, right) }
 
   context 'right is a Range' do
     context 'that is inclusive' do

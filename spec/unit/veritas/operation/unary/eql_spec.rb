@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Operation::Unary, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)   { Class.new { include Operation::Unary } }
-  let(:operand) { mock('Operand')                        }
-  let(:object)  { klass.new(operand)                     }
+  let(:described_class) { Class.new { include Operation::Unary } }
+  let(:operand)         { mock('Operand')                        }
+  let(:object)          { described_class.new(operand)           }
 
   context 'with the same object' do
     let(:other) { object }
@@ -28,7 +28,7 @@ describe Operation::Unary, '#eql?' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(operand) }
+    let(:other) { Class.new(described_class).new(operand) }
 
     it { should be(false) }
 
@@ -38,8 +38,8 @@ describe Operation::Unary, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand) { mock('Other Operand')    }
-    let(:other)         { klass.new(other_operand) }
+    let(:other_operand) { mock('Other Operand')              }
+    let(:other)         { described_class.new(other_operand) }
 
     it { should be(false) }
 

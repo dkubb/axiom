@@ -3,17 +3,17 @@ require 'spec_helper'
 describe Logic::Proposition, '#inverse' do
   subject { object.inverse }
 
-  let(:klass)            { Class.new(Logic::Proposition)                        }
+  let(:described_class)  { Class.new(Logic::Proposition)                        }
   let(:inverse_class)    { mock('Inverse Class', :instance => inverse_instance) }
   let(:inverse_instance) { mock('Inverse Instance')                             }
-  let(:object)           { klass.new                                            }
+  let(:object)           { described_class.new                                  }
 
   before do
-    klass.stub!(:inverse).and_return(inverse_class)
+    described_class.stub!(:inverse).and_return(inverse_class)
   end
 
   it 'calls .inverse on the class' do
-    klass.should_receive(:inverse).with(no_args).and_return(inverse_class)
+    described_class.should_receive(:inverse).with(no_args).and_return(inverse_class)
     subject
   end
 

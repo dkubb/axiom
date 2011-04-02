@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Algebra::Rename, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Algebra::Rename                                             }
   let(:body)     { [ [ 1, 'Dan Kubb' ] ].each                                  }
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
   let(:operand)  { relation                                                    }
   let(:aliases)  { { :id => :other_id }                                        }
-  let(:object)   { klass.new(operand, aliases)                                 }
+  let(:object)   { described_class.new(operand, aliases)                       }
 
   context 'containing a relation' do
     it { should equal(object) }
@@ -43,7 +42,7 @@ describe Algebra::Rename, '#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     it 'sets aliases the same as the original object' do
       subject.aliases.should == object.aliases
@@ -64,15 +63,15 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a object operation' do
-    let(:operand) { klass.new(relation, :id => :other_id) }
-    let(:aliases) { { :name => :other_name }              }
+    let(:operand) { described_class.new(relation, :id => :other_id) }
+    let(:aliases) { { :name => :other_name }                        }
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     it 'sets aliases as a union of both aliases' do
-      subject.aliases.should == klass::Aliases.coerce(
+      subject.aliases.should == described_class::Aliases.coerce(
         relation.header,
         :id   => :other_id,
         :name => :other_name
@@ -94,15 +93,15 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing a object operation with overlapping aliases' do
-    let(:operand) { klass.new(relation, :id => :other_id) }
-    let(:aliases) { { :other_id => :another_id }          }
+    let(:operand) { described_class.new(relation, :id => :other_id) }
+    let(:aliases) { { :other_id => :another_id }                    }
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     it 'sets aliases as a union of both aliases' do
-      subject.aliases.should == klass::Aliases.coerce(
+      subject.aliases.should == described_class::Aliases.coerce(
         relation.header,
         :id => :another_id
       )
@@ -123,8 +122,8 @@ describe Algebra::Rename, '#optimize' do
   end
 
   context 'containing an inverse object operation' do
-    let(:operand) { klass.new(relation, :id => :other_id) }
-    let(:aliases) { { :other_id => :id }                  }
+    let(:operand) { described_class.new(relation, :id => :other_id) }
+    let(:aliases) { { :other_id => :id }                            }
 
     it { should equal(relation) }
 
@@ -145,7 +144,7 @@ describe Algebra::Rename, '#optimize' do
 
     it { should be_kind_of(Algebra::Projection) }
 
-    its(:operand) { should eql(klass.new(relation, aliases)) }
+    its(:operand) { should eql(described_class.new(relation, aliases)) }
 
     its(:header) { should == [ [ :other_id, Integer ] ] }
 
@@ -186,7 +185,7 @@ describe Algebra::Rename, '#optimize' do
 
     it { should be_kind_of(Algebra::Restriction) }
 
-    its(:operand) { should eql(klass.new(relation, aliases)) }
+    its(:operand) { should eql(described_class.new(relation, aliases)) }
 
     its(:header) { should == [ [ :other_id, Integer ], [ :name, String ] ] }
 

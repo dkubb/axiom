@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Algebra::Rename::Aliases, '#empty?' do
   subject { object.empty? }
 
-  let(:klass)     { Algebra::Rename::Aliases    }
-  let(:attribute) { Attribute::Integer.new(:id) }
-  let(:object)    { klass.new(aliases)          }
+  let(:attribute) { Attribute::Integer.new(:id)  }
+  let(:object)    { described_class.new(aliases) }
 
   context 'when aliases are empty' do
     let(:aliases) { {} }

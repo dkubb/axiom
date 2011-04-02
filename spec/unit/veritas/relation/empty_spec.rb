@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Relation, '#empty?' do
   subject { object.empty? }
 
-  let(:klass)  { Relation                }
-  let(:header) { [ [ :id, Integer ] ]    }
-  let(:object) { klass.new(header, body) }
+  let(:header) { [ [ :id, Integer ] ]              }
+  let(:object) { described_class.new(header, body) }
 
   before do
-    object.should be_instance_of(klass)
+    object.should be_instance_of(described_class)
   end
 
   context 'with a body containing no entries' do

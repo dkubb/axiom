@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Algebra::Restriction::TruePredicate, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Algebra::Restriction::TruePredicate     }
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:relation) { base.restrict(predicate)                           }
-  let(:object)   { klass.new(relation)                                }
+  let(:object)   { described_class.new(relation)                      }
 
   before do
     object.operation.should be_kind_of(Algebra::Restriction)

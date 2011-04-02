@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Relation::Operation::Order, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Relation::Operation::Order               }
   let(:body)       { [ [ 1 ], [ 2 ], [ 3 ] ].each             }
   let(:relation)   { Relation.new([ [ :id, Integer ] ], body) }
   let(:operand)    { relation                                 }
   let(:directions) { [ relation[:id] ]                        }
-  let(:object)     { klass.new(operand, directions)           }
+  let(:object)     { described_class.new(operand, directions) }
 
   context 'containing a relation' do
     it { should equal(object) }
@@ -91,7 +90,7 @@ describe Relation::Operation::Order, '#optimize' do
 
   context 'containing a materialized relation' do
     let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-    let(:object)   { klass.new(relation, directions)                             }
+    let(:object)   { described_class.new(relation, directions)                   }
 
     it { should eql(Relation::Materialized.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ])) }
 

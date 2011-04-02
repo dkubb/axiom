@@ -4,13 +4,13 @@ require File.expand_path('../../fixtures/classes', __FILE__)
 describe Immutable::MemoizeMethods, '#memoize' do
   subject { object.memoize(method, value) }
 
-  let(:klass)  { Class.new(ImmutableSpecs::Object) }
-  let(:object) { klass.new                         }
-  let(:method) { :test                             }
-  let(:value)  { String.new.freeze                 }
+  let(:described_class) { Class.new(ImmutableSpecs::Object) }
+  let(:object)          { described_class.new               }
+  let(:method)          { :test                             }
+  let(:value)           { String.new.freeze                 }
 
   before do
-    klass.memoize(method)
+    described_class.memoize(method)
   end
 
   it 'sets the memoized value for the method to the value' do

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Operation::Unary, '#operand' do
   subject { object.operand }
 
-  let(:klass)  { Class.new { include Operation::Unary } }
-  let(:object) { klass.new(operand)                     }
+  let(:described_class) { Class.new { include Operation::Unary } }
+  let(:object)          { described_class.new(operand)           }
 
   context 'when operand is frozen' do
     let(:operand) { 'Operand'.freeze }

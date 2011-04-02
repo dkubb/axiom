@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Relation::Empty, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:klass)  { Relation::Empty                 }
-  let(:object) { klass.new([ [ :id, Integer ] ]) }
-  let(:yields) { []                              }
+  let(:object) { described_class.new([ [ :id, Integer ] ]) }
+  let(:yields) { []                                        }
 
   it_should_behave_like 'a command method'
 

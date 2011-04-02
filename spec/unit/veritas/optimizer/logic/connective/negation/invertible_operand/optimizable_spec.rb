@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Connective::Negation::InvertibleOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Optimizer::Logic::Connective::Negation::InvertibleOperand }
-  let(:attribute) { Attribute::Integer.new(:id)                               }
-  let(:negation)  { Logic::Connective::Negation.new(operand)                  }
-  let(:object)    { klass.new(negation)                                       }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:negation)  { Logic::Connective::Negation.new(operand) }
+  let(:object)    { described_class.new(negation)            }
 
   before do
     object.operation.should be_kind_of(Logic::Connective::Negation)

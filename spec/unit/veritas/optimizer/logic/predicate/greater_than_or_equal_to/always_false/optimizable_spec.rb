@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::GreaterThanOrEqualTo::AlwaysFalse, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Optimizer::Logic::Predicate::GreaterThanOrEqualTo::AlwaysFalse }
-  let(:attribute) { Attribute::Integer.new(:id)                                    }
-  let(:predicate) { left.gte(right)                                                }
-  let(:object)    { klass.new(predicate)                                           }
+  let(:attribute) { Attribute::Integer.new(:id)    }
+  let(:predicate) { left.gte(right)                }
+  let(:object)    { described_class.new(predicate) }
 
   before do
     predicate.should be_kind_of(Logic::Predicate::GreaterThanOrEqualTo)

@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Attribute, '#options' do
   subject { object.options }
 
-  let(:klass) { Attribute::Integer }
+  let(:described_class) { Attribute::Integer }
 
   context 'when no options are provided' do
-    let(:object) { klass.new(:id) }
+    let(:object) { described_class.new(:id) }
 
     it { should be_kind_of(Hash) }
 
@@ -16,15 +16,15 @@ describe Attribute, '#options' do
   end
 
   context 'when options are frozen' do
-    let(:options) { {}.freeze               }
-    let(:object)  { klass.new(:id, options) }
+    let(:options) { {}.freeze                         }
+    let(:object)  { described_class.new(:id, options) }
 
     it { should equal(options) }
   end
 
   context 'when options are not frozen' do
-    let(:options) { {}                      }
-    let(:object)  { klass.new(:id, options) }
+    let(:options) { {}                                }
+    let(:object)  { described_class.new(:id, options) }
 
     it { should_not equal(options) }
 

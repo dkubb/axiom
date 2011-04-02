@@ -3,12 +3,12 @@ require 'spec_helper'
 describe Logic::Proposition, '#inspect' do
   subject { object.inspect }
 
-  let(:klass)  { Class.new(Logic::Proposition) }
-  let(:object) { klass.new                     }
+  let(:described_class) { Class.new(Logic::Proposition) }
+  let(:object)          { described_class.new           }
 
   before do
-    klass.stub!(:name).and_return('Veritas::Logic::Proposition')
+    described_class.stub!(:name).and_return('Veritas::Logic::Proposition')
   end
 
-  specify { expect { subject }.to raise_error(NotImplementedError, "#{klass.name}.call must be implemented") }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class.name}.call must be implemented") }
 end

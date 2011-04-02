@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Logic::Predicate::Equality, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Logic::Predicate::Equality  }
-  let(:attribute) { Attribute::Integer.new(:id) }
-  let(:left)      { attribute                   }
-  let(:right)     { attribute                   }
-  let(:object)    { klass.new(left, right)      }
+  let(:attribute) { Attribute::Integer.new(:id)      }
+  let(:left)      { attribute                        }
+  let(:right)     { attribute                        }
+  let(:object)    { described_class.new(left, right) }
 
   context 'left and right are attributes' do
     context 'and equivalent' do
@@ -55,7 +54,7 @@ describe Logic::Predicate::Equality, '#optimize' do
     context 'left is a valid value' do
       let(:left) { 1 }
 
-      it { should eql(klass.new(attribute, 1)) }
+      it { should eql(described_class.new(attribute, 1)) }
 
       it_should_behave_like 'an optimize method'
     end

@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Proposition::True, '#and' do
   subject { object.and(other) }
 
-  let(:klass)  { Logic::Proposition::True }
   let(:other)  { mock('other')            }
-  let(:object) { klass.instance           }
+  let(:object) { described_class.instance }
 
   it { should equal(other) }
 end

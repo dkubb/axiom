@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Optimizer::Algebra::Join::EqualHeaders, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Algebra::Join::EqualHeaders }
-  let(:relation) { left.join(right)                       }
-  let(:object)   { klass.new(relation)                    }
+  let(:relation) { left.join(right)              }
+  let(:object)   { described_class.new(relation) }
 
   before do
     object.operation.should be_kind_of(Algebra::Join)

@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Algebra::Projection::EmptyOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Algebra::Projection::EmptyOperand                  }
   let(:header)   { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
   let(:relation) { operand.project([ :id ])                                      }
-  let(:object)   { klass.new(relation)                                           }
+  let(:object)   { described_class.new(relation)                                 }
 
   before do
     object.operation.should be_kind_of(Algebra::Projection)

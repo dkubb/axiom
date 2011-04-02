@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '#each' do
   subject { object.each { |direction| yields << direction } }
 
-  let(:klass)      { Relation::Operation::Order::DirectionSet                      }
   let(:attributes) { [ Attribute::Integer.new(:id), Attribute::String.new(:name) ] }
-  let(:object)     { klass.new(attributes)                                         }
+  let(:object)     { described_class.new(attributes)                               }
   let(:yields)     { []                                                            }
 
   it_should_behave_like 'a command method'

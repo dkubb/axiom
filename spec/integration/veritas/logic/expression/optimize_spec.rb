@@ -3,11 +3,11 @@ require 'spec_helper'
 describe Logic::Expression, '#optimize' do
   subject { object.optimize(*args) }
 
-  let(:klass)  { Class.new(Logic::Expression) }
-  let(:object) { klass.new                    }
+  let(:described_class) { Class.new(Logic::Expression) }
+  let(:object)          { described_class.new          }
 
   before do
-    klass.class_eval do
+    described_class.class_eval do
       def eql?(other)
         instance_of?(other.class)
       end
@@ -18,7 +18,7 @@ describe Logic::Expression, '#optimize' do
     let(:args) { [] }
 
     it 'calls self.class.optimizer' do
-      klass.should_receive(:optimizer).and_return(nil)
+      described_class.should_receive(:optimizer).and_return(nil)
       subject
     end
 
@@ -30,7 +30,7 @@ describe Logic::Expression, '#optimize' do
   end
 
   context 'with an optimizer' do
-    let(:optimized) { klass.new                           }
+    let(:optimized) { described_class.new                 }
     let(:args)      { [ lambda { |relation| optimized } ] }
 
     it 'returns an optimized expression' do

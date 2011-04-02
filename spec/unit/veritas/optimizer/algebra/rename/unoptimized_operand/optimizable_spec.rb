@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Algebra::Rename::UnoptimizedOperand }
-  let(:header)   { Relation::Header.new([ [ :id, Integer ] ])     }
-  let(:base)     { Relation.new(header, [ [ 1 ] ].each)           }
-  let(:relation) { operand.rename(aliases)                        }
-  let(:object)   { klass.new(relation)                            }
+  let(:header)   { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:base)     { Relation.new(header, [ [ 1 ] ].each)       }
+  let(:relation) { operand.rename(aliases)                    }
+  let(:object)   { described_class.new(relation)              }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

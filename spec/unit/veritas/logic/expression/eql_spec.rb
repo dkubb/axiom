@@ -4,9 +4,9 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Logic::Expression, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:klass)  { ExpressionSpecs::Object }
-  let(:other)  { klass.new               }
-  let(:object) { klass.new               }
+  let(:described_class) { ExpressionSpecs::Object }
+  let(:other)           { described_class.new     }
+  let(:object)          { described_class.new     }
 
   specify { expect { subject }.to raise_error(NotImplementedError, 'ExpressionSpecs::Object#eql? must be implemented') }
 end

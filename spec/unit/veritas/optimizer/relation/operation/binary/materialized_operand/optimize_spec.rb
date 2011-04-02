@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::MaterializedOperand, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Optimizer::Relation::Operation::Binary::MaterializedOperand }
-  let(:left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])               }
-  let(:right)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])               }
-  let(:relation) { left.union(right)                                           }
-  let(:object)   { klass.new(relation)                                         }
+  let(:left)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:right)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:relation) { left.union(right)                             }
+  let(:object)   { described_class.new(relation)                 }
 
   it { should be_kind_of(Relation::Materialized) }
 

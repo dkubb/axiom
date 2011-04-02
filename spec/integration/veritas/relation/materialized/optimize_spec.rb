@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Relation::Materialized, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)  { Relation::Materialized                }
-  let(:object) { klass.new([ [ :id, Integer ] ], body) }
+  let(:object) { described_class.new([ [ :id, Integer ] ], body) }
 
   context 'with an empty Array' do
     let(:body) { [] }

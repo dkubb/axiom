@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Relation::Header, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:klass)     { Relation::Header            }
-  let(:attribute) { Attribute::Integer.new(:id) }
-  let(:object)    { klass.new([ attribute ])    }
-  let(:yields)    { []                          }
+  let(:attribute) { Attribute::Integer.new(:id)        }
+  let(:object)    { described_class.new([ attribute ]) }
+  let(:yields)    { []                                 }
 
   it_should_behave_like 'a command method'
 

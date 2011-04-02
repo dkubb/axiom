@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Logic::Connective::Negation, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)     { Logic::Connective::Negation }
-  let(:attribute) { Attribute::Integer.new(:id) }
-  let(:object)    { klass.new(operand)          }
+  let(:attribute) { Attribute::Integer.new(:id)  }
+  let(:object)    { described_class.new(operand) }
 
   context 'operand is a predicate' do
     let(:operand) { attribute.gt(1) }
@@ -17,7 +16,7 @@ describe Logic::Connective::Negation, '#optimize' do
 
   context 'operand is a objected predicate' do
     let(:predicate) { attribute.gt(1)      }
-    let(:operand)   { klass.new(predicate) }
+    let(:operand)   { described_class.new(predicate) }
 
     it { should eql(predicate) }
 

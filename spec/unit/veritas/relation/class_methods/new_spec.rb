@@ -4,7 +4,7 @@ describe Relation, '.new' do
   subject { object.new(header, body) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:object) { Relation                                   }
+  let(:object) { described_class                            }
 
   context 'with an Enumerable responding to #size' do
     let(:body) { [ [ 1 ] ] }

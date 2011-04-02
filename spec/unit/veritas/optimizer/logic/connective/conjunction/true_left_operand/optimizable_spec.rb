@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Connective::Conjunction::TrueLeftOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)      { Optimizer::Logic::Connective::Conjunction::TrueLeftOperand }
-  let(:attribute)  { Attribute::Integer.new(:id)                                }
-  let(:connective) { Logic::Connective::Conjunction.new(left, right)            }
-  let(:object)     { klass.new(connective)                                      }
+  let(:attribute)  { Attribute::Integer.new(:id)                     }
+  let(:connective) { Logic::Connective::Conjunction.new(left, right) }
+  let(:object)     { described_class.new(connective)                 }
 
   before do
     object.operation.should be_kind_of(Logic::Connective::Conjunction)

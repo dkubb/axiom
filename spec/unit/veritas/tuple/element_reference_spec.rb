@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Tuple, '#[]' do
   subject { object[attribute] }
 
-  let(:klass)  { Tuple                                      }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:object) { klass.new(header, [ 1 ])                   }
+  let(:object) { described_class.new(header, [ 1 ])         }
 
   context 'with a known attribute' do
     let(:attribute) { header[:id] }

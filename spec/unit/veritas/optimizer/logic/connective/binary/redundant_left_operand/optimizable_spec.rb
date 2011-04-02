@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Optimizer::Logic::Connective::Binary::RedundantLeftOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)      { Optimizer::Logic::Connective::Binary::RedundantLeftOperand }
-  let(:attribute)  { Attribute::Integer.new(:id)                                }
-  let(:left)       { attribute.include([ 1 ])                                   }
-  let(:right)      { attribute.exclude([ 2 ])                                   }
-  let(:object)     { klass.new(connective)                                      }
+  let(:attribute)  { Attribute::Integer.new(:id)     }
+  let(:left)       { attribute.include([ 1 ])        }
+  let(:right)      { attribute.exclude([ 2 ])        }
+  let(:object)     { described_class.new(connective) }
 
   before do
     object.operation.should be_kind_of(Logic::Connective::Binary)

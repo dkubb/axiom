@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Predicate::Comparable::NormalizableOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Optimizer::Logic::Predicate::Comparable::NormalizableOperands }
-  let(:attribute) { Attribute::Integer.new(:id)                                   }
-  let(:predicate) { Logic::Predicate::Equality.new(left, right)                   }
-  let(:object)    { klass.new(predicate)                                          }
+  let(:attribute) { Attribute::Integer.new(:id)                 }
+  let(:predicate) { Logic::Predicate::Equality.new(left, right) }
+  let(:object)    { described_class.new(predicate)              }
 
   before do
     predicate.should be_kind_of(Logic::Predicate::Comparable)
@@ -35,7 +34,7 @@ describe Optimizer::Logic::Predicate::Comparable::NormalizableOperands, '#optimi
 
   context 'when left is an attribute and right is a constant' do
     let(:left)  { attribute }
-    let(:right) { 1        }
+    let(:right) { 1         }
 
     it { should be(false) }
   end

@@ -3,11 +3,10 @@ require 'spec_helper'
 describe Algebra::Difference, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:klass)  { Algebra::Difference             }
-  let(:header) { [ [ :id, Integer ] ]            }
-  let(:left)   { Relation.new(header, [ [ 1 ] ]) }
-  let(:object) { klass.new(left, right)          }
-  let(:yields) { []                              }
+  let(:header) { [ [ :id, Integer ] ]             }
+  let(:left)   { Relation.new(header, [ [ 1 ] ])  }
+  let(:object) { described_class.new(left, right) }
+  let(:yields) { []                               }
 
   context 'with relations having similar bodies' do
     let(:right) { left.dup }

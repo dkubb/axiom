@@ -3,28 +3,34 @@ require 'spec_helper'
 describe Range, '#to_inclusive' do
   subject { object.to_inclusive }
 
-  let(:klass) { Range }
+  let(:object) { described_class.new(range_start, range_end, exclusive) }
 
   context 'on an exclusive Range' do
-    context 'with values that responds to #pred' do
-      let(:object) { 1...3 }
+    let(:exclusive) { true }
 
-      it { should be_kind_of(klass) }
+    context 'with values that responds to #pred' do
+      let(:range_start) { 1 }
+      let(:range_end)   { 3 }
+
+      it { should be_kind_of(described_class) }
 
       it 'returns an inclusive Range' do
-        should == (1..2)
+        should == described_class.new(1, 2)
       end
     end
 
     context 'with values that do not respond to #pred' do
-      let(:object) { 'a'...'z' }
+      let(:range_start) { 'a' }
+      let(:range_end)   { 'z' }
 
       specify { expect { subject }.to raise_error(NoMethodError) }
     end
   end
 
   context 'on an inclusive Range' do
-    let(:object) { 1..2 }
+    let(:range_start) { 1     }
+    let(:range_end)   { 2     }
+    let(:exclusive)   { false }
 
     it 'returns self' do
       should equal(object)

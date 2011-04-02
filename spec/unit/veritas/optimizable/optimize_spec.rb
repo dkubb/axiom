@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Optimizable, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)  { Class.new { include Optimizable, Immutable } }
-  let(:object) { klass.new                                    }
+  let(:described_class) { Class.new { include Optimizable, Immutable } }
+  let(:object)          { described_class.new                          }
 
   context 'when there is no optimizer for the class' do
     it { should equal(object) }
@@ -17,7 +17,7 @@ describe Optimizable, '#optimize' do
     let(:optimizer) { mock('Optimizer', :call => optimized) }
 
     before do
-      klass.optimizer = optimizer
+      described_class.optimizer = optimizer
       optimized.stub!(:optimize).and_return(optimized)
     end
 

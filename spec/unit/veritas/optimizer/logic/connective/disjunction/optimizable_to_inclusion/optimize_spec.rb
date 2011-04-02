@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Connective::Disjunction::OptimizableToInclusion, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Optimizer::Logic::Connective::Disjunction::OptimizableToInclusion }
-  let(:attribute)  { Attribute::Integer.new(:id)                                       }
-  let(:connective) { left.or(right)                                                    }
-  let(:object)     { klass.new(connective)                                             }
+  let(:attribute)  { Attribute::Integer.new(:id)     }
+  let(:connective) { left.or(right)                  }
+  let(:object)     { described_class.new(connective) }
 
   before do
     object.operation.should be_kind_of(Logic::Connective::Disjunction)

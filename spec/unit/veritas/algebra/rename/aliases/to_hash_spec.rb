@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Algebra::Rename::Aliases, '#to_hash' do
   subject { object.to_hash }
 
-  let(:klass)     { Algebra::Rename::Aliases    }
-  let(:attribute) { Attribute::Integer.new(:id) }
-  let(:object)    { klass.new(aliases)          }
+  let(:attribute) { Attribute::Integer.new(:id)  }
+  let(:object)    { described_class.new(aliases) }
 
   context 'when aliases is frozen' do
     let(:aliases) { { attribute => attribute.rename(:other_id) }.freeze }

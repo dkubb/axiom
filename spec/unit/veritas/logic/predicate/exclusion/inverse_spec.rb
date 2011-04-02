@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Logic::Predicate::Exclusion, '#inverse' do
   subject { object.inverse }
 
-  let(:klass)      { Logic::Predicate::Exclusion      }
-  let(:attribute)  { Attribute::Integer.new(:id)      }
-  let(:enumerable) { [ 1 ].freeze                     }
-  let(:object)     { klass.new(attribute, enumerable) }
+  let(:attribute)  { Attribute::Integer.new(:id)                }
+  let(:enumerable) { [ 1 ].freeze                               }
+  let(:object)     { described_class.new(attribute, enumerable) }
 
   it_should_behave_like 'an idempotent method'
 

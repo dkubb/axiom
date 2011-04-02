@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Relation::Materialized, '#size' do
   subject { object.size }
 
-  let(:klass)  { Relation::Materialized                     }
-  let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:object) { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
 
   it_should_behave_like 'an idempotent method'
 

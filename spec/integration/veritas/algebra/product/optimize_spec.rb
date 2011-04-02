@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Algebra::Product, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Algebra::Product                                 }
   let(:left_body)  { [ [ 1 ] ].each                                   }
   let(:right_body) { [ [ 'Dan Kubb' ] ].each                          }
   let(:left)       { Relation.new([ [ :id,   Integer ] ], left_body)  }
   let(:right)      { Relation.new([ [ :name, String  ] ], right_body) }
-  let(:object)     { klass.new(left, right)                           }
+  let(:object)     { described_class.new(left, right)                 }
 
   context 'left is a TABLE_DUM' do
     let(:left) { TABLE_DUM }

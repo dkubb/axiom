@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Binary::EqualOperands, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)            { Class.new(Optimizer::Relation::Operation::Binary) }
+  let(:described_class)  { Class.new(Optimizer::Relation::Operation::Binary) }
   let(:relation)         { mock('Relation', :left => left, :right => right)  }
   let(:materialized)     { mock('Materialized')                              }
   let(:not_materialized) { mock('Not Materialized')                          }
-  let(:object)           { klass.new(relation)                               }
+  let(:object)           { described_class.new(relation)                     }
 
   before do
-    klass.class_eval { include superclass::EqualOperands }
+    described_class.class_eval { include superclass::EqualOperands }
   end
 
   before do

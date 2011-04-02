@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Optimizer::Relation::Operation::Unary::EmptyOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)    { Optimizer::Relation::Operation::Unary::EmptyOperand }
-  let(:relation) { mock('Relation', :operand => operand)               }
-  let(:object)   { klass.new(relation)                                 }
+  let(:relation) { mock('Relation', :operand => operand) }
+  let(:object)   { described_class.new(relation)         }
 
   context 'when the operand is empty' do
     let(:operand) { Relation::Empty.new([ [ :id, Integer ] ]) }

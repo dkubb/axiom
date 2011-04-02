@@ -3,8 +3,7 @@ require 'spec_helper'
 describe Relation::Empty, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)  { Relation::Empty                 }
-  let(:object) { klass.new([ [ :id, Integer ] ]) }
+  let(:object) { described_class.new([ [ :id, Integer ] ]) }
 
   it { should equal(object) }
 

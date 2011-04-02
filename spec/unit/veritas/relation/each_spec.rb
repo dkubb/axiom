@@ -3,14 +3,13 @@ require 'spec_helper'
 describe Relation, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:klass)  { Relation                                   }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:body)   { [ [ 1 ], [ 2 ], [ 2 ] ].each               }  # use an Enumerator
-  let(:object) { klass.new(header, body)                    }
+  let(:object) { described_class.new(header, body)          }
   let(:yields) { []                                         }
 
   before do
-    object.should be_instance_of(klass)
+    object.should be_instance_of(described_class)
   end
 
   it_should_behave_like 'a command method'

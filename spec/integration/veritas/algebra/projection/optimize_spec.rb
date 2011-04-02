@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Algebra::Projection, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)    { Algebra::Projection                                        }
   let(:header)   { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
   let(:body)     { [ [ 1, 'Dan Kubb', 35 ] ].each                             }
   let(:relation) { Relation.new(header, body)                                 }
   let(:operand)  { relation                                                   }
-  let(:object)   { klass.new(operand, attributes)                             }
+  let(:object)   { described_class.new(operand, attributes)                   }
 
   context 'when the attributes are equivalent to the relation headers, and in the same order' do
     let(:attributes) { header }
@@ -92,7 +91,7 @@ describe Algebra::Projection, '#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(relation) }
 
@@ -116,7 +115,7 @@ describe Algebra::Projection, '#optimize' do
 
     it { should_not equal(object) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:operand) { should equal(relation) }
 
@@ -142,8 +141,8 @@ describe Algebra::Projection, '#optimize' do
 
     it 'pushes the object to each relation' do
       should eql(Algebra::Union.new(
-         klass.new(left,  object.header),
-         klass.new(right, object.header)
+         described_class.new(left,  object.header),
+         described_class.new(right, object.header)
       ))
     end
 

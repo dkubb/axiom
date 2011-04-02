@@ -4,18 +4,17 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Logic::Predicate, '#rename' do
   subject { object.rename(aliases) }
 
-  let(:klass)     { PredicateSpecs::Object                                    }
   let(:attribute) { Attribute::Integer.new(:id)                               }
   let(:other)     { attribute.rename(:other_id)                               }
   let(:header)    { Relation::Header.new([ attribute ])                       }
   let(:aliases)   { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
   let(:left)      { attribute                                                 }
   let(:right)     { attribute                                                 }
-  let(:object)    { klass.new(left, right)                                    }
+  let(:object)    { described_class.new(left, right)                          }
 
   context 'when the left and right are expressions' do
     it 'renames the matching expressions' do
-      should eql(klass.new(other, other))
+      should eql(described_class.new(other, other))
     end
   end
 
@@ -23,7 +22,7 @@ describe Logic::Predicate, '#rename' do
     let(:right) { 1 }
 
     it 'renames the matching expressions' do
-      should eql(klass.new(other, 1))
+      should eql(described_class.new(other, 1))
     end
   end
 
@@ -31,7 +30,7 @@ describe Logic::Predicate, '#rename' do
     let(:left)  { 1 }
 
     it 'renames the matching expressions' do
-      should eql(klass.new(1, other))
+      should eql(described_class.new(1, other))
     end
   end
 

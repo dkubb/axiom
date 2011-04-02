@@ -3,12 +3,11 @@ require 'spec_helper'
 describe Optimizer::Algebra::Rename::RestrictionOperand, '#optimizable?' do
   subject { object.optimizable? }
 
-  let(:klass)     { Optimizer::Algebra::Rename::RestrictionOperand }
-  let(:header)    { Relation::Header.new([ [ :id, Integer ] ])     }
-  let(:base)      { Relation.new(header, [ [ 1 ] ].each)           }
-  let(:predicate) { base[:id].eq(1)                                }
-  let(:relation)  { operand.rename(:id => :other_id)               }
-  let(:object)    { klass.new(relation)                            }
+  let(:header)    { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:base)      { Relation.new(header, [ [ 1 ] ].each)       }
+  let(:predicate) { base[:id].eq(1)                            }
+  let(:relation)  { operand.rename(:id => :other_id)           }
+  let(:object)    { described_class.new(relation)              }
 
   before do
     object.operation.should be_kind_of(Algebra::Rename)

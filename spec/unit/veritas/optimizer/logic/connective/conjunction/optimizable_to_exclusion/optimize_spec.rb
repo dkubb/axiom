@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Optimizer::Logic::Connective::Conjunction::OptimizableToExclusion, '#optimize' do
   subject { object.optimize }
 
-  let(:klass)      { Optimizer::Logic::Connective::Conjunction::OptimizableToExclusion }
-  let(:attribute)  { Attribute::Integer.new(:id)                                       }
-  let(:connective) { left.and(right)                                                   }
-  let(:object)     { klass.new(connective)                                             }
+  let(:attribute)  { Attribute::Integer.new(:id)     }
+  let(:connective) { left.and(right)                 }
+  let(:object)     { described_class.new(connective) }
 
   before do
     object.operation.should be_kind_of(Logic::Connective::Conjunction)

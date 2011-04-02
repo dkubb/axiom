@@ -4,18 +4,18 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Logic::Connective::Binary, '#rename' do
   subject { object.rename(aliases) }
 
-  let(:klass)     { BinarySpecs::Object                                       }
-  let(:attribute) { Attribute::Integer.new(:id)                               }
-  let(:other)     { attribute.rename(:other_id)                               }
-  let(:header)    { Relation::Header.new([ attribute ])                       }
-  let(:aliases)   { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
-  let(:object)    { klass.new(left, right)                                    }
+  let(:described_class) { BinarySpecs::Object                                       }
+  let(:attribute)       { Attribute::Integer.new(:id)                               }
+  let(:other)           { attribute.rename(:other_id)                               }
+  let(:header)          { Relation::Header.new([ attribute ])                       }
+  let(:aliases)         { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
+  let(:object)          { described_class.new(left, right)                          }
 
   context 'left and right are renamed' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.eq(2) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:left) { should == other.eq(1) }
 
@@ -26,7 +26,7 @@ describe Logic::Connective::Binary, '#rename' do
     let(:left)  { attribute.eq(1) }
     let(:right) { other.eq(2)     }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:left) { should == other.eq(1) }
 
@@ -37,7 +37,7 @@ describe Logic::Connective::Binary, '#rename' do
     let(:left)  { other.eq(1)     }
     let(:right) { attribute.eq(2) }
 
-    it { should be_kind_of(klass) }
+    it { should be_kind_of(described_class) }
 
     its(:left) { should equal(left) }
 

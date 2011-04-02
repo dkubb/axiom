@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Algebra::Projection, '#directions' do
   subject { object.directions }
 
-  let(:klass)    { Algebra::Projection                                                          }
   let(:relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
-  let(:object)   { klass.new(operand, [ :id ])                                                  }
+  let(:object)   { described_class.new(operand, [ :id ])                                        }
 
   context 'containing an unordered relation' do
     let(:operand) { relation }

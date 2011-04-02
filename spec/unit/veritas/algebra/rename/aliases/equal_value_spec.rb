@@ -3,10 +3,9 @@ require 'spec_helper'
 describe Algebra::Rename::Aliases, '#==' do
   subject { object == other }
 
-  let(:klass)     { Algebra::Rename::Aliases                     }
   let(:attribute) { Attribute::Integer.new(:id)                  }
   let(:aliases)   { { attribute => attribute.rename(:other_id) } }
-  let(:object)    { klass.new(aliases)                           }
+  let(:object)    { described_class.new(aliases)                 }
 
   context 'with the same object' do
     let(:other) { object }
@@ -29,7 +28,7 @@ describe Algebra::Rename::Aliases, '#==' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(klass).new(aliases) }
+    let(:other) { Class.new(described_class).new(aliases) }
 
     it { should be(true) }
 
@@ -40,7 +39,7 @@ describe Algebra::Rename::Aliases, '#==' do
 
   context 'with an object having different aliases' do
     let(:other_aliases) { { attribute => attribute.rename(:another_id) } }
-    let(:other)         { klass.new(other_aliases)                       }
+    let(:other)         { described_class.new(other_aliases)             }
 
     it { should be(false) }
 
