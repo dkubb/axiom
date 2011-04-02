@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection#directions' do
+describe Algebra::Projection, '#directions' do
   subject { object.directions }
 
   let(:klass)    { Algebra::Projection                                                          }

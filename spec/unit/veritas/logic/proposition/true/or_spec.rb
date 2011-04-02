@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition::True#or' do
+describe Logic::Proposition::True, '#or' do
   subject { object.or(other) }
 
   let(:klass)  { Logic::Proposition::True }

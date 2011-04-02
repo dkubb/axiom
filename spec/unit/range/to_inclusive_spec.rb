@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Range#to_inclusive' do
+describe Range, '#to_inclusive' do
   subject { object.to_inclusive }
 
   let(:klass) { Range }

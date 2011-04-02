@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#header' do
+describe Tuple, '#header' do
   subject { object.header }
 
   let(:klass)  { Tuple                                      }

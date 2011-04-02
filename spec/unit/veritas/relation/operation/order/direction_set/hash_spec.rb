@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#hash' do
+describe Relation::Operation::Order::DirectionSet, '#hash' do
   subject { object.hash }
 
   let(:klass)      { Relation::Operation::Order::DirectionSet }

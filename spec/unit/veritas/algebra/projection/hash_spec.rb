@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection#hash' do
+describe Algebra::Projection, '#hash' do
   subject { object.hash }
 
   let(:klass)      { Algebra::Projection                                           }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Direction#attribute' do
+describe Relation::Operation::Order::Direction, '#attribute' do
   subject { object.attribute }
 
   let(:klass)     { Class.new(Relation::Operation::Order::Direction) }

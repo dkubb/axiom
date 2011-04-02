@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Connective::Disjunction::FalseRightOperand#optimizable?' do
+describe Optimizer::Logic::Connective::Disjunction::FalseRightOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)      { Optimizer::Logic::Connective::Disjunction::FalseRightOperand }

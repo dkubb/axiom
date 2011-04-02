@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename#aliases' do
+describe Optimizer::Algebra::Rename, '#aliases' do
   subject { object.aliases }
 
   let(:klass)     { Optimizer::Algebra::Rename           }

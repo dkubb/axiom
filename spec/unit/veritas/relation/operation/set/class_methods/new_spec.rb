@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
-describe 'Veritas::Relation::Operation::Set::ClassMethods#new' do
+describe Relation::Operation::Set::ClassMethods, '#new' do
   subject { object.new(left, right) }
 
   let(:header) { [ [ :id, Integer ] ]            }

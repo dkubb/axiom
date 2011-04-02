@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#to_ary' do
+describe Relation::Operation::Order::DirectionSet, '#to_ary' do
   subject { object.to_ary }
 
   let(:klass)     { Relation::Operation::Order::DirectionSet }

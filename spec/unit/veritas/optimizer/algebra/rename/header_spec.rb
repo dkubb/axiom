@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename#header' do
+describe Optimizer::Algebra::Rename, '#header' do
   subject { object.header }
 
   let(:klass)    { Optimizer::Algebra::Rename                 }

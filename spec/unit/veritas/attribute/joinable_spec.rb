@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#joinable?' do
+describe Attribute, '#joinable?' do
   subject { object.joinable?(other) }
 
   let(:klass)  { Attribute::Integer }

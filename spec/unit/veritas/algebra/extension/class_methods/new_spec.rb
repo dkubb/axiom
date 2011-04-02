@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Extension.new' do
+describe Algebra::Extension, '.new' do
   subject { object.new(operand, extensions) }
 
   let(:operand) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ]) }

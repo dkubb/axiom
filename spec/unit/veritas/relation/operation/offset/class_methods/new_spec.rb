@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Offset.new' do
+describe Relation::Operation::Offset, '.new' do
   subject { object.new(relation, offset) }
 
   let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

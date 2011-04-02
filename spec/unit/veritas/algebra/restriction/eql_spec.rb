@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Restriction#eql?' do
+describe Algebra::Restriction, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)     { Algebra::Restriction                          }

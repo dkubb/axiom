@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Order::OrderOperand#optimize' do
+describe Optimizer::Relation::Operation::Order::OrderOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Relation::Operation::Order::OrderOperand }

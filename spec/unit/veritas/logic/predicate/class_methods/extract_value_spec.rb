@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate.extract_value' do
+describe Logic::Predicate, '.extract_value' do
   subject { object.extract_value(operand, tuple) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#rename' do
+describe Attribute, '#rename' do
   subject { object.rename(name) }
 
   let(:klass)  { Attribute::Integer             }

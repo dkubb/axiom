@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#project' do
+describe Tuple, '#project' do
   subject { object.project(reversed_header) }
 
   let(:klass)           { Tuple                                                         }

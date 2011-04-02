@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Limit::Methods#last' do
+describe Relation::Operation::Limit::Methods, '#last' do
   let(:klass)    { Relation                                                      }
   let(:relation) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ].each) }
   let(:object)   { relation.order                                                }

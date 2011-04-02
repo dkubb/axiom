@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition::False#inverse' do
+describe Logic::Proposition::False, '#inverse' do
   subject { object.inverse }
 
   let(:klass)  { Logic::Proposition::False }

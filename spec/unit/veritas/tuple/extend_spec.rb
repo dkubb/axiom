@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#extend' do
+describe Tuple, '#extend' do
   subject { object.extend(new_header, extensions) }
 
   let(:klass)      { Tuple                                                         }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Offset::UnoptimizedOperand#optimizable?' do
+describe Optimizer::Relation::Operation::Offset::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)    { Optimizer::Relation::Operation::Offset::UnoptimizedOperand }

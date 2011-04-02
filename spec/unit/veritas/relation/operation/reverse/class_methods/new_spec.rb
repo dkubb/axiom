@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Reverse.new' do
+describe Relation::Operation::Reverse, '.new' do
   subject { object.new(relation) }
 
   let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

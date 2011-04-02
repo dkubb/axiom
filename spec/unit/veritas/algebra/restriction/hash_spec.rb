@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Restriction#hash' do
+describe Algebra::Restriction, '#hash' do
   subject { object.hash }
 
   let(:klass)     { Algebra::Restriction                          }

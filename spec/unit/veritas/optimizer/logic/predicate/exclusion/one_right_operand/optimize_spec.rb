@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Exclusion::OneRightOperand#optimize' do
+describe Optimizer::Logic::Predicate::Exclusion::OneRightOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Optimizer::Logic::Predicate::Exclusion::OneRightOperand }

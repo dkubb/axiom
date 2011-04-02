@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Equality.inverse' do
+describe Logic::Predicate::Equality, '.inverse' do
   subject { object.inverse }
 
   let(:object) { Logic::Predicate::Equality }

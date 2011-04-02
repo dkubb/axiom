@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Operation::Binary#eql?' do
+describe Operation::Binary, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)  { Class.new { include Operation::Binary } }

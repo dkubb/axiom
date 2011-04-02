@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Union#optimize' do
+describe Algebra::Union, '#optimize' do
   subject { object.optimize }
 
   let(:klass)          { Algebra::Union                   }

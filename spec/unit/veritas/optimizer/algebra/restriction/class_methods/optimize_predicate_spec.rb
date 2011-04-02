@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Restriction.optimize_predicate' do
+describe Optimizer::Algebra::Restriction, '.optimize_predicate' do
   subject { object.optimize_predicate(predicate) }
 
   let(:attribute) { Attribute::Integer.new(:id)     }

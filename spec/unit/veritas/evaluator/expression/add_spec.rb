@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Evaluator::Expression#add' do
+describe Evaluator::Expression, '#add' do
   let(:klass)     { Evaluator::Expression       }
   let(:attribute) { Attribute::Integer.new(:id) }
 

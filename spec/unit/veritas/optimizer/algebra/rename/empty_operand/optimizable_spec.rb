@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename::EmptyOperand#optimizable?' do
+describe Optimizer::Algebra::Rename::EmptyOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)    { Optimizer::Algebra::Rename::EmptyOperand   }

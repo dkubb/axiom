@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Summarization#header' do
+describe Algebra::Summarization, '#header' do
   subject { object.header }
 
   let(:klass)       { Algebra::Summarization                               }

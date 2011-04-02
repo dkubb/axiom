@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Immutable.freeze_object' do
+describe Immutable, '.freeze_object' do
   subject { object.freeze_object(value) }
 
   let(:object) { Immutable }

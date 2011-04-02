@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename::Aliases#each' do
+describe Algebra::Rename::Aliases, '#each' do
   subject { object.each { |old_attr, new_attr| yields << [ old_attr, new_attr ] } }
 
   let(:klass)     { Algebra::Rename::Aliases                     }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition.new' do
+describe Logic::Proposition, '.new' do
   let(:object) { Logic::Proposition }
 
   context 'with true argument' do

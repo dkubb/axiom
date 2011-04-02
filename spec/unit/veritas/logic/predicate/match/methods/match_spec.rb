@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Match::Methods#match' do
+describe Logic::Predicate::Match::Methods, '#match' do
   subject { object.match(other) }
 
   let(:klass)  { MatchMethodsSpecs::Object }

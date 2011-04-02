@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#index' do
+describe Relation::Header, '#index' do
   subject { object.index(argument) }
 
   let(:klass)     { Relation::Header         }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition#eql?' do
+describe Logic::Proposition, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)  { Class.new(Logic::Proposition) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Conjunction.call' do
+describe Logic::Connective::Conjunction, '.call' do
   subject { object.call(left, right) }
 
   let(:object) { Logic::Connective::Conjunction }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#join' do
+describe Tuple, '#join' do
   subject { object.join(new_header, values) }
 
   let(:klass)      { Tuple                                      }

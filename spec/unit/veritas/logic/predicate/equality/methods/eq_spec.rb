@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Equality::Methods#eq' do
+describe Logic::Predicate::Equality::Methods, '#eq' do
   subject { object.eq(other) }
 
   let(:klass)   { EqualityMethodsSpecs::Object }

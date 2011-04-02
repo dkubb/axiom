@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection::Methods#remove' do
+describe Algebra::Projection::Methods, '#remove' do
   subject { object.remove(attributes) }
 
   let(:klass)      { Relation                                                                       }

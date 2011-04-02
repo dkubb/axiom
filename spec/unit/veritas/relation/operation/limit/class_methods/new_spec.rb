@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Limit.new' do
+describe Relation::Operation::Limit, '.new' do
   subject { object.new(relation, limit) }
 
   let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizable::ClassMethods#optimizer' do
+describe Optimizable::ClassMethods, '#optimizer' do
   subject { object.optimizer }
 
   let(:object) { Class.new { include Optimizable, Immutable } }
@@ -20,7 +20,7 @@ describe 'Veritas::Optimizable::ClassMethods#optimizer' do
   end
 end
 
-describe 'Veritas::Optimizable::ClassMethods#optimizer=' do
+describe Optimizable::ClassMethods, '#optimizer=' do
   subject { object.optimizer = optimizer }
 
   let(:optimizer) { mock('Optimizer')                            }

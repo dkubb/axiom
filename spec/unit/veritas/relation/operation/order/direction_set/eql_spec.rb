@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#eql?' do
+describe Relation::Operation::Order::DirectionSet, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)      { Relation::Operation::Order::DirectionSet }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Util.min' do
+describe Optimizer::Logic::Predicate::Util, '.min' do
   subject { object.min(operand) }
 
   let(:object) { Optimizer::Logic::Predicate::Util }

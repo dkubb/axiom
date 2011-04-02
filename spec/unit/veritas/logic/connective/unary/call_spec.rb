@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Connective::Unary#call' do
+describe Logic::Connective::Unary, '#call' do
   subject { object.call(tuple) }
 
   let(:klass)    { UnarySpecs::Object                         }

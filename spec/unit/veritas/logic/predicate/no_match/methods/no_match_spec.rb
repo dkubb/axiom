@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::NoMatch::Methods#no_match' do
+describe Logic::Predicate::NoMatch::Methods, '#no_match' do
   subject { object.no_match(other) }
 
   let(:klass)  { NoMatchMethodsSpecs::Object }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#empty?' do
+describe Relation::Operation::Order::DirectionSet, '#empty?' do
   subject { object.empty? }
 
   let(:klass)  { Relation::Operation::Order::DirectionSet }

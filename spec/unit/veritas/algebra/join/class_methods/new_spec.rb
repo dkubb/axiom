@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Join.new' do
+describe Algebra::Join, '.new' do
   subject { object.new(left, right) }
 
   let(:header) { [ [ :id, Integer ] ]                   }

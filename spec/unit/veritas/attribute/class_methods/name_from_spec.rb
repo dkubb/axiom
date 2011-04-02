@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute.name_from' do
+describe Attribute, '.name_from' do
   subject { object.name_from(argument) }
 
   let(:object) { Attribute }

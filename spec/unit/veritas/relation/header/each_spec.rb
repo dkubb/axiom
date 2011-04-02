@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#each' do
+describe Relation::Header, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)     { Relation::Header            }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Header#each' do
   end
 end
 
-describe 'Veritas::Relation::Header' do
+describe Relation::Header do
   subject { object.new }
 
   let(:object) { Relation::Header }

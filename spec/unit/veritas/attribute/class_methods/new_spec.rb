@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute.new' do
+describe Attribute, '.new' do
   subject { object.new(name) }
 
   let(:name) { :id }

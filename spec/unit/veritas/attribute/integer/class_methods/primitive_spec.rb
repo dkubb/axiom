@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Integer.primitive' do
+describe Attribute::Integer, '.primitive' do
   subject { object.primitive }
 
   let(:object) { Attribute::Integer }

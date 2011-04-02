@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Difference#each' do
+describe Algebra::Difference, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)  { Algebra::Difference             }

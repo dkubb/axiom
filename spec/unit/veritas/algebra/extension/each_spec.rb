@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Extension#each' do
+describe Algebra::Extension, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)      { Algebra::Extension                                   }

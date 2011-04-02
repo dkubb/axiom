@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#to_ary' do
+describe Relation::Header, '#to_ary' do
   subject { object.to_ary }
 
   let(:klass)     { Relation::Header         }

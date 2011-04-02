@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order#header' do
+describe Relation::Operation::Order, '#header' do
   subject { object.header }
 
   let(:klass)    { Relation::Operation::Order                 }

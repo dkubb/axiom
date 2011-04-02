@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#hash' do
+describe Relation::Header, '#hash' do
   subject { object.hash }
 
   let(:klass)      { Relation::Header                }

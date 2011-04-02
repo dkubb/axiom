@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection' do
+describe Algebra::Projection do
   context 'remove attributes in predicate' do
     subject { restriction.project([ :name ]) }
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Summarization' do
+describe Algebra::Summarization do
   subject { relation.summarize(by) { |r| r.add(:count) { |accumulator, _| accumulator.to_i + 1 } } }
 
   let(:header)    { [ [ :name, String ], [ :qty, Integer ] ]                       }

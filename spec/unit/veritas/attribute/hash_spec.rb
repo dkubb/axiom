@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#hash' do
+describe Attribute, '#hash' do
   subject { object.hash }
 
   let(:klass)   { Attribute::Integer       }

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate#eql?' do
+describe Logic::Predicate, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)  { PredicateSpecs::Object      }

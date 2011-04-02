@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename.union_aliases' do
+describe Optimizer::Algebra::Rename, '.union_aliases' do
   subject { object.union_aliases(aliases, operand) }
 
   let(:attribute) { Attribute::Integer.new(:id)                }

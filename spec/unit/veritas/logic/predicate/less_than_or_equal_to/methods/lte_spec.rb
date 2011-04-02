@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::LessThanOrEqualTo::Methods#lte' do
+describe Logic::Predicate::LessThanOrEqualTo::Methods, '#lte' do
   subject { object.lte(other) }
 
   let(:klass)  { LessThanOrEqualToMethodsSpecs::Object }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Offset::Methods#drop' do
+describe Relation::Operation::Offset::Methods, '#drop' do
   subject { object.drop(offset) }
 
   let(:klass)    { Relation                                               }

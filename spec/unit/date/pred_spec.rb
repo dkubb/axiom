@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Date#pred' do
+describe Date, '#pred' do
   subject { object.pred }
 
   let(:klass)  { Date        }

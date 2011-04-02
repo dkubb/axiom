@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Decimal.primitive' do
+describe Attribute::Decimal, '.primitive' do
   subject { object.primitive }
 
   let(:object) { Attribute::Decimal }

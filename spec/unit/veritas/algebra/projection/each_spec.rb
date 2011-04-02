@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection#each' do
+describe Algebra::Projection, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)    { Algebra::Projection                                         }

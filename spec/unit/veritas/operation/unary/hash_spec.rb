@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Operation::Unary#hash' do
+describe Operation::Unary, '#hash' do
   subject { object.hash }
 
   let(:klass)   { Class.new { include Operation::Unary } }

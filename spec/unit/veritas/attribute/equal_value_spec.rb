@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#==' do
+describe Attribute, '#==' do
   subject { object == other }
 
   let(:klass)  { Attribute::Integer }

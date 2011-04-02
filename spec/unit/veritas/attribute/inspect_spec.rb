@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#inspect' do
+describe Attribute, '#inspect' do
   subject { object.inspect }
 
   let(:klass)  { Attribute::Integer }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#[]' do
+describe Relation::Header, '#[]' do
   subject { object[name] }
 
   let(:klass)  { Relation::Header                }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Combination.combine_tuples' do
+describe Relation::Operation::Combination, '.combine_tuples' do
   subject { object.combine_tuples(header, left_tuple, right_tuples) { |tuple| yields << tuple } }
 
   let(:left_header)  { Relation::Header.new([ [ :id,   Integer ] ] ) }

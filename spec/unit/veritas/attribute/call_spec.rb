@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#call' do
+describe Attribute, '#call' do
   subject { object.call(tuple) }
 
   let(:klass)  { Attribute::Integer                  }

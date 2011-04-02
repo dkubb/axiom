@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::DateTime.primitive' do
+describe Attribute::DateTime, '.primitive' do
   subject { object.primitive }
 
   let(:object) { Attribute::DateTime }

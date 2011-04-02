@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate#right' do
+describe Optimizer::Logic::Predicate, '#right' do
   subject { object.right }
 
   let(:klass)     { Optimizer::Logic::Predicate                  }

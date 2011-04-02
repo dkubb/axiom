@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Time#range' do
+describe Attribute::Time, '#range' do
   subject { object.range }
 
   let(:klass)  { Attribute::Time  }

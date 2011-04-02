@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Summarization#eql?' do
+describe Algebra::Summarization, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)        { Algebra::Summarization                               }

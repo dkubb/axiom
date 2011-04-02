@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#inspect' do
+describe Logic::Predicate::LessThanOrEqualTo, '#inspect' do
   subject { object.inspect }
 
   let(:klass)     { Logic::Predicate::LessThanOrEqualTo }

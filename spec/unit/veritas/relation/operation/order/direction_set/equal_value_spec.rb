@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#==' do
+describe Relation::Operation::Order::DirectionSet, '#==' do
   subject { object == other }
 
   let(:klass)      { Relation::Operation::Order::DirectionSet }

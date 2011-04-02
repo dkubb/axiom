@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#options' do
+describe Attribute, '#options' do
   subject { object.options }
 
   let(:klass) { Attribute::Integer }

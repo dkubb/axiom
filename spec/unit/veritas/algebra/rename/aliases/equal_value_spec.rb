@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename::Aliases#==' do
+describe Algebra::Rename::Aliases, '#==' do
   subject { object == other }
 
   let(:klass)     { Algebra::Rename::Aliases                     }

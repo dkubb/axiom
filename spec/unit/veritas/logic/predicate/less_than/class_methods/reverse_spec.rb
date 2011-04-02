@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::LessThan.reverse' do
+describe Logic::Predicate::LessThan, '.reverse' do
   subject { object.reverse }
 
   let(:object) { Logic::Predicate::LessThan }

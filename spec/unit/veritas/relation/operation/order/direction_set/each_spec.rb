@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
+describe Relation::Operation::Order::DirectionSet, '#each' do
   subject { object.each { |direction| yields << direction } }
 
   let(:klass)      { Relation::Operation::Order::DirectionSet                      }
@@ -17,7 +17,7 @@ describe 'Veritas::Relation::Operation::Order::DirectionSet#each' do
   end
 end
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet' do
+describe Relation::Operation::Order::DirectionSet do
   subject { object.new(attributes) }
 
   let(:attributes) { [ Attribute::Integer.new(:id) ]          }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation.new' do
+describe Relation, '.new' do
   subject { object.new(header, body) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }

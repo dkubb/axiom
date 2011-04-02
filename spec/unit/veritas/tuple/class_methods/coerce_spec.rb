@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple.coerce' do
+describe Tuple, '.coerce' do
   subject { object.coerce(header, argument) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }

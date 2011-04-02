@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Relation::Operation::Unary#directions' do
+describe Relation::Operation::Unary, '#directions' do
   subject { object.directions }
 
   let(:klass)      { UnaryOperationSpecs::Object                                   }

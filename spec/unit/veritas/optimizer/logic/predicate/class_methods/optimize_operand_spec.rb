@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate.optimize_operand' do
+describe Optimizer::Logic::Predicate, '.optimize_operand' do
   subject { object.optimize_operand(predicate) }
 
   let(:object) { Optimizer::Logic::Predicate }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation#directions' do
+describe Relation, '#directions' do
   subject { object.directions }
 
   let(:klass)  { Relation                              }

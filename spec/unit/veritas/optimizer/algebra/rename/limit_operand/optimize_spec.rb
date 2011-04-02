@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename::LimitOperand#optimize' do
+describe Optimizer::Algebra::Rename::LimitOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Algebra::Rename::LimitOperand    }

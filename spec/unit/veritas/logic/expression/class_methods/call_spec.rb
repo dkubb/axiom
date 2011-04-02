@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Expression.call' do
+describe Logic::Expression, '.call' do
   subject { object.call }
 
   let(:object) { Logic::Expression }

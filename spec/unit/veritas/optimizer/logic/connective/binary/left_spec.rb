@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Connective::Binary#left' do
+describe Optimizer::Logic::Connective::Binary, '#left' do
   subject { object.left }
 
   let(:klass)           { Optimizer::Logic::Connective::Binary               }

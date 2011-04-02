@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Summarization::UnoptimizedOperand#optimize' do
+describe Optimizer::Algebra::Summarization::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Optimizer::Algebra::Summarization::UnoptimizedOperand         }

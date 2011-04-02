@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition#hash' do
+describe Logic::Proposition, '#hash' do
   subject { object.hash }
 
   let(:klass)  { Class.new(Logic::Proposition) }

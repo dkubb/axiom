@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Projection::UnoptimizedOperand#optimizable?' do
+describe Optimizer::Algebra::Projection::UnoptimizedOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)    { Optimizer::Algebra::Projection::UnoptimizedOperand            }

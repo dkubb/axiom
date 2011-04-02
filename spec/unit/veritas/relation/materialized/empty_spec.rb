@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Materialized#empty?' do
+describe Relation::Materialized, '#empty?' do
   subject { object.empty? }
 
   let(:klass)  { Relation::Materialized  }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#==' do
+describe Relation::Header, '#==' do
   subject { object == other }
 
   let(:klass)      { Relation::Header      }

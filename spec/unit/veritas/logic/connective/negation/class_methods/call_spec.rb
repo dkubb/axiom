@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Negation.call' do
+describe Logic::Connective::Negation, '.call' do
   subject { object.call(operand) }
 
   let(:object) { Logic::Connective::Negation }

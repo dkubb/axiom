@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Extension::Methods#extend' do
+describe Algebra::Extension::Methods, '#extend' do
   subject { object.extend(&block) }
 
   let(:klass)      { Relation                                        }

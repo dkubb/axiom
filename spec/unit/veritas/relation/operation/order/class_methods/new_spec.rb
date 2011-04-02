@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order.new' do
+describe Relation::Operation::Order, '.new' do
   subject { object.new(relation, directions) }
 
   let(:header)   { [ [ :id, Integer ], [ :name, String ] ]   }

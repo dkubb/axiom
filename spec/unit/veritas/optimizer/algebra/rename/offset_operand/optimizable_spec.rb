@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Rename::OffsetOperand#optimizable?' do
+describe Optimizer::Algebra::Rename::OffsetOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)    { Optimizer::Algebra::Rename::OffsetOperand          }

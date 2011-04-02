@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Date#range' do
+describe Attribute::Date, '#range' do
   subject { object.range }
 
   let(:klass)  { Attribute::Date  }

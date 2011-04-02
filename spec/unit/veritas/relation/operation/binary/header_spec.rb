@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Relation::Operation::Binary#header' do
+describe Relation::Operation::Binary, '#header' do
   subject { object.header }
 
   let(:klass)  { BinaryRelationOperationSpecs::Object                     }

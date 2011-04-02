@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#rename' do
+describe Relation::Operation::Order::DirectionSet, '#rename' do
   subject { object.rename(aliases) }
 
   let(:klass)     { Relation::Operation::Order::DirectionSet                  }

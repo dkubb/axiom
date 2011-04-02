@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Projection::ProjectionOperand#optimize' do
+describe Optimizer::Algebra::Projection::ProjectionOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Algebra::Projection::ProjectionOperand                                }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Connective::Conjunction::OptimizableToExclusion#optimize' do
+describe Optimizer::Logic::Connective::Conjunction::OptimizableToExclusion, '#optimize' do
   subject { object.optimize }
 
   let(:klass)      { Optimizer::Logic::Connective::Conjunction::OptimizableToExclusion }

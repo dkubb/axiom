@@ -15,7 +15,7 @@ class InfiniteList
   end
 end
 
-describe 'Veritas::Algebra::Relation' do
+describe Relation do
   context 'Efficient Enumerable operation' do
     let(:relation) { Relation.new([ [ :id, Integer ] ], InfiniteList.new) }
 

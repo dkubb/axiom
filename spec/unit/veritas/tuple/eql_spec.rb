@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#eql?' do
+describe Tuple, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)  { Tuple                                      }

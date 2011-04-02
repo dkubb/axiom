@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Expression#==' do
+describe Logic::Expression, '#==' do
   subject { object == other }
 
   let(:klass)  { Class.new(ExpressionSpecs::Object) }

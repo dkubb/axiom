@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#rename' do
+describe Relation::Header, '#rename' do
   subject { object.rename(aliases) }
 
   let(:klass)   { Relation::Header                                          }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Difference#optimize' do
+describe Algebra::Difference, '#optimize' do
   subject { object.optimize }
 
   let(:klass)          { Algebra::Difference              }

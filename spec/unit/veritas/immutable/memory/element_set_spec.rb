@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Immutable::Memory#[]=' do
+describe Immutable::Memory, '#[]=' do
   subject { object[key] = value }
 
   let(:klass)  { Immutable::Memory               }

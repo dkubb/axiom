@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand#optimize' do
+describe Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand }

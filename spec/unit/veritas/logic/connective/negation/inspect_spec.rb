@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Negation#inspect' do
+describe Logic::Connective::Negation, '#inspect' do
   subject { object.inspect }
 
   let(:klass)     { Logic::Connective::Negation }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Unary#operand' do
+describe Optimizer::Relation::Operation::Unary, '#operand' do
   subject { object.operand }
 
   let(:klass)     { Class.new(Optimizer::Relation::Operation::Unary) }

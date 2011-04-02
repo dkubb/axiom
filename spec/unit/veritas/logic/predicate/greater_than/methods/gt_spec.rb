@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::GreaterThan::Methods#gt' do
+describe Logic::Predicate::GreaterThan::Methods, '#gt' do
   subject { object.gt(other) }
 
   let(:klass)  { GreaterThanMethodsSpecs::Object }

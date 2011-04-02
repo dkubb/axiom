@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition::False#inspect' do
+describe Logic::Proposition::False, '#inspect' do
   subject { object.inspect }
 
   let(:klass)  { Logic::Proposition::False }

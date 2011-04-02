@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Limit#optimize' do
+describe Relation::Operation::Limit, '#optimize' do
   subject { object.optimize }
 
   let(:klass)      { Relation::Operation::Limit               }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Equality::AlwaysTrue#optimizable?' do
+describe Optimizer::Logic::Predicate::Equality::AlwaysTrue, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)     { Optimizer::Logic::Predicate::Equality::AlwaysTrue }

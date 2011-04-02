@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#inspect' do
+describe Tuple, '#inspect' do
   subject { object.inspect }
 
   let(:klass)  { Tuple                                      }

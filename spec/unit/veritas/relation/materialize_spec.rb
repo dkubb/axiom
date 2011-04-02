@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation#materialize' do
+describe Relation, '#materialize' do
   subject { object.materialize }
 
   let(:klass)  { Relation                                   }

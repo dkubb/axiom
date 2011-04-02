@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Aliasable#inheritable_alias' do
+describe Aliasable, '#inheritable_alias' do
   subject { object.inheritable_alias(aliases) }
 
   let(:aliases)   { { :other => :test }               }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Restriction::ReverseOperand#optimize' do
+describe Optimizer::Algebra::Restriction::ReverseOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Optimizer::Algebra::Restriction::ReverseOperand          }

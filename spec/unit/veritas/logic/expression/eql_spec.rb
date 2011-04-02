@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Expression#eql?' do
+describe Logic::Expression, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)  { ExpressionSpecs::Object }

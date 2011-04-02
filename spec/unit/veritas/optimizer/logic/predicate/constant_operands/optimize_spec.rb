@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::ConstantOperands#optimize' do
+describe Optimizer::Logic::Predicate::ConstantOperands, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Optimizer::Logic::Predicate::ConstantOperands }

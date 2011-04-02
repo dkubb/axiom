@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Disjunction#inspect' do
+describe Logic::Connective::Disjunction, '#inspect' do
   subject { object.inspect }
 
   let(:klass)     { Logic::Connective::Disjunction }

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate#inverse' do
+describe Logic::Predicate, '#inverse' do
   subject { object.inverse }
 
   let(:klass)     { Class.new(PredicateSpecs::Object) }

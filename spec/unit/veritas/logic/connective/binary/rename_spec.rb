@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Connective::Binary#rename' do
+describe Logic::Connective::Binary, '#rename' do
   subject { object.rename(aliases) }
 
   let(:klass)     { BinarySpecs::Object                                       }

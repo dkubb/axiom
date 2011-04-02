@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#required?' do
+describe Attribute, '#required?' do
   subject { object.required? }
 
   let(:klass) { Attribute::Integer }

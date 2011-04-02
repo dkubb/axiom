@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Inclusion#inspect' do
+describe Logic::Predicate::Inclusion, '#inspect' do
   subject { object.inspect }
 
   let(:klass)     { Logic::Predicate::Inclusion }

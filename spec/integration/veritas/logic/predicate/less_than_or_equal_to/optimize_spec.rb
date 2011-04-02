@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::LessThanOrEqualTo#optimize' do
+describe Logic::Predicate::LessThanOrEqualTo, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Logic::Predicate::LessThanOrEqualTo             }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header.coerce' do
+describe Relation::Header, '.coerce' do
   subject { object.coerce(argument) }
 
   let(:object) { Relation::Header }

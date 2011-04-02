@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Empty#empty?' do
+describe Relation::Empty, '#empty?' do
   subject { object.empty? }
 
   let(:klass)  { Relation::Empty                 }

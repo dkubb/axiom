@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Operation::Unary#eql?' do
+describe Operation::Unary, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)   { Class.new { include Operation::Unary } }

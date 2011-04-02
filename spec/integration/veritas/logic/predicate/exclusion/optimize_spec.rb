@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Exclusion#optimize' do
+describe Logic::Predicate::Exclusion, '#optimize' do
   subject { object.optimize }
 
   let(:klass)  { Logic::Predicate::Exclusion }

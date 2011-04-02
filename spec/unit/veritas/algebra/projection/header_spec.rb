@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection#header' do
+describe Algebra::Projection, '#header' do
   subject { object.header }
 
   let(:klass)    { Algebra::Projection                           }

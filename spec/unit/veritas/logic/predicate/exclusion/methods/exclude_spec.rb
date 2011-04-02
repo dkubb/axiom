@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Exclusion::Methods#exclude' do
+describe Logic::Predicate::Exclusion::Methods, '#exclude' do
   subject { object.exclude(other) }
 
   let(:klass)  { ExclusionMethodsSpecs::Object }

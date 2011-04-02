@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Reverse::OrderOperand#optimize' do
+describe Optimizer::Relation::Operation::Reverse::OrderOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Relation::Operation::Reverse::OrderOperand }

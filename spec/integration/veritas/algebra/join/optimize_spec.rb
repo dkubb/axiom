@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Join#optimize' do
+describe Algebra::Join, '#optimize' do
   subject { object.optimize }
 
   let(:klass)          { Algebra::Join                                                     }

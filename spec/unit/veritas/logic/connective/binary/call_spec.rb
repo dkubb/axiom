@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Connective::Binary#call' do
+describe Logic::Connective::Binary, '#call' do
   subject { object.call(tuple) }
 
   let(:klass)    { BinarySpecs::Object                            }

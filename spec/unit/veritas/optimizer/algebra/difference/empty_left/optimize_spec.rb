@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Difference::EmptyLeft#optimize' do
+describe Optimizer::Algebra::Difference::EmptyLeft, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Algebra::Difference::EmptyLeft  }

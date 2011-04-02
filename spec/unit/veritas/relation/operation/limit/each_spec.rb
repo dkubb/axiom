@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Limit#each' do
+describe Relation::Operation::Limit, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)    { Relation::Operation::Limit                                  }

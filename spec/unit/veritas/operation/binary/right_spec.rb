@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Operation::Binary#right' do
+describe Operation::Binary, '#right' do
   subject { object.right }
 
   let(:klass)  { Class.new { include Operation::Binary } }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Direction#reverse' do
+describe Relation::Operation::Order::Direction, '#reverse' do
   subject { object.reverse }
 
   let(:klass)         { Class.new(Relation::Operation::Order::Direction) }

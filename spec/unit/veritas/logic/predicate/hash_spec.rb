@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate#hash' do
+describe Logic::Predicate, '#hash' do
   subject { object.hash }
 
   let(:klass)  { PredicateSpecs::Object      }

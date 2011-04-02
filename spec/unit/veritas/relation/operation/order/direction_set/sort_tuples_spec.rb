@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet#sort_tuples' do
+describe Relation::Operation::Order::DirectionSet, '#sort_tuples' do
   subject { object.sort_tuples(relation) }
 
   let(:klass)    { Relation::Operation::Order::DirectionSet                     }

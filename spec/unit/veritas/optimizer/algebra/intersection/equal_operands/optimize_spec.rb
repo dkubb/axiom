@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Intersection::EqualOperands#optimize' do
+describe Optimizer::Algebra::Intersection::EqualOperands, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Algebra::Intersection::EqualOperands }

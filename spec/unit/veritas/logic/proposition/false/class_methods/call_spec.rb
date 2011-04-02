@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Proposition::False.call' do
+describe Logic::Proposition::False, '.call' do
   subject { object.call }
 
   let(:object) { Logic::Proposition::False }

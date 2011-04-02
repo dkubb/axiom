@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#hash' do
+describe Tuple, '#hash' do
   subject { object.hash }
 
   let(:klass)  { Tuple                                      }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection#eql?' do
+describe Algebra::Projection, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)      { Algebra::Projection                                         }

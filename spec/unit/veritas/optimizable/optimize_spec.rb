@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizable#optimize' do
+describe Optimizable, '#optimize' do
   subject { object.optimize }
 
   let(:klass)  { Class.new { include Optimizable, Immutable } }

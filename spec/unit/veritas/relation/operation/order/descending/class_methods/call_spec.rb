@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Descending.call' do
+describe Relation::Operation::Order::Descending, '.call' do
   subject { object.call(left, right) }
 
   let(:object) { Relation::Operation::Order::Descending }

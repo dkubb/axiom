@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Projection::Methods#project' do
+describe Algebra::Projection::Methods, '#project' do
   subject { object.project(attributes) }
 
   let(:klass)      { Relation                                                                       }

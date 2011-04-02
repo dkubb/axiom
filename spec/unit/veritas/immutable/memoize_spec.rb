@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Immutable#memoize' do
+describe Immutable, '#memoize' do
   subject { object.memoize(name, value) }
 
   let(:klass)  { ImmutableSpecs::Object }

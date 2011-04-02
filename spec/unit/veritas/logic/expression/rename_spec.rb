@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Expression#rename' do
+describe Logic::Expression, '#rename' do
   subject { object.rename(aliases) }
 
   let(:klass)   { ExpressionSpecs::Object          }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Reverse#each' do
+describe Relation::Operation::Reverse, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)    { Relation::Operation::Reverse                                }

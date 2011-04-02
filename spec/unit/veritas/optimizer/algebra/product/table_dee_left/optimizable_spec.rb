@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Product::TableDeeLeft#optimizable?' do
+describe Optimizer::Algebra::Product::TableDeeLeft, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)    { Optimizer::Algebra::Product::TableDeeLeft           }

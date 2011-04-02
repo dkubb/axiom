@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Limit#limit' do
+describe Relation::Operation::Limit, '#limit' do
   subject { object.limit }
 
   let(:klass)    { Relation::Operation::Limit                                  }

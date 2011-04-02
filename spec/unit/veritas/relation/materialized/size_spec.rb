@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Materialized#size' do
+describe Relation::Materialized, '#size' do
   subject { object.size }
 
   let(:klass)  { Relation::Materialized                     }

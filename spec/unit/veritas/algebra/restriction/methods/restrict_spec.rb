@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Restriction::Methods#restrict' do
+describe Algebra::Restriction::Methods, '#restrict' do
   let(:klass)  { Relation                                        }
   let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 

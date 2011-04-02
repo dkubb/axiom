@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Join' do
+describe Algebra::Join do
   context 'Commutative property' do
     subject { left.join(right) }
 

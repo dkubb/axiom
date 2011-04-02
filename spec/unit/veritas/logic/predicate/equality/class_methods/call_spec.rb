@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Equality.call' do
+describe Logic::Predicate::Equality, '.call' do
   subject { object.call(left, right) }
 
   let(:object) { Logic::Predicate::Equality }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Boolean.primitive' do
+describe Attribute::Boolean, '.primitive' do
   subject { object.primitive }
 
   let(:object) { Attribute::Boolean }

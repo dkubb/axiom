@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Comparable::NeverEquivalent#optimizable?' do
+describe Optimizer::Logic::Predicate::Comparable::NeverEquivalent, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)     { Class.new(Optimizer::Logic::Predicate)      }

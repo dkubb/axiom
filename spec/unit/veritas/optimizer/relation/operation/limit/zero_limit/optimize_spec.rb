@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Limit::ZeroLimit#optimize' do
+describe Optimizer::Relation::Operation::Limit::ZeroLimit, '#optimize' do
   subject { object.optimize }
 
   let(:klass)    { Optimizer::Relation::Operation::Limit::ZeroLimit }

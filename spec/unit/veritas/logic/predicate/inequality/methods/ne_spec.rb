@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Inequality::Methods#ne' do
+describe Logic::Predicate::Inequality::Methods, '#ne' do
   subject { object.ne(other) }
 
   let(:klass)   { InequalityMethodsSpecs::Object }

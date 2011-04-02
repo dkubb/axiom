@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Offset#offset' do
+describe Relation::Operation::Offset, '#offset' do
   subject { object.offset }
 
   let(:klass)    { Relation::Operation::Offset                                 }

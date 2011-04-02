@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Binary#right' do
+describe Optimizer::Relation::Operation::Binary, '#right' do
   subject { object.right }
 
   let(:klass)     { Optimizer::Relation::Operation::Binary           }

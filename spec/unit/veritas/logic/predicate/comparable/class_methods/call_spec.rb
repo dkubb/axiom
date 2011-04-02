@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Comparable.call' do
+describe Logic::Predicate::Comparable, '.call' do
   subject { object.call(left, right) }
 
   let(:left)   { 1                                }

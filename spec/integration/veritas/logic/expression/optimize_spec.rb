@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Expression#optimize' do
+describe Logic::Expression, '#optimize' do
   subject { object.optimize(*args) }
 
   let(:klass)  { Class.new(Logic::Expression) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Connective::Binary::RedundantRightOperand#optimizable?' do
+describe Optimizer::Logic::Connective::Binary::RedundantRightOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)      { Optimizer::Logic::Connective::Binary::RedundantRightOperand }

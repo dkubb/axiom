@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::NoMatch#inverse' do
+describe Logic::Predicate::NoMatch, '#inverse' do
   subject { object.inverse }
 
   let(:klass)     { Logic::Predicate::NoMatch    }

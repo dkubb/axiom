@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Restriction#predicate' do
+describe Algebra::Restriction, '#predicate' do
   subject { object.predicate }
 
   let(:klass)     { Algebra::Restriction                          }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename#hash' do
+describe Algebra::Rename, '#hash' do
   subject { object.hash }
 
   let(:klass)   { Algebra::Rename                               }

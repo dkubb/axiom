@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Relation::Operation::Binary::EqualOperands#optimizable?' do
+describe Optimizer::Relation::Operation::Binary::EqualOperands, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)            { Class.new(Optimizer::Relation::Operation::Binary) }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Util.max' do
+describe Optimizer::Logic::Predicate::Util, '.max' do
   subject { object.max(operand) }
 
   let(:object) { Optimizer::Logic::Predicate::Util }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#eql?' do
+describe Attribute, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)  { Attribute::Integer }

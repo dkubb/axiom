@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename::Methods#rename' do
+describe Algebra::Rename::Methods, '#rename' do
   subject { object.rename(aliases) }
 
   let(:klass)     { Relation                                 }

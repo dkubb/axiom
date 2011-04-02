@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Join#each' do
+describe Algebra::Join, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)  { Algebra::Join                                                                }

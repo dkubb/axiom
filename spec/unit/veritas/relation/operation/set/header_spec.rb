@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Relation::Operation::Set#header' do
+describe Relation::Operation::Set, '#header' do
   subject { object.header }
 
   let(:klass)  { SetOperationSpecs::Object                     }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Direction#call' do
+describe Relation::Operation::Order::Direction, '#call' do
   subject { object.call(left, right) }
 
   let(:klass)  { Class.new(Relation::Operation::Order::Direction) }

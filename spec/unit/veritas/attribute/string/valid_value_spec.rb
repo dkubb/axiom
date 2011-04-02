@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::String#valid_value?' do
+describe Attribute::String, '#valid_value?' do
   subject { object.valid_value?(value) }
 
   let(:klass)  { Attribute::String                    }

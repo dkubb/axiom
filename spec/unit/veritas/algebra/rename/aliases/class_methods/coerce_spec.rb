@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename::Aliases.coerce' do
+describe Algebra::Rename::Aliases, '.coerce' do
   subject { object.coerce(attributes, aliases) }
 
   let(:attribute)  { Attribute::Integer.new(:id)         }

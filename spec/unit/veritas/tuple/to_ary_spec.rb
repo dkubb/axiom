@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#to_ary' do
+describe Tuple, '#to_ary' do
   subject { object.to_ary }
 
   let(:klass)  { Tuple                                      }

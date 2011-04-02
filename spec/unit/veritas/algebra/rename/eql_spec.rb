@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename#eql?' do
+describe Algebra::Rename, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)   { Algebra::Rename                               }

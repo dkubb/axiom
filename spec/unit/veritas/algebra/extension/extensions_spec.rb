@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Extension#extensions' do
+describe Algebra::Extension, '#extensions' do
   subject { object.extensions }
 
   let(:klass)      { Algebra::Extension                                   }

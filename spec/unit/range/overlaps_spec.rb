@@ -3,7 +3,7 @@ require 'spec_helper'
 # Definitions and ascii art from ruby mailing list:
 #   http://www.ruby-forum.com/topic/98359
 
-describe 'Range#overlaps?' do
+describe Range, '#overlaps?' do
   subject { object.overlaps?(other) }
 
   # self:   |---|

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Union#each' do
+describe Algebra::Union, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)  { Algebra::Union                  }

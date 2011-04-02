@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Join::EqualHeaders#optimizable?' do
+describe Optimizer::Algebra::Join::EqualHeaders, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)    { Optimizer::Algebra::Join::EqualHeaders }

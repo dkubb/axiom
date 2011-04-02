@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Tuple#==' do
+describe Tuple, '#==' do
   subject { object == other }
 
   let(:klass)  { Tuple                                      }

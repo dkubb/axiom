@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Intersection#each' do
+describe Algebra::Intersection, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)  { Algebra::Intersection           }

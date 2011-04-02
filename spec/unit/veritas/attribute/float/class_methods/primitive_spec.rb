@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Float.primitive' do
+describe Attribute::Float, '.primitive' do
   subject { object.primitive }
 
   let(:object) { Attribute::Float }

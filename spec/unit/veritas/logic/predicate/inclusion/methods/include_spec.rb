@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Predicate::Inclusion::Methods#include' do
+describe Logic::Predicate::Inclusion::Methods, '#include' do
   subject { object.include(other) }
 
   let(:klass)  { InclusionMethodsSpecs::Object }

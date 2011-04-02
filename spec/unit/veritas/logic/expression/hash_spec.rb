@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe 'Veritas::Logic::Expression#hash' do
+describe Logic::Expression, '#hash' do
   subject { object.hash }
 
   let(:klass)  { ExpressionSpecs::Object }

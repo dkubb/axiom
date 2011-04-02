@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute.coerce' do
+describe Attribute, '.coerce' do
   subject { object.coerce(argument) }
 
   let(:object) { Attribute }

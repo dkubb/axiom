@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer.chain' do
+describe Optimizer, '.chain' do
   let(:operation)       { mock('Operation')    }
   let(:object)          { Optimizer            }
   let(:noop)            { object::Noop         }

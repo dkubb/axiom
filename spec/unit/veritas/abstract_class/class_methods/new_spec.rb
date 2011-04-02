@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::AbstractClass::ClassMethods#new' do
+describe AbstractClass::ClassMethods, '#new' do
   subject { object.new }
 
   let(:abstract_class) { Class.new { include AbstractClass } }

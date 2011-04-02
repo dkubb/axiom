@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Summarization#each' do
+describe Algebra::Summarization, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)       { Algebra::Summarization                               }

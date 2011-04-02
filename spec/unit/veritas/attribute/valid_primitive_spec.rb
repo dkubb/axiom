@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute#valid_primitive?' do
+describe Attribute, '#valid_primitive?' do
   subject { object.valid_primitive?(value) }
 
   let(:klass)  { Attribute::Integer }

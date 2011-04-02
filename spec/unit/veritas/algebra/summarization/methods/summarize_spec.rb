@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Summarization::Methods#summarize' do
+describe Algebra::Summarization::Methods, '#summarize' do
   subject { object.summarize(summarize_by, &block) }
 
   let(:klass)       { Relation                                        }

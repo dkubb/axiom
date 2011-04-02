@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#project' do
+describe Relation::Header, '#project' do
   subject { object.project(attributes) }
 
   let(:klass)      { Relation::Header                                   }

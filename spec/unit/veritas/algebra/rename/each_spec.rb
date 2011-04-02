@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename#each' do
+describe Algebra::Rename, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)    { Algebra::Rename                               }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Direction#rename' do
+describe Relation::Operation::Order::Direction, '#rename' do
   subject { object.rename(aliases) }
 
   let(:attribute) { Attribute::Integer.new(:id)                      }

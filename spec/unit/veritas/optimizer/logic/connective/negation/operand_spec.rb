@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Connective::Negation#operand' do
+describe Optimizer::Logic::Connective::Negation, '#operand' do
   subject { object.operand }
 
   let(:klass)             { Optimizer::Logic::Connective::Negation          }

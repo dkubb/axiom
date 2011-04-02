@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Rename#directions' do
+describe Algebra::Rename, '#directions' do
   subject { object.directions }
 
   let(:klass)    { Algebra::Rename                               }

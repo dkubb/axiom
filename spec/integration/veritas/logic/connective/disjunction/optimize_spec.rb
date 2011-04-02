@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective::Disjunction#optimize' do
+describe Logic::Connective::Disjunction, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Logic::Connective::Disjunction }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Connective#inverse' do
+describe Logic::Connective, '#inverse' do
   subject { object.inverse }
 
   before do

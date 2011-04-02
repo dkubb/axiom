@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Restriction::SetOperand#optimizable?' do
+describe Optimizer::Algebra::Restriction::SetOperand, '#optimizable?' do
   subject { object.optimizable? }
 
   let(:klass)     { Optimizer::Algebra::Restriction::SetOperand }

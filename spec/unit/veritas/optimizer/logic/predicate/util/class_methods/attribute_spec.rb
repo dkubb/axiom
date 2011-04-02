@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Predicate::Util.attribute?' do
+describe Optimizer::Logic::Predicate::Util, '.attribute?' do
   subject { object.attribute?(operand) }
 
   let(:object) { Optimizer::Logic::Predicate::Util }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Intersection#optimize' do
+describe Algebra::Intersection, '#optimize' do
   subject { object.optimize }
 
   let(:klass)          { Algebra::Intersection            }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Equality#inspect' do
+describe Logic::Predicate::Equality, '#inspect' do
   subject { object.inspect }
 
   let(:klass)     { Logic::Predicate::Equality  }

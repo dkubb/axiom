@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Inclusion.call' do
+describe Logic::Predicate::Inclusion, '.call' do
   subject { object.call(left, right) }
 
   let(:object) { Logic::Predicate::Inclusion }

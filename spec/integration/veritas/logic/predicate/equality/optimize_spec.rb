@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Equality#optimize' do
+describe Logic::Predicate::Equality, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Logic::Predicate::Equality  }

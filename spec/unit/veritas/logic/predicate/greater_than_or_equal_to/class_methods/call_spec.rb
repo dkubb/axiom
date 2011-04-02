@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::GreaterThanOrEqualTo.call' do
+describe Logic::Predicate::GreaterThanOrEqualTo, '.call' do
   subject { object.call(left, right) }
 
   let(:object) { Logic::Predicate::GreaterThanOrEqualTo }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Header#eql?' do
+describe Relation::Header, '#eql?' do
   subject { object.eql?(other) }
 
   let(:klass)      { Relation::Header      }

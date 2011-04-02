@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Logic::Connective::Binary::UnoptimizedOperand#optimize' do
+describe Optimizer::Logic::Connective::Binary::UnoptimizedOperand, '#optimize' do
   subject { object.optimize }
 
   let(:klass)      { Optimizer::Logic::Connective::Binary::UnoptimizedOperand }

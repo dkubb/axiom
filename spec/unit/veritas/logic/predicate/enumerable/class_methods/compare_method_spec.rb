@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Logic::Predicate::Enumerable.compare_method' do
+describe Logic::Predicate::Enumerable, '.compare_method' do
   subject { object.compare_method(enumerable) }
 
   let(:object) { Logic::Predicate::Enumerable }

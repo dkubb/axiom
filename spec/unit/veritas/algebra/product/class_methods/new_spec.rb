@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Product.new' do
+describe Algebra::Product, '.new' do
   subject { object.new(left, right) }
 
   let(:header) { [ [ :id, Integer ] ]            }

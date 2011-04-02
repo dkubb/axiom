@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::Methods#order' do
+describe Relation::Operation::Order::Methods, '#order' do
   let(:klass)  { Relation                                               }
   let(:object) { klass.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
 

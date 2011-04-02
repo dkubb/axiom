@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Materialized#optimize' do
+describe Relation::Materialized, '#optimize' do
   subject { object.optimize }
 
   let(:klass)  { Relation::Materialized                }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Evaluator::Expression#expressions' do
+describe Evaluator::Expression, '#expressions' do
   subject { object.expressions }
 
   let(:klass)     { Evaluator::Expression                        }

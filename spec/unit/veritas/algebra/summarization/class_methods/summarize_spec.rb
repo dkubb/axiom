@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Summarization.summarize' do
+describe Algebra::Summarization, '.summarize' do
   subject { object.summarize(tuple, summary, summarizer) }
 
   let(:header)     { Relation::Header.new([ [ :id, Integer ] ]) }

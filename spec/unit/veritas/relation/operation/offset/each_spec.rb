@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Offset#each' do
+describe Relation::Operation::Offset, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:klass)    { Relation::Operation::Offset                                 }

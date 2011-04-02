@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer#operation' do
+describe Optimizer, '#operation' do
   subject { object.operation }
 
   let(:klass)     { Class.new(Optimizer) }

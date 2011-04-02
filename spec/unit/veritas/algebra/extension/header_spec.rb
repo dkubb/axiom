@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Algebra::Extension#header' do
+describe Algebra::Extension, '#header' do
   subject { object.header }
 
   let(:klass)      { Algebra::Extension                                   }

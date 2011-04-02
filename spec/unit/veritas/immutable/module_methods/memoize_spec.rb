@@ -30,7 +30,7 @@ shared_examples_for 'memoizes method' do
   end
 end
 
-describe 'Veritas::Immutable::ModuleMethods#memoize' do
+describe Immutable::ModuleMethods, '#memoize' do
   subject { object.memoize(method) }
 
   let(:object) { Class.new(ImmutableSpecs::Object) }

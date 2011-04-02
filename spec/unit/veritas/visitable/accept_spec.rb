@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Visitable#accept' do
+describe Visitable, '#accept' do
   subject { object.accept(visitor) }
 
   let(:klass)   { Class.new { include Visitable } }

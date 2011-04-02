@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Relation::Operation::Order::DirectionSet.coerce' do
+describe Relation::Operation::Order::DirectionSet, '.coerce' do
   subject { object.coerce(argument) }
 
   let(:directions)    { [ :id ]                                  }

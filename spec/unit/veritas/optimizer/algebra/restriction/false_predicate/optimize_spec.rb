@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Optimizer::Algebra::Restriction::FalsePredicate#optimize' do
+describe Optimizer::Algebra::Restriction::FalsePredicate, '#optimize' do
   subject { object.optimize }
 
   let(:klass)     { Optimizer::Algebra::Restriction::FalsePredicate }

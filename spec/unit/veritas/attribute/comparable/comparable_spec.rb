@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Veritas::Attribute::Comparable#comparable?' do
+describe Attribute::Comparable, '#comparable?' do
   subject { object.comparable?(other) }
 
   let(:klass)  { Attribute::Integer }
