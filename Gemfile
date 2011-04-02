@@ -1,7 +1,7 @@
 source :rubygems
 
 group :development do
-  gem 'backports', '~> 2.0.2'
+  gem 'backports', '~> 2.0.3'
   gem 'jeweler',   '~> 1.5.2'
   gem 'rake',      '~> 0.8.7'
   gem 'rspec',     '~> 1.3.1'
@@ -31,6 +31,6 @@ platforms :mri_18 do
     gem 'roodi',         '~> 2.1.0'
     gem 'ruby2ruby',     '=  1.2.2'
     gem 'yard',          '~> 0.6.4'
-    gem 'yardstick',     '~> 0.2.0'
+    gem 'yardstick',     '~> 0.3.0'
   end
 end
