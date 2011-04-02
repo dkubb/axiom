@@ -5,13 +5,13 @@ describe 'Veritas::Logic::Predicate::Enumerable.compare_method' do
 
   let(:object) { Logic::Predicate::Enumerable }
 
-  describe 'the enumerable is a Range' do
+  context 'the enumerable is a Range' do
     let(:enumerable) { 1..2 }
 
     it { should == :cover? }
   end
 
-  describe 'the enumerable is an Array' do
+  context 'the enumerable is an Array' do
     let(:enumerable) { [ 1, 2 ] }
 
     it { should == :include? }
