@@ -47,7 +47,7 @@ describe Logic::Predicate::Inclusion, '#optimize' do
 
     context 'using an attribute that is not comparable' do
       let(:left)  { Attribute::String.new(:string) }
-      let(:right) { 'a'..'z' }
+      let(:right) { 'a'..'z'                       }
 
       it { should equal(Logic::Proposition::False.instance) }
 

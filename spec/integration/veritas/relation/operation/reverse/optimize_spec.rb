@@ -30,7 +30,7 @@ describe Relation::Operation::Reverse, '#optimize' do
   end
 
   context 'with a object operation when optimized' do
-    let(:limit)   { order.take(2)                       }
+    let(:limit)   { order.take(2)            }
     let(:operand) { limit.reverse.rename({}) }
 
     it 'cancels out the operations and return the contained operation' do

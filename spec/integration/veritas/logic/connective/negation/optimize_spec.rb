@@ -15,7 +15,7 @@ describe Logic::Connective::Negation, '#optimize' do
   end
 
   context 'operand is a objected predicate' do
-    let(:predicate) { attribute.gt(1)      }
+    let(:predicate) { attribute.gt(1)                }
     let(:operand)   { described_class.new(predicate) }
 
     it { should eql(predicate) }

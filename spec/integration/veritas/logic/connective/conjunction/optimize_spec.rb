@@ -184,9 +184,9 @@ describe Logic::Connective::Conjunction, '#optimize' do
   end
 
   context 'left is a Match and right is a NoMatch predicate for the same attribute and value' do
-    let(:attribute)   { Attribute::String.new(:name) }
-    let(:left)  { attribute.match(/Dan Kubb/)        }
-    let(:right) { attribute.no_match(/Dan Kubb/)     }
+    let(:attribute) { Attribute::String.new(:name)   }
+    let(:left)      { attribute.match(/Dan Kubb/)    }
+    let(:right)     { attribute.no_match(/Dan Kubb/) }
 
     it { should equal(Logic::Proposition::False.instance) }
 
@@ -194,9 +194,9 @@ describe Logic::Connective::Conjunction, '#optimize' do
   end
 
   context 'left is an NoMatch and right is an Match predicate for the same attribute and value' do
-    let(:attribute)   { Attribute::String.new(:name) }
-    let(:left)  { attribute.no_match(/Dan Kubb/)     }
-    let(:right) { attribute.match(/Dan Kubb/)        }
+    let(:attribute) { Attribute::String.new(:name)   }
+    let(:left)      { attribute.no_match(/Dan Kubb/) }
+    let(:right)     { attribute.match(/Dan Kubb/)    }
 
     it { should equal(Logic::Proposition::False.instance) }
 

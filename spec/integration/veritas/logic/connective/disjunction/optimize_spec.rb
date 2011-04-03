@@ -185,9 +185,9 @@ describe Logic::Connective::Disjunction, '#optimize' do
   end
 
   context 'left is a Match and right is a NoMatch predicate for the same attribute and value' do
-    let(:attribute)   { Attribute::String.new(:name) }
-    let(:left)  { attribute.match(/Dan Kubb/)        }
-    let(:right) { attribute.no_match(/Dan Kubb/)     }
+    let(:attribute) { Attribute::String.new(:name)   }
+    let(:left)      { attribute.match(/Dan Kubb/)    }
+    let(:right)     { attribute.no_match(/Dan Kubb/) }
 
     it { should equal(Logic::Proposition::True.instance) }
 

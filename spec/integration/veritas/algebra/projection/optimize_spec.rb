@@ -110,8 +110,8 @@ describe Algebra::Projection, '#optimize' do
   end
 
   context 'containing a projection' do
-    let(:operand)    { relation.project([ :id, :name ])  }
-    let(:attributes) { [ :id ]                           }
+    let(:operand)    { relation.project([ :id, :name ]) }
+    let(:attributes) { [ :id ]                          }
 
     it { should_not equal(object) }
 
