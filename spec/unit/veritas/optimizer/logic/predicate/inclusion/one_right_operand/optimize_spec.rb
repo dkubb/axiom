@@ -8,7 +8,7 @@ describe Optimizer::Logic::Predicate::Inclusion::OneRightOperand, '#optimize' do
   let(:object)    { described_class.new(predicate) }
 
   before do
-    predicate.should be_kind_of(Logic::Predicate::Inclusion)
+    object.should be_optimizable
   end
 
   context 'when the operand contains a one entry Enumerable' do

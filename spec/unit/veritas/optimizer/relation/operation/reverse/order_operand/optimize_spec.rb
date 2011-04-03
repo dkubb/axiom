@@ -9,7 +9,7 @@ describe Optimizer::Relation::Operation::Reverse::OrderOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                      }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Reverse)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Order) }

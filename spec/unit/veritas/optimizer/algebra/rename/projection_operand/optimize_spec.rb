@@ -9,8 +9,7 @@ describe Optimizer::Algebra::Rename::ProjectionOperand, '#optimize' do
   let(:object)   { described_class.new(relation)                                 }
 
   before do
-    object.operation.should be_kind_of(Algebra::Rename)
-    object.operand.should be_kind_of(Algebra::Projection)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Algebra::Projection) }

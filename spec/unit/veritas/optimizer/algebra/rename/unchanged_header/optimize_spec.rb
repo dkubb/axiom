@@ -9,7 +9,7 @@ describe Optimizer::Algebra::Rename::UnchangedHeader, '#optimize' do
   let(:object)   { described_class.new(relation)                                 }
 
   before do
-    object.operation.should be_kind_of(Algebra::Rename)
+    object.should be_optimizable
   end
 
   it { should equal(base) }

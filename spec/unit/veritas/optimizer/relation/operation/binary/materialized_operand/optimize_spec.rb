@@ -8,6 +8,10 @@ describe Optimizer::Relation::Operation::Binary::MaterializedOperand, '#optimize
   let(:relation) { left.union(right)                             }
   let(:object)   { described_class.new(relation)                 }
 
+  before do
+    object.should be_optimizable
+  end
+
   it { should be_kind_of(Relation::Materialized) }
 
   its(:header) { should equal(relation.header) }

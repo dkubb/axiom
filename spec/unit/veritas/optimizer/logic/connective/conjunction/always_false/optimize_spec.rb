@@ -10,7 +10,7 @@ describe Optimizer::Logic::Connective::Conjunction::AlwaysFalse, '#optimize' do
   let(:object)     { described_class.new(connective)                 }
 
   before do
-    object.operation.should be_kind_of(Logic::Connective::Conjunction)
+    object.should be_optimizable
   end
 
   it { should equal(Logic::Proposition::False.instance) }

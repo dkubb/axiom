@@ -8,7 +8,7 @@ describe Optimizer::Relation::Operation::Offset::ZeroOffset, '#optimize' do
   let(:object)   { described_class.new(relation)                            }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Offset)
+    object.should be_optimizable
   end
 
   it { should equal(order) }

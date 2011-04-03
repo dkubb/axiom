@@ -8,7 +8,7 @@ describe Optimizer::Logic::Predicate::Enumerable::UnoptimizedOperand, '#optimize
   let(:object)    { described_class.new(predicate) }
 
   before do
-    predicate.should be_kind_of(Logic::Predicate::Enumerable)
+    object.should be_optimizable
   end
 
   context 'when the operand contains an unsorted Enumerable' do

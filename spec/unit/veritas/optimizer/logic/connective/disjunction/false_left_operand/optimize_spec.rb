@@ -10,7 +10,7 @@ describe Optimizer::Logic::Connective::Disjunction::FalseLeftOperand, '#optimize
   let(:object)     { described_class.new(connective)                 }
 
   before do
-    object.operation.should be_kind_of(Logic::Connective::Disjunction)
+    object.should be_optimizable
   end
 
   it { should equal(right) }

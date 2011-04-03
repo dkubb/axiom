@@ -9,7 +9,7 @@ describe Optimizer::Relation::Operation::Limit::ZeroLimit, '#optimize' do
   let(:object)   { described_class.new(relation)              }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Limit)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Relation::Empty) }

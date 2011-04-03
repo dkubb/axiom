@@ -8,7 +8,7 @@ describe Optimizer::Logic::Connective::Conjunction::OptimizableToExclusion, '#op
   let(:object)     { described_class.new(connective) }
 
   before do
-    object.operation.should be_kind_of(Logic::Connective::Conjunction)
+    object.should be_optimizable
   end
 
   context 'when the right operands are optimizable' do

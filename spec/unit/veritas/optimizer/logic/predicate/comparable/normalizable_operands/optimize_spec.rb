@@ -8,7 +8,7 @@ describe Optimizer::Logic::Predicate::Comparable::NormalizableOperands, '#optimi
   let(:object)    { described_class.new(predicate)               }
 
   before do
-    predicate.should be_kind_of(Logic::Predicate::Comparable)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Logic::Predicate::Equality) }

@@ -12,8 +12,7 @@ describe Optimizer::Algebra::Projection::SetOperand, '#optimize' do
   let(:object)     { described_class.new(relation)                                                    }
 
   before do
-    object.operation.should be_kind_of(Algebra::Projection)
-    object.operand.should be_kind_of(Relation::Operation::Set)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Set) }

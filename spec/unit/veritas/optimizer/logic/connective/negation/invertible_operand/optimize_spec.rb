@@ -9,7 +9,7 @@ describe Optimizer::Logic::Connective::Negation::InvertibleOperand, '#optimize' 
   let(:object)    { described_class.new(negation)            }
 
   before do
-    object.operation.should be_kind_of(Logic::Connective::Negation)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Logic::Predicate::Inequality) }

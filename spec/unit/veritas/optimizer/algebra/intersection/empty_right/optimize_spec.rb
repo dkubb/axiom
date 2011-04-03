@@ -10,7 +10,7 @@ describe Optimizer::Algebra::Intersection::EmptyRight, '#optimize' do
   let(:object)   { described_class.new(relation)              }
 
   before do
-    object.operation.should be_kind_of(Algebra::Intersection)
+    object.should be_optimizable
   end
 
   it { should equal(right) }

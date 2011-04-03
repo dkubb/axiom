@@ -4,11 +4,11 @@ describe Optimizer::Relation::Operation::Order::UnoptimizedOperand, '#optimize' 
   subject { object.optimize }
 
   let(:base)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:relation) { base.order                                         }
+  let(:relation) { base.rename({}).order                              }
   let(:object)   { described_class.new(relation)                      }
 
   before do
-    object.operation.should be_kind_of(Relation::Operation::Order)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Order) }

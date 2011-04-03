@@ -9,8 +9,7 @@ describe Optimizer::Algebra::Restriction::ReverseOperand, '#optimize' do
   let(:object)    { described_class.new(relation)                            }
 
   before do
-    object.operation.should be_kind_of(Algebra::Restriction)
-    object.operand.should be_kind_of(Relation::Operation::Reverse)
+    object.should be_optimizable
   end
 
   it { should be_kind_of(Relation::Operation::Reverse) }
