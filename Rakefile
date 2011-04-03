@@ -13,7 +13,6 @@ begin
     gem.email       = 'dan.kubb@gmail.com'
     gem.homepage    = 'https://github.com/dkubb/veritas'
     gem.authors     = [ 'Dan Kubb' ]
-    gem.has_rdoc    = 'yard'
 
     gem.version = Veritas::VERSION
   end
