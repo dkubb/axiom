@@ -1,19 +1,8 @@
-require 'veritas/relation/header'
-
 module Veritas
 
   # Abstract base class for Relation operations
   class Relation
-    include Immutable
-  end # class Relation
-end # module Veritas
-
-require 'veritas/relation/materialized'
-require 'veritas/relation/empty'
-
-module Veritas
-  class Relation
-    include Enumerable, Optimizable, Visitable
+    include Immutable, Enumerable, Optimizable, Visitable
 
     # The relation header
     #
@@ -209,4 +198,7 @@ module Veritas
   end # class Relation
 end # module Veritas
 
+require 'veritas/relation/header'
+require 'veritas/relation/materialized'
+require 'veritas/relation/empty'
 require 'veritas/relation/operation'
