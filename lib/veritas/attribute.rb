@@ -237,20 +237,3 @@ module Veritas
 
   end # class Attribute
 end # module Veritas
-
-require 'veritas/attribute/orderable'
-
-require 'veritas/attribute/comparable'
-
-require 'veritas/attribute/object'
-require 'veritas/attribute/numeric'
-
-require 'veritas/attribute/boolean'
-require 'veritas/attribute/class'
-require 'veritas/attribute/date'
-require 'veritas/attribute/date_time'
-require 'veritas/attribute/decimal'
-require 'veritas/attribute/float'
-require 'veritas/attribute/integer'
-require 'veritas/attribute/time'
-require 'veritas/attribute/string'

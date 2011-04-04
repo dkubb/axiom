@@ -1,10 +1,1 @@
-require 'veritas/algebra/difference'
-require 'veritas/algebra/extension'
-require 'veritas/algebra/intersection'
-require 'veritas/algebra/join'
-require 'veritas/algebra/product'
-require 'veritas/algebra/projection'
-require 'veritas/algebra/rename'
-require 'veritas/algebra/restriction'
-require 'veritas/algebra/summarization'
-require 'veritas/algebra/union'
+

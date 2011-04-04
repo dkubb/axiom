@@ -144,6 +144,3 @@ module Veritas
     end # module Operation
   end # class Relation
 end # module Veritas
-
-require 'veritas/relation/operation/order/direction'
-require 'veritas/relation/operation/order/direction_set'

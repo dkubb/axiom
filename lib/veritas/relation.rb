@@ -197,8 +197,3 @@ module Veritas
 
   end # class Relation
 end # module Veritas
-
-require 'veritas/relation/header'
-require 'veritas/relation/materialized'
-require 'veritas/relation/empty'
-require 'veritas/relation/operation'

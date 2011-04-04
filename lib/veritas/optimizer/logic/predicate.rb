@@ -173,15 +173,3 @@ module Veritas
     end # module Logic
   end # class Optimizer
 end # module Veritas
-
-require 'veritas/optimizer/logic/predicate/comparable'
-require 'veritas/optimizer/logic/predicate/enumerable'
-
-require 'veritas/optimizer/logic/predicate/equality'
-require 'veritas/optimizer/logic/predicate/exclusion'
-require 'veritas/optimizer/logic/predicate/greater_than'
-require 'veritas/optimizer/logic/predicate/greater_than_or_equal_to'
-require 'veritas/optimizer/logic/predicate/inequality'
-require 'veritas/optimizer/logic/predicate/inclusion'
-require 'veritas/optimizer/logic/predicate/less_than'
-require 'veritas/optimizer/logic/predicate/less_than_or_equal_to'

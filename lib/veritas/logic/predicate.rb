@@ -81,17 +81,3 @@ module Veritas
     end # class Predicate
   end # module Logic
 end # module Veritas
-
-require 'veritas/logic/predicate/comparable'
-require 'veritas/logic/predicate/enumerable'
-
-require 'veritas/logic/predicate/equality'
-require 'veritas/logic/predicate/exclusion'
-require 'veritas/logic/predicate/greater_than'
-require 'veritas/logic/predicate/greater_than_or_equal_to'
-require 'veritas/logic/predicate/inclusion'
-require 'veritas/logic/predicate/inequality'
-require 'veritas/logic/predicate/less_than'
-require 'veritas/logic/predicate/less_than_or_equal_to'
-require 'veritas/logic/predicate/no_match'
-require 'veritas/logic/predicate/match'

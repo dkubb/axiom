@@ -105,6 +105,3 @@ module Veritas
     end # class Proposition
   end # module Algebra
 end # module Veritas
-
-require 'veritas/logic/proposition/false'
-require 'veritas/logic/proposition/true'

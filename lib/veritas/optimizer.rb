@@ -88,7 +88,3 @@ module Veritas
 
   end # class Optimizer
 end # module Veritas
-
-require 'veritas/optimizer/relation'
-require 'veritas/optimizer/algebra'
-require 'veritas/optimizer/logic'

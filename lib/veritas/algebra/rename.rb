@@ -101,5 +101,3 @@ module Veritas
     end # class Rename
   end # module Algebra
 end # module Veritas
-
-require 'veritas/algebra/rename/aliases'
