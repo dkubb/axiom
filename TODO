@@ -1,5 +1,3 @@
-* Split optimizer and related code into veritas-optimizer
-
 * Raise an exception if a rename is going to duplicate and existing
   header attribute.
 
