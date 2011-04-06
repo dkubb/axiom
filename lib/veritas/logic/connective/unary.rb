@@ -46,6 +46,21 @@ module Veritas
           end
         end
 
+        # Compare the operation with the other operation for equivalency
+        #
+        # @example
+        #   binary == other  # => true or false
+        #
+        # @param [Object] other
+        #
+        # @return [Boolean]
+        #
+        # @api public
+        def ==(other)
+          (kind_of?(other.class) || other.kind_of?(self.class)) &&
+          operand == other.operand
+        end
+
       end # class Unary
     end # class Connective
   end # module Logic

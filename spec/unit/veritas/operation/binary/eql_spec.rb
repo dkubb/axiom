@@ -38,7 +38,7 @@ describe Operation::Binary, '#eql?' do
     end
   end
 
-  context 'with an object having a different left' do
+  context 'with an object having a different left operand' do
     let(:other_left)  { mock('Other Left')                           }
     let(:other_right) { right                                        }
     let(:other)       { described_class.new(other_left, other_right) }
@@ -50,7 +50,7 @@ describe Operation::Binary, '#eql?' do
     end
   end
 
-  context 'with an object having a different right' do
+  context 'with an object having a different right operand' do
     let(:other_left)  { left                                         }
     let(:other_right) { mock('Other Right')                          }
     let(:other)       { described_class.new(other_left, other_right) }

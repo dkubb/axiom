@@ -4,7 +4,7 @@ module Veritas
     # Abstract base class for logical expressions
     class Expression
       extend Aliasable
-      include AbstractClass, Optimizable, Immutable, Visitable
+      include AbstractClass, Immutable, Visitable
 
       # Evaluate the expression using the operands
       #
@@ -53,7 +53,7 @@ module Veritas
       #
       # @api public
       def ==(other)
-        optimize.eql?(other.optimize)
+        raise NotImplementedError, "#{self.class}#== must be implemented"
       end
 
       # Compare the expression with other expression for equality

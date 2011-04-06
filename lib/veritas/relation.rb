@@ -2,7 +2,7 @@ module Veritas
 
   # Abstract base class for Relation operations
   class Relation
-    include Immutable, Enumerable, Optimizable, Visitable
+    include Immutable, Enumerable, Visitable
 
     # The relation header
     #

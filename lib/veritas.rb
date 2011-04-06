@@ -10,7 +10,6 @@ require 'veritas/core_ext/time'
 require 'veritas/support/abstract_class'
 require 'veritas/support/aliasable'
 require 'veritas/support/immutable'
-require 'veritas/support/optimizable'
 require 'veritas/support/visitable'
 
 require 'veritas/support/operation/binary'
@@ -74,46 +73,6 @@ require 'veritas/algebra/restriction'
 require 'veritas/algebra/summarization'
 require 'veritas/algebra/union'
 
-require 'veritas/optimizer'
-
-require 'veritas/optimizer/relation/materialized'
-
-require 'veritas/optimizer/relation/operation/binary'
-require 'veritas/optimizer/relation/operation/unary'
-require 'veritas/optimizer/relation/operation/combination'
-require 'veritas/optimizer/relation/operation/limit'
-require 'veritas/optimizer/relation/operation/offset'
-require 'veritas/optimizer/relation/operation/order'
-require 'veritas/optimizer/relation/operation/reverse'
-
-require 'veritas/optimizer/algebra/difference'
-require 'veritas/optimizer/algebra/extension'
-require 'veritas/optimizer/algebra/intersection'
-require 'veritas/optimizer/algebra/join'
-require 'veritas/optimizer/algebra/product'
-require 'veritas/optimizer/algebra/projection'
-require 'veritas/optimizer/algebra/rename'
-require 'veritas/optimizer/algebra/restriction'
-require 'veritas/optimizer/algebra/summarization'
-require 'veritas/optimizer/algebra/union'
-
-require 'veritas/optimizer/logic/connective/binary'
-require 'veritas/optimizer/logic/connective/conjunction'
-require 'veritas/optimizer/logic/connective/disjunction'
-require 'veritas/optimizer/logic/connective/negation'
-
-require 'veritas/optimizer/logic/predicate'
-require 'veritas/optimizer/logic/predicate/comparable'
-require 'veritas/optimizer/logic/predicate/enumerable'
-require 'veritas/optimizer/logic/predicate/equality'
-require 'veritas/optimizer/logic/predicate/exclusion'
-require 'veritas/optimizer/logic/predicate/greater_than'
-require 'veritas/optimizer/logic/predicate/greater_than_or_equal_to'
-require 'veritas/optimizer/logic/predicate/inequality'
-require 'veritas/optimizer/logic/predicate/inclusion'
-require 'veritas/optimizer/logic/predicate/less_than'
-require 'veritas/optimizer/logic/predicate/less_than_or_equal_to'
-
 require 'veritas/attribute'
 require 'veritas/attribute/orderable'
 require 'veritas/attribute/comparable'
@@ -155,6 +114,6 @@ module Veritas
   # Raised when an attribute is added to a relation that already exists
   class DuplicateHeaderName < StandardError; end
 
-  TABLE_DUM = Relation.new([], [    ]).optimize
-  TABLE_DEE = Relation.new([], [ [] ]).optimize
+  TABLE_DUM = Relation::Empty.new([])
+  TABLE_DEE = Relation.new([], [ [] ])
 end

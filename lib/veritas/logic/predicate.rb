@@ -62,6 +62,22 @@ module Veritas
           memoize(:inverse, self)
       end
 
+      # Compare the operation with the other operation for equivalency
+      #
+      # @example
+      #   binary == other  # => true or false
+      #
+      # @param [Predicate] other
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def ==(other)
+        (kind_of?(other.class) || other.kind_of?(self.class)) &&
+        left  == other.left                                   &&
+        right == other.right
+      end
+
       # Extract the value from the operand or tuple
       #
       # @param [Object, #call] operand

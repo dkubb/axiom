@@ -1,28 +1,28 @@
 require 'spec_helper'
 
-describe Logic::Proposition, '#eql?' do
-  subject { object.eql?(other) }
+describe Logic::Proposition, '#==' do
+  subject { object == other }
 
   let(:described_class) { Class.new(Logic::Proposition) }
   let(:object)          { described_class.new           }
 
-  context 'with the same class' do
-    let(:other) { described_class.new }
+  context 'with the same object' do
+    let(:other) { object }
 
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent object of a subclass' do
     let(:other) { Class.new(described_class).new }
 
-    it { should be(false) }
+    it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 
@@ -32,7 +32,7 @@ describe Logic::Proposition, '#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 end

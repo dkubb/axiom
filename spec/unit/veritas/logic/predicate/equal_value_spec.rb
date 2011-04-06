@@ -1,8 +1,8 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Logic::Predicate, '#eql?' do
-  subject { object.eql?(other) }
+describe Logic::Predicate, '#==' do
+  subject { object == other }
 
   let(:left)   { Attribute::Integer.new(:id)      }
   let(:right)  { 1                                }
@@ -14,7 +14,7 @@ describe Logic::Predicate, '#eql?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 
@@ -24,17 +24,17 @@ describe Logic::Predicate, '#eql?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 
   context 'with an equivalent object of a subclass' do
     let(:other) { Class.new(described_class).new(left, right) }
 
-    it { should be(false) }
+    it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 
@@ -46,7 +46,7 @@ describe Logic::Predicate, '#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 
@@ -58,7 +58,7 @@ describe Logic::Predicate, '#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should == (other == object)
     end
   end
 end
