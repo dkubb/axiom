@@ -50,7 +50,7 @@ RBench.run(TIMES) do
   end
 
   report 'product' do
-    ruby    { array.product(array).each {}      } if Array.method_defined?(:product)
+    ruby    { array.product(array).each {}      }
     veritas { relation.product(product).each {} }
   end
 
