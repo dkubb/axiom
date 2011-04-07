@@ -5,6 +5,7 @@ group :development do
   gem 'jeweler',   '~> 1.5.2'
   gem 'rake',      '~> 0.8.7'
   gem 'rspec',     '~> 1.3.1'
+  gem 'yard',      '~> 0.6.7'
 end
 
 group :jruby do
@@ -29,7 +30,6 @@ platforms :mri_18 do
     gem 'reek',      '~> 1.2.8', :git => 'git://github.com/dkubb/reek.git'
     gem 'roodi',     '~> 2.1.0'
     gem 'ruby2ruby', '=  1.2.2'
-    gem 'yard',      '~> 0.6.7'
     gem 'yardstick', '~> 0.3.0'
   end
 end
