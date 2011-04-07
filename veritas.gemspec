@@ -33,7 +33,6 @@ Gem::Specification.new do |s|
     "config/site.reek",
     "config/yardstick.yml",
     "lib/veritas.rb",
-    "lib/veritas/algebra.rb",
     "lib/veritas/algebra/difference.rb",
     "lib/veritas/algebra/extension.rb",
     "lib/veritas/algebra/intersection.rb",
