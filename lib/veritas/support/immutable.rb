@@ -17,18 +17,49 @@ module Veritas
       self
     end
 
-    # A noop when there are no memoized methods
+    # Freeze the object
     #
     # @example
-    #   object.memoize(:hash, 12345)  # => self
+    #   object.freeze  # object is now frozen
+    #
+    # @return [Object]
+    #
+    # @api public
+    def freeze
+      @__memory = Memory.new unless frozen?
+      super
+    end
+
+    # Get the memoized value for a method
+    #
+    # @example
+    #   hash = object.memoized(:hash)
     #
     # @param [#to_s] name
+    #   the method name
+    #
+    # @return [Object]
+    #
+    # @api public
+    def memoized(name)
+      @__memory["@#{name}"]
+    end
+
+    # Sets a memoized value for a method
+    #
+    # @example
+    #   object.memoize(:hash, 12345)
+    #
+    # @param [#to_s] name
+    #   the method name
     # @param [Object] value
+    #   the value to memoize
     #
     # @return [self]
     #
     # @api public
     def memoize(name, value)
+      @__memory["@#{name}"] = value
       self
     end
 
@@ -111,21 +142,11 @@ module Veritas
       #
       # @api public
       def memoize(*methods)
-        include_memoize_methods
         methods.each { |method| memoize_method(method) }
         self
       end
 
     private
-
-      # Mixin MemoizeMethods if it's not already
-      #
-      # @return [undefined]
-      #
-      # @api private
-      def include_memoize_methods
-        include MemoizeMethods unless include?(MemoizeMethods)
-      end
 
       # Memoize the named method
       #
@@ -190,57 +211,6 @@ module Veritas
       end
 
     end # module ClassMethods
-
-    # Methods mixed in to memoizable immutable instances
-    module MemoizeMethods
-
-      # Freeze the object
-      #
-      # @example
-      #   object.freeze  # object is now frozen
-      #
-      # @return [Object]
-      #
-      # @api public
-      def freeze
-        @__memory = Memory.new unless frozen?
-        super
-      end
-
-      # Get the memoized value for a method
-      #
-      # @example
-      #   hash = object.memoized(:hash)
-      #
-      # @param [#to_s] name
-      #   the method name
-      #
-      # @return [Object]
-      #
-      # @api public
-      def memoized(name)
-        @__memory["@#{name}"]
-      end
-
-      # Sets a memoized value for a method
-      #
-      # @example
-      #   object.memoize(:hash, 12345)
-      #
-      # @param [#to_s] name
-      #   the method name
-      # @param [Object] value
-      #   the value to memoize
-      #
-      # @return [self]
-      #
-      # @api public
-      def memoize(name, value)
-        @__memory["@#{name}"] = value
-        self
-      end
-
-    end # module MemoizeMethods
 
     # Tracks the values for memoized methods
     class Memory

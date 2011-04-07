@@ -1,7 +1,7 @@
 require 'spec_helper'
-require File.expand_path('../../fixtures/classes', __FILE__)
+require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Immutable::MemoizeMethods, '#memoized' do
+describe Immutable, '#memoized' do
   subject { object.memoized(method) }
 
   let(:described_class) { Class.new(ImmutableSpecs::Object) }
