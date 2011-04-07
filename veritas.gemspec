@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
     "TODO"
   ]
   s.files = [
-    ".autotest",
     ".document",
     "Gemfile",
     "LICENSE",
