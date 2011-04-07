@@ -16,7 +16,7 @@ Simplifies querying of structured data using relational algebra
   new_relation = relation.remove([ :a, :b, :c ])
 
   # rename
-  new_relation = relation.rename(:a => :b, :c => :d)
+  new_relation = relation.rename(a: :b, c: :d)
 
   # natural join
   new_relation = relation.join(other)        # OR relation + other
@@ -88,8 +88,8 @@ Simplifies querying of structured data using relational algebra
   # --------------
 
   # can only modify relations that project all candidate keys for the base relations
-  new_relation = relation.create(:a => 'test', :b => 'other', :c => 'yet another')
-  new_relation = relation.update(:a => 'test', :b => 'other', :c => 'yet another')
+  new_relation = relation.create(a: 'test', b: 'other', c: 'yet another')
+  new_relation = relation.update(a: 'test', b: 'other', c: 'yet another')
   new_relation = relation.delete
 
 == Goals

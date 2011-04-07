@@ -80,7 +80,7 @@ module Veritas
         # Return a relation with the header renamed
         #
         # @example
-        #   rename = relation.rename(:a => :b, :c => :d)
+        #   rename = relation.rename(a: :b, c: :d)
         #
         # @param [Hash, Aliases] aliases
         #   the old and new attribute names
