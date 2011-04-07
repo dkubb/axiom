@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2011-04-06}
+  s.date = %q{2011-04-07}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -229,10 +229,9 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/immutable/class_methods/new_spec.rb",
     "spec/unit/veritas/immutable/dup_spec.rb",
     "spec/unit/veritas/immutable/fixtures/classes.rb",
-    "spec/unit/veritas/immutable/memoize_methods/freeze_spec.rb",
-    "spec/unit/veritas/immutable/memoize_methods/memoize_spec.rb",
-    "spec/unit/veritas/immutable/memoize_methods/memoized_spec.rb",
+    "spec/unit/veritas/immutable/freeze_spec.rb",
     "spec/unit/veritas/immutable/memoize_spec.rb",
+    "spec/unit/veritas/immutable/memoized_spec.rb",
     "spec/unit/veritas/immutable/memory/element_reference_spec.rb",
     "spec/unit/veritas/immutable/memory/element_set_spec.rb",
     "spec/unit/veritas/immutable/module_methods/included_spec.rb",
@@ -505,7 +504,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{https://github.com/dkubb/veritas}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.7.1}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{Ruby Relational Algebra}
   s.test_files = [
     "spec/integration/veritas/algebra/join_spec.rb",
@@ -627,10 +626,9 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/immutable/class_methods/new_spec.rb",
     "spec/unit/veritas/immutable/dup_spec.rb",
     "spec/unit/veritas/immutable/fixtures/classes.rb",
-    "spec/unit/veritas/immutable/memoize_methods/freeze_spec.rb",
-    "spec/unit/veritas/immutable/memoize_methods/memoize_spec.rb",
-    "spec/unit/veritas/immutable/memoize_methods/memoized_spec.rb",
+    "spec/unit/veritas/immutable/freeze_spec.rb",
     "spec/unit/veritas/immutable/memoize_spec.rb",
+    "spec/unit/veritas/immutable/memoized_spec.rb",
     "spec/unit/veritas/immutable/memory/element_reference_spec.rb",
     "spec/unit/veritas/immutable/memory/element_set_spec.rb",
     "spec/unit/veritas/immutable/module_methods/included_spec.rb",
