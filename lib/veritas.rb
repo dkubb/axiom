@@ -112,7 +112,7 @@ module Veritas
   class RelationMismatchError < StandardError; end
 
   # Raised when an attribute is added to a relation that already exists
-  class DuplicateHeaderName < StandardError; end
+  class DuplicateHeaderNameError < StandardError; end
 
   TABLE_DUM = Relation::Empty.new([])
   TABLE_DEE = Relation.new([], [ [] ])
