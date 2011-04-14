@@ -9,6 +9,37 @@ module Veritas
 
         inheritable_alias(:| => :union)
 
+        # Instantiate new set of Aliases
+        #
+        # @example
+        #   aliases = Aliases.new(aliases)
+        #
+        # @param [Hash{Attribute => Attribute}] aliases
+        #
+        # @return [Aliases]
+        #
+        # @api public
+        def self.new(aliases)
+          assert_unique_aliases(aliases)
+          super
+        end
+
+        # Asset the aliases are unique
+        #
+        # @param [Hash{Attribute => Attribute}] aliases
+        #
+        # @raise [DuplicateAliasError]
+        #   raised when the aliases are duplicates
+        #
+        # @api private
+        def self.assert_unique_aliases(aliases)
+          if aliases.values.uniq!
+            raise DuplicateAliasError, 'the aliases must be unique'
+          end
+        end
+
+        private_class_method :assert_unique_aliases
+
         # Initialize rename aliases
         #
         # @param [#to_hash] aliases

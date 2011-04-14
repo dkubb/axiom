@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = %q{2011-04-07}
+  s.date = %q{2011-04-14}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -148,6 +148,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/projection/methods/project_spec.rb",
     "spec/unit/veritas/algebra/projection/methods/remove_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/class_methods/coerce_spec.rb",
+    "spec/unit/veritas/algebra/rename/aliases/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/each_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/element_reference_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/empty_spec.rb",
@@ -544,6 +545,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/projection/methods/project_spec.rb",
     "spec/unit/veritas/algebra/projection/methods/remove_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/class_methods/coerce_spec.rb",
+    "spec/unit/veritas/algebra/rename/aliases/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/each_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/element_reference_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/empty_spec.rb",

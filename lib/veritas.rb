@@ -96,6 +96,9 @@ module Veritas
   # Raised when the headers are invalid for Join and Product
   class InvalidHeaderError < ArgumentError; end
 
+  # Raised when the aliases are duplicated
+  class DuplicateAliasError < ArgumentError; end
+
   # Raised when the limit is not a positive integer
   class InvalidLimitError < ArgumentError; end
 
