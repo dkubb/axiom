@@ -1,4 +1,4 @@
-* Raise an exception if a rename is going to duplicate and existing
+* Raise an exception if a rename is going to duplicate an existing
   header attribute.
 
 * Raise an exception if a rename has aliases with duplicate names.
