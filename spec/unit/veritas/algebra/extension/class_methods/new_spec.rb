@@ -15,6 +15,6 @@ describe Algebra::Extension, '.new' do
   context 'with a duplicate attribute name provided' do
     let(:extensions) { { :id => proc {}, :name => proc {} } }
 
-    specify { expect { subject }.to raise_error(DuplicateAttributeError, 'extensions with duplicate header names: id, name') }
+    specify { expect { subject }.to raise_error(DuplicateAttributeError, 'duplicate attributes: id, name') }
   end
 end

@@ -12,23 +12,81 @@ module Veritas
         :- => :difference
       )
 
-      # Initialize a Header
+      # Instantiate a Header
       #
       # @example
       #   header = Header.new(attributes)
       #
-      # @param [#to_ary]
+      # @param [#to_ary] attributes
       #   optional attributes
       #
       # @return [undefined]
       #
       # @api public
-      def initialize(attributes = [])
-        @attributes = attributes.to_ary.map do |attribute|
-          Attribute.coerce(attribute)
-        end.freeze
-        @names   = {}
-        @indexes = {}
+      def self.new(attributes = [])
+        attributes = coerce_attributes(attributes).freeze
+        assert_unique_attributes(attributes)
+        super
+      end
+
+      # Coerce the attributes into an Array of Attribute objects
+      #
+      # @param [Array<Attribute>] attributes
+      #
+      # @return [Array<Attribute>]
+      #
+      # @api private
+      def self.coerce_attributes(attributes)
+        attributes.to_ary.map { |attribute| Attribute.coerce(attribute) }
+      end
+
+      # Assert the attributes are unique
+      #
+      # @param [Array<Attribute>] attributes
+      #
+      # @raise [DuplicateAttributeError]
+      #   raised if the attributes are not unique
+      #
+      # @api private
+      def self.assert_unique_attributes(attributes)
+        duplicates = duplicate_attributes(attributes)
+        if duplicates
+          raise DuplicateAttributeError, "duplicate attributes: #{duplicates.join(', ')}"
+        end
+      end
+
+      # Returns the duplicate attribute names, if any
+      #
+      # @param [Array<Attribute>] attributes
+      #
+      # @return [Array<Symbol>]
+      #   returns an array of duplicate attributes
+      #
+      # @return [nil]
+      #   returns nil if there are no duplicate attributes
+      #
+      # @api private
+      def self.duplicate_attributes(attributes)
+        duplicates = attributes.select { |attribute| attributes.count(attribute) > 1 }
+        duplicates.map! { |attribute| attribute.name.to_s }.uniq!
+      end
+
+      private_class_method :coerce_attributes, :assert_unique_attributes, :duplicate_attributes
+
+      # Initialize a Header
+      #
+      # @example
+      #   header = Header.new(attributes)
+      #
+      # @param [#to_ary] attributes
+      #
+      # @return [undefined]
+      #
+      # @api public
+      def initialize(attributes)
+        @attributes = attributes
+        @names      = {}
+        @indexes    = {}
       end
 
       # Iterate over each attribute in the header
