@@ -114,8 +114,8 @@ module Veritas
   # Raised when a binary operation mixes ordered and unordered relations
   class RelationMismatchError < StandardError; end
 
-  # Raised when an attribute is added to a relation that already exists
-  class DuplicateHeaderNameError < StandardError; end
+  # Raised when an attribute is a duplicate of another in the header
+  class DuplicateAttributeError < StandardError; end
 
   TABLE_DUM = Relation::Empty.new([])
   TABLE_DEE = Relation.new([], [ [] ])

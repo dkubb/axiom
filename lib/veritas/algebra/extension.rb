@@ -37,7 +37,7 @@ module Veritas
       #
       # @return [undefined]
       #
-      # @raise [DuplicateHeaderNameError]
+      # @raise [DuplicateAttributeError]
       #   raised if an extensions is named the same as an existing
       #   attribute in the header
       #
@@ -46,7 +46,7 @@ module Veritas
         header     = operand.header
         duplicates = extensions.keys.select { |attribute| header[attribute] }.sort
         if duplicates.any?
-          raise DuplicateHeaderNameError, "extensions with duplicate header names: #{duplicates.join(', ')}"
+          raise DuplicateAttributeError, "extensions with duplicate header names: #{duplicates.join(', ')}"
         end
       end
 
