@@ -6,7 +6,7 @@ describe Relation::Operation::Order, '.new' do
   let(:header)   { [ [ :id, Integer ], [ :name, String ] ]   }
   let(:body)     { [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ] }
   let(:relation) { Relation.new(header, body)                }
-  let(:object)   { Relation::Operation::Order                }
+  let(:object)   { described_class                           }
 
   context 'with all attributes specified in the directions' do
     let(:directions) { [ relation[:id], relation[:name] ] }

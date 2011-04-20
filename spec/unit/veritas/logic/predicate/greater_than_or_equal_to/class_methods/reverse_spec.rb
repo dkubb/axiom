@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::GreaterThanOrEqualTo, '.reverse' do
   subject { object.reverse }
 
-  let(:object) { Logic::Predicate::GreaterThanOrEqualTo }
+  let(:object) { described_class }
 
   it { should equal(Logic::Predicate::LessThanOrEqualTo) }
 end

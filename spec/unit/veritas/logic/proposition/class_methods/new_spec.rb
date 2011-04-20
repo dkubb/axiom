@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Logic::Proposition, '.new' do
-  let(:object) { Logic::Proposition }
+  let(:object) { described_class }
 
   context 'with true argument' do
     subject { object.new(argument) }

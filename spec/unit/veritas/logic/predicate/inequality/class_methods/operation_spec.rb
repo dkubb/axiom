@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::Inequality, '.operation' do
   subject { object.operation }
 
-  let(:object) { Logic::Predicate::Inequality }
+  let(:object) { described_class }
 
   it { should be(:'!=') }
 end

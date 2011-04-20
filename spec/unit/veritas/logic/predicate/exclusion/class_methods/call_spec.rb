@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::Exclusion, '.call' do
   subject { object.call(left, right) }
 
-  let(:object) { Logic::Predicate::Exclusion }
+  let(:object) { described_class }
 
   context 'when left is excluded from right' do
     let(:left)  { 1     }

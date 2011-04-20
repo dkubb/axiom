@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Attribute, '.coerce' do
   subject { object.coerce(argument) }
 
-  let(:object) { Attribute }
+  let(:object) { described_class }
 
   context 'when the argument is an Attribute' do
     let(:argument) { Attribute::Integer.new(:id) }

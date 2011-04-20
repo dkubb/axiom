@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Relation::Header, '.coerce' do
   subject { object.coerce(argument) }
 
-  let(:object) { Relation::Header }
+  let(:object) { described_class }
 
   context 'when the argument is a Header' do
     let(:argument) { object.new([ [ :id, Integer ] ]) }

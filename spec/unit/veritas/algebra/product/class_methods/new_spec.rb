@@ -5,7 +5,7 @@ describe Algebra::Product, '.new' do
 
   let(:header) { [ [ :id, Integer ] ]            }
   let(:left)   { Relation.new(header, [ [ 1 ] ]) }
-  let(:object) { Algebra::Product                }
+  let(:object) { described_class                 }
 
   context 'with relations having different headers' do
     let(:right) { Relation.new([ [ :number, Integer ] ], [ [ 2 ] ]) }

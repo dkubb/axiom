@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Relation::Materialized, '.new' do
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuples) { [ [ 1 ] ]                                  }
-  let(:object) { Relation::Materialized                     }
+  let(:object) { described_class                            }
 
   context 'with directions' do
     subject { object.new(header, tuples, directions) }

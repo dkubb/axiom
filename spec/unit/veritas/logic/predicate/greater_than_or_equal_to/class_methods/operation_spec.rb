@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::GreaterThanOrEqualTo, '.operation' do
   subject { object.operation }
 
-  let(:object) { Logic::Predicate::GreaterThanOrEqualTo }
+  let(:object) { described_class }
 
   it { should be(:>=) }
 end

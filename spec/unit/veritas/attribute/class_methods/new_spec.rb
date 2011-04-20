@@ -26,7 +26,7 @@ describe Attribute, '.new' do
   end
 
   context 'when called on the Attribute class' do
-    let(:object) { Attribute }
+    let(:object) { described_class }
 
     specify { expect { subject }.to raise_error(NotImplementedError, "#{object} is an abstract class") }
   end

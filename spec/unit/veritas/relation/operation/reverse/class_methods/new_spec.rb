@@ -4,7 +4,7 @@ describe Relation::Operation::Reverse, '.new' do
   subject { object.new(relation) }
 
   let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:object)            { Relation::Operation::Reverse                         }
+  let(:object)            { described_class                                      }
 
   context 'with an ordered relation' do
     let(:relation) { original_relation.order { |r| r[:id] } }

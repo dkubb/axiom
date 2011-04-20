@@ -6,7 +6,7 @@ describe Algebra::Summarization, '.summarize' do
   let(:header)     { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)      { Tuple.new(header, [ 1 ])                   }
   let(:summarizer) { lambda { |acc, tuple| acc.to_i + 1 }       }
-  let(:object)     { Algebra::Summarization                     }
+  let(:object)     { described_class                            }
 
   context 'when the accumulator is uninitialized' do
     let(:summary) { {} }

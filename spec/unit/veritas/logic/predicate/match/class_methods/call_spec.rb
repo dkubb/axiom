@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::Match, '.call' do
   subject { object.call(left, right) }
 
-  let(:object) { Logic::Predicate::Match }
+  let(:object) { described_class }
 
   context 'when right regexp matches left' do
     let(:left)  { 'Dan Kubb' }

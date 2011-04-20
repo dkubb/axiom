@@ -5,7 +5,7 @@ describe Algebra::Rename::Aliases, '.new' do
 
   let(:id)     { Attribute::Integer.new(:id)  }
   let(:uid)    { Attribute::Integer.new(:uid) }
-  let(:object) { Algebra::Rename::Aliases     }
+  let(:object) { described_class              }
 
   context 'when aliases are unique' do
     let(:aliases)  { { id => id.rename(:other_id), uid => uid.rename(:other_uid) } }

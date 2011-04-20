@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Connective::Negation, '.call' do
   subject { object.call(operand) }
 
-  let(:object) { Logic::Connective::Negation }
+  let(:object) { described_class }
 
   context 'when operand is true' do
     let(:operand) { true }

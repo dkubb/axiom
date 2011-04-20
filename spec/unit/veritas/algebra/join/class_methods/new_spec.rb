@@ -5,7 +5,7 @@ describe Algebra::Join, '.new' do
 
   let(:header) { [ [ :id, Integer ] ]                   }
   let(:left)   { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
-  let(:object) { Algebra::Join                          }
+  let(:object) { described_class                        }
 
   context 'with relations having headers with common attributes' do
     let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }

@@ -8,7 +8,7 @@ describe Relation::Operation::Combination, '.combine_tuples' do
   let(:left_tuple)   { Tuple.new(left_header,  [ 1 ])                }
   let(:right_tuples) { [ Tuple.new(right_header, [ 'Dan Kubb' ]) ]   }
   let(:header)       { left_header | right_header                    }
-  let(:object)       { Relation::Operation::Combination              }
+  let(:object)       { self.class.described_type                     }
   let(:yields)       { []                                            }
 
   it 'yields each combined tuple' do

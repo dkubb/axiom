@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::Inclusion, '.call' do
   subject { object.call(left, right) }
 
-  let(:object) { Logic::Predicate::Inclusion }
+  let(:object) { described_class }
 
   context 'when left is included in right' do
     let(:left)  { 1     }

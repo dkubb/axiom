@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Attribute::Float, '.primitive' do
   subject { object.primitive }
 
-  let(:object) { Attribute::Float }
+  let(:object) { described_class }
 
   it_should_behave_like 'an idempotent method'
 

@@ -5,7 +5,7 @@ describe Algebra::Rename::Aliases, '.coerce' do
 
   let(:attribute)  { Attribute::Integer.new(:id)         }
   let(:attributes) { Relation::Header.new([ attribute ]) }
-  let(:object)     { Algebra::Rename::Aliases            }
+  let(:object)     { described_class                     }
 
   context 'the aliases are an Alias object' do
     let(:old_attr) { attribute                        }

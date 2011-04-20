@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::LessThanOrEqualTo, '.call' do
   subject { object.call(left, right) }
 
-  let(:object) { Logic::Predicate::LessThanOrEqualTo }
+  let(:object) { described_class }
 
   context 'when left is equal to right' do
     let(:left)  { 1 }

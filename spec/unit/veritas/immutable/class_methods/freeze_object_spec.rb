@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Immutable, '.freeze_object' do
   subject { object.freeze_object(value) }
 
-  let(:object) { Immutable }
+  let(:object) { self.class.described_type }
 
   context 'with a numeric value' do
     let(:value) { 1 }

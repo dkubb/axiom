@@ -5,7 +5,7 @@ describe Logic::Predicate, '.extract_value' do
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)  { Tuple.new(header, [ 1 ])                   }
-  let(:object) { Logic::Predicate                           }
+  let(:object) { described_class                            }
 
   context 'when the operand responds to #call' do
     let(:operand) { header[:id] }

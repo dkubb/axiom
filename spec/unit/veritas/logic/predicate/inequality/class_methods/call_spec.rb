@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Logic::Predicate::Inequality, '.call' do
   subject { object.call(left, right) }
 
-  let(:object) { Logic::Predicate::Inequality }
+  let(:object) { described_class }
 
   context 'when left is equal to right' do
     let(:left)  { true }

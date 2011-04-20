@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Attribute, '.name_from' do
   subject { object.name_from(argument) }
 
-  let(:object) { Attribute }
+  let(:object) { described_class }
 
   context 'argument is an Attribute' do
     let(:argument) { Attribute::Integer.new(:id) }

@@ -4,7 +4,7 @@ describe Tuple, '.coerce' do
   subject { object.coerce(header, argument) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:object) { Tuple                                      }
+  let(:object) { described_class                            }
   let(:tuple)  { object.new(header, [ 1 ])                  }
 
   context 'when the argument is a Tuple' do
