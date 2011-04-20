@@ -1,11 +1,11 @@
 source :rubygems
 
 group :development do
-  gem 'backports', '~> 2.0.3'
+  gem 'backports', '~> 2.1.0'
   gem 'jeweler',   '~> 1.5.2'
   gem 'rake',      '~> 0.8.7'
-  gem 'rspec',     '~> 1.3.1'
-  gem 'yard',      '~> 0.6.7'
+  gem 'rspec',     '~> 1.3.2'
+  gem 'yard',      '~> 0.6.8'
 end
 
 group :jruby do
