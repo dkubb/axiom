@@ -5,6 +5,9 @@ module Veritas
 
     # Accept a visitor and dispatch the object to the visitor
     #
+    # @example
+    #   visitable = visitable.accept(visitor)
+    #
     # @param [#visit] visitor
     #   the visitor object
     #

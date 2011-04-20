@@ -28,6 +28,8 @@ module Veritas
         #
         # @param [Hash{Attribute => Attribute}] aliases
         #
+        # @return [undefined]
+        #
         # @raise [DuplicateAliasError]
         #   raised when the aliases are duplicates
         #

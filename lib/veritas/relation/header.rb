@@ -44,6 +44,8 @@ module Veritas
       #
       # @param [Array<Attribute>] attributes
       #
+      # @return [undefined]
+      #
       # @raise [DuplicateAttributeError]
       #   raised if the attributes are not unique
       #
