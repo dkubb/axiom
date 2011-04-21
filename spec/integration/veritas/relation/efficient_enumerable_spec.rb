@@ -20,7 +20,7 @@ describe Relation do
     let(:relation) { Relation.new([ [ :id, Integer ] ], InfiniteList.new) }
 
     def sample(relation)
-      relation.enum_for.take(5)
+      relation.to_enum.take(5)
     end
 
     it '#project should be efficient' do
