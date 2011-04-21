@@ -22,7 +22,7 @@ describe Relation::Header, '.new' do
   end
 
   context 'with an argument that responds to #to_ary and contain duplicates' do
-    let(:argument) { [ [ :id ], [ :id ], [ :name ], [ :name ] ] }
+    let(:argument) { [ [ :id ], [ :id ], [ :name ], [ :name ], [ :age ] ] }
 
     specify { expect { subject }.to raise_error(DuplicateAttributeError, 'duplicate attributes: id, name') }
   end
