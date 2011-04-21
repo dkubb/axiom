@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Logic::Proposition::True, '#inverse' do
+describe Logic::Proposition::Contradiction, '#inverse' do
   subject { object.inverse }
 
   let(:object) { described_class.instance }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(Logic::Proposition::False.instance) }
+  it { should equal(Logic::Proposition::Tautology.instance) }
 
   it 'is invertible' do
     subject.inverse.should equal(object)

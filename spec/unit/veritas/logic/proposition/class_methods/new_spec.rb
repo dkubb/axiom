@@ -8,7 +8,7 @@ describe Logic::Proposition, '.new' do
 
     let(:argument) { true }
 
-    it { should equal(Logic::Proposition::True.instance) }
+    it { should equal(Logic::Proposition::Tautology.instance) }
   end
 
   context 'with false argument' do
@@ -16,7 +16,7 @@ describe Logic::Proposition, '.new' do
 
     let(:argument) { false }
 
-    it { should equal(Logic::Proposition::False.instance) }
+    it { should equal(Logic::Proposition::Contradiction.instance) }
   end
 
   context 'with no arguments' do

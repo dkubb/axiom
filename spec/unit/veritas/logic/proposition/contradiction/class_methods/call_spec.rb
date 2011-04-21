@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Logic::Proposition::False, '.call' do
+describe Logic::Proposition::Contradiction, '.call' do
   subject { object.call }
 
   let(:object) { described_class }

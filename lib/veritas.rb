@@ -40,8 +40,8 @@ require 'veritas/logic/predicate/no_match'
 require 'veritas/logic/predicate/match'
 
 require 'veritas/logic/proposition'
-require 'veritas/logic/proposition/false'
-require 'veritas/logic/proposition/true'
+require 'veritas/logic/proposition/contradiction'
+require 'veritas/logic/proposition/tautology'
 
 require 'veritas/relation'
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Logic::Proposition::False, '#or' do
+describe Logic::Proposition::Contradiction, '#or' do
   subject { object.or(other) }
 
   let(:other)  { mock('other')            }

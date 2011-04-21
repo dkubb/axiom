@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Logic::Proposition::True, '#or' do
-  subject { object.or(other) }
+describe Logic::Proposition::Contradiction, '#and' do
+  subject { object.and(other) }
 
   let(:other)  { mock('other')            }
   let(:object) { described_class.instance }

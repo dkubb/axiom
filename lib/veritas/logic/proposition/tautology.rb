@@ -3,24 +3,24 @@ module Veritas
     class Proposition
 
       # A class representing a tautology
-      class True < Proposition
+      class Tautology < Proposition
 
         # Return the inverse proposition class
         #
         # @example
-        #   True.inverse  # => False
+        #   Tautology.inverse  # => Contradiction
         #
-        # @return [Class<False>]
+        # @return [Class<Contradiction>]
         #
         # @api public
         def self.inverse
-          False
+          Contradiction
         end
 
         # Evaluate the proposition
         #
         # @example
-        #   True.call  # => true
+        #   Tautology.call  # => true
         #
         # @return [true]
         #
@@ -32,7 +32,7 @@ module Veritas
         # Logically AND the proposition with another expression
         #
         # @example
-        #   true_proposition.and(other)  # => other
+        #   tautology.and(other)  # => other
         #
         # @param [Expression] other
         #
@@ -46,7 +46,7 @@ module Veritas
         # Logically OR the proposition with another expression
         #
         # @example
-        #   true_proposition.or(other)  # => true_proposition
+        #   tautology.or(other)  # => tautology
         #
         # @param [Expression] other
         #
@@ -57,7 +57,7 @@ module Veritas
           self
         end
 
-      end # class True
+      end # class Tautology
     end # class Proposition
   end # module Algebra
 end # module Veritas

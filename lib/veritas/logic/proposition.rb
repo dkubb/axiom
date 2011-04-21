@@ -8,33 +8,33 @@ module Veritas
       # Instantiate a new Proposition
       #
       # @example using a true value
-      #   true_proposition = Proposition.new(true)
+      #   tautology = Proposition.new(true)
       #
       # @example using a false value
-      #   false_proposition = Proposition.new(false)
+      #   contradiction = Proposition.new(false)
       #
       # @return [Proposition]
       #
       # @overload self.new(true)
-      #   Return the True singleton instance
+      #   Return the Tautology singleton instance
       #
       #   @param [Array(true)] *args
       #
-      #   @return [True]
+      #   @return [Tautology]
       #
       # @overload self.new(false)
-      #   Return the False singleton instance
+      #   Return the Contradiction singleton instance
       #
       #   @param [Array(false)] *args
       #
-      #   @return [False]
+      #   @return [Contradiction]
       #
       # @api public
       def self.new(*args)
         if args.empty?
           super
         else
-          (args.first ? True : False).instance
+          (args.first ? Tautology : Contradiction).instance
         end
       end
 
