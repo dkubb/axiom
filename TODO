@@ -1,6 +1,3 @@
-* Raise an exception if a rename is going to duplicate an existing
-  header attribute.
-
 * Rename usage of "range" for attributes to "domain"
   * Functions will have both a range and domain, but attributes
     only have a domain.
