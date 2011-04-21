@@ -8,7 +8,7 @@ class InfiniteList
   Infinity = 1.0/0.0
 
   def each
-    (0..Infinity).each do |index|
+    0.upto(Infinity) do |index|
       yield [ index ]
     end
     self
