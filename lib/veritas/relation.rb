@@ -94,6 +94,7 @@ module Veritas
     #
     # @api public
     def each
+      return to_enum unless block_given?
       seen = {}
       tuples.each do |tuple|
         tuple = Tuple.coerce(header, tuple)

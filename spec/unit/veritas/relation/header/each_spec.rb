@@ -7,7 +7,7 @@ describe Relation::Header, '#each' do
   let(:object)    { described_class.new([ attribute ]) }
   let(:yields)    { []                                 }
 
-  it_should_behave_like 'a command method'
+  it_should_behave_like 'an #each method'
 
   it 'yields each attribute' do
     expect { subject }.to change { yields.dup }.

@@ -36,6 +36,7 @@ module Veritas
       #
       # @api public
       def each
+        return to_enum unless block_given?
         seen = {}
         operand.each do |tuple|
           tuple = tuple.project(header)

@@ -12,7 +12,7 @@ describe Relation, '#each' do
     object.should be_instance_of(described_class)
   end
 
-  it_should_behave_like 'a command method'
+  it_should_behave_like 'an #each method'
 
   it 'yields each tuple' do
     expect { subject }.to change { yields.dup }.

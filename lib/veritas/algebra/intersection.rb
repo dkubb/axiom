@@ -20,6 +20,7 @@ module Veritas
       #
       # @api public
       def each
+        return to_enum unless block_given?
         right_set = right.to_set
         left.each { |tuple| yield(tuple) if right_set.include?(tuple) }
         self

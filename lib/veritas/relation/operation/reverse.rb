@@ -53,6 +53,7 @@ module Veritas
         #
         # @api public
         def each(&block)
+          return to_enum unless block_given?
           operand.reverse_each(&block)
           self
         end

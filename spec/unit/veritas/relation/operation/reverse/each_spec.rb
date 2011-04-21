@@ -8,7 +8,7 @@ describe Relation::Operation::Reverse, '#each' do
   let(:object)   { described_class.new(order)                                  }
   let(:yields)   { []                                                          }
 
-  it_should_behave_like 'a command method'
+  it_should_behave_like 'an #each method'
 
   it 'yields each tuple in reverse order' do
     expect { subject }.to change { yields.dup }.

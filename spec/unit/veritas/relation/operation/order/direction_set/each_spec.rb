@@ -7,7 +7,7 @@ describe Relation::Operation::Order::DirectionSet, '#each' do
   let(:object)     { described_class.new(attributes)                               }
   let(:yields)     { []                                                            }
 
-  it_should_behave_like 'a command method'
+  it_should_behave_like 'an #each method'
 
   it 'yields each direction' do
     expect { subject }.to change { yields.dup }.

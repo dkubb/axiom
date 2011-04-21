@@ -114,6 +114,7 @@ module Veritas
         #
         # @api public
         def each(&block)
+          return to_enum unless block_given?
           @aliases.each(&block)
           self
         end

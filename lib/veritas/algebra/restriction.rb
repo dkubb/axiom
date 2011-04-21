@@ -42,6 +42,7 @@ module Veritas
       #
       # @api public
       def each
+        return to_enum unless block_given?
         operand.each { |tuple| yield(tuple) if predicate.call(tuple) }
         self
       end

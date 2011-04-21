@@ -99,6 +99,7 @@ module Veritas
         #
         # @api public
         def each
+          return to_enum unless block_given?
           operand.each_with_index do |tuple, index|
             break if @limit == index
             yield tuple

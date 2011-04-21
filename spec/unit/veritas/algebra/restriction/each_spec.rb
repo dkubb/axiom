@@ -7,7 +7,7 @@ describe Algebra::Restriction, '#each' do
   let(:object)   { described_class.new(relation, proc { true })  }
   let(:yields)   { []                                            }
 
-  it_should_behave_like 'a command method'
+  it_should_behave_like 'an #each method'
 
   it 'yields each tuple' do
     expect { subject }.to change { yields.dup }.

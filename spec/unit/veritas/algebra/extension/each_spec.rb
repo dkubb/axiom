@@ -8,7 +8,7 @@ describe Algebra::Extension, '#each' do
   let(:object)     { described_class.new(operand, extensions)             }
   let(:yields)     { []                                                   }
 
-  it_should_behave_like 'a command method'
+  it_should_behave_like 'an #each method'
 
   it 'yields each tuple' do
     expect { subject }.to change { yields.dup }.

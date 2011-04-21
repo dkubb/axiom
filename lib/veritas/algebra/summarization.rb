@@ -53,6 +53,7 @@ module Veritas
       #
       # @api public
       def each
+        return to_enum unless block_given?
         header      = self.header
         summaries   = summarize_relation
         summarizers = self.summarizers.values
