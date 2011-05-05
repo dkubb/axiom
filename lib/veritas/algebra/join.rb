@@ -128,16 +128,11 @@ module Veritas
         # @example natural join
         #   join = relation.join(other)
         #
-        # @example theta-join using a predicate
-        #   join = relation.join(other, relation[:a].gte(other[:b]))
-        #
         # @example theta-join using a block
         #   join = relation.join(other) { |r| r[:a].gte(r[:b]) }
         #
         # @param [Relation] other
         #   the other relation to join
-        # @param [Expression, #call] predicate
-        #   the predicate to restrict the tuples with
         #
         # @yield [relation]
         #   optional block to restrict the tuples with
@@ -145,12 +140,15 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
+        # @yieldreturn [Expression, #call]
+        #   predicate to restrict the tuples with
+        #
         # @return [Join, Restriction]
         #
         # @api public
-        def join(other, predicate = nil, &block)
-          if predicate || block_given?
-            theta_join(other, predicate, &block)
+        def join(other,  &block)
+          if block_given?
+            theta_join(other, &block)
           else
             natural_join(other)
           end
@@ -174,8 +172,6 @@ module Veritas
         #
         # @param [Relation] other
         #   the other relation to join
-        # @param [Array] *args
-        #   optional arguments to pass to Relation#restrict
         #
         # @yield [relation]
         #   optional block to restrict the tuples with
@@ -183,11 +179,14 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
+        # @yieldreturn [Expression, #call]
+        #   predicate to restrict the tuples with
+        #
         # @return [Restriction]
         #
         # @api private
-        def theta_join(other, *args, &block)
-          product(other).restrict(*args.compact, &block)
+        def theta_join(other, &block)
+          product(other).restrict(&block)
         end
 
       end # module Methods

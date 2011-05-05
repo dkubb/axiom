@@ -78,14 +78,8 @@ module Veritas
 
         # Return a relation with restricted tuples
         #
-        # @example restriction using a predicate
-        #   restriction = relation.restrict(relation.name.eq('other'))
-        #
         # @example restriction using a block
         #   restriction = relation.restrict { |r| r[:a].eq('other').and(r[:b].gte(42)) }
-        #
-        # @param [Expression, #call] predicate
-        #   optional predicate to restrict the tuples with
         #
         # @yield [relation]
         #   optional block to restrict the tuples with
@@ -93,11 +87,14 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
+        # @yieldreturn [Expression, #call]
+        #   predicate to restrict the tuples with
+        #
         # @return [Restriction]
         #
         # @api public
-        def restrict(predicate = yield(self))
-          Restriction.new(self, predicate)
+        def restrict
+          Restriction.new(self, yield(self))
         end
 
       end # module Methods
