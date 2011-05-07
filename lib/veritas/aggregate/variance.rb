@@ -31,7 +31,7 @@ module Veritas
       # @example
       #   variance = Variance.finalize(accumulator)
       #
-      # @param [Array(Numeric, Numeric, Numeric)] accumulator
+      # @param [Array(Numeric, Integer, Numeric)] accumulator
       #
       # @return [Float]
       #
