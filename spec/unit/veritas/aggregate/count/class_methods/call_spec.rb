@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Aggregate::Count, '.call' do
   subject do
-    values.inject(0) do |accumulator, number|
+    values.inject(object.default) do |accumulator, number|
       object.call(accumulator, number)
     end
   end

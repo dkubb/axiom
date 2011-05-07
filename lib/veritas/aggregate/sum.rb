@@ -4,6 +4,8 @@ module Veritas
     # The sum of a sequence of numbers
     class Sum < Aggregate
 
+      DEFAULT = 0
+
       # Return the sum for a sequence of numbers
       #
       # @example

@@ -4,6 +4,8 @@ module Veritas
     # The count of a series of values
     class Count < Aggregate
 
+      DEFAULT = 0
+
       # Return the count for a series of values
       #
       # @example

@@ -4,6 +4,8 @@ module Veritas
     # The mean of a sequence of numbers
     class Mean < Aggregate
 
+      DEFAULT = [ 0, nil ].freeze
+
       # Return the count and mean for a sequence of numbers
       #
       # @example

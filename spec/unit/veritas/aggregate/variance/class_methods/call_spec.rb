@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Aggregate::Variance, '.call' do
   subject do
-    values.inject([ 0, nil, 0 ]) do |accumulator, value|
+    values.inject(object.default) do |accumulator, value|
       object.call(accumulator, value)
     end
   end

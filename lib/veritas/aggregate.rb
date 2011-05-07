@@ -4,6 +4,15 @@ module Veritas
   class Aggregate
     include AbstractClass, Immutable, Visitable, Operation::Unary
 
+    # Return the default accumulator
+    #
+    # @return [Object]
+    #
+    # @api public
+    def self.default
+      self::DEFAULT
+    end
+
     # Evaluate the aggregate using the operands
     #
     # @example
@@ -14,6 +23,15 @@ module Veritas
     # @api public
     def self.call(*)
       raise NotImplementedError, "#{name}.call must be implemented"
+    end
+
+    # Return the default for this aggregate
+    #
+    # @return [Object]
+    #
+    # @api public
+    def default
+      self.class.default
     end
 
     # Evaluate the aggregate using the provided Tuple

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Aggregate::Mean, '.call' do
   subject do
-    values.inject([ 0, nil ]) do |accumulator, value|
+    values.inject(object.default) do |accumulator, value|
       object.call(accumulator, value)
     end
   end

@@ -4,6 +4,8 @@ module Veritas
     # The maximum value in a sequence of numbers
     class Maximum < Aggregate
 
+      DEFAULT = -Float::INFINITY
+
       # Return the maximum value for a sequence of numbers
       #
       # @example

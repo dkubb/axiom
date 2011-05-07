@@ -4,6 +4,8 @@ module Veritas
     # The variance of a sequence of numbers
     class Variance < Aggregate
 
+      DEFAULT = [ 0, nil, 0 ].freeze
+
       # Return the count, mean, and sum of squares for a sequence of numbers
       #
       # @example
