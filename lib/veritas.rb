@@ -24,6 +24,7 @@ require 'veritas/aggregate/mean'
 require 'veritas/aggregate/minimum'
 require 'veritas/aggregate/sum'
 require 'veritas/aggregate/variance'
+require 'veritas/aggregate/standard_deviation'
 
 require 'veritas/logic/expression'
 require 'veritas/logic/connective'
