@@ -24,6 +24,17 @@ module Veritas
         [ count, mean.nil? ? value : mean + ((value - mean) / count.to_f) ]
       end
 
+      # Extract the mean from the accumulator
+      #
+      # @param [Array(Numeric, Numeric)] accumulator
+      #
+      # @return [Float]
+      #
+      # @api public
+      def self.finalize(accumulator)
+        accumulator.last
+      end
+
     end # class Mean
   end # class Aggregate
 end # module Veritas

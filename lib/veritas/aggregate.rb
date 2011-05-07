@@ -25,6 +25,20 @@ module Veritas
       raise NotImplementedError, "#{name}.call must be implemented"
     end
 
+    # Returns the value extracted from the accumulator
+    #
+    # Default behaviour is to pass-through the accumulator
+    #
+    # @example
+    #   accumulator = Aggregate.finalize(accumulator)
+    #
+    # @return [Object]
+    #
+    # @api public
+    def self.finalize(accumulator)
+      accumulator
+    end
+
     # Return the default for this aggregate
     #
     # @return [Object]
@@ -48,6 +62,15 @@ module Veritas
     # @api public
     def call(accumulator, tuple)
       self.class.call(accumulator, value(tuple))
+    end
+
+    # Finalize the accumulator value
+    #
+    # @return [Object]
+    #
+    # @api public
+    def finalize(accumulator)
+      self.class.finalize(accumulator)
     end
 
   private
