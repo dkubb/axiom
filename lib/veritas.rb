@@ -17,6 +17,14 @@ require 'veritas/support/operation/unary'
 
 require 'veritas/support/evaluator'
 
+require 'veritas/aggregate'
+require 'veritas/aggregate/count'
+require 'veritas/aggregate/maximum'
+require 'veritas/aggregate/mean'
+require 'veritas/aggregate/minimum'
+require 'veritas/aggregate/sum'
+require 'veritas/aggregate/variance'
+
 require 'veritas/logic/expression'
 require 'veritas/logic/connective'
 require 'veritas/logic/connective/binary'

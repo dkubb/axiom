@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-05}
+  s.date = %q{2011-05-07}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -32,6 +32,13 @@ Gem::Specification.new do |s|
     "config/site.reek",
     "config/yardstick.yml",
     "lib/veritas.rb",
+    "lib/veritas/aggregate.rb",
+    "lib/veritas/aggregate/count.rb",
+    "lib/veritas/aggregate/maximum.rb",
+    "lib/veritas/aggregate/mean.rb",
+    "lib/veritas/aggregate/minimum.rb",
+    "lib/veritas/aggregate/sum.rb",
+    "lib/veritas/aggregate/variance.rb",
     "lib/veritas/algebra/difference.rb",
     "lib/veritas/algebra/extension.rb",
     "lib/veritas/algebra/intersection.rb",
@@ -123,6 +130,14 @@ Gem::Specification.new do |s|
     "spec/unit/range/to_inclusive_spec.rb",
     "spec/unit/time/pred_spec.rb",
     "spec/unit/veritas/abstract_class/class_methods/new_spec.rb",
+    "spec/unit/veritas/aggregate/call_spec.rb",
+    "spec/unit/veritas/aggregate/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/count/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/maximum/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/mean/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/minimum/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/sum/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/variance/class_methods/call_spec.rb",
     "spec/unit/veritas/algebra/difference/each_spec.rb",
     "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",
     "spec/unit/veritas/algebra/extension/class_methods/new_spec.rb",
@@ -504,7 +519,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{https://github.com/dkubb/veritas}
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.0}
+  s.rubygems_version = %q{1.8.1}
   s.summary = %q{Ruby Relational Algebra}
   s.test_files = [
     "spec/integration/veritas/algebra/join_spec.rb",
@@ -522,6 +537,14 @@ Gem::Specification.new do |s|
     "spec/unit/range/to_inclusive_spec.rb",
     "spec/unit/time/pred_spec.rb",
     "spec/unit/veritas/abstract_class/class_methods/new_spec.rb",
+    "spec/unit/veritas/aggregate/call_spec.rb",
+    "spec/unit/veritas/aggregate/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/count/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/maximum/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/mean/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/minimum/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/sum/class_methods/call_spec.rb",
+    "spec/unit/veritas/aggregate/variance/class_methods/call_spec.rb",
     "spec/unit/veritas/algebra/difference/each_spec.rb",
     "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",
     "spec/unit/veritas/algebra/extension/class_methods/new_spec.rb",
