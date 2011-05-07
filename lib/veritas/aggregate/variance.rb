@@ -37,7 +37,7 @@ module Veritas
       #
       # @api public
       def self.finalize(accumulator)
-        count, new_mean, sum_of_squares = accumulator
+        sum_of_squares, count = accumulator.values_at(2, 0)
         sum_of_squares / count.to_f
       end
 
