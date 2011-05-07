@@ -6,6 +6,9 @@ module Veritas
 
     # Return the default accumulator
     #
+    # @example
+    #   default = Aggregate.default
+    #
     # @return [Object]
     #
     # @api public
@@ -30,7 +33,7 @@ module Veritas
     # Default behaviour is to pass-through the accumulator
     #
     # @example
-    #   accumulator = Aggregate.finalize(accumulator)
+    #   value = Aggregate.finalize(accumulator)
     #
     # @return [Object]
     #
@@ -40,6 +43,9 @@ module Veritas
     end
 
     # Return the default for this aggregate
+    #
+    # @example
+    #   default = aggregate.default
     #
     # @return [Object]
     #
@@ -65,6 +71,9 @@ module Veritas
     end
 
     # Finalize the accumulator value
+    #
+    # @example
+    #   value = aggregate.finalize(accumulator)
     #
     # @return [Object]
     #

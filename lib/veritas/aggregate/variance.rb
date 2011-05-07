@@ -11,11 +11,11 @@ module Veritas
       # @example
       #   count, mean, sum_of_squares = Variance.call(accumulator, value)
       #
-      # @param [Array(Numeric, Numeric, Numeric)] accumulator
+      # @param [Array(Integer, Numeric, Numeric)] accumulator
       #
       # @param [Numeric] value
       #
-      # @return [Array(Numeric, Numeric, Numeric)]
+      # @return [Array(Integer, Numeric, Numeric)]
       #
       # @api public
       def self.call(accumulator, value)

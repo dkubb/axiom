@@ -11,11 +11,11 @@ module Veritas
       # @example
       #   count, mean = Mean.call([ count, mean ], value)
       #
-      # @param [Array(Numeric, Numeric)] accumulator
+      # @param [Array(Integer, Numeric)] accumulator
       #
       # @param [Numeric] value
       #
-      # @return [Array(Numeric, Numeric)]
+      # @return [Array(Integer, Numeric)]
       #
       # @api public
       def self.call(accumulator, value)
@@ -26,7 +26,10 @@ module Veritas
 
       # Extract the mean from the accumulator
       #
-      # @param [Array(Numeric, Numeric)] accumulator
+      # @example
+      #   mean = Mean.finalize(accumulator)
+      #
+      # @param [Array(Integer, Numeric)] accumulator
       #
       # @return [Float]
       #
