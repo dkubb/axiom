@@ -6,7 +6,10 @@ module Veritas
 
     # Evaluate the aggregate using the operands
     #
-    # @return [undefined]
+    # @example
+    #   Aggregate.call  # => raises NotImplementedError
+    #
+    # @return [Object]
     #
     # @api public
     def self.call(*)
