@@ -9,7 +9,6 @@ module Veritas
               Logic::Predicate::LessThan::Methods,
               Logic::Predicate::LessThanOrEqualTo::Methods
 
-
       # Compare the attribute with other attribute to see if they are of the same type
       #
       # @example
