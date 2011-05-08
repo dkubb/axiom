@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-07}
+  s.date = %q{2011-05-10}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -50,6 +50,8 @@ Gem::Specification.new do |s|
     "lib/veritas/algebra/rename/aliases.rb",
     "lib/veritas/algebra/restriction.rb",
     "lib/veritas/algebra/summarization.rb",
+    "lib/veritas/algebra/summarization/summaries.rb",
+    "lib/veritas/algebra/summarization/summary.rb",
     "lib/veritas/algebra/union.rb",
     "lib/veritas/attribute.rb",
     "lib/veritas/attribute/boolean.rb",
@@ -199,14 +201,17 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/restriction/hash_spec.rb",
     "spec/unit/veritas/algebra/restriction/methods/restrict_spec.rb",
     "spec/unit/veritas/algebra/restriction/predicate_spec.rb",
-    "spec/unit/veritas/algebra/summarization/class_methods/summarize_spec.rb",
     "spec/unit/veritas/algebra/summarization/each_spec.rb",
     "spec/unit/veritas/algebra/summarization/eql_spec.rb",
     "spec/unit/veritas/algebra/summarization/hash_spec.rb",
     "spec/unit/veritas/algebra/summarization/header_spec.rb",
     "spec/unit/veritas/algebra/summarization/methods/summarize_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summaries/summarize_by_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summaries/to_hash_spec.rb",
     "spec/unit/veritas/algebra/summarization/summarize_by_spec.rb",
     "spec/unit/veritas/algebra/summarization/summarizers_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summary/call_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summary/summarize_by_spec.rb",
     "spec/unit/veritas/algebra/union/each_spec.rb",
     "spec/unit/veritas/algebra/union/methods/union_spec.rb",
     "spec/unit/veritas/aliasable/fixtures/classes.rb",
@@ -619,14 +624,17 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/restriction/hash_spec.rb",
     "spec/unit/veritas/algebra/restriction/methods/restrict_spec.rb",
     "spec/unit/veritas/algebra/restriction/predicate_spec.rb",
-    "spec/unit/veritas/algebra/summarization/class_methods/summarize_spec.rb",
     "spec/unit/veritas/algebra/summarization/each_spec.rb",
     "spec/unit/veritas/algebra/summarization/eql_spec.rb",
     "spec/unit/veritas/algebra/summarization/hash_spec.rb",
     "spec/unit/veritas/algebra/summarization/header_spec.rb",
     "spec/unit/veritas/algebra/summarization/methods/summarize_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summaries/summarize_by_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summaries/to_hash_spec.rb",
     "spec/unit/veritas/algebra/summarization/summarize_by_spec.rb",
     "spec/unit/veritas/algebra/summarization/summarizers_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summary/call_spec.rb",
+    "spec/unit/veritas/algebra/summarization/summary/summarize_by_spec.rb",
     "spec/unit/veritas/algebra/union/each_spec.rb",
     "spec/unit/veritas/algebra/union/methods/union_spec.rb",
     "spec/unit/veritas/aliasable/fixtures/classes.rb",

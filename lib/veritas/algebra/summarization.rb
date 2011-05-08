@@ -52,16 +52,9 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def each
+      def each(&block)
         return to_enum unless block_given?
-        header      = self.header
-        summaries   = summarize_relation
-        summarizers = self.summarizers.values
-
-        summarize_by.each do |tuple|
-          yield tuple.join(header, summaries[tuple].values_at(*summarizers))
-        end
-
+        Extension.new(summarize_by, summaries).each(&block)
         self
       end
 
@@ -96,53 +89,25 @@ module Veritas
 
     private
 
-      # Return the summaries for each tuple, grouped by the summarize_by header
+      # Return the current summaries
       #
-      # @return [Hash]
+      # @return [Summaries]
       #
       # @api private
-      def summarize_relation
+      def summaries
         header    = summarize_by.header
-        summaries = {}
-
-        operand.each do |tuple|
-          summarize_tuple(tuple, summaries[tuple.project(header)] ||= {})
-        end
-
+        summaries = default_summaries
+        operand.each { |tuple| summaries.summarize_by(header, tuple) }
         summaries
       end
 
-      # Calculate the summary for each function and tuple
+      # Return the default summaries
       #
-      # @param [Tuple] tuple
-      #   a tuple from the base relation
-      # @param [Hash] summary
-      #   the summary for a group of matching tuples
-      #
-      # @return [undefined]
+      # @return [Summaries]
       #
       # @api private
-      def summarize_tuple(tuple, summary)
-        summarizers.each_value do |summarizer|
-          self.class.summarize(tuple, summary, summarizer)
-        end
-      end
-
-      # Calculate the summary for a function and tuple
-      #
-      # @param [Tuple] tuple
-      #   a tuple from the base relation
-      # @param [Hash] summary
-      #   the summary for a group of matching tuples
-      # @param [#call] summarizer
-      #   the function to call with the summary and tuple
-      #
-      # @return [self]
-      #
-      # @api private
-      def self.summarize(tuple, summary, summarizer)
-        summary[summarizer] = summarizer.call(summary[summarizer], tuple)
-        self
+      def default_summaries
+        Summaries.new(summarizers)
       end
 
       module Methods

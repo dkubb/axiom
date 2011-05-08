@@ -80,6 +80,8 @@ require 'veritas/algebra/rename'
 require 'veritas/algebra/rename/aliases'
 require 'veritas/algebra/restriction'
 require 'veritas/algebra/summarization'
+require 'veritas/algebra/summarization/summaries'
+require 'veritas/algebra/summarization/summary'
 require 'veritas/algebra/union'
 
 require 'veritas/attribute'
