@@ -22,6 +22,26 @@ module Veritas
         value < minimum ? value : minimum
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:min => :minimum)
+
+        # Return a minimum aggregate function
+        #
+        # @example
+        #   minimum = attribute.minimum
+        #
+        # @param [Attribute]
+        #
+        # @return [Minimum]
+        #
+        # @api public
+        def minimum
+          Minimum.new(self)
+        end
+
+      end # module Methods
     end # class Minimum
   end # class Aggregate
 end # module Veritas

@@ -22,6 +22,26 @@ module Veritas
         value > maximum ? value : maximum
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:max => :maximum)
+
+        # Return a maximum aggregate function
+        #
+        # @example
+        #   maximum = attribute.maximum
+        #
+        # @param [Attribute]
+        #
+        # @return [Maximum]
+        #
+        # @api public
+        def maximum
+          Maximum.new(self)
+        end
+
+      end # module Methods
     end # class Maximum
   end # class Aggregate
 end # module Veritas

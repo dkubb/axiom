@@ -38,6 +38,29 @@ module Veritas
         accumulator.last
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(
+          :average => :mean,
+          :avg     => :mean
+        )
+
+        # Return a mean aggregate function
+        #
+        # @example
+        #   mean = attribute.mean
+        #
+        # @param [Attribute]
+        #
+        # @return [Mean]
+        #
+        # @api public
+        def mean
+          Mean.new(self)
+        end
+
+      end # module Methods
     end # class Mean
   end # class Aggregate
 end # module Veritas

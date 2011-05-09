@@ -18,6 +18,26 @@ module Veritas
         Math.sqrt(super)
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:stddev => :standard_deviation)
+
+        # Return a standard deviation aggregate function
+        #
+        # @example
+        #   standard_deviation = attribute.standard_deviation
+        #
+        # @param [Attribute]
+        #
+        # @return [StandardDeviation]
+        #
+        # @api public
+        def standard_deviation
+          StandardDeviation.new(self)
+        end
+
+      end # module Methods
     end # class StandardDeviation
   end # class Aggregate
 end # module Veritas

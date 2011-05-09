@@ -4,7 +4,8 @@ module Veritas
     # Represents a Numeric value in a relation tuple
     class Numeric < Object
       extend Aliasable
-      include Comparable
+      include Comparable,
+              Aggregate::Sum::Methods
 
       DEFAULT_SIZE = (0..2**31-1).freeze
 

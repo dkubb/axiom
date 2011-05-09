@@ -22,6 +22,23 @@ module Veritas
         sum + value
       end
 
+      module Methods
+
+        # Return a sum aggregate function
+        #
+        # @example
+        #   sum = attribute.sum
+        #
+        # @param [Attribute]
+        #
+        # @return [Sum]
+        #
+        # @api public
+        def sum
+          Sum.new(self)
+        end
+
+      end # module Methods
     end # class Sum
   end # class Aggregate
 end # module Veritas

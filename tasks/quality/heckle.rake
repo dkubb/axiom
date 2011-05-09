@@ -79,6 +79,13 @@ begin
     aliases['Veritas::Attribute::Numeric']['range'] = 'size'
     aliases['Veritas::Attribute::String']['range']  = 'length'
 
+    aliases['Veritas::Aggregate::Minimum::Methods']['min']              = 'minimum'
+    aliases['Veritas::Aggregate::Maximum::Methods']['max']              = 'maximum'
+    aliases['Veritas::Aggregate::Mean::Methods']['avg']                 = 'mean'
+    aliases['Veritas::Aggregate::Mean::Methods']['average']             = 'mean'
+    aliases['Veritas::Aggregate::Variance::Methods']['var']             = 'variance'
+    aliases['Veritas::Aggregate::StandardDeviation::Methods']['stddev'] = 'standard_deviation'
+
     map = NameMap.new
 
     heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }

@@ -22,6 +22,23 @@ module Veritas
         count.succ
       end
 
+      module Methods
+
+        # Return a count aggregate function
+        #
+        # @example
+        #   count = attribute.count
+        #
+        # @param [Attribute]
+        #
+        # @return [Count]
+        #
+        # @api public
+        def count
+          Count.new(self)
+        end
+
+      end # module Methods
     end # class Count
   end # class Aggregate
 end # module Veritas

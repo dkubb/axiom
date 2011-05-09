@@ -41,6 +41,26 @@ module Veritas
         sum_of_squares / count.to_f
       end
 
+      module Methods
+        extend Aliasable
+
+        inheritable_alias(:var => :variance)
+
+        # Return a variance aggregate function
+        #
+        # @example
+        #   variance = attribute.variance
+        #
+        # @param [Attribute]
+        #
+        # @return [Variance]
+        #
+        # @api public
+        def variance
+          Variance.new(self)
+        end
+
+      end # module Methods
     end # class Variance
   end # class Aggregate
 end # module Veritas

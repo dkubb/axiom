@@ -6,7 +6,8 @@ module Veritas
       include Logic::Predicate::Equality::Methods,
               Logic::Predicate::Exclusion::Methods,
               Logic::Predicate::Inequality::Methods,
-              Logic::Predicate::Inclusion::Methods
+              Logic::Predicate::Inclusion::Methods,
+              Aggregate::Count::Methods
 
       # The Object primitive
       #
