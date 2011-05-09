@@ -48,7 +48,7 @@ Simplifies querying of structured data using relational algebra
   new_relation = relation.extend { |r| r.add(:total) { |t| t[:unit_price] * t[:quantity] } }
 
   # summarize
-  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count, r[:name].count)
+  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count, r[:name].count) }
   new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
 
   # Non-Relational Operators
