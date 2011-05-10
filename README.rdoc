@@ -62,7 +62,6 @@ Simplifies querying of structured data using relational algebra
   relation = relation.each { |tuple| ... }
 
   # order by attribute and direction
-  new_relation = relation.order([ relation[:a].desc, relation[:b] ])
   new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
 
   # reverse the relation (only allowed if ordered)

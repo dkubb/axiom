@@ -17,7 +17,7 @@ describe Algebra::Rename, '#directions' do
   end
 
   context 'containing an ordered relation' do
-    let(:operand) { relation.order([ relation[:id] ]) }
+    let(:operand) { relation.order { [ relation[:id] ] } }
 
     it_should_behave_like 'an idempotent method'
 

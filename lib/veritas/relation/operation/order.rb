@@ -117,9 +117,6 @@ module Veritas
           # @example with no directions
           #   order = relation.order  # sort by the header
           #
-          # @example with directions
-          #   order = relation.order([ relation[:a].desc, relation[:b] ])
-          #
           # @example with a block
           #   order = relation.order { |r| [ r[:a].desc, r[:b] ] }
           #
@@ -128,11 +125,13 @@ module Veritas
           #
           # @yieldparam [Relation] relation
           #
+          # @yieldreturn [Array<Direction>, Header]
+          #
           # @return [Order]
           #
           # @api public
-          def order(directions = block_given? ? Array(yield(self)) : header)
-            Order.new(self, directions)
+          def order
+            Order.new(self, block_given? ? Array(yield(self)) : header)
           end
 
         end # module Methods
