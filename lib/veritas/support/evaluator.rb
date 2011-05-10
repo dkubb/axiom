@@ -14,10 +14,13 @@ module Veritas
 
       # Initialize an Expression
       #
+      # @param [Relation] relation
+      #
       # @return [undefined]
       #
       # @api private
-      def initialize
+      def initialize(relation)
+        @relation    = relation
         @expressions = {}
         yield self
         @expressions.freeze
@@ -45,6 +48,17 @@ module Veritas
       def add(attribute, expression = nil, &block)
         expressions[Attribute.coerce(attribute)] = expression || block
         self
+      end
+
+      # Lookup the attribute in the relation
+      #
+      # @param [Symbol]
+      #
+      # @return [Attribute]
+      #
+      # @api public
+      def [](name)
+        @relation[name]
       end
 
     end # class FunctionExpression

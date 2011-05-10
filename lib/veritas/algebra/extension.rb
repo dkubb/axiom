@@ -96,7 +96,7 @@ module Veritas
         #
         # @api public
         def extend(&block)
-          evaluator = Evaluator::Expression.new(&block)
+          evaluator = Evaluator::Expression.new(self, &block)
           Extension.new(self, evaluator.expressions)
         end
 

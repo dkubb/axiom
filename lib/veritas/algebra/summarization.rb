@@ -130,7 +130,7 @@ module Veritas
         # @api public
         def summarize(summarize_by, &block)
           relation  = coerce_to_relation(summarize_by)
-          evaluator = Evaluator::Expression.new(&block)
+          evaluator = Evaluator::Expression.new(self, &block)
           Summarization.new(self, relation, evaluator.expressions)
         end
 
