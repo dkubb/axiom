@@ -24,10 +24,10 @@ describe Algebra::Summarization::Summary, '#call' do
   end
 
   context 'when the summarizer is an aggregate function' do
-    let(:summarizer) { header.first.count }
+    let(:summarizer) { header.first.mean }
 
     context 'when there is no summary' do
-      it { should == 0 }
+      it { should be_nil }
     end
 
     context 'when there is a summary' do
