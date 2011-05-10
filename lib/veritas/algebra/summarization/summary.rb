@@ -14,7 +14,7 @@ module Veritas
         # @api private
         def initialize(summarizer)
           @summarizer = summarizer
-          @summary    = {}  # mutable
+          @summary    = Hash.new(summary_default)
         end
 
         # Summarize the aggregate function by a tuple
@@ -46,7 +46,33 @@ module Veritas
         #
         # @api public
         def call(tuple)
-          @summary[tuple]
+          summary_finalize(@summary[tuple])
+        end
+
+      private
+
+        # Return the summary default
+        #
+        # @return [Object]
+        #
+        # @api private
+        def summary_default
+          @summarizer.default if @summarizer.respond_to?(:default)
+        end
+
+        # Finalize the summary value if possible
+        #
+        # @param [Object] value
+        #
+        # @return [Object]
+        #
+        # @api private
+        def summary_finalize(value)
+          if @summarizer.respond_to?(:finalize)
+            @summarizer.finalize(value)
+          else
+            value
+          end
         end
 
       end # class Summary
