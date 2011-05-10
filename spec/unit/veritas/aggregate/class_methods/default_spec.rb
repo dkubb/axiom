@@ -5,5 +5,5 @@ describe Aggregate, '.default' do
 
   let(:object) { described_class }
 
-  specify { expect { subject }.to raise_error(NameError, "uninitialized constant #{Aggregate}::DEFAULT") }
+  specify { expect { subject }.to raise_error(NameError) }
 end
