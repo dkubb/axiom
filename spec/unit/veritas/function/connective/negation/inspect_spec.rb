@@ -7,5 +7,5 @@ describe Function::Connective::Negation, '#inspect' do
   let(:operand)   { attribute.eq(1)              }
   let(:object)    { described_class.new(operand) }
 
-  it { should == "not(#{operand.inspect})" }
+  it { should == "NOT(#{operand.inspect})" }
 end

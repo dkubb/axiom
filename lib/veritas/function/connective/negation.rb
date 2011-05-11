@@ -44,7 +44,7 @@ module Veritas
         #
         # @api public
         def inspect
-          "not(#{operand.inspect})"
+          "NOT(#{operand.inspect})"
         end
 
         module Methods
