@@ -2,8 +2,6 @@ module Veritas
 
   # Abstract base class for logical functions
   class Function
-
-    extend Aliasable
     include AbstractClass, Immutable, Visitable
 
     # Evaluate the function using the operands
