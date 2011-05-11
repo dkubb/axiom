@@ -3,10 +3,10 @@ module Veritas
 
     # Represents an Object value in a relation tuple
     class Object < Attribute
-      include Logic::Predicate::Equality::Methods,
-              Logic::Predicate::Exclusion::Methods,
-              Logic::Predicate::Inequality::Methods,
-              Logic::Predicate::Inclusion::Methods,
+      include Function::Predicate::Equality::Methods,
+              Function::Predicate::Exclusion::Methods,
+              Function::Predicate::Inequality::Methods,
+              Function::Predicate::Inclusion::Methods,
               Aggregate::Count::Methods
 
       # The Object primitive

@@ -65,9 +65,9 @@ begin
     NameMap::MAP['|']['Veritas::Relation::Operation::Order::DirectionSet'] = 'union'
 
     %w[
-      Veritas::Logic::Connective::Conjunction::Methods
-      Veritas::Logic::Connective::Disjunction::Methods
-      Veritas::Logic::Connective::Negation::Methods
+      Veritas::Function::Connective::Conjunction::Methods
+      Veritas::Function::Connective::Disjunction::Methods
+      Veritas::Function::Connective::Negation::Methods
     ].each do |mod|
       NameMap::MAP['&'][mod] = 'and'
       NameMap::MAP['|'][mod] = 'or'

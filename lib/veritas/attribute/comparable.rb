@@ -4,10 +4,10 @@ module Veritas
     # A mixin for attributes that have comparable values
     module Comparable
       include Orderable,
-              Logic::Predicate::GreaterThan::Methods,
-              Logic::Predicate::GreaterThanOrEqualTo::Methods,
-              Logic::Predicate::LessThan::Methods,
-              Logic::Predicate::LessThanOrEqualTo::Methods,
+              Function::Predicate::GreaterThan::Methods,
+              Function::Predicate::GreaterThanOrEqualTo::Methods,
+              Function::Predicate::LessThan::Methods,
+              Function::Predicate::LessThanOrEqualTo::Methods,
               Aggregate::Minimum::Methods,
               Aggregate::Maximum::Methods,
               Aggregate::Mean::Methods,

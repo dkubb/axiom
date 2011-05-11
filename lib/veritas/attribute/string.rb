@@ -5,8 +5,8 @@ module Veritas
     class String < Object
       extend Aliasable
       include Orderable,
-              Logic::Predicate::Match::Methods,
-              Logic::Predicate::NoMatch::Methods
+              Function::Predicate::Match::Methods,
+              Function::Predicate::NoMatch::Methods
 
       DEFAULT_LENGTH = (0..50).freeze
 
