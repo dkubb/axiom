@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Function::Predicate, '.extract_value' do
+describe Function, '.extract_value' do
   subject { object.extract_value(operand, tuple) }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }

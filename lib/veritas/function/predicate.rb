@@ -78,20 +78,6 @@ module Veritas
         right == other.right
       end
 
-      # Extract the value from the operand or tuple
-      #
-      # @param [Object, #call] operand
-      #   the operand to extract the value from
-      # @param [Tuple] tuple
-      #   the tuple to pass in to the operand if it responds to #call
-      #
-      # @return [Object]
-      #
-      # @api private
-      def self.extract_value(operand, tuple)
-        operand.respond_to?(:call) ? operand.call(tuple) : operand
-      end
-
       memoize :inverse
 
     end # class Predicate

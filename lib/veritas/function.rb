@@ -4,6 +4,20 @@ module Veritas
   class Function
     include AbstractClass, Immutable, Visitable
 
+    # Extract the value from the operand or tuple
+    #
+    # @param [Object, #call] operand
+    #   the operand to extract the value from
+    # @param [Tuple] tuple
+    #   the tuple to pass in to the operand if it responds to #call
+    #
+    # @return [Object]
+    #
+    # @api private
+    def self.extract_value(operand, tuple)
+      operand.respond_to?(:call) ? operand.call(tuple) : operand
+    end
+
     # Evaluate the function using the operands
     #
     # @return [undefined]
