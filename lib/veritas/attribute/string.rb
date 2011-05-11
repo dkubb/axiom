@@ -3,7 +3,6 @@ module Veritas
 
     # Represents a String value in a relation tuple
     class String < Object
-      extend Aliasable
       include Orderable,
               Function::Predicate::Match::Methods,
               Function::Predicate::NoMatch::Methods

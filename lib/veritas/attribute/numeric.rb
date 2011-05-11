@@ -3,7 +3,6 @@ module Veritas
 
     # Represents a Numeric value in a relation tuple
     class Numeric < Object
-      extend Aliasable
       include Comparable,
               Aggregate::Sum::Methods
 

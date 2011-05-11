@@ -2,6 +2,7 @@ module Veritas
 
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
+    extend Aliasable
     include AbstractClass, Immutable, ::Comparable, Visitable
 
     # The attribute name
