@@ -93,7 +93,7 @@ module Veritas
     #
     # @return [Object]
     #
-    # @todo Aggregate will inherit from Expression, then use as Expression.value
+    # @todo Aggregate will inherit from Function, then use as Function.value
     #
     # @api private
     def value(tuple)

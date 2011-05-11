@@ -82,22 +82,22 @@ module Veritas
         # Return an extended relation
         #
         # @example
-        #   extension = relation.extend do |expression|
-        #     expression.add(:total, expression[:unit_price] * expression[:quantity])
+        #   extension = relation.extend do |context|
+        #     context.add(:total, context[:unit_price] * context[:quantity])
         #   end
         #
-        # @yield [expression]
-        #   Evaluate an extension expression
+        # @yield [function]
+        #   Evaluate an extension function
         #
-        # @yieldparam [Evaluator::Expression] expression
-        #   the context to evaluate the extension with
+        # @yieldparam [Evaluator::Context] context
+        #   the context to evaluate the function within
         #
         # @return [Extension]
         #
         # @api public
         def extend(&block)
-          evaluator = Evaluator::Expression.new(self, &block)
-          Extension.new(self, evaluator.expressions)
+          context = Evaluator::Context.new(self, &block)
+          Extension.new(self, context.functions)
         end
 
       end # module Methods

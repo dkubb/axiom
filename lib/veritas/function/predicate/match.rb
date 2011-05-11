@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing a regexp match between operands
@@ -37,7 +37,7 @@ module Veritas
           # @example
           #   match = expression.match(regexp)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Match]
           #
@@ -49,5 +49,5 @@ module Veritas
         end # module Methods
       end # class Match
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

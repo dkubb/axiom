@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A mixin for predicates matching an enumerable
@@ -32,5 +32,5 @@ module Veritas
 
       end # module Enumerable
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

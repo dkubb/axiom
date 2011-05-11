@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing a less than test between operands
@@ -49,7 +49,7 @@ module Veritas
           # @example
           #   less_than = expression.lt(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [LessThan]
           #
@@ -61,5 +61,5 @@ module Veritas
         end # module Methods
       end # class LessThan
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

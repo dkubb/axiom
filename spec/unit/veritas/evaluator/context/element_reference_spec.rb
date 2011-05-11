@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Evaluator::Expression, '#[]' do
+describe Evaluator::Context, '#[]' do
   subject { object[name] }
 
   let(:name)      { :id                              }

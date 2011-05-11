@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Proposition
 
       # A class representing a contradiction
@@ -29,12 +29,12 @@ module Veritas
           false
         end
 
-        # Functionally AND the proposition with another expression
+        # Logically AND the proposition with another expression
         #
         # @example
         #   contradiction.and(other)  # => contradiction
         #
-        # @param [Expression] other
+        # @param [Function] other
         #
         # @return [self]
         #
@@ -43,14 +43,14 @@ module Veritas
           self
         end
 
-        # Functionally OR the proposition with another expression
+        # Logically OR the proposition with another expression
         #
         # @example
         #   contradiction.or(other)  # => other
         #
-        # @param [Expression] other
+        # @param [Function] other
         #
-        # @return [Expression]
+        # @return [Function]
         #
         # @api public
         def or(other)

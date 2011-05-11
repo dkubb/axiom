@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing an inequality test between operands
@@ -64,7 +64,7 @@ module Veritas
           # @example
           #   inequality = expression.ne(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Inequality]
           #

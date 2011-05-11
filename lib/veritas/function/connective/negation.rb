@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Connective
 
       # A logical negation of an expression
@@ -27,7 +27,7 @@ module Veritas
         # @example
         #   operand = negation.inverse
         #
-        # @return [Expression]
+        # @return [Function]
         #
         # @api public
         def inverse
@@ -37,7 +37,7 @@ module Veritas
         # Return a string representing the negation
         #
         # @example
-        #   negation.inspect  # not(<Expression>)
+        #   negation.inspect  # not(<Function>)
         #
         # @return [String]
         #
@@ -54,12 +54,12 @@ module Veritas
 
           inheritable_alias(:- => :not)
 
-          # Functionally negate then AND the expression
+          # Logically negate then AND the expression
           #
           # @example
           #   conjunction = expression.not(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Conjunction]
           #
@@ -70,9 +70,9 @@ module Veritas
 
         end # module Methods
 
-        Expression.class_eval { include Methods }
+        Function.class_eval { include Methods }
 
       end # class Negation
     end # class Connective
-  end # module Function
+  end # class Function
 end # module Veritas

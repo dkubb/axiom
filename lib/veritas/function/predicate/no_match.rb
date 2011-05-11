@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing no regexp match between operands
@@ -52,7 +52,7 @@ module Veritas
           # @example
           #   no_match = expression.no_match(regexp)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [NoMatch]
           #
@@ -64,5 +64,5 @@ module Veritas
         end # module Methods
       end # class NoMatch
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

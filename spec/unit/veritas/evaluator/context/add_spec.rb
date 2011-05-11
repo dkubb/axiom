@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Evaluator::Expression, '#add' do
+describe Evaluator::Context, '#add' do
   let(:attribute) { Attribute::Integer.new(:id)     }
   let(:relation)  { Relation.new([ attribute ], []) }
 
@@ -9,7 +9,7 @@ describe Evaluator::Expression, '#add' do
 
     let(:function) { mock('Function') }
 
-    its(:expressions) { should == { attribute => function } }
+    its(:functions) { should == { attribute => function } }
   end
 
   context 'when a block is provided' do
@@ -17,6 +17,6 @@ describe Evaluator::Expression, '#add' do
 
     let(:block) { proc {} }
 
-    its(:expressions) { should == { attribute => block } }
+    its(:functions) { should == { attribute => block } }
   end
 end

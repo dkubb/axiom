@@ -1,8 +1,8 @@
 module Veritas
-  module Function
+  class Function
 
     # Abstract base class for logical connectives
-    class Connective < Expression
+    class Connective < Function
       include AbstractClass
 
       # Return the inverse connective
@@ -20,5 +20,5 @@ module Veritas
       memoize :inverse
 
     end # class Connective
-  end # module Function
+  end # class Function
 end # module Veritas

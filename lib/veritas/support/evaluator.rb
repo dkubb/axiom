@@ -2,17 +2,17 @@ module Veritas
   module Evaluator
 
     # Provide a context to evaluate a Relation operation block
-    class Expression
+    class Context
       include Immutable
 
-      # The expressions to evaluate
+      # The functions to evaluate
       #
       # @return [Hash]
       #
       # @api private
-      attr_reader :expressions
+      attr_reader :functions
 
-      # Initialize an Expression
+      # Initialize a Context
       #
       # @param [Relation] relation
       #
@@ -20,23 +20,23 @@ module Veritas
       #
       # @api private
       def initialize(relation)
-        @relation    = relation
-        @expressions = {}
+        @relation  = relation
+        @functions = {}
         yield self
-        @expressions.freeze
+        @functions.freeze
       end
 
-      # Add an expression to be evaluated by the relation operation
+      # Add a function to be evaluated by the relation operation
       #
       # @example of a function
-      #   evaluator.add(:total, evaluator[:unit_price] * evaluator[:quantity])
+      #   context.add(:total, context[:unit_price] * context[:quantity])
       #
       # @example of a block
-      #   evaluator.add(:total) { |t| t[:unit_price] * t[:quantity] } }
+      #   context.add(:total) { |tuple| tuple[:unit_price] * tuple[:quantity] } }
       #
       # @param [Attribute, #to_ary, #to_sym] attribute
       #   the attribute to add to the header
-      # @param [#call] expression
+      # @param [#call] function
       #   optional function
       #
       # @yield []
@@ -45,8 +45,8 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def add(attribute, expression = nil, &block)
-        expressions[Attribute.coerce(attribute)] = expression || block
+      def add(attribute, function = nil, &block)
+        functions[Attribute.coerce(attribute)] = function || block
         self
       end
 
@@ -61,6 +61,6 @@ module Veritas
         @relation[name]
       end
 
-    end # class FunctionExpression
+    end # class Context
   end # module Evaluator
 end # module Veritas

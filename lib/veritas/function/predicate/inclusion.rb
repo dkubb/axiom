@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing an inclusion test
@@ -56,7 +56,7 @@ module Veritas
           # @example
           #   inclusion = attribute.include([ 1, 2, 3 ])
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Inclusion]
           #
@@ -68,5 +68,5 @@ module Veritas
         end # module Methods
       end # class Inclusion
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

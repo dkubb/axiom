@@ -26,7 +26,7 @@ require 'veritas/aggregate/sum'
 require 'veritas/aggregate/variance'
 require 'veritas/aggregate/standard_deviation'
 
-require 'veritas/function/expression'
+require 'veritas/function'
 require 'veritas/function/connective'
 require 'veritas/function/connective/binary'
 require 'veritas/function/connective/unary'

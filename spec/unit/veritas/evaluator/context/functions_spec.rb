@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Evaluator::Expression, '#expressions' do
-  subject { object.expressions }
+describe Evaluator::Context, '#functions' do
+  subject { object.functions }
 
   let(:attribute) { Attribute::Integer.new(:id)                                      }
   let(:relation)  { Relation.new([ attribute ], [])                                  }

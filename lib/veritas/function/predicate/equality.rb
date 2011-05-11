@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing an equality test between operands
@@ -49,7 +49,7 @@ module Veritas
           # @example
           #   equality = expression.eq(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Equality]
           #
@@ -61,5 +61,5 @@ module Veritas
         end # module Methods
       end # class Equality
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

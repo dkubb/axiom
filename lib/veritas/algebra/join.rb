@@ -140,7 +140,7 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
-        # @yieldreturn [Expression, #call]
+        # @yieldreturn [Function, #call]
         #   predicate to restrict the tuples with
         #
         # @return [Join, Restriction]
@@ -179,7 +179,7 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
-        # @yieldreturn [Expression, #call]
+        # @yieldreturn [Function, #call]
         #   predicate to restrict the tuples with
         #
         # @return [Restriction]

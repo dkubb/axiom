@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Connective
 
       # A logical AND between expressions
@@ -32,7 +32,7 @@ module Veritas
         # Return a string representing the conjunction
         #
         # @example
-        #   conjunction.inspect  # "<Expression1> AND <Expression2>"
+        #   conjunction.inspect  # "<Function1> AND <Function2>"
         #
         # @return [String]
         #
@@ -46,12 +46,12 @@ module Veritas
 
           inheritable_alias(:& => :and)
 
-          # Functionally AND the expression with another expression
+          # Logically AND the expression with another expression
           #
           # @example
           #   conjunction = expression.and(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Conjunction]
           #
@@ -62,9 +62,9 @@ module Veritas
 
         end # module Methods
 
-        Expression.class_eval { include Methods }
+        Function.class_eval { include Methods }
 
       end # class Conjunction
     end # class Connective
-  end # module Function
+  end # class Function
 end # module Veritas

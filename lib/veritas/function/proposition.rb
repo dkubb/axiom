@@ -1,8 +1,8 @@
 module Veritas
-  module Function
+  class Function
 
     # Abstract base class for logical propositions
-    class Proposition < Expression
+    class Proposition < Function
       include Singleton
 
       # Instantiate a new Proposition

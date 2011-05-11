@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Connective
 
       # A logical OR between expressions
@@ -32,7 +32,7 @@ module Veritas
         # Return a string representing the disjunction
         #
         # @example
-        #   disjunction.inspect  # "<Expression1> OR <Expression2>"
+        #   disjunction.inspect  # "<Function1> OR <Function2>"
         #
         # @return [String]
         #
@@ -46,12 +46,12 @@ module Veritas
 
           inheritable_alias(:| => :or)
 
-          # Functionally OR the expression with another expression
+          # Logically OR the expression with another expression
           #
           # @example
           #   disjunction = expression.or(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Disjunction]
           #
@@ -62,9 +62,9 @@ module Veritas
 
         end # module Methods
 
-        Expression.class_eval { include Methods }
+        Function.class_eval { include Methods }
 
       end # class Disjunction
     end # class Connective
-  end # module Function
+  end # class Function
 end # module Veritas

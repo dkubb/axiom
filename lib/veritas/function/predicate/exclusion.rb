@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing an exclusion test
@@ -56,7 +56,7 @@ module Veritas
           # @example
           #   exclusion = attribute.exclude([ 1, 2, 3 ])
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [Exclusion]
           #
@@ -68,5 +68,5 @@ module Veritas
         end # module Methods
       end # class Exclusion
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

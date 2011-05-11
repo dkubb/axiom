@@ -1,8 +1,8 @@
 module Veritas
-  module Function
+  class Function
 
     # Abstract base class for logical predicates
-    class Predicate < Expression
+    class Predicate < Function
       include AbstractClass, Operation::Binary
 
       # Evaluate the predicate using the provided Tuple
@@ -95,5 +95,5 @@ module Veritas
       memoize :inverse
 
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

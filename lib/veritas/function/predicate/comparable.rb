@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A mixin for predicates with directly compared operands
@@ -53,5 +53,5 @@ module Veritas
         end # module Classmethods
       end # module Comparable
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

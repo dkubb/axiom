@@ -7,7 +7,7 @@ module Veritas
 
       # The predicate for the relation
       #
-      # @return [Expression, #call]
+      # @return [Function, #call]
       #
       # @api private
       attr_reader :predicate
@@ -16,8 +16,8 @@ module Veritas
       #
       # @param [Relation] operand
       #   the relation to restrict
-      # @param [Expression, #call] predicate
-      #   the expression to restrict the tuples with
+      # @param [Function, #call] predicate
+      #   the function to restrict the tuples with
       #
       # @return [undefined]
       #
@@ -87,7 +87,7 @@ module Veritas
         # @yieldparam [Relation] relation
         #   the context to evaluate the restriction with
         #
-        # @yieldreturn [Expression, #call]
+        # @yieldreturn [Function, #call]
         #   predicate to restrict the tuples with
         #
         # @return [Restriction]

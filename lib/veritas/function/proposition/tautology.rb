@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Proposition
 
       # A class representing a tautology
@@ -29,26 +29,26 @@ module Veritas
           true
         end
 
-        # Functionally AND the proposition with another expression
+        # Logically AND the proposition with another expression
         #
         # @example
         #   tautology.and(other)  # => other
         #
-        # @param [Expression] other
+        # @param [Function] other
         #
-        # @return [Expression]
+        # @return [Function]
         #
         # @api public
         def and(other)
           other
         end
 
-        # Functionally OR the proposition with another expression
+        # Logically OR the proposition with another expression
         #
         # @example
         #   tautology.or(other)  # => tautology
         #
-        # @param [Expression] other
+        # @param [Function] other
         #
         # @return [self]
         #

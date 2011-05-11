@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Predicate
 
       # A predicate representing a greater than test between operands
@@ -49,7 +49,7 @@ module Veritas
           # @example
           #   greater_than = expression.gt(other)
           #
-          # @param [Expression] other
+          # @param [Function] other
           #
           # @return [GreaterThan]
           #
@@ -61,5 +61,5 @@ module Veritas
         end # module Methods
       end # class GreaterThan
     end # class Predicate
-  end # module Function
+  end # class Function
 end # module Veritas

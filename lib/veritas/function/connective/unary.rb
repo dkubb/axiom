@@ -1,5 +1,5 @@
 module Veritas
-  module Function
+  class Function
     class Connective
 
       # Abstract base class for unary connectives
@@ -63,5 +63,5 @@ module Veritas
 
       end # class Unary
     end # class Connective
-  end # module Function
+  end # class Function
 end # module Veritas

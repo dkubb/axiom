@@ -41,7 +41,7 @@ module Veritas
       # Iterate over each tuple in the set
       #
       # @example
-      #   summarization = Summarization.new(self, relation, evaluator.expressions)
+      #   summarization = Summarization.new(self, relation, context.functions)
       #   summarization.each { |tuple| ... }
       #
       # @yield [tuple]
@@ -114,24 +114,29 @@ module Veritas
 
         # Return a summarized relation
         #
-        # @example
-        #   summarization = relation.summarize(relation.project([ :name ])) do |expression|
-        #     expression.add(:count, expression[:name].count)
+        # @example with a projection
+        #   summarization = relation.summarize(relation.project([ :name ])) do |context|
+        #     context.add(:count, context[:name].count)
         #   end
         #
-        # @yield [expression]
-        #   Evaluate an summarization expression
+        # @example with a header
+        #   summarization = relation.summarize([ :name ]) do |context|
+        #     context.add(:count, context[:name].count)
+        #   end
         #
-        # @yieldparam [Evaluator::Expression] expression
-        #   the context to evaluate the summarization with
+        # @yield [function]
+        #   Evaluate an summarization function
+        #
+        # @yieldparam [Evaluator::Context] context
+        #   the context to evaluate the function within
         #
         # @return [Summarization]
         #
         # @api public
         def summarize(summarize_by, &block)
-          relation  = coerce_to_relation(summarize_by)
-          evaluator = Evaluator::Expression.new(self, &block)
-          Summarization.new(self, relation, evaluator.expressions)
+          relation = coerce_to_relation(summarize_by)
+          context  = Evaluator::Context.new(self, &block)
+          Summarization.new(self, relation, context.functions)
         end
 
       private

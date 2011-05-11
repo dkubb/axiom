@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Function::Expression, '.call' do
+describe Function::Function, '.call' do
   subject { object.call }
 
   let(:object) { described_class }
