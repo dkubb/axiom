@@ -1,5 +1,5 @@
 module UnarySpecs
-  class Object
+  class Object < Function
     include Function::Unary
 
     def inspect

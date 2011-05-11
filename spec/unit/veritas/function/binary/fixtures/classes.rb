@@ -1,5 +1,5 @@
 module BinarySpecs
-  class Object
+  class Object < Function
     include Function::Binary
 
     def inspect

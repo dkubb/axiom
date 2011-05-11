@@ -3,25 +3,7 @@ module Veritas
 
     # Abstract base class for logical predicates
     class Predicate < Function
-      include AbstractClass, Operation::Binary
-
-      # Evaluate the predicate using the provided Tuple
-      #
-      # @example
-      #   value = predicate.call(tuple)
-      #
-      # @param [Tuple] tuple
-      #
-      # @return [Object]
-      #
-      # @api public
-      def call(tuple)
-        util = self.class
-        util.call(
-          util.extract_value(left,  tuple),
-          util.extract_value(right, tuple)
-        )
-      end
+      include AbstractClass, Binary
 
       # Rename the contained attributes with the provided aliases
       #
@@ -32,6 +14,8 @@ module Veritas
       #   the old and new attributes
       #
       # @return [Predicate]
+      #
+      # @todo find a refactoring that will allow this to be removed in favor of Binary#rename
       #
       # @api public
       def rename(aliases)
@@ -56,26 +40,12 @@ module Veritas
       #
       # @return [Predicate]
       #
+      # @todo consider moving this into Binary
+      #
       # @api public
       def inverse
         self.class.inverse.new(left, right).
           memoize(:inverse, self)
-      end
-
-      # Compare the operation with the other operation for equivalency
-      #
-      # @example
-      #   binary == other  # => true or false
-      #
-      # @param [Predicate] other
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def ==(other)
-        (kind_of?(other.class) || other.kind_of?(self.class)) &&
-        left  == other.left                                   &&
-        right == other.right
       end
 
       memoize :inverse

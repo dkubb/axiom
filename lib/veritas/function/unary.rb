@@ -17,7 +17,8 @@ module Veritas
         #
         # @api public
         def call(tuple)
-          self.class.call(operand.call(tuple))
+          util = self.class
+          util.call(util.extract_value(operand, tuple))
         end
 
         # Rename the contained attributes with the provided aliases
@@ -32,6 +33,8 @@ module Veritas
         #   if the operand is not renamed
         # @return [Unary]
         #   if the operand is renamed
+        #
+        # @todo handle case where operand is a literal
         #
         # @api public
         def rename(aliases)

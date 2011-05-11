@@ -17,7 +17,11 @@ module Veritas
       #
       # @api public
       def call(tuple)
-        self.class.call(left.call(tuple), right.call(tuple))
+        util = self.class
+        util.call(
+          util.extract_value(left,  tuple),
+          util.extract_value(right, tuple)
+        )
       end
 
       # Rename the contained attributes with the provided aliases
@@ -32,6 +36,8 @@ module Veritas
       #   if the left and right operands are not renamed
       # @return [Binary]
       #   if the left or right operand is renamed
+      #
+      # @todo handle case where left/right are literals
       #
       # @api public
       def rename(aliases)
