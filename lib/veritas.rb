@@ -27,9 +27,10 @@ require 'veritas/aggregate/variance'
 require 'veritas/aggregate/standard_deviation'
 
 require 'veritas/function'
+require 'veritas/function/binary'
+require 'veritas/function/unary'
+
 require 'veritas/function/connective'
-require 'veritas/function/connective/binary'
-require 'veritas/function/connective/unary'
 require 'veritas/function/connective/conjunction'
 require 'veritas/function/connective/disjunction'
 require 'veritas/function/connective/negation'

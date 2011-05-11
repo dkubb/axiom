@@ -1,5 +1,7 @@
 module BinarySpecs
-  class Object < Function::Connective::Binary
+  class Object
+    include Function::Binary
+
     def inspect
       "Binary(#{left.inspect}, #{right.inspect})"
     end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Connective::Unary, '#call' do
+describe Function::Unary, '#call' do
   subject { object.call(tuple) }
 
   let(:described_class) { UnarySpecs::Object                         }

@@ -3,7 +3,8 @@ module Veritas
     class Connective
 
       # A logical negation of an expression
-      class Negation < Unary
+      class Negation < Connective
+        include Unary
 
         # Evaluate the operands using a logical NOT
         #

@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Connective::Unary, '#rename' do
+describe Function::Unary, '#rename' do
   subject { object.rename(aliases) }
 
   let(:described_class) { UnarySpecs::Object                                        }

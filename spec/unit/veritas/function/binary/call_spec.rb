@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Connective::Binary, '#call' do
+describe Function::Binary, '#call' do
   subject { object.call(tuple) }
 
   let(:described_class) { BinarySpecs::Object                               }

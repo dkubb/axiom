@@ -3,7 +3,8 @@ module Veritas
     class Connective
 
       # A logical OR between expressions
-      class Disjunction < Binary
+      class Disjunction < Connective
+        include Binary
 
         # Evaluate the operands using a logical OR
         #

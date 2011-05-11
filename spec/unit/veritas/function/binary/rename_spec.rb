@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Connective::Binary, '#rename' do
+describe Function::Binary, '#rename' do
   subject { object.rename(aliases) }
 
   let(:described_class) { BinarySpecs::Object                                       }

@@ -1,5 +1,7 @@
 module UnarySpecs
-  class Object < Function::Connective::Unary
+  class Object
+    include Function::Unary
+
     def inspect
       "Unary(#{operand.inspect})"
     end

@@ -1,10 +1,9 @@
 module Veritas
   class Function
-    class Connective
 
-      # Abstract base class for unary connectives
-      class Unary < Connective
-        include AbstractClass, Operation::Unary
+      # Mixin for unary functions
+      module Unary
+        include Operation::Unary
 
         # Evaluate the unary connective using the tuple
         #
@@ -61,7 +60,6 @@ module Veritas
           operand == other.operand
         end
 
-      end # class Unary
-    end # class Connective
+      end # module Unary
   end # class Function
 end # module Veritas
