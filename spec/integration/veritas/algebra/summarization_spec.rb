@@ -15,7 +15,7 @@ describe Algebra::Summarization do
     end
   end
 
-  context 'summarize on an smaller set' do
+  context 'summarize on a smaller set' do
     let(:by) { Relation.new(by_header, [ [ 'Dan Kubb' ] ]) }
 
     it 'returns a relation with a single tuple' do
@@ -23,7 +23,7 @@ describe Algebra::Summarization do
     end
   end
 
-  context 'summarize on an larger set' do
+  context 'summarize on a larger set' do
     let(:by) { Relation.new(by_header, [ [ 'Dan Kubb' ], [ 'Dane Largy' ] ]) }
 
     it 'returns a relation with a single tuple' do

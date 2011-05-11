@@ -40,13 +40,13 @@ module Veritas
         # Return a string representing the predicate
         #
         # @example
-        #   inclusion.inspect  # "<Attribute::Integer name: id> ∈ [1, 2, 3]"
+        #   inclusion.inspect  # => "<Attribute::Integer name: id> ∈ [1, 2, 3]"
         #
         # @return [String]
         #
         # @api public
         def inspect
-          "#{left.inspect} ∈ #{right.inspect}"
+          "(#{left.inspect} ∈ #{right.inspect})"
         end
 
         module Methods

@@ -86,6 +86,20 @@ begin
     aliases['Veritas::Aggregate::Variance::Methods']['var']             = 'variance'
     aliases['Veritas::Aggregate::StandardDeviation::Methods']['stddev'] = 'standard_deviation'
 
+    aliases['Veritas::Function::Numeric::Addition::Methods']['+']         = 'add'
+    aliases['Veritas::Function::Numeric::Subtraction::Methods']['-']      = 'subtract'
+    aliases['Veritas::Function::Numeric::Multiplication::Methods']['*']   = 'multiply'
+    aliases['Veritas::Function::Numeric::Division::Methods']['/']         = 'divide'
+    aliases['Veritas::Function::Numeric::Absolute::Methods']['abs']       = 'absolute'
+    aliases['Veritas::Function::Numeric::Exponentiation::Methods']['**']  = 'exponent'
+    aliases['Veritas::Function::Numeric::Exponentiation::Methods']['pow'] = 'exponent'
+    aliases['Veritas::Function::Numeric::Modulo::Methods']['%']           = 'modulo'
+    aliases['Veritas::Function::Numeric::Modulo::Methods']['mod']         = 'modulo'
+    aliases['Veritas::Function::Numeric::Random::Methods']['rand']        = 'random'
+    aliases['Veritas::Function::Numeric::SquareRoot::Methods']['sqrt']    = 'square_root'
+    aliases['Veritas::Function::Numeric::UnaryPlus::Methods']['+@']       = 'unary_plus'
+    aliases['Veritas::Function::Numeric::UnaryMinus::Methods']['-@']      = 'unary_minus'
+
     map = NameMap.new
 
     heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }

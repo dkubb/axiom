@@ -6,5 +6,5 @@ describe Function::Predicate::GreaterThanOrEqualTo, '#inspect' do
   let(:attribute) { Attribute::Integer.new(:id)       }
   let(:object)    { described_class.new(attribute, 1) }
 
-  it { should == "#{attribute.inspect} >= 1" }
+  it { should == "(#{attribute.inspect} >= 1)" }
 end

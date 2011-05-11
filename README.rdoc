@@ -109,7 +109,7 @@ This is 100% complete now.
 
 === Phase 2: RDBMS Engines
 
-The second phase of this project will be to add an RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
+The second phase of this project will be to add a RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
 
 This is 80% complete. I have finished a first pass on the veritas-sql-compiler[https://github.com/dkubb/veritas-sql-compiler] which is a visitor that walks the AST and produces SQL for every operation except extend and summarize. To finish those I will need to add function support to veritas that are introspectable (i.e. not Proc objects). Once I can introspect them, then I can serialize them to SQL and other query languages.
 

@@ -21,6 +21,9 @@ module Veritas
 
         # Execute all summarizers with the tuple, summarized by the header
         #
+        # @example
+        #   summaries = summaries.summarize_by(header, tuple)
+        #
         # @param [Header] header
         #
         # @param [Tuple] tuple

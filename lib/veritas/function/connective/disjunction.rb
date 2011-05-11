@@ -33,7 +33,7 @@ module Veritas
         # Return a string representing the disjunction
         #
         # @example
-        #   disjunction.inspect  # "<Function1> OR <Function2>"
+        #   disjunction.inspect  # => "<Function1> OR <Function2>"
         #
         # @return [String]
         #

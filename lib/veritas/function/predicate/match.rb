@@ -6,6 +6,18 @@ module Veritas
       class Match < Predicate
         include Comparable
 
+        # Evaluate the left and right value to see if they match
+        #
+        # @example
+        #   matches = Match.call(left, right)
+        #
+        # @return [Boolean]
+        #
+        # @api public
+        def self.call(*)
+          !!super
+        end
+
         # Return the Match operation
         #
         # @example

@@ -52,6 +52,9 @@ module Veritas
 
       # Lookup the attribute in the relation
       #
+      # @example
+      #   attribute = context[name]
+      #
       # @param [Symbol]
       #
       # @return [Attribute]

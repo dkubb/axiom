@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Predicate::Comparable, '#inspect' do
+describe Function::Comparable, '#inspect' do
   subject { object.inspect }
 
   let(:described_class) { PredicateComparableSpecs::Object        }
@@ -9,5 +9,5 @@ describe Function::Predicate::Comparable, '#inspect' do
   let(:right)           { mock('Function', :inspect => '<right>') }
   let(:object)          { described_class.new(left, right)        }
 
-  it { should == '<left> == <right>' }
+  it { should == '(<left> == <right>)' }
 end

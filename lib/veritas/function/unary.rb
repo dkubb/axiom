@@ -50,6 +50,19 @@ module Veritas
           end
         end
 
+        # Return the inverse function
+        #
+        # @example
+        #   inverse = function.inverse
+        #
+        # @return [Function]
+        #
+        # @api public
+        def inverse
+          self.class.inverse.new(operand).
+            memoize(:inverse, self)
+        end
+
         # Compare the operation with the other operation for equivalency
         #
         # @example
@@ -64,6 +77,8 @@ module Veritas
           (kind_of?(other.class) || other.kind_of?(self.class)) &&
           operand == other.operand
         end
+
+        memoize :inverse
 
       end # module Unary
   end # class Function

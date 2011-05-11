@@ -33,7 +33,7 @@ module Veritas
         # Return a string representing the conjunction
         #
         # @example
-        #   conjunction.inspect  # "<Function1> AND <Function2>"
+        #   conjunction.inspect  # => "<Function1> AND <Function2>"
         #
         # @return [String]
         #

@@ -1,7 +1,7 @@
 module PredicateComparableSpecs
   class Object
     include Immutable
-    include Function::Predicate::Comparable
+    include Function::Comparable
 
     attr_reader :left, :right
 

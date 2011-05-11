@@ -61,18 +61,6 @@ module Veritas
       raise NotImplementedError, "#{self.class}#rename must be implemented"
     end
 
-    # Return the inverse function
-    #
-    # @example
-    #   inverse = function.inverse
-    #
-    # @return [Function]
-    #
-    # @api public
-    def inverse
-      raise NotImplementedError, "#{self.class}#inverse must be implemented"
-    end
-
     # Compare the function with other function for equivalency
     #
     # @example

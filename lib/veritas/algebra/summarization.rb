@@ -125,7 +125,7 @@ module Veritas
         #   end
         #
         # @yield [function]
-        #   Evaluate an summarization function
+        #   Evaluate a summarization function
         #
         # @yieldparam [Evaluator::Context] context
         #   the context to evaluate the function within

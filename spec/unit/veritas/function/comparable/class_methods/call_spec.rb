@@ -1,7 +1,7 @@
 require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
-describe Function::Predicate::Comparable, '.call' do
+describe Function::Comparable, '.call' do
   subject { object.call(left, right) }
 
   let(:left)   { 1                                }
