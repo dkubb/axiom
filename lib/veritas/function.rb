@@ -4,6 +4,25 @@ module Veritas
   class Function
     include AbstractClass, Immutable, Visitable
 
+    # Rename the attribute(s) inside the function
+    #
+    # @param [Function] operand
+    #
+    # @param [Algebra::Rename::Aliases] aliases
+    #
+    # @return [Function]
+    #
+    # @todo simplify once Attribute#rename works the same as Function#rename
+    #
+    # @api private
+    def self.rename_attributes(operand, aliases)
+      if operand.respond_to?(:rename) && !operand.kind_of?(Attribute)
+        operand.rename(aliases)
+      else
+        aliases[operand]
+      end
+    end
+
     # Extract the value from the operand or tuple
     #
     # @param [Object, #call] operand
@@ -35,11 +54,11 @@ module Veritas
     # @param [Algebra::Rename::Aliases] aliases
     #   the old and new attributes
     #
-    # @return [self]
+    # @return [Function]
     #
     # @api public
     def rename(aliases)
-      self
+      raise NotImplementedError, "#{self.class}#rename must be implemented"
     end
 
     # Return the inverse function

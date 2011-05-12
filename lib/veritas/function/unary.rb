@@ -38,13 +38,15 @@ module Veritas
         #
         # @api public
         def rename(aliases)
-          operand         = self.operand
-          renamed_operand = operand.rename(aliases)
+          operand = self.operand
+          util    = self.class
+
+          renamed_operand = util.rename_attributes(operand, aliases)
 
           if operand.equal?(renamed_operand)
             self
           else
-            self.class.new(renamed_operand)
+            util.new(renamed_operand)
           end
         end
 

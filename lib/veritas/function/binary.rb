@@ -41,15 +41,17 @@ module Veritas
       #
       # @api public
       def rename(aliases)
-        left          = self.left
-        right         = self.right
-        renamed_left  = left.rename(aliases)
-        renamed_right = right.rename(aliases)
+        left  = self.left
+        right = self.right
+        util  = self.class
+
+        renamed_left  = util.rename_attributes(left,  aliases)
+        renamed_right = util.rename_attributes(right, aliases)
 
         if left.equal?(renamed_left) && right.equal?(renamed_right)
           self
         else
-          self.class.new(renamed_left, renamed_right)
+          util.new(renamed_left, renamed_right)
         end
       end
 

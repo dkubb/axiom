@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-11}
+  s.date = %q{2011-05-12}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -273,6 +273,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/binary/rename_spec.rb",
     "spec/unit/veritas/function/class_methods/call_spec.rb",
     "spec/unit/veritas/function/class_methods/extract_value_spec.rb",
+    "spec/unit/veritas/function/class_methods/rename_attributes_spec.rb",
     "spec/unit/veritas/function/connective/conjunction/class_methods/call_spec.rb",
     "spec/unit/veritas/function/connective/conjunction/inspect_spec.rb",
     "spec/unit/veritas/function/connective/conjunction/methods/and_spec.rb",
@@ -379,7 +380,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/predicate/no_match/inverse_spec.rb",
     "spec/unit/veritas/function/predicate/no_match/methods/fixtures/classes.rb",
     "spec/unit/veritas/function/predicate/no_match/methods/no_match_spec.rb",
-    "spec/unit/veritas/function/predicate/rename_spec.rb",
     "spec/unit/veritas/function/proposition/call_spec.rb",
     "spec/unit/veritas/function/proposition/class_methods/call_spec.rb",
     "spec/unit/veritas/function/proposition/class_methods/new_spec.rb",
@@ -394,6 +394,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/proposition/hash_spec.rb",
     "spec/unit/veritas/function/proposition/inspect_spec.rb",
     "spec/unit/veritas/function/proposition/inverse_spec.rb",
+    "spec/unit/veritas/function/proposition/rename_spec.rb",
     "spec/unit/veritas/function/proposition/tautology/and_spec.rb",
     "spec/unit/veritas/function/proposition/tautology/class_methods/call_spec.rb",
     "spec/unit/veritas/function/proposition/tautology/class_methods/inverse_spec.rb",
@@ -703,6 +704,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/binary/rename_spec.rb",
     "spec/unit/veritas/function/class_methods/call_spec.rb",
     "spec/unit/veritas/function/class_methods/extract_value_spec.rb",
+    "spec/unit/veritas/function/class_methods/rename_attributes_spec.rb",
     "spec/unit/veritas/function/connective/conjunction/class_methods/call_spec.rb",
     "spec/unit/veritas/function/connective/conjunction/inspect_spec.rb",
     "spec/unit/veritas/function/connective/conjunction/methods/and_spec.rb",
@@ -809,7 +811,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/predicate/no_match/inverse_spec.rb",
     "spec/unit/veritas/function/predicate/no_match/methods/fixtures/classes.rb",
     "spec/unit/veritas/function/predicate/no_match/methods/no_match_spec.rb",
-    "spec/unit/veritas/function/predicate/rename_spec.rb",
     "spec/unit/veritas/function/proposition/call_spec.rb",
     "spec/unit/veritas/function/proposition/class_methods/call_spec.rb",
     "spec/unit/veritas/function/proposition/class_methods/new_spec.rb",
@@ -824,6 +825,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/proposition/hash_spec.rb",
     "spec/unit/veritas/function/proposition/inspect_spec.rb",
     "spec/unit/veritas/function/proposition/inverse_spec.rb",
+    "spec/unit/veritas/function/proposition/rename_spec.rb",
     "spec/unit/veritas/function/proposition/tautology/and_spec.rb",
     "spec/unit/veritas/function/proposition/tautology/class_methods/call_spec.rb",
     "spec/unit/veritas/function/proposition/tautology/class_methods/inverse_spec.rb",

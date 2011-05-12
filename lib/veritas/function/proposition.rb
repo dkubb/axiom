@@ -50,6 +50,20 @@ module Veritas
         self.class.call
       end
 
+      # A no-op when receiving #rename message
+      #
+      # @example
+      #   proposition = proposition.rename(aliases)
+      #
+      # @param [Algebra::Rename::Aliases] aliases
+      #
+      # @return [self]
+      #
+      # @api public
+      def rename(aliases)
+        self
+      end
+
       # Return the inverse proposition
       #
       # @example
