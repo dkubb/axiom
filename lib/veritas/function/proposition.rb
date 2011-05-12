@@ -3,7 +3,7 @@ module Veritas
 
     # Abstract base class for logical propositions
     class Proposition < Function
-      include Singleton
+      include AbstractClass, Singleton
 
       # Instantiate a new Proposition
       #
