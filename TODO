@@ -1,6 +1,3 @@
-* Add Extension and Summarization Functions
-  * Overview: https://gist.github.com/584588
-
 * Raise an exception if trying to summarize on an attribute that isn't projected
   away. For example it makes no sense to sum price when it's still present
   in the header.
