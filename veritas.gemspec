@@ -271,6 +271,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/required_spec.rb",
     "spec/unit/veritas/attribute/string/class_methods/primitive_spec.rb",
     "spec/unit/veritas/attribute/string/joinable_spec.rb",
+    "spec/unit/veritas/attribute/string/max_length_spec.rb",
     "spec/unit/veritas/attribute/string/min_length_spec.rb",
     "spec/unit/veritas/attribute/string/valid_value_spec.rb",
     "spec/unit/veritas/attribute/time/class_methods/primitive_spec.rb",
