@@ -113,6 +113,8 @@ require 'veritas/function/numeric/subtraction'
 require 'veritas/function/numeric/unary_minus'
 require 'veritas/function/numeric/unary_plus'
 
+require 'veritas/function/string/length'
+
 require 'veritas/tuple'
 require 'veritas/version'
 
