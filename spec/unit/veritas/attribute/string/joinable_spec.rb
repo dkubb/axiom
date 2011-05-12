@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Attribute::String, '#joinable?' do
   subject { object.joinable?(other) }
 
-  let(:object) { described_class.new(:string, :length => 10..20) }
+  let(:object) { described_class.new(:string, :min_length => 10, :max_length => 20) }
 
   context 'when the attribute types and lengths are the same' do
-    let(:other) { described_class.new(:string, :length => object.length) }
+    let(:other) { described_class.new(:string, :min_length => object.min_length, :max_length => object.max_length) }
 
     it { should be(true) }
 
@@ -16,7 +16,7 @@ describe Attribute::String, '#joinable?' do
   end
 
   context 'when the attribute types are the same and the lengths are different' do
-    let(:other) { described_class.new(:string, :length => 1..20) }
+    let(:other) { described_class.new(:string, :min_length => 1, :max_length => 20) }
 
     it { should be(false) }
 
