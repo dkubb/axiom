@@ -32,6 +32,19 @@ module Veritas
           left && right
         end
 
+        # Return the inverse connective
+        #
+        # @example
+        #   disjunction = conjunction.inverse
+        #
+        # @return [Disjunction]
+        #
+        # @api public
+        def inverse
+          Disjunction.new(Negation.new(left), Negation.new(right)).
+            memoize(:inverse, self)
+        end
+
         # Return a string representing the conjunction
         #
         # @example
@@ -66,6 +79,8 @@ module Veritas
         end # module Methods
 
         Function.class_eval { include Methods }
+
+        memoize :inverse
 
       end # class Conjunction
     end # class Connective
