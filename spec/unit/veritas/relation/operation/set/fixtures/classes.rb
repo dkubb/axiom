@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module SetOperationSpecs
   class Object < Relation
     include Relation::Operation::Set

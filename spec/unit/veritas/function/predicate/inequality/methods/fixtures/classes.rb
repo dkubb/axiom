@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module InequalityMethodsSpecs
   class Object
     include Function::Predicate::Inequality::Methods

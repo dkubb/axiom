@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module OrderableSpecs
   class Object
     include Attribute::Orderable

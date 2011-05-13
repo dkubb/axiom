@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module NegationMethodsSpecs
   class Object
     include Function::Connective::Conjunction::Methods

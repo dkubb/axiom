@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module CombinationOperationSpecs
   class Object < Relation
     include Relation::Operation::Combination

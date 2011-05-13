@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Extend Range with methods to normalize and find overlapping ranges
 class Range
 

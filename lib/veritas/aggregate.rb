@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Veritas
 
   # Abstract class for aggregate functions

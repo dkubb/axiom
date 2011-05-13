@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Veritas
 
   # A mixin to allow instances to be visited

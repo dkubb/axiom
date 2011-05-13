@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Extend Date with methods to find the previous Date
 class Date
 

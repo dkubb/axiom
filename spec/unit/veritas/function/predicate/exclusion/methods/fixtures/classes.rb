@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module ExclusionMethodsSpecs
   class Object
     include Function::Predicate::Exclusion::Methods

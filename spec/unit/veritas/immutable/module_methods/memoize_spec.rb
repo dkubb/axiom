@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
@@ -18,7 +20,7 @@ shared_examples_for 'memoizes method' do
     file, line = object.new.send(method).first.split(':')[0, 2]
 
     File.expand_path(file).should == File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__)
-    line.to_i.should == 177
+    line.to_i.should == 179
   end
 
   it 'sets the file and line number properly' do

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module BinaryRelationOperationSpecs
   class Object < Relation
     include Relation::Operation::Binary

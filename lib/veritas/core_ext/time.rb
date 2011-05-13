@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 # Extend Time with methods to find the previous Time
 class Time
 

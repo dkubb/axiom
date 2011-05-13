@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 [ :exponent, :**, :pow ].each do |method|

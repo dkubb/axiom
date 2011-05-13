@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module PredicateComparableSpecs
   class Object
     include Immutable

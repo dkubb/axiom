@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module BinarySpecs
   class Object < Function
     include Function::Binary

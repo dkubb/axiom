@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module UnarySpecs
   class Object < Function
     include Function::Unary

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Veritas
 
   # Allows objects to be made immutable

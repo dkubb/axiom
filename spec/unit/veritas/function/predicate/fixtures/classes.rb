@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module PredicateSpecs
   class Object < Function::Predicate
     def self.inverse

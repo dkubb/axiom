@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module FunctionSpecs
   class Object < Function::Function
   end # class Object

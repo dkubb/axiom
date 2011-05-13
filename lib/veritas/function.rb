@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Veritas
 
   # Abstract base class for logical functions

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 [ :unary_minus, :-@ ].each do |method|

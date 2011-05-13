@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Veritas
 
   # A set of objects representing a unique fact in a relation
