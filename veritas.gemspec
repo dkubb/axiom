@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".gemtest",
     "Gemfile",
     "LICENSE",
     "README.rdoc",
