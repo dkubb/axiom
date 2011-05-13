@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 source :rubygems
 
 group :development do
