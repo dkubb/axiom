@@ -7,12 +7,35 @@ describe Tuple, '#extend' do
 
   let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
   let(:new_header) { header | [ [ :test, Integer ] ]                               }
-  let(:extensions) { [ lambda { |tuple| 1 } ]                                      }
   let(:object)     { described_class.new(header, [ 1, 'Dan Kubb' ])                }
 
-  it { should be_kind_of(described_class) }
+  context 'when the extension is a Proc' do
+    let(:extensions) { [ lambda { |tuple| 1 } ] }
 
-  its(:header) { should equal(new_header) }
+    it { should be_kind_of(described_class) }
 
-  its(:to_ary) { should == [ 1, 'Dan Kubb', 1 ] }
+    its(:header) { should equal(new_header) }
+
+    its(:to_ary) { should == [ 1, 'Dan Kubb', 1 ] }
+  end
+
+  context 'when the extension is a Function' do
+    let(:extensions) { [ header[:id].abs ] }
+
+    it { should be_kind_of(described_class) }
+
+    its(:header) { should equal(new_header) }
+
+    its(:to_ary) { should == [ 1, 'Dan Kubb', 1 ] }
+  end
+
+  context 'when the extension is a value' do
+    let(:extensions) { [ 1 ] }
+
+    it { should be_kind_of(described_class) }
+
+    its(:header) { should equal(new_header) }
+
+    its(:to_ary) { should == [ 1, 'Dan Kubb', 1 ] }
+  end
 end

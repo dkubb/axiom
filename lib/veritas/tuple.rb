@@ -82,14 +82,17 @@ module Veritas
     #
     # @param [Header] header
     #   the attributes to include in the tuple
-    # @param [Array<#call>] extensions
+    # @param [Array<Object>] extensions
     #   the functions to extend the tuple with
     #
     # @return [Tuple]
     #
     # @api public
     def extend(header, extensions)
-      join(header, extensions.map { |extension| extension.call(self) })
+      join(
+        header,
+        extensions.map { |extension| Function.extract_value(extension, self) }
+      )
     end
 
     # Convert the Tuple into an Array
