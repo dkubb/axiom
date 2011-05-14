@@ -1,3 +1,7 @@
+* Add return types to Function objects
+  * Update Evaluator::Context to infer the type from the function if
+    possible, only defaulting to Attribute::Object if the type is unknown.
+
 * Raise an exception if trying to summarize on an attribute that isn't projected
   away. For example it makes no sense to sum price when it's still present
   in the header.
