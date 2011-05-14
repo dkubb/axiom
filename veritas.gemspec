@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-13}
+  s.date = %q{2011-05-14}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -85,7 +85,6 @@ Gem::Specification.new do |s|
     "lib/veritas/function/numeric/exponentiation.rb",
     "lib/veritas/function/numeric/modulo.rb",
     "lib/veritas/function/numeric/multiplication.rb",
-    "lib/veritas/function/numeric/random.rb",
     "lib/veritas/function/numeric/square_root.rb",
     "lib/veritas/function/numeric/subtraction.rb",
     "lib/veritas/function/numeric/unary_minus.rb",
@@ -341,9 +340,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/numeric/multiplication/class_methods/operation_spec.rb",
     "spec/unit/veritas/function/numeric/multiplication/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/multiplication/methods/multiply_spec.rb",
-    "spec/unit/veritas/function/numeric/random/class_methods/call_spec.rb",
-    "spec/unit/veritas/function/numeric/random/inspect_spec.rb",
-    "spec/unit/veritas/function/numeric/random/methods/random_spec.rb",
     "spec/unit/veritas/function/numeric/square_root/class_methods/call_spec.rb",
     "spec/unit/veritas/function/numeric/square_root/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/square_root/inverse_spec.rb",
