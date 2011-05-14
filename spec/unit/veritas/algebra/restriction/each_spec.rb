@@ -6,14 +6,42 @@ describe Algebra::Restriction, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:object)   { described_class.new(relation, proc { true })  }
+  let(:object)   { described_class.new(relation, predicate)      }
   let(:yields)   { []                                            }
 
-  it_should_behave_like 'an #each method'
+  context 'when predicate is a Proc' do
+    let(:predicate) { proc { true } }
 
-  it 'yields each tuple' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to([ [ 1 ] ])
+    it_should_behave_like 'an #each method'
+
+    it 'yields each tuple' do
+      expect { subject }.to change { yields.dup }.
+        from([]).
+        to([ [ 1 ] ])
+    end
+  end
+
+  context 'when predicate is a Function' do
+    let(:predicate) { Function::Proposition::Tautology.instance }
+
+    it_should_behave_like 'an #each method'
+
+    it 'yields each tuple' do
+      expect { subject }.to change { yields.dup }.
+        from([]).
+        to([ [ 1 ] ])
+    end
+  end
+
+  context 'when predicate is a value' do
+    let(:predicate) { true }
+
+    it_should_behave_like 'an #each method'
+
+    it 'yields each tuple' do
+      expect { subject }.to change { yields.dup }.
+        from([]).
+        to([ [ 1 ] ])
+    end
   end
 end
