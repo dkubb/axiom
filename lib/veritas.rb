@@ -57,6 +57,7 @@ require 'veritas/function/proposition/tautology'
 
 require 'veritas/relation'
 
+require 'veritas/relation/base'
 require 'veritas/relation/header'
 
 require 'veritas/relation/materialized'
