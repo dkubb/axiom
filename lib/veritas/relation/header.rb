@@ -72,7 +72,8 @@ module Veritas
       # @api private
       def self.duplicate_attributes(attributes)
         names = attributes.map { |attribute| attribute.name }
-        names.select { |name| names.count(name) > 1 }.uniq!
+        names.select! { |name| names.count(name) > 1 }
+        names.uniq!
       end
 
       private_class_method :coerce_attributes, :assert_unique_attributes, :duplicate_attributes
