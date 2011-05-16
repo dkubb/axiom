@@ -36,7 +36,7 @@ module Veritas
         if args.empty?
           super
         else
-          (args.first ? Tautology : Contradiction).instance
+          (args.first.equal?(true) ? Tautology : Contradiction).instance
         end
       end
 
