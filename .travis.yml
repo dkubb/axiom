@@ -6,5 +6,5 @@ rvm:
   - 1.9.1
   - 1.9.2
   - ruby-head
-  - jruby
+  - jruby-head
   - rbx
