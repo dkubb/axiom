@@ -7,7 +7,7 @@ group :development do
   gem 'jeweler',   '~> 1.6.0'
   gem 'rake',      '~> 0.8.7'
   gem 'rspec',     '~> 1.3.2'
-  gem 'yard',      '~> 0.7.0'
+  gem 'yard',      '~> 0.7.1'
 end
 
 group :guard do
