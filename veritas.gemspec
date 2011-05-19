@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     ".document",
     ".gemtest",
     ".rvmrc",
+    ".travis.yml",
     "Gemfile",
     "Guardfile",
     "LICENSE",
