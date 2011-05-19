@@ -10,6 +10,14 @@ group :development do
   gem 'yard',      '~> 0.7.0'
 end
 
+group :guard do
+  gem 'growl',         '~> 1.0.3'
+  gem 'guard',         '~> 0.3.4'
+  gem 'guard-bundler', '~> 0.1.3'
+  gem 'guard-ego',     '~> 0.0.1'
+  gem 'guard-rspec',   '~> 0.3.1'
+end
+
 group :jruby do
   platform :jruby do
     gem 'jruby-openssl', '~> 0.7.4'
