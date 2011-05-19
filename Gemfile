@@ -18,8 +18,8 @@ group :guard do
   gem 'guard-rspec',   '~> 0.3.1'
 end
 
-group :jruby do
-  platform :jruby do
+platform :jruby do
+  group :jruby do
     gem 'jruby-openssl', '~> 0.7.4'
   end
 end
