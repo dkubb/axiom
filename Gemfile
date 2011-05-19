@@ -18,14 +18,14 @@ group :guard do
   gem 'guard-rspec',   '~> 0.3.1'
 end
 
+group :benchmarks do
+  gem 'rbench', '~> 0.2.3'
+end
+
 platform :jruby do
   group :jruby do
     gem 'jruby-openssl', '~> 0.7.4'
   end
-end
-
-group :benchmarks do
-  gem 'rbench', '~> 0.2.3'
 end
 
 platforms :mri_18 do
