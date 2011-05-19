@@ -2,6 +2,8 @@
 
 Simplifies querying of structured data using relational algebra
 
+http://travis-ci.org/dkubb/veritas.png
+
 == Usage
 
   relation = Veritas::Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])
