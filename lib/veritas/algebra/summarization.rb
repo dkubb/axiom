@@ -38,6 +38,7 @@ module Veritas
         @summarize_by = summarize_by
         @summarizers  = summarizers.to_hash
         @header       = @summarize_by.header | @summarizers.keys
+        @directions   = Relation::Operation::Order::DirectionSet::EMPTY
       end
 
       # Iterate over each tuple in the set
