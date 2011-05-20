@@ -615,7 +615,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{https://github.com/dkubb/veritas}
   s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.2}
+  s.rubygems_version = %q{1.8.3}
   s.summary = %q{Ruby Relational Algebra}
 
   if s.respond_to? :specification_version then
