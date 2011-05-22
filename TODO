@@ -2,6 +2,14 @@
   * Update Evaluator::Context to infer the type from the function if
     possible, only defaulting to Attribute::Object if the type is unknown.
 
+* Need a way to specify if a function result allows nil or not
+  * In the normal case of summarize, the value will not be nil if the
+    summarize_by is a subset of the operand. However, if it is another
+    relation, some functions could return nil.
+
+* Handle case where value is nil, but being sorted on
+  * Will need to figure out a way to sort nil (before all results or after)
+
 * Raise an exception if trying to summarize on an attribute that isn't projected
   away. For example it makes no sense to sum price when it's still present
   in the header.
