@@ -33,14 +33,14 @@ module Veritas
       # @example
       #   variance = Variance.finalize(accumulator)
       #
-      # @param [Array(Numeric, Integer, Numeric)] accumulator
+      # @param [Array(Numeric, Integer, Float)] accumulator
       #
       # @return [Float]
       #
       # @api public
       def self.finalize(accumulator)
         sum_of_squares, count = accumulator.values_at(2, 0)
-        sum_of_squares / count.to_f
+        sum_of_squares.zero? ? sum_of_squares : sum_of_squares / count
       end
 
       module Methods
