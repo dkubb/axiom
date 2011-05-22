@@ -6,14 +6,14 @@ module Veritas
     # The variance of a sequence of numbers
     class Variance < Aggregate
 
-      DEFAULT = [ 0, nil, 0 ].freeze
+      DEFAULT = [ 0, nil, 0.0 ].freeze
 
       # Return the count, mean, and sum of squares for a sequence of numbers
       #
       # @example
       #   count, mean, sum_of_squares = Variance.call(accumulator, value)
       #
-      # @param [Array(Integer, Numeric, Numeric)] accumulator
+      # @param [Array(Integer, Numeric, Float)] accumulator
       #
       # @param [Numeric] value
       #
