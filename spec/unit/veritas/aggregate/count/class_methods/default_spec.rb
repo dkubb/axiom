@@ -9,5 +9,5 @@ describe Aggregate::Count, '.default' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should == 0 }
+  it { should eql(0) }
 end

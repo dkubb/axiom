@@ -9,5 +9,5 @@ describe Function::Numeric::Addition, '.call' do
   let(:left)   { 2               }
   let(:right)  { 2               }
 
-  it { should == 4 }
+  it { should eql(4) }
 end

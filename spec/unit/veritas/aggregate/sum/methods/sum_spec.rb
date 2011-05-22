@@ -10,5 +10,5 @@ describe Aggregate::Sum::Methods, '#sum' do
 
   it { should be_kind_of(Aggregate::Sum) }
 
-  its(:operand) { should == object }
+  its(:operand) { should equal(object) }
 end

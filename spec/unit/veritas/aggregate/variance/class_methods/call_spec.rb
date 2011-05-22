@@ -13,6 +13,6 @@ describe Aggregate::Variance, '.call' do
   let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
 
   it 'returns the expected count, mean and sum_of_squares of the values' do
-    should == [ 6, 3.5, 17.5 ]
+    should eql([ 6, 3.5, 17.5 ])
   end
 end

@@ -13,7 +13,7 @@ describe Aggregate::Sum, '.call' do
   let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
 
   it 'returns the expected sum of the values' do
-    should == 21
+    should eql(21)
   end
 
 end

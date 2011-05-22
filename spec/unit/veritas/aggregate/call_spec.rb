@@ -20,7 +20,7 @@ describe Aggregate, '#call' do
       end
     end
 
-    it { should == 1 }
+    it { should eql(1) }
   end
 
   context 'when operand is a literal value' do
@@ -34,7 +34,7 @@ describe Aggregate, '#call' do
       end
     end
 
-    it { should == 2 }
+    it { should eql(2) }
   end
 
   context 'when .call is not defined' do

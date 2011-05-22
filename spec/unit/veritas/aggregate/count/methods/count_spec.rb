@@ -10,5 +10,5 @@ describe Aggregate::Count::Methods, '#count' do
 
   it { should be_kind_of(Aggregate::Count) }
 
-  its(:operand) { should == object }
+  its(:operand) { should equal(object) }
 end

@@ -10,12 +10,12 @@ describe Function::Numeric::UnaryMinus, '.call' do
   context 'when the value is positive' do
     let(:value) { 1 }
 
-    it { should == -1 }
+    it { should eql(-1) }
   end
 
   context 'when the value is negative' do
     let(:value) { -1 }
 
-    it { should == 1 }
+    it { should eql(1) }
   end
 end

@@ -8,5 +8,5 @@ describe Function::String::Length, '.call' do
   let(:object) { described_class }
   let(:value)  { 'a string'      }
 
-  it { should == 8 }
+  it { should eql(8) }
 end

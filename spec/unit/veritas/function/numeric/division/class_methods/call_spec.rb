@@ -9,5 +9,5 @@ describe Function::Numeric::Division, '.call' do
   let(:left)   { 2               }
   let(:right)  { 2               }
 
-  it { should == 1 }
+  it { should eql(1) }
 end

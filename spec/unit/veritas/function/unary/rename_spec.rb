@@ -18,7 +18,7 @@ describe Function::Unary, '#rename' do
 
     it { should be_kind_of(described_class) }
 
-    its(:operand) { should == other.eq(1) }
+    its(:operand) { should eql(other.eq(1)) }
   end
 
   context 'operand is not renamed' do

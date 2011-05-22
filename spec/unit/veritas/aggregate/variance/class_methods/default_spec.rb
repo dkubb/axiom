@@ -11,5 +11,5 @@ describe Aggregate::Variance, '.default' do
 
   it { should be_frozen }
 
-  it { should == [ 0, nil, 0 ] }
+  it { should eql([ 0, nil, 0 ]) }
 end

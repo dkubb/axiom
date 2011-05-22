@@ -9,5 +9,5 @@ describe Aggregate::Maximum, '.default' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should == -Float::INFINITY }
+  it { should eql(-Float::INFINITY) }
 end

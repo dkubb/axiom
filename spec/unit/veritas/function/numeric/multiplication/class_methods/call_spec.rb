@@ -9,5 +9,5 @@ describe Function::Numeric::Multiplication, '.call' do
   let(:left)   { 2               }
   let(:right)  { 2               }
 
-  it { should == 4 }
+  it { should eql(4) }
 end

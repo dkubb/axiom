@@ -9,5 +9,5 @@ describe Function::Numeric::Subtraction, '.call' do
   let(:left)   { 2               }
   let(:right)  { 2               }
 
-  it { should == 0 }
+  it { should eql(0) }
 end

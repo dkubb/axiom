@@ -13,6 +13,6 @@ describe Aggregate::Count, '.call' do
   let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
 
   it 'returns the expected count the values' do
-    should == 6
+    should eql(6)
   end
 end
