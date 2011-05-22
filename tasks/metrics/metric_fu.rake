@@ -2,6 +2,9 @@ begin
   require 'metric_fu'
   require 'json'
 
+  # XXX: temporary hack until metric_fu is fixed
+  MetricFu::Saikuro.class_eval { include FileUtils }
+
   MetricFu::Configuration.run do |config|
     config.rcov = {
       :environment => 'test',
