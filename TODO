@@ -1,3 +1,7 @@
+* Raise an exception if summarize_per is not "joinable" with the Summarization
+  operand.
+  * Test that the headers intersect
+
 * Add return types to Function objects
   * Update Evaluator::Context to infer the type from the function if
     possible, only defaulting to Attribute::Object if the type is unknown.
