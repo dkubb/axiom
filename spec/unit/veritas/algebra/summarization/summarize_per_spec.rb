@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe Algebra::Summarization, '#summarize_by' do
-  subject { object.summarize_by }
+describe Algebra::Summarization, '#summarize_per' do
+  subject { object.summarize_per }
 
   let(:operand)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:summarizers) { { :test => lambda { |acc, tuple| 1 } }               }

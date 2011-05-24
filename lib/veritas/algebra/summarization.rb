@@ -7,12 +7,12 @@ module Veritas
     class Summarization < Relation
       include Relation::Operation::Unary
 
-      # The relation to summarize by
+      # The relation to summarize with
       #
       # @return [Relation]
       #
       # @api private
-      attr_reader :summarize_by
+      attr_reader :summarize_per
 
       # The summarizers for the relation
       #
@@ -25,20 +25,20 @@ module Veritas
       #
       # @param [Relation] operand
       #   the relation to summarize
-      # @param [Relation] summarize_by
-      #   the relation to summarize by
+      # @param [Relation] summarize_per
+      #   the relation to summarize with
       # @param [#to_hash] summarizers
       #   the summarizers to add
       #
       # @return [undefined]
       #
       # @api private
-      def initialize(operand, summarize_by, summarizers)
+      def initialize(operand, summarize_per, summarizers)
         super(operand)
-        @summarize_by = summarize_by
-        @summarizers  = summarizers.to_hash
-        @header       = @summarize_by.header | @summarizers.keys
-        @directions   = Relation::Operation::Order::DirectionSet::EMPTY
+        @summarize_per = summarize_per
+        @summarizers   = summarizers.to_hash
+        @header        = @summarize_per.header | @summarizers.keys
+        @directions    = Relation::Operation::Order::DirectionSet::EMPTY
       end
 
       # Iterate over each tuple in the set
@@ -57,7 +57,7 @@ module Veritas
       # @api public
       def each(&block)
         return to_enum unless block_given?
-        Extension.new(summarize_by, summaries).each(&block)
+        Extension.new(summarize_per, summaries).each(&block)
         self
       end
 
@@ -73,8 +73,8 @@ module Veritas
       #
       # @api public
       def eql?(other)
-        super                                 &&
-        summarize_by.eql?(other.summarize_by) &&
+        super                                   &&
+        summarize_per.eql?(other.summarize_per) &&
         summarizers.eql?(other.summarizers)
       end
 
@@ -87,7 +87,7 @@ module Veritas
       #
       # @api public
       def hash
-        super ^ summarize_by.hash ^ summarizers.hash
+        super ^ summarize_per.hash ^ summarizers.hash
       end
 
     private
@@ -98,7 +98,7 @@ module Veritas
       #
       # @api private
       def summaries
-        header    = summarize_by.header
+        header    = summarize_per.header
         summaries = default_summaries
         operand.each { |tuple| summaries.summarize_by(header, tuple) }
         summaries
@@ -117,7 +117,7 @@ module Veritas
 
         # Return a summarized relation
         #
-        # @example with a projection
+        # @example with a relation
         #   summarization = relation.summarize(relation.project([ :name ])) do |context|
         #     context.add(:count, context[:name].count)
         #   end
@@ -126,6 +126,8 @@ module Veritas
         #   summarization = relation.summarize([ :name ]) do |context|
         #     context.add(:count, context[:name].count)
         #   end
+        #
+        # @param [Relation, Header, #to_ary] summarize_with
         #
         # @yield [function]
         #   Evaluate a summarization function
@@ -136,8 +138,8 @@ module Veritas
         # @return [Summarization]
         #
         # @api public
-        def summarize(summarize_by, &block)
-          relation = coerce_to_relation(summarize_by)
+        def summarize(summarize_with, &block)
+          relation = coerce_to_relation(summarize_with)
           context  = Evaluator::Context.new(self, &block)
           Summarization.new(self, relation, context.functions)
         end
@@ -146,17 +148,17 @@ module Veritas
 
         # Coerce the argument into a Relation
         #
-        # @param [Relation, Header, #to_ary] summarize_by
-        #   the relation, header or attributes to summarize by
+        # @param [Relation, Header, #to_ary] summarize_with
+        #   the relation, header or attributes to summarize with
         #
         # @return [Relation]
         #
         # @api private
-        def coerce_to_relation(summarize_by)
-          if summarize_by.kind_of?(Relation)
-            summarize_by
+        def coerce_to_relation(summarize_with)
+          if summarize_with.kind_of?(Relation)
+            summarize_with
           else
-            project(Relation::Header.coerce(summarize_by))
+            project(Relation::Header.coerce(summarize_with))
           end
         end
 
