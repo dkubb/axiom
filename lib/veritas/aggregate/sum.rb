@@ -24,6 +24,23 @@ module Veritas
         sum + value
       end
 
+      # Return the default sum
+      #
+      # @return [Numeric]
+      #
+      # @todo refactor once functions know their return types
+      #
+      # @api public
+      def default
+        default = super
+          case operand
+          when Attribute::Float   then default.to_f
+          when Attribute::Decimal then BigDecimal(default.to_s)
+          else
+            default
+        end
+      end
+
       module Methods
 
         # Return a sum aggregate function
