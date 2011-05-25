@@ -7,9 +7,9 @@ describe Algebra::Summarization, '#summarize_per' do
 
   let(:operand)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:summarizers) { { :test => lambda { |acc, tuple| 1 } }               }
-  let(:object)      { described_class.new(operand, operand, summarizers)   }
+  let(:object)      { described_class.new(operand, TABLE_DEE, summarizers) }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(operand) }
+  it { should equal(TABLE_DEE) }
 end

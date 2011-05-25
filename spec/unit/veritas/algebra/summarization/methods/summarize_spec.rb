@@ -11,7 +11,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
   let(:object)          { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 
   context 'when summarizing per a relation' do
-    let(:summarize_with) { object }
+    let(:summarize_with) { object.project([]) }
 
     it { should be_kind_of(Algebra::Summarization) }
 
@@ -21,7 +21,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
   end
 
   context 'when summarizing by a header' do
-    let(:summarize_with) { [ :id ] }
+    let(:summarize_with) { [] }
 
     it { should be_kind_of(Algebra::Summarization) }
 

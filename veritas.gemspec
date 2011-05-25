@@ -227,6 +227,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/restriction/hash_spec.rb",
     "spec/unit/veritas/algebra/restriction/methods/restrict_spec.rb",
     "spec/unit/veritas/algebra/restriction/predicate_spec.rb",
+    "spec/unit/veritas/algebra/summarization/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/summarization/directions_spec.rb",
     "spec/unit/veritas/algebra/summarization/each_spec.rb",
     "spec/unit/veritas/algebra/summarization/eql_spec.rb",

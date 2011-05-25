@@ -21,6 +21,45 @@ module Veritas
       # @api private
       attr_reader :summarizers
 
+      # Instantiate a new Summarization
+      #
+      # @example
+      #   summarization = Summarization.new(operand, summarize_per, summarizers)
+      #
+      # @param [Relation] operand
+      #   the relation to summarize
+      # @param [Relation] summarize_per
+      #   the relation to summarize with
+      # @param [#to_hash] summarizers
+      #   the summarizers to add
+      #
+      # @return [Summarization]
+      #
+      # @api public
+      def self.new(operand, summarize_per, summarizers)
+        asset_subset_headers(operand, summarize_per)
+        super
+      end
+
+      # Assert the summarize_per header is a subset of the operand header
+      #
+      # @param [Relation] operand
+      # @param [Relation] summarize_per
+      #
+      # @return [undefined]
+      #
+      # @raise [InvalidHeaderError]
+      #   raised if the summarize_per header is not a subset of the operand header
+      #
+      # @api private
+      def self.asset_subset_headers(operand, summarize_per)
+        if operand.header.to_set.subset?(summarize_per.header.to_set)
+          raise InvalidHeaderError, 'the summarize_per header must be a subset of the operand header'
+        end
+      end
+
+      private_class_method :asset_subset_headers
+
       # Initialize a Summarization
       #
       # @param [Relation] operand
