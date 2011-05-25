@@ -29,9 +29,7 @@ describe Algebra::Summarization do
     let(:summarize_per) { Relation.new(by_header, [ [ 'Dan Kubb' ], [ 'Dane Largy' ] ]) }
 
     it 'returns a relation with a single tuple' do
-      pending 'TODO: fix error when Proc-based aggregate functions can have a default accumulator specified' do
-        should == [ [ 'Dan Kubb', 1 ], [ 'Dane Largy', 0 ] ]
-      end
+      should == [ [ 'Dan Kubb', 1 ], [ 'Dane Largy', nil ] ]
     end
   end
 end
