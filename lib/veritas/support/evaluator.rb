@@ -28,7 +28,7 @@ module Veritas
         @functions.freeze
       end
 
-      # Add a function to be evaluated by the relation operation
+      # Add a function to be evaluated by the summarization operation
       #
       # @example of a function
       #   context.add(:total, context[:unit_price] * context[:quantity])
@@ -42,7 +42,7 @@ module Veritas
       #   optional function
       #
       # @yield []
-      #   optional block to execute in the relation operation
+      #   optional block to execute in the summarization operation
       #
       # @return [self]
       #
