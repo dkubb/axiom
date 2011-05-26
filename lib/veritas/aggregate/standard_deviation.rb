@@ -17,7 +17,8 @@ module Veritas
       #
       # @api public
       def self.finalize(*)
-        Math.sqrt(super)
+        variance = super
+        variance.finite? ? Math.sqrt(variance) : variance
       end
 
       module Methods

@@ -23,4 +23,12 @@ describe Aggregate::StandardDeviation, '.finalize' do
 
     it { should be_close(1.70, 0.01) }
   end
+
+  context 'when the variance is 0.0' do
+    let(:count)          { 1               }
+    let(:mean)           { nil             }
+    let(:sum_of_squares) { Float::INFINITY }
+
+    it { should eql(Float::INFINITY) }
+  end
 end
