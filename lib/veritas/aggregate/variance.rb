@@ -21,6 +21,7 @@ module Veritas
       #
       # @api public
       def self.call(accumulator, value)
+        return accumulator if value.nil?
         mean, sum_of_squares  = accumulator.last(2)
         delta                 = mean.nil? ? value : value - mean
         count, new_mean       = Mean.call(accumulator, value)

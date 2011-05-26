@@ -21,6 +21,7 @@ module Veritas
       #
       # @api public
       def self.call(maximum, value)
+        return maximum if value.nil?
         value > maximum ? value : maximum
       end
 

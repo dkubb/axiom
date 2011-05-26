@@ -21,6 +21,7 @@ module Veritas
       #
       # @api public
       def self.call(minimum, value)
+        return minimum if value.nil?
         value < minimum ? value : minimum
       end
 

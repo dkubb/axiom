@@ -26,4 +26,11 @@ describe Aggregate::Minimum, '.call' do
 
     it { should eql(-1) }
   end
+
+  context 'when the value is nil' do
+    let(:value)   { nil             }
+    let(:minimum) { mock('Minimum') }
+
+    it { should equal(minimum) }
+  end
 end

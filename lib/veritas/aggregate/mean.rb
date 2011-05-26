@@ -21,6 +21,7 @@ module Veritas
       #
       # @api public
       def self.call(accumulator, value)
+        return accumulator if value.nil?
         count, mean = accumulator
         count       = Count.call(count, value)
         [ count, mean.nil? ? value.to_f : mean + ((value - mean) / count.to_f) ]

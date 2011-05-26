@@ -26,4 +26,11 @@ describe Aggregate::Maximum, '.call' do
 
     it { should eql(0) }
   end
+
+  context 'when the value is nil' do
+    let(:value)   { nil             }
+    let(:maximum) { mock('Maximum') }
+
+    it { should equal(maximum) }
+  end
 end

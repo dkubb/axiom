@@ -20,8 +20,8 @@ module Veritas
       # @return [Integer]
       #
       # @api public
-      def self.call(count, _value)
-        count.succ
+      def self.call(count, value)
+        value.nil? ? count : count.succ
       end
 
       module Methods

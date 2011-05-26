@@ -21,6 +21,7 @@ module Veritas
       #
       # @api public
       def self.call(sum, value)
+        return sum if value.nil?
         sum + value
       end
 

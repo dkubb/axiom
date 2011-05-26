@@ -4,15 +4,27 @@ require 'spec_helper'
 
 describe Aggregate::Mean, '.call' do
   subject do
-    values.inject(object.default) do |accumulator, value|
+    values.inject(default) do |accumulator, value|
       object.call(accumulator, value)
     end
   end
 
-  let(:object) { described_class      }
-  let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
+  let(:default) { object.default  }
+  let(:object)  { described_class }
 
-  it 'returns the expected count and mean of the values' do
-    should eql([ 6, 3.5 ])
+  context 'when the values are not nil' do
+    let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
+
+    it 'returns the expected count and mean of the values' do
+      should eql([ 6, 3.5 ])
+    end
+  end
+
+  context 'when the values are nil' do
+    let(:values) { [ nil ] }
+
+    it 'returns the default' do
+      should equal(default)
+    end
   end
 end
