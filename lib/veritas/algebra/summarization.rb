@@ -179,7 +179,7 @@ module Veritas
         # @api public
         def summarize(summarize_with, &block)
           summarize_per = coerce_to_relation(summarize_with)
-          context       = Evaluator::Context.new(header, &block)
+          context       = Evaluator::Context.new(header - summarize_per.header, &block)
           Summarization.new(self, summarize_per, context.functions)
         end
 
