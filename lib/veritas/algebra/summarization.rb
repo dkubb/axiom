@@ -53,8 +53,8 @@ module Veritas
       #
       # @api private
       def self.asset_subset_headers(operand, summarize_per)
-        if operand.header.to_set.subset?(summarize_per.header.to_set)
-          raise InvalidHeaderError, 'the summarize_per header must be a subset of the operand header'
+        unless summarize_per.header.to_set.proper_subset?(operand.header.to_set)
+          raise InvalidHeaderError, 'the summarize_per header must be a proper subset of the operand header'
         end
       end
 
