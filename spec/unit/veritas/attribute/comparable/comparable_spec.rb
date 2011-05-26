@@ -24,9 +24,7 @@ describe Attribute::Comparable, '#comparable?' do
     it { should be(false) }
 
     it 'is not be symmetric' do
-      expect {
-        other.comparable?(object)
-      }.to raise_error(NoMethodError)
+      expect { other.comparable?(object) }.to raise_error(NoMethodError)
     end
   end
 
