@@ -3,11 +3,11 @@
 require 'spec_helper'
 
 describe Evaluator::Context, '#add' do
-  let(:attribute) { Attribute::Integer.new(:id)     }
-  let(:relation)  { Relation.new([ attribute ], []) }
+  let(:attribute) { Attribute::Integer.new(:id)         }
+  let(:header)    { Relation::Header.new([ attribute ]) }
 
   context 'when a function is provided' do
-    subject { described_class.new(relation) { |object| object.add(attribute, function) } }
+    subject { described_class.new(header) { |object| object.add(attribute, function) } }
 
     let(:function) { mock('Function') }
 
@@ -15,7 +15,7 @@ describe Evaluator::Context, '#add' do
   end
 
   context 'when a block is provided' do
-    subject { described_class.new(relation) { |object| object.add(attribute, &block) } }
+    subject { described_class.new(header) { |object| object.add(attribute, &block) } }
 
     let(:block) { proc {} }
 

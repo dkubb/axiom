@@ -16,13 +16,13 @@ module Veritas
 
       # Initialize a Context
       #
-      # @param [Relation] relation
+      # @param [Header] header
       #
       # @return [undefined]
       #
       # @api private
-      def initialize(relation)
-        @relation  = relation
+      def initialize(header)
+        @header    = header
         @functions = {}
         yield self
         @functions.freeze
@@ -52,7 +52,7 @@ module Veritas
         self
       end
 
-      # Lookup the attribute in the relation
+      # Lookup the attribute in the header
       #
       # @example
       #   attribute = context[name]
@@ -63,7 +63,7 @@ module Veritas
       #
       # @api public
       def [](name)
-        @relation[name]
+        @header[name]
       end
 
     end # class Context

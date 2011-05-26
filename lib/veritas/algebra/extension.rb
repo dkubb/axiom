@@ -99,7 +99,7 @@ module Veritas
         #
         # @api public
         def extend(&block)
-          context = Evaluator::Context.new(self, &block)
+          context = Evaluator::Context.new(header, &block)
           Extension.new(self, context.functions)
         end
 
