@@ -10,12 +10,6 @@
 * Handle case where value is nil, but being sorted on
   * Will need to figure out a way to sort nil (before all results or after)
 
-* Raise an exception if trying to summarize on an attribute that isn't projected
-  away. For example it makes no sense to sum price when it's still present
-  in the header.
-  * Also make sure summarize_by is a subset of the original header, raise an
-    exception if it is not a proper subset.
-
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
