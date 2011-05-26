@@ -37,7 +37,7 @@ module Veritas
       #
       # @api public
       def self.new(operand, summarize_per, summarizers)
-        asset_subset_headers(operand, summarize_per)
+        assert_subset_headers(operand, summarize_per)
         super
       end
 
@@ -52,13 +52,13 @@ module Veritas
       #   raised if the summarize_per header is not a subset of the operand header
       #
       # @api private
-      def self.asset_subset_headers(operand, summarize_per)
+      def self.assert_subset_headers(operand, summarize_per)
         unless summarize_per.header.to_set.proper_subset?(operand.header.to_set)
           raise InvalidHeaderError, 'the summarize_per header must be a proper subset of the operand header'
         end
       end
 
-      private_class_method :asset_subset_headers
+      private_class_method :assert_subset_headers
 
       # Initialize a Summarization
       #
