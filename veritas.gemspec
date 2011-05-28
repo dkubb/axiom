@@ -416,6 +416,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/predicate/inequality/methods/fixtures/classes.rb",
     "spec/unit/veritas/function/predicate/inequality/methods/ne_spec.rb",
     "spec/unit/veritas/function/predicate/inspect_spec.rb",
+    "spec/unit/veritas/function/predicate/inverse_spec.rb",
     "spec/unit/veritas/function/predicate/less_than/class_methods/call_spec.rb",
     "spec/unit/veritas/function/predicate/less_than/class_methods/inverse_spec.rb",
     "spec/unit/veritas/function/predicate/less_than/class_methods/operation_spec.rb",
