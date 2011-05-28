@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-26}
+  s.date = %q{2011-05-28}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -292,7 +292,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/binary/call_spec.rb",
     "spec/unit/veritas/function/binary/equal_value_spec.rb",
     "spec/unit/veritas/function/binary/fixtures/classes.rb",
-    "spec/unit/veritas/function/binary/inverse_spec.rb",
+    "spec/unit/veritas/function/binary/invertible/inverse_spec.rb",
     "spec/unit/veritas/function/binary/rename_spec.rb",
     "spec/unit/veritas/function/class_methods/call_spec.rb",
     "spec/unit/veritas/function/class_methods/extract_value_spec.rb",
@@ -474,7 +474,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/unary/call_spec.rb",
     "spec/unit/veritas/function/unary/equal_value_spec.rb",
     "spec/unit/veritas/function/unary/fixtures/classes.rb",
-    "spec/unit/veritas/function/unary/inverse_spec.rb",
+    "spec/unit/veritas/function/unary/invertible/inverse_spec.rb",
     "spec/unit/veritas/function/unary/rename_spec.rb",
     "spec/unit/veritas/immutable/class_methods/freeze_object_spec.rb",
     "spec/unit/veritas/immutable/class_methods/new_spec.rb",
