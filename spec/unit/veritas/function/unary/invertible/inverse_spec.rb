@@ -1,19 +1,24 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require File.expand_path('../../fixtures/classes', __FILE__)
 
 describe Function::Unary::Invertible, '#inverse' do
   subject { object.inverse }
 
-  let(:described_class) { UnarySpecs::Object             }
-  let(:attribute)       { Attribute::Integer.new(:id)    }
-  let(:object)          { described_class.new(attribute) }
+  let(:described_class) { Class.new(Function) { include Function::Unary } }
+  let(:operand)         { mock('Operand').freeze                          }
+  let(:object)          { described_class.new(operand)                    }
 
   before do
     described_class.class_eval do
+      include Function::Unary::Invertible
+
       def self.inverse
         self
+      end
+
+      def inspect
+        'Unary::Invertible'
       end
     end
   end
@@ -24,7 +29,7 @@ describe Function::Unary::Invertible, '#inverse' do
 
   it { should_not equal(object) }
 
-  its(:operand) { should equal(attribute) }
+  its(:operand) { should equal(operand) }
 
   it 'is invertible' do
     subject.inverse.should equal(object)
