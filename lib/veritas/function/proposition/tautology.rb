@@ -6,6 +6,7 @@ module Veritas
 
       # A class representing a tautology
       class Tautology < Proposition
+        include Connective::Negation::Methods
 
         # Return the inverse proposition class
         #

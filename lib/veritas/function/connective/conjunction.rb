@@ -78,7 +78,7 @@ module Veritas
 
         end # module Methods
 
-        Function.class_eval { include Methods }
+        Connective.class_eval { include Methods }
 
         memoize :inverse
 

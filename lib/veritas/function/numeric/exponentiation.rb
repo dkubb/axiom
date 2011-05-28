@@ -58,6 +58,7 @@ module Veritas
         end # module Methods
 
         Attribute::Numeric.class_eval { include Methods }
+        Numeric.class_eval            { include Methods }
 
         memoize :inverse
 

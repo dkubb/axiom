@@ -6,6 +6,7 @@ module Veritas
 
       # A class representing a contradiction
       class Contradiction < Proposition
+        include Connective::Negation::Methods
 
         # Return the inverse proposition class
         #
