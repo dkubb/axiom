@@ -76,6 +76,14 @@ module Veritas
       # Mixin for invertable binary functions
       module Invertible
 
+        # Hook called when module is included
+        #
+        # @param [Module] descendant
+        #   the module or class including Invertible
+        #
+        # @return [self]
+        #
+        # @api private
         def self.included(descendant)
           descendant.memoize :inverse
         end

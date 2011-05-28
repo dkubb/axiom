@@ -27,6 +27,15 @@ module Veritas
 
       # Return the default sum
       #
+      # @example when the operand is a float
+      #   default = sum.default  # => 0.0
+      #
+      # @example when the operand is a decimal
+      #   default = sum.default  # => BigDecimal('0.0')
+      #
+      # @example when the operand is an integer
+      #   default = sum.default  # => 0
+      #
       # @return [Numeric]
       #
       # @todo refactor once functions know their return types
