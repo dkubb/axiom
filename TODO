@@ -67,3 +67,8 @@
   with a 0-arity vs n-arity methods, but it needs to handle cases
   like with #hash that accept no args, and #optimize that accepts
   1 arg.
+
+* Allow attribute/function expressions to exist within the enumerable part
+  of the Inclusion and Exclusion operations
+  * The #call method should propagate the Tuple down to each callable entry
+    in the Enumerable.

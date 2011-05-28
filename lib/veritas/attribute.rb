@@ -64,6 +64,8 @@ module Veritas
     #
     # @return [Attribute]
     #
+    # @todo Make this have the same API as functions
+    #
     # @api public
     def rename(new_name)
       name.equal?(new_name) ? self : self.class.new(new_name, options)
