@@ -1,14 +1,14 @@
 # encoding: utf-8
 
 require 'spec_helper'
-require File.expand_path('../fixtures/classes', __FILE__)
+require File.expand_path('../../fixtures/classes', __FILE__)
 
-describe Function::Unary, '#inverse' do
+describe Function::Binary::Invertible, '#inverse' do
   subject { object.inverse }
 
-  let(:described_class) { UnarySpecs::Object             }
-  let(:attribute)       { Attribute::Integer.new(:id)    }
-  let(:object)          { described_class.new(attribute) }
+  let(:described_class) { BinarySpecs::Object               }
+  let(:attribute)       { Attribute::Integer.new(:id)       }
+  let(:object)          { described_class.new(attribute, 1) }
 
   before do
     described_class.class_eval do
@@ -24,7 +24,8 @@ describe Function::Unary, '#inverse' do
 
   it { should_not equal(object) }
 
-  its(:operand) { should equal(attribute) }
+  its(:left)  { should equal(attribute) }
+  its(:right) { should == 1             }
 
   it 'is invertible' do
     subject.inverse.should equal(object)

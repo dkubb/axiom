@@ -6,7 +6,7 @@ module Veritas
 
       # A logical AND between expressions
       class Conjunction < Connective
-        include Binary
+        include Binary, Binary::Invertible
 
         # Evaluate the operands using a logical AND
         #

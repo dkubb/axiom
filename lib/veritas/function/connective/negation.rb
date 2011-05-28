@@ -6,7 +6,7 @@ module Veritas
 
       # A logical negation of an expression
       class Negation < Connective
-        include Unary
+        include Unary, Unary::Invertible
 
         # Evaluate the operands using a logical NOT
         #
@@ -74,6 +74,8 @@ module Veritas
         end # module Methods
 
         Connective.class_eval { include Methods }
+
+        memoize :inverse
 
       end # class Negation
     end # class Connective

@@ -2,7 +2,7 @@
 
 module BinarySpecs
   class Object < Function
-    include Function::Binary
+    include Function::Binary, Function::Binary::Invertible
 
     def inspect
       "Binary(#{left.inspect}, #{right.inspect})"

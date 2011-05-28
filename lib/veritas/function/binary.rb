@@ -57,19 +57,6 @@ module Veritas
         end
       end
 
-      # Return the inverse function
-      #
-      # @example
-      #   inverse = function.inverse
-      #
-      # @return [Function]
-      #
-      # @api public
-      def inverse
-        self.class.inverse.new(left, right).
-          memoize(:inverse, self)
-      end
-
       # Compare the operation with the other operation for equivalency
       #
       # @example
@@ -86,8 +73,27 @@ module Veritas
         right == other.right
       end
 
-      memoize :inverse
+      # Mixin for invertable binary functions
+      module Invertible
 
+        def self.included(descendant)
+          descendant.memoize :inverse
+        end
+
+        # Return the inverse function
+        #
+        # @example
+        #   inverse = function.inverse
+        #
+        # @return [Function]
+        #
+        # @api public
+        def inverse
+          self.class.inverse.new(left, right).
+            memoize(:inverse, self)
+        end
+
+      end # module Invertible
     end # module Binary
   end # class Function
 end # module Veritas

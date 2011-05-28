@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a square root function
       class SquareRoot < Numeric
-        include Unary
+        include Unary, Unary::Invertible
 
         # Return the square root of the value
         #

@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a exponentiation function
       class Exponentiation < Numeric
-        include Binary, Comparable
+        include Binary, Binary::Invertible, Comparable
 
         # Return the Exponentiation operation
         #

@@ -6,7 +6,7 @@ module Veritas
 
       # A logical OR between expressions
       class Disjunction < Connective
-        include Binary
+        include Binary, Binary::Invertible
 
         # Evaluate the operands using a logical OR
         #

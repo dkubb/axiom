@@ -7,6 +7,7 @@ module Veritas
     class Predicate < Function
       include AbstractClass,
               Binary,
+              Binary::Invertible,
               Connective::Conjunction::Methods,
               Connective::Disjunction::Methods,
               Connective::Negation::Methods

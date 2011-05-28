@@ -2,7 +2,7 @@
 
 module UnarySpecs
   class Object < Function
-    include Function::Unary
+    include Function::Unary, Function::Unary::Invertible
 
     def inspect
       "Unary(#{operand.inspect})"
