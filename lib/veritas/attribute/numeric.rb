@@ -8,7 +8,7 @@ module Veritas
       include Comparable,
               Aggregate::Sum::Methods
 
-      DEFAULT_SIZE = (0..2**31-1).freeze
+      DEFAULT_SIZE = (-::Float::INFINITY..::Float::INFINITY).freeze
 
       inheritable_alias(:range => :size)
 
@@ -50,7 +50,7 @@ module Veritas
       # @api private
       def initialize(*)
         super
-        @size = @options.fetch(:size, DEFAULT_SIZE).to_inclusive
+        @size = @options.fetch(:size, self.class::DEFAULT_SIZE).to_inclusive
       end
 
       # Test if the value matches the attribute constraints

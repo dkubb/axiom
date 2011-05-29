@@ -6,6 +6,8 @@ module Veritas
     # Represents a Float value in a relation tuple
     class Float < Numeric
 
+      DEFAULT_SIZE = (::Float::MIN..::Float::MAX).freeze
+
       # The Float primitive
       #
       # @example
