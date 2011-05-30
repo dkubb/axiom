@@ -6,6 +6,13 @@ module Veritas
     # A materialized relation
     class Materialized < Relation
 
+      # The relation sort order
+      #
+      # @return [Operation::Order::DirectionSet]
+      #
+      # @api private
+      attr_reader :directions
+
       # Initialize a materialized Relation
       #
       # @param [Header, #to_ary] header

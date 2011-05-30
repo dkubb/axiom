@@ -14,6 +14,13 @@ module Veritas
       # @api private
       attr_reader :aliases
 
+      # The relation sort order
+      #
+      # @return [Operation::Order::DirectionSet]
+      #
+      # @api private
+      attr_reader :directions
+
       # Initialize a Rename
       #
       # @param [Relation] operand

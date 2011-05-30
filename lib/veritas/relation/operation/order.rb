@@ -8,6 +8,13 @@ module Veritas
       class Order < Relation
         include Unary
 
+        # The relation sort order
+        #
+        # @return [Operation::Order::DirectionSet]
+        #
+        # @api private
+        attr_reader :directions
+
         # Instantiate a new Order
         #
         # @example

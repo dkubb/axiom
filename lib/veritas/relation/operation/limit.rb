@@ -18,6 +18,13 @@ module Veritas
         # @api public
         attr_reader :limit
 
+        # The relation sort order
+        #
+        # @return [Operation::Order::DirectionSet]
+        #
+        # @api private
+        attr_reader :directions
+
         # Instantiate a new Limit
         #
         # @example

@@ -18,7 +18,9 @@ module Veritas
     # @return [Operation::Order::DirectionSet]
     #
     # @api private
-    attr_reader :directions
+    def directions
+      Operation::Order::DirectionSet::EMPTY
+    end
 
     # Instantiate a new Relation
     #
@@ -61,9 +63,8 @@ module Veritas
     #
     # @api private
     def initialize(header, tuples)
-      @header     = Header.coerce(header)
-      @tuples     = tuples
-      @directions = Operation::Order::DirectionSet::EMPTY
+      @header = Header.coerce(header)
+      @tuples = tuples
     end
 
     # Lookup an Attribute in the header given an attribute name

@@ -17,8 +17,7 @@ module Veritas
         # @api private
         def initialize(operand)
           super
-          @header     = operand.header
-          @directions = Operation::Order::DirectionSet::EMPTY
+          @header = operand.header
         end
 
       end # module Unary

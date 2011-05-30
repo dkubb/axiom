@@ -1,0 +1,17 @@
+# encoding: utf-8
+
+require 'spec_helper'
+
+describe Relation::Operation::Reverse, '#directions' do
+  subject { object.directions }
+
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [].each) }
+  let(:object)   { described_class.new(ordered)                }
+  let(:ordered)  { relation.order                              }
+
+  it_should_behave_like 'an idempotent method'
+
+  it 'reverses the directions' do
+    should equal(ordered.directions.reverse)
+  end
+end
