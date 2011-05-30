@@ -9,14 +9,36 @@ describe Immutable, '#memoize' do
   let(:described_class) { Class.new(ImmutableSpecs::Object) }
   let(:object)          { described_class.new               }
   let(:method)          { :test                             }
-  let(:value)           { String.new.freeze                 }
 
   before do
     described_class.memoize(method)
   end
 
-  it 'sets the memoized value for the method to the value' do
-    subject
-    object.send(method).should equal(value)
+  context 'when the value is frozen' do
+    let(:value) { String.new.freeze }
+
+    it 'sets the memoized value for the method to the value' do
+      subject
+      object.send(method).should equal(value)
+    end
+
+    it 'creates a method that returns a frozen value' do
+      subject
+      object.send(method).should be_frozen
+    end
+  end
+
+  context 'when the value is not frozen' do
+    let(:value) { String.new }
+
+    it 'sets the memoized value for the method to the value' do
+      subject
+      object.send(method).should eql(value)
+    end
+
+    it 'creates a method that returns a frozen value' do
+      subject
+      object.send(method).should be_frozen
+    end
   end
 end

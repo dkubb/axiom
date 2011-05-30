@@ -10,6 +10,12 @@ shared_examples_for 'memoizes method' do
     instance.send(method).should equal(instance.send(method))
   end
 
+  it 'creates a method that returns a frozen value' do
+    subject
+    instance = object.new
+    instance.send(method).should be_frozen
+  end
+
   specification = proc do
     object.send(:define_method, method) do
       caller

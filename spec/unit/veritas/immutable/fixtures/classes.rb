@@ -5,23 +5,23 @@ module ImmutableSpecs
     include Immutable
 
     def test
-      rand
+      'test'
     end
 
     def public_method
-      rand
+      'public_method'
     end
 
   protected
 
     def protected_method
-      rand
+      'protected_method'
     end
 
   private
 
     def private_method
-      rand
+      'private_method'
     end
 
   end # class Object

@@ -61,7 +61,7 @@ module Veritas
     #
     # @api public
     def memoize(name, value)
-      @__memory["@#{name}"] = value
+      @__memory["@#{name}"] = Immutable.freeze_object(value)
       self
     end
 
@@ -176,7 +176,7 @@ module Veritas
         original = instance_method(method)
         ivar     = "@#{method}"
         send(:define_method, method) do |*args|
-          @__memory[ivar] ||= original.bind(self).call(*args)
+          @__memory[ivar] ||= Immutable.freeze_object(original.bind(self).call(*args))
         end
       end
 
@@ -243,9 +243,7 @@ module Veritas
       # @return [undefined]
       #
       # @api public
-      def []=(ivar, value)
-        instance_variable_set(ivar, Immutable.freeze_object(value))
-      end
+      alias []= instance_variable_set
 
     end # class Memory
   end # module Immutable

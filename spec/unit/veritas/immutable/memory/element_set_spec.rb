@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Immutable::Memory, '#[]=' do
   subject { object[key] = value }
 
-  let(:object) { described_class.new             }
-  let(:key)    { '@key'                          }
-  let(:value)  { mock('Value', :frozen? => true) }
+  let(:object) { described_class.new }
+  let(:key)    { '@key'              }
+  let(:value)  { mock('Value')       }
 
   it { should equal(value) }
 
