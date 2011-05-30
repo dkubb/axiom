@@ -11,5 +11,5 @@ describe Tuple, '#hash' do
 
   it_should_behave_like 'a hash method'
 
-  it { should == described_class.hash ^ header.hash ^ data.hash }
+  it { should == described_class.hash ^ header.hash ^ Hash[header.zip(data)].hash }
 end

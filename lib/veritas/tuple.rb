@@ -25,7 +25,7 @@ module Veritas
     # @api private
     def initialize(header, data)
       @header = header
-      @data   = data.to_ary
+      @data   = Hash[header.zip(data.to_ary)].freeze
     end
 
     # Lookup a value in the tuple given an attribute
@@ -39,8 +39,7 @@ module Veritas
     #
     # @api public
     def [](attribute)
-      index = header.index(attribute)
-      to_ary.at(index) if index
+      @data[header[attribute]]
     end
 
     # Return a tuple with only the specified attributes
@@ -55,7 +54,7 @@ module Veritas
     #
     # @api public
     def project(header)
-      self.class.new(header, header.map { |attribute| self[attribute] })
+      self.class.new(header, @data.values_at(*header))
     end
 
     # Append values to the tuple and return a new tuple
@@ -104,7 +103,7 @@ module Veritas
     #
     # @api public
     def to_ary
-      @data
+      @data.values_at(*header).freeze
     end
 
     # Compare the tuple with other tuple for equivalency
@@ -152,7 +151,7 @@ module Veritas
     #
     # @api public
     def hash
-      self.class.hash ^ header.hash ^ to_ary.hash
+      self.class.hash ^ header.hash ^ @data.hash
     end
 
     # Return a string representing the tuple data
@@ -181,7 +180,7 @@ module Veritas
       object.kind_of?(Tuple) ? object : new(header, object)
     end
 
-    memoize :hash
+    memoize :hash, :to_ary
 
   end # class Tuple
 end # module Veritas

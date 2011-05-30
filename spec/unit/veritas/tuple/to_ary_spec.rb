@@ -10,5 +10,7 @@ describe Tuple, '#to_ary' do
 
   it { should be_kind_of(Array) }
 
+  it { should be_frozen }
+
   it { should == [ 1 ] }
 end
