@@ -83,7 +83,8 @@ module Veritas
         # @api private
         def initialize(operand, offset)
           super(operand)
-          @offset = offset.to_int
+          @offset     = offset.to_int
+          @directions = operand.directions
         end
 
         # Iterate over each tuple in the set

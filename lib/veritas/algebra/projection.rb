@@ -19,8 +19,7 @@ module Veritas
       # @api private
       def initialize(operand, attributes)
         super(operand)
-        @header     = @header.project(attributes.to_ary)
-        @directions = Relation::Operation::Order::DirectionSet::EMPTY
+        @header = @header.project(attributes.to_ary)
       end
 
       # Iterate over each tuple in the set

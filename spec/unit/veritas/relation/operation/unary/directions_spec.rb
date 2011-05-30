@@ -16,5 +16,5 @@ describe Relation::Operation::Unary, '#directions' do
 
   it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
 
-  it { should == directions }
+  it { should be_empty }
 end

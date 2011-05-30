@@ -28,7 +28,6 @@ module Veritas
         super(operand)
         @extensions  = extensions.to_hash
         @header     |= @extensions.keys
-        @directions  = Relation::Operation::Order::DirectionSet::EMPTY
       end
 
       # Iterate over each tuple in the set

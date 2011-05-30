@@ -28,7 +28,7 @@ module Veritas
         super(operand)
         @aliases    = Aliases.coerce(@header, aliases)
         @header     = @header.rename(@aliases)
-        @directions = @directions.rename(@aliases)
+        @directions = operand.directions.rename(@aliases)
       end
 
       # Iterate over each tuple in the set

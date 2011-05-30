@@ -83,7 +83,8 @@ module Veritas
         # @api private
         def initialize(operand, limit)
           super(operand)
-          @limit = limit.to_int
+          @limit      = limit.to_int
+          @directions = operand.directions
         end
 
         # Iterate over each tuple in the set
