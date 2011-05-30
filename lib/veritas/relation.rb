@@ -187,14 +187,14 @@ module Veritas
 
     # Coerce an Enumerable into a Relation
     #
-    # @param [Relation, Enumerable] tuples
+    # @param [Enumerable] tuples
     #   the tuples to coerce
     #
     # @return [Relation]
     #
     # @api private
     def coerce(tuples)
-      tuples.kind_of?(Relation) ? tuples : Relation.new(header, tuples)
+      Relation.new(header, tuples)
     end
 
     memoize :hash
