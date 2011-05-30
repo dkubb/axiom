@@ -89,9 +89,8 @@ module Veritas
       #
       # @api public
       def initialize(attributes)
-        @attributes = attributes
-        @names      = {}
-        @indexes    = {}
+        @names      = attributes.map { |attribute| attribute.name }
+        @attributes = Hash[@names.zip(attributes)]
       end
 
       # Iterate over each attribute in the header
@@ -110,29 +109,8 @@ module Veritas
       # @api public
       def each
         return to_enum unless block_given?
-        to_ary.each { |attribute| yield attribute }
+        @names.each { |name| yield @attributes.fetch(name) }
         self
-      end
-
-      # Lookup the index of an attribute in the header given a name
-      #
-      # @example
-      #   index = header.index(:id)
-      #
-      # @param [Attribute, #to_ary, #to_sym] name
-      #
-      # @return [Integer]
-      #   the offset when the name is known
-      # @return [nil]
-      #   nil when the attribute is unknown
-      #
-      # @api private
-      def index(name)
-        @indexes[name] ||=
-          begin
-            attribute = self[name]
-            to_ary.index(attribute) if attribute
-          end
       end
 
       # Lookup an attribute in the header given a name
@@ -149,11 +127,7 @@ module Veritas
       #
       # @api public
       def [](name)
-        @names[name] ||=
-          begin
-            name = Attribute.name_from(name)
-            detect { |attribute| attribute.name == name }
-          end
+        @attributes[Attribute.name_from(name)]
       end
 
       # Return a header with only the attributes specified
@@ -228,7 +202,7 @@ module Veritas
       #
       # @api private
       def to_ary
-        @attributes
+        @attributes.values_at(*@names).freeze
       end
 
       # Compare the header with other header for equivalency
@@ -271,7 +245,7 @@ module Veritas
       #
       # @api public
       def hash
-        self.class.hash ^ to_ary.hash
+        self.class.hash ^ @attributes.hash
       end
 
       # Test if there are no attributes
@@ -283,7 +257,7 @@ module Veritas
       #
       # @api public
       def empty?
-        to_ary.empty?
+        @names.empty?
       end
 
       # Return a string representing the header
@@ -324,7 +298,7 @@ module Veritas
         object.kind_of?(Header) ? object : new(object)
       end
 
-      memoize :hash
+      memoize :hash, :to_ary
 
     end # class Header
   end # class Relation
