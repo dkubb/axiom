@@ -24,7 +24,7 @@ module Veritas
       def each
         return to_enum unless block_given?
         right_set = right.to_set
-        left.each { |tuple| yield(tuple) unless right_set.include?(tuple) }
+        left.each { |tuple| yield tuple unless right_set.include?(tuple) }
         self
       end
 

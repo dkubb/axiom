@@ -108,9 +108,9 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def each(&block)
+      def each
         return to_enum unless block_given?
-        to_ary.each(&block)
+        to_ary.each { |attribute| yield attribute }
         self
       end
 

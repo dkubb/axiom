@@ -46,7 +46,7 @@ module Veritas
       def each
         return to_enum unless block_given?
         operand.each do |tuple|
-          yield(tuple) if Function.extract_value(predicate, tuple).equal?(true)
+          yield tuple if Function.extract_value(predicate, tuple).equal?(true)
         end
         self
       end

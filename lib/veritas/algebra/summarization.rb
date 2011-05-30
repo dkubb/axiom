@@ -94,9 +94,9 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def each(&block)
+      def each
         return to_enum unless block_given?
-        Extension.new(summarize_per, summaries).each(&block)
+        Extension.new(summarize_per, summaries).each { |tuple| yield tuple }
         self
       end
 
@@ -177,9 +177,9 @@ module Veritas
         # @return [Summarization]
         #
         # @api public
-        def summarize(summarize_with, &block)
+        def summarize(summarize_with)
           summarize_per = coerce_to_relation(summarize_with)
-          context       = Evaluator::Context.new(header - summarize_per.header, &block)
+          context       = Evaluator::Context.new(header - summarize_per.header) { |context| yield context }
           Summarization.new(self, summarize_per, context.functions)
         end
 

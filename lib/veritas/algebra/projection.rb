@@ -42,7 +42,7 @@ module Veritas
         seen = {}
         operand.each do |tuple|
           tuple = tuple.project(header)
-          yield(seen[tuple] = tuple) unless seen.key?(tuple)
+          yield seen[tuple] = tuple unless seen.key?(tuple)
         end
         self
       end

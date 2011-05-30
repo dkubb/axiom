@@ -74,11 +74,12 @@ module Veritas
       def each(&block)
         return to_enum unless block_given?
         index = build_index
+        util  = Relation::Operation::Combination
 
-        left.each do |tuple|
-          right_tuples = index[join_tuple(tuple)]
+        left.each do |left_tuple|
+          right_tuples = index[join_tuple(left_tuple)]
           if right_tuples
-            Relation::Operation::Combination.combine_tuples(header, tuple, right_tuples, &block)
+            util.combine_tuples(header, left_tuple, right_tuples, &block)
           end
         end
 
@@ -148,9 +149,9 @@ module Veritas
         # @return [Join, Restriction]
         #
         # @api public
-        def join(other,  &block)
+        def join(other)
           if block_given?
-            theta_join(other, &block)
+            theta_join(other) { |relation| yield relation }
           else
             natural_join(other)
           end
@@ -187,8 +188,8 @@ module Veritas
         # @return [Restriction]
         #
         # @api private
-        def theta_join(other, &block)
-          product(other).restrict(&block)
+        def theta_join(other)
+          product(other).restrict { |relation| yield relation }
         end
 
       end # module Methods

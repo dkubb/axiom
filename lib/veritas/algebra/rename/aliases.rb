@@ -107,17 +107,17 @@ module Veritas
         #
         # @yield [old, new]
         #
-        # @yieldparam [Attribute] old
+        # @yieldparam [Attribute] old_attribute
         #   the old attribute
-        # @yieldparam [Attribute] new
+        # @yieldparam [Attribute] new_attribute
         #   the new attribute
         #
         # @return [self]
         #
         # @api public
-        def each(&block)
+        def each
           return to_enum unless block_given?
-          @aliases.each(&block)
+          @aliases.each { |old_attribute, new_attribute| yield old_attribute, new_attribute }
           self
         end
 

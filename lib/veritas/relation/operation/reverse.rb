@@ -54,9 +54,9 @@ module Veritas
         # @return [self]
         #
         # @api public
-        def each(&block)
+        def each
           return to_enum unless block_given?
-          operand.reverse_each(&block)
+          operand.reverse_each { |tuple| yield tuple }
           self
         end
 

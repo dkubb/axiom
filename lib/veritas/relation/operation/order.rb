@@ -79,9 +79,9 @@ module Veritas
         # @return [self]
         #
         # @api public
-        def each(&block)
+        def each
           return to_enum unless block_given?
-          directions.sort_tuples(operand).each(&block)
+          directions.sort_tuples(operand).each { |tuple| yield tuple }
           self
         end
 

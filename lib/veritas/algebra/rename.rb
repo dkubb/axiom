@@ -45,9 +45,9 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def each(&block)
+      def each
         return to_enum unless block_given?
-        operand.each { |tuple| yield Tuple.new(header, tuple.to_ary) }
+        operand.each { |operand_tuple| yield Tuple.new(header, operand_tuple.to_ary) }
         self
       end
 

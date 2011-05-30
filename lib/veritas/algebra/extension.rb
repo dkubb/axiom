@@ -49,7 +49,7 @@ module Veritas
         return to_enum unless block_given?
         header     = self.header
         extensions = self.extensions.values
-        operand.each { |tuple| yield tuple.extend(header, extensions) }
+        operand.each { |operand_tuple| yield operand_tuple.extend(header, extensions) }
         self
       end
 
@@ -98,8 +98,8 @@ module Veritas
         # @return [Extension]
         #
         # @api public
-        def extend(&block)
-          context = Evaluator::Context.new(header, &block)
+        def extend
+          context = Evaluator::Context.new(header) { |context| yield context }
           Extension.new(self, context.functions)
         end
 
