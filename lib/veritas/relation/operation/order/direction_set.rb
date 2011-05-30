@@ -240,7 +240,7 @@ module Veritas
             object.kind_of?(DirectionSet) ? object : new(object)
           end
 
-          memoize :hash
+          memoize :hash, :reverse
 
         end # class DirectionSet
       end # class Order

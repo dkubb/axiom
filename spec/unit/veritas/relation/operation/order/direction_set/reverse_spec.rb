@@ -9,6 +9,8 @@ describe Relation::Operation::Order::DirectionSet, '#reverse' do
   let(:attribute2) { Attribute::String.new(:name)                    }
   let(:object)     { described_class.new([ attribute1, attribute2 ]) }
 
+  it_should_behave_like 'an idempotent method'
+
   it { should be_kind_of(described_class) }
 
   it 'reverses each direction' do
