@@ -44,6 +44,15 @@ module Veritas
         sum_of_squares.zero? ? sum_of_squares : sum_of_squares / count
       end
 
+      # Return the type returned from #call
+      #
+      # @return [Class<Attribute::Float>]
+      #
+      # @api public
+      def type
+        Attribute::Float
+      end
+
       module Methods
         extend Aliasable
 

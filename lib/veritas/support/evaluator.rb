@@ -38,8 +38,8 @@ module Veritas
       #
       # @param [Attribute, #to_ary, #to_sym] attribute
       #   the attribute to add to the header
-      # @param [#call] function
-      #   optional function
+      # @param [#call] callable
+      #   optional callable object
       #
       # @yield []
       #   optional block to execute in the summarization operation
@@ -47,8 +47,10 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def add(attribute, function = Undefined, &block)
-        functions[Attribute.coerce(attribute)] = function.equal?(Undefined) ? block : function
+      def add(attribute, callable = Undefined, &block)
+        function = callable.equal?(Undefined) ? block     : callable
+        type     = function.kind_of?(Proc)    ? Attribute : function.type
+        functions[type.coerce(attribute)] = function
         self
       end
 

@@ -42,13 +42,21 @@ module Veritas
       #
       # @api public
       def default
-        default = super
-          case operand
-          when Attribute::Float   then default.to_f
-          when Attribute::Decimal then BigDecimal(default.to_s)
-          else
-            default
+        type = self.type
+        if    type.equal?(Attribute::Float)   then super.to_f
+        elsif type.equal?(Attribute::Decimal) then BigDecimal(super.to_s)
+        else
+          super
         end
+      end
+
+      # Return the type returned from #call
+      #
+      # @return [Class<Attribute::Numeric>]
+      #
+      # @api public
+      def type
+        Function::Numeric.infer_type(operand)
       end
 
       module Methods

@@ -35,6 +35,15 @@ module Veritas
             memoize(:inverse, self)
         end
 
+        # Return the type returned from #call
+        #
+        # @return [Class<Attribute::Float>]
+        #
+        # @api public
+        def type
+          Attribute::Float
+        end
+
         # Return a string representing the square root function
         #
         # @example

@@ -7,7 +7,7 @@ describe Evaluator::Context, '#functions' do
 
   let(:attribute) { Attribute::Integer.new(:id)                                              }
   let(:header)    { Relation::Header.new([ attribute ])                                      }
-  let(:function)  { mock('Function')                                                         }
+  let(:function)  { proc {}                                                                  }
   let(:object)    { described_class.new(header) { |object| object.add(attribute, function) } }
 
   it { should == { attribute => function } }

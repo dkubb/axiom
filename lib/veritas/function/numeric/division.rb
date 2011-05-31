@@ -32,6 +32,15 @@ module Veritas
           Multiplication
         end
 
+        # Return the type returned from #call
+        #
+        # @return [Class<Attribute::Float>]
+        #
+        # @api public
+        def type
+          Attribute::Float
+        end
+
         module Methods
           extend Aliasable
 

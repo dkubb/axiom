@@ -12,6 +12,15 @@ module Veritas
               Connective::Disjunction::Methods,
               Connective::Negation::Methods
 
+      # Return the type returned from #call
+      #
+      # @return [Class<Attribute::Boolean>]
+      #
+      # @api public
+      def type
+        Attribute::Boolean
+      end
+
     end # class Predicate
   end # class Function
 end # module Veritas

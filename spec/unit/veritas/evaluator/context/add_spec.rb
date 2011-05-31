@@ -9,9 +9,17 @@ describe Evaluator::Context, '#add' do
   context 'when a function is provided' do
     subject { described_class.new(header) { |object| object.add(attribute, function) } }
 
-    let(:function) { mock('Function') }
+    let(:function) { attribute.add(attribute) }
 
     its(:functions) { should == { attribute => function } }
+  end
+
+  context 'when a proc is provided' do
+    subject { described_class.new(header) { |object| object.add(attribute, proc) } }
+
+    let(:proc) { Proc.new {} }
+
+    its(:functions) { should == { attribute => proc } }
   end
 
   context 'when a block is provided' do

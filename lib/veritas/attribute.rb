@@ -71,6 +71,15 @@ module Veritas
       name.equal?(new_name) ? self : self.class.new(new_name, options)
     end
 
+    # Return the type returned from #call
+    #
+    # @return [Class<Attribute>]
+    #
+    # @api public
+    def type
+      self.class
+    end
+
     # Test if the attribute is required
     #
     # @example
@@ -199,7 +208,8 @@ module Veritas
         object
       else
         name, type = object
-        klass = type.nil? ? Object : const_get(type.name)
+        klass = equal?(Attribute) ? Object : self
+        klass = const_get(type.name) if type
         klass.new(name)
       end
     end

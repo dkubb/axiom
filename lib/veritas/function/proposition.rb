@@ -78,6 +78,15 @@ module Veritas
         self.class.inverse.instance
       end
 
+      # Return the type returned from #call
+      #
+      # @return [Class<Attribute::Boolean>]
+      #
+      # @api public
+      def type
+        Attribute::Boolean
+      end
+
       # Compare the proposition with other proposition for equivalency
       #
       # @example

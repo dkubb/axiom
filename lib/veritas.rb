@@ -104,6 +104,9 @@ require 'veritas/attribute/time'
 require 'veritas/attribute/string'
 
 require 'veritas/function/numeric'
+require 'veritas/function/numeric/binary'
+require 'veritas/function/numeric/unary'
+
 require 'veritas/function/numeric/absolute'
 require 'veritas/function/numeric/addition'
 require 'veritas/function/numeric/division'

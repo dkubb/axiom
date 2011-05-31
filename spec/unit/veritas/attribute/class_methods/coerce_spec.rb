@@ -35,3 +35,17 @@ describe Attribute, '.coerce' do
     specify { expect { subject }.to raise_error(NoMethodError) }
   end
 end
+
+describe Attribute::Integer, '.coerce' do
+  subject { object.coerce(argument) }
+
+  let(:object) { described_class }
+
+  context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
+    let(:argument) { :id }
+
+    it { should be_kind_of(described_class) }
+
+    its(:name) { should == :id }
+  end
+end

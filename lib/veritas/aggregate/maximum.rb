@@ -25,6 +25,15 @@ module Veritas
         value > maximum ? value : maximum
       end
 
+      # Return the type returned from #call
+      #
+      # @return [Class<Attribute::Numeric>]
+      #
+      # @api public
+      def type
+        Function::Numeric.infer_type(operand)
+      end
+
       module Methods
         extend Aliasable
 

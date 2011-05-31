@@ -63,6 +63,15 @@ module Veritas
       raise NotImplementedError, "#{self.class}#rename must be implemented"
     end
 
+    # Return the type returned from #call
+    #
+    # @return [Class<Attribute>]
+    #
+    # @api public
+    def type
+      raise NotImplementedError, "#{self.class}#type must be implemented"
+    end
+
     # Compare the function with other function for equivalency
     #
     # @example

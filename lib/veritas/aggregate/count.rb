@@ -24,6 +24,15 @@ module Veritas
         value.nil? ? count : count.succ
       end
 
+      # Return the type returned from #call
+      #
+      # @return [Class<Attribute::Integer>]
+      #
+      # @api public
+      def type
+        Attribute::Integer
+      end
+
       module Methods
 
         # Return a count aggregate function

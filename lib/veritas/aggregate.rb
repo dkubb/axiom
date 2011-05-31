@@ -84,6 +84,15 @@ module Veritas
       self.class.finalize(accumulator)
     end
 
+    # Return the type returned from #call
+    #
+    # @return [Class<Attribute>]
+    #
+    # @api public
+    def type
+      raise NotImplementedError, "#{self.class}#type must be implemented"
+    end
+
   private
 
     # Extract the value from the operand or tuple

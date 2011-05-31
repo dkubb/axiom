@@ -22,6 +22,15 @@ module Veritas
           value.length
         end
 
+        # Return the type returned from #call
+        #
+        # @return [Class<Attribute::Integer>]
+        #
+        # @api public
+        def type
+          Attribute::Integer
+        end
+
         # Return a string representing the length function
         #
         # @example
