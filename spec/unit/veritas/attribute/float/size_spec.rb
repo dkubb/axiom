@@ -9,7 +9,7 @@ require 'spec_helper'
     context 'without :size option passed to constructor' do
       let(:object) { described_class.new(:id) }
 
-      it { should eql(Float::MIN..Float::MAX) }
+      it { should eql(-Float::MAX..Float::MAX) }
     end
 
     context 'with :size option passed to constructor' do
