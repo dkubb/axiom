@@ -1,3 +1,10 @@
+* Update #not to optionally take zero arguments. If nothing passed in it should
+  return #invert, eg:
+
+    def not(other = Undefined)
+      other.equal?(Undefined) ? invert : original_logic
+    end
+
 * Add return types to Function objects
   * Update Evaluator::Context to infer the type from the function if
     possible, only defaulting to Attribute::Object if the type is unknown.
