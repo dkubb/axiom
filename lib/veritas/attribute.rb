@@ -204,7 +204,7 @@ module Veritas
     #
     # @api private
     def self.coerce(object)
-      if object.kind_of?(self)
+      if object.kind_of?(Attribute)
         object
       else
         name, type = object
