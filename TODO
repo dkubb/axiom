@@ -1,8 +1,3 @@
-* Need a way to specify if a function result allows nil or not
-  * In the normal case of summarize, the value will not be nil if the
-    summarize_by is a subset of the operand. However, if it is another
-    relation, some functions could return nil.
-
 * Handle case where value is nil, but being sorted on
   * Will need to figure out a way to sort nil (before all results or after)
 
