@@ -47,8 +47,8 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def add(attribute, function = nil, &block)
-        functions[Attribute.coerce(attribute)] = function || block
+      def add(attribute, function = Undefined, &block)
+        functions[Attribute.coerce(attribute)] = function.equal?(Undefined) ? block : function
         self
       end
 
