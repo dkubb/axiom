@@ -41,7 +41,7 @@ module Veritas
 
     # Evaluate the function using the operands
     #
-    # @return [undefined]
+    # @return [Object]
     #
     # @api public
     def self.call(*)
