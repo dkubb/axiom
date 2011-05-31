@@ -3,7 +3,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Function, '#hash' do
+describe Function, '#hash' do
   subject { object.hash }
 
   let(:described_class) { FunctionSpecs::Object }

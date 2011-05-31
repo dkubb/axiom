@@ -3,7 +3,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Function, '#inspect' do
+describe Function, '#inspect' do
   subject { object.inspect }
 
   let(:described_class) { FunctionSpecs::Object }

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Function::Function, '.call' do
+describe Function, '.call' do
   subject { object.call }
 
   let(:object) { described_class }

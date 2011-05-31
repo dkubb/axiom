@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Function::Function::Proposition, '#rename' do
+describe Function::Proposition, '#rename' do
   subject { object.rename(aliases) }
 
   let(:described_class) { Class.new(Function::Proposition) }

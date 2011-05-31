@@ -3,7 +3,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Function, '#rename' do
+describe Function, '#rename' do
   subject { object.rename(aliases) }
 
   let(:described_class) { FunctionSpecs::Object }

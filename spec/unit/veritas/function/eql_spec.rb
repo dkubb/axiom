@@ -3,7 +3,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Function, '#eql?' do
+describe Function, '#eql?' do
   subject { object.eql?(other) }
 
   let(:described_class) { FunctionSpecs::Object }

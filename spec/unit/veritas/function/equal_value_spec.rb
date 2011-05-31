@@ -3,7 +3,7 @@
 require 'spec_helper'
 require File.expand_path('../fixtures/classes', __FILE__)
 
-describe Function::Function, '#==' do
+describe Function, '#==' do
   subject { object == other }
 
   let(:described_class) { FunctionSpecs::Object }
