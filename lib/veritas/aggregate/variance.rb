@@ -37,11 +37,14 @@ module Veritas
       # @param [Array(Numeric, Integer, Float)] accumulator
       #
       # @return [Float]
+      #   returned for a non-empty set
+      # @return [nil]
+      #   returned for an empty set
       #
       # @api public
       def self.finalize(accumulator)
         sum_of_squares, count = accumulator.values_at(2, 0)
-        sum_of_squares.zero? ? sum_of_squares : sum_of_squares / count
+        sum_of_squares / count unless sum_of_squares.zero?
       end
 
       # Return the type returned from #call

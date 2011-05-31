@@ -14,11 +14,14 @@ module Veritas
       # @param [Array(Numeric, Integer, Numeric)] accumulator
       #
       # @return [Float]
+      #   returned for a non-empty set
+      # @return [nil]
+      #   returned for an empty set
       #
       # @api public
       def self.finalize(*)
         variance = super
-        variance.finite? ? Math.sqrt(variance) : variance
+        Math.sqrt(variance) if variance
       end
 
       # Return the type returned from #call

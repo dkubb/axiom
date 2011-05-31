@@ -13,7 +13,7 @@ describe Aggregate::StandardDeviation, '.finalize' do
     let(:mean)           { nil }
     let(:sum_of_squares) { 0.0 }
 
-    it { should eql(0.0) }
+    it { should be_nil }
   end
 
   context 'when the variance is not 0.0' do
