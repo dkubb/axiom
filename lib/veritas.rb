@@ -122,6 +122,9 @@ require 'veritas/version'
 
 module Veritas
 
+  # Represent an undefined argument
+  module Undefined; end
+
   # Raised when the headers are invalid for Join and Product
   class InvalidHeaderError < ArgumentError; end
 

@@ -57,18 +57,34 @@ module Veritas
 
           inheritable_alias(:- => :not)
 
-          # Logically negate then AND the expression
+          # Negate the expression or logically AND and negate another expression
           #
-          # @example
+          # @example with no argument
+          #   negation = expression.not
+          #
+          # @example with other argument
           #   conjunction = expression.not(other)
           #
-          # @param [Function] other
+          # @overload not
+          #   Negates the expression
           #
-          # @return [Conjunction]
+          #   @return [Negation]
+          #
+          # @overload not(other)
+          #   Logically AND the other negated expression
+          #
+          #   @param [Function] other
+          #     optional other function to and
+          #
+          #   @return [Conjunction]
           #
           # @api public
-          def not(other)
-            self.and(Negation.new(other))
+          def not(other = Undefined)
+            if other.equal?(Undefined)
+              Negation.new(self)
+            else
+              self.and(Negation.new(other))
+            end
           end
 
         end # module Methods
