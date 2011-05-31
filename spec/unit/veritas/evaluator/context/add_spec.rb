@@ -29,4 +29,10 @@ describe Evaluator::Context, '#add' do
 
     its(:functions) { should == { attribute => block } }
   end
+
+  context 'when a literal is provided' do
+    subject { described_class.new(header) { |object| object.add(attribute, 1) } }
+
+    its(:functions) { should == { attribute => 1 } }
+  end
 end
