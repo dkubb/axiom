@@ -44,7 +44,7 @@ module Veritas
       # @api public
       def self.finalize(accumulator)
         sum_of_squares, count = accumulator.values_at(2, 0)
-        sum_of_squares / count unless sum_of_squares.zero?
+        sum_of_squares / count unless count.zero?
       end
 
       # Return the type returned from #call
