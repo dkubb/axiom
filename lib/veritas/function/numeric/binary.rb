@@ -14,7 +14,7 @@ module Veritas
         #
         # @api public
         def type
-          util       = self.class
+          util       = Attribute
           left_type  = util.infer_type(left)
           right_type = util.infer_type(right)
           left_type.equal?(right_type) ? left_type : Attribute::Numeric

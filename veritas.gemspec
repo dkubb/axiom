@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-05-31}
+  s.date = %q{2011-06-01}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -256,6 +256,9 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/call_spec.rb",
     "spec/unit/veritas/attribute/class/class_methods/primitive_spec.rb",
     "spec/unit/veritas/attribute/class_methods/coerce_spec.rb",
+    "spec/unit/veritas/attribute/class_methods/descendants_spec.rb",
+    "spec/unit/veritas/attribute/class_methods/infer_type_spec.rb",
+    "spec/unit/veritas/attribute/class_methods/inherited_spec.rb",
     "spec/unit/veritas/attribute/class_methods/name_from_spec.rb",
     "spec/unit/veritas/attribute/class_methods/new_spec.rb",
     "spec/unit/veritas/attribute/comparable/comparable_spec.rb",
@@ -340,7 +343,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/numeric/addition/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/addition/methods/add_spec.rb",
     "spec/unit/veritas/function/numeric/binary/type_spec.rb",
-    "spec/unit/veritas/function/numeric/class_methods/infer_type_spec.rb",
     "spec/unit/veritas/function/numeric/division/class_methods/call_spec.rb",
     "spec/unit/veritas/function/numeric/division/class_methods/inverse_spec.rb",
     "spec/unit/veritas/function/numeric/division/class_methods/operation_spec.rb",

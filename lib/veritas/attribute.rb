@@ -21,6 +21,84 @@ module Veritas
     # @api private
     attr_reader :options
 
+    # Hook called when class is inherited
+    #
+    # @param [Class] descendant
+    #   the class inheriting Attribute
+    #
+    # @return [self]
+    #
+    # @api private
+    def self.inherited(descendant)
+      superclass = self.superclass
+      superclass.inherited(descendant) unless superclass.equal?(::Object)
+      descendants.unshift(descendant)
+      self
+    end
+
+    # Return the descendants of this class
+    #
+    # @return [Array<Attribute>]
+    #
+    # @api private
+    def self.descendants
+      @descendants ||= []
+    end
+
+    # Coerce an object into an Attribute
+    #
+    # @param [Attribute, #to_ary, #to_sym] object
+    #   the object to coerce
+    #
+    # @return [Attribute]
+    #
+    # @api private
+    def self.coerce(object)
+      if object.kind_of?(Attribute)
+        object
+      else
+        name, type = object
+        klass = equal?(Attribute) ? Object : self
+        klass = const_get(type.name) if type
+        klass.new(name)
+      end
+    end
+
+    # Extract the attribute name from the object
+    #
+    # @param [#name, #to_ary, #to_sym] object
+    #   the object to extract a name from
+    #
+    # @return [Symbol]
+    #
+    # @api private
+    def self.name_from(object)
+      if object.respond_to?(:name)
+        object.name
+      elsif object.respond_to?(:to_ary)
+        object.to_ary.first
+      else
+        object.to_sym
+      end
+    end
+
+    # Infer the Attribute type from the operand
+    #
+    # @param [Object] operand
+    #
+    # @return [Class<Attribute>]
+    #
+    # @api private
+    def self.infer_type(operand)
+      case operand
+        when Attribute, Function, Aggregate then operand.type
+        when FalseClass                     then Boolean
+        else
+          type = operand.class
+          descendants.detect { |descendant| type <= descendant.primitive }
+      end
+    end
+
     # Initialize an Attribute
     #
     # @param [#to_sym] name
@@ -193,43 +271,6 @@ module Veritas
     # @api public
     def inspect
       "<#{self.class.name.sub(/\AVeritas::/, '')} name: #{name}>"
-    end
-
-    # Coerce an object into an Attribute
-    #
-    # @param [Attribute, #to_ary, #to_sym] object
-    #   the object to coerce
-    #
-    # @return [Attribute]
-    #
-    # @api private
-    def self.coerce(object)
-      if object.kind_of?(Attribute)
-        object
-      else
-        name, type = object
-        klass = equal?(Attribute) ? Object : self
-        klass = const_get(type.name) if type
-        klass.new(name)
-      end
-    end
-
-    # Extract the attribute name from the object
-    #
-    # @param [#name, #to_ary, #to_sym] object
-    #   the object to extract a name from
-    #
-    # @return [Symbol]
-    #
-    # @api private
-    def self.name_from(object)
-      if object.respond_to?(:name)
-        object.name
-      elsif object.respond_to?(:to_ary)
-        object.to_ary.first
-      else
-        object.to_sym
-      end
     end
 
   private

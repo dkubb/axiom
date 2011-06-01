@@ -49,12 +49,7 @@ module Veritas
       # @api public
       def add(attribute, object = Undefined, &block)
         object = block if object.equal?(Undefined)
-        type = case object
-          when Function, Attribute
-            object.type
-          else
-            Attribute
-        end
+        type   = Attribute.infer_type(object)
         functions[type.coerce(attribute)] = object
         self
       end

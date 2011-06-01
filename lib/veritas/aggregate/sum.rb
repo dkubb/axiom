@@ -56,7 +56,7 @@ module Veritas
       #
       # @api public
       def type
-        Function::Numeric.infer_type(operand)
+        Attribute.infer_type(operand)
       end
 
       module Methods

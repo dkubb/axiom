@@ -14,7 +14,7 @@ module Veritas
         #
         # @api public
         def type
-          self.class.infer_type(operand)
+          Attribute.infer_type(operand)
         end
 
       end # module Unary

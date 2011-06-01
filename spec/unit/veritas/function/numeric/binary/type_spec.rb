@@ -6,66 +6,28 @@ describe Function::Numeric::Binary, '#type' do
   subject { object.type }
 
   let(:described_class) { Class.new(Function::Numeric) { include Function::Numeric::Binary } }
-  let(:object)          { described_class.new(left, right)                                   }
+  let(:object)          { described_class.new(operand, operand)                              }
+  let(:operand)         { mock('Operand')                                                    }
 
-  context 'when the operands are Attribute::Integer objects' do
-    let(:left)  { Attribute::Integer.new(:one) }
-    let(:right) { Attribute::Integer.new(:two) }
+  before do
+    operand.stub!(:freeze).and_return(operand)
+  end
 
-    it 'returns the type of the attributes' do
-      should equal(left.type)
+  context 'when the operands are from the same class' do
+    it 'delegates to Attribute.infer_type' do
+      type = mock('Type')
+      Attribute.should_receive(:infer_type).with(operand).twice.and_return(type)
+      should equal(type)
     end
   end
 
-  context 'when the operands are Function objects' do
-    let(:left)  { Attribute::String.new(:one).length }
-    let(:right) { Attribute::String.new(:two).length }
-
-    it 'returns the type of the functions' do
-      should equal(left.type)
-    end
-  end
-
-  context 'when the operands are BigDecimal objects' do
-    let(:left)  { BigDecimal('1') }
-    let(:right) { BigDecimal('1') }
-
-    it 'returns a Decimal type' do
-      should equal(Attribute::Decimal)
-    end
-  end
-
-  context 'when the operands are Float objects' do
-    let(:left)  { 1.0 }
-    let(:right) { 1.0 }
-
-    it 'returns a Float type' do
-      should equal(Attribute::Float)
-    end
-  end
-
-  context 'when the operands are Integer objects' do
-    let(:left)  { 1 }
-    let(:right) { 1 }
-
-    it 'returns an Integer type' do
-      should equal(Attribute::Integer)
-    end
-  end
-
-  context 'when the operands are different Numeric objects' do
-    let(:left)  { 1   }
-    let(:right) { 1.0 }
-
-    it 'returns an Numeric type' do
+  context 'when the operands are from a different class class' do
+    it 'delegates to Attribute.infer_type' do
+      type_a = mock('Type A')
+      type_b = mock('Type B')
+      Attribute.should_receive(:infer_type).with(operand).ordered.and_return(type_a)
+      Attribute.should_receive(:infer_type).with(operand).ordered.and_return(type_b)
       should equal(Attribute::Numeric)
     end
-  end
-
-  context 'when an operand is an unhandled type' do
-    let(:left)  { 1                 }
-    let(:right) { mock('Unhandled') }
-
-    specify { expect { subject }.to raise_error(ArgumentError) }
   end
 end
