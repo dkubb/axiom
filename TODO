@@ -5,12 +5,6 @@
   * Also this will allow knowledge of #directions to be removed from
     all the Relation classes. Only the Ranking classes will need to know
     about directions.
-  * We can also do things like optimize away an Order that is not
-    wrapped by a Limit/Offset if it is wrapped in Join or Set relation.
-    We can do this because joining sorted relations results in
-    an undefined sort order depending on the algorithm used to join
-    the tuples. The correct approach to get unambiguous results is to
-    wrap the Join in an Order.
   * The Reverse class will probably not be needed either. All we need is
     for the #reverse method to create a new Order with the directions
     reversed.
@@ -18,11 +12,7 @@
     and instead wrap materialized relations in the Order object
     if any.
 
-* Allow Inclusion match to accept a Relation
-  * Ensure that Inclusion can have the left/right be an Array of
-    Attributes.
-  * Consider transforming the value provided to an Inclusion into
-    a Relation.
+* Add Relation#nest and Relation#unnest
 
 * Update Attributes so that constraints are modelled using predicates,
   so that when "join-ability" is tested, the predicates can just be
@@ -32,11 +22,26 @@
     caller. This will allow a "complex" predicate to set the errors
     on tuples, while still allowing all the same objects to be used.
 
+* Update memoization to take into account the arguments passed into
+  the method. It should memoize differently for different
+  methods. Perhaps it could have a special case for methods
+  with a 0-arity vs n-arity methods, but it needs to handle cases
+  like with #hash that accept no args, and #optimize that accepts
+  1 arg.
+
 * Add Relation#antijoin
+  * Allows "NOT EXISTS/IN" type queries to be executes where every tuple
+    from the relation is returned that *does not* join with the tuples in
+    the operand.
 
-* Add Relation#nest and Relation#unnest
+* Inclusion/Exclusion improvements:
+  * Allow attribute/function expressions to exist within the enumerable part
+    of the Inclusion and Exclusion operations
+    * The #call method should propagate the Tuple down to each callable entry
+      in the Enumerable.
 
-* Add aliases for some common operations in Method classes, eg:
+* Update context to return an object that allows aliasing of ruby-ish predicates
+  to specific operations, eg:
   * Predicates:
     * Alias #== to #eq (may break alot)
     * Alias #!= to #ne (in 1.9 only)
@@ -48,15 +53,3 @@
   * Direction:
     * Alias #@+ to #asc
     * Alias #@- to #desc
-
-* Update memoization to take into account the arguments passed into
-  the method. It should memoize differently for different
-  methods. Perhaps it could have a special case for methods
-  with a 0-arity vs n-arity methods, but it needs to handle cases
-  like with #hash that accept no args, and #optimize that accepts
-  1 arg.
-
-* Allow attribute/function expressions to exist within the enumerable part
-  of the Inclusion and Exclusion operations
-  * The #call method should propagate the Tuple down to each callable entry
-    in the Enumerable.
