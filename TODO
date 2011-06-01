@@ -1,6 +1,3 @@
-* Handle case where value is nil, but being sorted on
-  * Will need to figure out a way to sort nil (before all results or after)
-
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
