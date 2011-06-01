@@ -12,7 +12,7 @@
     and instead wrap materialized relations in the Order object
     if any.
 
-* Add Relation#nest and Relation#unnest
+* Add Relation#group and Relation#ungroup
 
 * Update Attributes so that constraints are modelled using predicates,
   so that when "join-ability" is tested, the predicates can just be
