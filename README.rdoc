@@ -81,14 +81,6 @@ http://travis-ci.org/dkubb/veritas.png
   new_relation = relation.last      # default is 1
   new_relation = relation.last(5)
 
-  # CRUD Operators
-  # --------------
-
-  # can only modify relations that project all candidate keys for the base relations
-  new_relation = relation.create(a: 'test', b: 'other', c: 'yet another')
-  new_relation = relation.update(a: 'test', b: 'other', c: 'yet another')
-  new_relation = relation.delete
-
 == Goals
 
 The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
