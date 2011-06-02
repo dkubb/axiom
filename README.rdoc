@@ -61,6 +61,7 @@ http://travis-ci.org/dkubb/veritas.png
   relation = relation.each { |tuple| ... }
 
   # order by attribute and direction
+  new_relation = relation.order  # default is order by header (ascending)
   new_relation = relation.order { |r| [ r[:a].desc, r[:b] ] }
 
   # reverse the relation (only allowed if ordered)
