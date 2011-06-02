@@ -57,9 +57,6 @@ http://travis-ci.org/dkubb/veritas.png
   # returns a set that represents the relation header
   header = relation.header
 
-  # simplifies and normalizes the relation operations
-  optimized_relation = relation.optimize
-
   # a relation is Enumerable
   relation = relation.each { |tuple| ... }
 
