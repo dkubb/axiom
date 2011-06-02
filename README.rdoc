@@ -109,6 +109,16 @@ This is 95% complete. I have completed a first pass on veritas-sql-generator[htt
 
 The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
 
+== Related Projects
+
+* veritas-optimizer[https://github.com/dkubb/veritas-optimizer]
+
+This is an optimizer that takes a veritas relation, scalar or aggregate function and will transform it into something equivalent but simpler in structure to the original.
+
+* veritas-sql-generator[https://github.com/dkubb/veritas-sql-generator]
+
+This is a visitor class that takes a veritas relation and generates valid SQL from it.
+
 == Note on Patches/Pull Requests
 
 * If you want your code merged into the mainline, please discuss
