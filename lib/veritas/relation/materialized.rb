@@ -42,6 +42,18 @@ module Veritas
         self
       end
 
+      # Return true for a Materialized relation
+      #
+      # @example
+      #   relation.materialized?  # => true
+      #
+      # @return [true]
+      #
+      # @api public
+      def materialized?
+        true
+      end
+
       # Test if there are no tuples
       #
       # @example

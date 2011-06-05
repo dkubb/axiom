@@ -118,6 +118,18 @@ module Veritas
       Materialized.new(header, to_a, directions)
     end
 
+    # Return false for a non-Materialized relation
+    #
+    # @example
+    #   relation.materialized?  # => false
+    #
+    # @return [false]
+    #
+    # @api public
+    def materialized?
+      false
+    end
+
     # Compare the relation with other relation for equivalency
     #
     # @example
