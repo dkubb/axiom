@@ -28,8 +28,8 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def initialize(name, *args)
-        super(*args)
+      def initialize(name, header, tuples = Empty::ZERO_TUPLE)
+        super(header, tuples)
         @name = Immutable.freeze_object(name.to_s)
       end
 
