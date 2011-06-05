@@ -73,8 +73,8 @@ module Veritas
       # @api public
       def each(&block)
         return to_enum unless block_given?
-        index = build_index
         util  = Relation::Operation::Combination
+        index = build_index
 
         left.each do |left_tuple|
           right_tuples = index[join_tuple(left_tuple)]
