@@ -7,6 +7,13 @@ module Veritas
     class Join < Relation
       include Relation::Operation::Combination
 
+      # The common headers between the operands
+      #
+      # @return [Header]
+      #
+      # @api private
+      attr_reader :join_header
+
       # Instantiate a new Join
       #
       # @example
@@ -54,7 +61,7 @@ module Veritas
         super
         right_header      = right.header
         @join_header      = left.header  & right_header
-        @remainder_header = right_header - @join_header
+        @remainder_header = right_header - join_header
       end
 
       # Iterate over each tuple in the set
@@ -109,7 +116,7 @@ module Veritas
       #
       # @api private
       def join_tuple(tuple)
-        tuple.project(@join_header)
+        tuple.project(join_header)
       end
 
       # Generate a tuple with the disjoint attributes to use in the join

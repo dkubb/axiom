@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-06-05}
+  s.date = %q{2011-06-06}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -203,6 +203,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/intersection/methods/intersect_spec.rb",
     "spec/unit/veritas/algebra/join/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/join/each_spec.rb",
+    "spec/unit/veritas/algebra/join/join_header_spec.rb",
     "spec/unit/veritas/algebra/join/methods/join_spec.rb",
     "spec/unit/veritas/algebra/product/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/product/each_spec.rb",
