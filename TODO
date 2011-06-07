@@ -1,3 +1,6 @@
+* Add Tuple#predicate
+  * Should return a predicate that matches only this tuple.
+
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
