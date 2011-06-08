@@ -94,6 +94,17 @@ module Veritas
       )
     end
 
+    # Return the predicate matching the tuple
+    #
+    # @return [Function]
+    #
+    # @api private
+    def predicate
+      header.reduce(Function::Proposition::Tautology.instance) do |predicate, attribute|
+        predicate.and(attribute.eq(self[attribute]))
+      end
+    end
+
     # Convert the Tuple into an Array
     #
     # @example
@@ -180,7 +191,7 @@ module Veritas
       object.kind_of?(Tuple) ? object : new(header, object)
     end
 
-    memoize :hash, :to_ary
+    memoize :hash, :predicate, :to_ary
 
   end # class Tuple
 end # module Veritas
