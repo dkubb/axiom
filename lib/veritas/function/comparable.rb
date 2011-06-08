@@ -16,6 +16,7 @@ module Veritas
       #
       # @api private
       def self.included(descendant)
+        super
         descendant.extend ClassMethods
         self
       end

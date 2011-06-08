@@ -85,6 +85,7 @@ module Veritas
         #
         # @api private
         def self.included(descendant)
+          super
           descendant.memoize :inverse
         end
 

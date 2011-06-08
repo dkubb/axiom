@@ -14,6 +14,7 @@ module Veritas
     #
     # @api private
     def self.included(descendant)
+      super
       descendant.extend ModuleMethods if descendant.kind_of?(Module)
       descendant.extend ClassMethods  if descendant.kind_of?(Class)
       self
