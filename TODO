@@ -1,6 +1,10 @@
 * Add Tuple#predicate
   * Should return a predicate that matches only this tuple.
 
+* Updated DirectionSet to verify the Attribute objects are unique.
+  * Currently you could pass in [ r[:id].asc, r[:id].desc ] and it would
+    work even though it's invalid.
+
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
