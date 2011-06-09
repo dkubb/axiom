@@ -71,7 +71,7 @@ module Veritas
         #
         # @api private
         def self.assert_valid_limit(limit)
-          if limit < 0
+          if limit.nil? || limit < 0
             raise InvalidLimitError, "limit must be greater than or equal to 0, but was #{limit.inspect}"
           end
         end

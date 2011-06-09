@@ -71,7 +71,7 @@ module Veritas
         #
         # @api private
         def self.assert_valid_offset(offset)
-          if offset < 0
+          if offset.nil? || offset < 0
             raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
           end
         end

@@ -35,4 +35,11 @@ describe Relation::Operation::Offset, '.new' do
 
     specify { expect { subject }.to raise_error(InvalidOffsetError, 'offset must be greater than or equal to 0, but was -1') }
   end
+
+  context 'with a nil offset' do
+    let(:relation) { original_relation.order { |r| r[:id] } }
+    let(:offset)   { nil                                    }
+
+    specify { expect { subject }.to raise_error(InvalidOffsetError, 'offset must be greater than or equal to 0, but was nil') }
+  end
 end

@@ -35,4 +35,11 @@ describe Relation::Operation::Limit, '.new' do
 
     specify { expect { subject }.to raise_error(InvalidLimitError, 'limit must be greater than or equal to 0, but was -1') }
   end
+
+  context 'with a nil limit' do
+    let(:relation) { original_relation.order { |r| r[:id] } }
+    let(:limit)    { nil                                    }
+
+    specify { expect { subject }.to raise_error(InvalidLimitError, 'limit must be greater than or equal to 0, but was nil') }
+  end
 end
