@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-06-08}
+  s.date = %q{2011-06-09}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -518,6 +518,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/operation/unary/hash_spec.rb",
     "spec/unit/veritas/operation/unary/operand_spec.rb",
     "spec/unit/veritas/relation/base/class_methods/new_spec.rb",
+    "spec/unit/veritas/relation/base/hash_spec.rb",
     "spec/unit/veritas/relation/base/name_spec.rb",
     "spec/unit/veritas/relation/class_methods/new_spec.rb",
     "spec/unit/veritas/relation/directions_spec.rb",

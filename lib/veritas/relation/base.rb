@@ -33,6 +33,20 @@ module Veritas
         @name = Immutable.freeze_object(name.to_s)
       end
 
+      # Return the hash of the base relation
+      #
+      # @example
+      #   hash = base.hash
+      #
+      # @return [Fixnum]
+      #
+      # @api public
+      def hash
+        super ^ name.hash
+      end
+
+      memoize :hash
+
     end # class Base
   end # class Relation
 end # module Veritas
