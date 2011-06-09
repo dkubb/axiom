@@ -9,7 +9,7 @@ module Veritas
       # The base relation name
       #
       # @example
-      #   name = base_relation.name
+      #   name = base.name
       #
       # @return [#to_s]
       #
