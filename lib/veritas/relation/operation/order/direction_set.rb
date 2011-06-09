@@ -12,18 +12,80 @@ module Veritas
 
           inheritable_alias(:| => :union)
 
+          # Instantiate a DirectionSet
+          #
+          # @example
+          #   directions = DirectionSet.new(directions)
+          #
+          # @param [#to_ary] directions
+          #   optional attributes
+          #
+          # @return [undefined]
+          #
+          # @api public
+          def self.new(directions)
+            directions = coerce_directions(directions.to_ary)
+            assert_unique_attributes(directions.map { |direction| direction.attribute })
+            super
+          end
+
+          # Coerce the attributes into an Array of Direction objects
+          #
+          # @param [Array<Direction>] attributes
+          #
+          # @return [Array<Direction>]
+          #
+          # @api private
+          def self.coerce_directions(directions)
+            directions.map { |direction| Ascending.coerce(direction) }
+          end
+
+          # Assert the attributes are unique
+          #
+          # @param [Array<Attribute>] attributes
+          #
+          # @return [undefined]
+          #
+          # @raise [DuplicateAttributeError]
+          #   raised if the attributes are not unique
+          #
+          # @api private
+          def self.assert_unique_attributes(attributes)
+            duplicates = duplicate_attributes(attributes)
+            if duplicates
+              raise DuplicateAttributeError, "duplicate attributes: #{duplicates.join(', ')}"
+            end
+          end
+
+          # Returns the duplicate attribute names, if any
+          #
+          # @param [Array<Attribute>] attributes
+          #
+          # @return [Array<Symbol>]
+          #   returns an array of duplicate attributes
+          #
+          # @return [nil]
+          #   returns nil if there are no duplicate attributes
+          #
+          # @api private
+          def self.duplicate_attributes(attributes)
+            names = attributes.map { |attribute| attribute.name }
+            names.select! { |name| names.count(name) > 1 }
+            names.uniq!
+          end
+
+          private_class_method :coerce_directions, :assert_unique_attributes, :duplicate_attributes
+
           # Initialize a DirectionSet
           #
-          # @param [Array<Direction, Attribute>] attribute
-          #   the attribute to sort on
+          # @param [Array<Direction>] directions
+          #   the directions to sort with
           #
           # @return [undefined]
           #
           # @api private
           def initialize(directions)
-            @directions = directions.to_ary.map do |direction|
-              Ascending.coerce(direction)
-            end
+            @directions = directions
           end
 
           EMPTY = new([])
