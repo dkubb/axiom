@@ -518,6 +518,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/operation/unary/hash_spec.rb",
     "spec/unit/veritas/operation/unary/operand_spec.rb",
     "spec/unit/veritas/relation/base/class_methods/new_spec.rb",
+    "spec/unit/veritas/relation/base/eql_spec.rb",
     "spec/unit/veritas/relation/base/hash_spec.rb",
     "spec/unit/veritas/relation/base/name_spec.rb",
     "spec/unit/veritas/relation/class_methods/new_spec.rb",

@@ -33,6 +33,21 @@ module Veritas
         @name = Immutable.freeze_object(name.to_s)
       end
 
+      # Compare the base relation with other relation for equality
+      #
+      # @example
+      #   base.eql?(other)  # => true or false
+      #
+      # @param [Relation] other
+      #   the other relation to compare with
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def eql?(other)
+        super && name.eql?(other.name)
+      end
+
       # Return the hash of the base relation
       #
       # @example
