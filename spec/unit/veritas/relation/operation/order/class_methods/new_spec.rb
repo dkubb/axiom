@@ -31,7 +31,7 @@ describe Relation::Operation::Order, '.new' do
   end
 
   context 'without all attributes specified in the directions' do
-    let(:directions) { [ :id ] }
+    let(:directions) { [ relation[:id] ] }
 
     specify { expect { subject }.to raise_error(InvalidDirectionsError, 'directions must include every attribute in the header') }
   end

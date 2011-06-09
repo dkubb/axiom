@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '.coerce' do
   subject { object.coerce(argument) }
 
-  let(:directions)    { [ :id ]                }
-  let(:object)        { described_class        }
-  let(:direction_set) { object.new(directions) }
+  let(:directions)    { [ Attribute::Integer.new(:id) ] }
+  let(:object)        { described_class                 }
+  let(:direction_set) { object.new(directions)          }
 
   context 'when the argument is a DirectionSet' do
     let(:argument) { direction_set }
