@@ -26,7 +26,7 @@ module Veritas
       #
       # @api public
       def self.new(attributes = [])
-        attributes = coerce_attributes(attributes)
+        attributes = coerce_attributes(attributes.to_ary)
         assert_unique_attributes(attributes)
         super
       end
@@ -39,7 +39,7 @@ module Veritas
       #
       # @api private
       def self.coerce_attributes(attributes)
-        attributes.to_ary.map { |attribute| Attribute.coerce(attribute) }
+        attributes.map { |attribute| Attribute.coerce(attribute) }
       end
 
       # Assert the attributes are unique
