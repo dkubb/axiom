@@ -1,6 +1,3 @@
-* Add Tuple#predicate
-  * Should return a predicate that matches only this tuple.
-
 * Updated DirectionSet to verify the Attribute objects are unique.
   * Currently you could pass in [ r[:id].asc, r[:id].desc ] and it would
     work even though it's invalid.
