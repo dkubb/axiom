@@ -26,7 +26,7 @@ module Veritas
       #
       # @api public
       def self.new(attributes = [])
-        attributes = coerce_attributes(attributes).freeze
+        attributes = coerce_attributes(attributes)
         assert_unique_attributes(attributes)
         super
       end
