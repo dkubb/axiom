@@ -93,7 +93,9 @@ module Veritas
       #
       # @api public
       def joinable?(other)
-        super && length.eql?(other.length)
+        super                             &&
+        min_length.eql?(other.min_length) &&
+        max_length.eql?(other.max_length)
       end
 
     private
