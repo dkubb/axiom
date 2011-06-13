@@ -95,7 +95,7 @@ module Veritas
     # @api public
     def self.freeze_object(object)
       case object
-        when Numeric, TrueClass, FalseClass, NilClass
+        when Numeric, TrueClass, FalseClass, NilClass, Symbol
           object
         else
           freeze_value(object)

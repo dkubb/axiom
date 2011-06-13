@@ -31,6 +31,12 @@ describe Immutable, '.freeze_object' do
     it { should equal(value) }
   end
 
+  context 'with a symbol value' do
+    let(:value) { :symbol }
+
+    it { should equal(value) }
+  end
+
   context 'with a frozen value' do
     let(:value) { String.new.freeze }
 
