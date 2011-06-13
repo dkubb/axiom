@@ -11,8 +11,8 @@ require File.expand_path('../../fixtures/classes', __FILE__)
    let(:object)         { BinaryRelationOperationSpecs::Object                     }
 
    context 'with left and right ordered' do
-     let(:left)  { original_left.order  { |r| r[:id]   } }
-     let(:right) { original_right.order { |r| r[:name] } }
+     let(:left)  { original_left.sort_by  { |r| r[:id]   } }
+     let(:right) { original_right.sort_by { |r| r[:name] } }
 
      it { should be_kind_of(object) }
    end
@@ -25,15 +25,15 @@ require File.expand_path('../../fixtures/classes', __FILE__)
    end
 
    context 'with left ordered, and right unordered' do
-     let(:left)  { original_left.order { |r| r[:id] } }
-     let(:right) { original_right                     }
+     let(:left)  { original_left.sort_by { |r| r[:id] } }
+     let(:right) { original_right                       }
 
      specify { expect { subject }.to raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
    end
 
    context 'with right ordered, and left unordered' do
-     let(:left)  { original_left                         }
-     let(:right) { original_right.order { |r| r[:name] } }
+     let(:left)  { original_left                           }
+     let(:right) { original_right.sort_by { |r| r[:name] } }
 
      specify { expect { subject }.to raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
    end

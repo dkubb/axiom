@@ -8,7 +8,7 @@ describe Relation::Operation::Offset::Methods, '#drop' do
   let(:described_class) { Relation                                                         }
   let(:offset)          { 1                                                                }
   let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
-  let(:object)          { relation.order                                                   }
+  let(:object)          { relation.sort_by { |r| r[:id] }                                  }
 
   it { should be_kind_of(Relation::Operation::Offset) }
 

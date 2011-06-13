@@ -6,7 +6,7 @@ describe Relation::Operation::Limit, '#hash' do
   subject { object.hash }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:operand)  { relation.order                                              }
+  let(:operand)  { relation.sort_by { |r| r[:id] }                             }
   let(:limit)    { 1                                                           }
   let(:object)   { described_class.new(operand, limit)                         }
 

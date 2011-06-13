@@ -9,15 +9,15 @@ describe Relation::Operation::Offset, '.new' do
   let(:object)            { described_class                                      }
 
   context 'with an ordered relation' do
-    let(:relation) { original_relation.order { |r| r[:id] } }
-    let(:offset)   { 1                                      }
+    let(:relation) { original_relation.sort_by { |r| r[:id] } }
+    let(:offset)   { 1                                        }
 
     it { should be_kind_of(object) }
   end
 
   context 'with an ordered relation having an empty header' do
-    let(:relation) { original_relation.order { |r| r[:id] }.project([]) }
-    let(:offset)   { 1                                                  }
+    let(:relation) { original_relation.sort_by { |r| r[:id] }.project([]) }
+    let(:offset)   { 1                                                    }
 
     it { should be_kind_of(object) }
   end
@@ -30,15 +30,15 @@ describe Relation::Operation::Offset, '.new' do
   end
 
   context 'with an offset less than 0' do
-    let(:relation) { original_relation.order { |r| r[:id] } }
-    let(:offset)   { -1                                     }
+    let(:relation) { original_relation.sort_by { |r| r[:id] } }
+    let(:offset)   { -1                                       }
 
     specify { expect { subject }.to raise_error(InvalidOffsetError, 'offset must be greater than or equal to 0, but was -1') }
   end
 
   context 'with a nil offset' do
-    let(:relation) { original_relation.order { |r| r[:id] } }
-    let(:offset)   { nil                                    }
+    let(:relation) { original_relation.sort_by { |r| r[:id] } }
+    let(:offset)   { nil                                      }
 
     specify { expect { subject }.to raise_error(InvalidOffsetError, 'offset must be greater than or equal to 0, but was nil') }
   end

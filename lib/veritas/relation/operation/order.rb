@@ -29,7 +29,6 @@ module Veritas
         #
         # @api public
         def self.new(operand, directions)
-          directions = operand.header if directions.empty?
           directions = DirectionSet.coerce(directions)
           assert_order_by_full_header(operand, directions)
           super
@@ -123,6 +122,27 @@ module Veritas
 
           # Return an ordered relation
           #
+          # @example
+          #   order = relation.sort_by { |r| [ r[:a].desc, r[:b] ] }
+          #
+          # @yield [relation]
+          #   optional block to evaluate for directions
+          #
+          # @yieldparam [Relation] relation
+          #
+          # @yieldreturn [Array<Direction>, Header]
+          #
+          # @return [Order]
+          #
+          # @api public
+          def sort_by
+            Order.new(self, Array(yield(self)))
+          end
+
+          # Return an ordered relation (Deprecated)
+          #
+          # @deprecated Use #sort_by instead
+          #
           # @example with no directions
           #   order = relation.order  # sort by the header
           #
@@ -140,7 +160,8 @@ module Veritas
           #
           # @api public
           def order
-            Order.new(self, block_given? ? Array(yield(self)) : header)
+            warn "#{self.class}#order is deprecated and will be removed from Veritas 0.0.6"
+            sort_by { |relation| block_given? ? yield(relation) : relation.header }
           end
 
         end # module Methods

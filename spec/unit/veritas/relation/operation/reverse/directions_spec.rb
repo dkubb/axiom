@@ -7,7 +7,7 @@ describe Relation::Operation::Reverse, '#directions' do
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [].each) }
   let(:object)   { described_class.new(ordered)                }
-  let(:ordered)  { relation.order                              }
+  let(:ordered)  { relation.sort_by { |r| r[:id] }             }
 
   it_should_behave_like 'an idempotent method'
 

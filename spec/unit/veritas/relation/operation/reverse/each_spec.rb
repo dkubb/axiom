@@ -6,7 +6,7 @@ describe Relation::Operation::Reverse, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:order)    { relation.order                                              }
+  let(:order)    { relation.sort_by { |r| r[:id] }                             }
   let(:object)   { described_class.new(order)                                  }
   let(:yields)   { []                                                          }
 
