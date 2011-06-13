@@ -1,9 +1,3 @@
-* Deprecate Relation#order in favour of Relation#sort_by
-  * Evaluate the block the same way as Relation#order
-  * Do not allow block-less syntax. I think this was an API mistake since
-    it implies the Header has an order. The fact that the Header is
-    currently ordered is due to the implementation, and may change at any time.
-
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
