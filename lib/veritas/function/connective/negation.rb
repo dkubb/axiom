@@ -65,6 +65,8 @@ module Veritas
           # @example with other argument
           #   conjunction = expression.not(other)
           #
+          # @return [Connective]
+          #
           # @overload not
           #   Negates the expression
           #

@@ -86,6 +86,9 @@ module Veritas
 
     # Return the type returned from #call
     #
+    # @example
+    #   type = aggregate.type
+    #
     # @return [Class<Attribute>]
     #
     # @api public

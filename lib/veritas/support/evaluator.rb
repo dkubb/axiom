@@ -100,7 +100,7 @@ module Veritas
       #
       # @return [Attribute]
       #
-      # @api public
+      # @api private
       def method_missing(name, *args)
         return super unless respond_to?(name)
         raise ArgumentError, "wrong number of arguments (#{args.length} for 0)" unless args.empty?

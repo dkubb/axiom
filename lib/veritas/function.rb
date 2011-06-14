@@ -41,6 +41,9 @@ module Veritas
 
     # Evaluate the function using the operands
     #
+    # @example
+    #   object = function.call(*args)
+    #
     # @return [Object]
     #
     # @api public
