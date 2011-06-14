@@ -4,8 +4,7 @@ module Veritas
   module Evaluator
 
     # Provide a context to evaluate a Relation operation block
-    class Context
-      include Immutable
+    class Context < BasicObject
 
       # The functions to evaluate
       #
@@ -66,6 +65,46 @@ module Veritas
       # @api public
       def [](name)
         @header[name]
+      end
+
+      # Test if the method is supported on this object
+      #
+      # @param [Symbol] name
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def respond_to?(name, *)
+        !!self[name]
+      end
+
+      # Forward a message to the object
+      #
+      # @param [Array] *args
+      #
+      # @return [Object]
+      #
+      # @api private
+      def send(*args, &block)
+        __send__(*args, &block)
+      end
+
+    private
+
+      # Lookup the attribute in the header using the attribute name
+      #
+      # @example
+      #   attribute = context.id
+      #
+      # @param [Symbol] name
+      #
+      # @return [Attribute]
+      #
+      # @api public
+      def method_missing(name, *args)
+        return super unless respond_to?(name)
+        raise ArgumentError, "wrong number of arguments (#{args.length} for 0)" unless args.empty?
+        self[name]
       end
 
     end # class Context

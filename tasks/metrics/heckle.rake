@@ -6,6 +6,7 @@ $LOAD_PATH.unshift(File.expand_path('../../../lib', __FILE__))
 begin
   require 'pathname'
   require 'backports'
+  require 'backports/basic_object'
   require 'active_support/inflector'
   require 'heckle'
   require 'mspec'

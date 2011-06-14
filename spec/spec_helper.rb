@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'backports'
+require 'backports/basic_object'
 require 'veritas'
 require 'spec'
 require 'spec/autorun'
