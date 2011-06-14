@@ -13,6 +13,13 @@ module Veritas
       # @api private
       attr_reader :functions
 
+      # Return the block results
+      #
+      # @return [Object]
+      #
+      # @api private
+      attr_reader :yield
+
       # Initialize a Context
       #
       # @param [Header] header
@@ -23,7 +30,7 @@ module Veritas
       def initialize(header)
         @header    = header
         @functions = {}
-        yield self
+        @yield     = yield self
         @functions.freeze
       end
 

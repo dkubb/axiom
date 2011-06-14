@@ -136,7 +136,8 @@ module Veritas
           #
           # @api public
           def sort_by
-            Order.new(self, Array(yield(self)))
+            context = Evaluator::Context.new(header) { |context| yield context }
+            Order.new(self, Array(context.yield))
           end
 
           # Return an ordered relation (Deprecated)
@@ -161,7 +162,7 @@ module Veritas
           # @api public
           def order
             warn "#{self.class}#order is deprecated and will be removed from Veritas 0.0.6"
-            sort_by { |relation| block_given? ? yield(relation) : relation.header }
+            sort_by { |context| block_given? ? yield(context) : header }
           end
 
         end # module Methods

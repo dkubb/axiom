@@ -305,6 +305,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/evaluator/context/method_missing_spec.rb",
     "spec/unit/veritas/evaluator/context/respond_to_spec.rb",
     "spec/unit/veritas/evaluator/context/send_spec.rb",
+    "spec/unit/veritas/evaluator/context/yield_spec.rb",
     "spec/unit/veritas/function/binary/call_spec.rb",
     "spec/unit/veritas/function/binary/equal_value_spec.rb",
     "spec/unit/veritas/function/binary/fixtures/classes.rb",

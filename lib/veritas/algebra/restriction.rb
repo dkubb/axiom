@@ -98,7 +98,8 @@ module Veritas
         #
         # @api public
         def restrict
-          Restriction.new(self, yield(self))
+          context = Evaluator::Context.new(header) { |context| yield context }
+          Restriction.new(self, context.yield)
         end
 
       end # module Methods
