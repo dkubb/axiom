@@ -19,7 +19,7 @@ array    = (1..100).map { |n| Tuple.new(header, [ n, 'Dan Kubb' ]) }
 relation = Relation.new(header, array)
 join     = Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 35 ] ])
 product  = Relation.new([ [ :age, Integer ] ], [ [ 35 ] ])
-ordered  = relation.sort_by { |r| [ r[:id], r[:name] ] }
+ordered  = relation.sort_by { |r| [ r.id, r.name ] }
 
 RBench.run(TIMES) do
   column :ruby,    :title => 'Ruby'
@@ -43,7 +43,7 @@ RBench.run(TIMES) do
 
   report 'restriction' do
     ruby    { array.select { |tuple| tuple[:id] >= 1 }.each {} }
-    veritas { relation.restrict { |r| r[:id].gte(1) }.each {}  }
+    veritas { relation.restrict { |r| r.id.gte(1) }.each {}  }
   end
 
   report 'join' do
@@ -72,7 +72,7 @@ RBench.run(TIMES) do
 
   report 'order' do
     ruby    { array.sort_by { |tuple| [ -tuple[:id], tuple[:name] ] }.each {} }
-    veritas { relation.sort_by { |r| [ r[:id].desc, r[:name] ] }.each {}      }
+    veritas { relation.sort_by { |r| [ r.id.desc, r.name ] }.each {}      }
   end
 
   report 'take' do

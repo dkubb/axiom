@@ -139,7 +139,7 @@ module Veritas
         #   join = relation.join(other)
         #
         # @example theta-join using a block
-        #   join = relation.join(other) { |r| r[:a].gte(r[:b]) }
+        #   join = relation.join(other) { |r| r.a.gte(r.b) }
         #
         # @param [Relation] other
         #   the other relation to join

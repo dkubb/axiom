@@ -95,7 +95,7 @@ end
 
 each_count do |array, relation, count|
   gc_statistics "restriction (#{count} tuples)" do
-    relation.restrict { |r| r[:id].gte(1) }.each {}
+    relation.restrict { |r| r.id.gte(1) }.each {}
   end
 end
 
@@ -131,12 +131,12 @@ end
 
 each_count do |array, relation, count|
   gc_statistics "order (#{count} tuples)" do
-    relation.sort_by { |r| [ r[:id].desc, r[:name] ] }.each {}
+    relation.sort_by { |r| [ r.id.desc, r.name ] }.each {}
   end
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r[:id], r[:name] ] }
+  relation = relation.sort_by { |r| [ r.id, r.name ] }
 
   gc_statistics "take (#{count} tuples)" do
     relation.take(count).each {}
@@ -144,7 +144,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r[:id], r[:name] ] }
+  relation = relation.sort_by { |r| [ r.id, r.name ] }
 
   gc_statistics "drop (#{count} tuples)" do
     relation.drop(1).each {}
@@ -152,7 +152,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r[:id], r[:name] ] }
+  relation = relation.sort_by { |r| [ r.id, r.name ] }
 
   gc_statistics "first (#{count} tuples)" do
     relation.first(count).each {}
@@ -160,7 +160,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r[:id], r[:name] ] }
+  relation = relation.sort_by { |r| [ r.id, r.name ] }
 
   gc_statistics "last (#{count} tuples)" do
     relation.last(count).each {}
@@ -168,7 +168,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r[:id], r[:name] ] }
+  relation = relation.sort_by { |r| [ r.id, r.name ] }
 
   gc_statistics "reverse (#{count} tuples)" do
     relation.reverse.each {}

@@ -9,7 +9,7 @@ describe Relation::Operation::Reverse, '.new' do
   let(:object)            { described_class                                      }
 
   context 'with an ordered relation' do
-    let(:relation) { original_relation.sort_by { |r| r[:id] } }
+    let(:relation) { original_relation.sort_by { |r| r.id } }
 
     it { should be_kind_of(object) }
 
@@ -19,7 +19,7 @@ describe Relation::Operation::Reverse, '.new' do
   end
 
   context 'with an ordered relation having an empty header' do
-    let(:relation) { original_relation.sort_by { |r| r[:id] }.project([]) }
+    let(:relation) { original_relation.sort_by { |r| r.id }.project([]) }
 
     it { should be_kind_of(object) }
 

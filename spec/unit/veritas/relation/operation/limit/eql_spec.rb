@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Operation::Limit, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]).sort_by { |r| r[:id] } }
-  let(:limit)   { 1                                                                                  }
-  let(:object)  { described_class.new(operand, limit)                                                }
+  let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]).sort_by { |r| r.id } }
+  let(:limit)   { 1                                                                                }
+  let(:object)  { described_class.new(operand, limit)                                              }
 
   context 'with the same object' do
     let(:other) { object }
@@ -40,9 +40,9 @@ describe Relation::Operation::Limit, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]).sort_by { |r| r[:id] } }
-    let(:other_limit)   { limit                                                                       }
-    let(:other)         { described_class.new(other_operand, other_limit)                             }
+    let(:other_operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]).sort_by { |r| r.id } }
+    let(:other_limit)   { limit                                                                     }
+    let(:other)         { described_class.new(other_operand, other_limit)                           }
 
     it { should be(false) }
 

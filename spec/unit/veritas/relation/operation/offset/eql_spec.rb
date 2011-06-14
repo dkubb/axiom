@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Operation::Offset, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]).sort_by { |r| r[:id] } }
-  let(:offset)  { 1                                                                                  }
-  let(:object)  { described_class.new(operand, offset)                                               }
+  let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]).sort_by { |r| r.id } }
+  let(:offset)  { 1                                                                                }
+  let(:object)  { described_class.new(operand, offset)                                             }
 
   context 'with the same object' do
     let(:other) { object }
@@ -40,9 +40,9 @@ describe Relation::Operation::Offset, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]).sort_by { |r| r[:id] } }
-    let(:other_offset)  { offset                                                                      }
-    let(:other)         { described_class.new(other_operand, other_offset)                            }
+    let(:other_operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]).sort_by { |r| r.id } }
+    let(:other_offset)  { offset                                                                    }
+    let(:other)         { described_class.new(other_operand, other_offset)                          }
 
     it { should be(false) }
 

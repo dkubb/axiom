@@ -36,19 +36,19 @@ http://travis-ci.org/dkubb/veritas.png
   new_relation = relation.difference(other)  # OR relation - other
 
   # restriction
-  new_relation = relation.restrict { |r| r[:a].eq('other').and(r[:b].gte(42)) }
+  new_relation = relation.restrict { |r| r.a.eq('other').and(r.b.gte(42)) }
 
   # theta-join
-  new_relation = relation.join(other) { |r| r[:a].gte(r[:b]) }
+  new_relation = relation.join(other) { |r| r.a.gte(r.b) }
 
   # NOTE: theta-join is effectively restricting a product of the relations
 
   # extend
-  new_relation = relation.extend { |r| r.add(:total, r[:unit_price] * r[:quantity]) }
+  new_relation = relation.extend { |r| r.add(:total, r.unit_price * r.quantity) }
   new_relation = relation.extend { |r| r.add(:total) { |t| t[:unit_price] * t[:quantity] } }
 
   # summarize
-  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count, r[:name].count) }
+  new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count, r.name.count) }
   new_relation = relation.summarize(relation.project([ :name ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
 
   # Non-Relational Operators
@@ -61,7 +61,7 @@ http://travis-ci.org/dkubb/veritas.png
   relation = relation.each { |tuple| ... }
 
   # order by attribute and direction
-  new_relation = relation.sort_by { |r| [ r[:a].desc, r[:b] ] }
+  new_relation = relation.sort_by { |r| [ r.a.desc, r.b ] }
 
   # reverse the relation (only allowed if ordered)
   new_relation = relation.reverse

@@ -123,7 +123,7 @@ module Veritas
           # Return an ordered relation
           #
           # @example
-          #   order = relation.sort_by { |r| [ r[:a].desc, r[:b] ] }
+          #   order = relation.sort_by { |r| [ r.a.desc, r.b ] }
           #
           # @yield [relation]
           #   optional block to evaluate for directions
@@ -148,7 +148,7 @@ module Veritas
           #   order = relation.order  # sort by the header
           #
           # @example with a block
-          #   order = relation.order { |r| [ r[:a].desc, r[:b] ] }
+          #   order = relation.order { |r| [ r.a.desc, r.b ] }
           #
           # @yield [relation]
           #   optional block to evaluate for directions

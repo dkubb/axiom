@@ -31,8 +31,8 @@ describe Algebra::Summarization::Methods, '#summarize' do
   end
 
   context 'when using a summarized-on attribute in the context' do
-    let(:summarize_with) { object.project([ :id ])                    }
-    let(:block)          { lambda { |r| r.add(:count, r[:id].count) } }
+    let(:summarize_with) { object.project([ :id ])                  }
+    let(:block)          { lambda { |r| r.add(:count, r.id.count) } }
 
     specify { expect { subject }.to raise_error(NoMethodError) }
   end

@@ -55,7 +55,7 @@ describe Algebra::Summarization, '#eql?' do
 
   context 'with an object having a different summarize_by' do
     let(:other_operand)      { operand                                                                   }
-    let(:other_summarize_by) { operand.project([]).sort_by { |r| r[:id] }                                }
+    let(:other_summarize_by) { operand.project([]).sort_by {}                                            }
     let(:other_summarizers)  { summarizers                                                               }
     let(:other)              { described_class.new(other_operand, other_summarize_by, other_summarizers) }
 

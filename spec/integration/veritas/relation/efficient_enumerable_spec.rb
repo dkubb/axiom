@@ -31,7 +31,7 @@ describe Relation do
     end
 
     it '#restrict should be efficient' do
-      restricted = relation.restrict{ |r| r[:id].gt(5) }
+      restricted = relation.restrict{ |r| r.id.gt(5) }
       sample(restricted).should == [ [ 6 ], [ 7 ], [ 8 ], [ 9 ], [ 10 ] ]
     end
 

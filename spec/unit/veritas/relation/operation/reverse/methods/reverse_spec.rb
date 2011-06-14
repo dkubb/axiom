@@ -7,7 +7,7 @@ describe Relation::Operation::Reverse::Methods, '#reverse' do
 
   let(:described_class) { Relation                                                         }
   let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
-  let(:object)          { relation.sort_by { |r| r[:id] }                                  }
+  let(:object)          { relation.sort_by { |r| r.id }                                    }
 
   it { should be_kind_of(Relation::Operation::Reverse) }
 
