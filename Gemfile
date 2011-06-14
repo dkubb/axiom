@@ -12,10 +12,10 @@ end
 
 group :guard do
   gem 'growl',         '~> 1.0.3'
-  gem 'guard',         '~> 0.3.4'
+  gem 'guard',         '~> 0.4.2'
   gem 'guard-bundler', '~> 0.1.3'
   gem 'guard-ego',     '~> 0.0.1'
-  gem 'guard-rspec',   '~> 0.3.1'
+  gem 'guard-rspec',   '~> 0.4.0'
 end
 
 group :benchmarks do
