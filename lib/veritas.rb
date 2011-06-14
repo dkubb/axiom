@@ -125,9 +125,6 @@ require 'veritas/version'
 
 module Veritas
 
-  # Represent an undefined argument
-  module Undefined; end
-
   # Raised when the headers are invalid for Join and Product
   class InvalidHeaderError < ArgumentError; end
 
@@ -151,6 +148,9 @@ module Veritas
 
   # Raised when an attribute is a duplicate of another in the header
   class DuplicateAttributeError < StandardError; end
+
+  # Represent an undefined argument
+  Undefined = Object.new.freeze
 
   TABLE_DUM = Relation::Empty.new([])
   TABLE_DEE = Relation.new([], [ [] ])
