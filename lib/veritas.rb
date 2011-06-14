@@ -152,6 +152,9 @@ module Veritas
   # Represent an undefined argument
   Undefined = Object.new.freeze
 
+  # Represent a relation with an empty header and no tuples
   TABLE_DUM = Relation::Empty.new([])
+
+  # Represent a relation with an empty header and a single tuple
   TABLE_DEE = Relation.new([], [ [] ])
 end
