@@ -40,16 +40,15 @@
     * The #call method should propagate the Tuple down to each callable entry
       in the Enumerable.
 
-* Update context to return an object that allows aliasing of ruby-ish predicates
-  to specific operations, eg:
-  * Predicates:
-    * Alias #== to #eq (may break alot)
-    * Alias #!= to #ne (in 1.9 only)
-    * Alias #>= to #gte
-    * Alias #> to #gt
-    * Alias #<= to #lte
-    * Alias #< to #lt
-    * Alias #=~ to #match
-  * Direction:
-    * Alias #@+ to #asc
-    * Alias #@- to #desc
+* Within the restriction context, make sure the attributes have aliases for:
+  * Alias #== to #eq (may break alot)
+  * Alias #!= to #ne (in 1.9 only)
+  * Alias #>= to #gte
+  * Alias #> to #gt
+  * Alias #<= to #lte
+  * Alias #< to #lt
+  * Alias #=~ to #match
+
+* Within the sort_by context, make sure the attributes have aliases for:
+  * Alias #@+ to #asc
+  * Alias #@- to #desc
