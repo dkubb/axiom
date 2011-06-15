@@ -10,7 +10,17 @@ describe Algebra::Summarization::Methods, '#summarize' do
   let(:block)           { lambda { |r| r.add(*summarizers) }                                                       }
   let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
 
-  context 'when summarizing per a relation' do
+  context 'with no arguments' do
+    subject { object.summarize(&block) }
+
+    it { should be_kind_of(Algebra::Summarization) }
+
+    its(:operand) { should equal(object) }
+
+    its(:summarize_per) { should equal(TABLE_DEE) }
+  end
+
+  context 'with a relation' do
     let(:summarize_with) { object.project([]) }
 
     it { should be_kind_of(Algebra::Summarization) }
@@ -20,8 +30,8 @@ describe Algebra::Summarization::Methods, '#summarize' do
     its(:summarize_per) { should equal(summarize_with) }
   end
 
-  context 'when summarizing by a header' do
-    let(:summarize_with) { [] }
+  context 'with a header' do
+    let(:summarize_with) { object.project([]).header }
 
     it { should be_kind_of(Algebra::Summarization) }
 
@@ -30,7 +40,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
     its(:summarize_per) { should == object.project(summarize_with) }
   end
 
-  context 'when using a summarized-on attribute in the context' do
+  context 'with a header containing an attribute used in the context block' do
     let(:summarize_with) { object.project([ :id ])                  }
     let(:block)          { lambda { |r| r.add(:count, r.id.count) } }
 

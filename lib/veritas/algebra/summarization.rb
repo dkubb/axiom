@@ -155,14 +155,19 @@ module Veritas
 
         # Return a summarized relation
         #
+        # @example with no arguments
+        #   summarization = relation.summarize do |context|
+        #     context.add(:count, context[:id].count)
+        #   end
+        #
         # @example with a relation
         #   summarization = relation.summarize(relation.project([ :name ])) do |context|
-        #     context.add(:count, context[:name].count)
+        #     context.add(:count, context[:id].count)
         #   end
         #
         # @example with a header
         #   summarization = relation.summarize([ :name ]) do |context|
-        #     context.add(:count, context[:name].count)
+        #     context.add(:count, context[:id].count)
         #   end
         #
         # @param [Relation, Header, #to_ary] summarize_with
@@ -176,7 +181,7 @@ module Veritas
         # @return [Summarization]
         #
         # @api public
-        def summarize(summarize_with)
+        def summarize(summarize_with = TABLE_DEE)
           summarize_per = coerce_to_relation(summarize_with)
           context       = Evaluator::Context.new(header - summarize_per.header) { |context| yield context }
           Summarization.new(self, summarize_per, context.functions)
