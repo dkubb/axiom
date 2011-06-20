@@ -171,13 +171,13 @@ module Veritas
     # Return a string representing the tuple data
     #
     # @example
-    #   tuple.inspect  # => "[1, 2, 3]"
+    #   tuple.inspect  # => "{<Attribute::Integer name: id>=>1}"
     #
     # @return [String]
     #
     # @api public
     def inspect
-      to_ary.inspect
+      data.inspect
     end
 
     # Coerce an Array-like object into a Tuple

@@ -10,5 +10,5 @@ describe Tuple, '#inspect' do
 
   it { should be_kind_of(String) }
 
-  it { should == '[1]' }
+  it { should == '{<Attribute::Integer name: id>=>1}' }
 end
