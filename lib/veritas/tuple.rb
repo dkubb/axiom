@@ -136,10 +136,8 @@ module Veritas
     #
     # @api public
     def ==(other)
-      header = self.header
-      other  = self.class.coerce(header, other)
-      header == other.header &&
-      to_ary == other.project(header).to_ary
+      other = self.class.coerce(header, other)
+      data == other.data
     end
 
     # Compare the tuple with other tuple for equality
@@ -154,10 +152,8 @@ module Veritas
     #
     # @api public
     def eql?(other)
-      header = self.header
       instance_of?(other.class) &&
-      header.eql?(other.header) &&
-      to_ary.eql?(other.project(header).to_ary)
+      data.eql?(other.data)
     end
 
     # Return the hash of the tuple
