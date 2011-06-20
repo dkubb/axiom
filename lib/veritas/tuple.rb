@@ -46,7 +46,7 @@ module Veritas
     #
     # @api public
     def [](attribute)
-      @data.fetch(header[attribute])
+      data.fetch(header[attribute])
     end
 
     # Return a tuple with only the specified attributes
@@ -61,7 +61,7 @@ module Veritas
     #
     # @api public
     def project(header)
-      self.class.new(header, @data.values_at(*header))
+      self.class.new(header, data.values_at(*header))
     end
 
     # Append values to the tuple and return a new tuple
@@ -121,7 +121,7 @@ module Veritas
     #
     # @api public
     def to_ary
-      @data.values_at(*header).freeze
+      data.values_at(*header).freeze
     end
 
     # Compare the tuple with other tuple for equivalency
@@ -169,7 +169,7 @@ module Veritas
     #
     # @api public
     def hash
-      self.class.hash ^ @data.hash
+      self.class.hash ^ data.hash
     end
 
     # Return a string representing the tuple data
