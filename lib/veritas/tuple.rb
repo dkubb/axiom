@@ -13,6 +13,13 @@ module Veritas
     # @api private
     attr_reader :header
 
+    # The tuple data
+    #
+    # @return [Hash]
+    #
+    # @api private
+    attr_reader :data
+
     # Initialize a Tuple
     #
     # @param [Header] header
