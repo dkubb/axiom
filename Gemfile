@@ -33,7 +33,7 @@ platforms :mri_18 do
     gem 'flay',      '~> 1.4.2'
     gem 'flog',      '~> 2.5.1'
     gem 'heckle',    '~> 1.4.3'
-    gem 'json',      '~> 1.5.2'
+    gem 'json',      '~> 1.5.3'
     gem 'metric_fu', '~> 2.1.1'
     gem 'mspec',     '~> 1.5.17'
     gem 'rcov',      '~> 0.9.9'
