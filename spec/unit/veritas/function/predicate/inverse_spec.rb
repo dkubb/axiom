@@ -8,7 +8,7 @@ describe Function::Predicate, '#inverse' do
 
   let(:object) { described_class.new(1, 1) }
 
-  it { expect { subject }.to raise_error(NoMethodError) }
+  specify { expect { subject }.to raise_error(NoMethodError) }
 
   it 'calls the class inverse method' do
     described_class.should_receive(:inverse).and_return(described_class)
