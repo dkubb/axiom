@@ -17,6 +17,6 @@ describe Tuple, '#[]' do
   context 'with an unknown attribute' do
     let(:attribute) { Attribute::Integer.new(:other_id) }
 
-    it { should be_nil }
+    specify { expect { subject }.to raise_error(IndexError) }
   end
 end

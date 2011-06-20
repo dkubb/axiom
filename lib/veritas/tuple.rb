@@ -39,7 +39,7 @@ module Veritas
     #
     # @api public
     def [](attribute)
-      @data[header[attribute]]
+      @data.fetch(header[attribute])
     end
 
     # Return a tuple with only the specified attributes
