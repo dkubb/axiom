@@ -9,7 +9,7 @@ require 'spec_helper'
     let(:described_class) { Class.new { include Function::Numeric::SquareRoot::Methods } }
     let(:object)          { described_class.new.freeze                                   }
 
-    it { should be_kind_of(Function::Numeric::SquareRoot) }
+    it { should be_instance_of(Function::Numeric::SquareRoot) }
 
     its(:operand) { should equal(object) }
   end

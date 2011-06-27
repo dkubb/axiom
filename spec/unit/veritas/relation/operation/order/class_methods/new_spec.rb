@@ -13,7 +13,7 @@ describe Relation::Operation::Order, '.new' do
   context 'with all attributes specified in the directions' do
     let(:directions) { [ relation[:id], relation[:name] ] }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     its(:operand) { should equal(relation) }
 

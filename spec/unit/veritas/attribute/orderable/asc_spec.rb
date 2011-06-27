@@ -9,5 +9,5 @@ describe Attribute::Orderable, '#asc' do
   let(:described_class) { OrderableSpecs::Object }
   let(:object)          { described_class.new    }
 
-  it { should be_kind_of(Relation::Operation::Order::Ascending) }
+  it { should be_instance_of(Relation::Operation::Order::Ascending) }
 end

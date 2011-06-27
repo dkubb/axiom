@@ -17,7 +17,7 @@ describe Function::Binary, '#rename' do
     let(:left)  { attribute.eq(1) }
     let(:right) { attribute.eq(2) }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:left) { should == other.eq(1) }
 
@@ -28,7 +28,7 @@ describe Function::Binary, '#rename' do
     let(:left)  { attribute.eq(1) }
     let(:right) { other.eq(2)     }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:left) { should == other.eq(1) }
 
@@ -39,7 +39,7 @@ describe Function::Binary, '#rename' do
     let(:left)  { other.eq(1)     }
     let(:right) { attribute.eq(2) }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:left) { should equal(left) }
 

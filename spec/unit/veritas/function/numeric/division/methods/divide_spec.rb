@@ -10,7 +10,7 @@ require 'spec_helper'
     let(:object)          { described_class.new.freeze                                 }
     let(:other)           { mock('Other').freeze                                       }
 
-    it { should be_kind_of(Function::Numeric::Division) }
+    it { should be_instance_of(Function::Numeric::Division) }
 
     its(:left) { should equal(object) }
 

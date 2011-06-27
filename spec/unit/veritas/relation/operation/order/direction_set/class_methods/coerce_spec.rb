@@ -18,7 +18,7 @@ describe Relation::Operation::Order::DirectionSet, '.coerce' do
   context 'when the argument responds to #to_ary' do
     let(:argument) { directions }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == direction_set }
   end

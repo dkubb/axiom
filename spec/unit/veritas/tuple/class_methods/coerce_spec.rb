@@ -18,7 +18,7 @@ describe Tuple, '.coerce' do
   context 'when the argument responds to #to_ary' do
     let(:argument) { [ 1 ] }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == tuple }
   end

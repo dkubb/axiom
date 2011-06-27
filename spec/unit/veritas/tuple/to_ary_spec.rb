@@ -10,7 +10,7 @@ describe Tuple, '#to_ary' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Array) }
+  it { should be_instance_of(Array) }
 
   it { should be_frozen }
 

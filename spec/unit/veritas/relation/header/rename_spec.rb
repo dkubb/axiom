@@ -8,7 +8,7 @@ describe Relation::Header, '#rename' do
   let(:aliases) { Algebra::Rename::Aliases.coerce(object, :id => :other_id)    }
   let(:object)  { described_class.new([ [ :id, Integer ], [ :name, String ] ]) }
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   it { should_not equal(object) }
 

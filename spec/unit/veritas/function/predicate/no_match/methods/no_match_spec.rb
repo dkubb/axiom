@@ -10,5 +10,5 @@ describe Function::Predicate::NoMatch::Methods, '#no_match' do
   let(:other)           { /Dan Kubb/                  }
   let(:object)          { described_class.new         }
 
-  it { should be_kind_of(Function::Predicate::NoMatch) }
+  it { should be_instance_of(Function::Predicate::NoMatch) }
 end

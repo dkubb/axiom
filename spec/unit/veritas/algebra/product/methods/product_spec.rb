@@ -10,6 +10,6 @@ require 'spec_helper'
     let(:object)          { described_class.new([ [ :id,   Integer ] ], [ [ 1          ] ].each) }
     let(:other)           { described_class.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ].each) }
 
-    it { should be_kind_of(Algebra::Product) }
+    it { should be_instance_of(Algebra::Product) }
   end
 end

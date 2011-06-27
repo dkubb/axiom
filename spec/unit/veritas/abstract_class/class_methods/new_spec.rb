@@ -10,7 +10,7 @@ describe AbstractClass::ClassMethods, '#new' do
   context 'called on a subclass' do
     let(:object) { Class.new(abstract_class) }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'called on the class' do

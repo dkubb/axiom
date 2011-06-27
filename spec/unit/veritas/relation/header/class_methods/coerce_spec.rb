@@ -16,7 +16,7 @@ describe Relation::Header, '.coerce' do
   context 'when the argument responds to #to_ary' do
     let(:argument) { [ [ :id, Integer ] ] }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == argument }
   end

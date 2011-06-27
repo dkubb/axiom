@@ -10,7 +10,7 @@ describe Relation::Operation::Limit::Methods, '#last' do
   context 'with no arguments' do
     subject { object.last }
 
-    it { should be_kind_of(Relation::Operation::Reverse) }
+    it { should be_instance_of(Relation::Operation::Reverse) }
 
     it 'returns the expected tuples' do
       should == [ [ 3 ] ]
@@ -26,7 +26,7 @@ describe Relation::Operation::Limit::Methods, '#last' do
 
     let(:limit) { 2 }
 
-    it { should be_kind_of(Relation::Operation::Reverse) }
+    it { should be_instance_of(Relation::Operation::Reverse) }
 
     it 'returns the expected tuples' do
       should == [ [ 2 ], [ 3 ] ]

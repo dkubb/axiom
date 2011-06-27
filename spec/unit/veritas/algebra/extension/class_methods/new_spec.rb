@@ -11,7 +11,7 @@ describe Algebra::Extension, '.new' do
   context 'with a unique attribute name provided' do
     let(:extensions) { { :unique => lambda { |tuple| 1 } } }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'with a duplicate attribute name provided' do

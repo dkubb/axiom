@@ -9,7 +9,7 @@ describe Tuple, '#project' do
   let(:reversed_header) { Relation::Header.new(header.to_a.reverse)                     }
   let(:object)          { described_class.new(header, [ 'Dan Kubb', 1 ])                }
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   its(:header) { should equal(reversed_header) }
 

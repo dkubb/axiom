@@ -17,7 +17,7 @@ describe Relation::Operation::Order::Direction, '.coerce' do
   context 'when the argument is an Attribute' do
     let(:argument) { attribute }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     its(:attribute) { should equal(attribute) }
   end

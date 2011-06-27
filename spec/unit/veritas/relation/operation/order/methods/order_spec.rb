@@ -17,12 +17,12 @@ describe Relation::Operation::Order::Methods, '#order' do
   context 'with no arguments' do
     subject { object.order }
 
-    it { should be_kind_of(Relation::Operation::Order) }
+    it { should be_instance_of(Relation::Operation::Order) }
 
     its(:directions) { should == object.header }
 
     it 'behaves the same as Array#sort_by' do
-      subject.to_a.should == object.to_a.sort_by { |tuple| tuple[:id] }
+      subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
     end
 
     it 'warns with a deprecation message' do
@@ -37,12 +37,12 @@ describe Relation::Operation::Order::Methods, '#order' do
 
     let(:block) { lambda { |relation| [ relation[:id].desc ] } }
 
-    it { should be_kind_of(Relation::Operation::Order) }
+    it { should be_instance_of(Relation::Operation::Order) }
 
     its(:directions) { should == block.call(object) }
 
     it 'behaves the same as Array#sort_by' do
-      subject.to_a.should == object.to_a.sort_by { |tuple| tuple[:id] }.reverse
+      subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] }.reverse)
     end
 
     it 'warns with a deprecation message' do

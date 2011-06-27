@@ -48,7 +48,7 @@ describe Immutable, '.freeze_object' do
 
     it { should_not equal(value) }
 
-    it { should be_kind_of(String) }
+    it { should be_instance_of(String) }
 
     it { should == value }
 

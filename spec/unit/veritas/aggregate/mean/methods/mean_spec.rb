@@ -9,7 +9,7 @@ require 'spec_helper'
     let(:described_class) { Class.new { include Aggregate::Mean::Methods } }
     let(:object)          { described_class.new.freeze                     }
 
-    it { should be_kind_of(Aggregate::Mean) }
+    it { should be_instance_of(Aggregate::Mean) }
 
     its(:operand) { should equal(object) }
   end

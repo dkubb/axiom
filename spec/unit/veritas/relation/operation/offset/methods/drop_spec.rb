@@ -10,7 +10,7 @@ describe Relation::Operation::Offset::Methods, '#drop' do
   let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ].each) }
   let(:object)          { relation.sort_by { |r| r.id }                                    }
 
-  it { should be_kind_of(Relation::Operation::Offset) }
+  it { should be_instance_of(Relation::Operation::Offset) }
 
   its(:offset) { should == offset }
 

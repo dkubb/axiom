@@ -10,5 +10,5 @@ describe Function::Predicate::Inequality::Methods, '#ne' do
   let(:other)           { true                           }
   let(:object)          { described_class.new            }
 
-  it { should be_kind_of(Function::Predicate::Inequality) }
+  it { should be_instance_of(Function::Predicate::Inequality) }
 end

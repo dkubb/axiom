@@ -13,7 +13,7 @@ describe Attribute::String, '#joinable?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.joinable?(object)
+      should eql(other.joinable?(object))
     end
   end
 
@@ -23,7 +23,7 @@ describe Attribute::String, '#joinable?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.joinable?(object)
+      should eql(other.joinable?(object))
     end
   end
 
@@ -33,7 +33,7 @@ describe Attribute::String, '#joinable?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.joinable?(object)
+      should eql(other.joinable?(object))
     end
   end
 
@@ -43,7 +43,7 @@ describe Attribute::String, '#joinable?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.joinable?(object)
+      should eql(other.joinable?(object))
     end
   end
 end

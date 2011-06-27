@@ -9,7 +9,7 @@ require 'spec_helper'
     let(:described_class) { Class.new { include Function::Numeric::UnaryMinus::Methods } }
     let(:object)          { described_class.new.freeze                                   }
 
-    it { should be_kind_of(Function::Numeric::UnaryMinus) }
+    it { should be_instance_of(Function::Numeric::UnaryMinus) }
 
     its(:operand) { should equal(object) }
   end

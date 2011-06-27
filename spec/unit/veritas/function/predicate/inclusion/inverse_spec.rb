@@ -11,7 +11,7 @@ describe Function::Predicate::Inclusion, '#inverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Function::Predicate::Exclusion) }
+  it { should be_instance_of(Function::Predicate::Exclusion) }
 
   its(:left) { should equal(attribute) }
 

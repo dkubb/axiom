@@ -13,7 +13,7 @@ describe Relation::Operation::Order::DirectionSet, '#sort_tuples' do
   context 'sorted with ascending id and descending name' do
     let(:object) { described_class.new([ relation[:id].asc, relation[:name].desc ]) }
 
-    it { should be_kind_of(Array) }
+    it { should be_instance_of(Array) }
 
     it { should == [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ] }
   end
@@ -21,7 +21,7 @@ describe Relation::Operation::Order::DirectionSet, '#sort_tuples' do
   context 'sorted with ascending id and ascending name' do
     let(:object) { described_class.new([ relation[:id].asc, relation[:name].asc ]) }
 
-    it { should be_kind_of(Array) }
+    it { should be_instance_of(Array) }
 
     it { should == [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ] ] }
   end
@@ -29,7 +29,7 @@ describe Relation::Operation::Order::DirectionSet, '#sort_tuples' do
   context 'sorted with descending id and ascending name' do
     let(:object) { described_class.new([ relation[:id].desc, relation[:name].asc ]) }
 
-    it { should be_kind_of(Array) }
+    it { should be_instance_of(Array) }
 
     it { should == [ [ 2, 'Alex Kubb' ], [ 2, 'Dan Kubb' ], [ 1, 'Dan Kubb' ] ] }
   end
@@ -37,7 +37,7 @@ describe Relation::Operation::Order::DirectionSet, '#sort_tuples' do
   context 'sorted with descending id and descending name' do
     let(:object) { described_class.new([ relation[:id].desc, relation[:name].desc ]) }
 
-    it { should be_kind_of(Array) }
+    it { should be_instance_of(Array) }
 
     it { should == [ [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb' ], [ 1, 'Dan Kubb' ] ] }
   end

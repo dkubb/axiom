@@ -10,7 +10,7 @@ describe Tuple, '#join' do
   let(:values)     { [ 'Dan Kubb' ]                             }
   let(:object)     { described_class.new(header, [ 1 ])         }
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   its(:header) { should equal(new_header) }
 

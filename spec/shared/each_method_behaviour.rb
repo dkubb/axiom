@@ -6,10 +6,10 @@ shared_examples_for 'an #each method' do
   context 'with no block' do
     subject { object.each }
 
-    it { should be_kind_of(to_enum.class) }
+    it { should be_instance_of(to_enum.class) }
 
     it 'yields the expected values' do
-      subject.to_a.should == object.to_a
+      subject.to_a.should eql(object.to_a)
     end
   end
 end

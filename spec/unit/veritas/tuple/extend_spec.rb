@@ -12,7 +12,7 @@ describe Tuple, '#extend' do
   context 'when the extension is a Proc' do
     let(:extensions) { [ lambda { |tuple| 1 } ] }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:header) { should equal(new_header) }
 
@@ -22,7 +22,7 @@ describe Tuple, '#extend' do
   context 'when the extension is a Function' do
     let(:extensions) { [ header[:id].abs ] }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:header) { should equal(new_header) }
 
@@ -32,7 +32,7 @@ describe Tuple, '#extend' do
   context 'when the extension is a value' do
     let(:extensions) { [ 1 ] }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:header) { should equal(new_header) }
 

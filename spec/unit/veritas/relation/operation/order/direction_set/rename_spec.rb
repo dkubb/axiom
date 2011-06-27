@@ -12,7 +12,7 @@ describe Relation::Operation::Order::DirectionSet, '#rename' do
 
   it { should_not equal(object) }
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   it { should == [ Attribute::Integer.new(:other_id) ] }
 end

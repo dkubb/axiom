@@ -9,7 +9,7 @@ require 'spec_helper'
     let(:described_class) { Class.new { include Aggregate::Minimum::Methods } }
     let(:object)          { described_class.new.freeze                        }
 
-    it { should be_kind_of(Aggregate::Minimum) }
+    it { should be_instance_of(Aggregate::Minimum) }
 
     its(:operand) { should equal(object) }
   end

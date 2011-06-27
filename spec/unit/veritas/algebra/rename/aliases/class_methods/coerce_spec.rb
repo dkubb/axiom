@@ -22,7 +22,7 @@ describe Algebra::Rename::Aliases, '.coerce' do
     let(:new_attr) { :other_id                }
     let(:aliases)  { { old_attr => new_attr } }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == { attribute => attribute.rename(:other_id) } }
   end
@@ -32,7 +32,7 @@ describe Algebra::Rename::Aliases, '.coerce' do
     let(:new_attr) { attribute.rename(:other_id) }
     let(:aliases)  { { old_attr => new_attr }    }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == { attribute => attribute.rename(:other_id) } }
   end
@@ -42,7 +42,7 @@ describe Algebra::Rename::Aliases, '.coerce' do
     let(:new_attr) { :other_id                }
     let(:aliases)  { { old_attr => new_attr } }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == { attribute => attribute.rename(:other_id) } }
   end
@@ -52,7 +52,7 @@ describe Algebra::Rename::Aliases, '.coerce' do
     let(:new_attr) { attribute.rename(:other_id) }
     let(:aliases)  { { old_attr => new_attr }    }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == { attribute => attribute.rename(:other_id) } }
   end

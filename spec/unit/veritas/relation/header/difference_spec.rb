@@ -11,7 +11,7 @@ require 'spec_helper'
     let(:object)     { described_class.new([ attribute1 ]) }
     let(:other)      { described_class.new([ attribute2 ]) }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     it { should == [ attribute1 ] }
   end

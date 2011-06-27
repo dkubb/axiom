@@ -13,7 +13,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
   context 'with no arguments' do
     subject { object.summarize(&block) }
 
-    it { should be_kind_of(Algebra::Summarization) }
+    it { should be_instance_of(Algebra::Summarization) }
 
     its(:operand) { should equal(object) }
 
@@ -23,7 +23,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
   context 'with a relation' do
     let(:summarize_with) { object.project([]) }
 
-    it { should be_kind_of(Algebra::Summarization) }
+    it { should be_instance_of(Algebra::Summarization) }
 
     its(:operand) { should equal(object) }
 
@@ -33,7 +33,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
   context 'with a header' do
     let(:summarize_with) { object.project([]).header }
 
-    it { should be_kind_of(Algebra::Summarization) }
+    it { should be_instance_of(Algebra::Summarization) }
 
     its(:operand) { should equal(object) }
 

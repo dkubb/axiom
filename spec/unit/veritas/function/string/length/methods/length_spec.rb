@@ -8,7 +8,7 @@ describe Function::String::Length::Methods, '#length' do
   let(:described_class) { Class.new { include Function::String::Length::Methods } }
   let(:object)          { described_class.new.freeze                              }
 
-  it { should be_kind_of(Function::String::Length) }
+  it { should be_instance_of(Function::String::Length) }
 
   its(:operand) { should equal(object) }
 end

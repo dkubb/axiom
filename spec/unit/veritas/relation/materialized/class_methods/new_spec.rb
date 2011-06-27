@@ -12,7 +12,7 @@ describe Relation::Materialized, '.new' do
 
     let(:directions) { [ header[:id] ] }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     its(:header) { should equal(header) }
 
@@ -24,7 +24,7 @@ describe Relation::Materialized, '.new' do
   context 'with no directions' do
     subject { object.new(header, tuples) }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     its(:header) { should equal(header) }
 

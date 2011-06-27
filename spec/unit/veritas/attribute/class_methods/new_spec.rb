@@ -23,7 +23,7 @@ describe Attribute, '.new' do
     context "when called on the Attribute subclass #{described_class}" do
       let(:object) { described_class }
 
-      it { should be_kind_of(object) }
+      it { should be_instance_of(object) }
     end
   end
 

@@ -10,5 +10,5 @@ describe Function::Predicate::LessThanOrEqualTo::Methods, '#lte' do
   let(:other)           { 1                                     }
   let(:object)          { described_class.new                   }
 
-  it { should be_kind_of(Function::Predicate::LessThanOrEqualTo) }
+  it { should be_instance_of(Function::Predicate::LessThanOrEqualTo) }
 end

@@ -13,7 +13,7 @@ describe Algebra::Rename, '#directions' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
+    it { should be_instance_of(Relation::Operation::Order::DirectionSet) }
 
     it { should be_empty }
   end
@@ -23,7 +23,7 @@ describe Algebra::Rename, '#directions' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should be_kind_of(Relation::Operation::Order::DirectionSet) }
+    it { should be_instance_of(Relation::Operation::Order::DirectionSet) }
 
     it { should == [ Attribute::Integer.new(:other_id).asc ] }
   end

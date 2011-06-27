@@ -10,5 +10,5 @@ describe Function::Predicate::Match::Methods, '#match' do
   let(:other)           { /Dan Kubb/                }
   let(:object)          { described_class.new       }
 
-  it { should be_kind_of(Function::Predicate::Match) }
+  it { should be_instance_of(Function::Predicate::Match) }
 end

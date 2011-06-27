@@ -10,7 +10,7 @@ describe Attribute, '#options' do
   context 'when no options are provided' do
     let(:object) { described_class.new(:id) }
 
-    it { should be_kind_of(Hash) }
+    it { should be_instance_of(Hash) }
 
     it { should be_empty }
 
@@ -30,7 +30,7 @@ describe Attribute, '#options' do
 
     it { should_not equal(options) }
 
-    it { should be_kind_of(Hash) }
+    it { should be_instance_of(Hash) }
 
     it { should == options }
 

@@ -12,7 +12,7 @@ describe Algebra::Rename::Aliases, '.new' do
   context 'when aliases are unique' do
     let(:aliases)  { { id => id.rename(:other_id), uid => uid.rename(:other_uid) } }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'when aliases are duplicated' do

@@ -11,13 +11,13 @@ describe Relation::Operation::Order::DirectionSet, '#reverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   it 'reverses each direction' do
     should == [ attribute1.desc, attribute2.desc ]
   end
 
   it 'does not reverse the attribute order' do
-    subject.attributes.should == [ attribute1, attribute2 ]
+    subject.attributes.should eql([ attribute1, attribute2 ])
   end
 end

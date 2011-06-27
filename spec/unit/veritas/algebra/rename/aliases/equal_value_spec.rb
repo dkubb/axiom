@@ -15,7 +15,7 @@ describe Algebra::Rename::Aliases, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -25,7 +25,7 @@ describe Algebra::Rename::Aliases, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -35,7 +35,7 @@ describe Algebra::Rename::Aliases, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -46,7 +46,7 @@ describe Algebra::Rename::Aliases, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 end

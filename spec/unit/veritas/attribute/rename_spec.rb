@@ -17,7 +17,7 @@ describe Attribute, '#rename' do
   context 'when the new name is different' do
     let(:name) { :other_id }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     it { should_not equal(object) }
 

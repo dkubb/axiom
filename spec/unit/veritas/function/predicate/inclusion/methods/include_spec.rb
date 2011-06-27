@@ -10,5 +10,5 @@ describe Function::Predicate::Inclusion::Methods, '#include' do
   let(:other)           { [ true, false ]               }
   let(:object)          { described_class.new           }
 
-  it { should be_kind_of(Function::Predicate::Inclusion) }
+  it { should be_instance_of(Function::Predicate::Inclusion) }
 end

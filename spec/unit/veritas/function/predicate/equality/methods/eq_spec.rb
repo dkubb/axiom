@@ -10,5 +10,5 @@ describe Function::Predicate::Equality::Methods, '#eq' do
   let(:other)           { true                         }
   let(:object)          { described_class.new          }
 
-  it { should be_kind_of(Function::Predicate::Equality) }
+  it { should be_instance_of(Function::Predicate::Equality) }
 end

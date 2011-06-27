@@ -11,7 +11,7 @@ describe Function::Numeric::Exponentiation, '#inverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Function::Numeric::Exponentiation) }
+  it { should be_instance_of(Function::Numeric::Exponentiation) }
 
   its(:left)  { should equal(left)                                    }
   its(:right) { should eql(Function::Numeric::Division.new(1, right)) }

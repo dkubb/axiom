@@ -23,7 +23,7 @@ describe Algebra::Rename::Aliases, '#to_hash' do
 
     it { should_not equal(aliases) }
 
-    it { should be_kind_of(Hash) }
+    it { should be_instance_of(Hash) }
 
     it { should == aliases }
 

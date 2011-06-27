@@ -26,7 +26,7 @@ describe Function::Binary::Invertible, '#inverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   it { should_not equal(object) }
 

@@ -13,7 +13,7 @@ describe Relation::Operation::Order::Direction, '#rename' do
   context 'with aliases matching the attribute' do
     let(:aliases) { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:attribute) { should == attribute.rename(:other_id) }
   end

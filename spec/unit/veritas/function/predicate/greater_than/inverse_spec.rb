@@ -10,7 +10,7 @@ describe Function::Predicate::GreaterThan, '#inverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Function::Predicate::LessThanOrEqualTo) }
+  it { should be_instance_of(Function::Predicate::LessThanOrEqualTo) }
 
   its(:left) { should equal(attribute) }
 

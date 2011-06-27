@@ -19,7 +19,7 @@ describe Relation, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -29,7 +29,7 @@ describe Relation, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -39,7 +39,7 @@ describe Relation, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -51,7 +51,7 @@ describe Relation, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -63,7 +63,7 @@ describe Relation, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -78,7 +78,7 @@ describe Relation, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -89,7 +89,7 @@ describe Relation, '#==' do
 
     it 'is symmetric' do
       pending 'Set#== should call to_set on other' do
-        should == (other == object)
+        should eql(other == object)
       end
     end
   end
@@ -100,7 +100,7 @@ describe Relation, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 end

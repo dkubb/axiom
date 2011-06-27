@@ -10,7 +10,7 @@ describe Relation::Header, '.new' do
   context 'with no arguments' do
     subject { object.new }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should be_empty }
   end
@@ -18,7 +18,7 @@ describe Relation::Header, '.new' do
   context 'with an argument that responds to #to_ary and do not contain duplicates' do
     let(:argument) { [ [ :id ], [ :name ] ] }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == argument }
   end

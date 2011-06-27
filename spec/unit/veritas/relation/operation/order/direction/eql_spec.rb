@@ -16,7 +16,7 @@ require 'spec_helper'
       it { should be(true) }
 
       it 'is symmetric' do
-        should == other.send(method, object)
+        should eql(other.send(method, object))
       end
     end
 
@@ -26,7 +26,7 @@ require 'spec_helper'
       it { should be(true) }
 
       it 'is symmetric' do
-        should == other.send(method, object)
+        should eql(other.send(method, object))
       end
     end
 
@@ -36,7 +36,7 @@ require 'spec_helper'
       it { should be(false) }
 
       it 'is symmetric' do
-        should == other.send(method, object)
+        should eql(other.send(method, object))
       end
     end
 
@@ -47,7 +47,7 @@ require 'spec_helper'
       it { should be(false) }
 
       it 'is symmetric' do
-        should == other.send(method, object)
+        should eql(other.send(method, object))
       end
     end
   end

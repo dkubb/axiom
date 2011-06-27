@@ -11,7 +11,7 @@ describe Function::Predicate::Match, '#inverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Function::Predicate::NoMatch) }
+  it { should be_instance_of(Function::Predicate::NoMatch) }
 
   its(:left) { should equal(attribute) }
 

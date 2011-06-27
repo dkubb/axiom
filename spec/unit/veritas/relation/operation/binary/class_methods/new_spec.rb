@@ -14,14 +14,14 @@ require File.expand_path('../../fixtures/classes', __FILE__)
      let(:left)  { original_left.sort_by  { |r| r.id   } }
      let(:right) { original_right.sort_by { |r| r.name } }
 
-     it { should be_kind_of(object) }
+     it { should be_instance_of(object) }
    end
 
    context 'with left and right unordered' do
      let(:left)  { original_left  }
      let(:right) { original_right }
 
-     it { should be_kind_of(object) }
+     it { should be_instance_of(object) }
    end
 
    context 'with left ordered, and right unordered' do

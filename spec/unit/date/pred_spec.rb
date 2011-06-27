@@ -7,13 +7,13 @@ describe Date, '#pred' do
 
   let(:object) { described_class.today }
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   it 'returns the date 1 day ago' do
-    should == (object - 1)
+    should eql(object - 1)
   end
 
   it 'is the inverse of #succ' do
-    subject.succ.should == object
+    subject.succ.should eql(object)
   end
 end

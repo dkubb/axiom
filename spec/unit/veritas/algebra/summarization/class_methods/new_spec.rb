@@ -13,7 +13,7 @@ describe Algebra::Summarization, '.new' do
   context 'with a summarize_per that has a subset of the headers in the operand' do
     let(:summarize_per) { TABLE_DEE }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'with a summarize_per that has equivalent headers to the headers in the operand' do

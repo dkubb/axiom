@@ -14,7 +14,7 @@ describe Attribute::Comparable, '#comparable?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.comparable?(object)
+      should eql(other.comparable?(object))
     end
   end
 
@@ -34,7 +34,7 @@ describe Attribute::Comparable, '#comparable?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.comparable?(object)
+      should eql(other.comparable?(object))
     end
   end
 
@@ -44,7 +44,7 @@ describe Attribute::Comparable, '#comparable?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.comparable?(object)
+      should eql(other.comparable?(object))
     end
   end
 end

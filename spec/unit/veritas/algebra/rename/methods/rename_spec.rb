@@ -10,5 +10,5 @@ describe Algebra::Rename::Methods, '#rename' do
   let(:aliases)         { { :id => :other_id }                               }
   let(:object)          { described_class.new([ attribute ], [ [ 1 ] ].each) }
 
-  it { should be_kind_of(Algebra::Rename) }
+  it { should be_instance_of(Algebra::Rename) }
 end

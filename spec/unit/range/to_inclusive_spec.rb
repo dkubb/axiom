@@ -14,10 +14,10 @@ describe Range, '#to_inclusive' do
       let(:range_start) { 1 }
       let(:range_end)   { 3 }
 
-      it { should be_kind_of(described_class) }
+      it { should be_instance_of(described_class) }
 
       it 'returns an inclusive Range' do
-        should == described_class.new(1, 2)
+        should eql(described_class.new(1, 2))
       end
     end
 

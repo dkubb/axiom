@@ -8,7 +8,7 @@ describe Relation::Operation::Order::Ascending, '#reverse' do
   let(:attribute) { Attribute::Integer.new(:id)    }
   let(:object)    { described_class.new(attribute) }
 
-  it { should be_kind_of(Relation::Operation::Order::Descending) }
+  it { should be_instance_of(Relation::Operation::Order::Descending) }
 
   its(:attribute) { should equal(attribute) }
 end

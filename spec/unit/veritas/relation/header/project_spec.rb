@@ -8,7 +8,7 @@ describe Relation::Header, '#project' do
   let(:attributes) { [ :id ]                                                      }
   let(:object)     { described_class.new([ [ :id, Integer ], [ :name, String ] ]) }
 
-  it { should be_kind_of(described_class) }
+  it { should be_instance_of(described_class) }
 
   it { should == [ [ :id, Integer ] ] }
 end

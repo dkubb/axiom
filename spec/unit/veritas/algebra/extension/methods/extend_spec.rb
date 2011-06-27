@@ -10,7 +10,7 @@ describe Algebra::Extension::Methods, '#extend' do
   let(:block)           { lambda { |r| r.add(*extensions) }                         }
   let(:object)          { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
 
-  it { should be_kind_of(Algebra::Extension) }
+  it { should be_instance_of(Algebra::Extension) }
 
   its(:operand) { should equal(object) }
 end

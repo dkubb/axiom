@@ -10,7 +10,7 @@ describe Relation::Base, '.new' do
   context 'when no tuples are provided' do
     subject { object.new(name, header) }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:name) { should equal(name) }
 
@@ -24,7 +24,7 @@ describe Relation::Base, '.new' do
 
     let(:tuples) { [ [ 1 ] ].each }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:name) { should equal(name) }
 

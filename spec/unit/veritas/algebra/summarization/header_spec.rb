@@ -11,7 +11,7 @@ describe Algebra::Summarization, '#header' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Relation::Header) }
+  it { should be_instance_of(Relation::Header) }
 
   it { should == [ [ :test, Object ] ] }
 end

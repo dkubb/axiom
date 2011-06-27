@@ -12,7 +12,7 @@ require 'spec_helper'
 
       let(:other) { described_class.new([ [ :id, Integer ], [ :age, Integer ] ], [ [ 1, 35 ] ]) }
 
-      it { should be_kind_of(Algebra::Join) }
+      it { should be_instance_of(Algebra::Join) }
     end
 
     context 'with a block' do
@@ -25,7 +25,7 @@ require 'spec_helper'
         end
       end
 
-      it { should be_kind_of(Algebra::Restriction) }
+      it { should be_instance_of(Algebra::Restriction) }
 
       it 'restricts a product' do
         should == [ [ 1, 'Dan Kubb', true ] ]

@@ -16,7 +16,7 @@ describe Attribute, '.coerce' do
   context 'when the argument responds to #to_ary' do
     let(:argument) { [ :id, Integer ] }
 
-    it { should be_kind_of(Attribute::Integer) }
+    it { should be_instance_of(Attribute::Integer) }
 
     its(:name) { should == :id }
   end
@@ -24,7 +24,7 @@ describe Attribute, '.coerce' do
   context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
     let(:argument) { :id }
 
-    it { should be_kind_of(Attribute::Object) }
+    it { should be_instance_of(Attribute::Object) }
 
     its(:name) { should == :id }
   end
@@ -50,7 +50,7 @@ describe Attribute::Boolean, '.coerce' do
   context 'when the argument responds to #to_ary' do
     let(:argument) { [ :id, Integer ] }
 
-    it { should be_kind_of(Attribute::Integer) }
+    it { should be_instance_of(Attribute::Integer) }
 
     its(:name) { should == :id }
   end
@@ -58,7 +58,7 @@ describe Attribute::Boolean, '.coerce' do
   context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
     let(:argument) { :id }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:name) { should == :id }
   end

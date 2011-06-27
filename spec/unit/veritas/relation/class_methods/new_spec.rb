@@ -15,7 +15,7 @@ describe Relation, '.new' do
       body.should respond_to(:size)
     end
 
-    it { should be_kind_of(Relation::Materialized) }
+    it { should be_instance_of(Relation::Materialized) }
 
     it { should == body }
   end
@@ -27,7 +27,7 @@ describe Relation, '.new' do
       body.should_not respond_to(:size)
     end
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
 
     it { should == [ [ 1 ] ] }
   end

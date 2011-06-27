@@ -11,10 +11,10 @@ require 'spec_helper'
     let(:other)           { described_class.new(header, [ [ 2 ] ].each) }
     let(:object)          { described_class.new(header, [ [ 1 ] ].each) }
 
-    it { should be_kind_of(Algebra::Difference) }
+    it { should be_instance_of(Algebra::Difference) }
 
     it 'behaves the same as Array#-' do
-      should == (object.to_a - other.to_a)
+      should == object.to_a - other.to_a
     end
   end
 end

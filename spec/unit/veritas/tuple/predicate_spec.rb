@@ -25,7 +25,7 @@ describe Tuple, '#predicate' do
     it { should be_kind_of(Function) }
 
     it 'returns an equality match' do
-      should == header[:id].eq(1)
+      should eql(header[:id].eq(1))
     end
   end
 
@@ -38,7 +38,7 @@ describe Tuple, '#predicate' do
     it { should be_kind_of(Function) }
 
     it 'returns a conjunction of equality matches' do
-      should == header[:id].eq(1).and(header[:name].eq('Dan Kubb'))
+      should eql(header[:id].eq(1).and(header[:name].eq('Dan Kubb')))
     end
   end
 end

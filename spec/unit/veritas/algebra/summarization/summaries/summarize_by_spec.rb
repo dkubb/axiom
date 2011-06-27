@@ -19,8 +19,8 @@ describe Algebra::Summarization::Summaries, '#summarize_by' do
   it 'aggregates the value returned by the summarizer' do
     subject
     key, value = subject.to_hash.first
-    key.should == :count
-    value.should be_kind_of(Algebra::Summarization::Summary)
-    value.call(tuple).should == 1
+    key.should eql(:count)
+    value.should be_instance_of(Algebra::Summarization::Summary)
+    value.call(tuple).should eql(1)
   end
 end

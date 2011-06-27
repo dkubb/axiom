@@ -15,7 +15,7 @@ describe Tuple, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -25,7 +25,7 @@ describe Tuple, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -35,7 +35,7 @@ describe Tuple, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -47,7 +47,7 @@ describe Tuple, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -59,7 +59,7 @@ describe Tuple, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -69,7 +69,7 @@ describe Tuple, '#==' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 
@@ -79,7 +79,7 @@ describe Tuple, '#==' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == (other == object)
+      should eql(other == object)
     end
   end
 end

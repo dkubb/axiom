@@ -8,7 +8,7 @@ describe Relation::Header, '#to_ary' do
   let(:attribute) { [ :id, Integer ]                   }
   let(:object)    { described_class.new([ attribute ]) }
 
-  it { should be_kind_of(Array) }
+  it { should be_instance_of(Array) }
 
   it { should == [ attribute ] }
 

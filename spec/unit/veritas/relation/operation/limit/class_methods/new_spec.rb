@@ -12,14 +12,14 @@ describe Relation::Operation::Limit, '.new' do
     let(:relation) { original_relation.sort_by { |r| r.id } }
     let(:limit)    { 1                                      }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'with an ordered relation having an empty header' do
     let(:relation) { original_relation.sort_by { |r| r.id }.project([]) }
     let(:limit)    { 1                                                  }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'without an ordered relation' do

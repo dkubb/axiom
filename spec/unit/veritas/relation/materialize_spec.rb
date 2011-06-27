@@ -12,7 +12,7 @@ describe Relation, '#materialize' do
     object.should be_kind_of(described_class)
   end
 
-  it { should be_kind_of(Relation::Materialized) }
+  it { should be_instance_of(Relation::Materialized) }
 
   its(:header) { should equal(header) }
 

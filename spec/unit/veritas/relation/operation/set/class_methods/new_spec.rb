@@ -13,7 +13,7 @@ describe Relation::Operation::Set::ClassMethods, '#new' do
   context 'with relations having equivalent headers' do
     let(:right) { Relation.new(header, [ [ 2 ] ]) }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'with relations having headers with common attributes' do

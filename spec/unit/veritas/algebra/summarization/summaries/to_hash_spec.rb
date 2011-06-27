@@ -10,7 +10,7 @@ describe Algebra::Summarization::Summaries, '#to_hash' do
 
   it 'matches the expected value' do
     key, value = subject.first
-    key.should == :count
-    value.should be_kind_of(Algebra::Summarization::Summary)
+    key.should eql(:count)
+    value.should be_instance_of(Algebra::Summarization::Summary)
   end
 end

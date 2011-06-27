@@ -10,5 +10,5 @@ describe Function::Predicate::LessThan::Methods, '#lt' do
   let(:other)           { 1                            }
   let(:object)          { described_class.new          }
 
-  it { should be_kind_of(Function::Predicate::LessThan) }
+  it { should be_instance_of(Function::Predicate::LessThan) }
 end

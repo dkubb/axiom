@@ -15,7 +15,7 @@ describe Attribute, '#eql?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should eql(other.eql?(object))
     end
   end
 
@@ -25,7 +25,7 @@ describe Attribute, '#eql?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should eql(other.eql?(object))
     end
   end
 
@@ -35,7 +35,7 @@ describe Attribute, '#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should eql(other.eql?(object))
     end
   end
 
@@ -46,7 +46,7 @@ describe Attribute, '#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should == other.eql?(object)
+      should eql(other.eql?(object))
     end
   end
 end

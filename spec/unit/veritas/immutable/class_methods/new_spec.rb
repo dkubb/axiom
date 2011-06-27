@@ -8,7 +8,7 @@ describe Immutable::ClassMethods, '#new' do
 
   let(:object) { ImmutableSpecs::Object }
 
-  it { should be_kind_of(object) }
+  it { should be_instance_of(object) }
 
   it { should be_frozen }
 end

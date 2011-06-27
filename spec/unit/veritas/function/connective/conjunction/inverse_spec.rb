@@ -12,7 +12,7 @@ describe Function::Connective::Conjunction, '#inverse' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Function::Connective::Disjunction) }
+  it { should be_instance_of(Function::Connective::Disjunction) }
 
   its(:left) { should eql(Function::Connective::Negation.new(object.left)) }
 

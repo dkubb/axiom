@@ -10,7 +10,7 @@ describe Tuple, '#data' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be_kind_of(Hash) }
+  it { should be_instance_of(Hash) }
 
   it { should eql(header[:id] => 1) }
 end

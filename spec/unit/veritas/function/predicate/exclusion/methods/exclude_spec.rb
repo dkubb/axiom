@@ -10,5 +10,5 @@ describe Function::Predicate::Exclusion::Methods, '#exclude' do
   let(:other)           { [ true, false ]               }
   let(:object)          { described_class.new           }
 
-  it { should be_kind_of(Function::Predicate::Exclusion) }
+  it { should be_instance_of(Function::Predicate::Exclusion) }
 end

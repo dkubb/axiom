@@ -8,7 +8,7 @@ describe Attribute, '#inspect' do
   let(:described_class) { Attribute::Integer       }
   let(:object)          { described_class.new(:id) }
 
-  it { should be_kind_of(String) }
+  it { should be_instance_of(String) }
 
   it { should == '<Attribute::Integer name: id>' }
 end

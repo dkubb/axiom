@@ -19,7 +19,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
     context 'with no arguments' do
       subject { object.send(method) }
 
-      it { should be_kind_of(Function::Connective::Negation) }
+      it { should be_instance_of(Function::Connective::Negation) }
 
       its(:operand) { should equal(object) }
     end
@@ -29,7 +29,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
       let(:predicate) { Function::Predicate::Equality.new(header[:id], 1) }
 
-      it { should be_kind_of(Function::Connective::Conjunction) }
+      it { should be_instance_of(Function::Connective::Conjunction) }
 
       its(:left) { should equal(object) }
 

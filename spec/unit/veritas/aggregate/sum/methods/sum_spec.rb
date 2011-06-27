@@ -8,7 +8,7 @@ describe Aggregate::Sum::Methods, '#sum' do
   let(:described_class) { Class.new { include Aggregate::Sum::Methods } }
   let(:object)          { described_class.new.freeze                    }
 
-  it { should be_kind_of(Aggregate::Sum) }
+  it { should be_instance_of(Aggregate::Sum) }
 
   its(:operand) { should equal(object) }
 end

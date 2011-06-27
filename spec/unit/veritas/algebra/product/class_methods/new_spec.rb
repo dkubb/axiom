@@ -12,7 +12,7 @@ describe Algebra::Product, '.new' do
   context 'with relations having different headers' do
     let(:right) { Relation.new([ [ :number, Integer ] ], [ [ 2 ] ]) }
 
-    it { should be_kind_of(object) }
+    it { should be_instance_of(object) }
   end
 
   context 'with relations having headers with common attributes' do

@@ -16,7 +16,7 @@ describe Function::Unary, '#rename' do
   context 'operand is renamed' do
     let(:operand) { attribute.eq(1) }
 
-    it { should be_kind_of(described_class) }
+    it { should be_instance_of(described_class) }
 
     its(:operand) { should eql(other.eq(1)) }
   end

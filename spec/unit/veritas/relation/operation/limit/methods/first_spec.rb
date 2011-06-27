@@ -10,7 +10,7 @@ describe Relation::Operation::Limit::Methods, '#first' do
   context 'with no arguments' do
     subject { object.first }
 
-    it { should be_kind_of(Relation::Operation::Limit) }
+    it { should be_instance_of(Relation::Operation::Limit) }
 
     its(:limit) { should == 1 }
 
@@ -28,7 +28,7 @@ describe Relation::Operation::Limit::Methods, '#first' do
 
     let(:limit) { 2 }
 
-    it { should be_kind_of(Relation::Operation::Limit) }
+    it { should be_instance_of(Relation::Operation::Limit) }
 
     its(:limit) { should == limit }
 
