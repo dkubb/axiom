@@ -13,6 +13,14 @@ module Veritas
     # @api private
     attr_reader :header
 
+    # The relation tuples
+    #
+    # @return [Enumerable]
+    #
+    # @api private
+    attr_reader :tuples
+    private :tuples
+
     # The relation sort order
     #
     # @return [Operation::Order::DirectionSet]
@@ -189,13 +197,6 @@ module Veritas
     end
 
   private
-
-    # The relation tuples
-    #
-    # @return [Enumerable]
-    #
-    # @api private
-    attr_reader :tuples
 
     # Coerce an Enumerable into a Relation
     #
