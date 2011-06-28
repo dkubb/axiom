@@ -31,7 +31,7 @@ module Veritas
     # @api private
     def self.inherited(descendant)
       superclass = self.superclass
-      superclass.inherited(descendant) unless superclass.equal?(::Object)
+      superclass.inherited(descendant) if superclass.respond_to?(:descendants)
       descendants.unshift(descendant)
       self
     end
