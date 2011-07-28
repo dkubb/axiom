@@ -18,6 +18,6 @@ describe Attribute, '.descendants' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should == [ descendant ] }
+    it { should eql([ descendant ]) }
   end
 end
