@@ -1,3 +1,8 @@
+* Materialized relations need to hold a reference to the original relation.
+  * Especially "empty" relations should hold a reference to the original
+    relation so that insert/update can be performed on them if they are
+    empty not because they are valid, but because the source object is empty
+
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
