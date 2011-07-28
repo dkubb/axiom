@@ -14,11 +14,7 @@ describe Attribute, '.descendants' do
   end
 
   context 'when there are descendants' do
-    let(:descendant) { Class.new(object) }
-
-    before do
-      descendant  # trigger the class inhertance
-    end
+    let!(:descendant) { Class.new(object) }
 
     it_should_behave_like 'an idempotent method'
 
