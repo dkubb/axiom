@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{veritas}
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-07-29}
+  s.date = %q{2011-07-30}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
