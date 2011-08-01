@@ -54,18 +54,6 @@ module Veritas
         true
       end
 
-      # Test if there are no tuples
-      #
-      # @example
-      #   materialized.empty?  # => true or false
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def empty?
-        tuples.empty?
-      end
-
       # Return the number of tuples
       #
       # @example

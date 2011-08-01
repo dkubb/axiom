@@ -12,21 +12,11 @@ describe Relation::Materialized, '#empty?' do
     let(:body) { [] }
 
     it { should be(true) }
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
   end
 
   context 'with a body containing an entry' do
     let(:body) { [ [ 1 ] ] }
 
     it { should be(false) }
-
-    it 'does not execute body#each' do
-      body.should_not_receive(:each)
-      subject
-    end
   end
 end

@@ -19,6 +19,30 @@ module Veritas
         super(header, ZERO_TUPLE)
       end
 
+      # Test if there are no tuples
+      #
+      # @example
+      #   empty.empty?  # => true
+      #
+      # @return [true]
+      #
+      # @api public
+      def empty?
+        true
+      end
+
+      # Return the number of tuples
+      #
+      # @example
+      #   empty.size  # => 0
+      #
+      # @return [0]
+      #
+      # @api public
+      def size
+        0
+      end
+
     end # class Empty
   end # class Relation
 end # module Veritas
