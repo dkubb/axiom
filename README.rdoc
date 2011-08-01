@@ -22,7 +22,7 @@ With git and local working copy:
   >> require 'veritas'
   => true
 
-NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also install and require backports and backports/basic_object before, eg:
+NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also use backports and backports/basic_object, eg:
 
   $ ruby -e 'puts RUBY_VERSION'
   => 1.8.7
