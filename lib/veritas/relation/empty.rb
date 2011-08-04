@@ -11,6 +11,8 @@ module Veritas
       #
       # @param [Header] header
       #   the header for the empty relation
+      # @param [#each] tuples
+      #   optional original tuples
       #
       # @return [undefined]
       #
