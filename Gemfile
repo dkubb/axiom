@@ -13,7 +13,6 @@ end
 group :guard do
   gem 'guard',         '~> 0.5.1'
   gem 'guard-bundler', '~> 0.1.3'
-  gem 'guard-ego',     '~> 0.0.1'
   gem 'guard-rspec',   '~> 0.4.0'
 end
 

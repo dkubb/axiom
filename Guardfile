@@ -1,9 +1,5 @@
 # encoding: utf-8
 
-guard 'ego' do
-  watch('Guardfile')
-end
-
 guard 'bundler' do
   watch('Gemfile')
 end
