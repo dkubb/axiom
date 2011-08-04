@@ -15,8 +15,8 @@ module Veritas
       # @return [undefined]
       #
       # @api public
-      def initialize(header)
-        super(header, ZERO_TUPLE)
+      def initialize(header, tuples = ZERO_TUPLE)
+        super
       end
 
       # Test if there are no tuples
