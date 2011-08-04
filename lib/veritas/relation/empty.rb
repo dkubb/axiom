@@ -21,16 +21,18 @@ module Veritas
         super
       end
 
-      # Test if there are no tuples
+      # Noop #each method
       #
       # @example
-      #   empty.empty?  # => true
+      #   empty = Empty.new(header)
+      #   empty.each { ... }
       #
-      # @return [true]
+      # @return [self]
       #
       # @api public
-      def empty?
-        true
+      def each
+        return to_enum unless block_given?
+        self
       end
 
       # Return the number of tuples

@@ -3,12 +3,11 @@
 require 'spec_helper'
 
 describe Relation::Empty, '.new' do
-  let(:object) { described_class }
+  let(:object) { described_class      }
+  let(:header) { [ [ :id, Integer ] ] }
 
   context 'with a header' do
     subject { object.new(header) }
-
-    let(:header) { [ [ :id, Integer ] ] }
 
     it { should be_instance_of(object) }
 
@@ -20,8 +19,7 @@ describe Relation::Empty, '.new' do
   context 'with a header and tuples' do
     subject { object.new(header, tuples) }
 
-    let(:header) { [ [ :id, Integer ] ] }
-    let(:tuples) { mock('Tuples')       }
+    let(:tuples) { mock('Tuples') }
 
     it { should be_instance_of(object) }
 
