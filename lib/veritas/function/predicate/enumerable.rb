@@ -32,6 +32,25 @@ module Veritas
           super(left, Immutable.freeze_object(right))
         end
 
+        # Evaluate the enumerable function using the tuple
+        #
+        # @example
+        #   enumerable.call(tuple)  # => true or false
+        #
+        # @param [Tuple] tuple
+        #   the tuple to pass to #call in the left and right operands
+        #
+        # @return [Boolean]
+        #
+        # @api public
+        def call(tuple)
+          util = self.class
+          util.call(
+            util.extract_value(left, tuple),
+            right.map { |entry| util.extract_value(entry, tuple) }
+          )
+        end
+
       end # module Enumerable
     end # class Predicate
   end # class Function

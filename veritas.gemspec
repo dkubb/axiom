@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Dan Kubb}]
-  s.date = %q{2011-08-04}
+  s.date = %q{2011-08-08}
   s.description = %q{Simplifies querying of structured data using relational algebra}
   s.email = %q{dan.kubb@gmail.com}
   s.extra_rdoc_files = [
@@ -389,6 +389,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/numeric/unary_plus/methods/unary_plus_spec.rb",
     "spec/unit/veritas/function/predicate/call_spec.rb",
     "spec/unit/veritas/function/predicate/class_methods/call_spec.rb",
+    "spec/unit/veritas/function/predicate/enumerable/call_spec.rb",
     "spec/unit/veritas/function/predicate/enumerable/class_methods/compare_method_spec.rb",
     "spec/unit/veritas/function/predicate/eql_spec.rb",
     "spec/unit/veritas/function/predicate/equality/class_methods/call_spec.rb",
