@@ -1,3 +1,9 @@
+* Inclusion/Exclusion improvements:
+  * Allow attribute/function expressions to exist within the enumerable part
+    of the Inclusion and Exclusion operations
+    * The #call method should propagate the Tuple down to each callable entry
+      in the Enumerable.
+
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
@@ -28,17 +34,6 @@
   with a 0-arity vs n-arity methods, but it needs to handle cases
   like with #hash that accept no args, and #optimize that accepts
   1 arg.
-
-* Add Relation#antijoin
-  * Allows "NOT EXISTS/IN" type queries to be executes where every tuple
-    from the relation is returned that *does not* join with the tuples in
-    the operand.
-
-* Inclusion/Exclusion improvements:
-  * Allow attribute/function expressions to exist within the enumerable part
-    of the Inclusion and Exclusion operations
-    * The #call method should propagate the Tuple down to each callable entry
-      in the Enumerable.
 
 * Within the restriction context, make sure the attributes have aliases for:
   * Alias #== to #eq (may break alot)
