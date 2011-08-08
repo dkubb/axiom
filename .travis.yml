@@ -8,3 +8,5 @@ rvm:
   - ree
   # - jruby
   - ruby-head
+notifications:
+  irc: "irc.freenode.org#veritas"
