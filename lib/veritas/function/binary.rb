@@ -7,7 +7,7 @@ module Veritas
     module Binary
       include Operation::Binary
 
-      # Evaluate the binary connective using the tuple
+      # Evaluate the binary function using the tuple
       #
       # @example
       #   binary.call(tuple)  # => true or false
