@@ -3,10 +3,11 @@ script: "bundle exec rake spec"
 rvm:
   - 1.8.7
   - 1.9.2
-  - rbx
-  # - rbx-2.0
+  - 1.9.3
+  - ruby-head
   - ree
   # - jruby
-  - ruby-head
+  - rbx
+  # - rbx-2.0
 notifications:
   irc: "irc.freenode.org#veritas"
