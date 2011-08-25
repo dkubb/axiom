@@ -176,6 +176,7 @@ module Veritas
       def create_memoize_method_for(method)
         original = instance_method(method)
         ivar     = "@#{method}"
+        undef_method(method)
         define_method(method) do |*args|
           @__memory[ivar] ||= Immutable.freeze_object(original.bind(self).call(*args))
         end
