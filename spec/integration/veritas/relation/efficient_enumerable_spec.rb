@@ -7,11 +7,11 @@ require 'spec_helper'
 class InfiniteList
   include Enumerable
 
-  Infinity = 1.0/0.0
-
   def each
-    0.upto(Infinity) do |index|
+    index = 0
+    loop do
       yield [ index ]
+      index += 1
     end
     self
   end
