@@ -6,6 +6,6 @@ shared_examples_for 'a hash method' do
   it { should be_kind_of(Integer) }
 
   it 'memoizes the hash code' do
-    subject.should eql(object.memoized('hash'))
+    subject.should eql(object.memoized(:hash))
   end
 end

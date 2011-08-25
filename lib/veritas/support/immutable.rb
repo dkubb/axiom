@@ -38,14 +38,14 @@ module Veritas
     # @example
     #   hash = object.memoized(:hash)
     #
-    # @param [#to_s] name
+    # @param [Symbol] name
     #   the method name
     #
     # @return [Object]
     #
     # @api public
     def memoized(name)
-      @__memory["@#{name}"]
+      @__memory[name]
     end
 
     # Sets a memoized value for a method
@@ -53,7 +53,7 @@ module Veritas
     # @example
     #   object.memoize(:hash, 12345)
     #
-    # @param [#to_s] name
+    # @param [Symbol] name
     #   the method name
     # @param [Object] value
     #   the value to memoize
@@ -62,7 +62,7 @@ module Veritas
     #
     # @api public
     def memoize(name, value)
-      @__memory["@#{name}"] = Immutable.freeze_object(value)
+      @__memory[name] = Immutable.freeze_object(value)
       self
     end
 
@@ -167,7 +167,7 @@ module Veritas
 
       # Create a memoized method that delegates to the original method
       #
-      # @param [String, Symbol] method
+      # @param [Symbol] method
       #   the name of the method
       #
       # @return [undefined]
@@ -175,10 +175,9 @@ module Veritas
       # @api private
       def create_memoize_method_for(method)
         original = instance_method(method)
-        ivar     = "@#{method}"
         undef_method(method)
         define_method(method) do |*args|
-          @__memory[ivar] ||= Immutable.freeze_object(original.bind(self).call(*args))
+          @__memory[method] ||= Immutable.freeze_object(original.bind(self).call(*args))
         end
       end
 
