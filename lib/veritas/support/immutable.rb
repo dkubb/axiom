@@ -29,7 +29,7 @@ module Veritas
     #
     # @api public
     def freeze
-      @__memory = Memory.new unless frozen?
+      @__memory = {} unless frozen?
       super
     end
 
@@ -215,38 +215,5 @@ module Veritas
       end
 
     end # module ClassMethods
-
-    # Tracks the values for memoized methods
-    class Memory
-
-      # Get a frozen value from memory
-      #
-      # @example
-      #   value = memory[ivar]
-      #
-      # @param [#to_s] ivar
-      #   the name of the ivar to get the value for
-      #
-      # @return [Object]
-      #
-      # @api public
-      alias [] instance_variable_get
-
-      # Set a frozen value in memory
-      #
-      # @example
-      #   memory[ivar] = value
-      #
-      # @param [#to_s] ivar
-      #   the name of the ivar to set
-      # @param [Object] value
-      #   the value to set
-      #
-      # @return [undefined]
-      #
-      # @api public
-      alias []= instance_variable_set
-
-    end # class Memory
   end # module Immutable
 end # module Veritas

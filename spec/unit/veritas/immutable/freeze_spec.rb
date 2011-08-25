@@ -26,7 +26,7 @@ describe Immutable, '#freeze' do
     it 'sets a memoization instance variable' do
       object.should_not be_instance_variable_defined(:@__memory)
       subject
-      object.instance_variable_get(:@__memory).should be_instance_of(Immutable::Memory)
+      object.instance_variable_get(:@__memory).should be_instance_of(Hash)
     end
   end
 
@@ -44,7 +44,7 @@ describe Immutable, '#freeze' do
     end
 
     it 'sets an instance variable for memoization' do
-      subject.instance_variable_get(:@__memory).should be_instance_of(Immutable::Memory)
+      subject.instance_variable_get(:@__memory).should be_instance_of(Hash)
     end
   end
 end
