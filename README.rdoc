@@ -2,7 +2,7 @@
 
 Simplifies querying of structured data using relational algebra
 
-http://travis-ci.org/dkubb/veritas.png
+https://secure.travis-ci.org/dkubb/veritas.png
 
 == Installation
 
