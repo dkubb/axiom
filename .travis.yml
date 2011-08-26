@@ -9,5 +9,3 @@ rvm:
   - jruby
   - rbx
   - rbx-2.0
-notifications:
-  irc: "irc.freenode.org#veritas"
