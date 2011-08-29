@@ -51,6 +51,9 @@ NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you m
   # rename
   new_relation = relation.rename(a: :b, c: :d)
 
+  # restriction
+  new_relation = relation.restrict { |r| r.a.eq('other').and(r.b.gte(42)) }
+
   # natural join
   new_relation = relation.join(other)        # OR relation + other
 
@@ -65,9 +68,6 @@ NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you m
 
   # difference
   new_relation = relation.difference(other)  # OR relation - other
-
-  # restriction
-  new_relation = relation.restrict { |r| r.a.eq('other').and(r.b.gte(42)) }
 
   # theta-join
   new_relation = relation.join(other) { |r| r.a.gte(r.b) }
