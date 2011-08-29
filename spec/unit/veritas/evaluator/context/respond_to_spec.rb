@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Evaluator::Context, '#respond_to?' do
-  subject { object.respond_to?(method) }
+  subject { object.respond_to?(method, include_private) }
 
   let(:attribute) { Attribute::Integer.new(:id)         }
   let(:header)    { Relation::Header.new([ attribute ]) }
