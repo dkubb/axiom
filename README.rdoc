@@ -8,118 +8,126 @@ Simplifies querying of structured data using relational algebra
 
 With Rubygems:
 
-  $ gem install veritas
-  $ irb -rubygems
-  >> require 'veritas'
-  => true
+```bash
+$ gem install veritas
+$ irb -rubygems
+>> require 'veritas'
+=> true
+```
 
 With git and local working copy:
 
-  $ git clone git://github.com/dkubb/veritas.git
-  $ cd veritas
-  $ rake install
-  $ irb -rubygems
-  >> require 'veritas'
-  => true
+```bash
+$ git clone git://github.com/dkubb/veritas.git
+$ cd veritas
+$ rake install
+$ irb -rubygems
+>> require 'veritas'
+=> true
+```
 
 NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also use backports and backports/basic_object, eg:
 
-  $ ruby -e 'puts RUBY_VERSION'
-  => 1.8.7
-  $ gem install backports
-  $ irb -rubygems
-  >> require 'backports'
-  => true
-  >> require 'backports/basic_object'
-  => true
-  >> require 'veritas'  # assuming it was installed by one of the two methods above
-  => true
+```bash
+$ ruby -e 'puts RUBY_VERSION'
+=> 1.8.7
+$ gem install backports
+$ irb -rubygems
+>> require 'backports'
+=> true
+>> require 'backports/basic_object'
+=> true
+>> require 'veritas'  # assuming it was installed by one of the two methods above
+=> true
+```
 
 == Usage
 
-  relation = Veritas::Relation.new(
-    [ [ :id, String ], [ :name, String ], [ :color, String ], [ :weight, Float ], [ :city, String ] ],
-    [
-      [ 'P1', 'Nut',   'Red',   12.0, 'London' ],
-      [ 'P2', 'Bolt',  'Green', 17.0, 'Paris'  ],
-      [ 'P3', 'Screw', 'Blue',  17.0, 'Oslo'   ],
-      [ 'P4', 'Screw', 'Red',   14.0, 'London' ],
-      [ 'P5', 'Cam',   'Blue',  12.0, 'Paris'  ],
-      [ 'P6', 'Cog',   'Red',   19.0, 'London' ],
-    ]
-  )
+```ruby
+relation = Veritas::Relation.new(
+  [ [ :id, String ], [ :name, String ], [ :color, String ], [ :weight, Float ], [ :city, String ] ],
+  [
+    [ 'P1', 'Nut',   'Red',   12.0, 'London' ],
+    [ 'P2', 'Bolt',  'Green', 17.0, 'Paris'  ],
+    [ 'P3', 'Screw', 'Blue',  17.0, 'Oslo'   ],
+    [ 'P4', 'Screw', 'Red',   14.0, 'London' ],
+    [ 'P5', 'Cam',   'Blue',  12.0, 'Paris'  ],
+    [ 'P6', 'Cog',   'Red',   19.0, 'London' ],
+  ]
+)
 
-  # Relational Operators
-  # --------------------
+# Relational Operators
+# --------------------
 
-  # projection
-  new_relation = relation.project([ :id ])
+# projection
+new_relation = relation.project([ :id ])
 
-  # removal
-  new_relation = relation.remove([ :name ])
+# removal
+new_relation = relation.remove([ :name ])
 
-  # rename
-  new_relation = relation.rename(id: :other_id, name: :other_name)
+# rename
+new_relation = relation.rename(id: :other_id, name: :other_name)
 
-  # restriction
-  new_relation = relation.restrict { |r| r.name.eq('Screw').or(r.city.eq('London')) }
+# restriction
+new_relation = relation.restrict { |r| r.name.eq('Screw').or(r.city.eq('London')) }
 
-  # natural join
-  new_relation = relation.join(other)        # OR relation + other
+# natural join
+new_relation = relation.join(other)        # OR relation + other
 
-  # product
-  new_relation = relation.product(other)     # OR relation * other
+# product
+new_relation = relation.product(other)     # OR relation * other
 
-  # intersection
-  new_relation = relation.intersect(other)   # OR relation & other
+# intersection
+new_relation = relation.intersect(other)   # OR relation & other
 
-  # union
-  new_relation = relation.union(other)       # OR relation | other
+# union
+new_relation = relation.union(other)       # OR relation | other
 
-  # difference
-  new_relation = relation.difference(other)  # OR relation - other
+# difference
+new_relation = relation.difference(other)  # OR relation - other
 
-  # theta-join
-  new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
+# theta-join
+new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
 
-  # NOTE: theta-join is effectively restricting a product of the relations
+# NOTE: theta-join is effectively restricting a product of the relations
 
-  # extend
-  new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
-  new_relation = relation.extend { |r| r.add(:pounds) { |t| t[:weight] * 2.2 } }
+# extend
+new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
+new_relation = relation.extend { |r| r.add(:pounds) { |t| t[:weight] * 2.2 } }
 
-  # summarize
-  new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count, r.id.count) }
-  new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
+# summarize
+new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count, r.id.count) }
+new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
 
-  # Non-Relational Operators
-  # ------------------------
+# Non-Relational Operators
+# ------------------------
 
-  # returns a set that represents the relation header
-  header = relation.header
+# returns a set that represents the relation header
+header = relation.header
 
-  # a relation is Enumerable
-  relation = relation.each { |tuple| ... }
+# a relation is Enumerable
+relation = relation.each { |tuple| ... }
 
-  # order by attribute and direction
-  ordered = relation.sort_by { |r| [ r.city.desc, r.name, r.color, r.id, r.weight ] }
+# order by attribute and direction
+ordered = relation.sort_by { |r| [ r.city.desc, r.name, r.color, r.id, r.weight ] }
 
-  # reverse the relation (only allowed if ordered)
-  new_relation = ordered.reverse
+# reverse the relation (only allowed if ordered)
+new_relation = ordered.reverse
 
-  # offset (only allowed if ordered)
-  new_relation = ordered.drop(5)
+# offset (only allowed if ordered)
+new_relation = ordered.drop(5)
 
-  # limiting (only allowed if ordered)
-  new_relation = ordered.take(10)
+# limiting (only allowed if ordered)
+new_relation = ordered.take(10)
 
-  # get the first n tuples (only allowed if ordered)
-  new_relation = ordered.first     # default is 1
-  new_relation = ordered.first(5)
+# get the first n tuples (only allowed if ordered)
+new_relation = ordered.first     # default is 1
+new_relation = ordered.first(5)
 
-  # get the last n tuples (only allowed if ordered)
-  new_relation = ordered.last      # default is 1
-  new_relation = ordered.last(5)
+# get the last n tuples (only allowed if ordered)
+new_relation = ordered.last      # default is 1
+new_relation = ordered.last(5)
+```
 
 == Goals
 
