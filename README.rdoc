@@ -167,6 +167,10 @@ This is an optimizer that takes a veritas relation, scalar or aggregate function
 
 This is a visitor class that takes a veritas relation and generates valid SQL from it.
 
+* veritas-do-adapter[https://github.com/dkubb/veritas-do-adapter]
+
+This is a system that manages the database connections and executes the SQL generated fom the relations.
+
 == Note on Patches/Pull Requests
 
 * If you want your code merged into the mainline, please discuss
