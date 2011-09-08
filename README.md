@@ -26,7 +26,7 @@ $ irb -rubygems
 => true
 ```
 
-NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also use backports and backports/basic_object, eg:
+NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also install [backports](https://rubygems.org/gems/backports), then require backports and backports/basic_object, eg:
 
 ```bash
 $ ruby -e 'puts RUBY_VERSION'
