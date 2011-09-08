@@ -1,127 +1,135 @@
-= Veritas
+# Veritas
 
 Simplifies querying of structured data using relational algebra
 
-{<img src="https://secure.travis-ci.org/dkubb/veritas.png" />}[http://travis-ci.org/dkubb/veritas]
+[![Build Status](https://secure.travis-ci.org/dkubb/veritas.png)](http://travis-ci.org/dkubb/veritas)
 
-== Installation
+## Installation
 
 With Rubygems:
 
-  $ gem install veritas
-  $ irb -rubygems
-  >> require 'veritas'
-  => true
+```bash
+$ gem install veritas
+$ irb -rubygems
+>> require 'veritas'
+=> true
+```
 
 With git and local working copy:
 
-  $ git clone git://github.com/dkubb/veritas.git
-  $ cd veritas
-  $ rake install
-  $ irb -rubygems
-  >> require 'veritas'
-  => true
+```bash
+$ git clone git://github.com/dkubb/veritas.git
+$ cd veritas
+$ rake install
+$ irb -rubygems
+>> require 'veritas'
+=> true
+```
 
 NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also use backports and backports/basic_object, eg:
 
-  $ ruby -e 'puts RUBY_VERSION'
-  => 1.8.7
-  $ gem install backports
-  $ irb -rubygems
-  >> require 'backports'
-  => true
-  >> require 'backports/basic_object'
-  => true
-  >> require 'veritas'  # assuming it was installed by one of the two methods above
-  => true
+```bash
+$ ruby -e 'puts RUBY_VERSION'
+=> 1.8.7
+$ gem install backports
+$ irb -rubygems
+>> require 'backports'
+=> true
+>> require 'backports/basic_object'
+=> true
+>> require 'veritas'  # assuming it was installed by one of the two methods above
+=> true
+```
 
-== Usage
+## Usage
 
-  relation = Veritas::Relation.new(
-    [ [ :id, String ], [ :name, String ], [ :color, String ], [ :weight, Float ], [ :city, String ] ],
-    [
-      [ 'P1', 'Nut',   'Red',   12.0, 'London' ],
-      [ 'P2', 'Bolt',  'Green', 17.0, 'Paris'  ],
-      [ 'P3', 'Screw', 'Blue',  17.0, 'Oslo'   ],
-      [ 'P4', 'Screw', 'Red',   14.0, 'London' ],
-      [ 'P5', 'Cam',   'Blue',  12.0, 'Paris'  ],
-      [ 'P6', 'Cog',   'Red',   19.0, 'London' ],
-    ]
-  )
+```ruby
+relation = Veritas::Relation.new(
+  [ [ :id, String ], [ :name, String ], [ :color, String ], [ :weight, Float ], [ :city, String ] ],
+  [
+    [ 'P1', 'Nut',   'Red',   12.0, 'London' ],
+    [ 'P2', 'Bolt',  'Green', 17.0, 'Paris'  ],
+    [ 'P3', 'Screw', 'Blue',  17.0, 'Oslo'   ],
+    [ 'P4', 'Screw', 'Red',   14.0, 'London' ],
+    [ 'P5', 'Cam',   'Blue',  12.0, 'Paris'  ],
+    [ 'P6', 'Cog',   'Red',   19.0, 'London' ],
+  ]
+)
 
-  # Relational Operators
-  # --------------------
+# Relational Operators
+# --------------------
 
-  # projection
-  new_relation = relation.project([ :id ])
+# projection
+new_relation = relation.project([ :id ])
 
-  # removal
-  new_relation = relation.remove([ :name ])
+# removal
+new_relation = relation.remove([ :name ])
 
-  # rename
-  new_relation = relation.rename(id: :other_id, name: :other_name)
+# rename
+new_relation = relation.rename(id: :other_id, name: :other_name)
 
-  # restriction
-  new_relation = relation.restrict { |r| r.name.eq('Screw').or(r.city.eq('London')) }
+# restriction
+new_relation = relation.restrict { |r| r.name.eq('Screw').or(r.city.eq('London')) }
 
-  # natural join
-  new_relation = relation.join(other)        # OR relation + other
+# natural join
+new_relation = relation.join(other)        # OR relation + other
 
-  # product
-  new_relation = relation.product(other)     # OR relation * other
+# product
+new_relation = relation.product(other)     # OR relation * other
 
-  # intersection
-  new_relation = relation.intersect(other)   # OR relation & other
+# intersection
+new_relation = relation.intersect(other)   # OR relation & other
 
-  # union
-  new_relation = relation.union(other)       # OR relation | other
+# union
+new_relation = relation.union(other)       # OR relation | other
 
-  # difference
-  new_relation = relation.difference(other)  # OR relation - other
+# difference
+new_relation = relation.difference(other)  # OR relation - other
 
-  # theta-join
-  new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
+# theta-join
+new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
 
-  # NOTE: theta-join is effectively restricting a product of the relations
+# NOTE: theta-join is effectively restricting a product of the relations
 
-  # extend
-  new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
-  new_relation = relation.extend { |r| r.add(:pounds) { |t| t[:weight] * 2.2 } }
+# extend
+new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
+new_relation = relation.extend { |r| r.add(:pounds) { |t| t[:weight] * 2.2 } }
 
-  # summarize
-  new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count, r.id.count) }
-  new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
+# summarize
+new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count, r.id.count) }
+new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
 
-  # Non-Relational Operators
-  # ------------------------
+# Non-Relational Operators
+# ------------------------
 
-  # returns a set that represents the relation header
-  header = relation.header
+# returns a set that represents the relation header
+header = relation.header
 
-  # a relation is Enumerable
-  relation = relation.each { |tuple| ... }
+# a relation is Enumerable
+relation = relation.each { |tuple| ... }
 
-  # order by attribute and direction
-  ordered = relation.sort_by { |r| [ r.city.desc, r.name, r.color, r.id, r.weight ] }
+# order by attribute and direction
+ordered = relation.sort_by { |r| [ r.city.desc, r.name, r.color, r.id, r.weight ] }
 
-  # reverse the relation (only allowed if ordered)
-  new_relation = ordered.reverse
+# reverse the relation (only allowed if ordered)
+new_relation = ordered.reverse
 
-  # offset (only allowed if ordered)
-  new_relation = ordered.drop(5)
+# offset (only allowed if ordered)
+new_relation = ordered.drop(5)
 
-  # limiting (only allowed if ordered)
-  new_relation = ordered.take(10)
+# limiting (only allowed if ordered)
+new_relation = ordered.take(10)
 
-  # get the first n tuples (only allowed if ordered)
-  new_relation = ordered.first     # default is 1
-  new_relation = ordered.first(5)
+# get the first n tuples (only allowed if ordered)
+new_relation = ordered.first     # default is 1
+new_relation = ordered.first(5)
 
-  # get the last n tuples (only allowed if ordered)
-  new_relation = ordered.last      # default is 1
-  new_relation = ordered.last(5)
+# get the last n tuples (only allowed if ordered)
+new_relation = ordered.last      # default is 1
+new_relation = ordered.last(5)
+```
 
-== Goals
+## Goals
 
 The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
 
@@ -133,56 +141,48 @@ The ability to join data from multiple datastores and have it presented in a con
 
 Not only does this work nicely with associations, but it will allow DataMapper to perform mapping in a more powerful way. You'll be able to construct a join from multiple datastores, and set that as the base for your model. Each DM Resource would work as normal, but again writes could be propagated back to the appropriate datastore. You'd be able to split your data up between different datastores, but assemble it into one coherent view.
 
-=== Phase 1: In-Memory Operations
+### Phase 1: In-Memory Operations
 
 The first phase of this project will be to implement all the operations listed below using in-memory data structures. I'm focusing on the API, and making sure the specs ensure the desired results are obtained from each operation.
 
 This is 100% complete.
 
-=== Phase 2: RDBMS Engines
+### Phase 2: RDBMS Engines
 
 The second phase of this project will be to add a RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
 
 This is 95% complete. I have completed a first pass on veritas-sql-generator[https://github.com/dkubb/veritas-sql-generator] which is a visitor that walks the AST and produces SQL for every operatione. More work is needed to write adapters that use the veritas-sql-generator and manage database connections/execution.
 
-=== Phase 3: DataMapper Integration
+### Phase 3: DataMapper Integration
 
 The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
 
-== Related Projects
+## Related Projects
 
-* veritas-optimizer[https://github.com/dkubb/veritas-optimizer]
+* [veritas-optimizer](https://github.com/dkubb/veritas-optimizer)
 
 This is an optimizer that takes a veritas relation, scalar or aggregate function and will transform it into something equivalent but simpler in structure to the original.
 
-* veritas-sql-generator[https://github.com/dkubb/veritas-sql-generator]
+* [veritas-sql-generator](https://github.com/dkubb/veritas-sql-generator)
 
 This is a visitor class that takes a veritas relation and generates valid SQL from it.
 
-* veritas-do-adapter[https://github.com/dkubb/veritas-do-adapter]
+* [veritas-do-adapter](https://github.com/dkubb/veritas-do-adapter)
 
 This is a system that manages the database connections and executes the SQL generated fom the relations.
 
-== Note on Patches/Pull Requests
+## Note on Patches/Pull Requests
 
-* If you want your code merged into the mainline, please discuss
-  the proposed changes with me before doing any work on it. This
-  library is still in early development, and it may not always be
-  clear the direction it is going. Some features may not be appropriate
-  yet, may need to be deferred until later when the foundation for
-  them is laid, or may be more applicable in a plugin.
+* If you want your code merged into the mainline, please discuss the proposed changes with me before doing any work on it. This library is still in early development, and it may not always be clear the direction it is going. Some features may not be appropriate yet, may need to be deferred until later when the foundation for them is laid, or may be more applicable in a plugin.
 * Fork the project.
 * Make your feature addition or bug fix.
   * Follow this {style guide}[https://github.com/dkubb/styleguide].
-* Add specs for it. This is important so I don't break it in a
-  future version unintentionally. Tests must cover all branches
-  within the code, and code must be fully covered.
-* Commit, do not mess with Rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Add specs for it. This is important so I don't break it in a future version unintentionally. Tests must cover all branches within the code, and code must be fully covered.
+* Commit, do not mess with Rakefile, version, or history.  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Run "rake ci". This must pass and not show any regressions in the
   metrics for the code to be merged.
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+## Copyright
 
 Copyright (c) 2009-2011 Dan Kubb. See LICENSE for details.
