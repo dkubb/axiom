@@ -133,7 +133,7 @@ new_relation = ordered.last(5)
 
 The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
 
-Most of the design is heavily inspired from koios[https://github.com/carllerche/koios] and arel[https://github.com/rails/arel]. The reason I decided to write my own and not just build on top of those systems was not so much because I don't like the code/API in those projects, it's more because I wanted to gain a depth of understanding that can only be earned by trying to solve the problem myself.
+Most of the design is heavily inspired from [koios](https://github.com/carllerche/koios) and [arel](https://github.com/rails/arel). The reason I decided to write my own and not just build on top of those systems was not so much because I don't like the code/API in those projects, it's more because I wanted to gain a depth of understanding that can only be earned by trying to solve the problem myself.
 
 I should note though that I don't plan to just re-implement those systems with a different API, or different internals, I plan to make something that surpasses them in several areas. For example, I want to be able to join information from multiple datastores and represent it as a single relation. I want to be able to insert, update or delete from that relation and have those changes propagated back to the right datastore. This is not an easy feat, since it is basically the writable view problem that RDBMS' struggle with. While I do think there are some cases where relations will become read-only, I think it will be possible to propagate writes properly in this manner. I certainly think for the current use cases in DataMapper this should work quite well.
 
@@ -151,11 +151,11 @@ This is 100% complete.
 
 The second phase of this project will be to add a RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (eg. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
 
-This is 95% complete. I have completed a first pass on veritas-sql-generator[https://github.com/dkubb/veritas-sql-generator] which is a visitor that walks the AST and produces SQL for every operatione. More work is needed to write adapters that use the veritas-sql-generator and manage database connections/execution.
+This is 95% complete. I have completed a first pass on [veritas-sql-generator](https://github.com/dkubb/veritas-sql-generator) which is a visitor that walks the AST and produces SQL for every operatione. More work is needed to write adapters that use the veritas-sql-generator and manage database connections/execution.
 
 ### Phase 3: DataMapper Integration
 
-The third phase of this project will be to add a few NoSQL engines (like MongoDB[http://www.mongodb.org/] and CouchDB[http://couchdb.org/]) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
+The third phase of this project will be to add a few NoSQL engines (like [MongoDB](http://www.mongodb.org/) and [CouchDB](http://couchdb.org/)) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
 
 ## Related Projects
 
@@ -176,7 +176,7 @@ This is a system that manages the database connections and executes the SQL gene
 * If you want your code merged into the mainline, please discuss the proposed changes with me before doing any work on it. This library is still in early development, and it may not always be clear the direction it is going. Some features may not be appropriate yet, may need to be deferred until later when the foundation for them is laid, or may be more applicable in a plugin.
 * Fork the project.
 * Make your feature addition or bug fix.
-  * Follow this {style guide}[https://github.com/dkubb/styleguide].
+  * Follow this [style guide](https://github.com/dkubb/styleguide).
 * Add specs for it. This is important so I don't break it in a future version unintentionally. Tests must cover all branches within the code, and code must be fully covered.
 * Commit, do not mess with Rakefile, version, or history.  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Run "rake ci". This must pass and not show any regressions in the
