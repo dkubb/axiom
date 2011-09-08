@@ -185,4 +185,4 @@ This is a system that manages the database connections and executes the SQL gene
 
 ## Copyright
 
-Copyright (c) 2009-2011 Dan Kubb. See LICENSE for details.
+Copyright &copy; 2009-2011 Dan Kubb. See LICENSE for details.
