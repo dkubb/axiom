@@ -41,4 +41,17 @@ describe Immutable, '#memoize' do
       object.send(method).should be_frozen
     end
   end
+
+  context 'when the method is already memoized' do
+    let(:value)    { stub }
+    let(:original) { nil  }
+
+    before do
+      object.memoize(method, original)
+    end
+
+    it 'does not change the value' do
+      expect { subject }.to_not change { object.send(method) }
+    end
+  end
 end

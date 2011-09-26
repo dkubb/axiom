@@ -62,7 +62,9 @@ module Veritas
     #
     # @api public
     def memoize(name, value)
-      @__memory[name] = Immutable.freeze_object(value)
+      unless @__memory.key?(name)
+        @__memory[name] = Immutable.freeze_object(value)
+      end
       self
     end
 
