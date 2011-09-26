@@ -163,11 +163,11 @@ module Veritas
       # @api private
       def memoize_method(method)
         visibility = method_visibility(method)
-        create_memoize_method_for(method)
+        define_memoize_method(method)
         send(visibility, method)
       end
 
-      # Create a memoized method that delegates to the original method
+      # Define a memoized method that delegates to the original method
       #
       # @param [Symbol] method
       #   the name of the method
@@ -175,7 +175,7 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def create_memoize_method_for(method)
+      def define_memoize_method(method)
         original = instance_method(method)
         undef_method(method)
         define_method(method) do |*args|
