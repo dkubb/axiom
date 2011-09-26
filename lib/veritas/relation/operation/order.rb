@@ -140,31 +140,6 @@ module Veritas
             Order.new(self, Array(context.yield))
           end
 
-          # Return an ordered relation (Deprecated)
-          #
-          # @deprecated Use #sort_by instead
-          #
-          # @example with no directions
-          #   order = relation.order  # sort by the header
-          #
-          # @example with a block
-          #   order = relation.order { |r| [ r.a.desc, r.b ] }
-          #
-          # @yield [relation]
-          #   optional block to evaluate for directions
-          #
-          # @yieldparam [Relation] relation
-          #
-          # @yieldreturn [Array<Direction>, Header]
-          #
-          # @return [Order]
-          #
-          # @api public
-          def order
-            warn "#{self.class}#order is deprecated and will be removed from Veritas 0.0.6"
-            sort_by { |context| block_given? ? yield(context) : header }
-          end
-
         end # module Methods
 
         Relation.class_eval { include Methods }
