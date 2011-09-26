@@ -37,7 +37,7 @@ describe Aliasable, '#inheritable_alias' do
     file, line = aliasable.other.first.split(':')[0, 2]
 
     File.expand_path(file).should eql(File.expand_path('../../../../../lib/veritas/support/aliasable.rb', __FILE__))
-    line.to_i.should eql(23)
+    line.to_i.should eql(38)
   end
 
   it 'sets the file and line number properly' do

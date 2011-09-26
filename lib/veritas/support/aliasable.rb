@@ -17,14 +17,27 @@ module Veritas
     #
     # @api public
     def inheritable_alias(aliases)
-      aliases.each do |new_method, original_method|
-        class_eval <<-RUBY, __FILE__, __LINE__ + 1
-          def #{new_method}(*args, &block)          # def |(*args, &block)
-            self.#{original_method}(*args, &block)  #   self.union(*args, &block)
-          end                                       # end
-        RUBY
-      end
+      aliases.each { |methods| define_inheritable_alias_method(*methods) }
       self
+    end
+
+  private
+
+    # Create a new method alias for the original method
+    #
+    # @param [Symbol] new_method
+    #
+    # @param [Symbol] original_method
+    #
+    # @return [undefined]
+    #
+    # @api private
+    def define_inheritable_alias_method(new_method, original_method)
+      class_eval <<-RUBY, __FILE__, __LINE__ + 1
+        def #{new_method}(*args, &block)          # def |(*args, &block)
+          self.#{original_method}(*args, &block)  #   self.union(*args, &block)
+        end                                       # end
+      RUBY
     end
 
   end # module Aliasable
