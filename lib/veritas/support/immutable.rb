@@ -179,7 +179,11 @@ module Veritas
         original = instance_method(method)
         undef_method(method)
         define_method(method) do |*args|
-          @__memory[method] ||= Immutable.freeze_object(original.bind(self).call(*args))
+          if @__memory.key?(method)
+            @__memory.fetch(method)
+          else
+            @__memory[method] = Immutable.freeze_object(original.bind(self).call(*args))
+          end
         end
       end
 
