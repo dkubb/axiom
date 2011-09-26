@@ -130,14 +130,14 @@ module Veritas
           #
           # @yieldparam [Relation] relation
           #
-          # @yieldreturn [Array<Direction>, Header]
+          # @yieldreturn [DirectionSet, Array<Direction>, Header]
           #
           # @return [Order]
           #
           # @api public
           def sort_by
             context = Evaluator::Context.new(header) { |context| yield context }
-            Order.new(self, Array(context.yield))
+            Order.new(self, context.yield)
           end
 
         end # module Methods

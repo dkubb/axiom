@@ -24,7 +24,7 @@ module Veritas
           #
           # @api public
           def self.new(directions)
-            directions = coerce_directions(directions.to_ary)
+            directions = coerce_directions(directions)
             assert_unique_attributes(directions.map { |direction| direction.attribute })
             super
           end
@@ -37,7 +37,7 @@ module Veritas
           #
           # @api private
           def self.coerce_directions(directions)
-            directions.map { |direction| Ascending.coerce(direction) }
+            Array(directions).map { |direction| Ascending.coerce(direction) }
           end
 
           # Assert the attributes are unique
