@@ -8,10 +8,10 @@ UncommunicativeParameterName:
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
 LargeClass:
-  max_methods: 15  # TODO: decrease max_methods to 10-15 or less
+  max_methods: 14  # TODO: decrease max_methods to 10-15 or less
   exclude: []
   enabled: true
-  max_instance_variables: 5
+  max_instance_variables: 4
 UncommunicativeMethodName:
   accept: []
   exclude: []
