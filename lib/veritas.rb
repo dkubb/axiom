@@ -11,6 +11,7 @@ require 'veritas/core_ext/time'
 
 require 'veritas/support/abstract_class'
 require 'veritas/support/aliasable'
+require 'veritas/support/comparator'
 require 'veritas/support/immutable'
 require 'veritas/support/visitable'
 

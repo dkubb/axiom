@@ -46,7 +46,11 @@ UncommunicativeModuleName:
   - !ruby/regexp /[0-9]$/
 NestedIterators:
   ignore_iterators: []
-  exclude: []
+  exclude: [
+    # neither of these have nested iterators, only nested blocks
+    Veritas::Comparator#define_comparison_method,
+    Veritas::Comparator#define_hash_method
+  ]
   enabled: true
   max_allowed_nesting: 1
 LongMethod:
