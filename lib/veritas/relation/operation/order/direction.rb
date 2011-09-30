@@ -7,7 +7,10 @@ module Veritas
 
         # Abstract base class for attribute sorting
         class Direction
+          extend Comparator
           include AbstractClass, Immutable
+
+          compare :attribute
 
           # The attribute to sort on
           #
@@ -97,33 +100,6 @@ module Veritas
             eql?(other)
           end
 
-          # Compare the direction with other direction for equality
-          #
-          # @example
-          #   direction.eql?(other)  # => true or false
-          #
-          # @param [Direction] other
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def eql?(other)
-            instance_of?(other.class) &&
-            attribute.eql?(other.attribute)
-          end
-
-          # Return the hash of the direction
-          #
-          # @example
-          #   hash = direction.hash
-          #
-          # @return [Fixnum]
-          #
-          # @api public
-          def hash
-            self.class.hash ^ attribute.hash
-          end
-
           # Coerce an object into a Direction
           #
           # @param [Attribute, Direction] object
@@ -135,8 +111,6 @@ module Veritas
           def self.coerce(object)
             object.kind_of?(Direction) ? object : new(object)
           end
-
-          memoize :hash
 
         end # class Direction
 

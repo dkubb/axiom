@@ -4,8 +4,10 @@ module Veritas
 
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
-    extend Aliasable
+    extend Aliasable, Comparator
     include AbstractClass, Immutable, ::Comparable, Visitable
+
+    compare :name, :options
 
     # The attribute name
     #
@@ -227,38 +229,7 @@ module Veritas
     #
     # @api public
     def ==(other)
-      other = Attribute.coerce(other)
-      name.equal?(other.name) &&
-      options == other.options
-    end
-
-    # Compare the attribute with other attribute for equality
-    #
-    # @example
-    #   attribute.eql?(other)  # => true or false
-    #
-    # @param [Attribute] other
-    #   the other attribute to compare with
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def eql?(other)
-      instance_of?(other.class) &&
-      name.equal?(other.name)   &&
-      options.eql?(other.options)
-    end
-
-    # Return the hash of the attribute
-    #
-    # @example
-    #   hash = attribute.hash
-    #
-    # @return [Fixnum]
-    #
-    # @api public
-    def hash
-      self.class.hash ^ name.hash ^ options.hash
+      cmp?(__method__, coerce(other))
     end
 
     # Return a string representing the attribute
@@ -289,7 +260,16 @@ module Veritas
       value.nil? ? !required? : yield
     end
 
-    memoize :hash
+    # Coerce the object into an Attribute
+    #
+    # @param [Attribute, Array] object
+    #
+    # @return [Attribute]
+    #
+    # @api private
+    def coerce(object)
+      Attribute.coerce(object)
+    end
 
   end # class Attribute
 end # module Veritas

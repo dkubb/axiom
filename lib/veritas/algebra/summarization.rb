@@ -7,6 +7,8 @@ module Veritas
     class Summarization < Relation
       include Relation::Operation::Unary
 
+      compare :operand, :summarize_per, :summarizers
+
       # The relation to summarize with
       #
       # @return [Relation]
@@ -99,35 +101,6 @@ module Veritas
         self
       end
 
-      # Compare the Summarization with other relation for equality
-      #
-      # @example
-      #   summarization.eql?(other)  # => true or false
-      #
-      # @param [Relation] other
-      #   the other relation to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        super                                   &&
-        summarize_per.eql?(other.summarize_per) &&
-        summarizers.eql?(other.summarizers)
-      end
-
-      # Return the hash of the summarization
-      #
-      # @example
-      #   hash = summarization.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        super ^ summarize_per.hash ^ summarizers.hash
-      end
-
     private
 
       # Return the current summaries
@@ -208,8 +181,6 @@ module Veritas
       end # module Methods
 
       Relation.class_eval { include Methods }
-
-      memoize :hash
 
     end # class Summarization
   end # module Algebra

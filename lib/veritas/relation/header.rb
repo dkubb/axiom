@@ -5,8 +5,10 @@ module Veritas
 
     # A set of attributes that correspond to values in each tuple
     class Header
-      extend Aliasable
+      extend Aliasable, Comparator
       include Enumerable, Immutable
+
+      compare :to_set
 
       inheritable_alias(
         :& => :intersect,
@@ -217,35 +219,7 @@ module Veritas
       #
       # @api public
       def ==(other)
-        to_set == self.class.coerce(other).to_set
-      end
-
-      # Compare the header with other header for equality
-      #
-      # @example
-      #   header.eql?(other)  # => true or false
-      #
-      # @param [Header] other
-      #   the other header to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        instance_of?(other.class) &&
-        to_set == other.to_set
-      end
-
-      # Return the hash of the header
-      #
-      # @example
-      #   hash = header.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        self.class.hash ^ @attributes.hash
+        cmp?(__method__, coerce(other))
       end
 
       # Test if there are no attributes
@@ -286,6 +260,18 @@ module Veritas
         self.class.new(attributes)
       end
 
+      # Coerce the object into a Header
+      #
+      # @param [Header, #to_ary]
+      #   the header or attributes
+      #
+      # @return [Header]
+      #
+      # @api private
+      def coerce(object)
+        self.class.coerce(object)
+      end
+
       # Coerce an Array-like object into a Header
       #
       # @param [Header, #to_ary]
@@ -298,7 +284,7 @@ module Veritas
         object.kind_of?(Header) ? object : new(object)
       end
 
-      memoize :hash, :to_ary
+      memoize :to_ary
 
     end # class Header
   end # class Relation

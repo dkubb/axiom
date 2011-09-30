@@ -7,6 +7,8 @@ module Veritas
     class Restriction < Relation
       include Relation::Operation::Unary
 
+      compare :operand, :predicate
+
       # The predicate for the relation
       #
       # @return [Function, #call]
@@ -51,33 +53,6 @@ module Veritas
         self
       end
 
-      # Compare the Restriction with other relation for equality
-      #
-      # @example
-      #   restriction.eql?(other)  # => true or false
-      #
-      # @param [Relation] other
-      #   the other relation to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        super && predicate.eql?(other.predicate)
-      end
-
-      # Return the hash of the restriction
-      #
-      # @example
-      #   hash = restriction.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        super ^ predicate.hash
-      end
-
       module Methods
 
         # Return a relation with restricted tuples
@@ -105,8 +80,6 @@ module Veritas
       end # module Methods
 
       Relation.class_eval { include Methods }
-
-      memoize :hash
 
     end # class Restriction
   end # module Algebra

@@ -5,7 +5,10 @@ module Veritas
 
       # Mixin for unary functions
       module Unary
+        extend Comparator
         include Operation::Unary
+
+        compare :operand
 
         # Evaluate the unary connective using the tuple
         #
@@ -64,7 +67,7 @@ module Veritas
         # @api public
         def ==(other)
           (kind_of?(other.class) || other.kind_of?(self.class)) &&
-          operand == other.operand
+          cmp?(__method__, other)
         end
 
         # Mixin for invertable unary functions

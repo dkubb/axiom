@@ -75,46 +75,6 @@ module Veritas
       raise NotImplementedError, "#{self.class}#type must be implemented"
     end
 
-    # Compare the function with other function for equivalency
-    #
-    # @example
-    #   function == other  # => true or false
-    #
-    # @param [Function] other
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def ==(other)
-      raise NotImplementedError, "#{self.class}#== must be implemented"
-    end
-
-    # Compare the function with other function for equality
-    #
-    # @example
-    #   function.eql?(other)  # => true or false
-    #
-    # @param [Function] other
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def eql?(other)
-      raise NotImplementedError, "#{self.class}#eql? must be implemented"
-    end
-
-    # Return the hash of the function
-    #
-    # @example
-    #   hash = function.hash
-    #
-    # @return [Fixnum]
-    #
-    # @api public
-    def hash
-      raise NotImplementedError, "#{self.class}#hash must be implemented"
-    end
-
     # Return a string representing the function
     #
     # @example

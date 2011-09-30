@@ -7,6 +7,8 @@ module Veritas
     class Rename < Relation
       include Relation::Operation::Unary
 
+      compare :operand, :aliases
+
       # The aliases for the relation
       #
       # @return [Aliases]
@@ -58,33 +60,6 @@ module Veritas
         self
       end
 
-      # Compare the Rename with other relation for equality
-      #
-      # @example
-      #   rename.eql?(other)  # => true or false
-      #
-      # @param [Relation] other
-      #   the other relation to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        super && aliases.eql?(other.aliases)
-      end
-
-      # Return the hash of the rename
-      #
-      # @example
-      #   hash = rename.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        super ^ aliases.hash
-      end
-
       module Methods
 
         # Return a relation with the header renamed
@@ -105,8 +80,6 @@ module Veritas
       end # module Methods
 
       Relation.class_eval { include Methods }
-
-      memoize :hash
 
     end # class Rename
   end # module Algebra

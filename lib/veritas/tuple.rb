@@ -4,7 +4,10 @@ module Veritas
 
   # A set of objects representing a unique fact in a relation
   class Tuple
+    extend Comparator
     include Immutable
+
+    compare :data
 
     # The tuple header
     #
@@ -136,36 +139,7 @@ module Veritas
     #
     # @api public
     def ==(other)
-      other = self.class.coerce(header, other)
-      data == other.data
-    end
-
-    # Compare the tuple with other tuple for equality
-    #
-    # @example
-    #   tuple == other  # => true or false
-    #
-    # @param [Tuple] other
-    #   the other tuple to compare with
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def eql?(other)
-      instance_of?(other.class) &&
-      data.eql?(other.data)
-    end
-
-    # Return the hash of the tuple
-    #
-    # @example
-    #   hash = tuple.hash
-    #
-    # @return [Fixnum]
-    #
-    # @api public
-    def hash
-      self.class.hash ^ data.hash
+      cmp?(__method__, coerce(other))
     end
 
     # Return a string representing the tuple data
@@ -178,6 +152,22 @@ module Veritas
     # @api public
     def inspect
       data.inspect
+    end
+
+  private
+
+    # Coerce an Array-like object into a Tuple
+    #
+    # @param [Header] header
+    #   the tuple header
+    # @param [Tuple, #to_ary]
+    #   the tuple or tuple data
+    #
+    # @return [Tuple]
+    #
+    # @api private
+    def coerce(object)
+      self.class.coerce(header, object)
     end
 
     # Coerce an Array-like object into a Tuple

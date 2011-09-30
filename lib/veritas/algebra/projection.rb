@@ -7,6 +7,8 @@ module Veritas
     class Projection < Relation
       include Relation::Operation::Unary
 
+      compare :operand, :header
+
       # Initialize a Projection
       #
       # @param [Relation] operand
@@ -44,33 +46,6 @@ module Veritas
           yield seen[tuple] = tuple unless seen.key?(tuple)
         end
         self
-      end
-
-      # Compare the Projection with other relation for equality
-      #
-      # @example
-      #   projection.eql?(other)  # => true or false
-      #
-      # @param [Relation] other
-      #   the other relation to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        super && header.eql?(other.header)
-      end
-
-      # Return the hash of the projection
-      #
-      # @example
-      #   hash = projection.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        super ^ header.hash
       end
 
       module Methods
@@ -136,8 +111,6 @@ module Veritas
       end # module Methods
 
       Relation.class_eval { include Methods }
-
-      memoize :hash
 
     end # class Projection
   end # module Algebra

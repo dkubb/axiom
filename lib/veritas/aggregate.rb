@@ -4,7 +4,10 @@ module Veritas
 
   # Abstract class for aggregate functions
   class Aggregate
+    extend Comparator
     include AbstractClass, Immutable, Visitable, Operation::Unary
+
+    compare :operand
 
     # Return the default accumulator
     #
@@ -94,6 +97,21 @@ module Veritas
     # @api public
     def type
       raise NotImplementedError, "#{self.class}#type must be implemented"
+    end
+
+    # Compare the aggregate with other aggregate for equivalency
+    #
+    # @example
+    #   aggregate == other  # => true or false
+    #
+    # @param [Aggregate] other
+    #   the other aggregate to compare with
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def ==(other)
+      cmp?(__method__, other)
     end
 
   private

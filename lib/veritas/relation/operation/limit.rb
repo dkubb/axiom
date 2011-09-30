@@ -8,6 +8,8 @@ module Veritas
       class Limit < Relation
         include Unary
 
+        compare :operand, :limit
+
         # Return the limit
         #
         # @example
@@ -117,33 +119,6 @@ module Veritas
           self
         end
 
-        # Compare the Limit with other relation for equality
-        #
-        # @example
-        #   limited_relation.eql?(other)  # => true or false
-        #
-        # @param [Relation] other
-        #   the other relation to compare with
-        #
-        # @return [Boolean]
-        #
-        # @api public
-        def eql?(other)
-          super && limit.eql?(other.limit)
-        end
-
-        # Return the hash of the limit
-        #
-        # @example
-        #   hash = limit.hash
-        #
-        # @return [Fixnum]
-        #
-        # @api public
-        def hash
-          super ^ limit.hash
-        end
-
         module Methods
 
           # Return a relation with n tuples
@@ -200,8 +175,6 @@ module Veritas
         end # module Methods
 
         Relation.class_eval { include Methods }
-
-        memoize :hash
 
       end # class Limit
     end # module Operation

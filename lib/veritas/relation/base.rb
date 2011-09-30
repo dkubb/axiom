@@ -6,6 +6,8 @@ module Veritas
     # A class that represents a base relation
     class Base < Relation
 
+      compare :header, :to_set, :name
+
       # The base relation name
       #
       # @example
@@ -32,35 +34,6 @@ module Veritas
         super(header, tuples)
         @name = Immutable.freeze_object(name.to_s)
       end
-
-      # Compare the base relation with other relation for equality
-      #
-      # @example
-      #   base.eql?(other)  # => true or false
-      #
-      # @param [Relation] other
-      #   the other relation to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        super && name.eql?(other.name)
-      end
-
-      # Return the hash of the base relation
-      #
-      # @example
-      #   hash = base.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        super ^ name.hash
-      end
-
-      memoize :hash
 
     end # class Base
   end # class Relation

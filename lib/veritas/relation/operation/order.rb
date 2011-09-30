@@ -8,6 +8,8 @@ module Veritas
       class Order < Relation
         include Unary
 
+        compare :operand, :directions
+
         # The relation sort order
         #
         # @return [Operation::Order::DirectionSet]
@@ -91,33 +93,6 @@ module Veritas
           self
         end
 
-        # Compare the Order with other relation for equality
-        #
-        # @example
-        #   order.eql?(other)  # => true or false
-        #
-        # @param [Relation] other
-        #   the other relation to compare with
-        #
-        # @return [Boolean]
-        #
-        # @api public
-        def eql?(other)
-          super && directions.eql?(other.directions)
-        end
-
-        # Return the hash of the order
-        #
-        # @example
-        #   hash = order.hash
-        #
-        # @return [Fixnum]
-        #
-        # @api public
-        def hash
-          super ^ directions.hash
-        end
-
         module Methods
 
           # Return an ordered relation
@@ -143,8 +118,6 @@ module Veritas
         end # module Methods
 
         Relation.class_eval { include Methods }
-
-        memoize :hash
 
       end # class Order
     end # module Operation

@@ -4,7 +4,10 @@ module Veritas
 
   # Abstract base class for Relation operations
   class Relation
+    extend Comparator
     include Immutable, Enumerable, Visitable
+
+    compare :header, :to_set
 
     # The relation header
     #
@@ -152,36 +155,7 @@ module Veritas
     def ==(other)
       other = coerce(other)
       header == other.header &&
-      to_set == project_relation(other).to_set
-    end
-
-    # Compare the relation with other relation for equality
-    #
-    # @example
-    #   relation.eql?(other)  # => true or false
-    #
-    # @param [Relation] other
-    #   the other relation to compare with
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def eql?(other)
-      instance_of?(other.class) &&
-      header.eql?(other.header) &&
-      to_set.eql?(project_relation(other).to_set)
-    end
-
-    # Return the hash of the relation
-    #
-    # @example
-    #   hash = relation.hash
-    #
-    # @return [Fixnum]
-    #
-    # @api public
-    def hash
-      self.class.hash ^ header.hash ^ to_set.hash
+      to_set == other.to_set
     end
 
     # Test if there are no tuples
@@ -200,17 +174,15 @@ module Veritas
 
     # Coerce an Enumerable into a Relation
     #
-    # @param [Enumerable] tuples
-    #   the tuples to coerce
+    # @param [Enumerable] object
+    #   the object to coerce
     #
     # @return [Relation]
     #
     # @api private
-    def coerce(tuples)
-      Relation.new(header, tuples)
+    def coerce(object)
+      project_relation(Relation.new(header, object))
     end
-
-    memoize :hash
 
   end # class Relation
 end # module Veritas

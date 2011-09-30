@@ -7,8 +7,10 @@ module Veritas
 
         # A class that represents a tuple sort order for a set of attributes
         class DirectionSet
-          extend Aliasable
+          extend Aliasable, Comparator
           include Enumerable, Immutable
+
+          compare :to_ary
 
           inheritable_alias(:| => :union)
 
@@ -212,36 +214,7 @@ module Veritas
           #
           # @api public
           def ==(other)
-            other = self.class.coerce(other)
-            to_ary == other.to_ary
-          end
-
-          # Compare the directions with other directions for equality
-          #
-          # @example
-          #   directions.eql?(other)  # => true or false
-          #
-          # @param [DirectionSet] other
-          #   the other directions to compare with
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def eql?(other)
-            instance_of?(other.class) &&
-            to_ary.eql?(other.to_ary)
-          end
-
-          # Return the hash of the aliases
-          #
-          # @example
-          #   hash = directions.hash
-          #
-          # @return [Fixnum]
-          #
-          # @api public
-          def hash
-            self.class.hash ^ to_ary.hash
+            cmp?(__method__, coerce(other))
           end
 
           # Test if there are no directions
@@ -298,11 +271,22 @@ module Veritas
           # @return [DirectionSet]
           #
           # @api private
+          def coerce(object)
+            self.class.coerce(object)
+          end
+
+          # Coerce directions into a DirectionSet
+          #
+          # @param [DirectionSet, Array<Direction, Attribute>]
+          #
+          # @return [DirectionSet]
+          #
+          # @api private
           def self.coerce(object)
             object.kind_of?(DirectionSet) ? object : new(object)
           end
 
-          memoize :hash, :reverse
+          memoize :reverse
 
         end # class DirectionSet
       end # class Order

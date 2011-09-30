@@ -6,8 +6,10 @@ module Veritas
 
       # Aliases that map old attributes to new renamed attributes
       class Aliases
-        extend Aliasable
+        extend Aliasable, Comparator
         include Immutable, Enumerable
+
+        compare :to_hash
 
         inheritable_alias(:| => :union)
 
@@ -145,35 +147,7 @@ module Veritas
         #
         # @api public
         def ==(other)
-          to_hash == other.to_hash
-        end
-
-        # Compare the aliases with other aliases for equality
-        #
-        # @example
-        #   aliases.eql?(other)  # => true or false
-        #
-        # @param [Aliases] other
-        #   the other aliases to compare with
-        #
-        # @return [Boolean]
-        #
-        # @api public
-        def eql?(other)
-          instance_of?(other.class) &&
-          to_hash.eql?(other.to_hash)
-        end
-
-        # Return the hash of the aliases
-        #
-        # @example
-        #   hash = aliases.hash
-        #
-        # @return [Fixnum]
-        #
-        # @api public
-        def hash
-          self.class.hash ^ @aliases.hash
+          cmp?(__method__, other)
         end
 
         # Convert the aliases to a Hash
@@ -225,8 +199,6 @@ module Veritas
         end
 
         private_class_method :coerce_alias_pair
-
-        memoize :hash
 
       end # class Aliases
     end # class Rename

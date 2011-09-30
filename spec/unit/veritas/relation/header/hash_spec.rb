@@ -10,5 +10,5 @@ describe Relation::Header, '#hash' do
 
   it_should_behave_like 'a hash method'
 
-  it { should == described_class.hash ^ { :id => attribute }.hash }
+  it { should == described_class.hash ^ Set[attribute].hash }
 end

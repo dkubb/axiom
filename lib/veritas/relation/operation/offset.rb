@@ -8,6 +8,8 @@ module Veritas
       class Offset < Relation
         include Unary
 
+        compare :operand, :offset
+
         # Return the offset
         #
         # @example
@@ -116,33 +118,6 @@ module Veritas
           self
         end
 
-        # Compare the Offset with other relation for equality
-        #
-        # @example
-        #   offset_relation.eql?(other)  # => true or false
-        #
-        # @param [Relation] other
-        #   the other relation to compare with
-        #
-        # @return [Boolean]
-        #
-        # @api public
-        def eql?(other)
-          super && offset.eql?(other.offset)
-        end
-
-        # Return the hash of the offset
-        #
-        # @example
-        #   hash = offset.hash
-        #
-        # @return [Fixnum]
-        #
-        # @api public
-        def hash
-          super ^ offset.hash
-        end
-
         module Methods
 
           # Return a relation with n tuples
@@ -163,8 +138,6 @@ module Veritas
         end # module Methods
 
         Relation.class_eval { include Methods }
-
-        memoize :hash
 
       end # class Offset
     end # module Operation
