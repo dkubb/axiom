@@ -23,7 +23,7 @@ describe Comparator, '#compare' do
     expect { subject }.to change { object.public_instance_methods(false).map(&:to_s) }.from([]).to([ 'hash' ])
   end
 
-  it 'defines a #hash instance method that uses the class and methods in the hash' do
+  it 'defines a #hash method that uses the class and declared methods' do
     subject
     instance.hash.should equal(object.hash ^ instance.object_id.hash ^ instance.to_s.hash)
   end
