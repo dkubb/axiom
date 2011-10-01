@@ -47,7 +47,7 @@ UncommunicativeModuleName:
 NestedIterators:
   ignore_iterators: []
   exclude: [
-    # neither of these have nested iterators, only nested blocks
+    # none of these use nested iterators, they use nested blocks only
     Veritas::Comparator#define_comparison_method,
     Veritas::Comparator#define_hash_method
   ]
