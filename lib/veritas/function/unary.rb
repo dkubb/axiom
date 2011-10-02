@@ -97,8 +97,7 @@ module Veritas
           #
           # @api public
           def inverse
-            self.class.inverse.new(operand).
-              memoize(:inverse, self)
+            self.class.inverse.new(operand).memoize(:inverse, self)
           end
 
         end # module Invertible

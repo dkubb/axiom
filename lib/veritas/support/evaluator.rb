@@ -82,7 +82,7 @@ module Veritas
       #
       # @api private
       def respond_to?(name, *)
-        !!self[name]
+        self[name] ? true : false
       end
 
       # Forward a message to the object

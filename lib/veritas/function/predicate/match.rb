@@ -17,7 +17,7 @@ module Veritas
         #
         # @api public
         def self.call(*)
-          !!super
+          super ? true : false
         end
 
         # Return the Match operation

@@ -93,11 +93,11 @@ module Veritas
     # @api private
     def self.infer_type(operand)
       case operand
-        when Attribute, Function, Aggregate then operand.type
-        when FalseClass                     then Boolean
-        else
-          type = operand.class
-          descendants.detect { |descendant| type <= descendant.primitive }
+      when Attribute, Function, Aggregate then operand.type
+      when FalseClass                     then Boolean
+      else
+        type = operand.class
+        descendants.detect { |descendant| type <= descendant.primitive }
       end
     end
 
@@ -257,7 +257,7 @@ module Veritas
     #
     # @api private
     def valid_or_optional?(value)
-      value.nil? ? !required? : yield
+      value.nil? ? ! required? : yield
     end
 
     # Coerce the object into an Attribute

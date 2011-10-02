@@ -18,7 +18,7 @@ module Veritas
     #
     # @api private
     def self.rename_attributes(operand, aliases)
-      if operand.respond_to?(:rename) && !operand.kind_of?(Attribute)
+      if operand.respond_to?(:rename) && ! operand.kind_of?(Attribute)
         operand.rename(aliases)
       else
         aliases[operand]
