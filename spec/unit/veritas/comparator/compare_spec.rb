@@ -25,7 +25,7 @@ describe Comparator, '#compare' do
 
   it 'defines a #hash method that uses the class and declared methods' do
     subject
-    instance.hash.should eql(object.hash ^ false.hash ^ instance.to_s.hash)
+    instance.hash.should equal(object.hash ^ false.hash ^ instance.to_s.hash)
   end
 
   it 'memoizes #hash' do
