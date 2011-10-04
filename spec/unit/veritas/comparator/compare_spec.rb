@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Comparator, '#compare' do
   subject { object.compare(*methods) }
 
-  let(:methods)  { [ :object_id, :to_s ]           }
+  let(:methods)  { [ :nil?, :to_s ]                }
   let(:object)   { Class.new { extend Comparator } }
   let(:instance) { object.new                      }
 
@@ -25,14 +25,8 @@ describe Comparator, '#compare' do
 
   it 'defines a #hash method that uses the class and declared methods' do
     subject
-    instance.hash.should eql(object.hash ^ instance.object_id.hash ^ instance.to_s.hash)
+    instance.hash.should eql(object.hash ^ false.hash ^ instance.to_s.hash)
   end
-
-  # XXX: find out which instance is not a Fixnum
-  it { instance.hash.should be_instance_of(Fixnum) }
-  it { object.hash.should be_instance_of(Fixnum) }
-  it { instance.object_id.hash.should be_instance_of(Fixnum) }
-  it { instance.to_s.hash.should be_instance_of(Fixnum) }
 
   it 'memoizes #hash' do
     subject
