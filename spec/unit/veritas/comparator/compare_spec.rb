@@ -28,6 +28,10 @@ describe Comparator, '#compare' do
     instance.hash.should equal(object.hash ^ instance.object_id.hash ^ instance.to_s.hash)
   end
 
+  # XXX: temporary to see why travis-ci is failing for the spec above
+  it { instance.class.should equal(object) }
+  it { instance.class.hash.should equal(object.hash) }
+
   it 'memoizes #hash' do
     subject
     instance.hash
