@@ -28,6 +28,12 @@ describe Comparator, '#compare' do
     instance.hash.should eql(object.hash ^ instance.object_id.hash ^ instance.to_s.hash)
   end
 
+  # XXX: find out which instance is not a Fixnum
+  it { instance.hash.should be_instance_of(Fixnum) }
+  it { object.hash.should be_instance_of(Fixnum) }
+  it { instance.object_id.hash.should be_instance_of(Fixnum) }
+  it { instance.to_s.hash.should be_instance_of(Fixnum) }
+
   it 'memoizes #hash' do
     subject
     instance.hash
