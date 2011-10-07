@@ -23,9 +23,16 @@ describe Comparator, '#compare' do
     expect { subject }.to change { object.public_instance_methods(false).map(&:to_s) }.from([]).to([ 'hash' ])
   end
 
-  it 'defines a #hash method that uses the class and declared methods' do
-    subject
-    instance.hash.should equal(object.hash ^ false.hash ^ instance.to_s.hash)
+  if RUBY_ENGINE == 'jruby' && JRUBY_VERSION <= '1.6.4' && RUBY_VERSION == '1.9.2'
+    it 'defines a #hash method that uses the class and declared methods' do
+      subject
+      instance.hash.should eql(object.hash ^ false.hash ^ instance.to_s.hash)
+    end
+  else
+    it 'defines a #hash method that uses the class and declared methods' do
+      subject
+      instance.hash.should equal(object.hash ^ false.hash ^ instance.to_s.hash)
+    end
   end
 
   it 'memoizes #hash' do
