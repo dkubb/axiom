@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'backports'
-require 'backports/basic_object' unless RUBY_VERSION >= '1.9.2' && RUBY_PLATFORM[/java/]
+require 'backports/basic_object' unless RUBY_VERSION >= '1.9.2' && (RUBY_PLATFORM[/java/] || RUBY_ENGINE == 'rbx')
 require 'veritas'
 require 'spec'
 require 'spec/autorun'
