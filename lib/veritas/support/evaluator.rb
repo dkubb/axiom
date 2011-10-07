@@ -5,6 +5,9 @@ module Veritas
 
     # Provide a context to evaluate a Relation operation block
     class Context < BasicObject
+      extend Aliasable
+
+      inheritable_alias(:respond_to_missing? => :respond_to?)
 
       # The functions to evaluate
       #

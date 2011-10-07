@@ -101,6 +101,8 @@ begin
     aliases['Veritas::Function::Numeric::UnaryPlus::Methods']['+@']       = 'unary_plus'
     aliases['Veritas::Function::Numeric::UnaryMinus::Methods']['-@']      = 'unary_minus'
 
+    aliases['Veritas::Evaluator::Context']['respond_to_missing?'] = 'respond_to?'
+
     map = NameMap.new
 
     heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }
