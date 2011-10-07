@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'backports'
-require 'backports/basic_object'
+require 'backports/basic_object' unless Object.const_defined?(:BasicObject)
 require 'veritas'
 require 'spec'
 require 'spec/autorun'
