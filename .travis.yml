@@ -81,3 +81,7 @@ matrix:
       env: JRUBY_OPTS="--1.8"
     - rvm: rbx
       env: JRUBY_OPTS="--1.9"
+
+    # XXX: remove this once travis-ci updates to the latest rbx-head
+    - rvm: rbx
+      env: RBXOPT="-X19"
