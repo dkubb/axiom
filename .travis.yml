@@ -33,6 +33,8 @@ matrix:
       env: JRUBY_OPTS="--1.9"
     - rvm: ree
       env: JRUBY_OPTS="--1.8"
+    - rvm: ree
+      env: JRUBY_OPTS="--1.9"
     - rvm: jruby
       env:
     - rvm: rbx
