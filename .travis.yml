@@ -81,7 +81,7 @@ matrix:
     - rvm: rbx
       env: JRUBY_OPTS="--1.8"
     - rvm: rbx
-      env: JRUBY_OPTS="--1.8"
+      env: JRUBY_OPTS="--1.9"
 
     # exclude rbx 2.0
     - rvm: rbx-2.0
