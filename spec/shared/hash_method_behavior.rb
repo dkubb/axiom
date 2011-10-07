@@ -3,11 +3,16 @@
 shared_examples_for 'a hash method' do
   it_should_behave_like 'an idempotent method'
 
-  # TOOD: figure out if #hash under rbx should also always use Fixnum
-  if defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
-    it { should be_kind_of(Integer) }
-  else
-    it { should be_instance_of(Fixnum) }
+  specification = lambda do
+    should be_instance_of(Fixnum)
+  end
+
+  it 'is a fixnum' do
+    if defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
+      pending('Under rubinius #hash does not always use a Fixnum', &specification)
+    else
+      instance_eval(&specification)
+    end
   end
 
   it 'memoizes the hash code' do
