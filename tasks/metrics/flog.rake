@@ -22,9 +22,11 @@ begin
                          map     { |name, score| [ name, score.round_to(1) ] }.
                          sort_by { |name, score| score }
 
-    max = totals.last[1]
-    unless max >= threshold
-      raise "Adjust flog score down to #{max}"
+    if totals.any?
+      max = totals.last[1]
+      unless max >= threshold
+        raise "Adjust flog score down to #{max}"
+      end
     end
 
     bad_methods = totals.select { |name, score| score > threshold }
