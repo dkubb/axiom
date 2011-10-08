@@ -33,7 +33,10 @@ begin
     end
 
     require 'veritas'
-    root_module = 'Veritas'
+
+    root_module_regexp = Regexp.union(
+      'Veritas'
+    )
 
     spec_dir = Pathname('spec/unit')
 
@@ -109,7 +112,7 @@ begin
     unhandled_mutations = 0
 
     ObjectSpace.each_object(Module) do |mod|
-      next unless mod.name =~ /\A#{root_module}(?::|\z)/
+      next unless mod.name =~ /\A#{root_module_regexp}(?::|\z)/
 
       spec_prefix = spec_dir.join(mod.name.underscore)
 
@@ -194,7 +197,7 @@ begin
         descedant_specs = []
 
         ObjectSpace.each_object(Module) do |descedant|
-          next unless descedant.name =~ /\A#{root_module}(?::|\z)/ && mod >= descedant
+          next unless descedant.name =~ /\A#{root_module_regexp}(?::|\z)/ && mod >= descedant
           descedant_spec_prefix = spec_dir.join(descedant.name.underscore)
           descedant_specs << descedant_spec_prefix
 
@@ -210,7 +213,7 @@ begin
         descedant_specs = []
 
         ObjectSpace.each_object(Module) do |descedant|
-          next unless descedant.name =~ /\A#{root_module}(?::|\z)/ && mod >= descedant
+          next unless descedant.name =~ /\A#{root_module_regexp}(?::|\z)/ && mod >= descedant
           descedant_specs << spec_dir.join(descedant.name.underscore).join('class_methods')
         end
 
