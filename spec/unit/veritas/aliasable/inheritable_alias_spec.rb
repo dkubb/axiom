@@ -41,7 +41,7 @@ describe Aliasable, '#inheritable_alias' do
   end
 
   it 'sets the file and line number properly' do
-    if RUBY_PLATFORM[/java/]
+    if RUBY_PLATFORM.include?('java')
       pending('Kernel#caller returns the incorrect line number in JRuby', &specification)
     else
       instance_eval(&specification)
