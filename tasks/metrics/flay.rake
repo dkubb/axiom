@@ -15,7 +15,7 @@ begin
     flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
     flay.process(*files)
 
-    max = flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max
+    max = (flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max) || 0
     unless max >= threshold
       raise "Adjust flay threshold down to #{max}"
     end
