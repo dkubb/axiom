@@ -15,6 +15,7 @@ tmtags
 
 ## Rubinius
 *.rbc
+.rbx
 
 ## PROJECT::GENERAL
 *.gem
