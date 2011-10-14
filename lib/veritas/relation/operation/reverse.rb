@@ -60,8 +60,6 @@ module Veritas
           self
         end
 
-      private
-
         module Methods
 
           # Return the reversed relation
