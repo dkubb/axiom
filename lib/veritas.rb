@@ -147,8 +147,8 @@ module Veritas
   # Raised when a binary operation mixes ordered and unordered relations
   class RelationMismatchError < StandardError; end
 
-  # Raised when an attribute is a duplicate of another in the header
-  class DuplicateAttributeError < StandardError; end
+  # Raised when a name is a duplicate of another name in a set
+  class DuplicateNameError < StandardError; end
 
   # Represent an undefined argument
   Undefined = Object.new.freeze

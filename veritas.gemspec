@@ -604,8 +604,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/order/direction_set/attributes_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/class_methods/coerce_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/class_methods/new_spec.rb",
-    "spec/unit/veritas/relation/operation/order/direction_set/each_spec.rb",
-    "spec/unit/veritas/relation/operation/order/direction_set/empty_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/eql_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/equal_value_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/hash_spec.rb",

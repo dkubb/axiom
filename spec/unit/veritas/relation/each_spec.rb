@@ -28,7 +28,7 @@ describe Relation do
 
   let(:header) { [ [ :id, Integer ] ] }
   let(:body)   { [ [ 1 ] ].each       }
-  let(:object) { Relation             }
+  let(:object) { described_class      }
 
   before do
     subject.should be_instance_of(object)

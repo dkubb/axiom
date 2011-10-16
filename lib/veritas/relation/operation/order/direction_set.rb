@@ -6,126 +6,23 @@ module Veritas
       class Order
 
         # A class that represents a tuple sort order for a set of attributes
-        class DirectionSet
-          extend Aliasable, Comparator
-          include Enumerable, Immutable
+        class DirectionSet < Header
+          EMPTY = new
 
           compare :to_ary
 
-          inheritable_alias(:| => :union)
-
-          # Instantiate a DirectionSet
+          # Coerce the attribute into a Direction
           #
-          # @example
-          #   directions = DirectionSet.new(directions)
+          # @param [Object] attribute
           #
-          # @param [#to_ary] directions
-          #   optional attributes
-          #
-          # @return [undefined]
-          #
-          # @api public
-          def self.new(directions)
-            directions = coerce_directions(directions)
-            assert_unique_attributes(directions.map { |direction| direction.attribute })
-            super
-          end
-
-          # Coerce the attributes into an Array of Direction objects
-          #
-          # @param [Array<Direction>] attributes
-          #
-          # @return [Array<Direction>]
+          # @return [Direction]
           #
           # @api private
-          def self.coerce_directions(directions)
-            Array(directions).map { |direction| Ascending.coerce(direction) }
+          def self.coerce_attribute(attribute)
+            Ascending.coerce(attribute)
           end
 
-          # Assert the attributes are unique
-          #
-          # @param [Array<Attribute>] attributes
-          #
-          # @return [undefined]
-          #
-          # @raise [DuplicateAttributeError]
-          #   raised if the attributes are not unique
-          #
-          # @api private
-          def self.assert_unique_attributes(attributes)
-            duplicates = duplicate_attributes(attributes)
-            if duplicates
-              raise DuplicateAttributeError, "duplicate attributes: #{duplicates.join(', ')}"
-            end
-          end
-
-          # Returns the duplicate attribute names, if any
-          #
-          # @param [Array<Attribute>] attributes
-          #
-          # @return [Array<Symbol>]
-          #   returns an array of duplicate attributes
-          #
-          # @return [nil]
-          #   returns nil if there are no duplicate attributes
-          #
-          # @api private
-          def self.duplicate_attributes(attributes)
-            names = attributes.map { |attribute| attribute.name }
-            names.select! { |name| names.count(name) > 1 }
-            names.uniq!
-          end
-
-          private_class_method :coerce_directions, :assert_unique_attributes, :duplicate_attributes
-
-          # Initialize a DirectionSet
-          #
-          # @param [Array<Direction>] directions
-          #   the directions to sort with
-          #
-          # @return [undefined]
-          #
-          # @api private
-          def initialize(directions)
-            @directions = directions
-          end
-
-          # Iterate over each direction in the set
-          #
-          # @example
-          #   directions = DirectionSet.new(directions)
-          #   directions.each { |direction| ... }
-          #
-          # @yield [direction]
-          #
-          # @yieldparam [Direction] direction
-          #   each direction in the set
-          #
-          # @return [self]
-          #
-          # @api public
-          def each
-            return to_enum unless block_given?
-            to_ary.each { |tuple| yield tuple }
-            self
-          end
-
-          # Return a direction set with only the attributes specified
-          #
-          # @example
-          #   projected = directions.project([ attribute ])
-          #
-          # @param [Array<Attribute>] attributes
-          #   the attributes to keep in the direction set
-          #
-          # @return [DirectionSet]
-          #
-          # @api public
-          def project(attributes)
-            new select { |direction|
-              attributes.include?(direction.attribute)
-            }
-          end
+          private_class_method :coerce_attribute
 
           # Rename the contained attributes with the provided aliases
           #
@@ -154,42 +51,6 @@ module Veritas
             new(map { |direction| direction.reverse })
           end
 
-          # Return the directions as an Array
-          #
-          # @return [Array]
-          #
-          # @api private
-          def to_ary
-            @directions
-          end
-
-          # Compare the directions with other directions for equivalency
-          #
-          # @example
-          #   directions == other  # => true or false
-          #
-          # @param [DirectionSet] other
-          #   the other directions to compare with
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def ==(other)
-            cmp?(__method__, coerce(other))
-          end
-
-          # Test if there are no directions
-          #
-          # @example
-          #   directions.empty?  # => true or false
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def empty?
-            @directions.empty?
-          end
-
           # Return each attribute in an Array
           #
           # @return [Array]
@@ -214,17 +75,6 @@ module Veritas
 
         private
 
-          # Utility method for initializing a set of directions
-          #
-          # @param [Array<Direction>] directions
-          #
-          # @return [DirectionSet]
-          #
-          # @api private
-          def new(directions)
-            self.class.new(directions)
-          end
-
           # Compare the attributes for each Tuple
           #
           # @param [Tuple] left
@@ -247,31 +97,7 @@ module Veritas
             end
           end
 
-          # Coerce directions into a DirectionSet
-          #
-          # @param [DirectionSet, Array<Direction, Attribute>]
-          #
-          # @return [DirectionSet]
-          #
-          # @api private
-          def coerce(object)
-            self.class.coerce(object)
-          end
-
-          # Coerce directions into a DirectionSet
-          #
-          # @param [DirectionSet, Array<Direction, Attribute>]
-          #
-          # @return [DirectionSet]
-          #
-          # @api private
-          def self.coerce(object)
-            object.kind_of?(DirectionSet) ? object : new(object)
-          end
-
-          memoize :reverse
-
-          EMPTY = new([])
+          memoize :reverse, :attributes
 
         end # class DirectionSet
       end # class Order

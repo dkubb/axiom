@@ -66,8 +66,6 @@ begin
 
     NameMap::MAP['==']['Veritas::Relation::Operation::Order::Direction'] = 'eql'
 
-    NameMap::MAP['|']['Veritas::Relation::Operation::Order::DirectionSet'] = 'union'
-
     %w[
       Veritas::Function::Connective::Conjunction::Methods
       Veritas::Function::Connective::Disjunction::Methods

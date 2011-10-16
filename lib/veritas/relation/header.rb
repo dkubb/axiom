@@ -24,12 +24,12 @@ module Veritas
       # @param [#to_ary] attributes
       #   optional attributes
       #
-      # @return [undefined]
+      # @return [Header]
       #
       # @api public
-      def self.new(attributes = [])
-        attributes = coerce_attributes(attributes.to_ary)
-        assert_unique_attributes(attributes)
+      def self.new(attributes = nil)
+        attributes = coerce_attributes(attributes)
+        assert_unique_names(attributes.map { |attribute| attribute.name })
         super
       end
 
@@ -41,44 +41,53 @@ module Veritas
       #
       # @api private
       def self.coerce_attributes(attributes)
-        attributes.map { |attribute| Attribute.coerce(attribute) }
+        Array(attributes).map { |attribute| coerce_attribute(attribute) }
       end
 
-      # Assert the attributes are unique
+      # Coerce the attribute into an Attribute
       #
-      # @param [Array<Attribute>] attributes
+      # @param [Object] attribute
+      #
+      # @return [Attribute]
+      #
+      # @api private
+      def self.coerce_attribute(attribute)
+        Attribute.coerce(attribute)
+      end
+
+      # Assert the names are unique
+      #
+      # @param [Array<Symbol>] names
       #
       # @return [undefined]
       #
-      # @raise [DuplicateAttributeError]
-      #   raised if the attributes are not unique
+      # @raise [DuplicateNameError]
+      #   raised if the names are not unique
       #
       # @api private
-      def self.assert_unique_attributes(attributes)
-        duplicates = duplicate_attributes(attributes)
+      def self.assert_unique_names(names)
+        duplicates = duplicate_names(names)
         if duplicates
-          raise DuplicateAttributeError, "duplicate attributes: #{duplicates.join(', ')}"
+          raise DuplicateNameError, "duplicate names: #{duplicates.join(', ')}"
         end
       end
 
-      # Returns the duplicate attribute names, if any
+      # Returns the duplicate names, if any
       #
-      # @param [Array<Attribute>] attributes
+      # @param [Array<Symbol>] names
       #
       # @return [Array<Symbol>]
-      #   returns an array of duplicate attributes
+      #   returns an array of duplicate names
       #
       # @return [nil]
-      #   returns nil if there are no duplicate attributes
+      #   returns nil if there are no duplicate names
       #
       # @api private
-      def self.duplicate_attributes(attributes)
-        names = attributes.map { |attribute| attribute.name }
-        names.select! { |name| names.count(name) > 1 }
-        names.uniq!
+      def self.duplicate_names(names)
+        names.select { |name| names.count(name) > 1 }.uniq!
       end
 
-      private_class_method :coerce_attributes, :assert_unique_attributes, :duplicate_attributes
+      private_class_method :coerce_attributes, :coerce_attribute, :assert_unique_names, :duplicate_names
 
       # Initialize a Header
       #
@@ -91,8 +100,8 @@ module Veritas
       #
       # @api public
       def initialize(attributes)
-        @names      = attributes.map { |attribute| attribute.name }
-        @attributes = Hash[@names.zip(attributes)]
+        @attributes    = Immutable.freeze_object(attributes)
+        @attribute_for = Hash[@attributes.map { |attribute| attribute.name }.zip(@attributes)]
       end
 
       # Iterate over each attribute in the header
@@ -125,11 +134,11 @@ module Veritas
       # @return [Attribute]
       #   the attribute when the name is known
       # @return [nil]
-      #   nil when the attribute is unknown
+      #   nil when the name is unknown
       #
       # @api public
       def [](name)
-        @attributes[Attribute.name_from(name)]
+        @attribute_for[Attribute.name_from(name)]
       end
 
       # Return a header with only the attributes specified
@@ -142,7 +151,7 @@ module Veritas
       #
       # @return [Header]
       #
-      # @api private
+      # @api public
       def project(attributes)
         new(attributes.map { |attribute| self[attribute] })
       end
@@ -204,7 +213,7 @@ module Veritas
       #
       # @api private
       def to_ary
-        @attributes.values_at(*@names).freeze
+        @attributes
       end
 
       # Compare the header with other header for equivalency
@@ -250,14 +259,13 @@ module Veritas
 
       # Utility method to instantiate a Header
       #
-      # @param [#to_ary] attributes
-      #   the header attributes
+      # @param [Array] *args
       #
       # @return [Header]
       #
       # @api private
-      def new(attributes)
-        self.class.new(attributes)
+      def new(*args)
+        self.class.new(*args)
       end
 
       # Coerce the object into a Header
@@ -281,10 +289,8 @@ module Veritas
       #
       # @api private
       def self.coerce(object)
-        object.kind_of?(Header) ? object : new(object)
+        object.kind_of?(self) ? object : new(object)
       end
-
-      memoize :to_ary
 
     end # class Header
   end # class Relation

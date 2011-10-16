@@ -22,7 +22,7 @@ describe Relation::Header, '.coerce' do
   end
 
   context 'when the argument is not a Header and does not respond to #to_ary' do
-    let(:argument) { { :id => Integer } }
+    let(:argument) { Object.new }
 
     specify { expect { subject }.to raise_error(NoMethodError) }
   end

@@ -21,7 +21,7 @@ end
 describe Relation::Header do
   subject { object.new }
 
-  let(:object) { Relation::Header }
+  let(:object) { described_class }
 
   it { should be_kind_of(Enumerable) }
 
