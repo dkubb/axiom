@@ -165,21 +165,6 @@ module Veritas
             @directions
           end
 
-          # Union the directions with another set of directions
-          #
-          # @example
-          #   union = directions.union(other)
-          #
-          # @param [DirectionSet] other
-          #   the directions to union with
-          #
-          # @return [DirectionSet]
-          #
-          # @api public
-          def union(other)
-            new(to_ary | other.to_ary)
-          end
-
           # Return each attribute in an Array
           #
           # @return [Array]

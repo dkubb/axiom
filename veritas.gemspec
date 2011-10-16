@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2011-10-04"
+  s.date = "2011-10-16"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -613,7 +613,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/order/direction_set/reverse_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/sort_tuples_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/to_ary_spec.rb",
-    "spec/unit/veritas/relation/operation/order/direction_set/union_spec.rb",
     "spec/unit/veritas/relation/operation/order/directions_spec.rb",
     "spec/unit/veritas/relation/operation/order/each_spec.rb",
     "spec/unit/veritas/relation/operation/order/eql_spec.rb",
@@ -657,7 +656,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/dkubb/veritas"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.11"
   s.summary = "Ruby Relational Algebra"
 
   if s.respond_to? :specification_version then
