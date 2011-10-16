@@ -231,7 +231,7 @@ module Veritas
       #
       # @api public
       def empty?
-        @names.empty?
+        to_ary.empty?
       end
 
       # Return a string representing the header
