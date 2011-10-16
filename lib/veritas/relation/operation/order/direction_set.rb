@@ -90,6 +90,26 @@ module Veritas
             @directions = directions
           end
 
+          # Iterate over each direction in the set
+          #
+          # @example
+          #   directions = DirectionSet.new(directions)
+          #   directions.each { |direction| ... }
+          #
+          # @yield [direction]
+          #
+          # @yieldparam [Direction] direction
+          #   each direction in the set
+          #
+          # @return [self]
+          #
+          # @api public
+          def each
+            return to_enum unless block_given?
+            to_ary.each { |tuple| yield tuple }
+            self
+          end
+
           # Return a direction set with only the attributes specified
           #
           # @example
@@ -134,26 +154,6 @@ module Veritas
             new(map { |direction| direction.reverse })
           end
 
-          # Iterate over each direction in the set
-          #
-          # @example
-          #   directions = DirectionSet.new(directions)
-          #   directions.each { |direction| ... }
-          #
-          # @yield [direction]
-          #
-          # @yieldparam [Direction] direction
-          #   each direction in the set
-          #
-          # @return [self]
-          #
-          # @api public
-          def each
-            return to_enum unless block_given?
-            to_ary.each { |tuple| yield tuple }
-            self
-          end
-
           # Return the directions as an Array
           #
           # @return [Array]
@@ -161,28 +161,6 @@ module Veritas
           # @api private
           def to_ary
             @directions
-          end
-
-          # Return each attribute in an Array
-          #
-          # @return [Array]
-          #
-          # @api private
-          def attributes
-            map { |direction| direction.attribute }
-          end
-
-          # Sort the supplied tuples in the correct direction
-          #
-          # @param [Array] tuples
-          #   the list of tuples to sort
-          #
-          # @return [Array]
-          #   the sorted tuples
-          #
-          # @api private
-          def sort_tuples(tuples)
-            tuples.sort { |left, right| cmp_tuples(left, right) }
           end
 
           # Compare the directions with other directions for equivalency
@@ -210,6 +188,28 @@ module Veritas
           # @api public
           def empty?
             @directions.empty?
+          end
+
+          # Return each attribute in an Array
+          #
+          # @return [Array]
+          #
+          # @api private
+          def attributes
+            map { |direction| direction.attribute }
+          end
+
+          # Sort the supplied tuples in the correct direction
+          #
+          # @param [Array] tuples
+          #   the list of tuples to sort
+          #
+          # @return [Array]
+          #   the sorted tuples
+          #
+          # @api private
+          def sort_tuples(tuples)
+            tuples.sort { |left, right| cmp_tuples(left, right) }
           end
 
         private
