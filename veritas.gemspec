@@ -598,6 +598,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/order/direction/class_methods/coerce_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction/eql_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction/hash_spec.rb",
+    "spec/unit/veritas/relation/operation/order/direction/name_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction/rename_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction/reverse_spec.rb",
     "spec/unit/veritas/relation/operation/order/direction_set/attributes_spec.rb",

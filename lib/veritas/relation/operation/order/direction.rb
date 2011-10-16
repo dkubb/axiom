@@ -31,6 +31,18 @@ module Veritas
             @attribute = attribute
           end
 
+          # Return the attribute name
+          #
+          # @example
+          #   direction.name  # => :id
+          #
+          # @return [Symbol]
+          #
+          # @api public
+          def name
+            attribute.name
+          end
+
           # Compare the left and right Tuple attribute values
           #
           # @example
