@@ -90,8 +90,6 @@ module Veritas
             @directions = directions
           end
 
-          EMPTY = new([])
-
           # Return a direction set with only the attributes specified
           #
           # @example
@@ -272,6 +270,8 @@ module Veritas
           end
 
           memoize :reverse
+
+          EMPTY = new([])
 
         end # class DirectionSet
       end # class Order
