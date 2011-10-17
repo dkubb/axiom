@@ -8,20 +8,16 @@ module Veritas
       class UnaryPlus < Numeric
         include Unary
 
-        # Return the value added to 0
-        #
-        # This is a noop.
+        # Return the unary plus operation
         #
         # @example
-        #   new_value = UnaryPlus.call(value)
+        #   UnaryPlus.operation  # => :+@
         #
-        # @param [Numeric] value
-        #
-        # @return [Numeric]
+        # @return [Symbol]
         #
         # @api public
-        def self.call(value)
-          +value
+        def self.operation
+          :+@
         end
 
         # Return the inverse function class
@@ -34,18 +30,6 @@ module Veritas
         # @api public
         def self.inverse
           UnaryMinus
-        end
-
-        # Return a string representing the unary plus function
-        #
-        # @example
-        #   unary_plus.inspect  # => "+1"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "+(#{operand.inspect})"
         end
 
         module Methods

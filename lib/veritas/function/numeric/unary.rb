@@ -10,6 +10,9 @@ module Veritas
 
         # Return the type returned from #call
         #
+        # @example
+        #   unary.type  # => Attribute::Numeric
+        #
         # @return [Class<Attribute::Numeric>]
         #
         # @api public

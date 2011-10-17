@@ -8,30 +8,16 @@ module Veritas
       class Absolute < Numeric
         include Unary
 
-        # Return the absolute value
+        # Return the absolute operation
         #
         # @example
-        #   absolute_value = Absolute.call(value)
+        #   Absolute.operation  # => :abs
         #
-        # @param [Numeric] value
-        #
-        # @return [Numeric]
+        # @return [Symbol]
         #
         # @api public
-        def self.call(value)
-          value.abs
-        end
-
-        # Return a string representing the absolute function
-        #
-        # @example
-        #   absolute.inspect  # => "ABS(-1)"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "ABS(#{operand.inspect})"
+        def self.operation
+          :abs
         end
 
         module Methods

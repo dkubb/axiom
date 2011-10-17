@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2011-10-16"
+  s.date = "2011-10-17"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -334,6 +334,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/connective/disjunction/methods/or_spec.rb",
     "spec/unit/veritas/function/connective/inspect_spec.rb",
     "spec/unit/veritas/function/connective/negation/class_methods/call_spec.rb",
+    "spec/unit/veritas/function/connective/negation/class_methods/operation_spec.rb",
     "spec/unit/veritas/function/connective/negation/inspect_spec.rb",
     "spec/unit/veritas/function/connective/negation/inverse_spec.rb",
     "spec/unit/veritas/function/connective/negation/methods/fixtures/classes.rb",
@@ -342,6 +343,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/fixtures/classes.rb",
     "spec/unit/veritas/function/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/absolute/class_methods/call_spec.rb",
+    "spec/unit/veritas/function/numeric/absolute/class_methods/operation_spec.rb",
     "spec/unit/veritas/function/numeric/absolute/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/absolute/methods/absolute_spec.rb",
     "spec/unit/veritas/function/numeric/addition/class_methods/call_spec.rb",
@@ -383,10 +385,12 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/numeric/unary/type_spec.rb",
     "spec/unit/veritas/function/numeric/unary_minus/class_methods/call_spec.rb",
     "spec/unit/veritas/function/numeric/unary_minus/class_methods/inverse_spec.rb",
+    "spec/unit/veritas/function/numeric/unary_minus/class_methods/operation_spec.rb",
     "spec/unit/veritas/function/numeric/unary_minus/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/unary_minus/methods/unary_minus_spec.rb",
     "spec/unit/veritas/function/numeric/unary_plus/class_methods/call_spec.rb",
     "spec/unit/veritas/function/numeric/unary_plus/class_methods/inverse_spec.rb",
+    "spec/unit/veritas/function/numeric/unary_plus/class_methods/operation_spec.rb",
     "spec/unit/veritas/function/numeric/unary_plus/inspect_spec.rb",
     "spec/unit/veritas/function/numeric/unary_plus/methods/unary_plus_spec.rb",
     "spec/unit/veritas/function/predicate/call_spec.rb",
@@ -502,9 +506,12 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/string/length/type_spec.rb",
     "spec/unit/veritas/function/type_spec.rb",
     "spec/unit/veritas/function/unary/call_spec.rb",
+    "spec/unit/veritas/function/unary/callable/call_spec.rb",
+    "spec/unit/veritas/function/unary/callable/included_spec.rb",
     "spec/unit/veritas/function/unary/equal_value_spec.rb",
     "spec/unit/veritas/function/unary/fixtures/classes.rb",
     "spec/unit/veritas/function/unary/hash_spec.rb",
+    "spec/unit/veritas/function/unary/inspect_spec.rb",
     "spec/unit/veritas/function/unary/invertible/inverse_spec.rb",
     "spec/unit/veritas/function/unary/rename_spec.rb",
     "spec/unit/veritas/immutable/class_methods/freeze_object_spec.rb",

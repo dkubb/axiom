@@ -8,18 +8,16 @@ module Veritas
       class UnaryMinus < Numeric
         include Unary
 
-        # Return the value subtracted from 0
+        # Return the unary minus operation
         #
         # @example
-        #   negated_value = UnaryMinus.call(value)
+        #   UnaryMinus.operation  # => :-@
         #
-        # @param [Numeric] value
-        #
-        # @return [Numeric]
+        # @return [Symbol]
         #
         # @api public
-        def self.call(value)
-          -value
+        def self.operation
+          :-@
         end
 
         # Return the inverse function class
@@ -32,18 +30,6 @@ module Veritas
         # @api public
         def self.inverse
           UnaryPlus
-        end
-
-        # Return a string representing the unary minus function
-        #
-        # @example
-        #   unary_minus.inspect  # => "-1"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "-(#{operand.inspect})"
         end
 
         module Methods

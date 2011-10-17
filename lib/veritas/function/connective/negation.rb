@@ -8,6 +8,18 @@ module Veritas
       class Negation < Connective
         include Unary, Unary::Invertible
 
+        # Return the negation operation
+        #
+        # @example
+        #   Negation.operation  # => :!
+        #
+        # @return [Symbol]
+        #
+        # @api public
+        def self.operation
+          :'!'
+        end
+
         # Evaluate the operands using a logical NOT
         #
         # @example with true operand
@@ -23,7 +35,7 @@ module Veritas
         # @api public
         def self.call(operand)
           ! operand
-        end
+        end unless Object.method_defined?('!')
 
         # Return the operand
         #

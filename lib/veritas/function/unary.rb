@@ -10,6 +10,41 @@ module Veritas
 
         compare :operand
 
+        # Mixin for adding #call to unary function classes
+        module Callable
+
+          # Hook called when module is included
+          #
+          # @param [Module] descendant
+          #   the module or class including Callable
+          #
+          # @return [self]
+          #
+          # @api private
+          def included(descendant)
+            super
+            descendant.extend(Callable)
+            self
+          end
+
+          # Return the response from the unary operation called on the value
+          #
+          # @example
+          #   callable.call(value)  # => any object
+          #
+          # @param [Object] value
+          #
+          # @return [Object]
+          #
+          # @api public
+          def call(value)
+            value.send(operation)
+          end
+
+        end # module Callable
+
+        extend Callable
+
         # Evaluate the unary connective using the tuple
         #
         # @example
@@ -68,6 +103,18 @@ module Veritas
         def ==(other)
           (kind_of?(other.class) || other.kind_of?(self.class)) &&
           cmp?(__method__, other)
+        end
+
+        # Return a string representing the unary function
+        #
+        # @example
+        #   unary.inspect  # => "+1"
+        #
+        # @return [String]
+        #
+        # @api public
+        def inspect
+          "#{self.class.operation.to_s.upcase.chomp('@')}(#{operand.inspect})"
         end
 
         # Mixin for invertable unary functions
