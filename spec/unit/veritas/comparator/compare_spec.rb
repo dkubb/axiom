@@ -23,16 +23,12 @@ describe Comparator, '#compare' do
     expect { subject }.to change { object.public_instance_methods(false).map(&:to_s) }.from([]).to([ 'hash' ])
   end
 
-  if RUBY_VERSION == '1.9.2' && RUBY_ENGINE == 'jruby' && JRUBY_VERSION <= '1.6.4'
-    it 'defines a #hash method that uses the class and declared methods' do
-      subject
-      instance.hash.should eql(object.hash ^ false.hash ^ instance.to_s.hash)
-    end
-  else
-    it 'defines a #hash method that uses the class and declared methods' do
-      subject
-      instance.hash.should equal(object.hash ^ false.hash ^ instance.to_s.hash)
-    end
+  it 'defines a #hash method that uses the class and declared methods' do
+    # use Fixnum#eql? instead of Fixnum#equal? because the hash value may not
+    # always be the same object (i.e. on JRuby), and we mostly only care that
+    # the type and value match the expected Fixnum.
+    subject
+    instance.hash.should eql(object.hash ^ false.hash ^ instance.to_s.hash)
   end
 
   it 'memoizes #hash' do
