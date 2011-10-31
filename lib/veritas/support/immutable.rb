@@ -62,9 +62,7 @@ module Veritas
     #
     # @api public
     def memoize(name, value)
-      unless memory.key?(name)
-        memory[name] = Immutable.freeze_object(value)
-      end
+      store_memory(name, value) unless memory.key?(name)
       self
     end
 
@@ -89,6 +87,22 @@ module Veritas
     # @api private
     def memory
       @__memory ||= {}
+    end
+
+    # Store the value in memory
+    #
+    # @param [Symbol] name
+    #   the method name
+    # @param [Object] value
+    #   the value to memoize
+    #
+    # @return [self]
+    #
+    # @return [value]
+    #
+    # @api private
+    def store_memory(name, value)
+      memory[name] = Immutable.freeze_object(value)
     end
 
     # Attempt to freeze an object
@@ -193,7 +207,7 @@ module Veritas
           if memory.key?(method)
             memory.fetch(method)
           else
-            memory[method] = Immutable.freeze_object(original.bind(self).call(*args))
+            store_memory(method, original.bind(self).call(*args))
           end
         end
       end
