@@ -29,7 +29,7 @@ module Veritas
     #
     # @api public
     def freeze
-      memory unless frozen?  # initialize memory
+      memory  # initialize memory
       super
     end
 
