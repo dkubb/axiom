@@ -86,7 +86,8 @@ DataClump:
     # all of these classes have utility class methods that are
     # incorrectly identified as instance methods
     Veritas::Relation::Operation::Binary::ClassMethods,
-    Veritas::Relation::Operation::Set::ClassMethods
+    Veritas::Relation::Operation::Set::ClassMethods,
+    Veritas::Immutable
   ]
   enabled: true
   max_copies: 1
