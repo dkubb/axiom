@@ -205,7 +205,7 @@ module Veritas
         undef_method(method)
         define_method(method) do |*args|
           if memory.key?(method)
-            memory.fetch(method)
+            memoized(method)
           else
             store_memory(method, original.bind(self).call(*args))
           end
