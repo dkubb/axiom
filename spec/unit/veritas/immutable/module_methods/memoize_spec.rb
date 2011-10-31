@@ -12,21 +12,14 @@ shared_examples_for 'memoizes method' do
 
   it 'creates a method that returns a frozen value' do
     subject
-    instance = object.new
-    instance.send(method).should be_frozen
+    object.new.send(method).should be_frozen
   end
 
   specification = proc do
-    object.send(:define_method, method) do
-      caller
-    end
-
     subject
-
     file, line = object.new.send(method).first.split(':')[0, 2]
-
     File.expand_path(file).should eql(File.expand_path('../../../../../../lib/veritas/support/immutable.rb', __FILE__))
-    line.to_i.should eql(185)
+    line.to_i.should eql(196)
   end
 
   it 'sets the file and line number properly' do
@@ -34,6 +27,23 @@ shared_examples_for 'memoizes method' do
       pending('Kernel#caller returns the incorrect line number in JRuby', &specification)
     else
       instance_eval(&specification)
+    end
+  end
+
+  context 'when the initializer calls the memoized method' do
+    before do
+      method = self.method
+      object.send(:define_method, :initialize) { send(method) }
+    end
+
+    it 'allows the memoized method to be called within the initializer' do
+      subject
+      expect { object.new }.to_not raise_error(NoMethodError)
+    end
+
+    it 'memoizes the methdod inside the initializer' do
+      subject
+      object.new.memoized(method).should_not be_nil
     end
   end
 end

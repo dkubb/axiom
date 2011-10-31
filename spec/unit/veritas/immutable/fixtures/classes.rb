@@ -9,19 +9,19 @@ module ImmutableSpecs
     end
 
     def public_method
-      'public_method'
+      caller
     end
 
   protected
 
     def protected_method
-      'protected_method'
+      caller
     end
 
   private
 
     def private_method
-      'private_method'
+      caller
     end
 
   end # class Object

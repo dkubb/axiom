@@ -29,7 +29,7 @@ module Veritas
     #
     # @api public
     def freeze
-      @__memory = {} unless frozen?
+      memory unless frozen?  # initialize memory
       super
     end
 
@@ -45,7 +45,7 @@ module Veritas
     #
     # @api public
     def memoized(name)
-      @__memory[name]
+      memory[name]
     end
 
     # Sets a memoized value for a method
@@ -62,8 +62,8 @@ module Veritas
     #
     # @api public
     def memoize(name, value)
-      unless @__memory.key?(name)
-        @__memory[name] = Immutable.freeze_object(value)
+      unless memory.key?(name)
+        memory[name] = Immutable.freeze_object(value)
       end
       self
     end
@@ -78,6 +78,17 @@ module Veritas
     # @api public
     def dup
       self
+    end
+
+  private
+
+    # The memoized method results
+    #
+    # @return [Hash]
+    #
+    # @api private
+    def memory
+      @__memory ||= {}
     end
 
     # Attempt to freeze an object
@@ -179,10 +190,10 @@ module Veritas
         original = instance_method(method)
         undef_method(method)
         define_method(method) do |*args|
-          if @__memory.key?(method)
-            @__memory.fetch(method)
+          if memory.key?(method)
+            memory.fetch(method)
           else
-            @__memory[method] = Immutable.freeze_object(original.bind(self).call(*args))
+            memory[method] = Immutable.freeze_object(original.bind(self).call(*args))
           end
         end
       end
