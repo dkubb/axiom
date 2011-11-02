@@ -24,6 +24,6 @@ describe Algebra::Join, '.new' do
   context 'with relations having different headers' do
     let(:right) { Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]) }
 
-    specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must have common attributes') }
+    it { should be_instance_of(object) }
   end
 end
