@@ -20,7 +20,7 @@ describe Tuple, '.coerce' do
 
     it { should be_instance_of(object) }
 
-    it { should == tuple }
+    it { should eql(tuple) }
   end
 
   context 'when the argument is not a Tuple and does not respond to #to_ary' do
