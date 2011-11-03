@@ -55,8 +55,9 @@ matrix:
     - rvm: rbx-18mode
       env: JRUBY_OPTS="--1.9"
 
-    # exclude rbx-19mode
-    - rvm: rbx-19mode
-      env: JRUBY_OPTS="--1.8"
-    - rvm: rbx-19mode
-      env: JRUBY_OPTS="--1.9"
+    # FIXME: uncomment when rbx-19mode does not cause massive spec failures
+    # # exclude rbx-19mode
+    # - rvm: rbx-19mode
+    #   env: JRUBY_OPTS="--1.8"
+    # - rvm: rbx-19mode
+    #   env: JRUBY_OPTS="--1.9"
