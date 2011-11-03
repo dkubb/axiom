@@ -181,7 +181,7 @@ module Veritas
     #
     # @api private
     def coerce(object)
-      project_relation(Relation.new(header, object))
+      Relation.new(header, object)
     end
 
   end # class Relation

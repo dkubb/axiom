@@ -103,4 +103,16 @@ describe Relation, '#==' do
       should eql(other == object)
     end
   end
+
+  context 'with a different object having a superset of the headers' do
+    let(:other_header) { [ [ :id, Integer ], [ :name, String ] ]       }
+    let(:other_body)   { [ [ 1, 'Dan Kubb' ] ].each                    }
+    let(:other)        { described_class.new(other_header, other_body) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other == object)
+    end
+  end
 end
