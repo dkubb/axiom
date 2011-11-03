@@ -181,7 +181,21 @@ module Veritas
     #
     # @api private
     def coerce(object)
-      Relation.new(header, object)
+      self.class.coerce(header, object)
+    end
+
+    # Coerce an Enumerable into a Relation
+    #
+    # @param [Header] header
+    #   the header to use when initializing a Relation
+    # @param [Enumerable] object
+    #   the object to coerce
+    #
+    # @return [Relation]
+    #
+    # @api private
+    def self.coerce(header, object)
+      object.kind_of?(Relation) ? object : Relation.new(header, object)
     end
 
   end # class Relation
