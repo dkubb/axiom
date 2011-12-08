@@ -4,8 +4,10 @@ module Veritas
 
   # A set of objects representing a unique fact in a relation
   class Tuple
-    extend Comparator
+    extend Aliasable, Comparator
     include Immutable
+
+    inheritable_alias(:[] => :call)
 
     compare :data
 
@@ -41,15 +43,15 @@ module Veritas
     # Lookup a value in the tuple given an attribute
     #
     # @example
-    #   value = tuple[attribute]
+    #   value = tuple.call(attribute)
     #
     # @param [Attribute] attribute
     #
     # @return [Object]
     #
     # @api public
-    def [](attribute)
-      data.fetch(header[attribute])
+    def call(attribute)
+      data.fetch(header.call(attribute))
     end
 
     # Return a tuple with only the specified attributes

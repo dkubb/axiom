@@ -11,9 +11,10 @@ module Veritas
       compare :to_set
 
       inheritable_alias(
-        :& => :intersect,
-        :| => :union,
-        :- => :difference
+        :[] => :call,
+        :&  => :intersect,
+        :|  => :union,
+        :-  => :difference
       )
 
       # Instantiate a Header
@@ -127,7 +128,7 @@ module Veritas
       # Lookup an attribute in the header given a name
       #
       # @example
-      #   attribute = header[:id]
+      #   attribute = header.call(:id)
       #
       # @param [Attribute, #to_ary, #to_sym] name
       #
@@ -137,7 +138,7 @@ module Veritas
       #   nil when the name is unknown
       #
       # @api public
-      def [](name)
+      def call(name)
         @attribute_for[Attribute.name_from(name)]
       end
 

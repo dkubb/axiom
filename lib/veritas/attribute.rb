@@ -131,7 +131,7 @@ module Veritas
     #
     # @api public
     def call(tuple)
-      tuple[self]
+      tuple.call(self)
     end
 
     # Rename an attribute

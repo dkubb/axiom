@@ -78,15 +78,17 @@ begin
 
     aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
 
-    aliases['Veritas::Attribute::Numeric']['range'] = 'size'
-    aliases['Veritas::Attribute::String']['range']  = 'length'
-
     aliases['Veritas::Aggregate::Minimum::Methods']['min']              = 'minimum'
     aliases['Veritas::Aggregate::Maximum::Methods']['max']              = 'maximum'
     aliases['Veritas::Aggregate::Mean::Methods']['avg']                 = 'mean'
     aliases['Veritas::Aggregate::Mean::Methods']['average']             = 'mean'
     aliases['Veritas::Aggregate::Variance::Methods']['var']             = 'variance'
     aliases['Veritas::Aggregate::StandardDeviation::Methods']['stddev'] = 'standard_deviation'
+
+    aliases['Veritas::Attribute::Numeric']['range'] = 'size'
+    aliases['Veritas::Attribute::String']['range']  = 'length'
+
+    aliases['Veritas::Evaluator::Context']['respond_to_missing?'] = 'respond_to?'
 
     aliases['Veritas::Function::Numeric::Addition::Methods']['+']         = 'add'
     aliases['Veritas::Function::Numeric::Subtraction::Methods']['-']      = 'subtract'
@@ -102,7 +104,9 @@ begin
     aliases['Veritas::Function::Numeric::UnaryPlus::Methods']['+@']       = 'unary_plus'
     aliases['Veritas::Function::Numeric::UnaryMinus::Methods']['-@']      = 'unary_minus'
 
-    aliases['Veritas::Evaluator::Context']['respond_to_missing?'] = 'respond_to?'
+    aliases['Veritas::Relation::Header']['[]'] = 'call'
+
+    aliases['Veritas::Tuple']['[]'] = 'call'
 
     map = NameMap.new
 
