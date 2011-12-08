@@ -5,11 +5,14 @@ module Veritas
 
     # Abstract base class for logical propositions
     class Proposition < Function
+      extend Comparator
       include AbstractClass,
               Singleton,
               Function::Connective::Conjunction::Methods,
               Function::Connective::Disjunction::Methods,
               Function::Connective::Negation::Methods
+
+      compare  # only compare instances with the same superclass
 
       # Instantiate a new Proposition
       #
@@ -105,32 +108,6 @@ module Veritas
         kind_of?(other.class) || other.kind_of?(self.class)
       end
 
-      # Compare the proposition with other proposition for equality
-      #
-      # @example
-      #   proposition.eql?(other)  # => true or false
-      #
-      # @param [Proposition] other
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def eql?(other)
-        instance_of?(other.class)
-      end
-
-      # Return the hash of the proposition
-      #
-      # @example
-      #   hash = proposition.hash
-      #
-      # @return [Fixnum]
-      #
-      # @api public
-      def hash
-        self.class.hash
-      end
-
       # Return a string representing the proposition
       #
       # @example
@@ -142,8 +119,6 @@ module Veritas
       def inspect
         call.inspect
       end
-
-      memoize :hash
 
     end # class Proposition
   end # module Algebra
