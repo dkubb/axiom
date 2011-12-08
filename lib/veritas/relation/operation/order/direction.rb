@@ -63,7 +63,7 @@ module Veritas
           # @api public
           def call(left, right)
             attribute = self.attribute
-            self.class.call(left[attribute], right[attribute])
+            self.class.call(attribute.call(left), attribute.call(right))
           end
 
           # Rename the contained attribute with the provided aliases

@@ -111,7 +111,7 @@ module Veritas
     # @api private
     def predicate
       header.reduce(Function::Proposition::Tautology.instance) do |predicate, attribute|
-        predicate.and(attribute.eq(self[attribute]))
+        predicate.and(attribute.eq(attribute.call(self)))
       end
     end
 
