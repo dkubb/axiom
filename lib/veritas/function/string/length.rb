@@ -44,7 +44,6 @@ module Veritas
         end
 
         module Methods
-          extend Aliasable
 
           # Return a length function
           #
