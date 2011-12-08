@@ -184,7 +184,7 @@ module Veritas
       object.kind_of?(Tuple) ? object : new(header, object)
     end
 
-    memoize :hash, :predicate, :to_ary
+    memoize :predicate, :to_ary
 
   end # class Tuple
 end # module Veritas
