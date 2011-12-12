@@ -112,7 +112,7 @@ module Veritas
       seen = {}
       tuples.each do |tuple|
         tuple = Tuple.coerce(header, tuple)
-        yield(seen[tuple] = tuple) unless seen.key?(tuple)
+        yield seen[tuple] = tuple unless seen.key?(tuple)
       end
       self
     end
