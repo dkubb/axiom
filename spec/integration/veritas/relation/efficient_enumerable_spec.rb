@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'spec_helper'
+require 'timeout'
 
 # use an infinite list to simulate handling a large Array.
 # if any operation is inefficient, then the specs will never exit
@@ -22,7 +23,11 @@ describe Relation do
     let(:relation) { Relation.new([ [ :id, Integer ] ], InfiniteList.new) }
 
     def sample(relation)
-      relation.to_enum.take(5)
+      Timeout.timeout(0.01) do
+        relation.to_enum.take(5)
+      end
+    rescue Timeout::Error
+      # do nothing
     end
 
     it '#project should be efficient' do
@@ -35,9 +40,43 @@ describe Relation do
       sample(restricted).should == [ [ 6 ], [ 7 ], [ 8 ], [ 9 ], [ 10 ] ]
     end
 
-    it '#product should be efficient' do
-      product = relation.product(Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]))
-      sample(product).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
+    it '#rename should be efficient' do
+      renamed = relation.rename(:id => :other_id)
+      sample(renamed).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
+    end
+
+    describe '#join should be efficient' do
+      let(:other) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
+
+      it 'has an infinite left relation' do
+        pending do
+          join = other.join(relation)
+          sample(join).should == [ [ 1, 'Dan Kubb' ] ]
+        end
+      end
+
+      it 'has an infinite right relation' do
+        pending do
+          join = relation.join(other)
+          sample(join).should == [ [ 1, 'Dan Kubb' ] ]
+        end
+      end
+    end
+
+    describe '#product should be efficient' do
+      let(:other) { Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]) }
+
+      it 'has an infinite left relation' do
+        product = relation.product(other)
+        sample(product).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
+      end
+
+      it 'has an infinite right relation' do
+        pending do
+          product = other.product(relation)
+          sample(product).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
+        end
+      end
     end
 
     it '#difference should be efficient' do
@@ -48,11 +87,6 @@ describe Relation do
     it '#union should be efficient' do
       union = relation.union(Relation.new(relation.header, [ [ 1 ] ]))
       sample(union).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
-    end
-
-    it '#rename should be efficient' do
-      renamed = relation.rename(:id => :other_id)
-      sample(renamed).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
     end
   end
 end
