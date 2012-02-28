@@ -1,5 +1,4 @@
 spec_defaults = lambda do |spec|
-  spec.pattern    = 'spec/**/*_spec.rb'
   spec.libs      << 'lib' << 'spec'
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
@@ -7,31 +6,42 @@ end
 begin
   require 'spec/rake/spectask'
 
-  Spec::Rake::SpecTask.new(:spec, &spec_defaults)
+  desc 'Run all specs'
+  task :spec => %w[ spec:unit spec:integration ]
+
+  namespace :spec do
+    desc 'Run unit specs'
+    Spec::Rake::SpecTask.new(:unit) do |unit|
+      spec_defaults.call(unit)
+      unit.pattern = 'spec/unit/**/*_spec.rb'
+    end
+
+    desc 'Run integration specs'
+    Spec::Rake::SpecTask.new(:integration) do |integration|
+      spec_defaults.call(integration)
+      integration.pattern = 'spec/integration/**/*_spec.rb'
+    end
+  end
 rescue LoadError
-  task :spec do
-    abort 'rspec is not available. In order to run spec, you must: gem install rspec'
+  %w[ spec spec:unit spec:integration ].each do |name|
+    task name do
+      abort "rspec is not available. In order to run #{name}, you must: gem install rspec"
+    end
   end
 end
 
 begin
   require 'rcov'
-  require 'spec/rake/verify_rcov'
 
   Spec::Rake::SpecTask.new(:rcov) do |rcov|
     spec_defaults.call(rcov)
     rcov.rcov      = true
+    rcov.pattern   = 'spec/unit/**/*_spec.rb'
     rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
   end
-
-  RCov::VerifyTask.new(:verify_rcov => :rcov) do |rcov|
-    rcov.threshold = 100
-  end
 rescue LoadError
-  %w[ rcov verify_rcov ].each do |name|
-    task name do
-      abort "rcov is not available. In order to run #{name}, you must: gem install rcov"
-    end
+  task :rcov do
+    abort 'rcov is not available. In order to run rcov, you must: gem install rcov'
   end
 end
 
