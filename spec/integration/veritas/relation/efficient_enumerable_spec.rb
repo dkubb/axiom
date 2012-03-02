@@ -19,11 +19,7 @@ describe Relation do
     let(:relation) { Relation.new([ [ :id, Integer ] ], InfiniteList.new) }
 
     def sample(relation)
-      Timeout.timeout(0.01) do
-        relation.to_enum.take(5)
-      end
-    rescue Timeout::Error
-      # do nothing
+      relation.to_enum.take(5)
     end
 
     it '#project should be efficient' do
