@@ -1,2 +1,3 @@
 --color
---format specdoc
+--loadby random
+--format profile
