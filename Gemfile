@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-source :rubygems
+source 'https://rubygems.org'
 
 group :development do
   gem 'backports', '~> 2.3.0'
