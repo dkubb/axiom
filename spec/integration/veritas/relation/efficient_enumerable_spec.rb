@@ -43,17 +43,15 @@ describe Relation do
       let(:other) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ]) }
 
       it 'has an infinite left relation' do
-        pending do
-          join = other.join(relation)
-          sample(join).should == [ [ 1, 'Dan Kubb' ] ]
-        end
+        pending 'Change #join to handle infinite sets'
+        join = other.join(relation)
+        sample(join).should == [ [ 1, 'Dan Kubb' ] ]
       end
 
       it 'has an infinite right relation' do
-        pending do
-          join = relation.join(other)
-          sample(join).should == [ [ 1, 'Dan Kubb' ] ]
-        end
+        pending 'Change #join to handle infinite sets'
+        join = relation.join(other)
+        sample(join).should == [ [ 1, 'Dan Kubb' ] ]
       end
     end
 
