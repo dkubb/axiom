@@ -64,10 +64,9 @@ describe Relation do
       end
 
       it 'has an infinite right relation' do
-        pending do
-          product = other.product(relation)
-          sample(product).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
-        end
+        pending 'Change #product to handle infinite sets'
+        product = other.product(relation)
+        sample(product).should == [ [ 0, 'Dan Kubb' ], [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 3, 'Dan Kubb' ], [ 4, 'Dan Kubb' ] ]
       end
     end
 
