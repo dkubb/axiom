@@ -18,16 +18,6 @@ describe Attribute::Comparable, '#comparable?' do
     end
   end
 
-  context 'when the other attribute is a different class' do
-    let(:other) { Attribute::String.new(:different) }
-
-    it { should be(false) }
-
-    it 'is not be symmetric' do
-      expect { other.comparable?(object) }.to raise_error(NoMethodError)
-    end
-  end
-
   context 'when the other attribute is a descendant type' do
     let(:other) { Class.new(described_class).new(:descendant) }
 
@@ -38,13 +28,33 @@ describe Attribute::Comparable, '#comparable?' do
     end
   end
 
-  context 'when the other attribute shares a common type' do
+  context 'when the other attribute shares a common ancestor' do
     let(:other) { described_class.superclass.new(:ancestor) }
 
     it { should be(true) }
 
     it 'is symmetric' do
       should eql(other.comparable?(object))
+    end
+  end
+
+  context 'when the other attribute is a different type' do
+    let(:other) { Attribute::String.new(:different) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other.comparable?(object))
+    end
+  end
+
+  context 'when the other attribute is not comparable' do
+    let(:other) { Attribute::Boolean.new(:not_comparable) }
+
+    it { should be(false) }
+
+    it 'is not be symmetric' do
+      expect { other.comparable?(object) }.to raise_error(NoMethodError)
     end
   end
 end

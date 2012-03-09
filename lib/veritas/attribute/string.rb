@@ -5,7 +5,7 @@ module Veritas
 
     # Represents a String value in a relation tuple
     class String < Object
-      include Orderable,
+      include Comparable,
               Function::Predicate::Match::Methods,
               Function::Predicate::NoMatch::Methods
 
