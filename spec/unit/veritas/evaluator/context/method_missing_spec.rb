@@ -24,12 +24,6 @@ describe Evaluator::Context, '#method_missing' do
   context 'with an unknown attribute' do
     subject { object.unknown }
 
-    if RUBY_VERSION >= '1.9.2' && RUBY_ENGINE == 'rbx'
-      # Mark this spec as pending until the following rubinius 1.9 mode bug is
-      # resolved: https://github.com/rubinius/rubinius/issues/1194
-      specify { pending 'BasicObject#method_missing does not raise NoMethodError for unknown methods' }
-    else
-      specify { expect { subject }.to raise_error(NoMethodError) }
-    end
+    specify { expect { subject }.to raise_error(NoMethodError) }
   end
 end

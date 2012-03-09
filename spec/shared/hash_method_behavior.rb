@@ -8,11 +8,7 @@ shared_examples_for 'a hash method' do
   end
 
   it 'is a fixnum' do
-    if defined?(RUBY_ENGINE) && RUBY_ENGINE == 'rbx'
-      pending('Under rubinius #hash does not always use a Fixnum', &specification)
-    else
-      instance_eval(&specification)
-    end
+    instance_eval(&specification)
   end
 
   it 'memoizes the hash code' do
