@@ -85,7 +85,7 @@ module Veritas
       #
       # @api private
       def respond_to?(name, *)
-        self[name] ? true : false
+        @header.any? { |attribute| attribute.name == name }
       end
 
       # Forward a message to the object

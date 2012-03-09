@@ -17,7 +17,7 @@ require 'spec_helper'
     context 'with an unknown attribute name' do
       let(:name) { :name }
 
-      it { should be_nil }
+      specify { expect { subject }.to raise_error(UnknownAttributeError, 'the attribute name is unknown') }
     end
   end
 end

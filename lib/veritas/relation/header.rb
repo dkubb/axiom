@@ -134,12 +134,13 @@ module Veritas
       #
       # @return [Attribute]
       #   the attribute when the name is known
-      # @return [nil]
-      #   nil when the name is unknown
       #
       # @api public
       def call(name)
-        @attribute_for[Attribute.name_from(name)]
+        @attribute_for.fetch(Attribute.name_from(name)) do |attribute_name|
+          raise UnknownAttributeError,
+            "the attribute #{attribute_name} is unknown"
+        end
       end
 
       # Return a header with only the attributes specified

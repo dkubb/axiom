@@ -150,6 +150,9 @@ module Veritas
   # Raised when a name is a duplicate of another name in a set
   class DuplicateNameError < StandardError; end
 
+  # Raised when the attribute is unknown
+  class UnknownAttributeError < IndexError; end
+
   # Represent an undefined argument
   Undefined = Object.new.freeze
 

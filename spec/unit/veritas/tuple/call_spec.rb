@@ -19,7 +19,7 @@ require 'spec_helper'
     context 'with an unknown attribute' do
       let(:attribute) { Attribute::Integer.new(:other_id) }
 
-      specify { expect { subject }.to raise_error(IndexError) }
+      specify { expect { subject }.to raise_error(UnknownAttributeError, 'the attribute other_id is unknown') }
     end
   end
 end
