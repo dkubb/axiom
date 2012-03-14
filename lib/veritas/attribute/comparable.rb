@@ -5,8 +5,7 @@ module Veritas
 
     # A mixin for attributes that have comparable values
     module Comparable
-      include Orderable,
-              Function::Predicate::GreaterThan::Methods,
+      include Function::Predicate::GreaterThan::Methods,
               Function::Predicate::GreaterThanOrEqualTo::Methods,
               Function::Predicate::LessThan::Methods,
               Function::Predicate::LessThanOrEqualTo::Methods,
@@ -31,6 +30,30 @@ module Veritas
       # @api public
       def comparable?(other)
         kind_of?(other.class) || other.kind_of?(self.class)
+      end
+
+      # Sort the attribute in ascending order
+      #
+      # @example
+      #   ascending = attribute.asc
+      #
+      # @return [Relation::Operation::Order::Ascending]
+      #
+      # @api public
+      def asc
+        Relation::Operation::Order::Ascending.new(self)
+      end
+
+      # Sort the attribute in descending order
+      #
+      # @example
+      #   descending = attribute.desc
+      #
+      # @return [Relation::Operation::Order::Descending]
+      #
+      # @api public
+      def desc
+        Relation::Operation::Order::Descending.new(self)
       end
 
     end # module Comparable

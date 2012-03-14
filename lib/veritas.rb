@@ -89,9 +89,9 @@ require 'veritas/algebra/summarization/summaries'
 require 'veritas/algebra/summarization/summary'
 require 'veritas/algebra/union'
 
-require 'veritas/attribute'
-require 'veritas/attribute/orderable'
 require 'veritas/attribute/comparable'
+
+require 'veritas/attribute'
 require 'veritas/attribute/object'
 require 'veritas/attribute/numeric'
 require 'veritas/attribute/boolean'
