@@ -5,6 +5,9 @@ module Veritas
   # Allows objects to be made immutable
   module Immutable
 
+    # Storage for memoized methods
+    Memory = Class.new(::Hash)
+
     # Hook called when module is included
     #
     # @param [Module] descendant
@@ -86,7 +89,7 @@ module Veritas
     #
     # @api private
     def memory
-      @__memory ||= {}
+      @__memory ||= Memory.new
     end
 
     # Store the value in memory
