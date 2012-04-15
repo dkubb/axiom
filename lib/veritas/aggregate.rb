@@ -125,12 +125,9 @@ module Veritas
     #
     # @return [Object]
     #
-    # @todo Aggregate will inherit from Function, then use as Function.value
-    #
     # @api private
     def value(tuple)
-      operand = self.operand
-      operand.respond_to?(:call) ? operand.call(tuple) : operand
+      Function.extract_value(operand, tuple)
     end
 
   end # class Aggregate
