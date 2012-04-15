@@ -29,8 +29,7 @@ module Veritas
         #
         # @api public
         def inverse
-          self.class.new(left, Division.new(1, right)).
-            memoize(:inverse, self)
+          self.class.new(left, Division.new(1, right)).memoize(:inverse, self)
         end
 
         module Methods

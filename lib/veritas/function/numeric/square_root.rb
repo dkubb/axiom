@@ -31,8 +31,7 @@ module Veritas
         #
         # @api public
         def inverse
-          Exponentiation.new(operand, 2).
-            memoize(:inverse, self)
+          Exponentiation.new(operand, 2).memoize(:inverse, self)
         end
 
         # Return the type returned from #call
