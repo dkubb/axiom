@@ -56,8 +56,7 @@ describe Immutable::ModuleMethods, '#memoize' do
   context 'public method' do
     let(:method) { :public_method }
 
-    it { should equal(object) }
-
+    it_should_behave_like 'a command method'
     it_should_behave_like 'memoizes method'
 
     it 'is still a public method' do
@@ -68,8 +67,7 @@ describe Immutable::ModuleMethods, '#memoize' do
   context 'protected method' do
     let(:method) { :protected_method }
 
-    it { should equal(object) }
-
+    it_should_behave_like 'a command method'
     it_should_behave_like 'memoizes method'
 
     it 'is still a protected method' do
@@ -80,8 +78,7 @@ describe Immutable::ModuleMethods, '#memoize' do
   context 'private method' do
     let(:method) { :private_method }
 
-    it { should equal(object) }
-
+    it_should_behave_like 'a command method'
     it_should_behave_like 'memoizes method'
 
     it 'is still a private method' do

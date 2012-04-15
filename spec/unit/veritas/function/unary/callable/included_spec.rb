@@ -9,7 +9,7 @@ describe Function::Unary::Callable, '#included' do
   let(:superklass) { Class.new                                               }
   let(:descendant) { mock('descendant')                                      }
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'delegates to the superclass #included method' do
     superklass.should_receive(:included).with(descendant)

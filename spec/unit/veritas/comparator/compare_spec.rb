@@ -13,7 +13,7 @@ describe Comparator, '#compare' do
     object.instance_eval { include Immutable }
   end
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'includes Comparator::Methods' do
     expect { subject }.to change { object.include?(Comparator::Methods) }.from(false).to(true)

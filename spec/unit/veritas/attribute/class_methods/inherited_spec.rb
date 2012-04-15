@@ -8,7 +8,7 @@ describe Attribute, '.inherited' do
   let(:object)     { Class.new(described_class) }
   let(:descendant) { Class.new                  }
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 
   it 'prepends the class to the descendants' do
     object.descendants << original = Class.new

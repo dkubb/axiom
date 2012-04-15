@@ -15,7 +15,7 @@ describe Immutable, '#freeze' do
   context 'with an unfrozen object' do
     let(:object) { described_class.allocate }
 
-    it { should equal(object) }
+    it_should_behave_like 'a command method'
 
     it 'freezes the object' do
       expect { subject }.to change(object, :frozen?).
@@ -33,7 +33,7 @@ describe Immutable, '#freeze' do
   context 'with a frozen object' do
     let(:object) { described_class.new }
 
-    it { should equal(object) }
+    it_should_behave_like 'a command method'
 
     it 'does not change the frozen state of the object' do
       expect { subject }.to_not change(object, :frozen?)

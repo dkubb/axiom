@@ -12,5 +12,5 @@ describe Immutable::ModuleMethods, '#included' do
     Immutable.should_receive(:included).with(object).and_return(Immutable)
   end
 
-  it { should equal(object) }
+  it_should_behave_like 'a command method'
 end
