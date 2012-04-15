@@ -15,23 +15,6 @@ module Veritas
               Aggregate::Variance::Methods,
               Aggregate::StandardDeviation::Methods
 
-      # Compare the attribute with other attribute to see if they are of the same type
-      #
-      # @example
-      #   attribute.comparable?(other)  # => true or false
-      #
-      # @param [Attribute] other
-      #   the other attribute to compare with
-      #
-      # @return [Boolean]
-      #
-      # @todo figure out how to dry this up with Attribute#joinable?
-      #
-      # @api public
-      def comparable?(other)
-        kind_of?(other.class) || other.kind_of?(self.class)
-      end
-
       # Sort the attribute in ascending order
       #
       # @example
