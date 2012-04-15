@@ -7,5 +7,7 @@ describe Function::Predicate::LessThan, '.inverse' do
 
   let(:object) { described_class }
 
+  it_should_behave_like 'an invertible method'
+
   it { should equal(Function::Predicate::GreaterThanOrEqualTo) }
 end

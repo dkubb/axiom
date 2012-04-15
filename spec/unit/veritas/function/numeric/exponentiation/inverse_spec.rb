@@ -9,7 +9,7 @@ describe Function::Numeric::Exponentiation, '#inverse' do
   let(:left)   { 2                                }
   let(:right)  { 2                                }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(Function::Numeric::Exponentiation) }
 

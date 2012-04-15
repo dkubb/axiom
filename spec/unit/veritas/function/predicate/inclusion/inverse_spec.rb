@@ -9,15 +9,11 @@ describe Function::Predicate::Inclusion, '#inverse' do
   let(:enumerable) { [ 1 ].freeze                               }
   let(:object)     { described_class.new(attribute, enumerable) }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(Function::Predicate::Exclusion) }
 
   its(:left) { should equal(attribute) }
 
   its(:right) { should equal(enumerable) }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end

@@ -8,7 +8,11 @@ describe Function::Numeric::SquareRoot, '#inverse' do
   let(:object) { described_class.new(value) }
   let(:value)  { 4                          }
 
-  it 'is invertible' do
+  it_should_behave_like 'an invertible method'
+
+  it { should be_instance_of(Function::Numeric::Exponentiation) }
+
+  it 'returns an exponentiation of the expected value' do
     should eql(Function::Numeric::Exponentiation.new(value, 2))
   end
 end

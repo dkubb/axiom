@@ -24,7 +24,7 @@ describe Function::Binary::Invertible, '#inverse' do
     end
   end
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(described_class) }
 
@@ -32,8 +32,4 @@ describe Function::Binary::Invertible, '#inverse' do
 
   its(:left)  { should equal(left)  }
   its(:right) { should equal(right) }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end

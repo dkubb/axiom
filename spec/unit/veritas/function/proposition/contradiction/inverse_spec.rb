@@ -7,11 +7,7 @@ describe Function::Proposition::Contradiction, '#inverse' do
 
   let(:object) { described_class.instance }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should equal(Function::Proposition::Tautology.instance) }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end

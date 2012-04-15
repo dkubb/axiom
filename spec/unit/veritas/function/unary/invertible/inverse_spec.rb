@@ -23,15 +23,11 @@ describe Function::Unary::Invertible, '#inverse' do
     end
   end
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(described_class) }
 
   it { should_not equal(object) }
 
   its(:operand) { should equal(operand) }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end

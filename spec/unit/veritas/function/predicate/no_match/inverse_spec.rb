@@ -9,15 +9,11 @@ describe Function::Predicate::NoMatch, '#inverse' do
   let(:regexp)    { /Dan Kubb/.freeze                      }
   let(:object)    { described_class.new(attribute, regexp) }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(Function::Predicate::Match) }
 
   its(:left) { should equal(attribute) }
 
   its(:right) { should equal(regexp) }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end

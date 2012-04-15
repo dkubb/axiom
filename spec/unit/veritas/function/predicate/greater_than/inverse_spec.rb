@@ -8,15 +8,11 @@ describe Function::Predicate::GreaterThan, '#inverse' do
   let(:attribute) { Attribute::Integer.new(:id)       }
   let(:object)    { described_class.new(attribute, 1) }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(Function::Predicate::LessThanOrEqualTo) }
 
   its(:left) { should equal(attribute) }
 
   its(:right) { should == 1 }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end

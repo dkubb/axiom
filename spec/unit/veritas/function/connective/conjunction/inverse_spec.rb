@@ -10,15 +10,11 @@ describe Function::Connective::Conjunction, '#inverse' do
   let(:right)     { attribute.lt(3)                  }
   let(:object)    { described_class.new(left, right) }
 
-  it_should_behave_like 'an idempotent method'
+  it_should_behave_like 'an invertible method'
 
   it { should be_instance_of(Function::Connective::Disjunction) }
 
   its(:left) { should eql(Function::Connective::Negation.new(object.left)) }
 
   its(:right) { should eql(Function::Connective::Negation.new(object.right)) }
-
-  it 'is invertible' do
-    subject.inverse.should equal(object)
-  end
 end
