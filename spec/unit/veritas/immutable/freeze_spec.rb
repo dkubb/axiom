@@ -43,8 +43,9 @@ describe Immutable, '#freeze' do
       expect { subject }.to_not change { object.instance_variable_get(:@__memory) }
     end
 
-    it 'sets an instance variable for memoization' do
-      subject.instance_variable_get(:@__memory).should be_instance_of(Hash)
+    it 'does not set an instance variable for memoization' do
+      object.instance_variable_get(:@__memory).should be_instance_of(Hash)
+      subject
     end
   end
 end
