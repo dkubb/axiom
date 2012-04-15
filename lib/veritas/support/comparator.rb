@@ -38,7 +38,7 @@ module Veritas
     # @api private
     def define_hash_method(methods)
       define_method(:hash) do
-        self.class.hash ^ methods.map { |method| send(method).hash }.reduce(0, :^)
+        methods.map { |method| send(method).hash }.reduce(self.class.hash, :^)
       end
     end
 
