@@ -12,6 +12,8 @@ module Veritas
       DEFAULT_MIN_LENGTH = 0
       DEFAULT_MAX_LENGTH = 50
 
+      compare :name, :required?, :min_length, :max_length
+
       # The minimum string length for a valid value
       #
       # @example
@@ -79,23 +81,6 @@ module Veritas
       # @api public
       def valid_value?(value)
         valid_or_optional?(value) { super && valid_length?(value) }
-      end
-
-      # Test if the attribute can be joined with the other attribute
-      #
-      # @example
-      #   string.joinable?(other)  # => true or false
-      #
-      # @param [Attribute] other
-      #   the other attribute to test
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def joinable?(other)
-        super                             &&
-        min_length.eql?(other.min_length) &&
-        max_length.eql?(other.max_length)
       end
 
     private

@@ -94,20 +94,6 @@ module Veritas
         Attribute::Boolean
       end
 
-      # Compare the proposition with other proposition for equivalency
-      #
-      # @example
-      #   proposition == other  # => true or false
-      #
-      # @param [Proposition] other
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def ==(other)
-        kind_of?(other.class) || other.kind_of?(self.class)
-      end
-
       # Return a string representing the proposition
       #
       # @example

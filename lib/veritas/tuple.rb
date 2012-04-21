@@ -129,21 +129,6 @@ module Veritas
       data.values_at(*header).freeze
     end
 
-    # Compare the tuple with other tuple for equivalency
-    #
-    # @example
-    #   tuple == other  # => true or false
-    #
-    # @param [Tuple] other
-    #   the other tuple to compare with
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def ==(other)
-      cmp?(__method__, coerce(other))
-    end
-
     # Return a string representing the tuple data
     #
     # @example

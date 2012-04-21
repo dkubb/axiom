@@ -1,3 +1,8 @@
+* TODO:
+
+* Make Comparator handle subclasses without having to specify the attribtues
+  again in each descendant.
+
 * Convert Tuple to a Struct
   * Make Header a "Struct Class", and copy all the Header instance methods to
     the class level. Move all the Tuple instance methods into the Header
@@ -55,3 +60,11 @@
 * Within the sort_by context, make sure the attributes have aliases for:
   * Alias #@+ to #asc
   * Alias #@- to #desc
+
+* Handle case where one attribute is required, and the other is not, when joined
+  (or other ops), the resulting attribute should always be required.
+  * In other operations, the resulting attribute may be something else, but will
+    need to research to know how to handle this.
+  * Current behaviour is to require both attributes are equivalent all the way
+    around to allow them to be joined. This constraint will need to be relaxed
+    to implement this new behaviour.

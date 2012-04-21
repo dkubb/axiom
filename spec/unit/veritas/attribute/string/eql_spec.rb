@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Attribute, '#eql?' do
+describe Attribute::String, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:described_class) { Class.new(Attribute)      }
+  let(:described_class) { Attribute::String         }
   let(:name)            { :name                     }
   let(:object)          { described_class.new(name) }
 
@@ -51,6 +51,26 @@ describe Attribute, '#eql?' do
 
   context 'with an object having a different required option' do
     let(:other) { described_class.new(name, :required => false) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other.eql?(object))
+    end
+  end
+
+  context 'with an object having a different min_length' do
+    let(:other) { described_class.new(name, :min_length => 1) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other.eql?(object))
+    end
+  end
+
+  context 'with an object having a different max_length' do
+    let(:other) { described_class.new(name, :max_length => 100) }
 
     it { should be(false) }
 

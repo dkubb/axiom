@@ -7,7 +7,7 @@ module Veritas
     extend Aliasable, Comparator
     include AbstractClass, Immutable, ::Comparable, Visitable
 
-    compare :name, :options
+    compare :name, :required?
 
     # The attribute name
     #
@@ -202,36 +202,6 @@ module Veritas
       valid_or_optional?(value) { valid_primitive?(value) }
     end
 
-    # Test if the attribute can be joined with the other attribute
-    #
-    # @example
-    #   attribute.joinable?(other)  # => true or false
-    #
-    # @param [Attribute] other
-    #   the other attribute to test
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def joinable?(other)
-      kind_of?(other.class) || other.kind_of?(self.class)
-    end
-
-    # Compare the attribute with other attribute for equivalency
-    #
-    # @example
-    #   attribute == other  # => true or false
-    #
-    # @param [Attribute] other
-    #   the other attribute to compare with
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def ==(other)
-      cmp?(__method__, coerce(other))
-    end
-
     # Return a string representing the attribute
     #
     # @example
@@ -241,7 +211,9 @@ module Veritas
     #
     # @api public
     def inspect
-      "<#{self.class.name.sub(/\AVeritas::/, '')} name: #{name}>"
+      klass      = self.class
+      klass_name = klass.name
+      "<#{klass_name.empty? ? klass.inspect : klass_name} name: #{name}>"
     end
 
   private

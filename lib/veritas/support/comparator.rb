@@ -76,6 +76,36 @@ module Veritas
         instance_of?(other.class) && cmp?(__method__, other)
       end
 
+      # Compare the object with other object for equivalency
+      #
+      # @example
+      #   object == other  # => true or false
+      #
+      # @param [Object] other
+      #   the other object to compare with
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def ==(other)
+        other = coerce(other)
+        return false unless self.class <=> other.class
+        cmp?(__method__, other)
+      end
+
+    private
+
+      # Coerce the object into something that can be compared
+      #
+      # @param [Object] other
+      #
+      # @return [Object]
+      #
+      # @api private
+      def coerce(other)
+        other
+      end
+
     end # module Methods
   end # module Comparator
 end # module Veritas

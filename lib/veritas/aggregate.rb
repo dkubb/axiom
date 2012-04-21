@@ -99,21 +99,6 @@ module Veritas
       raise NotImplementedError, "#{self.class}#type must be implemented"
     end
 
-    # Compare the aggregate with other aggregate for equivalency
-    #
-    # @example
-    #   aggregate == other  # => true or false
-    #
-    # @param [Aggregate] other
-    #   the other aggregate to compare with
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def ==(other)
-      cmp?(__method__, other)
-    end
-
   private
 
     # Extract the value from the operand or tuple

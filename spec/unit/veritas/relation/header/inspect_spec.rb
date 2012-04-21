@@ -10,5 +10,5 @@ describe Relation::Header, '#inspect' do
 
   it { should be_instance_of(String) }
 
-  it { should == '[<Attribute::Integer name: id>]' }
+  it { should == '[<Veritas::Attribute::Integer name: id>]' }
 end

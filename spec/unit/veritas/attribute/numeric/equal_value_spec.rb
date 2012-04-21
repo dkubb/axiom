@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-describe Attribute, '#eql?' do
-  subject { object.eql?(other) }
+describe Attribute::Numeric, '#==' do
+  subject { object == other }
 
-  let(:described_class) { Class.new(Attribute)      }
-  let(:name)            { :name                     }
+  let(:described_class) { Attribute::Numeric        }
+  let(:name)            { :id                       }
   let(:object)          { described_class.new(name) }
 
   context 'with the same object' do
@@ -15,7 +15,7 @@ describe Attribute, '#eql?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should eql(other.eql?(object))
+      should eql(other == object)
     end
   end
 
@@ -25,27 +25,27 @@ describe Attribute, '#eql?' do
     it { should be(true) }
 
     it 'is symmetric' do
-      should eql(other.eql?(object))
+      should eql(other == object)
     end
   end
 
   context 'with an equivalent object of a subclass' do
     let(:other) { Class.new(described_class).new(name) }
 
-    it { should be(false) }
+    it { should be(true) }
 
     it 'is symmetric' do
-      should eql(other.eql?(object))
+      should eql(other == object)
     end
   end
 
   context 'with an object having a different name' do
-    let(:other) { described_class.new(:other_name) }
+    let(:other) { described_class.new(:other_id) }
 
     it { should be(false) }
 
     it 'is symmetric' do
-      should eql(other.eql?(object))
+      should eql(other == object)
     end
   end
 
@@ -55,7 +55,17 @@ describe Attribute, '#eql?' do
     it { should be(false) }
 
     it 'is symmetric' do
-      should eql(other.eql?(object))
+      should eql(other == object)
+    end
+  end
+
+  context 'with an object having a different size' do
+    let(:other) { described_class.new(name, :size => 0..100) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other == object)
     end
   end
 end

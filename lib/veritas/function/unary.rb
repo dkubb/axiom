@@ -90,21 +90,6 @@ module Veritas
           end
         end
 
-        # Compare the operation with the other operation for equivalency
-        #
-        # @example
-        #   binary == other  # => true or false
-        #
-        # @param [Object] other
-        #
-        # @return [Boolean]
-        #
-        # @api public
-        def ==(other)
-          (kind_of?(other.class) || other.kind_of?(self.class)) &&
-          cmp?(__method__, other)
-        end
-
         # Return a string representing the unary function
         #
         # @example

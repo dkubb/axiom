@@ -2,12 +2,19 @@
 
 require 'spec_helper'
 
-describe Attribute, '#==' do
+describe Comparator::Methods, '#==' do
   subject { object == other }
 
-  let(:described_class) { Class.new(Attribute)      }
-  let(:name)            { :name                     }
-  let(:object)          { described_class.new(name) }
+  let(:described_class) { Class.new { include Comparator::Methods } }
+  let(:object)          { described_class.new                       }
+
+  before do
+    described_class.class_eval do
+      extend Comparator
+      include Immutable
+      compare :nil?
+    end
+  end
 
   context 'with the same object' do
     let(:other) { object }
@@ -30,7 +37,7 @@ describe Attribute, '#==' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(described_class).new(name) }
+    let(:other) { Class.new(described_class).new }
 
     it { should be(true) }
 
@@ -39,18 +46,8 @@ describe Attribute, '#==' do
     end
   end
 
-  context 'with an object having a different name' do
-    let(:other) { described_class.new(:other_name) }
-
-    it { should be(false) }
-
-    it 'is symmetric' do
-      should eql(other == object)
-    end
-  end
-
-  context 'with an object having a different required option' do
-    let(:other) { described_class.new(name, :required => false) }
+  context 'with an equivalent object of a sibling class' do
+    let(:other) { Class.new.new }
 
     it { should be(false) }
 

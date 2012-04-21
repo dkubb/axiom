@@ -218,21 +218,6 @@ module Veritas
         @attributes
       end
 
-      # Compare the header with other header for equivalency
-      #
-      # @example
-      #   header == other  # => true or false
-      #
-      # @param [Header] other
-      #   the other header to compare with
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def ==(other)
-        cmp?(__method__, coerce(other))
-      end
-
       # Test if there are no attributes
       #
       # @example

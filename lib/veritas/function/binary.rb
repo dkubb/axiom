@@ -57,22 +57,6 @@ module Veritas
         end
       end
 
-      # Compare the operation with the other operation for equivalency
-      #
-      # @example
-      #   binary == other  # => true or false
-      #
-      # @param [Object] other
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def ==(other)
-        (kind_of?(other.class) || other.kind_of?(self.class)) &&
-        left  == other.left                                   &&
-        right == other.right
-      end
-
       # Mixin for invertable binary functions
       module Invertible
 

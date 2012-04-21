@@ -10,5 +10,5 @@ describe Tuple, '#inspect' do
 
   it { should be_instance_of(String) }
 
-  it { should == '{<Attribute::Integer name: id>=>1}' }
+  it { should == '{<Veritas::Attribute::Integer name: id>=>1}' }
 end

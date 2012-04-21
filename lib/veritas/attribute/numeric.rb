@@ -12,6 +12,8 @@ module Veritas
 
       inheritable_alias(:range => :size)
 
+      compare :name, :required?, :size
+
       # The Numeric range for a valid value
       #
       # @example
@@ -66,21 +68,6 @@ module Veritas
       # @api public
       def valid_value?(value)
         valid_or_optional?(value) { super && size.cover?(value) }
-      end
-
-      # Test if the attribute can be joined with the other attribute
-      #
-      # @example
-      #   numeric.joinable?(other)  # => true or false
-      #
-      # @param [Attribute] other
-      #   the other attribute to test
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def joinable?(other)
-        super && size.eql?(other.size)
       end
 
     end # class Numeric

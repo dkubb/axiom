@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-describe Attribute, '#eql?' do
+describe Attribute::Numeric, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:described_class) { Class.new(Attribute)      }
-  let(:name)            { :name                     }
+  let(:described_class) { Attribute::Numeric        }
+  let(:name)            { :id                       }
   let(:object)          { described_class.new(name) }
 
   context 'with the same object' do
@@ -40,7 +40,7 @@ describe Attribute, '#eql?' do
   end
 
   context 'with an object having a different name' do
-    let(:other) { described_class.new(:other_name) }
+    let(:other) { described_class.new(:other_id) }
 
     it { should be(false) }
 
@@ -51,6 +51,16 @@ describe Attribute, '#eql?' do
 
   context 'with an object having a different required option' do
     let(:other) { described_class.new(name, :required => false) }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other.eql?(object))
+    end
+  end
+
+  context 'with an object having a different size' do
+    let(:other) { described_class.new(name, :size => 0..100) }
 
     it { should be(false) }
 
