@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Attribute, '#rename' do
   subject { object.rename(name) }
 
-  let(:described_class) { Class.new(Attribute)                       }
-  let(:object)          { described_class.new(:name, :size => 1..10) }
+  let(:described_class) { Class.new(Attribute)                           }
+  let(:object)          { described_class.new(:name, :required => false) }
 
   context 'when the new name is the same' do
     let(:name) { object.name }
@@ -23,6 +23,6 @@ describe Attribute, '#rename' do
 
     its(:name) { should equal(name) }
 
-    its(:options) { should equal(object.options) }
+    its(:required?) { should be(false) }
   end
 end

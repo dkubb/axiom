@@ -22,6 +22,7 @@ module Veritas
     #
     # @api private
     attr_reader :options
+    private :options
 
     # Hook called when class is inherited
     #
