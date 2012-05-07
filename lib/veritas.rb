@@ -5,6 +5,8 @@ require 'date'
 require 'set'
 require 'singleton'
 
+require 'backports'
+
 require 'veritas/core_ext/date'
 require 'veritas/core_ext/range'
 require 'veritas/core_ext/time'
