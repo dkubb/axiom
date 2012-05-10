@@ -115,6 +115,20 @@ module Veritas
       self
     end
 
+    # Return a relation that represents a replacement of a relation
+    #
+    # @example
+    #   replacement = relation.delete(other)
+    #
+    # @param [Enumerable] other
+    #
+    # @return [Relation]
+    #
+    # @api public
+    def replace(other)
+      coerce(other).delete(self).insert(other)
+    end
+
     # Return a relation with each tuple materialized
     #
     # @example

@@ -607,6 +607,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/set/header_spec.rb",
     "spec/unit/veritas/relation/operation/unary/fixtures/classes.rb",
     "spec/unit/veritas/relation/operation/unary/header_spec.rb",
+    "spec/unit/veritas/relation/replace_spec.rb",
     "spec/unit/veritas/tuple/call_spec.rb",
     "spec/unit/veritas/tuple/class_methods/coerce_spec.rb",
     "spec/unit/veritas/tuple/data_spec.rb",
