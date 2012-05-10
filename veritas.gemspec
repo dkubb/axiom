@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-03-08"
+  s.date = "2012-05-10"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -68,7 +68,6 @@ Gem::Specification.new do |s|
     "lib/veritas/attribute/integer.rb",
     "lib/veritas/attribute/numeric.rb",
     "lib/veritas/attribute/object.rb",
-    "lib/veritas/attribute/orderable.rb",
     "lib/veritas/attribute/string.rb",
     "lib/veritas/attribute/time.rb",
     "lib/veritas/core_ext/date.rb",
@@ -146,6 +145,7 @@ Gem::Specification.new do |s|
     "spec/shared/each_method_behaviour.rb",
     "spec/shared/hash_method_behavior.rb",
     "spec/shared/idempotent_method_behavior.rb",
+    "spec/shared/invertible_method_behaviour.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
     "spec/unit/date/pred_spec.rb",
@@ -265,7 +265,8 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/class_methods/inherited_spec.rb",
     "spec/unit/veritas/attribute/class_methods/name_from_spec.rb",
     "spec/unit/veritas/attribute/class_methods/new_spec.rb",
-    "spec/unit/veritas/attribute/comparable/comparable_spec.rb",
+    "spec/unit/veritas/attribute/comparable/asc_spec.rb",
+    "spec/unit/veritas/attribute/comparable/desc_spec.rb",
     "spec/unit/veritas/attribute/comparable/fixtures/classes.rb",
     "spec/unit/veritas/attribute/date/class_methods/primitive_spec.rb",
     "spec/unit/veritas/attribute/date/range_spec.rb",
@@ -279,21 +280,20 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/hash_spec.rb",
     "spec/unit/veritas/attribute/inspect_spec.rb",
     "spec/unit/veritas/attribute/integer/class_methods/primitive_spec.rb",
-    "spec/unit/veritas/attribute/joinable_spec.rb",
     "spec/unit/veritas/attribute/name_spec.rb",
     "spec/unit/veritas/attribute/numeric/class_methods/primitive_spec.rb",
-    "spec/unit/veritas/attribute/numeric/joinable_spec.rb",
+    "spec/unit/veritas/attribute/numeric/eql_spec.rb",
+    "spec/unit/veritas/attribute/numeric/equal_value_spec.rb",
+    "spec/unit/veritas/attribute/numeric/hash_spec.rb",
     "spec/unit/veritas/attribute/numeric/size_spec.rb",
     "spec/unit/veritas/attribute/numeric/valid_value_spec.rb",
     "spec/unit/veritas/attribute/object/class_methods/primitive_spec.rb",
-    "spec/unit/veritas/attribute/options_spec.rb",
-    "spec/unit/veritas/attribute/orderable/asc_spec.rb",
-    "spec/unit/veritas/attribute/orderable/desc_spec.rb",
-    "spec/unit/veritas/attribute/orderable/fixtures/classes.rb",
     "spec/unit/veritas/attribute/rename_spec.rb",
     "spec/unit/veritas/attribute/required_spec.rb",
     "spec/unit/veritas/attribute/string/class_methods/primitive_spec.rb",
-    "spec/unit/veritas/attribute/string/joinable_spec.rb",
+    "spec/unit/veritas/attribute/string/eql_spec.rb",
+    "spec/unit/veritas/attribute/string/equal_value_spec.rb",
+    "spec/unit/veritas/attribute/string/hash_spec.rb",
     "spec/unit/veritas/attribute/string/max_length_spec.rb",
     "spec/unit/veritas/attribute/string/min_length_spec.rb",
     "spec/unit/veritas/attribute/string/valid_value_spec.rb",
@@ -304,6 +304,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/valid_value_spec.rb",
     "spec/unit/veritas/comparator/compare_spec.rb",
     "spec/unit/veritas/comparator/methods/eql_spec.rb",
+    "spec/unit/veritas/comparator/methods/equal_value_spec.rb",
     "spec/unit/veritas/evaluator/context/add_spec.rb",
     "spec/unit/veritas/evaluator/context/element_reference_spec.rb",
     "spec/unit/veritas/evaluator/context/functions_spec.rb",
@@ -663,28 +664,28 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "https://github.com/dkubb/veritas"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.16"
+  s.rubygems_version = "1.8.24"
   s.summary = "Ruby Relational Algebra"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<backports>, ["~> 2.3.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_runtime_dependency(%q<backports>, ["~> 2.5.1"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.2"])
       s.add_development_dependency(%q<yard>, ["~> 0.7.2"])
     else
-      s.add_dependency(%q<backports>, ["~> 2.3.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+      s.add_dependency(%q<backports>, ["~> 2.5.1"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_dependency(%q<rspec>, ["~> 1.3.2"])
       s.add_dependency(%q<yard>, ["~> 0.7.2"])
     end
   else
-    s.add_dependency(%q<backports>, ["~> 2.3.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
+    s.add_dependency(%q<backports>, ["~> 2.5.1"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     s.add_dependency(%q<rake>, ["~> 0.9.2"])
     s.add_dependency(%q<rspec>, ["~> 1.3.2"])
     s.add_dependency(%q<yard>, ["~> 0.7.2"])

@@ -5,7 +5,6 @@ require 'rake'
 require File.expand_path('../lib/veritas/version', __FILE__)
 
 begin
-  gem('jeweler', '~> 1.6.4') if respond_to?(:gem, true)
   require 'jeweler'
 
   Jeweler::Tasks.new do |gem|
@@ -23,5 +22,5 @@ begin
 
   FileList['tasks/**/*.rake'].each { |task| import task }
 rescue LoadError
-  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler -v 1.6.4'
+  puts 'Jeweler (or a dependency) not available. Install it with: gem install jeweler'
 end
