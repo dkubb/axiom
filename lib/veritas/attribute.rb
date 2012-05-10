@@ -213,7 +213,7 @@ module Veritas
     # @api public
     def inspect
       klass      = self.class
-      klass_name = klass.name
+      klass_name = klass.name.to_s
       "<#{klass_name.empty? ? klass.inspect : klass_name} name: #{name}>"
     end
 
