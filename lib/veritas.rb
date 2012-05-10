@@ -91,6 +91,7 @@ require 'veritas/algebra/summarization/summaries'
 require 'veritas/algebra/summarization/summary'
 require 'veritas/algebra/union'
 
+require 'veritas/relation/operation/deletion'
 require 'veritas/relation/operation/insertion'
 
 require 'veritas/attribute/comparable'
