@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-05-10"
+  s.date = "2012-05-14"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -225,6 +225,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/rename/aliases/eql_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/equal_value_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/hash_spec.rb",
+    "spec/unit/veritas/algebra/rename/aliases/inverse_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/to_hash_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/union_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases_spec.rb",

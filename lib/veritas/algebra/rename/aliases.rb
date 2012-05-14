@@ -135,6 +135,19 @@ module Veritas
           @aliases.empty?
         end
 
+        # Return the inverse aliases
+        #
+        # @example
+        #   inverse = aliases.inverse
+        #
+        # @return [Aliases]
+        #
+        # @api public
+        def inverse
+          self.class.new(@aliases.invert).
+            memoize(:inverse, self)
+        end
+
         # Compare the aliases with other aliases for equivalency
         #
         # @example
@@ -199,6 +212,8 @@ module Veritas
         end
 
         private_class_method :coerce_alias_pair
+
+        memoize :inverse
 
       end # class Aliases
     end # class Rename
