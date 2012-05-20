@@ -5,7 +5,20 @@ module Veritas
     module Operation
 
       # A class representing an insertion into a relation
-      class Insertion < Algebra::Union
+      class Insertion < Relation
+        include Proxy
+
+        # Initialize an Insertion
+        #
+        # @param [Relation] relation
+        #
+        # @return [undefined]
+        #
+        # @api private
+        def initialize(*args)
+          @relation = Algebra::Union.new(*args)
+        end
+
         module Methods
 
           # Return a relation that represents an insertion into a relation
