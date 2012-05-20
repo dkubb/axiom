@@ -48,8 +48,9 @@ NestedIterators:
   ignore_iterators: []
   exclude: [
     # none of these use nested iterators, they use nested blocks only
-    Veritas::Comparator#define_comparison_method,
-    Veritas::Comparator#define_hash_method
+    Veritas::Equalizer#define_cmp_method,
+    Veritas::Equalizer#define_hash_method,
+    Veritas::Equalizer#define_inspect_method
   ]
   enabled: true
   max_allowed_nesting: 1

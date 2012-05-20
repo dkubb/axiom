@@ -45,18 +45,6 @@ module Veritas
             memoize(:inverse, self)
         end
 
-        # Return a string representing the disjunction
-        #
-        # @example
-        #   disjunction.inspect  # => "<Function1> OR <Function2>"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "(#{left.inspect} OR #{right.inspect})"
-        end
-
         module Methods
           extend Aliasable
 

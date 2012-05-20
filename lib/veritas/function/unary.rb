@@ -5,10 +5,8 @@ module Veritas
 
       # Mixin for unary functions
       module Unary
-        extend Comparator
         include Operation::Unary
-
-        compare :operand
+        include Equalizer.new(self, :operand)
 
         # Mixin for adding #call to unary function classes
         module Callable
@@ -88,18 +86,6 @@ module Veritas
           else
             util.new(renamed_operand)
           end
-        end
-
-        # Return a string representing the unary function
-        #
-        # @example
-        #   unary.inspect  # => "+1"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "#{self.class.operation.to_s.upcase.chomp('@')}(#{operand.inspect})"
         end
 
         # Mixin for invertable unary functions

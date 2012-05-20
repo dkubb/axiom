@@ -7,8 +7,7 @@ module Veritas
       # A class representing a sorted relation
       class Order < Relation
         include Unary
-
-        compare :operand, :directions
+        include Equalizer.new(self, :operand, :directions)
 
         # The relation sort order
         #

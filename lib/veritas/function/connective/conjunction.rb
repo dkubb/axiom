@@ -45,18 +45,6 @@ module Veritas
             memoize(:inverse, self)
         end
 
-        # Return a string representing the conjunction
-        #
-        # @example
-        #   conjunction.inspect  # => "<Function1> AND <Function2>"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "(#{left.inspect} AND #{right.inspect})"
-        end
-
         module Methods
           extend Aliasable
 

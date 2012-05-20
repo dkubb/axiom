@@ -31,18 +31,6 @@ module Veritas
           Attribute::Integer
         end
 
-        # Return a string representing the length function
-        #
-        # @example
-        #   length.inspect  # => 'LENGTH("a string")'
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "LENGTH(#{operand.inspect})"
-        end
-
         module Methods
 
           # Return a length function

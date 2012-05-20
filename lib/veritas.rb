@@ -13,14 +13,14 @@ require 'veritas/core_ext/time'
 
 require 'veritas/support/abstract_class'
 require 'veritas/support/aliasable'
-require 'veritas/support/comparator'
 require 'veritas/support/immutable'
 require 'veritas/support/visitable'
 
+require 'veritas/support/equalizer'
+require 'veritas/support/evaluator'
+
 require 'veritas/support/operation/binary'
 require 'veritas/support/operation/unary'
-
-require 'veritas/support/evaluator'
 
 require 'veritas/aggregate'
 require 'veritas/aggregate/count'

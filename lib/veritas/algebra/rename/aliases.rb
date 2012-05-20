@@ -6,10 +6,9 @@ module Veritas
 
       # Aliases that map old attributes to new renamed attributes
       class Aliases
-        extend Aliasable, Comparator
+        extend Aliasable
         include Immutable, Enumerable
-
-        compare :to_hash
+        include Equalizer.new(self, :to_hash)
 
         inheritable_alias(:| => :union)
 

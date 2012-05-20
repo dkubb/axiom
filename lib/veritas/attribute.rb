@@ -4,10 +4,9 @@ module Veritas
 
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
-    extend Aliasable, Comparator
+    extend Aliasable
     include AbstractClass, Immutable, ::Comparable, Visitable
-
-    compare :name, :required?
+    include Equalizer.new(self, :name, :required?)
 
     # The attribute name
     #
@@ -201,20 +200,6 @@ module Veritas
     # @api public
     def valid_value?(value)
       valid_or_optional?(value) { valid_primitive?(value) }
-    end
-
-    # Return a string representing the attribute
-    #
-    # @example
-    #   attribute.inspect  # => "<Attribute::Integer name: id>"
-    #
-    # @return [String]
-    #
-    # @api public
-    def inspect
-      klass      = self.class
-      klass_name = klass.name.to_s
-      "<#{klass_name.empty? ? klass.inspect : klass_name} name: #{name}>"
     end
 
   private

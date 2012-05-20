@@ -7,8 +7,7 @@ module Veritas
       # A class representing a limited relation
       class Limit < Relation
         include Unary
-
-        compare :operand, :limit
+        include Equalizer.new(self, :operand, :limit)
 
         # Return the limit
         #

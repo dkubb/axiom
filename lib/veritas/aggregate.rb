@@ -4,10 +4,8 @@ module Veritas
 
   # Abstract class for aggregate functions
   class Aggregate
-    extend Comparator
     include AbstractClass, Immutable, Visitable, Operation::Unary
-
-    compare :operand
+    include Equalizer.new(self, :operand)
 
     # Return the default accumulator
     #

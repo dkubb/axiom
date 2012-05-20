@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a square root function
       class SquareRoot < Numeric
-        include Unary, Unary::Invertible
+        include Unary::Invertible, Unary
 
         # Return the square root of the value
         #
@@ -41,18 +41,6 @@ module Veritas
         # @api public
         def type
           Attribute::Float
-        end
-
-        # Return a string representing the square root function
-        #
-        # @example
-        #   square_root.inspect  # => "SQRT(4)"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "SQRT(#{operand.inspect})"
         end
 
         module Methods

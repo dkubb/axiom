@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing an addition function
       class Addition < Numeric
-        include Binary, Comparable
+        include Comparable, Binary
 
         # Return the Addition operation
         #

@@ -3,10 +3,8 @@
 module Veritas
   module Operation
     module Binary
-      extend Comparator
       include Immutable
-
-      compare :left, :right
+      include Equalizer.new(self, :left, :right)
 
       # The left operand for the operation
       #

@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a modulo function
       class Modulo < Numeric
-        include Binary, Comparable
+        include Comparable, Binary
 
         # Return the Modulo operation
         #

@@ -6,8 +6,7 @@ module Veritas
     # Specify only specific attributes to keep in the relation
     class Projection < Relation
       include Relation::Operation::Unary
-
-      compare :operand, :header
+      include Equalizer.new(self, :operand, :header)
 
       # Initialize a Projection
       #

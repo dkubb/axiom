@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a multiplication function
       class Multiplication < Numeric
-        include Binary, Comparable
+        include Comparable, Binary
 
         # Return the Multiplication operation
         #

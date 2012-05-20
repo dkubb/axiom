@@ -75,17 +75,5 @@ module Veritas
       raise NotImplementedError, "#{self.class}#type must be implemented"
     end
 
-    # Return a string representing the function
-    #
-    # @example
-    #   function.inspect  # (String representation of Function)
-    #
-    # @return [String]
-    #
-    # @api public
-    def inspect
-      raise NotImplementedError, "#{self.class}#inspect must be implemented"
-    end
-
   end # class Function
 end # module Veritas

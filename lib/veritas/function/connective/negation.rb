@@ -6,7 +6,7 @@ module Veritas
 
       # A logical negation of an expression
       class Negation < Connective
-        include Unary, Unary::Invertible
+        include Unary::Invertible, Unary
 
         # Return the negation operation
         #
@@ -47,18 +47,6 @@ module Veritas
         # @api public
         def inverse
           operand
-        end
-
-        # Return a string representing the negation
-        #
-        # @example
-        #   negation.inspect  # not(<Function>)
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "NOT(#{operand.inspect})"
         end
 
         module Methods

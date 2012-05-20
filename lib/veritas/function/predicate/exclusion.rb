@@ -37,18 +37,6 @@ module Veritas
           Inclusion
         end
 
-        # Return a string representing the predicate
-        #
-        # @example
-        #   exclusion.inspect  # => "<Attribute::Integer name: id> ∉ [1, 2, 3]"
-        #
-        # @return [String]
-        #
-        # @api public
-        def inspect
-          "(#{left.inspect} ∉ #{right.inspect})"
-        end
-
         module Methods
 
           # Compare the left to see if it is excluded from the right

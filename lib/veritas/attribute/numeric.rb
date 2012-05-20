@@ -7,12 +7,11 @@ module Veritas
     class Numeric < Object
       include Comparable,
               Aggregate::Sum::Methods
+      include Equalizer.new(self, :name, :required?, :size)
 
       DEFAULT_SIZE = (-::Float::INFINITY..::Float::INFINITY).freeze
 
       inheritable_alias(:range => :size)
-
-      compare :name, :required?, :size
 
       # The Numeric range for a valid value
       #

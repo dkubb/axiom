@@ -21,18 +21,6 @@ module Veritas
         self
       end
 
-      # Return a string representing the function
-      #
-      # @example
-      #   function.inspect  # (String representation of a Function)
-      #
-      # @return [String]
-      #
-      # @api public
-      def inspect
-        "(#{left.inspect} #{self.class.operation} #{right.inspect})"
-      end
-
       module ClassMethods
 
         # Evaluate the values using the ruby operation

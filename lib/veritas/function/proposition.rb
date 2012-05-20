@@ -5,14 +5,12 @@ module Veritas
 
     # Abstract base class for logical propositions
     class Proposition < Function
-      extend Comparator
       include AbstractClass,
               Singleton,
               Function::Connective::Conjunction::Methods,
               Function::Connective::Disjunction::Methods,
               Function::Connective::Negation::Methods
-
-      compare  # only compare instances with the same superclass
+      include Equalizer.new(self)
 
       # Instantiate a new Proposition
       #
@@ -92,18 +90,6 @@ module Veritas
       # @api public
       def type
         Attribute::Boolean
-      end
-
-      # Return a string representing the proposition
-      #
-      # @example
-      #   proposition.inspect  # (String representation of Proposition)
-      #
-      # @return [String]
-      #
-      # @api public
-      def inspect
-        call.inspect
       end
 
     end # class Proposition

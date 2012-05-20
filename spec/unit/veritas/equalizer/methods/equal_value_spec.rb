@@ -2,17 +2,18 @@
 
 require 'spec_helper'
 
-describe Comparator::Methods, '#==' do
+describe Veritas::Equalizer::Methods, '#==' do
   subject { object == other }
 
-  let(:described_class) { Class.new { include Comparator::Methods } }
-  let(:object)          { described_class.new                       }
+  let(:object) { described_class.new }
 
-  before do
-    described_class.class_eval do
-      extend Comparator
-      include Immutable
-      compare :nil?
+  let(:described_class) do
+    Class.new do
+      include Veritas::Equalizer::Methods
+
+      def cmp?(comparator, other)
+        !!(comparator and other)
+      end
     end
   end
 
@@ -46,7 +47,7 @@ describe Comparator::Methods, '#==' do
     end
   end
 
-  context 'with an equivalent object of a sibling class' do
+  context 'with an object of another class' do
     let(:other) { Class.new.new }
 
     it { should be(false) }

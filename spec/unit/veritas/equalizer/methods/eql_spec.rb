@@ -2,17 +2,18 @@
 
 require 'spec_helper'
 
-describe Comparator::Methods, '#eql?' do
+describe Veritas::Equalizer::Methods, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:described_class) { Class.new { include Comparator::Methods } }
-  let(:object)          { described_class.new                       }
+  let(:object) { described_class.new }
 
-  before do
-    described_class.class_eval do
-      extend Comparator
-      include Immutable
-      compare :nil?
+  let(:described_class) do
+    Class.new do
+      include Veritas::Equalizer::Methods
+
+      def cmp?(comparator, other)
+        !!(comparator and other)
+      end
     end
   end
 

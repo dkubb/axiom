@@ -4,12 +4,11 @@ module Veritas
 
   # A set of objects representing a unique fact in a relation
   class Tuple
-    extend Aliasable, Comparator
+    extend Aliasable
     include Immutable
+    include Equalizer.new(self, :data)
 
     inheritable_alias(:[] => :call)
-
-    compare :data
 
     # The tuple header
     #
@@ -127,18 +126,6 @@ module Veritas
     # @api public
     def to_ary
       data.values_at(*header).freeze
-    end
-
-    # Return a string representing the tuple data
-    #
-    # @example
-    #   tuple.inspect  # => "{<Attribute::Integer name: id>=>1}"
-    #
-    # @return [String]
-    #
-    # @api public
-    def inspect
-      data.inspect
     end
 
   private

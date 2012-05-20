@@ -7,9 +7,9 @@ module Veritas
 
         # A class that represents a tuple sort order for a set of attributes
         class DirectionSet < Header
-          EMPTY = new
+          include Equalizer.new(self, :to_ary)
 
-          compare :to_ary
+          EMPTY = new
 
           # Coerce the attribute into a Direction
           #

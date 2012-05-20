@@ -3,10 +3,8 @@
 module Veritas
   module Operation
     module Unary
-      extend Comparator
       include Immutable
-
-      compare :operand
+      include Equalizer.new(self, :operand)
 
       # The operand to the operation
       #

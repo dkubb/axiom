@@ -7,10 +7,8 @@ module Veritas
 
         # Abstract base class for attribute sorting
         class Direction
-          extend Comparator
           include AbstractClass, Immutable
-
-          compare :attribute
+          include Equalizer.new(self, :attribute)
 
           # The attribute to sort on
           #

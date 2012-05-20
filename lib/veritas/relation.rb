@@ -4,10 +4,8 @@ module Veritas
 
   # Abstract base class for Relation operations
   class Relation
-    extend Comparator
     include Immutable, Enumerable, Visitable
-
-    compare :header, :to_set
+    include Equalizer.new(self, :header, :to_set)
 
     # The relation header
     #

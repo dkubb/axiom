@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a subtraction function
       class Subtraction < Numeric
-        include Binary, Comparable
+        include Comparable, Binary
 
         # Return the Subtraction operation
         #

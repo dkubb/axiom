@@ -5,10 +5,9 @@ module Veritas
 
     # A set of attributes that correspond to values in each tuple
     class Header
-      extend Aliasable, Comparator
+      extend Aliasable
       include Enumerable, Immutable
-
-      compare :to_set
+      include Equalizer.new(self, :to_set)
 
       inheritable_alias(
         :[] => :call,
@@ -228,18 +227,6 @@ module Veritas
       # @api public
       def empty?
         to_ary.empty?
-      end
-
-      # Return a string representing the header
-      #
-      # @example
-      #   header.inspect  # => "[<Attribute::Integer name: id>]"
-      #
-      # @return [String]
-      #
-      # @api public
-      def inspect
-        to_ary.inspect
       end
 
     private

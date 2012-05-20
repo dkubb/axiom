@@ -6,7 +6,7 @@ module Veritas
 
       # A class representing a division function
       class Division < Numeric
-        include Binary, Comparable
+        include Comparable, Binary
 
         # Return the Division operation
         #
