@@ -5,7 +5,20 @@ module Veritas
     module Operation
 
       # A class representing an deletion from a relation
-      class Deletion < Algebra::Difference
+      class Deletion < Relation
+        include Proxy
+
+        # Initialize a Deletion
+        #
+        # @param [Relation] relation
+        #
+        # @return [undefined]
+        #
+        # @api private
+        def initialize(*args)
+          @relation = Algebra::Difference.new(*args)
+        end
+
         module Methods
 
           # Return a relation that represents a deletion from a relation
