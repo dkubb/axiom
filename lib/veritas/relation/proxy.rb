@@ -9,7 +9,7 @@ module Veritas
       include Equalizer.new(self, :relation)
 
       # Relation methods to proxy
-      PROXY_METHODS = %w[ header each empty? ].freeze
+      PROXY_METHODS = %w[ header each empty? ].concat(Enumerable.public_instance_methods).freeze
 
       # Hook called when module is included
       #
