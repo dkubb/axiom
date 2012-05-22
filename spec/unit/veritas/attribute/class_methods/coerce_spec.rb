@@ -13,12 +13,22 @@ describe Attribute, '.coerce' do
     it { should equal(argument) }
   end
 
-  context 'when the argument responds to #to_ary' do
+  context 'when the argument responds to #to_ary and does not include options' do
     let(:argument) { [ :id, Integer ] }
 
     it { should be_instance_of(Attribute::Integer) }
 
     its(:name) { should == :id }
+  end
+
+  context 'when the argument responds to #to_ary and includes options' do
+    let(:argument) { [ :id, Integer, { :required => false } ] }
+
+    it { should be_instance_of(Attribute::Integer) }
+
+    its(:name) { should == :id }
+
+    its(:required?) { should be(false) }
   end
 
   context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
@@ -47,12 +57,22 @@ describe Attribute::Boolean, '.coerce' do
     it { should equal(argument) }
   end
 
-  context 'when the argument responds to #to_ary' do
+  context 'when the argument responds to #to_ary and does not include options' do
     let(:argument) { [ :id, Integer ] }
 
     it { should be_instance_of(Attribute::Integer) }
 
     its(:name) { should == :id }
+  end
+
+  context 'when the argument responds to #to_ary and includes options' do
+    let(:argument) { [ :id, Integer, { :required => false } ] }
+
+    it { should be_instance_of(Attribute::Integer) }
+
+    its(:name) { should == :id }
+
+    its(:required?) { should be(false) }
   end
 
   context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do

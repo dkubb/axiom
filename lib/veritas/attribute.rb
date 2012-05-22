@@ -59,10 +59,10 @@ module Veritas
       if object.kind_of?(Attribute)
         object
       else
-        name, type = object
+        name, type, options = object
         klass = equal?(Attribute) ? Object : self
         klass = const_get(type.name) if type
-        klass.new(name)
+        klass.new(name, options || {})
       end
     end
 
