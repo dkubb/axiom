@@ -4,7 +4,7 @@ module Veritas
   module Operation
     module Binary
       include Immutable
-      include Equalizer.new(self, :left, :right)
+      include Equalizer.new(:left, :right)
 
       # The left operand for the operation
       #

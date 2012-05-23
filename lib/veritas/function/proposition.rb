@@ -10,7 +10,7 @@ module Veritas
               Function::Connective::Conjunction::Methods,
               Function::Connective::Disjunction::Methods,
               Function::Connective::Negation::Methods
-      include Equalizer.new(self)
+      include Equalizer.new
 
       # Instantiate a new Proposition
       #

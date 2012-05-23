@@ -6,7 +6,7 @@ module Veritas
   class Attribute
     extend Aliasable
     include AbstractClass, Immutable, ::Comparable, Visitable
-    include Equalizer.new(self, :name, :required?)
+    include Equalizer.new(:name, :required?)
 
     # The attribute name
     #

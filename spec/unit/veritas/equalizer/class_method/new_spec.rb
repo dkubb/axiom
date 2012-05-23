@@ -7,8 +7,8 @@ describe Veritas::Equalizer, '.new' do
   let(:name)   { 'User'          }
   let(:klass)  { ::Class.new     }
 
-  context 'with a class' do
-    subject { object.new(klass) }
+  context 'with no keys' do
+    subject { object.new }
 
     before do
       # specify the class #name method
@@ -65,8 +65,8 @@ describe Veritas::Equalizer, '.new' do
     end
   end
 
-  context 'with a class and keys' do
-    subject { object.new(klass, *keys) }
+  context 'with keys' do
+    subject { object.new(*keys) }
 
     let(:keys)       { [ :first_name ].freeze }
     let(:first_name) { 'John'                 }

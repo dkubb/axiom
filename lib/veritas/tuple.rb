@@ -6,7 +6,7 @@ module Veritas
   class Tuple
     extend Aliasable
     include Immutable
-    include Equalizer.new(self, :data)
+    include Equalizer.new(:data)
 
     inheritable_alias(:[] => :call)
 

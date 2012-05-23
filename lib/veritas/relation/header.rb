@@ -7,7 +7,7 @@ module Veritas
     class Header
       extend Aliasable
       include Enumerable, Immutable
-      include Equalizer.new(self, :to_set)
+      include Equalizer.new(:to_set)
 
       inheritable_alias(
         :[] => :call,

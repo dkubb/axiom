@@ -6,7 +6,7 @@ module Veritas
     # Restrict the tuples to those that match a predicate
     class Restriction < Relation
       include Relation::Operation::Unary
-      include Equalizer.new(self, :operand, :predicate)
+      include Equalizer.new(:operand, :predicate)
 
       # The predicate for the relation
       #

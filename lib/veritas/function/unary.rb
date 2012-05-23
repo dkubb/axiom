@@ -6,7 +6,7 @@ module Veritas
       # Mixin for unary functions
       module Unary
         include Operation::Unary
-        include Equalizer.new(self, :operand)
+        include Equalizer.new(:operand)
 
         # Mixin for adding #call to unary function classes
         module Callable

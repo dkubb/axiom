@@ -8,7 +8,7 @@ module Veritas
       class Aliases
         extend Aliasable
         include Immutable, Enumerable
-        include Equalizer.new(self, :to_hash)
+        include Equalizer.new(:to_hash)
 
         inheritable_alias(:| => :union)
 

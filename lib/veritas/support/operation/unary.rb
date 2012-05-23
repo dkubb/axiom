@@ -4,7 +4,7 @@ module Veritas
   module Operation
     module Unary
       include Immutable
-      include Equalizer.new(self, :operand)
+      include Equalizer.new(:operand)
 
       # The operand to the operation
       #

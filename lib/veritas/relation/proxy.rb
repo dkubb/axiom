@@ -6,7 +6,7 @@ module Veritas
     # Allow relations to proxy to other relations
     module Proxy
       include Immutable
-      include Equalizer.new(self, :relation)
+      include Equalizer.new(:relation)
 
       # Relation methods to proxy
       PROXY_METHODS = %w[ header each empty? ].concat(Enumerable.public_instance_methods).freeze

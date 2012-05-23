@@ -6,7 +6,7 @@ module Veritas
     # Rename attributes in the header
     class Rename < Relation
       include Relation::Operation::Unary
-      include Equalizer.new(self, :operand, :aliases)
+      include Equalizer.new(:operand, :aliases)
 
       # The aliases for the relation
       #

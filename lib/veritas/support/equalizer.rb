@@ -10,15 +10,12 @@ module Veritas
     # Will use the keys with which it is initialized to define #cmp?,
     # #hash, and #inspect
     #
-    # @param [Module] mod
-    #
     # @param [Array<Symbol>] *keys
     #
     # @return [undefined]
     #
     # @api private
-    def initialize(mod, *keys)
-      @name = Immutable.freeze_object(mod.name || mod.inspect)
+    def initialize(*keys)
       @keys = Immutable.freeze_object(keys)
       define_methods
       include_comparison_methods
@@ -68,8 +65,10 @@ module Veritas
     #
     # @api private
     def define_inspect_method
-      name, keys = @name, @keys
+      keys = @keys
       define_method(:inspect) do
+        klass = self.class
+        name  = klass.name || klass.inspect
         "#<#{name}#{keys.map { |key| " #{key}=#{send(key).inspect}" }.join}>"
       end
     end

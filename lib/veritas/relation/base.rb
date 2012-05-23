@@ -5,7 +5,7 @@ module Veritas
 
     # A class that represents a base relation
     class Base < Relation
-      include Equalizer.new(self, :header, :to_set, :name)
+      include Equalizer.new(:header, :to_set, :name)
 
       # The base relation name
       #

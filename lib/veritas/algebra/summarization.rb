@@ -6,7 +6,7 @@ module Veritas
     # Summarize a relation by specific attributes
     class Summarization < Relation
       include Relation::Operation::Unary
-      include Equalizer.new(self, :operand, :summarize_per, :summarizers)
+      include Equalizer.new(:operand, :summarize_per, :summarizers)
 
       # The relation to summarize with
       #

@@ -6,7 +6,7 @@ module Veritas
     # Extend a relation to include calculated attributes
     class Extension < Relation
       include Relation::Operation::Unary
-      include Equalizer.new(self, :operand, :extensions)
+      include Equalizer.new(:operand, :extensions)
 
       # The extensions for the relation
       #

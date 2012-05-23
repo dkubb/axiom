@@ -7,7 +7,7 @@ module Veritas
       # A class representing an offset relation
       class Offset < Relation
         include Unary
-        include Equalizer.new(self, :operand, :offset)
+        include Equalizer.new(:operand, :offset)
 
         # Return the offset
         #

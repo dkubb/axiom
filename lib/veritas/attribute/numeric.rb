@@ -7,7 +7,7 @@ module Veritas
     class Numeric < Object
       include Comparable,
               Aggregate::Sum::Methods
-      include Equalizer.new(self, :name, :required?, :size)
+      include Equalizer.new(:name, :required?, :size)
 
       DEFAULT_SIZE = (-::Float::INFINITY..::Float::INFINITY).freeze
 

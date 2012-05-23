@@ -8,7 +8,7 @@ module Veritas
       include Comparable,
               Function::Predicate::Match::Methods,
               Function::Predicate::NoMatch::Methods
-      include Equalizer.new(self, :name, :required?, :min_length, :max_length)
+      include Equalizer.new(:name, :required?, :min_length, :max_length)
 
       DEFAULT_MIN_LENGTH = 0
       DEFAULT_MAX_LENGTH = 50
