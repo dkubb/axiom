@@ -3,6 +3,12 @@
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
 
+* Allow Evaluator::Context to be used like:
+
+    relation.extend { new_extensions }
+
+  This will require the return value from the block to become useful.
+
 * Convert Tuple to a Struct
   * Make Header a "Struct Class", and copy all the Header instance methods to
     the class level. Move all the Tuple instance methods into the Header
