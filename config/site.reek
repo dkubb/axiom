@@ -48,9 +48,9 @@ NestedIterators:
   ignore_iterators: []
   exclude: [
     # none of these use nested iterators, they use nested blocks only
-    Veritas::Equalizer#define_cmp_method,
-    Veritas::Equalizer#define_hash_method,
-    Veritas::Equalizer#define_inspect_method
+    'Veritas::Equalizer#define_cmp_method',
+    'Veritas::Equalizer#define_hash_method',
+    'Veritas::Equalizer#define_inspect_method'
   ]
   enabled: true
   max_allowed_nesting: 1
@@ -86,9 +86,9 @@ DataClump:
   exclude: [
     # all of these classes have utility class methods that are
     # incorrectly identified as instance methods
-    Veritas::Relation::Operation::Binary::ClassMethods,
-    Veritas::Relation::Operation::Set::ClassMethods,
-    Veritas::Immutable
+    'Veritas::Relation::Operation::Binary::ClassMethods',
+    'Veritas::Relation::Operation::Set::ClassMethods',
+    'Veritas::Immutable'
   ]
   enabled: true
   max_copies: 1
