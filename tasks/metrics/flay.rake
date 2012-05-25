@@ -36,6 +36,6 @@ begin
   end
 rescue LoadError
   task :flay do
-    abort 'Flay is not available. In order to run flay, you must: gem install flay'
+    $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
   end
 end
