@@ -5,7 +5,7 @@ begin
   config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
   threshold   = config.fetch('threshold').to_i
   total_score = config.fetch('total_score').to_f
-  files       = Flay.expand_dirs_to_files(config.fetch('path', 'lib'))
+  files       = Flay.expand_dirs_to_files(config.fetch('path', 'lib')).sort
 
   # original code by Marty Andrews:
   # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
