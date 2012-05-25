@@ -23,6 +23,45 @@ module Veritas
       self
     end
 
+    # Attempt to freeze an object
+    #
+    # @example using a value object
+    #   Immutable.freeze_object(12345)  # => noop
+    #
+    # @example using a normal object
+    #   Immutable.freeze_object({})  # => duplicate & freeze object
+    #
+    # @param [Object] object
+    #   the object to freeze
+    #
+    # @return [Object]
+    #   if supported, the frozen object, otherwise the object directly
+    #
+    # @api public
+    def self.freeze_object(object)
+      case object
+      when Numeric, TrueClass, FalseClass, NilClass, Symbol
+        object
+      else
+        freeze_value(object)
+      end
+    end
+
+    # Returns a frozen value
+    #
+    # @param [Object] value
+    #   a value to freeze
+    #
+    # @return [Object]
+    #   if frozen, the value directly, otherwise a frozen copy of the value
+    #
+    # @api private
+    def self.freeze_value(value)
+      value.frozen? ? value : value.dup.freeze
+    end
+
+    private_class_method :freeze_value
+
     # Freeze the object
     #
     # @example
@@ -107,45 +146,6 @@ module Veritas
     def store_memory(name, value)
       memory[name] = Immutable.freeze_object(value)
     end
-
-    # Attempt to freeze an object
-    #
-    # @example using a value object
-    #   Immutable.freeze_object(12345)  # => noop
-    #
-    # @example using a normal object
-    #   Immutable.freeze_object({})  # => duplicate & freeze object
-    #
-    # @param [Object] object
-    #   the object to freeze
-    #
-    # @return [Object]
-    #   if supported, the frozen object, otherwise the object directly
-    #
-    # @api public
-    def self.freeze_object(object)
-      case object
-      when Numeric, TrueClass, FalseClass, NilClass, Symbol
-        object
-      else
-        freeze_value(object)
-      end
-    end
-
-    # Returns a frozen value
-    #
-    # @param [Object] value
-    #   a value to freeze
-    #
-    # @return [Object]
-    #   if frozen, the value directly, otherwise a frozen copy of the value
-    #
-    # @api private
-    def self.freeze_value(value)
-      value.frozen? ? value : value.dup.freeze
-    end
-
-    private_class_method :freeze_value
 
     # Methods mixed in to immutable modules
     module ModuleMethods
