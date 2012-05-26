@@ -6,9 +6,6 @@
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
-require 'backports'
-require 'backports/basic_object'
-
 unless GC.respond_to?(:enable_stats)
   puts 'Error: benchmark works on ree, or ruby with Railsbench GC patch only'
   exit 1

@@ -26,21 +26,6 @@ $ irb -rubygems
 => true
 ```
 
-NOTE: This gem works best with ruby 1.9, however if you are using ruby 1.8 you must also install [backports](https://rubygems.org/gems/backports), then require backports and backports/basic_object, eg:
-
-```bash
-$ ruby -e 'puts RUBY_VERSION'
-=> 1.8.7
-$ gem install backports
-$ irb -rubygems
->> require 'backports'
-=> true
->> require 'backports/basic_object'
-=> true
->> require 'veritas'  # assuming it was installed by one of the two methods above
-=> true
-```
-
 ## Usage
 
 ```ruby

@@ -5,8 +5,6 @@ $LOAD_PATH.unshift(File.expand_path('../../../lib', __FILE__))
 
 begin
   require 'pathname'
-  require 'backports'
-  require 'backports/basic_object' unless RUBY_VERSION >= '1.9.2' && (RUBY_PLATFORM.include?('java') || RUBY_ENGINE == 'rbx')
   require 'active_support/inflector'
   require 'heckle'
   require 'mspec'

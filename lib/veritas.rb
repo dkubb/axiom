@@ -6,6 +6,7 @@ require 'set'
 require 'singleton'
 
 require 'backports'
+require 'backports/basic_object' unless RUBY_VERSION >= '1.9.2' && RUBY_PLATFORM.include?('java')
 
 require 'veritas/core_ext/date'
 require 'veritas/core_ext/range'

@@ -6,8 +6,6 @@
 
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
-require 'backports'
-require 'backports/basic_object'
 require 'rbench'
 require 'veritas'
 include Veritas
