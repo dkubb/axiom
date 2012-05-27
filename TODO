@@ -74,3 +74,13 @@
   * Current behaviour is to require both attributes are equivalent all the way
     around to allow them to be joined. This constraint will need to be relaxed
     to implement this new behaviour.
+
+* Add operations for efficiently determining the following Enumerable properties
+  of a relation, when no block is provided:
+  * all?
+  * any?
+  * empty?
+  * one?
+  * none?
+  * include? / member?
+  * min / max / minmax (when the tuples are sorted)
