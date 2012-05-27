@@ -9,8 +9,9 @@ module Veritas
       include Equalizer.new(:relation)
 
       # Relation methods to proxy
-      ENUMERABLE_METHODS = (Enumerable.public_instance_methods.map(&:to_s) - %w[ take drop sort_by ]).freeze
+      ENUMERABLE_METHODS = Enumerable.public_instance_methods.map(&:to_s).freeze
       PROXY_METHODS      = %w[ header each empty? ].freeze
+      RELATION_METHODS   = %w[ take drop sort_by join ].freeze
 
       # Hook called when module is included
       #
@@ -22,8 +23,7 @@ module Veritas
       # @api private
       def self.included(descendant)
         descendant.class_eval do
-          undef_method *ENUMERABLE_METHODS
-          undef_method *PROXY_METHODS
+          undef_method *PROXY_METHODS | ENUMERABLE_METHODS - RELATION_METHODS
         end
       end
 
