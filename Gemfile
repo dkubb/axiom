@@ -47,6 +47,6 @@ group :metrics do
   end
 
   platforms :rbx do
-    gem 'pelusa', :github => 'codegram/pelusa'
+    gem 'pelusa'
   end
 end
