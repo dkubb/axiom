@@ -57,7 +57,7 @@ module Veritas
       # The other relation must match the predicate to be inserted
       #
       # @example
-      #   new_relation = relation.insert(other)
+      #   new_relation = restriction.insert(other)
       #
       # @param [Relation] other
       #
