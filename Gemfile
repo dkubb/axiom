@@ -32,9 +32,9 @@ group :metrics do
   gem 'reek',        '~> 1.2.8', :github => 'dkubb/reek'
   gem 'roodi',       '~> 2.1.0'
   gem 'yardstick',   '~> 0.4.0'
+  gem 'flay',        '~> 1.4.2'
 
   platforms :mri_18 do
-    gem 'flay',      '~> 1.4.2'
     gem 'heckle',    '~> 1.4.3'
     gem 'json',      '~> 1.6.4'
     gem 'metric_fu', '~> 2.1.1'
