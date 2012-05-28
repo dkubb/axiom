@@ -52,6 +52,23 @@ module Veritas
         self
       end
 
+      # Insert a relation into the Restriction
+      #
+      # The other relation must match the predicate to be inserted
+      #
+      # @example
+      #   new_relation = relation.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Restriction]
+      #
+      # @api public
+      def insert(other)
+        predicate = self.predicate
+        operand.insert(other.restrict { predicate }).restrict { predicate }
+      end
+
       module Methods
 
         # Return a relation with restricted tuples
