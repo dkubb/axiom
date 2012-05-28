@@ -59,6 +59,21 @@ module Veritas
         self
       end
 
+      # Insert a relation into the Rename
+      #
+      # @example
+      #   new_relation = rename.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Rename]
+      #
+      # @api public
+      def insert(other)
+        aliases = self.aliases
+        operand.insert(other.rename(aliases.inverse)).rename(aliases)
+      end
+
       module Methods
 
         # Return a relation with the header renamed
