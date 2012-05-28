@@ -28,10 +28,7 @@ platform :jruby do
 end
 
 group :metrics do
-  gem 'arrayfields', '~> 4.7.4'
-  gem 'fattr',       '~> 2.2.0'
   gem 'flog',        '~> 2.5.1'
-  gem 'map',         '~> 5.2.0'
   gem 'reek',        '~> 1.2.8', :github => 'dkubb/reek'
   gem 'roodi',       '~> 2.1.0'
   gem 'yardstick',   '~> 0.4.0'
@@ -43,7 +40,6 @@ group :metrics do
     gem 'metric_fu', '~> 2.1.1'
     gem 'mspec',     '~> 1.5.17'
     gem 'rcov',      '~> 0.9.9'
-    gem 'ruby2ruby', '=  1.2.2'
   end
 
   platforms :rbx do
