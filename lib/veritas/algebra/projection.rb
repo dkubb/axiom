@@ -47,6 +47,96 @@ module Veritas
         self
       end
 
+      # Insert a relation into the Projection
+      #
+      # @example
+      #   new_relation = projection.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Projection]
+      #
+      # @raise [InvalidHeaderError]
+      #   raised if the headers are not equivalent
+      #
+      # @raise [RequiredAttributesError]
+      #   raised when inserting into a relation with required attributes removed
+      #
+      # @api public
+      def insert(other)
+        assert_removed_attributes_optional
+        assert_equivalent_headers(other)
+        operand.insert(extend_other(other)).project(header)
+      end
+
+    private
+
+      # Assert that removed attributes are optional
+      #
+      # @return [undefined]
+      #
+      # @raise [RequiredAttributesError]
+      #   raised when inserting into a relation with required attributes removed
+      #
+      # @api private
+      def assert_removed_attributes_optional
+        names = required_attribute_names
+        if names.any?
+          raise RequiredAttributesError, "Required attributes #{names.join(', ')} have been removed"
+        end
+      end
+
+      # Assert that other relation header is equivalent
+      #
+      # @param [Relation] other
+      #
+      # @return [undefined]
+      #
+      # @raise [InvalidHeaderError]
+      #   raised if the headers are not equivalent
+      #
+      # @api private
+      def assert_equivalent_headers(other)
+        if header != other.header
+          raise InvalidHeaderError, 'the headers must be equivalent'
+        end
+      end
+
+      # Names of the required attributes that were removed
+      #
+      # @return [Array<Symbol>]
+      #
+      # @api private
+      def required_attribute_names
+        removed_attributes.each_with_object([]) do |attribute, names|
+          names << attribute.name if attribute.required?
+        end
+      end
+
+      # Attributes that were removed by the projection
+      #
+      # @return [Array<Attribute>]
+      #
+      # @api private
+      def removed_attributes
+        operand.header - header
+      end
+
+      # Extend the other relation with removed attributes
+      #
+      # @param [Relation] other
+      #
+      # @return [Extension]
+      #
+      # @api private
+      def extend_other(other)
+        other.extend do |context|
+          removed_attributes.each do |attribute|
+            context.add(attribute, nil)
+          end
+        end
+      end
+
       module Methods
 
         # Return a relation with only the attributes specified
@@ -110,6 +200,8 @@ module Veritas
       end # module Methods
 
       Relation.class_eval { include Methods }
+
+      memoize :removed_attributes
 
     end # class Projection
   end # module Algebra

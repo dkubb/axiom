@@ -26,7 +26,9 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: []
+  exclude: [
+    Veritas::Algebra::Projection#required_attribute_names
+  ]
   enabled: true
 ClassVariable:
   exclude: []
@@ -50,7 +52,8 @@ NestedIterators:
     # none of these use nested iterators, they use nested blocks only
     Veritas::Equalizer#define_cmp_method,
     Veritas::Equalizer#define_hash_method,
-    Veritas::Equalizer#define_inspect_method
+    Veritas::Equalizer#define_inspect_method,
+    Veritas::Algebra::Projection#extend_other
   ]
   enabled: true
   max_allowed_nesting: 1

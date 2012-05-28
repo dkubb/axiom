@@ -218,6 +218,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/projection/eql_spec.rb",
     "spec/unit/veritas/algebra/projection/hash_spec.rb",
     "spec/unit/veritas/algebra/projection/header_spec.rb",
+    "spec/unit/veritas/algebra/projection/insert_spec.rb",
     "spec/unit/veritas/algebra/projection/methods/project_spec.rb",
     "spec/unit/veritas/algebra/projection/methods/remove_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/class_methods/coerce_spec.rb",
