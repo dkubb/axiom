@@ -36,8 +36,6 @@ group :metrics do
 
   platforms :mri_18 do
     gem 'heckle',    '~> 1.4.3'
-    gem 'json',      '~> 1.6.4'
-    gem 'metric_fu', '~> 2.1.1'
     gem 'mspec',     '~> 1.5.17'
     gem 'rcov',      '~> 0.9.9'
   end
