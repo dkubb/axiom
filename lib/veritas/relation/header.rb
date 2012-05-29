@@ -157,6 +157,21 @@ module Veritas
         new(attributes.map { |attribute| self[attribute] })
       end
 
+      # Return a header with the new attributes added
+      #
+      # @example
+      #   projected = header.project(attributes)
+      #
+      # @param [#to_ary] attributes
+      #   the attributes to add to the header
+      #
+      # @return [Header]
+      #
+      # @api public
+      def extend(attributes)
+        new(@attributes + attributes.to_ary)
+      end
+
       # Return a header with the attributes renamed
       #
       # @example
