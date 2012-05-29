@@ -147,7 +147,7 @@ module Veritas
         #
         # @api public
         def project(attributes)
-          project_relation(self, attributes)
+          Projection.new(self, attributes)
         end
 
         # Return a relation with attributes not specified
@@ -177,20 +177,6 @@ module Veritas
         # @api private
         def project_header(attributes)
           header.project(attributes)
-        end
-
-        # Return a relation with only the attributes specified
-        #
-        # @param [Relation] operand
-        #   the relation to project
-        # @param [#to_ary] attributes
-        #   optional attributes to keep in the projection
-        #
-        # @return [Projection]
-        #
-        # @api private
-        def project_relation(operand, attributes = header)
-          Projection.new(operand, attributes)
         end
 
       end # module Methods
