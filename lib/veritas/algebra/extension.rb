@@ -59,7 +59,10 @@ module Veritas
 
         # Return an extended relation
         #
-        # @example
+        # @example with extensions
+        #  extension = relation.extend(extensions)
+        #
+        # @example with a context block
         #   extension = relation.extend do |context|
         #     context.add(:total, context[:unit_price] * context[:quantity])
         #   end
