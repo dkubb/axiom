@@ -24,7 +24,7 @@ begin
 rescue LoadError
   %w[ spec spec:unit spec:integration ].each do |name|
     task name do
-      abort "rspec is not available. In order to run #{name}, you must: gem install rspec"
+      $stderr.puts "rspec is not available. In order to run #{name}, you must: gem install rspec"
     end
   end
 end
@@ -40,7 +40,7 @@ begin
   end
 rescue LoadError
   task :rcov do
-    abort 'rcov is not available. In order to run rcov, you must: gem install rcov'
+    $stderr.puts 'rcov is not available. In order to run rcov, you must: gem install rcov'
   end
 end
 

@@ -17,7 +17,7 @@ begin
 rescue LoadError
   %w[ yardstick_measure verify_measurements ].each do |name|
     task name.to_s do
-      abort "Yardstick is not available. In order to run #{name}, you must: gem install yardstick"
+      $stderr.puts "Yardstick is not available. In order to run #{name}, you must: gem install yardstick"
     end
   end
 end

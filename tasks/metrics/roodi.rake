@@ -10,6 +10,6 @@ begin
   end
 rescue LoadError
   task :roodi do
-    abort 'Roodi is not available. In order to run roodi, you must: gem install roodi'
+    $stderr.puts 'Roodi is not available. In order to run roodi, you must: gem install roodi'
   end
 end

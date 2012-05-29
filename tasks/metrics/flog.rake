@@ -40,6 +40,6 @@ begin
   end
 rescue LoadError
   task :flog do
-    abort 'Flog is not available. In order to run flog, you must: gem install flog'
+    $stderr.puts 'Flog is not available. In order to run flog, you must: gem install flog'
   end
 end
