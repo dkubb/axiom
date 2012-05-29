@@ -142,6 +142,9 @@ module Veritas
         #     context.add(:count, context[:id].count)
         #   end
         #
+        # @example with summarizers
+        #   summarization = relation.summarize([ :name ], summarizers)
+        #
         # @param [Relation, Header, #to_ary] summarize_with
         #
         # @yield [function]
@@ -153,10 +156,10 @@ module Veritas
         # @return [Summarization]
         #
         # @api public
-        def summarize(summarize_with = TABLE_DEE)
+        def summarize(summarize_with = TABLE_DEE, *args, &block)
           summarize_per = coerce_to_relation(summarize_with)
-          context       = Evaluator::Context.new(header - summarize_per.header) { |context| yield context }
-          Summarization.new(self, summarize_per, context.functions)
+          summarizers   = coerce_to_summarizers(summarize_per, *args, &block)
+          Summarization.new(self, summarize_per, summarizers)
         end
 
       private
@@ -174,6 +177,31 @@ module Veritas
             summarize_with
           else
             project(Relation::Header.coerce(summarize_with))
+          end
+        end
+
+        # Coerce the arguments and block into summarizers
+        #
+        # @param [#header] summarize_per
+        #   the Relation to summarize with
+        # @param [#to_hash] summarizers
+        #   optional summarizers
+        #
+        # @yield [function]
+        #   Evaluate a summarization function
+        #
+        # @yieldparam [Evaluator::Context] context
+        #   the context to evaluate the function within
+        #
+        # @return [#to_hash]
+        #
+        # @api private
+        def coerce_to_summarizers(summarize_per, summarizers = Undefined)
+          if summarizers.equal?(Undefined)
+            context = Evaluator::Context.new(header - summarize_per.header) { |context| yield context }
+            context.functions
+          else
+            summarizers
           end
         end
 
