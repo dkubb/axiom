@@ -27,8 +27,8 @@ module Veritas
       # @api private
       def initialize(operand, extensions)
         super(operand)
-        @extensions  = extensions.to_hash
-        @header     |= @extensions.keys
+        @extensions = extensions.to_hash
+        @header     = @header.extend(@extensions.keys)
       end
 
       # Iterate over each tuple in the set
