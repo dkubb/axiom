@@ -66,7 +66,7 @@ module Veritas
       # @api public
       def insert(other)
         predicate = self.predicate
-        operand.insert(other.restrict { predicate }).restrict { predicate }
+        operand.insert(other.restrict(predicate)).restrict(predicate)
       end
 
       module Methods
@@ -88,9 +88,12 @@ module Veritas
         # @return [Restriction]
         #
         # @api public
-        def restrict
-          context = Evaluator::Context.new(header) { |context| yield context }
-          Restriction.new(self, context.yield)
+        def restrict(predicate = Undefined)
+          if predicate.equal?(Undefined)
+            context   = Evaluator::Context.new(header) { |context| yield context }
+            predicate = context.yield
+          end
+          Restriction.new(self, predicate)
         end
 
       end # module Methods

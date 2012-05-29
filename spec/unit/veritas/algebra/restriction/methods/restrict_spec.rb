@@ -3,19 +3,38 @@
 require 'spec_helper'
 
 describe Algebra::Restriction::Methods, '#restrict' do
-  let(:described_class) { Relation                                                  }
   let(:object)          { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
-  let(:block)           { lambda { |relation| relation[:id].eq(1) }                 }
+  let(:described_class) { Relation                                                  }
 
-  subject { object.restrict(&block) }
+  context 'with a predicate' do
+    subject { object.restrict(predicate) }
 
-  it { should be_instance_of(Algebra::Restriction) }
+    let(:predicate) { object[:id].eq(1) }
 
-  it 'sets the predicate' do
-    subject.predicate.should eql(block.call(object))
+    it { should be_instance_of(Algebra::Restriction) }
+
+    it 'sets the predicate' do
+      subject.predicate.should equal(predicate)
+    end
+
+    it 'behaves the same as Enumerable#select' do
+      should == object.select { |tuple| tuple[:id] == 1 }
+    end
   end
 
-  it 'behaves the same as Enumerable#select' do
-    should == object.select { |tuple| tuple[:id] == 1 }
+  context 'with a block' do
+    subject do
+      object.restrict { |context| context.id.eq(1) }
+    end
+
+    it { should be_instance_of(Algebra::Restriction) }
+
+    it 'sets the predicate' do
+      subject.predicate.should eql(object[:id].eq(1))
+    end
+
+    it 'behaves the same as Enumerable#select' do
+      should == object.select { |tuple| tuple[:id] == 1 }
+    end
   end
 end
