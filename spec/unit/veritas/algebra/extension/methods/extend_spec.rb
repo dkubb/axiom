@@ -6,7 +6,7 @@ describe Algebra::Extension::Methods, '#extend' do
   let(:object)          { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
   let(:described_class) { Relation                                                  }
   let(:extensions)      { { :test => function }                                     }
-  let(:function)        { lambda { |tuple| 1 }                                      }
+  let(:function)        { object[:id]                                               }
 
   context 'with extensions' do
     subject { object.extend(extensions) }
@@ -21,7 +21,7 @@ describe Algebra::Extension::Methods, '#extend' do
   context 'with a block' do
     subject do
       object.extend do |context|
-        extensions.each { |extension| context.add(*extension) }
+        context.add(:test, context[:id])
       end
     end
 
@@ -29,6 +29,6 @@ describe Algebra::Extension::Methods, '#extend' do
 
     its(:operand) { should equal(object) }
 
-    its(:extensions) { should == { Attribute::Object.new(:test) => function } }
+    its(:extensions) { should == { Attribute::Integer.new(:test) => function } }
   end
 end

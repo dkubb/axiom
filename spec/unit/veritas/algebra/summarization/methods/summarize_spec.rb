@@ -7,9 +7,9 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
   let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
   let(:described_class) { Relation                                                                                 }
-  let(:block)           { lambda { |r| r.add(*summarizers) }                                                       }
+  let(:block)           { lambda { |r| r.add(:test, r.id.count) }                                                  }
   let(:summarizers)     { [ :test, function ]                                                                      }
-  let(:function)        { lambda { |acc, tuple| 1 }                                                                }
+  let(:function)        { object[:id].count                                                                        }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }
@@ -20,7 +20,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:summarize_per) { should equal(TABLE_DEE) }
 
-    its(:summarizers) { should == { Attribute::Object.new(:test) => function } }
+    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
   end
 
   context 'with a relation' do
@@ -32,7 +32,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:summarize_per) { should equal(summarize_with) }
 
-    its(:summarizers) { should == { Attribute::Object.new(:test) => function } }
+    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
   end
 
   context 'with a header' do
@@ -44,18 +44,18 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:summarize_per) { should == object.project(summarize_with) }
 
-    its(:summarizers) { should == { Attribute::Object.new(:test) => function } }
+    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
   end
 
   context 'with summarizers' do
     subject { object.summarize(summarize_with, summarizers) }
 
-    let(:summarize_with) { object.project([]).header                    }
+    let(:summarize_with) { object.project([])                           }
     let(:summarizers)    { { Attribute::Object.new(:test) => function } }
 
     its(:operand) { should equal(object) }
 
-    its(:summarize_per) { should == object.project(summarize_with) }
+    its(:summarize_per) { should == summarize_with }
 
     its(:summarizers) { should == summarizers }
   end
