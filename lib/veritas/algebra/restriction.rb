@@ -54,7 +54,7 @@ module Veritas
 
       # Insert a relation into the Restriction
       #
-      # The other relation must match the predicate to be inserted
+      # The other relation must match the predicate to be inserted.
       #
       # @example
       #   new_relation = restriction.insert(other)
@@ -73,13 +73,21 @@ module Veritas
 
         # Return a relation with restricted tuples
         #
-        # @example restriction using a block
-        #   restriction = relation.restrict { |r| r.a.eq('other').and(r.b.gte(42)) }
+        # @example restriction with a predicate
+        #  restriction = relation.restrict(predicate)
         #
-        # @yield [relation]
+        # @example restriction using a block
+        #   restriction = relation.restrict do |context|
+        #     context.a.eq('other').and(context.b.gte(42))
+        #   end
+        #
+        # @param [Array] *args
+        #   optional arguments
+        #
+        # @yield [context]
         #   optional block to restrict the tuples with
         #
-        # @yieldparam [Relation] relation
+        # @yieldparam [Evaluator::Context] context
         #   the context to evaluate the restriction with
         #
         # @yieldreturn [Function, #call]
@@ -88,12 +96,36 @@ module Veritas
         # @return [Restriction]
         #
         # @api public
-        def restrict(predicate = Undefined)
+        def restrict(*args, &block)
+          Restriction.new(self, coerce_to_predicate(*args, &block))
+        end
+
+      private
+
+        # Coerce the arguments and block into a predicate
+        #
+        # @param [Function, #call] predicate
+        #   optional predicate
+        #
+        # @yield [relation]
+        #   optional block to restrict the tuples with
+        #
+        # @yieldparam [Evaluator::Context] context
+        #   the context to evaluate the restriction with
+        #
+        # @yieldreturn [Function, #call]
+        #   predicate to restrict the tuples with
+        #
+        # @return [Function, #call]
+        #
+        # @api private
+        def coerce_to_predicate(predicate = Undefined)
           if predicate.equal?(Undefined)
-            context   = Evaluator::Context.new(header) { |context| yield context }
-            predicate = context.yield
+            context = Evaluator::Context.new(header) { |context| yield context }
+            context.yield
+          else
+            predicate
           end
-          Restriction.new(self, predicate)
         end
 
       end # module Methods
