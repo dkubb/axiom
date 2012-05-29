@@ -3,14 +3,32 @@
 require 'spec_helper'
 
 describe Algebra::Extension::Methods, '#extend' do
-  subject { object.extend(&block) }
-
-  let(:described_class) { Relation                                                  }
-  let(:extensions)      { [ :test, lambda { |tuple| 1 } ]                           }
-  let(:block)           { lambda { |r| r.add(*extensions) }                         }
   let(:object)          { described_class.new([ [ :id, Integer ] ], [ [ 1 ] ].each) }
+  let(:described_class) { Relation                                                  }
+  let(:extensions)      { { :test => function }                                     }
+  let(:function)        { lambda { |tuple| 1 }                                      }
 
-  it { should be_instance_of(Algebra::Extension) }
+  context 'with extensions' do
+    subject { object.extend(extensions) }
 
-  its(:operand) { should equal(object) }
+    it { should be_instance_of(Algebra::Extension) }
+
+    its(:operand) { should equal(object) }
+
+    its(:extensions) { should == { Attribute::Object.new(:test) => function } }
+  end
+
+  context 'with a block' do
+    subject do
+      object.extend do |context|
+        extensions.each { |extension| context.add(*extension) }
+      end
+    end
+
+    it { should be_instance_of(Algebra::Extension) }
+
+    its(:operand) { should equal(object) }
+
+    its(:extensions) { should == { Attribute::Object.new(:test) => function } }
+  end
 end

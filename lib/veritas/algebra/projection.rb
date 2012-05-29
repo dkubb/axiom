@@ -130,11 +130,7 @@ module Veritas
       #
       # @api private
       def extend_other(other)
-        other.extend do |context|
-          removed_attributes.each do |attribute|
-            context.add(attribute, nil)
-          end
-        end
+        other.extend(Hash[removed_attributes.zip([])])
       end
 
       module Methods

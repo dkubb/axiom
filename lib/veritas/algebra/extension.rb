@@ -27,8 +27,10 @@ module Veritas
       # @api private
       def initialize(operand, extensions)
         super(operand)
-        @extensions = extensions.to_hash
-        @header     = @header.extend(@extensions.keys)
+        extensions  = extensions.to_hash
+        keys        = extensions.keys
+        @header     = @header.extend(keys)
+        @extensions = Hash[@header.project(keys).zip(extensions.values)]
       end
 
       # Iterate over each tuple in the set
@@ -62,6 +64,9 @@ module Veritas
         #     context.add(:total, context[:unit_price] * context[:quantity])
         #   end
         #
+        # @param [#to_hash] extensions
+        #   optional extensions with attribute keys and function/literal values
+        #
         # @yield [function]
         #   Evaluate an extension function
         #
@@ -71,9 +76,12 @@ module Veritas
         # @return [Extension]
         #
         # @api public
-        def extend
-          context = Evaluator::Context.new(header) { |context| yield context }
-          Extension.new(self, context.functions)
+        def extend(extensions = Undefined)
+          if extensions.equal?(Undefined)
+            context    = Evaluator::Context.new(header) { |context| yield context }
+            extensions = context.functions
+          end
+          Extension.new(self, extensions)
         end
 
       end # module Methods

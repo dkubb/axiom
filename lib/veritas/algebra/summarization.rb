@@ -96,7 +96,7 @@ module Veritas
       # @api public
       def each
         return to_enum unless block_given?
-        Extension.new(summarize_per, summaries).each { |tuple| yield tuple }
+        summarize_per.extend(summaries).each { |tuple| yield tuple }
         self
       end
 
