@@ -64,6 +64,26 @@ module Veritas
         #     context.add(:total, context[:unit_price] * context[:quantity])
         #   end
         #
+        # @param [Array] *args
+        #   optional arguments
+        #
+        # @yield [function]
+        #   Evaluate an extension function
+        #
+        # @yieldparam [Evaluator::Context] context
+        #   the context to evaluate the function within
+        #
+        # @return [Extension]
+        #
+        # @api public
+        def extend(*args, &block)
+          Extension.new(self, coerce_to_extensions(*args, &block))
+        end
+
+      private
+
+        # Coerce the arguments and block into a extensions
+        #
         # @param [#to_hash] extensions
         #   optional extensions with attribute keys and function/literal values
         #
@@ -75,13 +95,14 @@ module Veritas
         #
         # @return [Extension]
         #
-        # @api public
-        def extend(extensions = Undefined)
+        # @api private
+        def coerce_to_extensions(extensions = Undefined)
           if extensions.equal?(Undefined)
-            context    = Evaluator::Context.new(header) { |context| yield context }
-            extensions = context.functions
+            context = Evaluator::Context.new(header) { |context| yield context }
+            context.functions
+          else
+            extensions
           end
-          Extension.new(self, extensions)
         end
 
       end # module Methods
