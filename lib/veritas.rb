@@ -161,17 +161,17 @@ module Veritas
   # Raised when the attribute is unknown
   class UnknownAttributeError < IndexError; end
 
-  # Raised when a relation does not allow insert or update
-  class ImmutableRelationError < StandardError; end
+  # Raised when a relation insertion or deletion fails
+  class WriteError < StandardError; end
 
   # Raised when inserting into a projection that removes required attributes
-  class RequiredAttributesError < ImmutableRelationError; end
+  class RequiredAttributesError < WriteError; end
 
   # Raised when inserting into an extension with a mismatching relation
-  class ExtensionMismatchError < ImmutableRelationError; end
+  class ExtensionMismatchError < WriteError; end
 
   # Raised when inserting into a summarization
-  class ImmutableSummarizationError < ImmutableRelationError; end
+  class ImmutableSummarizationError < WriteError; end
 
   # Represent an undefined argument
   Undefined = Object.new.freeze
