@@ -263,6 +263,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/summarization/summary/call_spec.rb",
     "spec/unit/veritas/algebra/summarization/summary/summarize_by_spec.rb",
     "spec/unit/veritas/algebra/union/each_spec.rb",
+    "spec/unit/veritas/algebra/union/insert_spec.rb",
     "spec/unit/veritas/algebra/union/methods/union_spec.rb",
     "spec/unit/veritas/aliasable/fixtures/classes.rb",
     "spec/unit/veritas/aliasable/inheritable_alias_spec.rb",
