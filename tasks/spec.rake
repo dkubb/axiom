@@ -32,11 +32,13 @@ end
 begin
   require 'rcov'
 
-  Spec::Rake::SpecTask.new(:rcov) do |rcov|
-    spec_defaults.call(rcov)
-    rcov.rcov      = true
-    rcov.pattern   = 'spec/unit/**/*_spec.rb'
-    rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
+  namespace :metrics do
+    Spec::Rake::SpecTask.new(:rcov) do |rcov|
+      spec_defaults.call(rcov)
+      rcov.rcov      = true
+      rcov.pattern   = 'spec/unit/**/*_spec.rb'
+      rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
+    end
   end
 rescue LoadError
   task :rcov do
@@ -45,4 +47,3 @@ rescue LoadError
 end
 
 task :test    => :spec
-task :default => :spec

@@ -639,6 +639,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/tuple/project_spec.rb",
     "spec/unit/veritas/tuple/to_ary_spec.rb",
     "spec/unit/veritas/visitable/accept_spec.rb",
+    "tasks/jeweler.rake",
     "tasks/metrics/ci.rake",
     "tasks/metrics/flay.rake",
     "tasks/metrics/flog.rake",

@@ -1,7 +1,7 @@
 desc 'Run metrics with Heckle'
-task :ci => %w[ ci:metrics heckle ]
+task :ci => %w[ ci:metrics metrics:heckle ]
 
 namespace :ci do
-  desc 'Run metrics'
-  task :metrics => %w[ spec verify_measurements flog flay reek roodi metrics:all ]
+  desc 'Run metrics (except heckle) and spec'
+  task :metrics => %w[ spec metrics:verify_measurements metrics:flog metrics:flay metrics:reek metrics:roodi ]
 end
