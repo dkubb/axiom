@@ -70,6 +70,11 @@ module Veritas
 
       # Raise an exception when inserting into the product
       #
+      # @example
+      #   product.insert(other)  # => ImmutableRelationError raised
+      #
+      # @return [undefined]
+      #
       # @raise [ImmutableRelationError]
       #   raised when inserting into the product
       #
