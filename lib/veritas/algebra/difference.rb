@@ -28,6 +28,23 @@ module Veritas
         self
       end
 
+      # Insert a relation into the Difference
+      #
+      # Add the relation to the left operand, and remove from the right operand
+      # so that it not removed by the difference operation.
+      #
+      # @example
+      #   new_relation = difference.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Difference]
+      #
+      # @api public
+      def insert(other)
+        insert_left(other).difference(delete_right(other))
+      end
+
       module Methods
         extend Aliasable
 

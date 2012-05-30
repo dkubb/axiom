@@ -196,6 +196,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/aggregate/variance/methods/variance_spec.rb",
     "spec/unit/veritas/aggregate/variance/type_spec.rb",
     "spec/unit/veritas/algebra/difference/each_spec.rb",
+    "spec/unit/veritas/algebra/difference/insert_spec.rb",
     "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",
     "spec/unit/veritas/algebra/extension/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/extension/each_spec.rb",
