@@ -27,7 +27,7 @@ LongParameterList:
   overrides: {}
 FeatureEnvy:
   exclude: [
-    Veritas::Algebra::Projection#required_attribute_names
+    'Veritas::Algebra::Projection#required_attribute_names'
   ]
   enabled: true
 ClassVariable:
