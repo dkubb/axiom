@@ -210,6 +210,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/intersection/methods/intersect_spec.rb",
     "spec/unit/veritas/algebra/join/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/join/each_spec.rb",
+    "spec/unit/veritas/algebra/join/insert_spec.rb",
     "spec/unit/veritas/algebra/join/join_header_spec.rb",
     "spec/unit/veritas/algebra/join/methods/join_spec.rb",
     "spec/unit/veritas/algebra/product/class_methods/new_spec.rb",

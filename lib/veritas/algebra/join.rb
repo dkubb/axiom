@@ -56,6 +56,20 @@ module Veritas
         self
       end
 
+      # Insert a relation into the Join
+      #
+      # @example
+      #   new_relation = join.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Join]
+      #
+      # @api public
+      def insert(other)
+        insert_left(other).join(insert_right(other))
+      end
+
     private
 
       # Build an index using every tuple in the right relation
@@ -85,6 +99,30 @@ module Veritas
       # @api private
       def disjoint_tuple(tuple)
         tuple.project(@disjoint_header)
+      end
+
+      # Insert a projection of the other relation into the left operand
+      #
+      # @param [Relation] other
+      #
+      # @return [Relation]
+      #
+      # @api private
+      def insert_left(other)
+        left = self.left
+        left.insert(other.project(left.header))
+      end
+
+      # Insert a projection of the other relation into the right operand
+      #
+      # @param [Relation] other
+      #
+      # @return [Relation]
+      #
+      # @api private
+      def insert_right(other)
+        right = self.right
+        right.insert(other.project(right.header))
       end
 
       module Methods
