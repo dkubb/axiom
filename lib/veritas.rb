@@ -167,9 +167,11 @@ module Veritas
   # Raised when inserting into a projection that removes required attributes
   class RequiredAttributesError < ImmutableRelationError; end
 
-  # Raise when inserting into an extension with a relation that does not have
-  # the same extensions
+  # Raised when inserting into an extension with a mismatching relation
   class ExtensionMismatchError < ImmutableRelationError; end
+
+  # Raised when inserting into a summarization
+  class ImmutableSummarizationError < ImmutableRelationError; end
 
   # Represent an undefined argument
   Undefined = Object.new.freeze

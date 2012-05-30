@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-05-29"
+  s.date = "2012-05-30"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -203,6 +203,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/extension/extensions_spec.rb",
     "spec/unit/veritas/algebra/extension/hash_spec.rb",
     "spec/unit/veritas/algebra/extension/header_spec.rb",
+    "spec/unit/veritas/algebra/extension/insert_spec.rb",
     "spec/unit/veritas/algebra/extension/methods/extend_spec.rb",
     "spec/unit/veritas/algebra/extension/operand_spec.rb",
     "spec/unit/veritas/algebra/intersection/each_spec.rb",
@@ -251,6 +252,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/summarization/eql_spec.rb",
     "spec/unit/veritas/algebra/summarization/hash_spec.rb",
     "spec/unit/veritas/algebra/summarization/header_spec.rb",
+    "spec/unit/veritas/algebra/summarization/insert_spec.rb",
     "spec/unit/veritas/algebra/summarization/methods/summarize_spec.rb",
     "spec/unit/veritas/algebra/summarization/summaries/summarize_by_spec.rb",
     "spec/unit/veritas/algebra/summarization/summaries/to_hash_spec.rb",
@@ -670,3 +672,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<yard>, ["~> 0.7.2"])
   end
 end
+

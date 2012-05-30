@@ -100,6 +100,16 @@ module Veritas
         self
       end
 
+      # Raise an exception when inserting into a summarization
+      #
+      # @raise [ImmutableSummarizationError]
+      #   raised when inserting into the summarization
+      #
+      # @api public
+      def insert(*)
+        raise ImmutableSummarizationError, 'inserting into a summarization is impossible'
+      end
+
     private
 
       # Return the current summaries
