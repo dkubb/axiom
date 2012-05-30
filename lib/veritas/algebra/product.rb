@@ -68,6 +68,16 @@ module Veritas
         self
       end
 
+      # Raise an exception when inserting into the product
+      #
+      # @raise [ImmutableRelationError]
+      #   raised when inserting into the product
+      #
+      # @api public
+      def insert(*)
+        raise ImmutableRelationError, 'inserting into a product is impossible'
+      end
+
       module Methods
         extend Aliasable
 

@@ -215,6 +215,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/join/methods/join_spec.rb",
     "spec/unit/veritas/algebra/product/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/product/each_spec.rb",
+    "spec/unit/veritas/algebra/product/insert_spec.rb",
     "spec/unit/veritas/algebra/product/methods/product_spec.rb",
     "spec/unit/veritas/algebra/projection/each_spec.rb",
     "spec/unit/veritas/algebra/projection/eql_spec.rb",
