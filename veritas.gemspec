@@ -577,6 +577,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/offset/each_spec.rb",
     "spec/unit/veritas/relation/operation/offset/eql_spec.rb",
     "spec/unit/veritas/relation/operation/offset/hash_spec.rb",
+    "spec/unit/veritas/relation/operation/offset/insert_spec.rb",
     "spec/unit/veritas/relation/operation/offset/methods/drop_spec.rb",
     "spec/unit/veritas/relation/operation/offset/offset_spec.rb",
     "spec/unit/veritas/relation/operation/order/ascending/class_methods/call_spec.rb",

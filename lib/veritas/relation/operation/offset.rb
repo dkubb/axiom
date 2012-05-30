@@ -117,6 +117,21 @@ module Veritas
           self
         end
 
+        # Raise an exception when inserting into the offset
+        #
+        # @example
+        #   offset.insert(other)  # => ImmutableRelationError raised
+        #
+        # @return [undefined]
+        #
+        # @raise [ImmutableRelationError]
+        #   raised when inserting into the offset
+        #
+        # @api public
+        def insert(*)
+          raise ImmutableRelationError, 'inserting into a offset is impossible'
+        end
+
         module Methods
 
           # Return a relation with n tuples
