@@ -11,7 +11,7 @@ describe Algebra::Extension, '#insert' do
   let(:extension_attr) { Attribute::Integer.new(:test)             }
   let(:header)         { [ [ :id, Integer ] ]                      }
 
-  context 'when other relation is a matching extension' do
+  context 'when other relation has matching extensions' do
     let(:other) do
       Relation.new(header, [ [ 2 ] ].each).extend do |context|
         context.add(:test, 1)
@@ -40,7 +40,7 @@ describe Algebra::Extension, '#insert' do
   end
 
   context 'when other relation is not an extension' do
-     let(:other) { Relation.new(header, [ [ 2 ] ].each) }
+    let(:other) { Relation.new(header, [ [ 2 ] ].each) }
 
     specify { expect { subject }.to raise_error(ExtensionMismatchError, 'other relation must have matching extensions to be inserted') }
   end
