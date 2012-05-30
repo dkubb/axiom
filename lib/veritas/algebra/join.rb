@@ -101,11 +101,11 @@ module Veritas
         tuple.project(@disjoint_header)
       end
 
-      # Insert a projection of the other relation into the left operand
+      # Insert the other relation into the left operand
       #
       # @param [Relation] other
       #
-      # @return [Relation]
+      # @return [Relation::Operation::Insertion]
       #
       # @api private
       def insert_left(other)
@@ -113,11 +113,11 @@ module Veritas
         left.insert(other.project(left.header))
       end
 
-      # Insert a projection of the other relation into the right operand
+      # Insert the other relation into the right operand
       #
       # @param [Relation] other
       #
-      # @return [Relation]
+      # @return [Relation::Operation::Insertion]
       #
       # @api private
       def insert_right(other)
