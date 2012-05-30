@@ -121,8 +121,7 @@ module Veritas
         # @api private
         def coerce_to_predicate(predicate = Undefined)
           if predicate.equal?(Undefined)
-            context = Evaluator::Context.new(header) { |context| yield context }
-            context.yield
+            Evaluator::Context.new(header) { |context| yield context }.yield
           else
             predicate
           end
