@@ -609,6 +609,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/order/eql_spec.rb",
     "spec/unit/veritas/relation/operation/order/hash_spec.rb",
     "spec/unit/veritas/relation/operation/order/header_spec.rb",
+    "spec/unit/veritas/relation/operation/order/insert_spec.rb",
     "spec/unit/veritas/relation/operation/order/methods/sort_by_spec.rb",
     "spec/unit/veritas/relation/operation/reverse/class_methods/new_spec.rb",
     "spec/unit/veritas/relation/operation/reverse/directions_spec.rb",

@@ -170,6 +170,9 @@ module Veritas
   # Raised when inserting into an extension with a mismatching relation
   class ExtensionMismatchError < WriteError; end
 
+  # Raised when inserting into an order with a mismatching relation
+  class OrderMismatchError < WriteError; end
+
   # Raised when inserting into an immutable relation
   class ImmutableRelationError < WriteError; end
 

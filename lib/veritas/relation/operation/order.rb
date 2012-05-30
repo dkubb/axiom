@@ -92,6 +92,39 @@ module Veritas
           self
         end
 
+        # Insert a relation into the Rename
+        #
+        # @example
+        #   new_relation = rename.insert(other)
+        #
+        # @param [Relation] other
+        #
+        # @return [Rename]
+        #
+        # @api public
+        def insert(other)
+          assert_matching_directions(other)
+          operand.insert(other.operand).sort_by(directions)
+        end
+
+      private
+
+        # Assert that the other relation has matching directions
+        #
+        # @param [Relation] other
+        #
+        # @return [undefined]
+        #
+        # @raise [OrderMismatchError]
+        #   raised when inserting a relation does not have matching directions
+        #
+        # @api private
+        def assert_matching_directions(other)
+          unless other.kind_of?(self.class) && directions.eql?(other.directions)
+            raise OrderMismatchError, 'other relation must have matching directions to be inserted'
+          end
+        end
+
         module Methods
 
           # Return an ordered relation
