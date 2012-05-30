@@ -82,7 +82,7 @@ module Veritas
       def assert_removed_attributes_optional
         names = required_attribute_names
         if names.any?
-          raise RequiredAttributesError, "Required attributes #{names.join(', ')} have been removed"
+          raise RequiredAttributesError, "required attributes #{names.join(', ')} have been removed"
         end
       end
 
