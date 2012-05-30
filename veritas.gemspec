@@ -672,4 +672,3 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<yard>, ["~> 0.7.2"])
   end
 end
-
