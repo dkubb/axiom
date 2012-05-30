@@ -118,6 +118,21 @@ module Veritas
           self
         end
 
+        # Raise an exception when inserting into the limit
+        #
+        # @example
+        #   limit.insert(other)  # => ImmutableRelationError raised
+        #
+        # @return [undefined]
+        #
+        # @raise [ImmutableRelationError]
+        #   raised when inserting into the limit
+        #
+        # @api public
+        def insert(*)
+          raise ImmutableRelationError, 'inserting into a limit is impossible'
+        end
+
         module Methods
 
           # Return a relation with n tuples

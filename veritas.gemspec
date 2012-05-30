@@ -567,6 +567,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/limit/each_spec.rb",
     "spec/unit/veritas/relation/operation/limit/eql_spec.rb",
     "spec/unit/veritas/relation/operation/limit/hash_spec.rb",
+    "spec/unit/veritas/relation/operation/limit/insert_spec.rb",
     "spec/unit/veritas/relation/operation/limit/limit_spec.rb",
     "spec/unit/veritas/relation/operation/limit/methods/first_spec.rb",
     "spec/unit/veritas/relation/operation/limit/methods/last_spec.rb",
