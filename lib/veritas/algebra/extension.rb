@@ -71,23 +71,23 @@ module Veritas
       #
       # @api public
       def insert(other)
-        assert_matching_extension(other)
+        assert_matching_extensions(other)
         operand.insert(other.operand).extend(extensions)
       end
 
     private
 
-      # Assert that the other relation is a matching extension
+      # Assert that the other relation has matching extensions
       #
       # @param [Relation] other
       #
       # @return [undefined]
       #
       # @raise [ExtensionMismatchError]
-      #   raised when inserting a relation that is not a matching extension
+      #   raised when inserting a relation does not have matching extensions
       #
       # @api private
-      def assert_matching_extension(other)
+      def assert_matching_extensions(other)
         unless other.kind_of?(self.class) && extensions.eql?(other.extensions)
           raise ExtensionMismatchError, 'other relation must have matching extensions to be inserted'
         end
