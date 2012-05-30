@@ -35,6 +35,30 @@ module Veritas
           @header = left.header
         end
 
+      private
+
+        # Insert the other relation into the left operand
+        #
+        # @param [Relation] other
+        #
+        # @return [Relation::Operation::Insertion]
+        #
+        # @api private
+        def insert_left(other)
+          left.insert(other)
+        end
+
+        # Insert the other relation into the right operand
+        #
+        # @param [Relation] other
+        #
+        # @return [Relation::Operation::Insertion]
+        #
+        # @api private
+        def insert_right(other)
+          right.insert(other)
+        end
+
         module ClassMethods
 
           # Instantiate a new Set relation
