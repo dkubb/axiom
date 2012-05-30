@@ -96,8 +96,14 @@ module Veritas
 
           # Return an ordered relation
           #
-          # @example
+          # @example with a block
           #   order = relation.sort_by { |r| [ r.a.desc, r.b ] }
+          #
+          # @example with directions
+          #   order = relation.sort_by(directions)
+          #
+          # @param [Array] *args
+          #   optional arguments
           #
           # @yield [relation]
           #   optional block to evaluate for directions
@@ -109,9 +115,33 @@ module Veritas
           # @return [Order]
           #
           # @api public
-          def sort_by
-            context = Evaluator::Context.new(header) { |context| yield context }
-            Order.new(self, context.yield)
+          def sort_by(*args, &block)
+            Order.new(self, coerce_to_directions(*args, &block))
+          end
+
+        private
+
+          # Coerce the arguments and block into directions
+          #
+          # @param [DirectionSet, Array<Direction>, Header] directions
+          #   optional directions
+          #
+          # @yield [relation]
+          #   optional block to evaluate for directions
+          #
+          # @yieldparam [Relation] relation
+          #
+          # @yieldreturn [DirectionSet, Array<Direction>, Header]
+          #
+          # @return [DirectionSet, Array<Direction>, Header]
+          #
+          # @api private
+          def coerce_to_directions(directions = Undefined)
+            if directions.equal?(Undefined)
+              Evaluator::Context.new(header) { |context| yield context }.yield
+            else
+              directions
+            end
           end
 
         end # module Methods
