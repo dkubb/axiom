@@ -170,8 +170,8 @@ module Veritas
   # Raised when inserting into an extension with a mismatching relation
   class ExtensionMismatchError < WriteError; end
 
-  # Raised when inserting into a summarization
-  class ImmutableSummarizationError < WriteError; end
+  # Raised when inserting into an immutable relation
+  class ImmutableRelationError < WriteError; end
 
   # Represent an undefined argument
   Undefined = Object.new.freeze

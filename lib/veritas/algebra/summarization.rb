@@ -102,12 +102,12 @@ module Veritas
 
       # Raise an exception when inserting into a summarization
       #
-      # @raise [ImmutableSummarizationError]
+      # @raise [ImmutableRelationError]
       #   raised when inserting into the summarization
       #
       # @api public
       def insert(*)
-        raise ImmutableSummarizationError, 'inserting into a summarization is impossible'
+        raise ImmutableRelationError, 'inserting into a summarization is impossible'
       end
 
     private

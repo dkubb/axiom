@@ -11,5 +11,5 @@ describe Algebra::Summarization, '#insert' do
   let(:summarize_by) { operand.project([])                                     }
   let(:summarizers)  { { :test => 1 }                                          }
 
-  specify { expect { subject }.to raise_error(ImmutableSummarizationError, 'inserting into a summarization is impossible') }
+  specify { expect { subject }.to raise_error(ImmutableRelationError, 'inserting into a summarization is impossible') }
 end
