@@ -22,7 +22,9 @@ group :benchmarks do
 end
 
 platform :jruby do
-  gem 'jruby-openssl', '~> 0.7.4'
+  group :jruby do
+    gem 'jruby-openssl', '~> 0.7.4'
+  end
 end
 
 group :metrics do
