@@ -28,6 +28,44 @@ module Veritas
         self
       end
 
+      # Insert a relation into the Intersection
+      #
+      # @example
+      #   new_relation = union.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Intersection]
+      #
+      # @api public
+      def insert(other)
+        insert_left(other).intersect(insert_right(other))
+      end
+
+    private
+
+      # Insert the other relation into the left operand
+      #
+      # @param [Relation] other
+      #
+      # @return [Relation]
+      #
+      # @api private
+      def insert_left(other)
+        left.insert(other)
+      end
+
+      # Insert the other relation into the right operand
+      #
+      # @param [Relation] other
+      #
+      # @return [Relation::Operation::Insertion]
+      #
+      # @api private
+      def insert_right(other)
+        right.insert(other)
+      end
+
       module Methods
         extend Aliasable
 

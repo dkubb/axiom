@@ -207,6 +207,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/extension/methods/extend_spec.rb",
     "spec/unit/veritas/algebra/extension/operand_spec.rb",
     "spec/unit/veritas/algebra/intersection/each_spec.rb",
+    "spec/unit/veritas/algebra/intersection/insert_spec.rb",
     "spec/unit/veritas/algebra/intersection/methods/intersect_spec.rb",
     "spec/unit/veritas/algebra/join/class_methods/new_spec.rb",
     "spec/unit/veritas/algebra/join/each_spec.rb",
