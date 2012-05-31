@@ -39,7 +39,7 @@ module Veritas
       #
       # @api public
       def insert(other)
-        insert_left(other).intersect(insert_right(other))
+        left.insert(other).intersect(right.insert(other))
       end
 
       # Delete a relation from the Intersection
@@ -53,7 +53,7 @@ module Veritas
       #
       # @api public
       def delete(other)
-        delete_left(other).intersect(delete_right(other))
+        left.delete(other).intersect(right.delete(other))
       end
 
       module Methods

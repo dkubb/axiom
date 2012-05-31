@@ -40,7 +40,7 @@ module Veritas
       #
       # @api public
       def insert(other)
-        insert_left(other).union(insert_right(other))
+        left.insert(other).union(right.insert(other))
       end
 
       # Delete a relation from the Union
@@ -54,7 +54,7 @@ module Veritas
       #
       # @api public
       def delete(other)
-        delete_left(other).union(delete_right(other))
+        left.delete(other).union(right.delete(other))
       end
 
       module Methods
