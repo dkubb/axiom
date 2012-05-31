@@ -45,7 +45,7 @@ module Veritas
       # Delete a relation from the Intersection
       #
       # @example
-      #   new_relation = intersection.insert(other)
+      #   new_relation = intersection.delete(other)
       #
       # @param [Relation] other
       #

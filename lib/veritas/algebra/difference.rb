@@ -51,7 +51,7 @@ module Veritas
       # operand so that it is removed by the difference operation.
       #
       # @example
-      #   new_relation = difference.insert(other)
+      #   new_relation = difference.delete(other)
       #
       # @param [Relation] other
       #

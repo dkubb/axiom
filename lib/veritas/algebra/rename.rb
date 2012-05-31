@@ -74,7 +74,7 @@ module Veritas
         operand.insert(other.rename(aliases.inverse)).rename(aliases)
       end
 
-      # Delete a relation into the Rename
+      # Delete a relation from the Rename
       #
       # @example
       #   new_relation = rename.delete(other)

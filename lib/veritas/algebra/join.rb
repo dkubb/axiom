@@ -70,7 +70,7 @@ module Veritas
         insert_left(other).join(insert_right(other))
       end
 
-      # Delete a relation into the Join
+      # Delete a relation from the Join
       #
       # @example
       #   new_relation = join.delete(other)
@@ -139,7 +139,7 @@ module Veritas
         right.insert(other.project(right.header))
       end
 
-      # Delete the other relation into the left operand
+      # Delete the other relation from the left operand
       #
       # @param [Relation] other
       #
@@ -151,7 +151,7 @@ module Veritas
         left.delete(other.project(left.header))
       end
 
-      # Delete the other relation into the right operand
+      # Delete the other relation from the right operand
       #
       # @param [Relation] other
       #
