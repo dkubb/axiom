@@ -74,6 +74,21 @@ module Veritas
         operand.insert(other.rename(aliases.inverse)).rename(aliases)
       end
 
+      # Delete a relation into the Rename
+      #
+      # @example
+      #   new_relation = rename.delete(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Rename]
+      #
+      # @api public
+      def delete(other)
+        aliases = self.aliases
+        operand.delete(other.rename(aliases.inverse)).rename(aliases)
+      end
+
       module Methods
 
         # Return a relation with the header renamed

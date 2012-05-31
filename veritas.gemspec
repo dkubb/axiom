@@ -244,6 +244,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/rename/aliases/to_hash_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases/union_spec.rb",
     "spec/unit/veritas/algebra/rename/aliases_spec.rb",
+    "spec/unit/veritas/algebra/rename/delete_spec.rb",
     "spec/unit/veritas/algebra/rename/directions_spec.rb",
     "spec/unit/veritas/algebra/rename/each_spec.rb",
     "spec/unit/veritas/algebra/rename/eql_spec.rb",
