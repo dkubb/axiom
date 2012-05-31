@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Extension, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)         { described_class.new(relation, extensions) }
-  let(:relation)       { Relation.new(header, [ [ 1 ] ].each)      }
-  let(:extensions)     { { extension_attr => 1 }                   }
-  let(:extension_attr) { Attribute::Integer.new(:test)             }
-  let(:header)         { [ [ :id, Integer ] ]                      }
+  let(:object)         { described_class.new(operand, extensions) }
+  let(:operand)        { Relation.new(header, [ [ 1 ] ].each)     }
+  let(:extensions)     { { extension_attr => 1 }                  }
+  let(:extension_attr) { Attribute::Integer.new(:test)            }
+  let(:header)         { [ [ :id, Integer ] ]                     }
 
   context 'when other relation has matching extensions' do
     let(:other) do
