@@ -64,6 +64,7 @@ module Veritas
       #
       # @api public
       def insert(other)
+        other = coerce(other)
         assert_removed_attributes_optional
         assert_equivalent_headers(other)
         operand.insert(extend_other(other)).project(header)
@@ -83,6 +84,7 @@ module Veritas
       #
       # @api public
       def delete(other)
+        other = coerce(other)
         assert_equivalent_headers(other)
         operand.delete(extend_other(other)).project(header)
       end
