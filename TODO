@@ -1,5 +1,16 @@
 * TODO:
 
+* Add integration specs to ensure that #insert and #delete given the same
+  arguments are always inverse, eg:
+
+    relation.insert(other).delete(other).should == relation
+
+* Update #insert and #delete methods to coerce the other argument into a
+  Relation so that this will work:
+
+    relation.insert([ [ 1 ], [ 2 ], [ 3 ] ])
+    relation.delete([ [ 1 ], [ 2 ], [ 3 ] ])
+
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
 
