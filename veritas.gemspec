@@ -200,6 +200,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/difference/insert_spec.rb",
     "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",
     "spec/unit/veritas/algebra/extension/class_methods/new_spec.rb",
+    "spec/unit/veritas/algebra/extension/delete_spec.rb",
     "spec/unit/veritas/algebra/extension/each_spec.rb",
     "spec/unit/veritas/algebra/extension/eql_spec.rb",
     "spec/unit/veritas/algebra/extension/extensions_spec.rb",

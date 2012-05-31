@@ -67,12 +67,32 @@ module Veritas
       # @return [Extension]
       #
       # @raise [ExtensionMismatchError]
-      #   raised when inserting a relation that is not a matching extension
+      #   raised when inserting with a mismatching extension
       #
       # @api public
       def insert(other)
-        assert_matching_extensions(other)
+        assert_matching_extensions(other, :inserted)
         operand.insert(other.operand).extend(extensions)
+      end
+
+      # Delete a relation from the Extension
+      #
+      # The other relation must be a matching extension.
+      #
+      # @example
+      #   new_relation = extension.delete(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Extension]
+      #
+      # @raise [ExtensionMismatchError]
+      #   raised when deleting with a mismatching extension
+      #
+      # @api public
+      def delete(other)
+        assert_matching_extensions(other, :deleted)
+        operand.delete(other.operand).extend(extensions)
       end
 
     private
@@ -81,15 +101,17 @@ module Veritas
       #
       # @param [Relation] other
       #
+      # @param [Symbol] event
+      #
       # @return [undefined]
       #
       # @raise [ExtensionMismatchError]
       #   raised when inserting a relation does not have matching extensions
       #
       # @api private
-      def assert_matching_extensions(other)
+      def assert_matching_extensions(other, event)
         unless other.kind_of?(self.class) && extensions.eql?(other.extensions)
-          raise ExtensionMismatchError, 'other relation must have matching extensions to be inserted'
+          raise ExtensionMismatchError, "other relation must have matching extensions to be #{event}"
         end
       end
 
