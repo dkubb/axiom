@@ -31,7 +31,7 @@ module Veritas
       # Insert a relation into the Intersection
       #
       # @example
-      #   new_relation = union.insert(other)
+      #   new_relation = intersection.insert(other)
       #
       # @param [Relation] other
       #
@@ -40,6 +40,20 @@ module Veritas
       # @api public
       def insert(other)
         insert_left(other).intersect(insert_right(other))
+      end
+
+      # Delete a relation from the Intersection
+      #
+      # @example
+      #   new_relation = intersection.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Intersection]
+      #
+      # @api public
+      def delete(other)
+        delete_left(other).intersect(delete_right(other))
       end
 
       module Methods

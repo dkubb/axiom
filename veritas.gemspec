@@ -208,6 +208,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/extension/insert_spec.rb",
     "spec/unit/veritas/algebra/extension/methods/extend_spec.rb",
     "spec/unit/veritas/algebra/extension/operand_spec.rb",
+    "spec/unit/veritas/algebra/intersection/delete_spec.rb",
     "spec/unit/veritas/algebra/intersection/each_spec.rb",
     "spec/unit/veritas/algebra/intersection/insert_spec.rb",
     "spec/unit/veritas/algebra/intersection/methods/intersect_spec.rb",
