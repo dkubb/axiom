@@ -112,6 +112,18 @@ new_relation = ordered.first(5)
 # get the last n tuples (only allowed if ordered)
 new_relation = ordered.last      # default is 1
 new_relation = ordered.last(5)
+
+# Updatable Views
+# ---------------
+
+# add a set to a relation
+new_relation = relation.insert(other)
+
+# remove a set to a relation
+new_relation = relation.delete(other)
+
+# replace a relation with another set
+new_relation = relation.replace(other)
 ```
 
 ## Goals
