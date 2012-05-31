@@ -83,6 +83,21 @@ module Veritas
         raise ImmutableRelationError, 'inserting into a product is impossible'
       end
 
+      # Raise an exception when deleting from the product
+      #
+      # @example
+      #   product.delete(other)  # => ImmutableRelationError raised
+      #
+      # @return [undefined]
+      #
+      # @raise [ImmutableRelationError]
+      #   raised when deleting from the product
+      #
+      # @api public
+      def delete(*)
+        raise ImmutableRelationError, 'deleting from a product is impossible'
+      end
+
       module Methods
         extend Aliasable
 

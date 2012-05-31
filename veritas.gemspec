@@ -220,6 +220,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/join/join_header_spec.rb",
     "spec/unit/veritas/algebra/join/methods/join_spec.rb",
     "spec/unit/veritas/algebra/product/class_methods/new_spec.rb",
+    "spec/unit/veritas/algebra/product/delete_spec.rb",
     "spec/unit/veritas/algebra/product/each_spec.rb",
     "spec/unit/veritas/algebra/product/insert_spec.rb",
     "spec/unit/veritas/algebra/product/methods/product_spec.rb",
