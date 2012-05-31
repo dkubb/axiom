@@ -3,7 +3,7 @@
 # Extend Range with methods to normalize and find overlapping ranges
 class Range
 
-  unless method_defined? :to_inclusive
+  unless method_defined?(:to_inclusive)
     # Returns an inclusive Range
     #
     # @example
@@ -21,7 +21,7 @@ class Range
     end
   end
 
-  unless method_defined? :overlaps?
+  unless method_defined?(:overlaps?)
     # Compare the range with another range to see if they overlap
     #
     # @example

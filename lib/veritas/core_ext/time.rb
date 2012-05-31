@@ -3,7 +3,7 @@
 # Extend Time with methods to find the previous Time
 class Time
 
-  unless method_defined? :pred
+  unless method_defined?(:pred)
     # Decrement the Time by one second
     #
     # @example

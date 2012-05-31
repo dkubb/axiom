@@ -3,7 +3,7 @@
 # Extend Date with methods to find the previous Date
 class Date
 
-  unless method_defined? :pred
+  unless method_defined?(:pred)
     # Decrement the Date by one day
     #
     # @example
