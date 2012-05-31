@@ -92,14 +92,14 @@ module Veritas
           self
         end
 
-        # Insert a relation into the Rename
+        # Insert a relation into the Order
         #
         # @example
-        #   new_relation = rename.insert(other)
+        #   new_relation = order.insert(other)
         #
         # @param [Relation] other
         #
-        # @return [Rename]
+        # @return [Order]
         #
         # @api public
         def insert(other)
