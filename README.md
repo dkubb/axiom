@@ -116,13 +116,13 @@ new_relation = ordered.last(5)
 # Updatable Views
 # ---------------
 
-# add a set to a relation
+# add a set to a relation variable
 new_relation = relation.insert(other)
 
-# remove a set to a relation
+# remove a set from a relation variable
 new_relation = relation.delete(other)
 
-# replace a relation with another set
+# replace a relation variable with another set
 new_relation = relation.replace(other)
 ```
 
