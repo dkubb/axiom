@@ -54,7 +54,7 @@ module Veritas
 
       # Insert a relation into the Restriction
       #
-      # The other relation must match the predicate to be inserted.
+      # The tuples must match the predicate to be inserted.
       #
       # @example
       #   new_relation = restriction.insert(other)
@@ -71,7 +71,7 @@ module Veritas
 
       # Delete a relation from the Restriction
       #
-      # The other relation must match the predicate to be deleted.
+      # The tuples must match the predicate to be deleted.
       #
       # @example
       #   new_relation = restriction.delete(other)
