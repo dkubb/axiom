@@ -10,5 +10,5 @@ describe Relation::Operation::Offset, '#insert' do
   let(:operand) { Relation.new(header, [ [ 1 ] ]).sort_by(header) }
   let(:header)  { Relation::Header.new([ [ :id, Integer ] ])      }
 
-  specify { expect { subject }.to raise_error(ImmutableRelationError, 'inserting into a offset is impossible') }
+  specify { expect { subject }.to raise_error(ImmutableRelationError, 'inserting into an offset is impossible') }
 end

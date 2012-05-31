@@ -129,7 +129,7 @@ module Veritas
         #
         # @api public
         def insert(*)
-          raise ImmutableRelationError, 'inserting into a offset is impossible'
+          raise ImmutableRelationError, 'inserting into an offset is impossible'
         end
 
         module Methods
