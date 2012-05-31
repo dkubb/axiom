@@ -252,6 +252,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/algebra/rename/header_spec.rb",
     "spec/unit/veritas/algebra/rename/insert_spec.rb",
     "spec/unit/veritas/algebra/rename/methods/rename_spec.rb",
+    "spec/unit/veritas/algebra/restriction/delete_spec.rb",
     "spec/unit/veritas/algebra/restriction/each_spec.rb",
     "spec/unit/veritas/algebra/restriction/eql_spec.rb",
     "spec/unit/veritas/algebra/restriction/hash_spec.rb",

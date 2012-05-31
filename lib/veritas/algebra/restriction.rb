@@ -69,6 +69,23 @@ module Veritas
         operand.insert(other.restrict(predicate)).restrict(predicate)
       end
 
+      # Delete a relation from the Restriction
+      #
+      # The other relation must match the predicate to be deleted.
+      #
+      # @example
+      #   new_relation = restriction.delete(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Restriction]
+      #
+      # @api public
+      def delete(other)
+        predicate = self.predicate
+        operand.delete(other.restrict(predicate)).restrict(predicate)
+      end
+
       module Methods
 
         # Return a relation with restricted tuples
