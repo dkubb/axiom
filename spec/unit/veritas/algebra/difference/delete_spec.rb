@@ -12,8 +12,8 @@ describe Algebra::Difference, '#delete' do
 
   it { should be_instance_of(described_class) }
 
-  its(:left)  { should eql(left.delete(other))  }
-  its(:right) { should eql(right.insert(other)) }
+  its(:left)  { should eql(left.delete(other.difference(right))) }
+  its(:right) { should eql(right)                                }
 
   its(:header) { should == [ [ :id, Integer ] ] }
 

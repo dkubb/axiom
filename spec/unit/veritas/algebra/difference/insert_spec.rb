@@ -12,8 +12,8 @@ describe Algebra::Difference, '#insert' do
 
   it { should be_instance_of(described_class) }
 
-  its(:left)  { should eql(left.insert(other))  }
-  its(:right) { should eql(right.delete(other)) }
+  its(:left)  { should eql(left.insert(other.difference(right))) }
+  its(:right) { should eql(right)                                }
 
   its(:header) { should == [ [ :id, Integer ] ] }
 
