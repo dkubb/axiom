@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-05-30"
+  s.date = "2012-05-31"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -195,6 +195,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/aggregate/variance/class_methods/finalize_spec.rb",
     "spec/unit/veritas/aggregate/variance/methods/variance_spec.rb",
     "spec/unit/veritas/aggregate/variance/type_spec.rb",
+    "spec/unit/veritas/algebra/difference/delete_spec.rb",
     "spec/unit/veritas/algebra/difference/each_spec.rb",
     "spec/unit/veritas/algebra/difference/insert_spec.rb",
     "spec/unit/veritas/algebra/difference/methods/difference_spec.rb",

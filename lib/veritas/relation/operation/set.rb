@@ -59,6 +59,17 @@ module Veritas
           right.insert(other)
         end
 
+        # Delete the other relation from the left operand
+        #
+        # @param [Relation] other
+        #
+        # @return [Relation::Operation::Deletion]
+        #
+        # @api private
+        def delete_left(other)
+          left.delete(other)
+        end
+
         # Delete the other relation from the right operand
         #
         # @param [Relation] other

@@ -45,6 +45,23 @@ module Veritas
         insert_left(other).difference(delete_right(other))
       end
 
+      # Delete a relation from the Difference
+      #
+      # Remove the relation from the left operand, and add it to the right
+      # operand so that it is removed by the difference operation.
+      #
+      # @example
+      #   new_relation = difference.insert(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Difference]
+      #
+      # @api public
+      def delete(other)
+        delete_left(other).difference(insert_right(other))
+      end
+
       module Methods
         extend Aliasable
 
