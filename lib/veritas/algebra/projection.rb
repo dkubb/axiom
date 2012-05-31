@@ -56,11 +56,11 @@ module Veritas
       #
       # @return [Projection]
       #
-      # @raise [InvalidHeaderError]
-      #   raised if the headers are not equivalent
-      #
       # @raise [RequiredAttributesError]
       #   raised when inserting into a relation with required attributes removed
+      #
+      # @raise [InvalidHeaderError]
+      #   raised if the headers are not equivalent
       #
       # @api public
       def insert(other)
