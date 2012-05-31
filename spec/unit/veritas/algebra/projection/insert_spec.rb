@@ -15,7 +15,7 @@ describe Algebra::Projection, '#insert' do
 
     its(:operand) { should be_kind_of(Relation) }
 
-    its(:header) { should == [ [ :id, Integer ] ] }
+    its(:header) { should == header }
 
     it 'inserts the tuples' do
       should == [ [ 1 ], [ 2 ] ]
@@ -41,25 +41,25 @@ describe Algebra::Projection, '#insert' do
   end
 
   context 'when optional attributes are removed' do
-    let(:operand) { Relation.new(header, [ [ 1, 'John Doe' ] ].each)                }
-    let(:other)   { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each)              }
-    let(:header)  { [ [ :id, Integer ], [ :name, String, { :required => false } ] ] }
+    let(:operand)     { Relation.new(base_header, [ [ 1, 'John Doe' ] ].each)           }
+    let(:other)       { Relation.new(header,      [ [ 2 ]             ].each)           }
+    let(:base_header) { [ [ :id, Integer ], [ :name, String, { :required => false } ] ] }
 
     it_should_behave_like 'Algebra::Projection#insert'
   end
 
   context 'when required attributes are removed' do
-    let(:operand) { Relation.new(header, [ [ 1, 'John Doe', 25 ] ].each)       }
-    let(:other)   { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ].each)         }
-    let(:header)  { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
+    let(:operand)     { Relation.new(base_header, [ [ 1, 'John Doe', 25 ] ].each)  }
+    let(:other)       { Relation.new(header,      [ [ 2 ]                 ].each)  }
+    let(:base_header) { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
 
     specify { expect { subject }.to raise_error(RequiredAttributesError, 'required attributes name, age have been removed') }
   end
 
   context 'when the other header does not match the projection' do
-    let(:operand) { Relation.new(header, [ [ 1, 'John Doe' ] ].each)                }
-    let(:other)   { Relation.new(header, [ [ 2, 'Jane Doe' ] ].each)                }
-    let(:header)  { [ [ :id, Integer ], [ :name, String, { :required => false } ] ] }
+    let(:operand)     { Relation.new(base_header, [ [ 1, 'John Doe' ] ].each)           }
+    let(:other)       { Relation.new(base_header, [ [ 2, 'Jane Doe' ] ].each)           }
+    let(:base_header) { [ [ :id, Integer ], [ :name, String, { :required => false } ] ] }
 
     specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must be equivalent') }
   end

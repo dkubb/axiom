@@ -17,7 +17,7 @@ describe Algebra::Difference, '#insert' do
     its(:left)  { should eql(left.insert(other_relation.difference(right))) }
     its(:right) { should eql(right)                                         }
 
-    its(:header) { should == [ [ :id, Integer ] ] }
+    its(:header) { should == header }
 
     it 'inserts the tuples' do
       should == [ [ 2 ] ]

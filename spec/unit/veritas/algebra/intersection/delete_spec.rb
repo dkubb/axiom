@@ -5,10 +5,11 @@ require 'spec_helper'
 describe Algebra::Intersection, '#delete' do
   subject { object.delete(other) }
 
-  let(:object)         { described_class.new(left, right)                     }
-  let(:left)           { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:right)          { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:other_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])        }
+  let(:object)         { described_class.new(left, right)       }
+  let(:left)           { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
+  let(:right)          { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
+  let(:other_relation) { Relation.new(header, [ [ 1 ] ])        }
+  let(:header)         { [ [ :id, Integer ] ]                   }
 
   shared_examples_for 'Algebra::Intersection#delete' do
     it { should be_instance_of(described_class) }
@@ -16,7 +17,7 @@ describe Algebra::Intersection, '#delete' do
     its(:left)  { should eql(left.delete(other))  }
     its(:right) { should eql(right.delete(other)) }
 
-    its(:header) { should == [ [ :id, Integer ] ] }
+    its(:header) { should == header }
 
     it 'deletes the tuples' do
       should == [ [ 2 ] ]

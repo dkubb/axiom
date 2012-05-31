@@ -15,7 +15,7 @@ describe Algebra::Projection, '#delete' do
 
     its(:operand) { should be_kind_of(Relation) }
 
-    its(:header) { should == [ [ :id, Integer ] ] }
+    its(:header) { should == header }
 
     it 'deletes the tuples' do
       should == [ [ 1 ] ]
@@ -41,9 +41,9 @@ describe Algebra::Projection, '#delete' do
   end
 
   context 'with a relation that does not have a matching header' do
-    let(:operand) { Relation.new(header, [ [ 1, 'John Doe' ] ].each)                }
-    let(:other)   { Relation.new(header, [ [ 1, 'John Doe' ] ].each)                }
-    let(:header)  { [ [ :id, Integer ], [ :name, String, { :required => false } ] ] }
+    let(:operand)     { Relation.new(base_header, [ [ 1, 'John Doe' ] ].each)           }
+    let(:other)       { Relation.new(base_header, [ [ 1, 'John Doe' ] ].each)           }
+    let(:base_header) { [ [ :id, Integer ], [ :name, String, { :required => false } ] ] }
 
     specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must be equivalent') }
   end

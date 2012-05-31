@@ -17,7 +17,7 @@ describe Algebra::Difference, '#delete' do
     its(:left)  { should eql(left.delete(other_relation.difference(right))) }
     its(:right) { should eql(right)                                         }
 
-    its(:header) { should == [ [ :id, Integer ] ] }
+    its(:header) { should == header }
 
     it 'deletes the tuples' do
       should == [ [ 3 ] ]

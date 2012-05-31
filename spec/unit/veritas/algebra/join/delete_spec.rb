@@ -5,10 +5,11 @@ require 'spec_helper'
 describe Algebra::Join, '#delete' do
   subject { object.delete(other) }
 
-  let(:object)         { described_class.new(left, right)                                                                }
-  let(:left)           { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])                                            }
-  let(:right)          { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'John Doe' ], [ 2, 'Jane Doe' ] ]) }
-  let(:other_relation) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'John Doe' ] ])                    }
+  let(:object)         { described_class.new(left, right)                                             }
+  let(:left)           { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])                         }
+  let(:right)          { Relation.new(header,               [ [ 1, 'John Doe' ], [ 2, 'Jane Doe' ] ]) }
+  let(:other_relation) { Relation.new(header,               [ [ 1, 'John Doe' ] ])                    }
+  let(:header)         { [ [ :id, Integer ], [ :name, String ] ]                                      }
 
   shared_examples_for 'Algebra::Join#delete' do
     it { should be_instance_of(described_class) }
@@ -16,7 +17,7 @@ describe Algebra::Join, '#delete' do
     its(:left)  { should eql(left.delete(other_relation.project([ :id ])))         }
     its(:right) { should eql(right.delete(other_relation.project([ :id, :name ]))) }
 
-    its(:header) { should == [ [ :id, Integer ], [ :name, String ] ] }
+    its(:header) { should == header }
 
     it 'deletes the tuples' do
       should == [ [ 2, 'Jane Doe' ] ]

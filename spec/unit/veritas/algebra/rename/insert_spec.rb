@@ -6,16 +6,17 @@ describe Algebra::Rename, '#insert' do
   subject { object.insert(other) }
 
   let(:object)         { described_class.new(operand, aliases)                      }
-  let(:operand)        { Relation.new([ [ :id,       Integer ] ], [ [ 1 ] ].each)   }
-  let(:other_relation) { Relation.new([ [ :other_id, Integer ] ], [ [ 2 ] ].each)   }
+  let(:operand)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)         }
+  let(:other_relation) { Relation.new(header,               [ [ 2 ] ].each)         }
   let(:aliases)        { described_class::Aliases.coerce(operand, :id => :other_id) }
+  let(:header)         { [ [ :other_id, Integer ] ]                                 }
 
   shared_examples_for 'Algebra::Rename#insert' do
     it { should be_instance_of(described_class) }
 
     its(:operand) { should be_kind_of(Relation) }
 
-    its(:header) { should == [ [ :other_id, Integer ] ] }
+    its(:header) { should == header }
 
     its(:aliases) { should eql(aliases) }
 

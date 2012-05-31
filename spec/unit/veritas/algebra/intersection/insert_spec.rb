@@ -5,10 +5,11 @@ require 'spec_helper'
 describe Algebra::Intersection, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)         { described_class.new(left, right)              }
-  let(:left)           { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:right)          { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:other_relation) { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ]) }
+  let(:object)         { described_class.new(left, right) }
+  let(:left)           { Relation.new(header, [ [ 1 ] ])  }
+  let(:right)          { Relation.new(header, [ [ 1 ] ])  }
+  let(:other_relation) { Relation.new(header, [ [ 2 ] ])  }
+  let(:header)         { [ [ :id, Integer ] ]             }
 
   shared_examples_for 'Algebra::Intersection#insert' do
     it { should be_instance_of(described_class) }
@@ -16,7 +17,7 @@ describe Algebra::Intersection, '#insert' do
     its(:left)  { should eql(left.insert(other))  }
     its(:right) { should eql(right.insert(other)) }
 
-    its(:header) { should == [ [ :id, Integer ] ] }
+    its(:header) { should == header }
 
     it 'inserts the tuples' do
       should == [ [ 1 ], [ 2 ] ]
