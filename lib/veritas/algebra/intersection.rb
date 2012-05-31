@@ -39,6 +39,7 @@ module Veritas
       #
       # @api public
       def insert(other)
+        other = coerce(other)
         left.insert(other).intersect(right.insert(other))
       end
 
@@ -53,6 +54,7 @@ module Veritas
       #
       # @api public
       def delete(other)
+        other = coerce(other)
         left.delete(other).intersect(right.delete(other))
       end
 
