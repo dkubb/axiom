@@ -70,6 +70,20 @@ module Veritas
         insert_left(other).join(insert_right(other))
       end
 
+      # Delete a relation into the Join
+      #
+      # @example
+      #   new_relation = join.delete(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Join]
+      #
+      # @api public
+      def delete(other)
+        delete_left(other).join(delete_right(other))
+      end
+
     private
 
       # Build an index using every tuple in the right relation
@@ -123,6 +137,30 @@ module Veritas
       def insert_right(other)
         right = self.right
         right.insert(other.project(right.header))
+      end
+
+      # Delete the other relation into the left operand
+      #
+      # @param [Relation] other
+      #
+      # @return [Relation::Operation::Deletion]
+      #
+      # @api private
+      def delete_left(other)
+        left = self.left
+        left.delete(other.project(left.header))
+      end
+
+      # Delete the other relation into the right operand
+      #
+      # @param [Relation] other
+      #
+      # @return [Relation::Operation::Deletion]
+      #
+      # @api private
+      def delete_right(other)
+        right = self.right
+        right.delete(other.project(right.header))
       end
 
       module Methods
