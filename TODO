@@ -1,12 +1,5 @@
 * TODO:
 
-* Consider that inserting into a view, means to insert a set into a relation,
-  and applying the same constraints against the inserted set
-  * For example, inserting into a restriction should apply the same restriction
-    to the inserted set. The idea is if the set is going to be inserted, then it
-    should only contain data that would've caused it to be displayed even given
-    the restriction.
-
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
 
