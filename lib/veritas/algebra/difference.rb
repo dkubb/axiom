@@ -43,7 +43,7 @@ module Veritas
       # @api public
       def insert(other)
         right = self.right
-        left.insert(other.difference(right)).difference(right)
+        left.insert(coerce(other).difference(right)).difference(right)
       end
 
       # Delete a relation from the Difference
@@ -61,7 +61,7 @@ module Veritas
       # @api public
       def delete(other)
         right = self.right
-        left.delete(other.difference(right)).difference(right)
+        left.delete(coerce(other).difference(right)).difference(right)
       end
 
       module Methods
