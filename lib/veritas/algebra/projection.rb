@@ -69,6 +69,24 @@ module Veritas
         operand.insert(extend_other(other)).project(header)
       end
 
+      # Delete a relation from the Projection
+      #
+      # @example
+      #   new_relation = projection.delete(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Projection]
+      #
+      # @raise [InvalidHeaderError]
+      #   raised if the headers are not equivalent
+      #
+      # @api public
+      def delete(other)
+        assert_equivalent_headers(other)
+        operand.delete(extend_other(other)).project(header)
+      end
+
     private
 
       # Assert that removed attributes are optional
