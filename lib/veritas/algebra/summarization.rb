@@ -100,7 +100,7 @@ module Veritas
         self
       end
 
-      # Raise an exception when inserting into a summarization
+      # Raise an exception when inserting into a Summarization
       #
       # @example
       #   summarization.insert(other)  # => ImmutableRelationError raised
@@ -115,7 +115,7 @@ module Veritas
         raise ImmutableRelationError, 'inserting into a summarization is impossible'
       end
 
-      # Raise an exception when deleting from a summarization
+      # Raise an exception when deleting from a Summarization
       #
       # @example
       #   summarization.delete(other)  # => ImmutableRelationError raised

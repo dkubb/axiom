@@ -117,7 +117,7 @@ module Veritas
           self
         end
 
-        # Raise an exception when inserting into the offset
+        # Raise an exception when inserting into the Offset
         #
         # @example
         #   offset.insert(other)  # => ImmutableRelationError raised
@@ -132,7 +132,7 @@ module Veritas
           raise ImmutableRelationError, 'inserting into an offset is impossible'
         end
 
-        # Raise an exception when deleting from the offset
+        # Raise an exception when deleting from the Offset
         #
         # @example
         #   offset.delete(other)  # => ImmutableRelationError raised

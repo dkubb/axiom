@@ -68,7 +68,7 @@ module Veritas
         self
       end
 
-      # Raise an exception when inserting into the product
+      # Raise an exception when inserting into the Product
       #
       # @example
       #   product.insert(other)  # => ImmutableRelationError raised
@@ -83,7 +83,7 @@ module Veritas
         raise ImmutableRelationError, 'inserting into a product is impossible'
       end
 
-      # Raise an exception when deleting from the product
+      # Raise an exception when deleting from the Product
       #
       # @example
       #   product.delete(other)  # => ImmutableRelationError raised

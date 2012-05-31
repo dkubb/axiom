@@ -118,7 +118,7 @@ module Veritas
           self
         end
 
-        # Raise an exception when inserting into the limit
+        # Raise an exception when inserting into the Limit
         #
         # @example
         #   limit.insert(other)  # => ImmutableRelationError raised
@@ -133,7 +133,7 @@ module Veritas
           raise ImmutableRelationError, 'inserting into a limit is impossible'
         end
 
-        # Raise an exception when deleting from the limit
+        # Raise an exception when deleting from the Limit
         #
         # @example
         #   limit.delete(other)  # => ImmutableRelationError raised
