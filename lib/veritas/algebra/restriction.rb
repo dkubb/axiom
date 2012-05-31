@@ -65,6 +65,7 @@ module Veritas
       #
       # @api public
       def insert(other)
+        other     = coerce(other)
         predicate = self.predicate
         operand.insert(other.restrict(predicate)).restrict(predicate)
       end
@@ -82,6 +83,7 @@ module Veritas
       #
       # @api public
       def delete(other)
+        other     = coerce(other)
         predicate = self.predicate
         operand.delete(other.restrict(predicate)).restrict(predicate)
       end
