@@ -103,8 +103,23 @@ module Veritas
         #
         # @api public
         def insert(other)
-          assert_matching_directions(other)
+          assert_matching_directions(other, :inserted)
           operand.insert(other.operand).sort_by(directions)
+        end
+
+        # Delete a relation from the Order
+        #
+        # @example
+        #   new_relation = order.delete(other)
+        #
+        # @param [Relation] other
+        #
+        # @return [Order]
+        #
+        # @api public
+        def delete(other)
+          assert_matching_directions(other, :deleted)
+          operand.delete(other.operand).sort_by(directions)
         end
 
       private
@@ -113,15 +128,17 @@ module Veritas
         #
         # @param [Relation] other
         #
+        # @param [Symbol] event
+        #
         # @return [undefined]
         #
         # @raise [OrderMismatchError]
         #   raised when inserting a relation does not have matching directions
         #
         # @api private
-        def assert_matching_directions(other)
+        def assert_matching_directions(other, event)
           unless other.kind_of?(self.class) && directions.eql?(other.directions)
-            raise OrderMismatchError, 'other relation must have matching directions to be inserted'
+            raise OrderMismatchError, "other relation must have matching directions to be #{event}"
           end
         end
 

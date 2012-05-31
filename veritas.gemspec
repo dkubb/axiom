@@ -596,6 +596,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/order/ascending/class_methods/reverse_spec.rb",
     "spec/unit/veritas/relation/operation/order/ascending/reverse_spec.rb",
     "spec/unit/veritas/relation/operation/order/class_methods/new_spec.rb",
+    "spec/unit/veritas/relation/operation/order/delete_spec.rb",
     "spec/unit/veritas/relation/operation/order/descending/class_methods/call_spec.rb",
     "spec/unit/veritas/relation/operation/order/descending/class_methods/reverse_spec.rb",
     "spec/unit/veritas/relation/operation/order/descending/reverse_spec.rb",
