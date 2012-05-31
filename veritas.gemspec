@@ -584,6 +584,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/limit/methods/last_spec.rb",
     "spec/unit/veritas/relation/operation/limit/methods/take_spec.rb",
     "spec/unit/veritas/relation/operation/offset/class_methods/new_spec.rb",
+    "spec/unit/veritas/relation/operation/offset/delete_spec.rb",
     "spec/unit/veritas/relation/operation/offset/directions_spec.rb",
     "spec/unit/veritas/relation/operation/offset/each_spec.rb",
     "spec/unit/veritas/relation/operation/offset/eql_spec.rb",

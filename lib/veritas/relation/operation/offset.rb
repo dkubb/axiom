@@ -132,6 +132,21 @@ module Veritas
           raise ImmutableRelationError, 'inserting into an offset is impossible'
         end
 
+        # Raise an exception when deleting from the offset
+        #
+        # @example
+        #   offset.delete(other)  # => ImmutableRelationError raised
+        #
+        # @return [undefined]
+        #
+        # @raise [ImmutableRelationError]
+        #   raised when deleting from the offset
+        #
+        # @api public
+        def delete(*)
+          raise ImmutableRelationError, 'deleting from an offset is impossible'
+        end
+
         module Methods
 
           # Return a relation with n tuples
