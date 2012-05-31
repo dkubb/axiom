@@ -184,4 +184,8 @@ module Veritas
 
   # Represent a relation with an empty header and a single tuple
   TABLE_DEE = Relation.new([], [ [] ])
+
+  # Error message constants for inserted and deleted messages
+  INSERTED = 'inserted'.freeze
+  DELETED  = 'deleted'.freeze
 end

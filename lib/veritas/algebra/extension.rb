@@ -71,7 +71,7 @@ module Veritas
       #
       # @api public
       def insert(other)
-        assert_matching_extensions(other, :inserted)
+        assert_matching_extensions(other, INSERTED)
         operand.insert(other.operand).extend(extensions)
       end
 
@@ -91,7 +91,7 @@ module Veritas
       #
       # @api public
       def delete(other)
-        assert_matching_extensions(other, :deleted)
+        assert_matching_extensions(other, DELETED)
         operand.delete(other.operand).extend(extensions)
       end
 
@@ -101,7 +101,7 @@ module Veritas
       #
       # @param [Relation] other
       #
-      # @param [Symbol] event
+      # @param [String] event
       #
       # @return [undefined]
       #
