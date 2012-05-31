@@ -1,10 +1,5 @@
 * TODO:
 
-* Add integration specs to ensure that #insert and #delete given the same
-  arguments are always inverse, eg:
-
-    relation.insert(other).delete(other).should == relation
-
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
 
