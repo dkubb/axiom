@@ -115,6 +115,21 @@ module Veritas
         raise ImmutableRelationError, 'inserting into a summarization is impossible'
       end
 
+      # Raise an exception when deleting from a summarization
+      #
+      # @example
+      #   summarization.delete(other)  # => ImmutableRelationError raised
+      #
+      # @return [undefined]
+      #
+      # @raise [ImmutableRelationError]
+      #   raised when deleting from the summarization
+      #
+      # @api public
+      def delete(*)
+        raise ImmutableRelationError, 'deleting from a summarization is impossible'
+      end
+
     private
 
       # Return the current summaries

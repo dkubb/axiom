@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe Algebra::Summarization, '#insert' do
-  subject { object.insert(other) }
+describe Algebra::Summarization, '#delete' do
+  subject { object.delete(other) }
 
   let(:object)       { described_class.new(operand, summarize_by, summarizers) }
   let(:other)        { stub('other')                                           }
@@ -11,5 +11,5 @@ describe Algebra::Summarization, '#insert' do
   let(:summarize_by) { operand.project([])                                     }
   let(:summarizers)  { { :test => 1 }                                          }
 
-  specify { expect { subject }.to raise_error(ImmutableRelationError, 'inserting into a summarization is impossible') }
+  specify { expect { subject }.to raise_error(ImmutableRelationError, 'deleting from a summarization is impossible') }
 end
