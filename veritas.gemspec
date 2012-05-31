@@ -573,6 +573,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/deletion/methods/delete_spec.rb",
     "spec/unit/veritas/relation/operation/insertion/methods/insert_spec.rb",
     "spec/unit/veritas/relation/operation/limit/class_methods/new_spec.rb",
+    "spec/unit/veritas/relation/operation/limit/delete_spec.rb",
     "spec/unit/veritas/relation/operation/limit/directions_spec.rb",
     "spec/unit/veritas/relation/operation/limit/each_spec.rb",
     "spec/unit/veritas/relation/operation/limit/eql_spec.rb",

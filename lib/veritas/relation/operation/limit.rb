@@ -133,6 +133,21 @@ module Veritas
           raise ImmutableRelationError, 'inserting into a limit is impossible'
         end
 
+        # Raise an exception when deleting from the limit
+        #
+        # @example
+        #   limit.delete(other)  # => ImmutableRelationError raised
+        #
+        # @return [undefined]
+        #
+        # @raise [ImmutableRelationError]
+        #   raised when deleting from the limit
+        #
+        # @api public
+        def delete(*)
+          raise ImmutableRelationError, 'deleting from a limit is impossible'
+        end
+
         module Methods
 
           # Return a relation with n tuples
