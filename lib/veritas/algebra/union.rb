@@ -43,6 +43,20 @@ module Veritas
         insert_left(other).union(insert_right(other))
       end
 
+      # Delete a relation from the Union
+      #
+      # @example
+      #   new_relation = union.delete(other)
+      #
+      # @param [Relation] other
+      #
+      # @return [Union]
+      #
+      # @api public
+      def delete(other)
+        delete_left(other).union(delete_right(other))
+      end
+
       module Methods
         extend Aliasable
 
