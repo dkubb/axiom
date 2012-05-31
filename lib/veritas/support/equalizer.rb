@@ -115,22 +115,9 @@ module Veritas
       #
       # @api public
       def ==(other)
-        other = coerce(other)
+        other = coerce(other) if respond_to?(:coerce, true)
         return false unless self.class <=> other.class
         cmp?(__method__, other)
-      end
-
-    private
-
-      # Coerce the object into something that can be compared
-      #
-      # @param [Object] other
-      #
-      # @return [Object]
-      #
-      # @api private
-      def coerce(other)
-        other
       end
 
     end # module Methods

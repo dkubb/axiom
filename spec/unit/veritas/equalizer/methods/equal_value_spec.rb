@@ -5,14 +5,20 @@ require 'spec_helper'
 describe Veritas::Equalizer::Methods, '#==' do
   subject { object == other }
 
-  let(:object) { described_class.new }
+  let(:object) { described_class.new(true) }
 
   let(:described_class) do
     Class.new do
       include Veritas::Equalizer::Methods
 
+      attr_reader :boolean
+
+      def initialize(boolean)
+        @boolean = boolean
+      end
+
       def cmp?(comparator, other)
-        !!(comparator and other)
+        boolean.send(comparator, other.boolean)
       end
     end
   end
@@ -38,7 +44,7 @@ describe Veritas::Equalizer::Methods, '#==' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(described_class).new }
+    let(:other) { Class.new(described_class).new(true) }
 
     it { should be(true) }
 
@@ -54,6 +60,26 @@ describe Veritas::Equalizer::Methods, '#==' do
 
     it 'is symmetric' do
       should eql(other == object)
+    end
+  end
+
+  context 'with an equivalent object after coercion' do
+    let(:other) { Object.new }
+
+    before do
+      # declare a private #coerce method
+      described_class.class_eval do
+        def coerce(other)
+          self.class.new(!!other)
+        end
+        private :coerce
+      end
+    end
+
+    it { should be(true) }
+
+    it 'is not symmetric' do
+      should_not eql(other == object)
     end
   end
 end
