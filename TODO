@@ -9,6 +9,10 @@
 
   This will require the return value from the block to become useful.
 
+* Add domain object for Extensions and Summarizers
+  * Add Evaluator::Context subclasses for Extensions and Summarizers, and return
+    those as instances rather than Hashes of attributes and functions.
+
 * Convert Tuple to a Struct
   * Make Header a "Struct Class", and copy all the Header instance methods to
     the class level. Move all the Tuple instance methods into the Header
