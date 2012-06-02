@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-05-31"
+  s.date = "2012-06-02"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -143,6 +143,7 @@ Gem::Specification.new do |s|
     "spec/integration/veritas/algebra/projection_spec.rb",
     "spec/integration/veritas/algebra/summarization_spec.rb",
     "spec/integration/veritas/relation/efficient_enumerable_spec.rb",
+    "spec/integration/veritas/relation/writable_relations_spec.rb",
     "spec/rcov.opts",
     "spec/shared/command_method_behavior.rb",
     "spec/shared/each_method_behaviour.rb",
