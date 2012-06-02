@@ -19,6 +19,7 @@ jdk:
   - oraclejdk7
 matrix:
   exclude:
+    # remove non-jruby rubies from jdk matrix
     - rvm: 1.8.7
       jdk: openjdk6
     - rvm: 1.8.7
@@ -61,6 +62,14 @@ matrix:
       jdk: openjdk7
     - rvm: ruby-head
       jdk: oraclejdk7
+
+    # remove jruby rubies from non-jdk matrix
+    - rvm: jruby-18mode
+      jdk:
+    - rvm: jruby-19mode
+      jdk:
+    - rvm: jruby-head
+      jdk:
 notifications:
   email:
     - dan.kubb@gmail.com
