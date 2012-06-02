@@ -126,7 +126,7 @@ module Veritas
     #
     # @api public
     def replace(other)
-      coerce(other).delete(self).insert(other)
+      delete(self).insert(other)
     end
 
     # Return a relation with each tuple materialized
