@@ -5,14 +5,12 @@ require 'spec_helper'
 describe Relation, '#replace' do
   subject { object.replace(other) }
 
-  let(:header) { [ [ :id, Integer ] ]            }
-  let(:object) { Relation.new(header, [ [ 1 ] ]) }
-  let(:tuples) { [ [ 2 ] ]                       }
+  let(:object)         { described_class.new(header, [ [ 1 ] ]) }
+  let(:other_relation) { described_class.new(header, [ [ 2 ] ]) }
+  let(:header)         { [ [ :id, Integer ] ]                   }
 
-  context 'when other is a Relation' do
-    let(:other) { Relation.new([ [ :id, Integer ] ], tuples) }
-
-    it { should be_kind_of(Relation) }
+  shared_examples_for 'Relation#replace' do
+    it { should be_instance_of(Relation::Operation::Insertion) }
 
     its(:header) { should == header }
 
@@ -21,15 +19,21 @@ describe Relation, '#replace' do
     end
   end
 
-  context 'when other is an Enumerable' do
-    let(:other) { tuples }
+  context 'with a relation' do
+    let(:other) { other_relation }
 
-    it { should be_kind_of(Relation) }
+    it_should_behave_like 'Relation#replace'
+  end
 
-    its(:header) { should == header }
+  context 'with an array of tuples' do
+    let(:other) { other_relation.to_a }
 
-    it 'returns the expected tuples' do
-      should == other
-    end
+    it_should_behave_like 'Relation#replace'
+  end
+
+  context 'with an array of arrays' do
+    let(:other) { other_relation.map(&:to_ary) }
+
+    it_should_behave_like 'Relation#replace'
   end
 end

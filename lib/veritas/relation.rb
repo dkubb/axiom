@@ -117,16 +117,20 @@ module Veritas
 
     # Return a relation that represents a replacement of a relation
     #
+    # Delete the tuples from the relation that are not in the other relation,
+    # then insert only new tuples.
+    #
     # @example
     #   replacement = relation.delete(other)
     #
     # @param [Enumerable] other
     #
-    # @return [Relation]
+    # @return [Relation::Operation::Insertion]
     #
     # @api public
     def replace(other)
-      delete(self).insert(other)
+      other = coerce(other)
+      delete(difference(other)).insert(other.difference(self))
     end
 
     # Return a relation with each tuple materialized
