@@ -11,7 +11,7 @@ module Veritas
       # Relation methods to proxy
       ENUMERABLE_METHODS = Enumerable.public_instance_methods.map(&:to_s).freeze
       PROXY_METHODS      = %w[ header each empty? ].freeze
-      RELATION_METHODS   = %w[ take drop sort_by ].freeze
+      RELATION_METHODS   = %w[ take drop sort_by join ].freeze  # TODO: remove join when Enumerable#join removed from JRuby 1.7+
 
       # Hook called when module is included
       #
