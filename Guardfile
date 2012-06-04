@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-guard 'bundler' do
+guard :bundler do
   watch('Gemfile')
 end
 
-guard 'rspec' do
+guard :rspec do
   # run all specs if the spec_helper or supporting files files are modified
   watch('spec/spec_helper.rb')                      { 'spec' }
   watch(%r{\Aspec/(?:lib|support|shared)/.+\.rb\z}) { 'spec' }
