@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'backports', '~> 2.5.1'
+gem 'backports', '~> 2.6.1'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'
