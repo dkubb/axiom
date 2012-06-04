@@ -88,3 +88,8 @@
   * none?
   * include? / member?
   * min / max / minmax (when the tuples are sorted)
+
+* Rename Order to Sorted
+  * In other languages, "ordered" implies that the order tuples are added to the
+    relation is tracked, while "sorted" means that they are sorted according to
+    some criteria. The latter is closer to what is meant.
