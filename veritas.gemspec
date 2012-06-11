@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-06-04"
+  s.date = "2012-06-11"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -695,3 +695,4 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<yard>, ["~> 0.8.1"])
   end
 end
+
