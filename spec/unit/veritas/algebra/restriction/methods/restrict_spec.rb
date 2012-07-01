@@ -48,7 +48,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
 
     it { should be_instance_of(Algebra::Restriction) }
 
-    # Hash order is not gauranteed except under 1.9+
+    # Hash order is not guaranteed except under 1.9+
     if RUBY_VERSION >= '1.9'
       it 'sets the predicate' do
         subject.predicate.should eql(tautology.and(object[:id].eq(1).and(object[:name].eq('Dan Kubb'))))
