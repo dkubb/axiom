@@ -113,6 +113,9 @@ new_relation = ordered.first(5)
 new_relation = ordered.last      # default is 1
 new_relation = ordered.last(5)
 
+# get a tuple from a relation containing exactly one tuple
+tuple = relation.one
+
 # Updatable Views
 # ---------------
 

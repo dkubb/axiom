@@ -176,6 +176,15 @@ module Veritas
   # Raised when inserting into an immutable relation
   class ImmutableRelationError < WriteError; end
 
+  # Raised when the set size is unexpected
+  class SetSizeError < RuntimeError; end
+
+  # Raised when the set is unexpectedly empty
+  class NoTuplesError < SetSizeError; end
+
+  # Raised when the set is unexpectedly too large
+  class ManyTuplesError < SetSizeError; end
+
   # Represent an undefined argument
   Undefined = Object.new.freeze
 

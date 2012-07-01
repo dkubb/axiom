@@ -115,6 +115,23 @@ module Veritas
       self
     end
 
+    # Return a tuple if the relation contains exactly one tuple
+    #
+    # @example
+    #   tuple = relation.one
+    #
+    # @raise [NoTuplesError]
+    #   raised if no tuples are returned
+    # @raise [ManyTuplesError]
+    #   raised if more than one tuple is returned
+    #
+    # @api public
+    def one
+      tuples = to_a
+      assert_exactly_one_tuple(tuples.size)
+      tuples.first
+    end
+
     # Return a relation that represents a replacement of a relation
     #
     # Delete the tuples from the relation that are not in the other relation,
@@ -212,6 +229,25 @@ module Veritas
     # @api private
     def self.coerce(header, object)
       object.kind_of?(Relation) ? object : Relation.new(header, object)
+    end
+
+    # Assert exactly one tuple is returned
+    #
+    # @return [undefined]
+    #
+    # @raise [NoTuplesError]
+    #   raised if no tuples are returned
+    # @raise [ManyTuplesError]
+    #   raised if more than one tuple is returned
+    #
+    # @api private
+    def assert_exactly_one_tuple(size)
+      if size.zero?
+        raise NoTuplesError, 'one tuple expected, but was an empty set'
+      elsif size > 1
+        raise ManyTuplesError,
+          "one tuple expected, but set contained #{size} tuples"
+      end
     end
 
   end # class Relation
