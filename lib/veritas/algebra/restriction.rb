@@ -103,7 +103,7 @@ module Veritas
         #   end
         #
         # @example restriction using a Hash
-        #  restriction = relation.restrict(:id => 1)
+        #  restriction = relation.restrict(id: 1)
         #
         # @example restriction using an Array
         #  restriction = relation.restrict([ [ :id, 1 ] ])
