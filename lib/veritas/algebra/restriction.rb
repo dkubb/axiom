@@ -8,6 +8,8 @@ module Veritas
       include Relation::Operation::Unary
       include Equalizer.new(:operand, :predicate)
 
+      TAUTOLOGY = Function::Proposition::Tautology.instance
+
       # The predicate for the relation
       #
       # @return [Function, #call]
@@ -100,6 +102,12 @@ module Veritas
         #     context.a.eq('other').and(context.b.gte(42))
         #   end
         #
+        # @example restriction using a Hash
+        #  restriction = relation.restrict(:id => 1)
+        #
+        # @example restriction using an Array
+        #  restriction = relation.restrict([ [ :id, 1 ] ])
+        #
         # @param [Array] *args
         #   optional arguments
         #
@@ -139,8 +147,14 @@ module Veritas
         #
         # @api private
         def coerce_to_predicate(predicate = Undefined)
-          if predicate.equal?(Undefined)
+          header = self.header
+          case predicate
+          when Undefined
             Evaluator::Context.new(header) { |context| yield context }.yield
+          when Enumerable
+            predicate.reduce(TAUTOLOGY) do |predicate, (name, value)|
+              predicate.and(header[name].eq(value))
+            end
           else
             predicate
           end

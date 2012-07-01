@@ -55,6 +55,9 @@ new_relation = relation.rename(id: :other_id, name: :other_name)
 
 # restriction
 new_relation = relation.restrict { |r| r.name.eq('Screw').or(r.city.eq('London')) }
+new_relation = relation.restrict(relation.name.eq('Screw'))
+new_relation = relation.restrict(:name => 'Screw')
+new_relation = relation.restrict([ [ :name, 'Screw' ] ])
 
 # natural join
 new_relation = relation.join(other)        # OR relation + other
