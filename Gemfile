@@ -44,7 +44,7 @@ group :metrics do
     gem 'metric_fu',   '~> 2.1.1'
     gem 'mspec',       '~> 1.5.17'
     gem 'rcov',        '~> 1.0.0'
-    gem 'ruby2ruby',   '= 1.2.2'
+    gem 'ruby2ruby',   '= 1.2.2'   # for heckle
   end
 
   platforms :rbx do
