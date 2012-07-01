@@ -86,6 +86,7 @@
   * empty?
   * one?
   * none?
+  * many?
   * include? / member?
   * min / max / minmax (when the tuples are sorted)
 
