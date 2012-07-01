@@ -30,6 +30,7 @@ describe Relation, '#one' do
     let(:body) { [ [ 1 ], [ 2 ] ].each }
 
     specify { expect { subject }.to raise_error(ManyTuplesError, 'one tuple expected, but set contained 2 tuples') }
+
     specify { expect { subject }.to raise_error(SetSizeError) }
   end
 end
