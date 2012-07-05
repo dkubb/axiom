@@ -5,10 +5,11 @@ source 'https://rubygems.org'
 gem 'backports', '~> 2.6.1'
 
 group :development do
-  gem 'jeweler', '~> 1.8.3'
-  gem 'rake',    '~> 0.9.2'
-  gem 'rspec',   '~> 1.3.2'
-  gem 'yard',    '~> 0.8.1'
+  gem 'jeweler',   '~> 1.8.3'
+  gem 'rake',      '~> 0.9.2'
+  gem 'rspec',     '~> 1.3.2'
+  gem 'yard',      '~> 0.8.1'
+  gem 'redcarpet', '~> 2.1.1'
 end
 
 group :guard do

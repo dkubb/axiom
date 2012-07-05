@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-07-01"
+  s.date = "2012-07-05"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
     "TODO"
   ]
   s.files = [
-    ".document",
     ".gemtest",
     ".rvmrc",
     ".travis.yml",
+    ".yardopts",
     "Gemfile",
     "Guardfile",
     "LICENSE",
@@ -681,12 +681,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.2"])
       s.add_development_dependency(%q<yard>, ["~> 0.8.1"])
+      s.add_development_dependency(%q<redcarpet>, ["~> 2.1.1"])
     else
       s.add_dependency(%q<backports>, ["~> 2.6.1"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_dependency(%q<rspec>, ["~> 1.3.2"])
       s.add_dependency(%q<yard>, ["~> 0.8.1"])
+      s.add_dependency(%q<redcarpet>, ["~> 2.1.1"])
     end
   else
     s.add_dependency(%q<backports>, ["~> 2.6.1"])
@@ -694,5 +696,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rake>, ["~> 0.9.2"])
     s.add_dependency(%q<rspec>, ["~> 1.3.2"])
     s.add_dependency(%q<yard>, ["~> 0.8.1"])
+    s.add_dependency(%q<redcarpet>, ["~> 2.1.1"])
   end
 end
