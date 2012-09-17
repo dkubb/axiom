@@ -23,17 +23,17 @@ module Veritas
     attr_reader :options
     private :options
 
-    # Hook called when class is inherited
+    # Add the descendant to this class and the superclass
     #
-    # @param [Class] descendant
+    # @param [Class<Attribute>] descendant
     #   the class inheriting Attribute
     #
     # @return [self]
     #
-    # @api private
-    def self.inherited(descendant)
+    # @api public
+    def self.add_descendant(descendant)
       superclass = self.superclass
-      superclass.inherited(descendant) if superclass.respond_to?(:descendants)
+      superclass.add_descendant(descendant) if superclass.respond_to?(:add_descendant)
       descendants.unshift(descendant)
       self
     end
@@ -100,6 +100,21 @@ module Veritas
         descendants.detect { |descendant| type <= descendant.primitive }
       end
     end
+
+    # Hook called when class is inherited
+    #
+    # @param [Class<Attribute>] descendant
+    #
+    # @return [self]
+    #
+    # @api private
+    def self.inherited(descendant)
+      super
+      add_descendant(descendant)
+      self
+    end
+
+    private_class_method :inherited
 
     # Initialize an Attribute
     #

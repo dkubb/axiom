@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe Attribute, '.inherited' do
-  subject { object.inherited(descendant) }
+describe Attribute, '.add_descendant' do
+  subject { object.add_descendant(descendant) }
 
   let(:object)     { Class.new(described_class) }
   let(:descendant) { Class.new                  }
