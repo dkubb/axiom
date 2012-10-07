@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+gem 'veritas', :path => '.'
+
 gem 'backports', '~> 2.6.1'
 
 group :development do
