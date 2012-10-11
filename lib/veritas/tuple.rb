@@ -128,6 +128,18 @@ module Veritas
       data.values_at(*header).freeze
     end
 
+    # Return tuple with key attributes
+    #
+    # @example
+    #   keys_tuple = tuple.keys
+    #
+    # @return [Tuple]
+    #
+    # @api public
+    def keys
+      project(header.select(&:key?))
+    end
+
   private
 
     # Coerce an Array-like object into a Tuple
