@@ -15,6 +15,9 @@ module Veritas
     # @api private
     attr_reader :name
 
+    # @api private
+    attr_reader :index
+
     # The attribute options
     #
     # @return [Hash]
@@ -118,6 +121,7 @@ module Veritas
       @options  = Immutable.freeze_object(options.to_hash)
       @required = @options.fetch(:required, true)
       @key      = @options.fetch(:key, false)
+      @index    = @options[:index]
     end
 
     # Extract the value corresponding to this attribute from a tuple

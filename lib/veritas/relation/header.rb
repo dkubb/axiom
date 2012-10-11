@@ -256,6 +256,11 @@ module Veritas
         project(select(&:key?))
       end
 
+      # @api public
+      def indices
+        project(select(&:index))
+      end
+
     private
 
       # Utility method to instantiate a Header
