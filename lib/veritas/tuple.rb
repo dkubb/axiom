@@ -140,6 +140,11 @@ module Veritas
       project(header.keys)
     end
 
+    # @api public
+    def indices
+      project(header.indices)
+    end
+
   private
 
     # Coerce an Array-like object into a Tuple
