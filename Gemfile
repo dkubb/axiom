@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+gem 'veritas', :path => '.'
+
 gem 'backports', '~> 2.6.1'
 
 group :development do
@@ -19,6 +21,7 @@ group :guard do
   gem 'guard',         '~> 1.1.1'
   gem 'guard-bundler', '~> 0.1.3'
   gem 'guard-rspec',   '~> 0.7.3'
+  gem 'rb-fsevent',    '~> 0.9.1'
 end
 
 group :benchmarks do

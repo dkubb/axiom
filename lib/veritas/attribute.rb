@@ -15,6 +15,9 @@ module Veritas
     # @api private
     attr_reader :name
 
+    # @api private
+    attr_reader :index
+
     # The attribute options
     #
     # @return [Hash]
@@ -117,6 +120,8 @@ module Veritas
       @name     = name.to_sym
       @options  = Immutable.freeze_object(options.to_hash)
       @required = @options.fetch(:required, true)
+      @key      = @options.fetch(:key, false)
+      @index    = @options[:index]
     end
 
     # Extract the value corresponding to this attribute from a tuple
@@ -170,6 +175,18 @@ module Veritas
     # @api public
     def required?
       @required
+    end
+
+    # Test if the attribute is a key
+    #
+    # @example
+    #   attribute.key?  # => true or false
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def key?
+      @key
     end
 
     # Test if a value is the correct primitive type

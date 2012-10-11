@@ -128,6 +128,42 @@ module Veritas
       data.values_at(*header).freeze
     end
 
+    # Return tuple with key attributes
+    #
+    # @example
+    #   keys_tuple = tuple.keys
+    #
+    # @return [Tuple]
+    #
+    # @api public
+    def keys
+      project(header.keys)
+    end
+
+    # Return tuple with index attributes
+    #
+    # @example
+    #   indices_tuple = tuple.indices
+    #
+    # @return [Tuple]
+    #
+    # @api public
+    def indices
+      project(header.indices)
+    end
+
+    # Return an index set with index attributes from the tuple
+    #
+    # @example
+    #   index_set = tuple.index_set
+    #
+    # @return [IndexSet]
+    #
+    # @api public
+    def index_set
+      IndexSet.new(self)
+    end
+
   private
 
     # Coerce an Array-like object into a Tuple

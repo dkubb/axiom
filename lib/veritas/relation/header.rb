@@ -244,6 +244,23 @@ module Veritas
         to_ary.empty?
       end
 
+      # Return header with key attributes
+      #
+      # @example
+      #   keys_header = header.keys
+      #
+      # @return [Relation::Header]
+      #
+      # @api public
+      def keys
+        project(select(&:key?))
+      end
+
+      # @api public
+      def indices
+        project(select(&:index))
+      end
+
     private
 
       # Utility method to instantiate a Header

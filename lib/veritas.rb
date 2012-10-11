@@ -129,6 +129,8 @@ require 'veritas/function/numeric/unary_plus'
 
 require 'veritas/function/string/length'
 
+require 'veritas/index_set'
+
 require 'veritas/tuple'
 require 'veritas/version'
 
