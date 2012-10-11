@@ -10,7 +10,7 @@ describe Tuple, '#keys' do
   let(:header) { Relation::Header.new([ id, name ])         }
   let(:object) { described_class.new(header, [ 1, 'John' ]) }
 
-  it { should be_instance_of(Tuple) }
+  it { should be_instance_of(described_class) }
 
   it { should be_frozen }
 

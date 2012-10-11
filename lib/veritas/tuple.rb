@@ -137,7 +137,7 @@ module Veritas
     #
     # @api public
     def keys
-      project(header.select(&:key?))
+      project(header.keys)
     end
 
   private
