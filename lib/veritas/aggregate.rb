@@ -4,7 +4,7 @@ module Veritas
 
   # Abstract class for aggregate functions
   class Aggregate
-    include AbstractClass, Immutable, Visitable, Operation::Unary
+    include AbstractClass, Adamantium, Visitable, Operation::Unary
     include Equalizer.new(:operand)
 
     # Return the default accumulator

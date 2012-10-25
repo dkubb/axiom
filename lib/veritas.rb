@@ -5,6 +5,7 @@ require 'date'
 require 'set'
 require 'singleton'
 
+require 'adamantium'
 require 'backports'
 require 'backports/basic_object' unless RUBY_VERSION >= '1.9.2' && RUBY_PLATFORM.include?('java')
 
@@ -14,7 +15,6 @@ require 'veritas/core_ext/time'
 
 require 'veritas/support/abstract_class'
 require 'veritas/support/aliasable'
-require 'veritas/support/immutable'
 require 'veritas/support/visitable'
 
 require 'veritas/support/equalizer'

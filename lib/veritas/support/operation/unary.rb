@@ -3,7 +3,7 @@
 module Veritas
   module Operation
     module Unary
-      include Immutable
+      include Adamantium
       include Equalizer.new(:operand)
 
       # The operand to the operation
@@ -25,7 +25,7 @@ module Veritas
       #
       # @api private
       def initialize(operand)
-        @operand = Immutable.freeze_object(operand)
+        @operand = Adamantium.freeze_object(operand)
       end
 
     end # module Unary

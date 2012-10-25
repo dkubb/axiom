@@ -2,7 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'backports', '~> 2.6.1'
+gem 'adamantium', '~> 0.0.1', :github => 'dkubb/adamantium'
+gem 'backports',  '~> 2.6.4'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'

@@ -16,7 +16,7 @@ module Veritas
     #
     # @api private
     def initialize(*keys)
-      @keys = Immutable.freeze_object(keys)
+      @keys = Adamantium.freeze_object(keys)
       define_methods
       include_comparison_methods
     end
@@ -80,7 +80,7 @@ module Veritas
     # @api private
     def include_comparison_methods
       module_eval do
-        include Methods, Immutable
+        include Methods, Adamantium
         memoize :hash
       end
     end

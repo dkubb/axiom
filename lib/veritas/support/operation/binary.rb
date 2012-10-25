@@ -3,7 +3,7 @@
 module Veritas
   module Operation
     module Binary
-      include Immutable
+      include Adamantium
       include Equalizer.new(:left, :right)
 
       # The left operand for the operation
@@ -37,8 +37,8 @@ module Veritas
       #
       # @api private
       def initialize(left, right)
-        @left  = Immutable.freeze_object(left)
-        @right = Immutable.freeze_object(right)
+        @left  = Adamantium.freeze_object(left)
+        @right = Adamantium.freeze_object(right)
       end
 
     end # module Binary

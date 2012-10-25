@@ -2,7 +2,7 @@
 
 module PredicateComparableSpecs
   class Object
-    include Immutable
+    include Adamantium
     include Function::Comparable
 
     attr_reader :left, :right

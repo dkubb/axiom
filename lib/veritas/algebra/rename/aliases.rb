@@ -7,7 +7,7 @@ module Veritas
       # Aliases that map old attributes to new renamed attributes
       class Aliases
         extend Aliasable
-        include Immutable, Enumerable
+        include Adamantium, Enumerable
         include Equalizer.new(:to_hash)
 
         inheritable_alias(:| => :union)
@@ -54,7 +54,7 @@ module Veritas
         #
         # @api public
         def initialize(aliases)
-          @aliases = Immutable.freeze_object(aliases.to_hash)
+          @aliases = Adamantium.freeze_object(aliases.to_hash)
         end
 
         # Lookup the new attribute given the old attribute

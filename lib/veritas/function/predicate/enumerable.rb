@@ -29,7 +29,7 @@ module Veritas
         #
         # @api private
         def initialize(left, right)
-          super(left, Immutable.freeze_object(right))
+          super(left, Adamantium.freeze_object(right))
         end
 
         # Evaluate the enumerable function using the tuple

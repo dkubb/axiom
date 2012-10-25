@@ -5,7 +5,7 @@ module Veritas
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
     extend Aliasable
-    include AbstractClass, Immutable, ::Comparable, Visitable
+    include AbstractClass, Adamantium, ::Comparable, Visitable
     include Equalizer.new(:name, :required?)
 
     # The attribute name
@@ -130,7 +130,7 @@ module Veritas
     # @api private
     def initialize(name, options = {})
       @name     = name.to_sym
-      @options  = Immutable.freeze_object(options.to_hash)
+      @options  = Adamantium.freeze_object(options.to_hash)
       @required = @options.fetch(:required, true)
     end
 

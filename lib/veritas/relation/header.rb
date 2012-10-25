@@ -6,7 +6,7 @@ module Veritas
     # A set of attributes that correspond to values in each tuple
     class Header
       extend Aliasable
-      include Enumerable, Immutable
+      include Enumerable, Adamantium
       include Equalizer.new(:to_set)
 
       inheritable_alias(
@@ -100,7 +100,7 @@ module Veritas
       #
       # @api public
       def initialize(attributes)
-        @attributes    = Immutable.freeze_object(attributes.to_ary)
+        @attributes    = Adamantium.freeze_object(attributes.to_ary)
         @attribute_for = Hash[@attributes.map { |attribute| attribute.name }.zip(@attributes)]
       end
 

@@ -4,7 +4,7 @@ module Veritas
 
   # Abstract base class for logical functions
   class Function
-    include AbstractClass, Immutable, Visitable
+    include AbstractClass, Adamantium, Visitable
 
     # Rename the attribute(s) inside the function
     #
