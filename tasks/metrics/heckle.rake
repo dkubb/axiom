@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 $LOAD_PATH.unshift(File.expand_path('../../../lib', __FILE__))
 
 # original code by Ashley Moran:
@@ -17,7 +19,10 @@ begin
       name = if map
         map[constant] || map[:default]
       else
-        method.gsub(/[?!=]\z/, '')
+        method.
+          gsub('?','_ques').
+          gsub('!','_bang').
+          gsub('=','_assign')
       end
       "#{name}_spec.rb"
     end
@@ -25,16 +30,14 @@ begin
 
   namespace :metrics do
     desc 'Heckle each module and class'
-    task :heckle => :rcov do
+    task :heckle => :coverage do
       unless Ruby2Ruby::VERSION == '1.2.2'
         raise "ruby2ruby version #{Ruby2Ruby::VERSION} may not work properly, 1.2.2 *only* is recommended for use with heckle"
       end
 
       require 'veritas'
 
-      root_module_regexp = Regexp.union(
-        'Veritas'
-      )
+      root_module_regexp = Regexp.union('Veritas')
 
       spec_dir = Pathname('spec/unit')
 
@@ -75,6 +78,7 @@ begin
       end
 
       aliases = Hash.new { |h,mod| h[mod] = Hash.new { |h,method| h[method] = method } }
+      map     = NameMap.new
 
       aliases['Veritas::Aggregate::Minimum::Methods']['min']              = 'minimum'
       aliases['Veritas::Aggregate::Maximum::Methods']['max']              = 'maximum'
@@ -105,8 +109,6 @@ begin
       aliases['Veritas::Relation::Header']['[]'] = 'call'
 
       aliases['Veritas::Tuple']['[]'] = 'call'
-
-      map = NameMap.new
 
       heckle_caught_modules = Hash.new { |hash, key| hash[key] = [] }
       unhandled_mutations = 0
@@ -150,6 +152,8 @@ begin
 
           spec_class_methods << method
         end
+
+        spec_class_methods -= other_class_methods
 
         # get the instances methods
         spec_methods = mod.public_instance_methods(false)
@@ -261,7 +265,7 @@ begin
     end
   end
 rescue LoadError
-  task :heckle do
+  task :heckle => :coverage do
     $stderr.puts 'Heckle or mspec is not available. In order to run heckle, you must: gem install heckle mspec'
   end
 end

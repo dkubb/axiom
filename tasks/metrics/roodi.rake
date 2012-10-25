@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 begin
   require 'roodi'
   require 'rake/tasklib'

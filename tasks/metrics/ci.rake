@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 desc 'Run metrics with Heckle'
 task :ci => %w[ ci:metrics metrics:heckle ]
 

@@ -1,4 +1,7 @@
+# encoding: utf-8
+
 spec_defaults = lambda do |spec|
+  spec.ruby_opts = %w[ -r./spec/support/config_alias ]
   spec.spec_opts << '--options' << 'spec/spec.opts'
 end
 
@@ -29,21 +32,29 @@ rescue LoadError
   end
 end
 
-begin
-  require 'rcov'
-
-  namespace :metrics do
-    Spec::Rake::SpecTask.new(:rcov) do |rcov|
-      spec_defaults.call(rcov)
-      rcov.rcov      = true
-      rcov.pattern   = 'spec/unit/**/*_spec.rb'
-      rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
+namespace :metrics do
+  begin
+    if RUBY_VERSION < '1.9'
+      desc 'Generate code coverage'
+      Spec::Rake::SpecTask.new(:coverage) do |rcov|
+        spec_defaults.call(rcov)
+        rcov.rcov      = true
+        rcov.pattern   = 'spec/unit/**/*_spec.rb'
+        rcov.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
+      end
+    else
+      desc 'Generate code coverage'
+      task :coverage do
+        ENV['COVERAGE'] = 'true'
+        Rake::Task['spec:unit'].execute
+      end
     end
-  end
-rescue LoadError
-  task :rcov do
-    $stderr.puts 'rcov is not available. In order to run rcov, you must: gem install rcov'
+  rescue LoadError
+    task :coverage do
+      lib = RUBY_VERSION < '1.9' ? 'rcov' : 'simplecov'
+      $stderr.puts "coverage is not available. In order to run #{lib}, you must: gem install #{lib}"
+    end
   end
 end
 
-task :test    => :spec
+task :test => :spec
