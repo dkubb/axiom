@@ -132,9 +132,7 @@ module Veritas
 
     # Coerce an Array-like object into a Tuple
     #
-    # @param [Header] header
-    #   the tuple header
-    # @param [Tuple, #to_ary]
+    # @param [Tuple, #to_ary] object
     #   the tuple or tuple data
     #
     # @return [Tuple]
@@ -148,7 +146,7 @@ module Veritas
     #
     # @param [Header] header
     #   the tuple header
-    # @param [Tuple, #to_ary]
+    # @param [Tuple, #to_ary] object
     #   the tuple or tuple data
     #
     # @return [Tuple]
