@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-07-09"
+  s.date = "2012-10-26"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -132,7 +132,6 @@ Gem::Specification.new do |s|
     "lib/veritas/support/aliasable.rb",
     "lib/veritas/support/equalizer.rb",
     "lib/veritas/support/evaluator.rb",
-    "lib/veritas/support/immutable.rb",
     "lib/veritas/support/operation/binary.rb",
     "lib/veritas/support/operation/unary.rb",
     "lib/veritas/support/visitable.rb",
@@ -152,6 +151,8 @@ Gem::Specification.new do |s|
     "spec/shared/invertible_method_behaviour.rb",
     "spec/spec.opts",
     "spec/spec_helper.rb",
+    "spec/support/config_alias.rb",
+    "spec/support/ice_nine_config.rb",
     "spec/unit/date/pred_spec.rb",
     "spec/unit/range/overlaps_spec.rb",
     "spec/unit/range/to_inclusive_spec.rb",
@@ -284,10 +285,10 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/boolean/valid_value_spec.rb",
     "spec/unit/veritas/attribute/call_spec.rb",
     "spec/unit/veritas/attribute/class/class_methods/primitive_spec.rb",
+    "spec/unit/veritas/attribute/class_methods/add_descendant_spec.rb",
     "spec/unit/veritas/attribute/class_methods/coerce_spec.rb",
     "spec/unit/veritas/attribute/class_methods/descendants_spec.rb",
     "spec/unit/veritas/attribute/class_methods/infer_type_spec.rb",
-    "spec/unit/veritas/attribute/class_methods/inherited_spec.rb",
     "spec/unit/veritas/attribute/class_methods/name_from_spec.rb",
     "spec/unit/veritas/attribute/class_methods/new_spec.rb",
     "spec/unit/veritas/attribute/comparable/asc_spec.rb",
@@ -507,15 +508,6 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/function/unary/hash_spec.rb",
     "spec/unit/veritas/function/unary/invertible/inverse_spec.rb",
     "spec/unit/veritas/function/unary/rename_spec.rb",
-    "spec/unit/veritas/immutable/class_methods/freeze_object_spec.rb",
-    "spec/unit/veritas/immutable/class_methods/new_spec.rb",
-    "spec/unit/veritas/immutable/dup_spec.rb",
-    "spec/unit/veritas/immutable/fixtures/classes.rb",
-    "spec/unit/veritas/immutable/freeze_spec.rb",
-    "spec/unit/veritas/immutable/memoize_spec.rb",
-    "spec/unit/veritas/immutable/memoized_spec.rb",
-    "spec/unit/veritas/immutable/module_methods/included_spec.rb",
-    "spec/unit/veritas/immutable/module_methods/memoize_spec.rb",
     "spec/unit/veritas/operation/binary/eql_spec.rb",
     "spec/unit/veritas/operation/binary/hash_spec.rb",
     "spec/unit/veritas/operation/binary/left_spec.rb",
@@ -676,26 +668,24 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<backports>, ["~> 2.6.1"])
+      s.add_runtime_dependency(%q<adamantium>, ["~> 0.0.1"])
+      s.add_runtime_dependency(%q<backports>, ["~> 2.6.4"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.2"])
-      s.add_development_dependency(%q<yard>, ["~> 0.8.1"])
-      s.add_development_dependency(%q<redcarpet>, ["~> 2.1.1"])
     else
-      s.add_dependency(%q<backports>, ["~> 2.6.1"])
+      s.add_dependency(%q<adamantium>, ["~> 0.0.1"])
+      s.add_dependency(%q<backports>, ["~> 2.6.4"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<rake>, ["~> 0.9.2"])
       s.add_dependency(%q<rspec>, ["~> 1.3.2"])
-      s.add_dependency(%q<yard>, ["~> 0.8.1"])
-      s.add_dependency(%q<redcarpet>, ["~> 2.1.1"])
     end
   else
-    s.add_dependency(%q<backports>, ["~> 2.6.1"])
+    s.add_dependency(%q<adamantium>, ["~> 0.0.1"])
+    s.add_dependency(%q<backports>, ["~> 2.6.4"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     s.add_dependency(%q<rake>, ["~> 0.9.2"])
     s.add_dependency(%q<rspec>, ["~> 1.3.2"])
-    s.add_dependency(%q<yard>, ["~> 0.8.1"])
-    s.add_dependency(%q<redcarpet>, ["~> 2.1.1"])
   end
 end
+
