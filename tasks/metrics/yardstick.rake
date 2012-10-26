@@ -1,8 +1,6 @@
 # encoding: utf-8
 
 begin
-  require 'pathname'
-  require 'yardstick'
   require 'yardstick/rake/measurement'
   require 'yardstick/rake/verify'
   require 'yaml'
