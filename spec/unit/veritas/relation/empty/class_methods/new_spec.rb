@@ -19,12 +19,12 @@ describe Relation::Empty, '.new' do
   context 'with a header and tuples' do
     subject { object.new(header, tuples) }
 
-    let(:tuples) { mock('Tuples') }
+    let(:tuples) { [ mock('Tuple') ] }
 
     it { should be_instance_of(object) }
 
     its(:header){ should == header }
 
-    its(:tuples) { should equal(tuples) }
+    its(:tuples) { should eql(tuples) }
   end
 end
