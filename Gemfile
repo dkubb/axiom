@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'adamantium', '~> 0.0.1', :github => 'dkubb/adamantium'
+gem 'adamantium', '~> 0.0.2'
 gem 'backports',  '~> 2.6.4'
 
 group :development do
