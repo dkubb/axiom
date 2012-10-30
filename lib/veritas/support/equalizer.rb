@@ -16,7 +16,7 @@ module Veritas
     #
     # @api private
     def initialize(*keys)
-      @keys = Adamantium.freeze_object(keys)
+      @keys = Adamantium::Freezer::Deep.call(keys)
       define_methods
       include_comparison_methods
     end

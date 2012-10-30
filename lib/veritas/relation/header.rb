@@ -100,7 +100,7 @@ module Veritas
       #
       # @api public
       def initialize(attributes)
-        @attributes    = Adamantium.freeze_object(attributes.to_ary)
+        @attributes    = freeze_object(attributes.to_ary)
         @attribute_for = Hash[@attributes.map { |attribute| attribute.name }.zip(@attributes)]
       end
 
