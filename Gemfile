@@ -12,8 +12,8 @@ group :development do
 end
 
 group :yard do
-  gem 'yard',      '~> 0.8.1'
-  gem 'redcarpet', '~> 2.1.1', :platforms => [ :mri, :rbx ]
+  gem 'yard',      '~> 0.8.3'
+  gem 'redcarpet', '~> 2.2.2', :platforms => [ :mri, :rbx ]
 end
 
 group :guard do
@@ -37,7 +37,7 @@ group :metrics do
   gem 'flog',            '~> 2.5.1'
   gem 'reek',            '~> 1.2.8', :github => 'dkubb/reek'
   gem 'roodi',           '~> 2.1.0'
-  gem 'yardstick',       '~> 0.7.0'
+  gem 'yardstick',       '~> 0.8.0'
   gem 'yard-spellcheck', '~> 0.1.5'
 
   platform :mri_18 do
