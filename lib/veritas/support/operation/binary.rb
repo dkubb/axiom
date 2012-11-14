@@ -37,8 +37,8 @@ module Veritas
       #
       # @api private
       def initialize(left, right)
-        @left  = Adamantium.freeze_object(left)
-        @right = Adamantium.freeze_object(right)
+        @left  = freeze_object(left)
+        @right = freeze_object(right)
       end
 
     end # module Binary

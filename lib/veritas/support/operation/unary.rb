@@ -25,7 +25,7 @@ module Veritas
       #
       # @api private
       def initialize(operand)
-        @operand = Adamantium.freeze_object(operand)
+        @operand = freeze_object(operand)
       end
 
     end # module Unary
