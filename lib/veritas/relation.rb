@@ -73,7 +73,7 @@ module Veritas
     # @api private
     def initialize(header, tuples)
       @header = Header.coerce(header)
-      @tuples = Adamantium.freeze_object(tuples)
+      @tuples = freeze_object(tuples)
     end
 
     # Lookup an Attribute in the header given an attribute name

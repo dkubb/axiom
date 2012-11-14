@@ -31,7 +31,7 @@ module Veritas
       # @api private
       def initialize(name, header, tuples = Empty::ZERO_TUPLE)
         super(header, tuples)
-        @name = Adamantium.freeze_object(name.to_s)
+        @name = freeze_object(name.to_s)
       end
 
     end # class Base

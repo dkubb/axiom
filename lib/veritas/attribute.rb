@@ -130,7 +130,7 @@ module Veritas
     # @api private
     def initialize(name, options = {})
       @name     = name.to_sym
-      @options  = Adamantium.freeze_object(options.to_hash)
+      @options  = freeze_object(options.to_hash)
       @required = @options.fetch(:required, true)
     end
 
