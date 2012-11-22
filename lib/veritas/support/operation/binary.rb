@@ -3,7 +3,6 @@
 module Veritas
   module Operation
     module Binary
-      include Adamantium
       include Equalizer.new(:left, :right)
 
       # The left operand for the operation

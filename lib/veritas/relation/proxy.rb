@@ -5,7 +5,6 @@ module Veritas
 
     # Allow relations to proxy to other relations
     module Proxy
-      include Adamantium
       include Equalizer.new(:relation)
 
       # Relation methods to proxy

@@ -4,7 +4,7 @@ module Veritas
 
   # Abstract base class for Relation operations
   class Relation
-    include Adamantium, Enumerable, Visitable
+    include Enumerable, Visitable
     include Equalizer.new(:header, :to_set)
 
     # The relation header

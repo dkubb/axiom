@@ -3,7 +3,6 @@
 module Veritas
   module Operation
     module Unary
-      include Adamantium
       include Equalizer.new(:operand)
 
       # The operand to the operation

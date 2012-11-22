@@ -6,7 +6,7 @@ module Veritas
     # A set of attributes that correspond to values in each tuple
     class Header
       extend Aliasable
-      include Enumerable, Adamantium
+      include Enumerable
       include Equalizer.new(:to_set)
 
       inheritable_alias(

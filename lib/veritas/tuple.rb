@@ -5,7 +5,6 @@ module Veritas
   # A set of objects representing a unique fact in a relation
   class Tuple
     extend Aliasable
-    include Adamantium
     include Equalizer.new(:data)
 
     inheritable_alias(:[] => :call)

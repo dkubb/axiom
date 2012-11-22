@@ -7,7 +7,7 @@ module Veritas
 
         # Abstract base class for attribute sorting
         class Direction
-          include AbstractClass, Adamantium
+          include AbstractClass
           include Equalizer.new(:attribute)
 
           # The attribute to sort on

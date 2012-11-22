@@ -7,7 +7,7 @@ module Veritas
       # Aliases that map old attributes to new renamed attributes
       class Aliases
         extend Aliasable
-        include Adamantium, Enumerable
+        include Enumerable
         include Equalizer.new(:to_hash)
 
         inheritable_alias(:| => :union)

@@ -5,7 +5,7 @@ module Veritas
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
     extend Aliasable
-    include AbstractClass, Adamantium, ::Comparable, Visitable
+    include AbstractClass, ::Comparable, Visitable
     include Equalizer.new(:name, :required?)
 
     # The attribute name

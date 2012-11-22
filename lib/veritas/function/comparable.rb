@@ -5,7 +5,6 @@ module Veritas
 
     # A mixin for functions with directly compared operands
     module Comparable
-      include Adamantium
 
       # Hook called when module is included
       #
