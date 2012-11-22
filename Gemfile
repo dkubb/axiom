@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'adamantium', '~> 0.0.2', :git => 'https://github.com/dkubb/adamantium'
 gem 'backports',  '~> 2.6.4'
+gem 'equalizer',  '~> 0.0.1'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'

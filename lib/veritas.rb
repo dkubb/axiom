@@ -8,6 +8,7 @@ require 'singleton'
 require 'adamantium'
 require 'backports'
 require 'backports/basic_object' unless defined?(::BasicObject)
+require 'equalizer'
 
 require 'veritas/core_ext/date'
 require 'veritas/core_ext/range'
