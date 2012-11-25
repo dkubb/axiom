@@ -4,7 +4,7 @@ module Veritas
 
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
-    extend Aliasable
+    extend Aliasable, DescendantsTracker
     include AbstractClass, ::Comparable, Visitable
     include Equalizer.new(:name, :required?)
 
@@ -22,30 +22,6 @@ module Veritas
     # @api private
     attr_reader :options
     private :options
-
-    # Add the descendant to this class and the superclass
-    #
-    # @param [Class<Attribute>] descendant
-    #   the class inheriting Attribute
-    #
-    # @return [self]
-    #
-    # @api public
-    def self.add_descendant(descendant)
-      superclass = self.superclass
-      superclass.add_descendant(descendant) if superclass.respond_to?(:add_descendant)
-      descendants.unshift(descendant)
-      self
-    end
-
-    # Return the descendants of this class
-    #
-    # @return [Array<Attribute>]
-    #
-    # @api private
-    def self.descendants
-      @descendants ||= []
-    end
 
     # Coerce an object into an Attribute
     #
@@ -100,21 +76,6 @@ module Veritas
         descendants.detect { |descendant| type <= descendant.primitive }
       end
     end
-
-    # Hook called when class is inherited
-    #
-    # @param [Class<Attribute>] descendant
-    #
-    # @return [self]
-    #
-    # @api private
-    def self.inherited(descendant)
-      super
-      add_descendant(descendant)
-      self
-    end
-
-    private_class_method :inherited
 
     # Initialize an Attribute
     #

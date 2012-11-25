@@ -285,9 +285,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/attribute/boolean/valid_value_spec.rb",
     "spec/unit/veritas/attribute/call_spec.rb",
     "spec/unit/veritas/attribute/class/class_methods/primitive_spec.rb",
-    "spec/unit/veritas/attribute/class_methods/add_descendant_spec.rb",
     "spec/unit/veritas/attribute/class_methods/coerce_spec.rb",
-    "spec/unit/veritas/attribute/class_methods/descendants_spec.rb",
     "spec/unit/veritas/attribute/class_methods/infer_type_spec.rb",
     "spec/unit/veritas/attribute/class_methods/name_from_spec.rb",
     "spec/unit/veritas/attribute/class_methods/new_spec.rb",
@@ -670,6 +668,7 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<adamantium>, ["~> 0.0.2"])
       s.add_runtime_dependency(%q<backports>, ["~> 2.6.4"])
+      s.add_runtime_dependency(%q<descendants_tracker>, ["~> 0.0.1"])
       s.add_runtime_dependency(%q<equalizer>, ["~> 0.0.1"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
@@ -677,6 +676,7 @@ Gem::Specification.new do |s|
     else
       s.add_dependency(%q<adamantium>, ["~> 0.0.2"])
       s.add_dependency(%q<backports>, ["~> 2.6.4"])
+      s.add_dependency(%q<descendants_tracker>, ["~> 0.0.1"])
       s.add_dependency(%q<equalizer>, ["~> 0.0.1"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
       s.add_dependency(%q<rake>, ["~> 0.9.2"])
@@ -685,6 +685,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<adamantium>, ["~> 0.0.2"])
     s.add_dependency(%q<backports>, ["~> 2.6.4"])
+    s.add_dependency(%q<descendants_tracker>, ["~> 0.0.1"])
     s.add_dependency(%q<equalizer>, ["~> 0.0.1"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
     s.add_dependency(%q<rake>, ["~> 0.9.2"])
