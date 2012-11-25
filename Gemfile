@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'adamantium',          '~> 0.0.2', :github => 'dkubb/adamantium'
+gem 'adamantium',          '~> 0.0.3'
 gem 'backports',           '~> 2.6.4'
 gem 'descendants_tracker', '~> 0.0.1'
 gem 'equalizer',           '~> 0.0.1'
