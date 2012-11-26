@@ -9,5 +9,5 @@ describe Function, '#type' do
   let(:described_class) { FunctionSpecs::Object }
   let(:object)          { described_class.new   }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#type must be implemented") }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#type is not implemented") }
 end

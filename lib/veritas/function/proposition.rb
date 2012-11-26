@@ -5,7 +5,7 @@ module Veritas
 
     # Abstract base class for logical propositions
     class Proposition < Function
-      include AbstractClass,
+      include AbstractType,
               Singleton,
               Function::Connective::Conjunction::Methods,
               Function::Connective::Disjunction::Methods,

@@ -4,7 +4,10 @@ module Veritas
 
   # Abstract base class for logical functions
   class Function
-    include AbstractClass, Adamantium, Visitable
+    include AbstractType, Adamantium, Visitable
+
+    abstract_singleton_method :call
+    abstract_method :rename, :type
 
     # Rename the attribute(s) inside the function
     #
@@ -37,42 +40,6 @@ module Veritas
     # @api private
     def self.extract_value(operand, tuple)
       operand.respond_to?(:call) ? operand.call(tuple) : operand
-    end
-
-    # Evaluate the function using the operands
-    #
-    # @example
-    #   object = function.call(*args)
-    #
-    # @return [Object]
-    #
-    # @api public
-    def self.call(*)
-      raise NotImplementedError, "#{name}.call must be implemented"
-    end
-
-    # Rename the contained attributes with the provided aliases
-    #
-    # @example
-    #   renamed = function.rename(aliases)
-    #
-    # @param [Algebra::Rename::Aliases] aliases
-    #   the old and new attributes
-    #
-    # @return [Function]
-    #
-    # @api public
-    def rename(aliases)
-      raise NotImplementedError, "#{self.class}#rename must be implemented"
-    end
-
-    # Return the type returned from #call
-    #
-    # @return [Class<Attribute>]
-    #
-    # @api public
-    def type
-      raise NotImplementedError, "#{self.class}#type must be implemented"
     end
 
   end # class Function

@@ -5,7 +5,7 @@ module Veritas
 
     # Abstract class for Numeric functions
     class Numeric < Function
-      include AbstractClass
+      include AbstractType
     end # class Numeric
   end # class Function
 end # module Veritas

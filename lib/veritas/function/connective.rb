@@ -5,7 +5,7 @@ module Veritas
 
     # Abstract base class for logical connectives
     class Connective < Function
-      include AbstractClass
+      include AbstractType
 
       # Return the type returned from #call
       #

@@ -10,5 +10,5 @@ describe Function, '#rename' do
   let(:aliases)         { mock('Aliases')       }
   let(:object)          { described_class.new   }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#rename must be implemented") }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#rename is not implemented") }
 end

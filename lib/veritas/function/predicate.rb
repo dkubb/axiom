@@ -5,7 +5,7 @@ module Veritas
 
     # Abstract base class for logical predicates
     class Predicate < Function
-      include AbstractClass,
+      include AbstractType,
               Binary::Invertible,
               Binary,
               Connective::Conjunction::Methods,

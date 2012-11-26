@@ -4,8 +4,11 @@ module Veritas
 
   # Abstract class for aggregate functions
   class Aggregate
-    include AbstractClass, Visitable, Operation::Unary
+    include AbstractType, Visitable, Operation::Unary
     include Equalizer.new(:operand)
+
+    abstract_singleton_method :call
+    abstract_method :type
 
     # Return the default accumulator
     #
@@ -17,18 +20,6 @@ module Veritas
     # @api public
     def self.default
       self::DEFAULT
-    end
-
-    # Evaluate the aggregate using the operands
-    #
-    # @example
-    #   Aggregate.call  # => raises NotImplementedError
-    #
-    # @return [Object]
-    #
-    # @api public
-    def self.call(*)
-      raise NotImplementedError, "#{name}.call must be implemented"
     end
 
     # Returns the value extracted from the accumulator
@@ -83,18 +74,6 @@ module Veritas
     # @api public
     def finalize(accumulator)
       self.class.finalize(accumulator)
-    end
-
-    # Return the type returned from #call
-    #
-    # @example
-    #   type = aggregate.type
-    #
-    # @return [Class<Attribute>]
-    #
-    # @api public
-    def type
-      raise NotImplementedError, "#{self.class}#type must be implemented"
     end
 
   private

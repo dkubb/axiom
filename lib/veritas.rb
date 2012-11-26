@@ -5,6 +5,7 @@ require 'date'
 require 'set'
 require 'singleton'
 
+require 'abstract_type'
 require 'adamantium'
 require 'backports'
 require 'backports/basic_object' unless defined?(::BasicObject)
@@ -15,7 +16,6 @@ require 'veritas/core_ext/date'
 require 'veritas/core_ext/range'
 require 'veritas/core_ext/time'
 
-require 'veritas/support/abstract_class'
 require 'veritas/support/aliasable'
 require 'veritas/support/visitable'
 

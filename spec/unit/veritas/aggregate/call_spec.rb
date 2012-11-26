@@ -38,6 +38,6 @@ describe Aggregate, '#call' do
   end
 
   context 'when .call is not defined' do
-    specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class.name}.call must be implemented") }
+    specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}.call is not implemented") }
   end
 end

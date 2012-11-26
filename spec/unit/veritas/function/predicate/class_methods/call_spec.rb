@@ -9,5 +9,5 @@ describe Function::Predicate, '.call' do
   let(:right)  { 1               }
   let(:object) { described_class }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, "#{object}.call must be implemented") }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{object}.call is not implemented") }
 end
