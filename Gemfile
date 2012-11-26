@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'abstract_type',       '~> 0.0.1', :github => 'dkubb/abstract_type'
+gem 'abstract_type',       '~> 0.0.2'
 gem 'adamantium',          '~> 0.0.3'
 gem 'backports',           '~> 2.6.4'
 gem 'descendants_tracker', '~> 0.0.1'
