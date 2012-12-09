@@ -11,6 +11,8 @@ describe Algebra::Summarization::Summaries, '#summarize_by' do
   let(:header)      { Relation::Header.new([ [ :id, Integer ] ]) }
   let(:tuple)       { Tuple.new(header, [ 1 ])                   }
 
+  it_should_behave_like 'a command method'
+
   it 'passes the tuple to the aggregate function' do
     summarizer.should_receive(:call).with(nil, tuple)
     subject
