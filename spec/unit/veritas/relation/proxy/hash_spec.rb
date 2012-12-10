@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Relation, '#hash' do
+describe Relation::Proxy, '#hash' do
   subject { object.hash }
 
   let(:object)          { described_class.new(relation)            }
