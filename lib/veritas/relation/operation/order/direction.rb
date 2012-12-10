@@ -7,8 +7,11 @@ module Veritas
 
         # Abstract base class for attribute sorting
         class Direction
+          extend Aliasable
           include AbstractType
           include Equalizer.new(:attribute)
+
+          inheritable_alias(:== => :eql?)
 
           # The attribute to sort on
           #
@@ -94,20 +97,6 @@ module Veritas
           # @api public
           def reverse
             self.class.reverse.new(attribute)
-          end
-
-          # Compare the direction with other direction for equivalency
-          #
-          # @example
-          #   direction == other  # => true or false
-          #
-          # @param [Direction] other
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def ==(other)
-            eql?(other)
           end
 
           # Coerce an object into a Direction
