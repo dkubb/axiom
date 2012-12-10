@@ -150,7 +150,7 @@ module Veritas
       #
       # @api private
       def extend_other(other)
-        other.extend(Hash[removed_attributes.zip([])])
+        other.extend(Hash[removed_attributes.zip])
       end
 
       module Methods
