@@ -65,13 +65,15 @@ module Veritas
         # @param [Module] descendant
         #   the module or class including Invertible
         #
-        # @return [self]
+        # @return [undefined]
         #
         # @api private
         def self.included(descendant)
           super
           descendant.memoize :inverse
         end
+
+        private_class_method :included
 
         # Return the inverse function
         #

@@ -13,14 +13,15 @@ module Veritas
         # @param [Module] descendant
         #   the module or class including Set
         #
-        # @return [self]
+        # @return [undefined]
         #
         # @api private
         def self.included(descendant)
           super
           descendant.extend ClassMethods
-          self
         end
+
+        private_class_method :included
 
         # Initialize a Set
         #

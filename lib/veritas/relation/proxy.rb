@@ -17,7 +17,7 @@ module Veritas
       # @param [Module] descendant
       #   the module or class including RelationProxy
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       def self.included(descendant)
@@ -25,6 +25,8 @@ module Veritas
           undef_method *PROXY_METHODS | ENUMERABLE_METHODS - RELATION_METHODS
         end
       end
+
+      private_class_method :included
 
       # The relation that is proxied to
       #
