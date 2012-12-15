@@ -45,10 +45,7 @@ module Veritas
     #   enumerator = [ [ 1 ], [ 2 ], [ 3 ] ].each
     #   relation   = Relation.new([ [ :id, Integer ] ], enumerator)
     #
-    # @param [Header, #to_ary] header
-    #   the relation header
-    # @param [Enumerable] tuples
-    #   the relation tuples
+    # @param [Array(Header, Enumerable)] args
     #
     # @return [Relation]
     #

@@ -53,7 +53,7 @@ module Veritas
       #
       # @param [Symbol] method
       #
-      # @param [Array] *args
+      # @param [Array] args
       #
       # @return [self]
       #   return self for all command methods
@@ -78,7 +78,7 @@ module Veritas
 
       # Forward the message to the relation
       #
-      # @param [Array] *args
+      # @param [Array] args
       #
       # @return [self]
       #   return self for all command methods

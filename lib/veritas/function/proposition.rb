@@ -25,14 +25,14 @@ module Veritas
       # @overload self.new(true)
       #   Return the Tautology singleton instance
       #
-      #   @param [Array(true)] *args
+      #   @param [Array(true)] args
       #
       #   @return [Tautology]
       #
       # @overload self.new(false)
       #   Return the Contradiction singleton instance
       #
-      #   @param [Array(false)] *args
+      #   @param [Array(false)] args
       #
       #   @return [Contradiction]
       #

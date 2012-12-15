@@ -56,7 +56,7 @@ module Veritas
           # @example
           #   no_match = expression.no_match(regexp)
           #
-          # @param [Function] other
+          # @param [Regexp] regexp
           #
           # @return [NoMatch]
           #

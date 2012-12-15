@@ -152,7 +152,7 @@ module Veritas
           # @example with directions
           #   order = relation.sort_by(directions)
           #
-          # @param [Array] *args
+          # @param [Array] args
           #   optional arguments
           #
           # @yield [relation]

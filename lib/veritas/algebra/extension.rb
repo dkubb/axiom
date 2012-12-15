@@ -127,7 +127,7 @@ module Veritas
         #     context.add(:total, context[:unit_price] * context[:quantity])
         #   end
         #
-        # @param [Array] *args
+        # @param [Array] args
         #   optional arguments
         #
         # @yield [function]

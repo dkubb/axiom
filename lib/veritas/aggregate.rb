@@ -80,8 +80,6 @@ module Veritas
 
     # Extract the value from the operand or tuple
     #
-    # @param [Object, #call] operand
-    #   the operand to extract the value from
     # @param [Tuple] tuple
     #   the tuple to pass in to the operand if it responds to #call
     #

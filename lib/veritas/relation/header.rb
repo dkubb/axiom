@@ -248,7 +248,7 @@ module Veritas
 
       # Utility method to instantiate a Header
       #
-      # @param [Array] *args
+      # @param [Array] args
       #
       # @return [Header]
       #
@@ -259,7 +259,7 @@ module Veritas
 
       # Coerce the object into a Header
       #
-      # @param [Header, #to_ary]
+      # @param [Header, #to_ary] object
       #   the header or attributes
       #
       # @return [Header]
@@ -271,7 +271,7 @@ module Veritas
 
       # Coerce an Array-like object into a Header
       #
-      # @param [Header, #to_ary]
+      # @param [Header, #to_ary] object
       #   the header or attributes
       #
       # @return [Header]

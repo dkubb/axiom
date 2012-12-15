@@ -15,7 +15,7 @@ module Veritas
       #
       # @param [Integer] count
       #
-      # @param [Object] _value
+      # @param [Object] value
       #
       # @return [Integer]
       #

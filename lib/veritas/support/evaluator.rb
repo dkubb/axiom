@@ -68,7 +68,7 @@ module Veritas
       # @example
       #   attribute = context[name]
       #
-      # @param [Symbol]
+      # @param [Symbol] name
       #
       # @return [Attribute]
       #
@@ -90,7 +90,7 @@ module Veritas
 
       # Forward a message to the object
       #
-      # @param [Array] *args
+      # @param [Array] args
       #
       # @return [Object]
       #

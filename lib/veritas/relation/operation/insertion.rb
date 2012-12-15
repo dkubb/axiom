@@ -10,7 +10,7 @@ module Veritas
 
         # Initialize an Insertion
         #
-        # @param [Relation] relation
+        # @param [Array(Relation, Relation)] args
         #
         # @return [undefined]
         #

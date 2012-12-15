@@ -51,7 +51,7 @@ module Veritas
           # @example
           #   match = expression.match(regexp)
           #
-          # @param [Function] other
+          # @param [Regexp] regexp
           #
           # @return [Match]
           #

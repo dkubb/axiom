@@ -108,7 +108,7 @@ module Veritas
         # @example restriction using an Array
         #  restriction = relation.restrict([ [ :id, 1 ] ])
         #
-        # @param [Array] *args
+        # @param [Array] args
         #   optional arguments
         #
         # @yield [context]
