@@ -15,7 +15,7 @@ module Veritas
         # @return [undefined]
         #
         # @api private
-        def initialize(operand)
+        def initialize(*)
           super
           @header = operand.header
         end

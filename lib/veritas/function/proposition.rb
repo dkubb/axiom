@@ -67,7 +67,7 @@ module Veritas
       # @return [self]
       #
       # @api public
-      def rename(aliases)
+      def rename(*)
         self
       end
 
