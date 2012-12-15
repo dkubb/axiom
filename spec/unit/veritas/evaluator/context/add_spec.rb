@@ -12,6 +12,10 @@ describe Evaluator::Context, '#add' do
     let(:aggregate) { attribute.sum }
 
     its(:functions) { should eql(Attribute::Integer.new(:aggregate) => aggregate) }
+
+    it 'returns self' do
+      subject.yield.equal?(subject).should be(true)
+    end
   end
 
   context 'when a function is provided' do
@@ -20,6 +24,10 @@ describe Evaluator::Context, '#add' do
     let(:function) { attribute.add(attribute) }
 
     its(:functions) { should eql(Attribute::Integer.new(:function) => function) }
+
+    it 'returns self' do
+      subject.yield.equal?(subject).should be(true)
+    end
   end
 
   context 'when a proc is provided' do
@@ -28,6 +36,10 @@ describe Evaluator::Context, '#add' do
     let(:proc) { Proc.new {} }
 
     its(:functions) { should eql(Attribute::Object.new(:proc) => proc) }
+
+    it 'returns self' do
+      subject.yield.equal?(subject).should be(true)
+    end
   end
 
   context 'when a block is provided' do
@@ -36,11 +48,19 @@ describe Evaluator::Context, '#add' do
     let(:block) { proc {} }
 
     its(:functions) { should eql(Attribute::Object.new(:block) => block) }
+
+    it 'returns self' do
+      subject.yield.equal?(subject).should be(true)
+    end
   end
 
   context 'when a literal is provided' do
     subject { described_class.new(header) { |object| object.add(:literal, 1) } }
 
     its(:functions) { should eql(Attribute::Integer.new(:literal) => 1) }
+
+    it 'returns self' do
+      subject.yield.equal?(subject).should be(true)
+    end
   end
 end
