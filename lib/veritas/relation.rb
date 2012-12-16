@@ -197,7 +197,7 @@ module Veritas
     #
     # @api public
     def empty?
-      none? { true }
+      none?
     end
 
   private
