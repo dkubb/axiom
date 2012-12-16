@@ -10,8 +10,6 @@ module Veritas
 
         # Initialize a Unary relation
         #
-        # @param [Relation] operand
-        #
         # @return [undefined]
         #
         # @api private

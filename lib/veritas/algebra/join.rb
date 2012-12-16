@@ -16,13 +16,12 @@ module Veritas
 
       # Initialize a Join
       #
-      # @param [Relation] left
-      # @param [Relation] right
+      # @param [Array(Relation, Relaton)]
       #
       # @return [undefined]
       #
       # @api private
-      def initialize(left, right)
+      def initialize(*)
         super
         right_header     = right.header
         @join_header     = left.header  & right_header

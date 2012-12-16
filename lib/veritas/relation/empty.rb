@@ -9,15 +9,15 @@ module Veritas
 
       # Initialize an empty Relation
       #
-      # @param [Header] header
+      # @param [Header] _header
       #   the header for the empty relation
-      # @param [#each] tuples
+      # @param [#each] _tuples
       #   optional original tuples
       #
       # @return [undefined]
       #
       # @api public
-      def initialize(header, tuples = ZERO_TUPLE)
+      def initialize(_header, _tuples = ZERO_TUPLE)
         super
       end
 

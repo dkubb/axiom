@@ -31,13 +31,13 @@ module Veritas
       #   the relation to summarize
       # @param [Relation] summarize_per
       #   the relation to summarize with
-      # @param [#to_hash] summarizers
+      # @param [#to_hash] _summarizers
       #   the summarizers to add
       #
       # @return [Summarization]
       #
       # @api public
-      def self.new(operand, summarize_per, summarizers)
+      def self.new(operand, summarize_per, _summarizers)
         assert_subset_headers(operand, summarize_per)
         super
       end

@@ -25,13 +25,10 @@ module Veritas
 
         # Initialize a Binary relation
         #
-        # @param [Relation] left
-        # @param [Relation] right
-        #
         # @return [undefined]
         #
         # @api private
-        def initialize(left, right)
+        def initialize(*)
           super
           @header = left.header | right.header
         end

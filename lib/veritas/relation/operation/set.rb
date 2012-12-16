@@ -31,7 +31,7 @@ module Veritas
         # @return [undefined]
         #
         # @api private
-        def initialize(left, right)
+        def initialize(*)
           super
           @header = left.header
         end
@@ -43,14 +43,13 @@ module Veritas
           # @example
           #   set = SetRelation.new(left, right)
           #
-          # @param [Relation] left
-          # @param [Relation] right
+          # @param [Array(Relation, Relation)] args
           #
           # @return [Set]
           #
           # @api public
-          def new(left, right)
-            assert_equivalent_headers(left, right)
+          def new(*args)
+            assert_equivalent_headers(*args)
             super
           end
 
