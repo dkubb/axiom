@@ -8,6 +8,8 @@ module Veritas
       class SquareRoot < Numeric
         include Unary::Invertible, Unary
 
+        undef_method :inverse
+
         # Return the square root of the value
         #
         # @example

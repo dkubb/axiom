@@ -8,6 +8,8 @@ module Veritas
       class Negation < Connective
         include Unary::Invertible, Unary
 
+        undef_method :inverse
+
         # Return the negation operation
         #
         # @example

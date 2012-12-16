@@ -228,8 +228,9 @@ module Veritas
         # @api private
         def coerce_to_summarizers(summarize_per, summarizers = Undefined)
           if summarizers.equal?(Undefined)
-            context = Evaluator::Context.new(header - summarize_per.header) { |context| yield context }
-            context.functions
+            Evaluator::Context.new(header - summarize_per.header) { |context|
+              yield context
+            }.functions
           else
             summarizers
           end

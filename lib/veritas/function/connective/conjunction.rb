@@ -8,6 +8,8 @@ module Veritas
       class Conjunction < Connective
         include Binary, Binary::Invertible
 
+        undef_method :inverse
+
         # Evaluate the operands using a logical AND
         #
         # @example with true operands

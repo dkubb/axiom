@@ -8,6 +8,8 @@ module Veritas
       class Disjunction < Connective
         include Binary, Binary::Invertible
 
+        undef_method :inverse
+
         # Evaluate the operands using a logical OR
         #
         # @example with true operands

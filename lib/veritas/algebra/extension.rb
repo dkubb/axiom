@@ -161,8 +161,7 @@ module Veritas
         # @api private
         def coerce_to_extensions(extensions = Undefined)
           if extensions.equal?(Undefined)
-            context = Evaluator::Context.new(header) { |context| yield context }
-            context.functions
+            Evaluator::Context.new(header) { |context| yield context }.functions
           else
             extensions
           end

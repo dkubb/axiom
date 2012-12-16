@@ -22,7 +22,7 @@ module Veritas
       # @api private
       def self.included(descendant)
         descendant.class_eval do
-          undef_method *PROXY_METHODS | ENUMERABLE_METHODS - RELATION_METHODS
+          undef_method(*PROXY_METHODS | ENUMERABLE_METHODS - RELATION_METHODS)
         end
       end
 

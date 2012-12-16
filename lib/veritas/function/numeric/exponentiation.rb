@@ -8,6 +8,8 @@ module Veritas
       class Exponentiation < Numeric
         include Comparable, Binary::Invertible, Binary
 
+        undef_method :inverse
+
         # Return the Exponentiation operation
         #
         # @example

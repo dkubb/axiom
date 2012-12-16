@@ -152,8 +152,8 @@ module Veritas
           when Undefined
             Evaluator::Context.new(header) { |context| yield context }.yield
           when Enumerable
-            predicate.reduce(TAUTOLOGY) do |predicate, (name, value)|
-              predicate.and(header[name].eq(value))
+            predicate.reduce(TAUTOLOGY) do |entry, (name, value)|
+              entry.and(header[name].eq(value))
             end
           else
             predicate
