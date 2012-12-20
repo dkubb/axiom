@@ -23,6 +23,16 @@ group :guard do
   gem 'guard',         '~> 1.5.4'
   gem 'guard-bundler', '~> 1.0.0'
   gem 'guard-rspec',   '~> 1.2.1'
+
+  # file system change event handling
+  gem 'rb-fchange', '~> 0.0.6', :require => false
+  gem 'rb-fsevent', '~> 0.9.2', :require => false
+  gem 'rb-inotify', '~> 0.8.8', :require => false
+
+  # notification handling
+  gem 'libnotify',               '~> 0.8.0', :require => false
+  gem 'rb-notifu',               '~> 0.0.4', :require => false
+  gem 'terminal-notifier-guard', '~> 1.5.3', :require => false
 end
 
 platform :jruby do
