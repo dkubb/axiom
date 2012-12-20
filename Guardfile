@@ -4,9 +4,13 @@ guard :bundler do
   watch('Gemfile')
 end
 
-guard :rspec do
-  # run all specs if the spec_helper or supporting files files are modified
-  watch('spec/spec_helper.rb')                      { 'spec' }
+guard :rspec, :cli => File.read('spec/spec.opts').split.join(' '), :keep_failed => false do
+  # run all specs if configuration is modified
+  watch('Guardfile')           { 'spec' }
+  watch('Gemfile.lock')        { 'spec' }
+  watch('spec/spec_helper.rb') { 'spec' }
+
+  # run all specs if supporting files files are modified
   watch(%r{\Aspec/(?:lib|support|shared)/.+\.rb\z}) { 'spec' }
 
   # run unit specs if associated lib code is modified
