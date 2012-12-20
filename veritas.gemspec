@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-11-26"
+  s.date = "2012-12-20"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -128,7 +128,6 @@ Gem::Specification.new do |s|
     "lib/veritas/relation/operation/set.rb",
     "lib/veritas/relation/operation/unary.rb",
     "lib/veritas/relation/proxy.rb",
-    "lib/veritas/support/abstract_class.rb",
     "lib/veritas/support/aliasable.rb",
     "lib/veritas/support/equalizer.rb",
     "lib/veritas/support/evaluator.rb",
@@ -157,7 +156,6 @@ Gem::Specification.new do |s|
     "spec/unit/range/overlaps_spec.rb",
     "spec/unit/range/to_inclusive_spec.rb",
     "spec/unit/time/pred_spec.rb",
-    "spec/unit/veritas/abstract_class/class_methods/new_spec.rb",
     "spec/unit/veritas/aggregate/call_spec.rb",
     "spec/unit/veritas/aggregate/class_methods/call_spec.rb",
     "spec/unit/veritas/aggregate/class_methods/default_spec.rb",
@@ -629,6 +627,7 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/operation/unary/header_spec.rb",
     "spec/unit/veritas/relation/proxy/each_spec.rb",
     "spec/unit/veritas/relation/proxy/hash_spec.rb",
+    "spec/unit/veritas/relation/proxy/method_missing_spec.rb",
     "spec/unit/veritas/relation/proxy/respond_to_spec.rb",
     "spec/unit/veritas/relation/replace_spec.rb",
     "spec/unit/veritas/tuple/call_spec.rb",
@@ -666,32 +665,35 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<abstract_type>, ["~> 0.0.1"])
-      s.add_runtime_dependency(%q<adamantium>, ["~> 0.0.3"])
+      s.add_runtime_dependency(%q<abstract_type>, ["~> 0.0.2"])
+      s.add_runtime_dependency(%q<adamantium>, ["~> 0.0.4"])
       s.add_runtime_dependency(%q<backports>, ["~> 2.6.4"])
       s.add_runtime_dependency(%q<descendants_tracker>, ["~> 0.0.1"])
       s.add_runtime_dependency(%q<equalizer>, ["~> 0.0.1"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
-      s.add_development_dependency(%q<rake>, ["~> 0.9.2"])
+      s.add_development_dependency(%q<rake>, ["~> 10.0.3"])
       s.add_development_dependency(%q<rspec>, ["~> 1.3.2"])
+      s.add_development_dependency(%q<yard>, ["~> 0.8.3"])
     else
-      s.add_dependency(%q<abstract_type>, ["~> 0.0.1"])
-      s.add_dependency(%q<adamantium>, ["~> 0.0.3"])
+      s.add_dependency(%q<abstract_type>, ["~> 0.0.2"])
+      s.add_dependency(%q<adamantium>, ["~> 0.0.4"])
       s.add_dependency(%q<backports>, ["~> 2.6.4"])
       s.add_dependency(%q<descendants_tracker>, ["~> 0.0.1"])
       s.add_dependency(%q<equalizer>, ["~> 0.0.1"])
       s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
-      s.add_dependency(%q<rake>, ["~> 0.9.2"])
+      s.add_dependency(%q<rake>, ["~> 10.0.3"])
       s.add_dependency(%q<rspec>, ["~> 1.3.2"])
+      s.add_dependency(%q<yard>, ["~> 0.8.3"])
     end
   else
-    s.add_dependency(%q<abstract_type>, ["~> 0.0.1"])
-    s.add_dependency(%q<adamantium>, ["~> 0.0.3"])
+    s.add_dependency(%q<abstract_type>, ["~> 0.0.2"])
+    s.add_dependency(%q<adamantium>, ["~> 0.0.4"])
     s.add_dependency(%q<backports>, ["~> 2.6.4"])
     s.add_dependency(%q<descendants_tracker>, ["~> 0.0.1"])
     s.add_dependency(%q<equalizer>, ["~> 0.0.1"])
     s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
-    s.add_dependency(%q<rake>, ["~> 0.9.2"])
+    s.add_dependency(%q<rake>, ["~> 10.0.3"])
     s.add_dependency(%q<rspec>, ["~> 1.3.2"])
+    s.add_dependency(%q<yard>, ["~> 0.8.3"])
   end
 end
