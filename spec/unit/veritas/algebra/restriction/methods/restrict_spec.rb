@@ -3,11 +3,11 @@
 require 'spec_helper'
 
 describe Algebra::Restriction::Methods, '#restrict' do
-  let(:object)          { described_class.new(header, body)              }
-  let(:header)          { [ [ :id, Integer ], [ :name, String ] ]        }
-  let(:body)            { [ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ].each }
-  let(:described_class) { Relation                                       }
-  let(:tautology)       { Function::Proposition::Tautology.instance      }
+  let(:object)          { described_class.new(header, body)                             }
+  let(:header)          { [ [ :id, Integer ], [ :name, String ] ]                       }
+  let(:body)            { LazyEnumerable.new([ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ]) }
+  let(:described_class) { Relation                                                      }
+  let(:tautology)       { Function::Proposition::Tautology.instance                     }
 
   context 'with a predicate' do
     subject { object.restrict(predicate) }

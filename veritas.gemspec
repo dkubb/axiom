@@ -152,6 +152,7 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
     "spec/support/config_alias.rb",
     "spec/support/ice_nine_config.rb",
+    "spec/support/lazy_enumerable.rb",
     "spec/unit/date/pred_spec.rb",
     "spec/unit/range/overlaps_spec.rb",
     "spec/unit/range/to_inclusive_spec.rb",

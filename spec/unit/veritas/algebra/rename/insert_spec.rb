@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Rename, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)         { described_class.new(operand, aliases)                      }
-  let(:operand)        { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ].each)         }
-  let(:other_relation) { Relation.new(header,               [ [ 2 ] ].each)         }
-  let(:aliases)        { described_class::Aliases.coerce(operand, :id => :other_id) }
-  let(:header)         { [ [ :other_id, Integer ] ]                                 }
+  let(:object)         { described_class.new(operand, aliases)                             }
+  let(:operand)        { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:other_relation) { Relation.new(header,               LazyEnumerable.new([ [ 2 ] ])) }
+  let(:aliases)        { described_class::Aliases.coerce(operand, :id => :other_id)        }
+  let(:header)         { [ [ :other_id, Integer ] ]                                        }
 
   shared_examples_for 'Algebra::Rename#insert' do
     it { should be_instance_of(described_class) }

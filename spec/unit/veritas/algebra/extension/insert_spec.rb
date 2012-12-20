@@ -5,15 +5,15 @@ require 'spec_helper'
 describe Algebra::Extension, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)         { described_class.new(operand, extensions) }
-  let(:operand)        { Relation.new(header, [ [ 1 ] ].each)     }
-  let(:extensions)     { { extension_attr => 1 }                  }
-  let(:extension_attr) { Attribute::Integer.new(:test)            }
-  let(:header)         { [ [ :id, Integer ] ]                     }
+  let(:object)         { described_class.new(operand, extensions)            }
+  let(:operand)        { Relation.new(header, LazyEnumerable.new([ [ 1 ] ])) }
+  let(:extensions)     { { extension_attr => 1 }                             }
+  let(:extension_attr) { Attribute::Integer.new(:test)                       }
+  let(:header)         { [ [ :id, Integer ] ]                                }
 
   context 'when other relation has matching extensions' do
     let(:other) do
-      Relation.new(header, [ [ 2 ] ].each).extend do |context|
+      Relation.new(header, LazyEnumerable.new([ [ 2 ] ])).extend do |context|
         context.add(:test, 1)
       end
     end
@@ -31,7 +31,7 @@ describe Algebra::Extension, '#insert' do
 
   context 'when other relation does not have the same extensions' do
      let(:other) do
-      Relation.new(header, [ [ 2 ] ].each).extend do |context|
+      Relation.new(header, LazyEnumerable.new([ [ 2 ] ])).extend do |context|
         context.add(:test, 2)
       end
     end
@@ -40,7 +40,7 @@ describe Algebra::Extension, '#insert' do
   end
 
   context 'when other relation is not an extension' do
-    let(:other) { Relation.new(header, [ [ 2 ] ].each) }
+    let(:other) { Relation.new(header, LazyEnumerable.new([ [ 2 ] ])) }
 
     specify { expect { subject }.to raise_error(ExtensionMismatchError, 'other relation must have matching extensions to be inserted') }
   end

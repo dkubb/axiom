@@ -7,7 +7,7 @@ describe Relation::Base, '#eql?' do
 
   let(:name)   { 'users'.freeze                          }
   let(:header) { [ [ :id, Integer ] ]                    }
-  let(:body)   { [ [ 1 ] ].each                          }
+  let(:body)   { LazyEnumerable.new([ [ 1 ] ])           }
   let(:object) { described_class.new(name, header, body) }
 
   before do
@@ -73,7 +73,7 @@ describe Relation::Base, '#eql?' do
   context 'with an object having a different body' do
     let(:other_name)   { name                                                      }
     let(:other_header) { header                                                    }
-    let(:other_body)   { [ [ 2 ] ].each                                            }
+    let(:other_body)   { LazyEnumerable.new([ [ 2 ] ])                             }
     let(:other)        { described_class.new(other_name, other_header, other_body) }
 
     it { should be(false) }
@@ -84,12 +84,12 @@ describe Relation::Base, '#eql?' do
   end
 
   context 'with an object having an equivalent header in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                                             }
-    let(:attribute2) { [ :name, String  ]                                             }
-    let(:header1)    { [ attribute1, attribute2 ]                                     }
-    let(:header2)    { [ attribute2, attribute1 ]                                     }
-    let(:object)     { described_class.new(name, header1, [ [ 1, 'Dan Kubb' ] ].each) }
-    let(:other)      { described_class.new(name, header2, [ [ 'Dan Kubb', 1 ] ].each) }
+    let(:attribute1) { [ :id,   Integer ]                                                            }
+    let(:attribute2) { [ :name, String  ]                                                            }
+    let(:header1)    { [ attribute1, attribute2 ]                                                    }
+    let(:header2)    { [ attribute2, attribute1 ]                                                    }
+    let(:object)     { described_class.new(name, header1, LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
+    let(:other)      { described_class.new(name, header2, LazyEnumerable.new([ [ 'Dan Kubb', 1 ] ])) }
 
     it { should be(true) }
 

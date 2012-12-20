@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe Relation::Operation::Limit::Methods, '#last' do
-  let(:described_class) { Relation                                                                }
-  let(:relation)        { described_class.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ].each) }
-  let(:object)          { relation.sort_by { |r| r.id }                                           }
+  let(:described_class) { Relation                                                                               }
+  let(:relation)        { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ], [ 2 ], [ 3 ] ])) }
+  let(:object)          { relation.sort_by { |r| r.id }                                                          }
 
   context 'with no arguments' do
     subject { object.last }

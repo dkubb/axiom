@@ -9,7 +9,7 @@ describe Relation, '#one' do
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
 
   context 'with a relation having no tuples' do
-    let(:body) { [].each }
+    let(:body) { LazyEnumerable.new([]) }
 
     specify { expect { subject }.to raise_error(NoTuplesError, 'one tuple expected, but was an empty set') }
 
@@ -17,7 +17,7 @@ describe Relation, '#one' do
   end
 
   context 'with a relation having one tuple' do
-    let(:body) { [ [ 1 ] ].each }
+    let(:body) { LazyEnumerable.new([ [ 1 ] ]) }
 
     it { should be_instance_of(Tuple) }
 
@@ -27,7 +27,7 @@ describe Relation, '#one' do
   end
 
   context 'with a relation having many tuples' do
-    let(:body) { [ [ 1 ], [ 2 ] ].each }
+    let(:body) { LazyEnumerable.new([ [ 1 ], [ 2 ] ]) }
 
     specify { expect { subject }.to raise_error(ManyTuplesError, 'one tuple expected, but set contained 2 tuples') }
 

@@ -6,7 +6,7 @@ describe Relation::Base, '#name' do
   subject { object.name }
 
   let(:header) { [ [ :id, Integer ] ]                    }
-  let(:body)   { [ [ 1 ] ].each                          }
+  let(:body)   { LazyEnumerable.new([ [ 1 ] ])           }
   let(:object) { described_class.new(name, header, body) }
 
   context 'when name is a frozen String' do

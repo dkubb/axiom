@@ -7,7 +7,7 @@ describe Relation::Base, '#hash' do
 
   let(:name)   { 'users'.freeze                             }
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:body)   { [].each                                    }
+  let(:body)   { LazyEnumerable.new([])                     }
   let(:object) { described_class.new(name, header, body)    }
 
   it_should_behave_like 'a hash method'

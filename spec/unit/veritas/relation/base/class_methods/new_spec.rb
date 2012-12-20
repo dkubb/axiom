@@ -22,7 +22,7 @@ describe Relation::Base, '.new' do
   context 'when tuples are provided' do
     subject { object.new(name, header, tuples) }
 
-    let(:tuples) { [ [ 1 ] ].each }
+    let(:tuples) { LazyEnumerable.new([ [ 1 ] ]) }
 
     it { should be_instance_of(described_class) }
 

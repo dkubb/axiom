@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Summarization::Methods, '#summarize' do
   subject { object.summarize(summarize_with, &block) }
 
-  let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String ] ], [ [ 1, 'Dan Kubb' ] ].each) }
-  let(:described_class) { Relation                                                                                 }
-  let(:block)           { lambda { |r| r.add(:test, r.id.count) }                                                  }
-  let(:summarizers)     { [ :test, function ]                                                                      }
-  let(:function)        { object[:id].count                                                                        }
+  let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
+  let(:described_class) { Relation                                                                                                }
+  let(:block)           { lambda { |r| r.add(:test, r.id.count) }                                                                 }
+  let(:summarizers)     { [ :test, function ]                                                                                     }
+  let(:function)        { object[:id].count                                                                                       }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }

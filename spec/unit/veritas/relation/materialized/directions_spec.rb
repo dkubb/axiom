@@ -6,7 +6,7 @@ describe Relation::Materialized, '#directions' do
   subject { object.directions }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuples) { [].each                                    }
+  let(:tuples) { LazyEnumerable.new([])                     }
 
   context 'with directions' do
     let(:object)     { described_class.new(header, tuples, directions) }

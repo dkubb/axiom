@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Algebra::Rename, '#directions' do
   subject { object.directions }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [].each)    }
-  let(:object)   { described_class.new(operand, :id => :other_id) }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([])) }
+  let(:object)   { described_class.new(operand, :id => :other_id)             }
 
   context 'containing a relation' do
     let(:operand) { relation }

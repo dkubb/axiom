@@ -4,13 +4,13 @@ require 'spec_helper'
 
 [ :join, :+ ].each do |method|
   describe Algebra::Join::Methods, "##{method}" do
-    let(:described_class) { Relation                                                                                                     }
-    let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String  ] ], [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ].each) }
+    let(:described_class) { Relation                                                                                                                    }
+    let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String  ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ])) }
 
     context 'without a block' do
       subject { object.send(method, other) }
 
-      let(:other) { described_class.new([ [ :id, Integer ], [ :age, Integer ] ], [ [ 1, 35 ] ]) }
+      let(:other) { described_class.new([ [ :id, Integer ], [ :age, Integer ] ], LazyEnumerable.new([ [ 1, 35 ] ])) }
 
       it { should be_instance_of(Algebra::Join) }
     end

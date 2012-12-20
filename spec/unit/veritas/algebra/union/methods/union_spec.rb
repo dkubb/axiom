@@ -6,10 +6,10 @@ require 'spec_helper'
   describe Algebra::Union::Methods, "##{method}" do
     subject { object.send(method, other) }
 
-    let(:described_class) { Relation                                    }
-    let(:header)          { [ [ :id, Integer ] ]                        }
-    let(:other)           { described_class.new(header, [ [ 2 ] ].each) }
-    let(:object)          { described_class.new(header, [ [ 1 ] ].each) }
+    let(:described_class) { Relation                                                   }
+    let(:header)          { [ [ :id, Integer ] ]                                       }
+    let(:other)           { described_class.new(header, LazyEnumerable.new([ [ 2 ] ])) }
+    let(:object)          { described_class.new(header, LazyEnumerable.new([ [ 1 ] ])) }
 
     it { should be_instance_of(Algebra::Union) }
 

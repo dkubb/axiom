@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Relation::Operation::Order, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)     { described_class.new(relation, directions)   }
-  let(:relation)   { Relation.new([ attribute ], [ [ 1 ] ].each) }
-  let(:attribute)  { Attribute::Integer.new(:id)                 }
-  let(:directions) { [ attribute.desc ]                          }
+  let(:object)     { described_class.new(relation, directions)                  }
+  let(:relation)   { Relation.new([ attribute ], LazyEnumerable.new([ [ 1 ] ])) }
+  let(:attribute)  { Attribute::Integer.new(:id)                                }
+  let(:directions) { [ attribute.desc ]                                         }
 
   context 'when other relation has matching directions' do
-    let(:other) { Relation.new([ attribute ], [ [ 2 ] ].each).sort_by(directions) }
+    let(:other) { Relation.new([ attribute ], LazyEnumerable.new([ [ 2 ] ])).sort_by(directions) }
 
     it { should be_instance_of(described_class) }
 
@@ -25,13 +25,13 @@ describe Relation::Operation::Order, '#insert' do
   end
 
   context 'when other relation does not have the same directions' do
-    let(:other) { Relation.new([ attribute ], [ [ 2 ] ].each).sort_by([ attribute ]) }
+    let(:other) { Relation.new([ attribute ], LazyEnumerable.new([ [ 2 ] ])).sort_by([ attribute ]) }
 
     specify { expect { subject }.to raise_error(OrderMismatchError, 'other relation must have matching directions to be inserted') }
   end
 
   context 'when other relation is not an order' do
-    let(:other) { Relation.new([ attribute ], [ [ 2 ] ].each) }
+    let(:other) { Relation.new([ attribute ], LazyEnumerable.new([ [ 2 ] ])) }
 
     specify { expect { subject }.to raise_error(OrderMismatchError, 'other relation must have matching directions to be inserted') }
   end

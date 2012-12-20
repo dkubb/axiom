@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation, '#materialized?' do
   subject { object.materialized? }
 
-  let(:object) { described_class.new([ [ :id, Integer ] ], [].each) }
+  let(:object) { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([])) }
 
   before do
     object.should be_instance_of(described_class)

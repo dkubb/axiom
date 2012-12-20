@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation, '#materialize' do
   subject { object.materialize }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ])                       }
-  let(:object) { described_class.new(header, [ [ 1 ] ].each).sort_by { |r| r.id } }
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ])                                      }
+  let(:object) { described_class.new(header, LazyEnumerable.new([ [ 1 ] ])).sort_by { |r| r.id } }
 
   before do
     object.should be_kind_of(described_class)

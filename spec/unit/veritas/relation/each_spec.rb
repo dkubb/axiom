@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Relation, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:body)   { [ [ 1 ], [ 2 ], [ 2 ] ].each               }  # use an Enumerator
-  let(:object) { described_class.new(header, body)          }
-  let(:yields) { []                                         }
+  let(:header) { Relation::Header.new([ [ :id, Integer ] ])  }
+  let(:body)   { LazyEnumerable.new([ [ 1 ], [ 2 ], [ 2 ] ]) }
+  let(:object) { described_class.new(header, body)           }
+  let(:yields) { []                                          }
 
   before do
     object.should be_instance_of(described_class)
@@ -26,9 +26,9 @@ end
 describe Relation do
   subject { object.new(header, body) }
 
-  let(:header) { [ [ :id, Integer ] ] }
-  let(:body)   { [ [ 1 ] ].each       }
-  let(:object) { described_class      }
+  let(:header) { [ [ :id, Integer ] ]          }
+  let(:body)   { LazyEnumerable.new([ [ 1 ] ]) }
+  let(:object) { described_class               }
 
   before do
     subject.should be_instance_of(object)

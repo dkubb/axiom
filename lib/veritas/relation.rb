@@ -51,7 +51,8 @@ module Veritas
     #
     # @api public
     def self.new(*args)
-      if equal?(Relation) && args.last.respond_to?(:size)
+      last = args.last
+      if superclass.equal?(Object) && last.respond_to?(:size) && last.size.kind_of?(Integer)
         Materialized.new(*args)
       else
         super

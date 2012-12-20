@@ -6,10 +6,10 @@ require 'spec_helper'
   describe Algebra::Intersection::Methods, "##{method}" do
     subject { object.send(method, other) }
 
-    let(:described_class) { Relation                                    }
-    let(:header)          { [ [ :id, Integer ] ]                        }
-    let(:object)          { described_class.new(header, [ [ 1 ] ].each) }
-    let(:other)           { described_class.new(header, [ [ 2 ] ].each) }
+    let(:described_class) { Relation                                                   }
+    let(:header)          { [ [ :id, Integer ] ]                                       }
+    let(:object)          { described_class.new(header, LazyEnumerable.new([ [ 1 ] ])) }
+    let(:other)           { described_class.new(header, LazyEnumerable.new([ [ 2 ] ])) }
 
     it { should be_instance_of(Algebra::Intersection) }
 

@@ -6,7 +6,7 @@ describe Relation, '#hash' do
   subject { object.hash }
 
   let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:body)   { [].each                                    }
+  let(:body)   { LazyEnumerable.new([])                     }
   let(:object) { described_class.new(header, body)          }
 
   before do

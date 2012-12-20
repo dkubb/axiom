@@ -13,13 +13,13 @@ describe Relation, '#empty?' do
   end
 
   context 'with a body containing no entries' do
-    let(:body) { [].each }  # use an Enumerator
+    let(:body) { LazyEnumerable.new([]) }
 
     it { should be(true) }
   end
 
   context 'with a body containing an entry' do
-    let(:body) { [ [ 1 ] ].each }  # use an Enumerator
+    let(:body) { LazyEnumerable.new([ [ 1 ] ]) }
 
     it { should be(false) }
   end
