@@ -1,21 +1,18 @@
 # encoding: utf-8
 
-require 'delegate'
-
-# This is a work-around for a bug in rubinius 2.0.0-rc1
-# See: https://github.com/rubinius/rubinius/issues/2104
-SimpleDelegator.class_eval do
-  if instance_method(:dup).arity == 1
-    def dup
-      new = super
-      new.__setobj__(__getobj__.dup)
-      new
-    end
+class LazyEnumerable < BasicObject
+  def initialize(enumerable)
+    @enumerable = enumerable
   end
-end
 
-class LazyEnumerable < SimpleDelegator
   def size
     nil
   end
+
+private
+
+  def method_missing(*args, &block)
+    @enumerable.__send__(*args, &block)
+  end
+
 end
