@@ -186,8 +186,9 @@ module Veritas
         # @api private
         def self.coerce(attributes, aliases)
           return aliases if aliases.kind_of?(Aliases)
+          header  = Relation::Header.coerce(attributes)
           renames = aliases.map do |old_attr, new_attr|
-            coerce_alias_pair(attributes, old_attr, new_attr)
+            coerce_alias_pair(header, old_attr, new_attr)
           end
           new(Hash[renames].freeze)
         end

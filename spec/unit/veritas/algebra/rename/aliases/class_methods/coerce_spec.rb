@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Rename::Aliases, '.coerce' do
   subject { object.coerce(attributes, aliases) }
 
-  let(:attribute)  { Attribute::Integer.new(:id)         }
-  let(:attributes) { Relation::Header.new([ attribute ]) }
-  let(:object)     { described_class                     }
+  let(:attribute)  { Attribute::Integer.new(:id) }
+  let(:attributes) { [ attribute ]               }
+  let(:object)     { described_class             }
 
   context 'the aliases are an Alias object' do
     let(:old_attr) { attribute                        }
