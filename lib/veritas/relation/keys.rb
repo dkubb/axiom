@@ -225,6 +225,9 @@ module Veritas
         self.class.coerce(object)
       end
 
+      # Represent an empty set of keys
+      EMPTY = new
+
     end # class Keys
   end # class Relation
 end # module Veritas
