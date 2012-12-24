@@ -16,32 +16,45 @@ module Veritas
         :-  => :difference
       )
 
+      # Coerce an Array-like object into a Header
+      #
+      # @param [Header, #to_ary] object
+      #   the header or attributes
+      #
+      # @yield [attribute]
+      #
+      # @yieldparam [Attribute, Array] attribute
+      #
+      # @return [Header]
+      #
+      # @api private
+      def self.coerce(object)
+        if object.kind_of?(self)
+          object
+        else
+          # Find the attribute with the block if possible, then fallback
+          # to the default coercion method.
+          block = lambda do |attribute|
+            block_given? and yield(attribute) or coerce_attribute(attribute)
+          end
+          new(Array(object).map(&block))
+        end
+      end
+
       # Instantiate a Header
       #
       # @example
       #   header = Header.new(attributes)
       #
-      # @param [#to_ary] attributes
+      # @param [Array<Attribute>] attributes
       #   optional attributes
       #
       # @return [Header]
       #
       # @api public
-      def self.new(attributes = nil)
-        attributes = coerce_attributes(attributes)
+      def self.new(attributes = [])
         assert_unique_names(attributes.map { |attribute| attribute.name })
         super
-      end
-
-      # Coerce the attributes into an Array of Attribute objects
-      #
-      # @param [Array<Attribute>] attributes
-      #
-      # @return [Array<Attribute>]
-      #
-      # @api private
-      def self.coerce_attributes(attributes)
-        Array(attributes).map { |attribute| coerce_attribute(attribute) }
       end
 
       # Coerce the attribute into an Attribute
@@ -87,20 +100,20 @@ module Veritas
         names.select { |name| names.count(name) > 1 }.uniq!
       end
 
-      private_class_method :coerce_attributes, :coerce_attribute, :assert_unique_names, :duplicate_names
+      private_class_method :coerce_attribute, :assert_unique_names, :duplicate_names
 
       # Initialize a Header
       #
       # @example
       #   header = Header.new(attributes)
       #
-      # @param [#to_ary] attributes
+      # @param [Array] attributes
       #
       # @return [undefined]
       #
       # @api public
       def initialize(attributes)
-        @attributes    = freeze_object(attributes.to_ary)
+        @attributes    = freeze_object(attributes)
         @attribute_for = Hash[@attributes.map { |attribute| attribute.name }.zip(@attributes)]
       end
 
@@ -154,7 +167,7 @@ module Veritas
       #
       # @api public
       def project(attributes)
-        new(attributes.map { |attribute| self[attribute] })
+        coerce(attributes)
       end
 
       # Return a header with the new attributes added
@@ -169,7 +182,7 @@ module Veritas
       #
       # @api public
       def extend(attributes)
-        new(@attributes + attributes.to_ary)
+        new(to_ary + coerce(attributes))
       end
 
       # Return a header with the attributes renamed
@@ -198,7 +211,7 @@ module Veritas
       #
       # @api public
       def intersect(other)
-        new(to_ary & other)
+        new(to_ary & coerce(other))
       end
 
       # Return the union of the header with another header
@@ -212,7 +225,7 @@ module Veritas
       #
       # @api public
       def union(other)
-        new(to_ary | other)
+        new(to_ary | coerce(other))
       end
 
       # Return the difference of the header with another header
@@ -226,7 +239,7 @@ module Veritas
       #
       # @api public
       def difference(other)
-        new(to_ary - other)
+        new(to_ary - coerce(other))
       end
 
       # Convert the Header into an Array
@@ -274,20 +287,10 @@ module Veritas
       # @return [Header]
       #
       # @api private
-      def coerce(object)
-        self.class.coerce(object)
-      end
-
-      # Coerce the object into a Header
-      #
-      # @param [Header, #to_ary] object
-      #   the header or attributes
-      #
-      # @return [Header]
-      #
-      # @api private
-      def self.coerce(object)
-        object.kind_of?(self) ? object : new(object)
+      def coerce(*args)
+        self.class.coerce(*args) do |attribute|
+          @attribute_for[attribute]
+        end
       end
 
       # Represent an empty set of attributes

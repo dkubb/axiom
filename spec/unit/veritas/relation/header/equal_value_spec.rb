@@ -72,6 +72,16 @@ describe Relation::Header, '#==' do
     end
   end
 
+  context 'with an equivalent object with no type responding to #to_ary' do
+    let(:other) { [ :id ] }
+
+    it { should be(true) }
+
+    it 'is symmetric' do
+      should eql(other == object)
+    end
+  end
+
   context 'with a different object responding to #to_ary' do
     let(:other) { [ [ :name, String ] ] }
 

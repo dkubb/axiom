@@ -6,21 +6,20 @@ require 'spec_helper'
   describe Relation::Header, "##{method}" do
     subject { object.send(method, other) }
 
-    let(:other)  { described_class.new(attributes)       }
-    let(:object) { described_class.new(other_attributes) }
+    let(:object) { described_class.coerce([ [ :id, Integer ] ]) }
 
     context 'when the attributes overlap' do
-      let(:attributes)       { [ [ :name, String ] ] }
-      let(:other_attributes) { [ [ :name, String ] ] }
+      let(:other) { [ [ :id, Integer ] ] }
+
+      it { pending { should equal(object) } }
 
       it { should be_instance_of(described_class) }
 
-      it { should == [ [ :name, String ] ] }
+      its(:to_ary) { should == other }
     end
 
     context 'when the attributes do not overlap' do
-      let(:attributes)       { [ [ :name, String  ] ] }
-      let(:other_attributes) { [ [ :id,   Integer ] ] }
+      let(:other) { [ [ :name, String ] ] }
 
       it { should be_instance_of(described_class) }
 
