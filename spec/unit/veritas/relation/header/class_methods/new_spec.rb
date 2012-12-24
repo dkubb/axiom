@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Relation::Header, '.new' do
   subject { object.new(argument) }
 
-  let(:object)         { described_class              }
-  let(:id_attribute)   { Attribute::Integer.new(:id)  }
-  let(:name_attribute) { Attribute::String.new(:name) }
-  let(:age_attribute)  { Attribute::Integer.new(:age) }
+  let(:object) { described_class              }
+  let(:id)     { Attribute::Integer.new(:id)  }
+  let(:name)   { Attribute::String.new(:name) }
+  let(:age)    { Attribute::Integer.new(:age) }
 
   context 'with no arguments' do
     subject { object.new }
@@ -19,7 +19,7 @@ describe Relation::Header, '.new' do
   end
 
   context 'with an argument that responds to #to_ary and do not contain duplicates' do
-    let(:argument) { [ id_attribute, name_attribute ] }
+    let(:argument) { [ id, name ] }
 
     it { should be_instance_of(object) }
 
@@ -27,7 +27,7 @@ describe Relation::Header, '.new' do
   end
 
   context 'with an argument that responds to #to_ary and contain duplicates' do
-    let(:argument) { [ id_attribute, id_attribute, name_attribute, name_attribute, name_attribute, age_attribute ] }
+    let(:argument) { [ id, id, name, name, name, age ] }
 
     specify { expect { subject }.to raise_error(DuplicateNameError, 'duplicate names: id, name') }
   end
