@@ -47,9 +47,9 @@ module Veritas
 
       # Initialize a String Attribute
       #
-      # @param [#to_sym] name
+      # @param [#to_sym] _name
       #   the attribute name
-      # @param [#to_hash] options
+      # @param [#to_hash] _options
       #   the options for the attribute
       # @option options [Boolean] :required (true)
       #   if true, then the value cannot be nil
@@ -61,7 +61,7 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def initialize(*)
+      def initialize(_name, _options = {})
         super
         @min_length = @options.fetch(:min_length, DEFAULT_MIN_LENGTH)
         @max_length = @options.fetch(:max_length, DEFAULT_MAX_LENGTH)

@@ -62,12 +62,12 @@ module Veritas
       # @example
       #   proposition = proposition.rename(aliases)
       #
-      # @param [Algebra::Rename::Aliases] aliases
+      # @param [Algebra::Rename::Aliases] _aliases
       #
       # @return [self]
       #
       # @api public
-      def rename(*)
+      def rename(_aliases)
         self
       end
 

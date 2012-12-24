@@ -26,6 +26,9 @@ module Veritas
 
       # Return the type returned from #call
       #
+      # @example
+      #   type = Veritas::Aggregate::Count.type
+      #
       # @return [Class<Attribute::Integer>]
       #
       # @api public

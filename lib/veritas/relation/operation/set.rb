@@ -25,13 +25,13 @@ module Veritas
 
         # Initialize a Set
         #
-        # @param [Relation] left
-        # @param [Relation] right
+        # @param [Relation] _left
+        # @param [Relation] _right
         #
         # @return [undefined]
         #
         # @api private
-        def initialize(*)
+        def initialize(_left, _right)
           super
           @header = left.header
         end

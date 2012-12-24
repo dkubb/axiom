@@ -11,7 +11,7 @@ module Veritas
       # @example
       #   standard_deviation = StandardDeviation.finalize(accumulator)
       #
-      # @param [Array(Numeric, Integer, Numeric)] accumulator
+      # @param [Array(Numeric, Integer, Numeric)] _accumulator
       #
       # @return [Float]
       #   returned for a non-empty set
@@ -19,12 +19,15 @@ module Veritas
       #   returned for an empty set
       #
       # @api public
-      def self.finalize(*)
+      def self.finalize(_accumulator)
         variance = super
         Math.sqrt(variance) if variance
       end
 
       # Return the type returned from #call
+      #
+      # @example
+      #   type = Veritas::Aggregate::StandardDeviation.type
       #
       # @return [Class<Attribute::Float>]
       #

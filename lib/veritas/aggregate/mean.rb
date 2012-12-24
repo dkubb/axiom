@@ -46,6 +46,9 @@ module Veritas
 
       # Return the type returned from #call
       #
+      # @example
+      #   type = Veritas::Aggregate::Mean.type
+      #
       # @return [Class<Attribute::Float>]
       #
       # @api public

@@ -118,6 +118,8 @@ module Veritas
     # @example
     #   tuple = relation.one
     #
+    # @return [Tuple]
+    #
     # @raise [NoTuplesError]
     #   raised if no tuples are returned
     # @raise [ManyTuplesError]

@@ -27,6 +27,9 @@ module Veritas
 
       # Return the type returned from #call
       #
+      # @example
+      #   type = Veritas::Aggregate::Minimum.type
+      #
       # @return [Class<Attribute::Numeric>]
       #
       # @api public

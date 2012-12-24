@@ -160,7 +160,7 @@ module Veritas
       # Return a header with the new attributes added
       #
       # @example
-      #   projected = header.project(attributes)
+      #   extended = header.extend(attributes)
       #
       # @param [#to_ary] attributes
       #   the attributes to add to the header
@@ -182,40 +182,49 @@ module Veritas
       #
       # @return [Header]
       #
-      # @api private
+      # @api public
       def rename(aliases)
         new(map { |attribute| aliases[attribute] })
       end
 
       # Return the intersection of the header with another header
       #
+      # @example
+      #   intersection = header.intersect(other)
+      #
       # @param [Header] other
       #
       # @return [Header]
       #
-      # @api private
+      # @api public
       def intersect(other)
         new(to_ary & other)
       end
 
       # Return the union of the header with another header
       #
+      # @example
+      #   union = header.union(other)
+      #
       # @param [Header] other
       #
       # @return [Header]
       #
-      # @api private
+      # @api public
       def union(other)
         new(to_ary | other)
       end
 
       # Return the difference of the header with another header
       #
+      # @example
+      #   difference = header.difference(other)
+      #
       # @param [Header] other
       #
       # @return [Header]
       #
-      # @api private
+      # @api public
       def difference(other)
         new(to_ary - other)
       end
@@ -227,7 +236,7 @@ module Veritas
       #
       # @return [Array]
       #
-      # @api private
+      # @api public
       def to_ary
         @attributes
       end
@@ -269,7 +278,7 @@ module Veritas
         self.class.coerce(object)
       end
 
-      # Coerce an Array-like object into a Header
+      # Coerce the object into a Header
       #
       # @param [Header, #to_ary] object
       #   the header or attributes

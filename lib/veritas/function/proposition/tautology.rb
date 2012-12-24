@@ -51,12 +51,12 @@ module Veritas
         # @example
         #   tautology.or(other)  # => tautology
         #
-        # @param [Function]
+        # @param [Function] _other
         #
         # @return [self]
         #
         # @api public
-        def or(*)
+        def or(_other)
           self
         end
 

@@ -37,12 +37,12 @@ module Veritas
         # @example
         #   contradiction.and(other)  # => contradiction
         #
-        # @param [Function]
+        # @param [Function] _other
         #
         # @return [self]
         #
         # @api public
-        def and(*)
+        def and(_other)
           self
         end
 
