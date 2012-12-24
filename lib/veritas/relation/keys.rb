@@ -113,7 +113,11 @@ module Veritas
       #
       # @api public
       def extend(attributes)
-        new(map { |key| key | attributes })
+        if empty?
+          coerce(attributes)
+        else
+          new(map { |key| key | attributes })
+        end
       end
 
       # Return keys with the attributes renamed
