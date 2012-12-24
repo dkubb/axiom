@@ -281,8 +281,7 @@ module Veritas
 
       # Coerce the object into a Header
       #
-      # @param [Header, #to_ary] object
-      #   the header or attributes
+      # @param [Array] args
       #
       # @return [Header]
       #
