@@ -8,7 +8,7 @@ describe Relation::Operation::Order::DirectionSet, '#rename' do
   let(:attribute) { Attribute::Integer.new(:id)                               }
   let(:header)    { Relation::Header.new([ attribute ])                       }
   let(:aliases)   { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
-  let(:object)    { described_class.new([ attribute ])                        }
+  let(:object)    { described_class.coerce([ attribute ])                     }
 
   it { should_not equal(object) }
 

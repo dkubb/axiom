@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '#project' do
   subject { object.project(attributes) }
 
-  let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:attributes) { [ header[:id] ]                                               }
-  let(:object)     { described_class.new(header)                                   }
+  let(:header)     { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:attributes) { [ header[:id] ]                                                  }
+  let(:object)     { described_class.coerce(header)                                   }
 
   it { should_not equal(object) }
 

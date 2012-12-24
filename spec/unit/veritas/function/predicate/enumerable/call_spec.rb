@@ -6,7 +6,7 @@ describe Function::Predicate::Enumerable, '#call' do
   subject { object.call(tuple) }
 
   let(:described_class) { Class.new(Function) { include Function::Binary } }
-  let(:header)          { Relation::Header.new([ [ :id, Integer ] ])       }
+  let(:header)          { Relation::Header.coerce([ [ :id, Integer ] ])    }
   let(:tuple)           { Tuple.new(header, [ 1 ])                         }
 
   before do

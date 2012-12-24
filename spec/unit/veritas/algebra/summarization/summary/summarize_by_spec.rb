@@ -7,7 +7,7 @@ describe Algebra::Summarization::Summary, '#summarize_by' do
 
   let(:object)     { described_class.new(summarizer)                       }
   let(:summarizer) { lambda { |accumulator, tuple| accumulator.to_i.succ } }
-  let(:header)     { Relation::Header.new([ [ :id, Integer ] ])            }
+  let(:header)     { Relation::Header.coerce([ [ :id, Integer ] ])         }
   let(:tuple)      { Tuple.new(header, [ 1 ])                              }
   let(:projection) { tuple.project([])                                     }
 

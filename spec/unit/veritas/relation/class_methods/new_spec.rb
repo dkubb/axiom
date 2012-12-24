@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation, '.new' do
   subject { object.new(header, body) }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:object) { described_class                            }
-  let(:body)   { [ [ 1 ] ]                                  }
+  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
+  let(:object) { described_class                               }
+  let(:body)   { [ [ 1 ] ]                                     }
 
   context 'with an Enumerable responding to #size' do
     it { should be_instance_of(Relation::Materialized) }

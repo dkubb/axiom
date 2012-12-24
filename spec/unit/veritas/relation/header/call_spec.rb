@@ -6,7 +6,7 @@ require 'spec_helper'
   describe Relation::Header, "##{method}" do
     subject { object.send(method, name) }
 
-    let(:object) { described_class.new([ [ :id, Integer ] ]) }
+    let(:object) { described_class.coerce([ [ :id, Integer ] ]) }
 
     context 'with a known attribute name' do
       let(:name) { :id }

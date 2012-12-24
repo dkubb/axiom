@@ -8,7 +8,7 @@ describe Relation::Operation::Limit, '#delete' do
   let(:object)  { described_class.new(operand, 1)                 }
   let(:other)   { stub('other')                                   }
   let(:operand) { Relation.new(header, [ [ 1 ] ]).sort_by(header) }
-  let(:header)  { Relation::Header.new([ [ :id, Integer ] ])      }
+  let(:header)  { Relation::Header.coerce([ [ :id, Integer ] ])   }
 
   specify { expect { subject }.to raise_error(ImmutableRelationError, 'deleting from a limit is impossible') }
 end

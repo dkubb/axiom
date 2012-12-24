@@ -5,16 +5,16 @@ require 'spec_helper'
 describe Relation::Header, '#empty?' do
   subject { object.empty? }
 
-  let(:object) { described_class.new(entries) }
+  let(:object) { described_class.new(attributes) }
 
-  context 'with entries' do
-    let(:entries) { [ [ :id, Integer ] ] }
+  context 'with attributes' do
+    let(:attributes) { [ Attribute::Integer.new(:id) ] }
 
     it { should be(false) }
   end
 
-  context 'without entries' do
-    let(:entries) { [] }
+  context 'without attributes' do
+    let(:attributes) { [] }
 
     it { should be(true) }
   end

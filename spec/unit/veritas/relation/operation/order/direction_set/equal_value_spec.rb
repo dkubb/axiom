@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '#==' do
   subject { object == other }
 
-  let(:attributes) { [ Attribute::Integer.new(:id) ] }
-  let(:object)     { described_class.new(attributes) }
+  let(:attributes) { [ Attribute::Integer.new(:id) ]    }
+  let(:object)     { described_class.coerce(attributes) }
 
   context 'with the same object' do
     let(:other) { object }
@@ -29,7 +29,7 @@ describe Relation::Operation::Order::DirectionSet, '#==' do
   end
 
   context 'with equivalent object of a subclass' do
-    let(:other) { Class.new(described_class).new(attributes) }
+    let(:other) { Class.new(described_class).coerce(attributes) }
 
     it { should be(true) }
 
@@ -39,8 +39,8 @@ describe Relation::Operation::Order::DirectionSet, '#==' do
   end
 
   context 'with an object having different attributes' do
-    let(:other_attributes) { [ Attribute::Integer.new(:other_id) ] }
-    let(:other)            { described_class.new(other_attributes) }
+    let(:other_attributes) { [ Attribute::Integer.new(:other_id) ]    }
+    let(:other)            { described_class.coerce(other_attributes) }
 
     it { should be(false) }
 
@@ -50,10 +50,10 @@ describe Relation::Operation::Order::DirectionSet, '#==' do
   end
 
   context 'with an object having equivalent attributes in a different order' do
-    let(:attribute1) { Attribute::Integer.new(:id)                     }
-    let(:attribute2) { Attribute::String.new(:name)                    }
-    let(:object)     { described_class.new([ attribute1, attribute2 ]) }
-    let(:other)      { described_class.new([ attribute2, attribute1 ]) }
+    let(:attribute1) { Attribute::Integer.new(:id)                        }
+    let(:attribute2) { Attribute::String.new(:name)                       }
+    let(:object)     { described_class.coerce([ attribute1, attribute2 ]) }
+    let(:other)      { described_class.coerce([ attribute2, attribute1 ]) }
 
     it { should be(false) }
 

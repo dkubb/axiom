@@ -8,7 +8,7 @@ describe Relation::Header, '.coerce' do
   let(:object) { described_class }
 
   context 'when the argument is a Header' do
-    let(:argument) { object.new([ [ :id, Integer ] ]) }
+    let(:argument) { object.new([ Attribute::Integer.new(:id) ]) }
 
     it { should equal(argument) }
   end

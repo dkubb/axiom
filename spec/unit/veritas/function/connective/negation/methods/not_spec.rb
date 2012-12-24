@@ -5,9 +5,9 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
 [ :not, :- ].each do |method|
   describe Function::Connective::Negation::Methods, "##{method}" do
-    let(:described_class) { NegationMethodsSpecs::Object               }
-    let(:header)          { Relation::Header.new([ [ :id, Integer ] ]) }
-    let(:object)          { described_class.new                        }
+    let(:described_class) { NegationMethodsSpecs::Object                  }
+    let(:header)          { Relation::Header.coerce([ [ :id, Integer ] ]) }
+    let(:object)          { described_class.new                           }
 
     before do
       def object.eql?(other)

@@ -7,7 +7,7 @@ describe Function::Binary, '#call' do
   subject { object.call(tuple) }
 
   let(:described_class) { BinarySpecs::Object                               }
-  let(:header)          { Relation::Header.new([ [ :id, Integer ] ])        }
+  let(:header)          { Relation::Header.coerce([ [ :id, Integer ] ])     }
   let(:left)            { Function::Predicate::Equality.new(header[:id], 1) }
   let(:right)           { Function::Predicate::Equality.new(header[:id], 2) }
   let(:tuple)           { Tuple.new(header, [ 1 ])                          }

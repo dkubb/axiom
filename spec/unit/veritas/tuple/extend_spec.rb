@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Tuple, '#extend' do
   subject { object.extend(new_header, extensions) }
 
-  let(:header)     { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ]) }
-  let(:new_header) { header | [ [ :test, Integer ] ]                               }
-  let(:object)     { described_class.new(header, [ 1, 'Dan Kubb' ])                }
+  let(:header)     { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ]) }
+  let(:new_header) { header | [ [ :test, Integer ] ]                                  }
+  let(:object)     { described_class.new(header, [ 1, 'Dan Kubb' ])                   }
 
   context 'when the extension is a Proc' do
     let(:extensions) { [ lambda { |tuple| 1 } ] }

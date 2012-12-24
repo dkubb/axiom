@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation, '#one' do
   subject { object.one }
 
-  let(:object) { described_class.new(header, body)          }
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
+  let(:object) { described_class.new(header, body)             }
+  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
 
   context 'with a relation having no tuples' do
     let(:body) { LazyEnumerable.new([]) }

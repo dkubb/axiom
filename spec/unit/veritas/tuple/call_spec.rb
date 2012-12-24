@@ -7,8 +7,8 @@ require 'spec_helper'
   describe Tuple, "##{method}" do
     subject { object.send(method, attribute) }
 
-    let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-    let(:object) { described_class.new(header, [ 1 ])         }
+    let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
+    let(:object) { described_class.new(header, [ 1 ])            }
 
     context 'with a known attribute' do
       let(:attribute) { header[:id] }

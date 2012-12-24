@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Summarization::Summaries, '#summarize_by' do
   subject { object.summarize_by(header, tuple) }
 
-  let(:object)      { described_class.new(summarizers)           }
-  let(:summarizers) { { :count => summarizer }                   }
-  let(:summarizer)  { mock('Summarizer', :call => 1)             }
-  let(:header)      { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuple)       { Tuple.new(header, [ 1 ])                   }
+  let(:object)      { described_class.new(summarizers)              }
+  let(:summarizers) { { :count => summarizer }                      }
+  let(:summarizer)  { mock('Summarizer', :call => 1)                }
+  let(:header)      { Relation::Header.coerce([ [ :id, Integer ] ]) }
+  let(:tuple)       { Tuple.new(header, [ 1 ])                      }
 
   it_should_behave_like 'a command method'
 

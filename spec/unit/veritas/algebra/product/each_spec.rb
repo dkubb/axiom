@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Algebra::Product, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:header) { Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])                }
+  let(:header) { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ])             }
   let(:left)   { Relation.new(header.project([ :id   ]), [ [ 1 ], [ 2 ] ])                    }
   let(:right)  { Relation.new(header.project([ :name ]), [ [ 'Dan Kubb' ], [ 'Alex Kubb' ] ]) }
   let(:object) { described_class.new(left, right)                                             }

@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:attributes) { [ Attribute::Integer.new(:id) ] }
-  let(:object)     { described_class.new(attributes) }
+  let(:attributes) { [ Attribute::Integer.new(:id) ]    }
+  let(:object)     { described_class.coerce(attributes) }
 
   context 'with the same object' do
     let(:other) { object }

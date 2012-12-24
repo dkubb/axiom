@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Summarization::Summary, '#call' do
   subject { object.call(tuple) }
 
-  let(:object) { described_class.new(summarizer)            }
-  let(:header) { Relation::Header.new([ [ :id, Integer ] ]) }
-  let(:tuple)  { Tuple.new(header, [ 1 ])                   }
+  let(:object) { described_class.new(summarizer)               }
+  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
+  let(:tuple)  { Tuple.new(header, [ 1 ])                      }
 
   context 'when the summarizer is a Proc' do
     let(:summarizer) { lambda { |accumulator, tuple| accumulator.to_i.succ } }
