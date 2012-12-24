@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Keys, '#each' do
   subject { object.each { |key| yields << key } }
 
-  let(:object) { described_class.new([ header ])      }
-  let(:header) { Relation::Header.coerce([ [ :id ] ]) }
-  let(:yields) { []                                   }
+  let(:object) { described_class.coerce([ header ]) }
+  let(:header) { [ [ :id ] ]                        }
+  let(:yields) { []                                 }
 
   it_should_behave_like 'an #each method'
 

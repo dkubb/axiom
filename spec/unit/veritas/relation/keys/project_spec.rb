@@ -5,23 +5,23 @@ require 'spec_helper'
 describe Relation::Keys, '#project' do
   subject { object.project(attributes) }
 
-  let(:object)         { described_class.new([ header ])                        }
-  let(:header)         { Relation::Header.new([ id_attribute, name_attribute ]) }
-  let(:id_attribute)   { Attribute::Integer.new(:id)                            }
-  let(:name_attribute) { Attribute::String.new(:name)                           }
+  let(:object) { described_class.coerce([ header ]) }
+  let(:header) { [ id, name ]                       }
+  let(:id)     { [ :id   ]                          }
+  let(:name)   { [ :name ]                          }
 
   context 'with attributes that do not change the keys' do
-    let(:attributes) { [ id_attribute, name_attribute ] }
+    let(:attributes) { [ id, name ] }
 
     it { should equal(object) }
   end
 
   context 'with attributes that change the keys' do
-    let(:attributes) { [ id_attribute ] }
+    let(:attributes) { [ id ] }
 
     it { should be_instance_of(described_class) }
 
-    it { should == described_class.new([ Relation::Header.coerce([ id_attribute ]) ]) }
+    it { should == [ [ id ] ] }
   end
 
   context 'with attributes that clear the keys' do
@@ -29,6 +29,6 @@ describe Relation::Keys, '#project' do
 
     it { should be_instance_of(described_class) }
 
-    it { should == described_class.new }
+    it { should be_empty }
   end
 end

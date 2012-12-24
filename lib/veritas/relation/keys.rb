@@ -31,7 +31,7 @@ module Veritas
         if object.kind_of?(self)
           object
         else
-          block ||= method(:coerce_attributes)
+          block ||= lambda { |attributes| coerce_attributes(attributes) }
           new(Array(object).map(&block))
         end
       end
