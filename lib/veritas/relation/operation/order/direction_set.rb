@@ -9,8 +9,6 @@ module Veritas
         class DirectionSet < Header
           include Equalizer.new(:to_ary)
 
-          EMPTY = new
-
           # Coerce the attribute into a Direction
           #
           # @param [Object] attribute
@@ -98,6 +96,9 @@ module Veritas
           end
 
           memoize :reverse, :attributes
+
+          # Represent an empty set of directions
+          EMPTY = new
 
         end # class DirectionSet
       end # class Order

@@ -191,10 +191,10 @@ module Veritas
   Undefined = Object.new.freeze
 
   # Represent a relation with an empty header and no tuples
-  TABLE_DUM = Relation::Empty.new([])
+  TABLE_DUM = Relation::Empty.new(Relation::Header::EMPTY)
 
   # Represent a relation with an empty header and a single tuple
-  TABLE_DEE = Relation.new([], [ [] ])
+  TABLE_DEE = Relation.new(Relation::Header::EMPTY, [ [] ])
 
   # Error message constants for inserted and deleted messages
   INSERTED = 'inserted'.freeze

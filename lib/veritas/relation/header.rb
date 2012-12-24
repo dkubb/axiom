@@ -281,6 +281,9 @@ module Veritas
         object.kind_of?(self) ? object : new(object)
       end
 
+      # Represent an empty set of attributes
+      EMPTY = new
+
     end # class Header
   end # class Relation
 end # module Veritas
