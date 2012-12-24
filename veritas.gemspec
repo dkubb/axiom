@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dan Kubb"]
-  s.date = "2012-12-20"
+  s.date = "2012-12-24"
   s.description = "Simplifies querying of structured data using relational algebra"
   s.email = "dan.kubb@gmail.com"
   s.extra_rdoc_files = [
@@ -114,6 +114,7 @@ Gem::Specification.new do |s|
     "lib/veritas/relation/base.rb",
     "lib/veritas/relation/empty.rb",
     "lib/veritas/relation/header.rb",
+    "lib/veritas/relation/keys.rb",
     "lib/veritas/relation/materialized.rb",
     "lib/veritas/relation/operation/binary.rb",
     "lib/veritas/relation/operation/combination.rb",
@@ -541,11 +542,22 @@ Gem::Specification.new do |s|
     "spec/unit/veritas/relation/header/extend_spec.rb",
     "spec/unit/veritas/relation/header/hash_spec.rb",
     "spec/unit/veritas/relation/header/intersect_spec.rb",
+    "spec/unit/veritas/relation/header/keys_spec.rb",
     "spec/unit/veritas/relation/header/project_spec.rb",
     "spec/unit/veritas/relation/header/rename_spec.rb",
     "spec/unit/veritas/relation/header/to_ary_spec.rb",
     "spec/unit/veritas/relation/header/union_spec.rb",
     "spec/unit/veritas/relation/header_spec.rb",
+    "spec/unit/veritas/relation/keys/class_methods/coerce_spec.rb",
+    "spec/unit/veritas/relation/keys/difference_spec.rb",
+    "spec/unit/veritas/relation/keys/each_spec.rb",
+    "spec/unit/veritas/relation/keys/empty_spec.rb",
+    "spec/unit/veritas/relation/keys/extend_spec.rb",
+    "spec/unit/veritas/relation/keys/intersect_spec.rb",
+    "spec/unit/veritas/relation/keys/project_spec.rb",
+    "spec/unit/veritas/relation/keys/rename_spec.rb",
+    "spec/unit/veritas/relation/keys/to_ary_spec.rb",
+    "spec/unit/veritas/relation/keys/union_spec.rb",
     "spec/unit/veritas/relation/materialize_spec.rb",
     "spec/unit/veritas/relation/materialized/class_methods/new_spec.rb",
     "spec/unit/veritas/relation/materialized/directions_spec.rb",
