@@ -6,7 +6,7 @@ gem 'abstract_type',       '~> 0.0.2'
 gem 'adamantium',          '~> 0.0.4'
 gem 'backports',           '~> 2.6.4'
 gem 'descendants_tracker', '~> 0.0.1'
-gem 'equalizer',           '~> 0.0.1'
+gem 'equalizer',           '~> 0.0.2'
 
 group :development do
   gem 'jeweler', '~> 1.8.3'

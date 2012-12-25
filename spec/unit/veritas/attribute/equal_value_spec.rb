@@ -34,8 +34,8 @@ describe Attribute, '#==' do
 
     it { should be(true) }
 
-    it 'is symmetric' do
-      should eql(other == object)
+    it 'is not symmetric' do
+      should_not eql(other == object)
     end
   end
 
