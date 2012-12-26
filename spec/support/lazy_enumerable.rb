@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 class LazyEnumerable < BasicObject
-  def initialize(enumerable)
+  def initialize(enumerable = [])
     @enumerable = enumerable
   end
 

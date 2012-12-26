@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation, '#directions' do
   subject { object.directions }
 
-  let(:body)   { LazyEnumerable.new([])                          }
+  let(:body)   { LazyEnumerable.new                              }
   let(:object) { described_class.new([ [ :id, Integer ] ], body) }
 
   before do
