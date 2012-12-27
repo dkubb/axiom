@@ -53,7 +53,7 @@ describe Algebra::Projection, '#insert' do
     let(:other)       { Relation.new(header,      LazyEnumerable.new([ [ 2 ]                 ])) }
     let(:base_header) { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ]               }
 
-    specify { expect { subject }.to raise_error(RequiredAttributesError, 'required attributes name, age have been removed') }
+    specify { expect { subject }.to raise_error(RequiredAttributesError, 'required attributes [:name, :age] have been removed') }
   end
 
   context 'when the other header does not match the projection' do

@@ -90,7 +90,7 @@ module Veritas
       def self.assert_unique_names(names)
         duplicates = duplicate_names(names)
         if duplicates
-          raise DuplicateNameError, "duplicate names: #{duplicates.join(', ')}"
+          raise DuplicateNameError, "duplicate names: #{duplicates.inspect}"
         end
       end
 
