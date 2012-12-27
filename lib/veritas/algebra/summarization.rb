@@ -206,7 +206,7 @@ module Veritas
           if summarize_with.kind_of?(Relation)
             summarize_with
           else
-            project(Relation::Header.coerce(summarize_with))
+            project(summarize_with)
           end
         end
 

@@ -13,7 +13,7 @@ describe Relation, '#empty?' do
   end
 
   context 'with a body containing no entries' do
-    let(:body) { LazyEnumerable.new([]) }
+    let(:body) { LazyEnumerable.new }
 
     it { should be(true) }
   end

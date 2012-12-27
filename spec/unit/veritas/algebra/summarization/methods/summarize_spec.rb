@@ -47,6 +47,18 @@ describe Algebra::Summarization::Methods, '#summarize' do
     its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
   end
 
+  context 'with attributes' do
+    let(:summarize_with) { [ :name ] }
+
+    it { should be_instance_of(Algebra::Summarization) }
+
+    its(:operand) { should equal(object) }
+
+    its(:summarize_per) { should == object.project(summarize_with) }
+
+    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
+  end
+
   context 'with summarizers' do
     subject { object.summarize(summarize_with, summarizers) }
 

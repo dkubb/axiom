@@ -9,7 +9,7 @@ describe Relation, '#one' do
   let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
 
   context 'with a relation having no tuples' do
-    let(:body) { LazyEnumerable.new([]) }
+    let(:body) { LazyEnumerable.new }
 
     specify { expect { subject }.to raise_error(NoTuplesError, 'one tuple expected, but was an empty set') }
 
