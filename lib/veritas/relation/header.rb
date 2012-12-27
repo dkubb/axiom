@@ -7,7 +7,7 @@ module Veritas
     class Header
       extend Aliasable
       include Enumerable
-      include Equalizer.new(:to_set)
+      include Equalizer.new(:to_set, :keys)
 
       inheritable_alias(
         :[] => :call,
@@ -16,10 +16,18 @@ module Veritas
         :-  => :difference
       )
 
+      # The header keys
+      #
+      # @return [Keys]
+      #
+      # @api private
+      attr_reader :keys
+
       # Coerce an Array-like object into a Header
       #
       # @param [Header, #to_ary] object
       #   the header or attributes
+      # @param [Hash] options
       #
       # @yield [attribute]
       #
@@ -28,7 +36,7 @@ module Veritas
       # @return [Header]
       #
       # @api private
-      def self.coerce(object)
+      def self.coerce(object, options = {})
         if object.kind_of?(self)
           object
         else
@@ -37,7 +45,7 @@ module Veritas
           block = lambda do |attribute|
             block_given? and yield(attribute) or coerce_attribute(attribute)
           end
-          new(Array(object).map(&block))
+          new(Array(object).map(&block), options)
         end
       end
 
@@ -48,11 +56,12 @@ module Veritas
       #
       # @param [Array<Attribute>] attributes
       #   optional attributes
+      # @param [Hash] options
       #
       # @return [Header]
       #
       # @api public
-      def self.new(attributes = [])
+      def self.new(attributes = [], options = {})
         assert_unique_names(attributes.map { |attribute| attribute.name })
         super
       end
@@ -105,16 +114,20 @@ module Veritas
       # Initialize a Header
       #
       # @example
-      #   header = Header.new(attributes)
+      #   header = Header.new(attributes, :keys => [ [ :id ] ])
       #
       # @param [Array] attributes
+      #
+      # @param [Hash] options
       #
       # @return [undefined]
       #
       # @api public
-      def initialize(attributes)
+      def initialize(attributes, options)
         @attributes    = freeze_object(attributes)
+        @options       = freeze_object(options)
         @attribute_for = Hash[@attributes.map { |attribute| attribute.name }.zip(@attributes)]
+        @keys          = coerce_keys
       end
 
       # Iterate over each attribute in the header
@@ -157,6 +170,9 @@ module Veritas
 
       # Return a header with only the attributes specified
       #
+      # The unique keys intersected with the attributes become the new keys
+      # because a projection strengthens key constraints.
+      #
       # @example
       #   projected = header.project(attributes)
       #
@@ -167,10 +183,13 @@ module Veritas
       #
       # @api public
       def project(attributes)
-        coerce(attributes)
+        coerce(attributes, :keys => keys.project(attributes))
       end
 
       # Return a header with the new attributes added
+      #
+      # The original keys from the header are reused because
+      # an extension does not affect key constraints.
       #
       # @example
       #   extended = header.extend(attributes)
@@ -182,10 +201,13 @@ module Veritas
       #
       # @api public
       def extend(attributes)
-        new(to_ary + coerce(attributes))
+        new(to_ary + coerce(attributes), :keys => keys)
       end
 
       # Return a header with the attributes renamed
+      #
+      # The attributes in the original keys are renamed, but
+      # a rename does not otherwise affect the key constraints.
       #
       # @example
       #   renamed = header.rename(aliases)
@@ -197,10 +219,16 @@ module Veritas
       #
       # @api public
       def rename(aliases)
-        new(map { |attribute| aliases[attribute] })
+        new(
+          map { |attribute| aliases[attribute] },
+          :keys => keys.rename(aliases)
+        )
       end
 
       # Return the intersection of the header with another header
+      #
+      # The unique keys from the headers become the new keys because
+      # an intersection strengthens key constraints.
       #
       # @example
       #   intersection = header.intersect(other)
@@ -211,10 +239,14 @@ module Veritas
       #
       # @api public
       def intersect(other)
-        new(to_ary & coerce(other))
+        other = coerce(other)
+        new(to_ary & other, :keys => keys | other.keys)
       end
 
       # Return the union of the header with another header
+      #
+      # The common keys from the headers become the new keys because
+      # a union weakens key constraints.
       #
       # @example
       #   union = header.union(other)
@@ -225,10 +257,14 @@ module Veritas
       #
       # @api public
       def union(other)
-        new(to_ary | coerce(other))
+        other = coerce(other)
+        new(to_ary | other, :keys => keys & other.keys)
       end
 
       # Return the difference of the header with another header
+      #
+      # The original keys from the header are reused because
+      # a difference does not affect key constraints.
       #
       # @example
       #   difference = header.difference(other)
@@ -239,7 +275,7 @@ module Veritas
       #
       # @api public
       def difference(other)
-        new(to_ary - coerce(other))
+        new(to_ary - coerce(other), :keys => keys)
       end
 
       # Convert the Header into an Array
@@ -277,6 +313,17 @@ module Veritas
       # @api private
       def new(*args)
         self.class.new(*args)
+      end
+
+      # Coerce the keys into an Array of Headers
+      #
+      # @return [Array<Header>]
+      #
+      # @api private
+      def coerce_keys
+        Keys.coerce(@options.fetch(:keys, [])) do |attributes|
+          coerce(attributes)
+        end
       end
 
       # Coerce the object into a Header

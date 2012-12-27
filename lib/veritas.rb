@@ -66,6 +66,7 @@ require 'veritas/relation'
 require 'veritas/relation/proxy'
 
 require 'veritas/relation/base'
+require 'veritas/relation/keys'
 require 'veritas/relation/header'
 
 require 'veritas/relation/materialized'

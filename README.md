@@ -133,6 +133,9 @@ new_relation = relation.delete(other)
 
 # replace a relation variable with another set
 new_relation = relation.replace(other)
+
+# each subset of unique keys as header objects
+keys = header.keys
 ```
 
 ## Goals
