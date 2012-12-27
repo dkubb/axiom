@@ -159,7 +159,7 @@ module Veritas
   class RelationMismatchError < StandardError; end
 
   # Raised when a name is a duplicate of another name in a set
-  class DuplicateNameError < StandardError; end
+  class DuplicateNameError < ArgumentError; end
 
   # Raised when the attribute is unknown
   class UnknownAttributeError < IndexError; end
