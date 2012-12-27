@@ -64,6 +64,11 @@ module Veritas
 
       # Assert the keys are irreducible
       #
+      # In a relation a candidate key must be irreducible, which means that
+      # there can't exist another key that is a proper subset of it. If this
+      # occurs, we should raise an exception because it means there is a
+      # specification error in the system.
+      #
       # @param [Array<Set>] keys
       #
       # @return [undefined]
