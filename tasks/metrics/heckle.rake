@@ -45,6 +45,7 @@ begin
 
       %w[
         Veritas::Relation::Header
+        Veritas::Relation::Keys
         Veritas::Algebra::Difference::Methods
         Veritas::Algebra::Intersection::Methods
         Veritas::Algebra::Join::Methods
