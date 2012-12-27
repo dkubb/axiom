@@ -164,6 +164,9 @@ module Veritas
   # Raised when the attribute is unknown
   class UnknownAttributeError < IndexError; end
 
+  # Raised when the key is reducible
+  class ReducibleKeyError < ArgumentError; end
+
   # Raised when a relation insertion or deletion fails
   class WriteError < StandardError; end
 

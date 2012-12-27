@@ -36,6 +36,21 @@ module Veritas
         end
       end
 
+      # Instantiate Keys
+      #
+      # @example
+      #   keys = Keys.new(keys)
+      #
+      # @param [Array<Header>] keys
+      #
+      # @return [Keys]
+      #
+      # @api public
+      def self.new(keys = [])
+        assert_irreducible_keys(keys.map { |key| key.to_set })
+        super
+      end
+
       # Coerce the attributes into a Header
       #
       # @param [Object] attributes
@@ -47,20 +62,49 @@ module Veritas
         Header.coerce(attributes)
       end
 
-      private_class_method :coerce_attributes
+      # Assert the keys are irreducible
+      #
+      # @param [Array<Set>] keys
+      #
+      # @return [undefined]
+      #
+      # @raise [ReducibleKeyError]
+      #   raised if a key can be reduced
+      #
+      # @api private
+      def self.assert_irreducible_keys(keys)
+        reducible_keys = reducible_keys(keys)
+        if reducible_keys
+          raise ReducibleKeyError, "reducible keys: #{reducible_keys.inspect}"
+        end
+      end
+
+      # The keys that can be reduced
+      #
+      # @param [Array<Header>] keys
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def self.reducible_keys(keys)
+        keys.permutation(2).select { |key, other| key.proper_superset?(other) }.
+          transpose.first
+      end
+
+      private_class_method :coerce_attributes, :assert_irreducible_keys, :reducible_keys
 
       # Initialize Keys
       #
       # @example
       #   keys = Keys.new([ [ :id ] ])
       #
-      # @param [#to_ary] keys
+      # @param [Array<Header>] keys
       #
       # @return [undefined]
       #
       # @api public
-      def initialize(keys = [])
-        @keys = freeze_object(keys.to_ary)
+      def initialize(keys)
+        @keys = freeze_object(keys)
       end
 
       # Iterate over each key in the Keys
