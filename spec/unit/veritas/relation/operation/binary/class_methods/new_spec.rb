@@ -3,7 +3,7 @@
 require 'spec_helper'
 require File.expand_path('../../fixtures/classes', __FILE__)
 
-context 'Veritas::Relation::Operation::Binary::ClassMethods#new' do
+describe Relation::Operation::Binary::ClassMethods, '#new' do
   subject { object.new(left, right) }
 
   let(:original_left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
