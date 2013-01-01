@@ -9,7 +9,7 @@ describe Aggregate::Minimum, '#type' do
   let(:operand) { mock('Unhandled')            }
 
   before do
-    operand.stub!(:freeze).and_return(operand)
+    operand.stub(:freeze => operand, :frozen? => true)
   end
 
   it 'delegates to Attribute.infer_type' do
