@@ -12,7 +12,7 @@ describe Relation::Operation::Order::Direction, '#reverse' do
   let(:object)          { described_class.new(attribute)                   }
 
   before do
-    described_class.stub(:reverse).and_return(reverse_class)
+    described_class.stub(:reverse => reverse_class)
   end
 
   it 'calls .reverse on the class' do

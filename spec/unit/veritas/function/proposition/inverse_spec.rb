@@ -11,7 +11,7 @@ describe Function::Proposition, '#inverse' do
   let(:object)           { described_class.new                                  }
 
   before do
-    described_class.stub(:inverse).and_return(inverse_class)
+    described_class.stub(:inverse => inverse_class)
   end
 
   it 'calls .inverse on the class' do
