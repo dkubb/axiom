@@ -18,7 +18,7 @@ describe Relation::Keys, '.coerce' do
 
     it { should be_instance_of(object) }
 
-    it { should == argument }
+    it { should == [ Relation::Header.coerce([ :id ]) ] }
   end
 
   context 'when the argument is not a Keys and does not respond to #to_ary' do

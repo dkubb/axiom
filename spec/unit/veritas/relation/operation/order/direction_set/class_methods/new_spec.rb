@@ -21,6 +21,6 @@ describe Relation::Operation::Order::DirectionSet, '.new' do
   context 'with an argument that responds to #to_ary and contain duplicates' do
     let(:argument) { [ id, id, name, name, age ] }
 
-    specify { expect { subject }.to raise_error(DuplicateNameError, 'duplicate names: id, name') }
+    specify { expect { subject }.to raise_error(DuplicateNameError, 'duplicate names: [:id, :name]') }
   end
 end
