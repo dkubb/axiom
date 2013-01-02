@@ -2,17 +2,12 @@
 
 source 'https://rubygems.org'
 
-gem 'abstract_type',       '~> 0.0.2'
-gem 'adamantium',          '~> 0.0.4'
-gem 'backports',           '~> 2.6.4'
-gem 'descendants_tracker', '~> 0.0.1'
-gem 'equalizer',           '~> 0.0.2'
+gemspec
 
 group :development do
-  gem 'jeweler', '~> 1.8.3'
-  gem 'rake',    '~> 10.0.3'
-  gem 'rspec',   '~> 1.3.2'
-  gem 'yard',    '~> 0.8.3'
+  gem 'rake',  '~> 10.0.3'
+  gem 'rspec', '~> 1.3.2'
+  gem 'yard',  '~> 0.8.3'
 end
 
 group :yard do
