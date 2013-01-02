@@ -22,23 +22,21 @@ module Veritas
           :'!'
         end
 
-        unless Object.method_defined?('!')
-          # Evaluate the operands using a logical NOT
-          #
-          # @example with true operand
-          #   Negation.call(true)  # => false
-          #
-          # @example with false operand
-          #   Negation.call(false)  # => true
-          #
-          # @param [Boolean] operand
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def self.call(operand)
-            ! operand
-          end
+        # Evaluate the operands using a logical NOT
+        #
+        # @example with true operand
+        #   Negation.call(true)  # => false
+        #
+        # @example with false operand
+        #   Negation.call(false)  # => true
+        #
+        # @param [Boolean] operand
+        #
+        # @return [Boolean]
+        #
+        # @api public
+        def self.call(operand)
+          ! operand
         end
 
         # Return the operand

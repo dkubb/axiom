@@ -32,21 +32,19 @@ module Veritas
           Match
         end
 
-        unless Object.method_defined?(operation)
-          # Evaluate the values for no match
-          #
-          # @example
-          #   NoMatch.call(left, right)  # => true or false
-          #
-          # @param [Object] left
-          # @param [Object] right
-          #
-          # @return [Boolean]
-          #
-          # @api public
-          def self.call(left, right)
-            left !~ right
-          end
+        # Evaluate the values for no match
+        #
+        # @example
+        #   NoMatch.call(left, right)  # => true or false
+        #
+        # @param [Object] left
+        # @param [Object] right
+        #
+        # @return [Boolean]
+        #
+        # @api public
+        def self.call(left, right)
+          left !~ right
         end
 
         module Methods
