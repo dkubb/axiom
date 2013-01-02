@@ -1,17 +1,12 @@
 # encoding: utf-8
 
 begin
+  require 'backports'
   require 'flog'
   require 'yaml'
 
-  class Float
-    def round_to(n)
-      (self * 10**n).round.to_f * 10**-n
-    end
-  end
-
   config    = YAML.load_file(File.expand_path('../../../config/flog.yml', __FILE__)).freeze
-  threshold = config.fetch('threshold').to_f.round_to(1)
+  threshold = config.fetch('threshold').to_f.round(1)
 
   namespace :metrics do
     # original code by Marty Andrews:
@@ -21,8 +16,8 @@ begin
       flog = Flog.new
       flog.flog Array(config.fetch('path', 'lib'))
 
-      totals = flog.totals.select  { |name, score| name[-5, 5] != '#none' }.
-                           map     { |name, score| [ name, score.round_to(1) ] }.
+      totals = flog.totals.select  { |name, score| name[-5, 5] != '#none'   }.
+                           map     { |name, score| [ name, score.round(1) ] }.
                            sort_by { |name, score| score }
 
       if totals.any?
