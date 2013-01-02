@@ -33,10 +33,13 @@ rescue LoadError
 end
 
 namespace :metrics do
+  lib = RUBY_VERSION < '1.9' ? 'rcov' : 'simplecov'
   begin
-    require 'spec/rake/spectask'
+    require lib
 
-    if RUBY_VERSION < '1.9'
+    if lib == 'rcov'
+      require 'spec/rake/spectask'
+
       desc 'Generate code coverage'
       Spec::Rake::SpecTask.new(:coverage) do |rcov|
         spec_defaults.call(rcov)
@@ -53,7 +56,6 @@ namespace :metrics do
     end
   rescue LoadError
     task :coverage do
-      lib = RUBY_VERSION < '1.9' ? 'rcov' : 'simplecov'
       $stderr.puts "coverage is not available. In order to run #{lib}, you must: gem install #{lib}"
     end
   end

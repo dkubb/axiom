@@ -60,7 +60,7 @@ group :metrics do
     gem 'ruby2ruby',   '= 1.2.2'   # for heckle
   end
 
-  platforms :ruby_19 do
+  platforms :mri_19 do
     gem 'simplecov', '~> 0.7.1'
   end
 
