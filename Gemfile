@@ -15,25 +15,19 @@ group :yard do
 end
 
 group :guard do
-  gem 'guard',         '~> 1.5.4'
+  gem 'guard',         '~> 1.6.1'
   gem 'guard-bundler', '~> 1.0.0'
   gem 'guard-rspec',   '~> 1.2.1'
 
   # file system change event handling
   gem 'rb-fchange', '~> 0.0.6', :require => false
-  gem 'rb-fsevent', '~> 0.9.2', :require => false
-  gem 'rb-inotify', '~> 0.8.8', :require => false
+  gem 'rb-fsevent', '~> 0.9.3', :require => false
+  gem 'rb-inotify', '~> 0.8.8', :require => false, :git => 'https://github.com/mbj/rb-inotify'
 
   # notification handling
   gem 'libnotify',               '~> 0.8.0', :require => false
   gem 'rb-notifu',               '~> 0.0.4', :require => false
   gem 'terminal-notifier-guard', '~> 1.5.3', :require => false
-end
-
-platform :jruby do
-  group :jruby do
-    gem 'jruby-openssl', '~> 0.8.2'
-  end
 end
 
 group :metrics do
@@ -71,4 +65,10 @@ end
 
 group :benchmarks do
   gem 'rbench', '~> 0.2.3'
+end
+
+platform :jruby do
+  group :jruby do
+    gem 'jruby-openssl', '~> 0.8.2'
+  end
 end
