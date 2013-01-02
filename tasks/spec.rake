@@ -34,6 +34,8 @@ end
 
 namespace :metrics do
   begin
+    require 'spec/rake/spectask'
+
     if RUBY_VERSION < '1.9'
       desc 'Generate code coverage'
       Spec::Rake::SpecTask.new(:coverage) do |rcov|
