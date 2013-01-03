@@ -1,7 +1,5 @@
 * TODO:
 
-* Add key minimization
-
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
 
