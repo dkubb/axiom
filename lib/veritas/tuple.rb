@@ -35,7 +35,7 @@ module Veritas
     # @api private
     def initialize(header, data)
       @header = header
-      @data   = Hash[header.zip(data.to_ary)].freeze
+      @data   = Hash[header.zip(data)]
     end
 
     # Lookup a value in the tuple given an attribute
@@ -152,7 +152,7 @@ module Veritas
     #
     # @api private
     def self.coerce(header, object)
-      object.kind_of?(Tuple) ? object : new(header, object)
+      object.kind_of?(Tuple) ? object : new(header, object.to_ary)
     end
 
     memoize :predicate, :to_ary
