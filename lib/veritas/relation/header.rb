@@ -56,12 +56,12 @@ module Veritas
       #
       # @param [Array<Attribute>] attributes
       #   optional attributes
-      # @param [Hash] options
+      # @param [Hash] _options
       #
       # @return [Header]
       #
       # @api public
-      def self.new(attributes = EMPTY_ARRAY, options = EMPTY_HASH)
+      def self.new(attributes = EMPTY_ARRAY, _options = EMPTY_HASH)
         assert_unique_names(attributes.map { |attribute| attribute.name })
         super
       end
