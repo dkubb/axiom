@@ -46,7 +46,7 @@ module Veritas
       # @return [Keys]
       #
       # @api public
-      def self.new(keys = [])
+      def self.new(keys = EMPTY_ARRAY)
         assert_irreducible_keys(keys.map { |key| key.to_set })
         super
       end

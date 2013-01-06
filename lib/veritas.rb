@@ -74,6 +74,9 @@ module Veritas
   # An empty Hash to use as for default options
   EMPTY_HASH = Hash.new.freeze
 
+  # An empty Array to use for a default value
+  EMPTY_ARRAY = Array.new.freeze
+
   # Error message constants for inserted and deleted messages
   INSERTED = 'inserted'.freeze
   DELETED  = 'deleted'.freeze
@@ -208,6 +211,6 @@ module Veritas
   TABLE_DUM = Relation::Empty.new(Relation::Header::EMPTY)
 
   # Represent a relation with an empty header and a single tuple
-  TABLE_DEE = Relation.new(Relation::Header::EMPTY, [ [] ])
+  TABLE_DEE = Relation.new(Relation::Header::EMPTY, [ EMPTY_ARRAY ])
 
 end # module Veritas

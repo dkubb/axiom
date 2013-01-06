@@ -61,7 +61,7 @@ module Veritas
       # @return [Header]
       #
       # @api public
-      def self.new(attributes = [], options = EMPTY_HASH)
+      def self.new(attributes = EMPTY_ARRAY, options = EMPTY_HASH)
         assert_unique_names(attributes.map { |attribute| attribute.name })
         super
       end
@@ -321,7 +321,7 @@ module Veritas
       #
       # @api private
       def coerce_keys
-        Keys.coerce(@options.fetch(:keys, [])) do |attributes|
+        Keys.coerce(@options.fetch(:keys, EMPTY_ARRAY)) do |attributes|
           coerce(attributes)
         end
       end
