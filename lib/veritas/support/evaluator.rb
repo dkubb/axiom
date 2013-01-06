@@ -32,7 +32,7 @@ module Veritas
       # @api private
       def initialize(header)
         @header    = header
-        @functions = {}
+        @functions = ::Hash.new
         @yield     = yield self
         @functions.freeze
       end

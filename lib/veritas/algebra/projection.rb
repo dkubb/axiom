@@ -39,7 +39,7 @@ module Veritas
       # @api public
       def each
         return to_enum unless block_given?
-        seen = {}
+        seen = Hash.new
         operand.each do |tuple|
           tuple = tuple.project(header)
           yield seen[tuple] = tuple unless seen.key?(tuple)

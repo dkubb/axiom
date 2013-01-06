@@ -15,7 +15,7 @@ module Veritas
         #
         # @api private
         def initialize(summarizers)
-          @summaries = {}
+          @summaries = Hash.new
           summarizers.each do |name, summarizer|
             @summaries[name] = Summary.new(summarizer)
           end
