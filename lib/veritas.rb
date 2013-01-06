@@ -12,6 +12,70 @@ require 'backports/basic_object' unless defined?(::BasicObject)
 require 'descendants_tracker'
 require 'equalizer'
 
+module Veritas
+
+  # Raised when the headers are invalid for Join and Product
+  class InvalidHeaderError < ArgumentError; end
+
+  # Raised when the aliases are duplicated
+  class DuplicateAliasError < ArgumentError; end
+
+  # Raised when the limit is not a positive integer
+  class InvalidLimitError < ArgumentError; end
+
+  # Raised when the offset is not a positive integer
+  class InvalidOffsetError < ArgumentError; end
+
+  # Raised when the order does not include every attribute in the header
+  class InvalidDirectionsError < ArgumentError; end
+
+  # Raised when a method requiring ordering is called on an unordered relation
+  class OrderedRelationRequiredError < StandardError; end
+
+  # Raised when a binary operation mixes ordered and unordered relations
+  class RelationMismatchError < StandardError; end
+
+  # Raised when a name is a duplicate of another name in a set
+  class DuplicateNameError < ArgumentError; end
+
+  # Raised when the attribute is unknown
+  class UnknownAttributeError < IndexError; end
+
+  # Raised when the key is reducible
+  class ReducibleKeyError < ArgumentError; end
+
+  # Raised when a relation insertion or deletion fails
+  class WriteError < StandardError; end
+
+  # Raised when inserting into a projection that removes required attributes
+  class RequiredAttributesError < WriteError; end
+
+  # Raised when inserting into an extension with a mismatching relation
+  class ExtensionMismatchError < WriteError; end
+
+  # Raised when inserting into an order with a mismatching relation
+  class OrderMismatchError < WriteError; end
+
+  # Raised when inserting into an immutable relation
+  class ImmutableRelationError < WriteError; end
+
+  # Raised when the set size is unexpected
+  class SetSizeError < RuntimeError; end
+
+  # Raised when the set is unexpectedly empty
+  class NoTuplesError < SetSizeError; end
+
+  # Raised when the set is unexpectedly too large
+  class ManyTuplesError < SetSizeError; end
+
+  # Represent an undefined argument
+  Undefined = Object.new.freeze
+
+  # Error message constants for inserted and deleted messages
+  INSERTED = 'inserted'.freeze
+  DELETED  = 'deleted'.freeze
+end # module Veritas
+
 require 'veritas/core_ext/date'
 require 'veritas/core_ext/range'
 require 'veritas/core_ext/time'
@@ -137,70 +201,10 @@ require 'veritas/version'
 
 module Veritas
 
-  # Raised when the headers are invalid for Join and Product
-  class InvalidHeaderError < ArgumentError; end
-
-  # Raised when the aliases are duplicated
-  class DuplicateAliasError < ArgumentError; end
-
-  # Raised when the limit is not a positive integer
-  class InvalidLimitError < ArgumentError; end
-
-  # Raised when the offset is not a positive integer
-  class InvalidOffsetError < ArgumentError; end
-
-  # Raised when the order does not include every attribute in the header
-  class InvalidDirectionsError < ArgumentError; end
-
-  # Raised when a method requiring ordering is called on an unordered relation
-  class OrderedRelationRequiredError < StandardError; end
-
-  # Raised when a binary operation mixes ordered and unordered relations
-  class RelationMismatchError < StandardError; end
-
-  # Raised when a name is a duplicate of another name in a set
-  class DuplicateNameError < ArgumentError; end
-
-  # Raised when the attribute is unknown
-  class UnknownAttributeError < IndexError; end
-
-  # Raised when the key is reducible
-  class ReducibleKeyError < ArgumentError; end
-
-  # Raised when a relation insertion or deletion fails
-  class WriteError < StandardError; end
-
-  # Raised when inserting into a projection that removes required attributes
-  class RequiredAttributesError < WriteError; end
-
-  # Raised when inserting into an extension with a mismatching relation
-  class ExtensionMismatchError < WriteError; end
-
-  # Raised when inserting into an order with a mismatching relation
-  class OrderMismatchError < WriteError; end
-
-  # Raised when inserting into an immutable relation
-  class ImmutableRelationError < WriteError; end
-
-  # Raised when the set size is unexpected
-  class SetSizeError < RuntimeError; end
-
-  # Raised when the set is unexpectedly empty
-  class NoTuplesError < SetSizeError; end
-
-  # Raised when the set is unexpectedly too large
-  class ManyTuplesError < SetSizeError; end
-
-  # Represent an undefined argument
-  Undefined = Object.new.freeze
-
   # Represent a relation with an empty header and no tuples
   TABLE_DUM = Relation::Empty.new(Relation::Header::EMPTY)
 
   # Represent a relation with an empty header and a single tuple
   TABLE_DEE = Relation.new(Relation::Header::EMPTY, [ [] ])
 
-  # Error message constants for inserted and deleted messages
-  INSERTED = 'inserted'.freeze
-  DELETED  = 'deleted'.freeze
-end
+end # module Veritas
