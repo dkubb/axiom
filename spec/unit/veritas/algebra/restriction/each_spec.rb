@@ -33,7 +33,7 @@ describe Algebra::Restriction, '#each' do
     end
   end
 
-  context 'when predicate is a value' do
+  context 'when predicate is a value equal to true' do
     let(:predicate) { true }
 
     it_should_behave_like 'an #each method'
@@ -42,6 +42,16 @@ describe Algebra::Restriction, '#each' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 1 ] ])
+    end
+  end
+
+  context 'when predicate is a value not equal to true' do
+    let(:predicate) { 1 }
+
+    it_should_behave_like 'an #each method'
+
+    it 'yields each tuple' do
+      expect { subject }.to_not change { yields.dup }
     end
   end
 end
