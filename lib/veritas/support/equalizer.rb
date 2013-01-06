@@ -5,14 +5,12 @@ module Veritas
   # Define equality, equivalence and inspection methods
   class Equalizer < ::Equalizer
 
-  private
-
     # Include the #eql? and #== methods
     #
     # @return [undefined]
     #
     # @api private
-    def include_comparison_methods
+    def initialize(*)
       super
       module_eval do
         include Adamantium
