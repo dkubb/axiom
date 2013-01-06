@@ -174,6 +174,20 @@ module Veritas
       false
     end
 
+    # Test if the tuple exists in the relation
+    #
+    # @example
+    #   relation.include?(tuple)  # => true or false
+    #
+    # @param [Tuple] tuple
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def include?(tuple)
+      to_set.include?(tuple)
+    end
+
     # Compare the relation with other relation for equivalency
     #
     # @example
@@ -249,6 +263,8 @@ module Veritas
           "one tuple expected, but set contained #{size} tuples"
       end
     end
+
+    memoize :to_set
 
   end # class Relation
 end # module Veritas
