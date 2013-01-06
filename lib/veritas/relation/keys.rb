@@ -32,7 +32,7 @@ module Veritas
           object
         else
           block ||= lambda { |attributes| coerce_attributes(attributes) }
-          new(Array(object).map(&block))
+          new(object.map(&block))
         end
       end
 
