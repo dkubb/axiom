@@ -42,7 +42,6 @@ module Veritas
       #
       # @api public
       def insert(other)
-        right = self.right
         left.insert(coerce(other).difference(right)).difference(right)
       end
 
@@ -60,7 +59,6 @@ module Veritas
       #
       # @api public
       def delete(other)
-        right = self.right
         left.delete(coerce(other).difference(right)).difference(right)
       end
 

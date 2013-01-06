@@ -70,8 +70,7 @@ module Veritas
       #
       # @api public
       def insert(other)
-        other   = coerce(other)
-        aliases = self.aliases
+        other = coerce(other)
         operand.insert(other.rename(aliases.inverse)).rename(aliases)
       end
 
@@ -86,8 +85,7 @@ module Veritas
       #
       # @api public
       def delete(other)
-        other   = coerce(other)
-        aliases = self.aliases
+        other = coerce(other)
         operand.delete(other.rename(aliases.inverse)).rename(aliases)
       end
 

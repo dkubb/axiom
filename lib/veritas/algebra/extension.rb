@@ -49,7 +49,6 @@ module Veritas
       # @api public
       def each
         return to_enum unless block_given?
-        header     = self.header
         extensions = self.extensions.values
         operand.each { |operand_tuple| yield operand_tuple.extend(header, extensions) }
         self

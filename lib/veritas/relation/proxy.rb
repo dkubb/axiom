@@ -87,7 +87,6 @@ module Veritas
       #
       # @api private
       def forward(*args, &block)
-        relation = self.relation
         response = relation.send(*args, &block)
         if response.equal?(relation)
           self

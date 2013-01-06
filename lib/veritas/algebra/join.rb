@@ -125,7 +125,6 @@ module Veritas
       #
       # @api private
       def insert_left(other)
-        left = self.left
         left.insert(other.project(left.header))
       end
 
@@ -137,7 +136,6 @@ module Veritas
       #
       # @api private
       def insert_right(other)
-        right = self.right
         right.insert(other.project(right.header))
       end
 
@@ -149,7 +147,6 @@ module Veritas
       #
       # @api private
       def delete_left(other)
-        left = self.left
         left.delete(other.project(left.header))
       end
 
@@ -161,7 +158,6 @@ module Veritas
       #
       # @api private
       def delete_right(other)
-        right = self.right
         right.delete(other.project(right.header))
       end
 

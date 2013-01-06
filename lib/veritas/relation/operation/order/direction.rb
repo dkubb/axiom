@@ -63,7 +63,6 @@ module Veritas
           #
           # @api public
           def call(left, right)
-            attribute = self.attribute
             self.class.call(attribute.call(left), attribute.call(right))
           end
 
@@ -82,8 +81,7 @@ module Veritas
           #
           # @api public
           def rename(aliases)
-            attribute = self.attribute
-            renamed   = aliases[attribute]
+            renamed = aliases[attribute]
             renamed.equal?(attribute) ? self : self.class.new(renamed)
           end
 

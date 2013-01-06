@@ -67,8 +67,7 @@ module Veritas
       #
       # @api public
       def insert(other)
-        other     = coerce(other)
-        predicate = self.predicate
+        other = coerce(other)
         operand.insert(other.restrict(predicate)).restrict(predicate)
       end
 
@@ -85,8 +84,7 @@ module Veritas
       #
       # @api public
       def delete(other)
-        other     = coerce(other)
-        predicate = self.predicate
+        other = coerce(other)
         operand.delete(other.restrict(predicate)).restrict(predicate)
       end
 
@@ -147,7 +145,6 @@ module Veritas
         #
         # @api private
         def coerce_to_predicate(predicate = Undefined)
-          header = self.header
           case predicate
           when Undefined
             Evaluator::Context.new(header) { |context| yield context }.yield

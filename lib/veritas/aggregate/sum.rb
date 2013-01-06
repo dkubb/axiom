@@ -42,7 +42,6 @@ module Veritas
       #
       # @api public
       def default
-        type = self.type
         if    type.equal?(Attribute::Float)   then super.to_f
         elsif type.equal?(Attribute::Decimal) then BigDecimal(super.to_s)
         else
