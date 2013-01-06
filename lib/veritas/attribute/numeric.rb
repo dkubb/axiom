@@ -49,7 +49,7 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def initialize(_name, _options = {})
+      def initialize(_name, _options = EMPTY_HASH)
         super
         @size = @options.fetch(:size, self.class::DEFAULT_SIZE).to_inclusive
       end

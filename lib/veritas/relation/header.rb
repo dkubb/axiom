@@ -36,7 +36,7 @@ module Veritas
       # @return [Header]
       #
       # @api private
-      def self.coerce(object, options = {})
+      def self.coerce(object, options = EMPTY_HASH)
         if object.kind_of?(self)
           object
         else
@@ -61,7 +61,7 @@ module Veritas
       # @return [Header]
       #
       # @api public
-      def self.new(attributes = [], options = {})
+      def self.new(attributes = [], options = EMPTY_HASH)
         assert_unique_names(attributes.map { |attribute| attribute.name })
         super
       end

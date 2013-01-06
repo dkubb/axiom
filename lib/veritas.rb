@@ -71,6 +71,9 @@ module Veritas
   # Represent an undefined argument
   Undefined = Object.new.freeze
 
+  # An empty Hash to use as for default options
+  EMPTY_HASH = Hash.new.freeze
+
   # Error message constants for inserted and deleted messages
   INSERTED = 'inserted'.freeze
   DELETED  = 'deleted'.freeze

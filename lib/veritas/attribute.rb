@@ -38,7 +38,7 @@ module Veritas
         name, type, options = object
         klass = equal?(Attribute) ? Object : self
         klass = const_get(type.name) if type
-        klass.new(name, options || {})
+        klass.new(name, options || EMPTY_HASH)
       end
     end
 
@@ -89,7 +89,7 @@ module Veritas
     # @return [undefined]
     #
     # @api private
-    def initialize(name, options = {})
+    def initialize(name, options = EMPTY_HASH)
       @name     = name.to_sym
       @options  = freeze_object(options.to_hash)
       @required = @options.fetch(:required, true)

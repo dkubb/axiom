@@ -61,7 +61,7 @@ module Veritas
       # @return [undefined]
       #
       # @api private
-      def initialize(_name, _options = {})
+      def initialize(_name, _options = EMPTY_HASH)
         super
         @min_length = @options.fetch(:min_length, DEFAULT_MIN_LENGTH)
         @max_length = @options.fetch(:max_length, DEFAULT_MAX_LENGTH)
