@@ -91,7 +91,7 @@ module Veritas
         # @api private
         def initialize(operand, offset)
           super(operand)
-          @offset     = offset.to_int
+          @offset     = offset
           @directions = operand.directions
         end
 
