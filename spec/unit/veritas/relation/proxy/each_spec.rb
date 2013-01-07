@@ -23,7 +23,19 @@ describe Relation::Proxy, '#each' do
 
   it_should_behave_like 'an #each method'
 
-  it 'yields each tuple' do
-    expect { subject }.to change { yields.dup }.from([]).to(body)
+  it 'yields only tuples' do
+    subject
+    yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+  end
+
+  it 'yields only tuples with the expected header' do
+    subject
+    yields.each { |tuple| tuple.header.should be(object.header) }
+  end
+
+  it 'yields only tuples with the expected data' do
+    expect { subject }.to change { yields.dup }.
+      from([]).
+      to(body)
   end
 end

@@ -5,14 +5,24 @@ require 'spec_helper'
 describe Algebra::Summarization, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
+  let(:object)      { described_class.new(operand, operand.project([]), summarizers) }
   let(:operand)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])           }
   let(:summarizers) { { :count => lambda { |acc, tuple| acc.to_i + 1 } }             }
-  let(:object)      { described_class.new(operand, operand.project([]), summarizers) }
   let(:yields)      { []                                                             }
 
   it_should_behave_like 'an #each method'
 
-  it 'yields each tuple' do
+  it 'yields only tuples' do
+    subject
+    yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+  end
+
+  it 'yields only tuples with the expected header' do
+    subject
+    yields.each { |tuple| tuple.header.should eql(object.header) }
+  end
+
+  it 'yields only tuples with the expected data' do
     expect { subject }.to change { yields.dup }.
       from([]).
       to([ [ 2 ] ])

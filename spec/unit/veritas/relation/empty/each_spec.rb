@@ -14,7 +14,8 @@ describe Relation::Empty, '#each' do
     it_should_behave_like 'an #each method'
 
     it 'yields no tuples' do
-      expect { subject }.to_not change { yields.dup }
+      subject
+      yields.should be_empty
     end
   end
 
@@ -25,7 +26,8 @@ describe Relation::Empty, '#each' do
     it_should_behave_like 'an #each method'
 
     it 'yields no tuples' do
-      expect { subject }.to_not change { yields.dup }
+      subject
+      yields.should be_empty
     end
   end
 end

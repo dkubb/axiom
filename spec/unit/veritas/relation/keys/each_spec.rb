@@ -11,7 +11,12 @@ describe Relation::Keys, '#each' do
 
   it_should_behave_like 'an #each method'
 
-  it 'yields each attribute' do
+  it 'yields only headers' do
+    subject
+    yields.each { |header| header.should be_instance_of(Relation::Header) }
+  end
+
+  it 'yields only headers with the expected data' do
     expect { subject }.to change { yields.dup }.
       from([]).
       to([ header ])

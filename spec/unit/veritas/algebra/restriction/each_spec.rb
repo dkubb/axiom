@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Algebra::Restriction, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:object)   { described_class.new(relation, predicate)      }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
   let(:yields)   { []                                            }
 
   context 'when predicate is a Proc' do
@@ -14,7 +14,17 @@ describe Algebra::Restriction, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple' do
+    it 'yields only tuples' do
+      subject
+      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    end
+
+    it 'yields only tuples with the expected header' do
+      subject
+      yields.each { |tuple| tuple.header.should be(object.header) }
+    end
+
+    it 'yields only tuples with the expected data' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 1 ] ])
@@ -26,7 +36,17 @@ describe Algebra::Restriction, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple' do
+    it 'yields only tuples' do
+      subject
+      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    end
+
+    it 'yields only tuples with the expected header' do
+      subject
+      yields.each { |tuple| tuple.header.should be(object.header) }
+    end
+
+    it 'yields only tuples with the expected data' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 1 ] ])
@@ -38,7 +58,17 @@ describe Algebra::Restriction, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple' do
+    it 'yields only tuples' do
+      subject
+      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    end
+
+    it 'yields only tuples with the expected header' do
+      subject
+      yields.each { |tuple| tuple.header.should be(object.header) }
+    end
+
+    it 'yields only tuples with the expected data' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 1 ] ])
@@ -50,8 +80,9 @@ describe Algebra::Restriction, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple' do
-      expect { subject }.to_not change { yields.dup }
+    it 'yields no tuples' do
+      subject
+      yields.should be_empty
     end
   end
 end

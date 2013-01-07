@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Algebra::Join, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:left)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:object) { described_class.new(left, right)                     }
+  let(:left)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
   let(:yields) { []                                                   }
 
   context 'when the attributes are joined' do
@@ -14,7 +14,17 @@ describe Algebra::Join, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple in the join' do
+    it 'yields only tuples' do
+      subject
+      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    end
+
+    it 'yields only tuples with the expected header' do
+      subject
+      yields.each { |tuple| tuple.header.should be(object.header) }
+    end
+
+    it 'yields only tuples with the expected data' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 2, 'Dan Kubb' ] ])
@@ -26,7 +36,17 @@ describe Algebra::Join, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple in the product' do
+    it 'yields only tuples' do
+      subject
+      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    end
+
+    it 'yields only tuples with the expected header' do
+      subject
+      yields.each { |tuple| tuple.header.should be(object.header) }
+    end
+
+    it 'yields only tuples with the expected data' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ] ])
@@ -38,7 +58,17 @@ describe Algebra::Join, '#each' do
 
     it_should_behave_like 'an #each method'
 
-    it 'yields each tuple in the intersection' do
+    it 'yields only tuples' do
+      subject
+      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    end
+
+    it 'yields only tuples with the expected header' do
+      subject
+      yields.each { |tuple| tuple.header.should be(object.header) }
+    end
+
+    it 'yields only tuples with the expected data' do
       expect { subject }.to change { yields.dup }.
         from([]).
         to([ [ 1 ] ])

@@ -11,6 +11,11 @@ describe Relation::Header, '#each' do
 
   it_should_behave_like 'an #each method'
 
+  it 'yields only attributes' do
+    subject
+    yields.each { |attribute| attribute.should be_kind_of(Attribute) }
+  end
+
   it 'yields each attribute' do
     expect { subject }.to change { yields.dup }.
       from([]).
