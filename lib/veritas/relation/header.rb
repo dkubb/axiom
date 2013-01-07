@@ -62,7 +62,7 @@ module Veritas
       #
       # @api public
       def self.new(attributes = EMPTY_ARRAY, _options = EMPTY_HASH)
-        assert_unique_names(attributes.map { |attribute| attribute.name })
+        assert_unique_names(attributes.map(&:name))
         super
       end
 
@@ -126,7 +126,7 @@ module Veritas
       def initialize(attributes, options)
         @attributes    = freeze_object(attributes)
         @options       = freeze_object(options)
-        @attribute_for = Hash[@attributes.map { |attribute| attribute.name }.zip(@attributes)]
+        @attribute_for = Hash[@attributes.map(&:name).zip(@attributes)]
         @keys          = coerce_keys
       end
 

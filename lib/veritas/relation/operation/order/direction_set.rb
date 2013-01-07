@@ -46,7 +46,7 @@ module Veritas
           #
           # @api public
           def reverse
-            new(map { |direction| direction.reverse })
+            new(map(&:reverse))
           end
 
           # Return each attribute in an Array
@@ -55,7 +55,7 @@ module Veritas
           #
           # @api private
           def attributes
-            map { |direction| direction.attribute }
+            map(&:attribute)
           end
 
           # Sort the supplied tuples in the correct direction
