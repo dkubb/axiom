@@ -10,12 +10,18 @@ describe Function::Binary::Invertible, '#inverse' do
   let(:right)           { mock('Right').freeze                             }
   let(:object)          { described_class.new(left, right)                 }
 
-  before do
+  let(:inverse_class) do
+    Class.new(Function) do
+      include Function::Binary::Invertible, Function::Binary
+    end
+  end
+
+ before do
     described_class.class_eval do
       include Function::Binary::Invertible
 
       def self.inverse
-        self
+        InverseClass
       end
 
       def inspect
@@ -24,9 +30,17 @@ describe Function::Binary::Invertible, '#inverse' do
     end
   end
 
+  before do
+    ::InverseClass = inverse_class
+  end
+
+  after do
+    Object.send(:remove_const, :InverseClass) if defined?(InverseClass)
+  end
+
   it_should_behave_like 'an invertible method'
 
-  it { should be_instance_of(described_class) }
+  it { should be_instance_of(InverseClass) }
 
   it { should_not equal(object) }
 
