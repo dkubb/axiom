@@ -63,7 +63,26 @@ LongMethod:
   enabled: true
 Duplication:
   allow_calls: []
-  exclude: []
+  exclude: [
+    'Veritas::Aggregate::Sum#default',
+    'Veritas::Algebra::Difference#delete',
+    'Veritas::Algebra::Difference#insert',
+    'Veritas::Algebra::Join#delete_left',
+    'Veritas::Algebra::Join#delete_right',
+    'Veritas::Algebra::Join#insert_left',
+    'Veritas::Algebra::Join#insert_right',
+    'Veritas::Algebra::Rename#delete',
+    'Veritas::Algebra::Rename#insert',
+    'Veritas::Algebra::Restriction#delete',
+    'Veritas::Algebra::Restriction#insert',
+    'Veritas::Algebra::Restriction::Methods#coerce_to_predicate',
+    'Veritas::Function::Binary#rename',
+    'Veritas::Function::Binary#rename',
+    'Veritas::Function::Unary#rename',
+    'Veritas::Relation::Operation::Order::Direction#call',
+    'Veritas::Relation::Operation::Order::Direction#rename',
+    'Veritas::Relation::Proxy#forward'
+  ]
   enabled: true
   max_calls: 1
 UtilityFunction:
