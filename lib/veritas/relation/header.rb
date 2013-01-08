@@ -239,8 +239,9 @@ module Veritas
       #
       # @api public
       def intersect(other)
-        other = coerce(other)
-        new(to_ary & other, :keys => keys | other.keys)
+        other      = coerce(other)
+        attributes = to_ary & other
+        new(attributes, :keys => (keys | other.keys).project(attributes))
       end
 
       # Return the union of the header with another header
@@ -275,7 +276,8 @@ module Veritas
       #
       # @api public
       def difference(other)
-        new(to_ary - coerce(other), :keys => keys)
+        other = coerce(other)
+        new(to_ary - other, :keys => keys - other.keys)
       end
 
       # Convert the Header into an Array
