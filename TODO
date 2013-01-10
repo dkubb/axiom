@@ -1,5 +1,9 @@
 * TODO:
 
+* Add key minimization to Header
+  * When unioning two keys together it is really simple to end up
+    with indexes that overlap and cause an exception.
+
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
 
