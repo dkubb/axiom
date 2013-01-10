@@ -13,18 +13,40 @@ describe Aggregate::Variance, '.call' do
   let(:object)  { described_class }
 
   context 'when the values are not nil' do
-    let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
+    let(:values)         { [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6 ] }
+    let(:count)          { values.count                                   }
+    let(:mean)           { 0.0                                            }
+    let(:sum_of_squares) { values.map { |value| value ** 2.0 }.reduce(:+) }
 
-    it 'returns the expected count, mean and sum_of_squares of the values' do
-      should eql([ 6, 3.5, 17.5 ])
+    it 'returns the expected count' do
+      subject.fetch(0).should be(count)
+    end
+
+    it 'returns the expected mean' do
+      subject.fetch(1).should eql(mean)
+    end
+
+    it 'returns the expected sum of squares' do
+      subject.fetch(2).should eql(sum_of_squares)
     end
   end
 
   context 'when the values are nil' do
-    let(:values) { [ nil ] }
+    let(:values)         { [ nil ]          }
+    let(:count)          { default.fetch(0) }
+    let(:mean)           { default.fetch(1) }
+    let(:sum_of_squares) { default.fetch(2) }
 
-    it 'returns the default' do
-      should equal(default)
+    it 'returns the default count' do
+      subject.fetch(0).should be(count)
+    end
+
+    it 'returns the default mean' do
+      subject.fetch(1).should eql(mean)
+    end
+
+    it 'returns the default sum of squares' do
+      subject.fetch(2).should eql(sum_of_squares)
     end
   end
 end
