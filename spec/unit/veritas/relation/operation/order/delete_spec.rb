@@ -11,11 +11,18 @@ describe Relation::Operation::Order, '#delete' do
   let(:directions) { [ attribute.desc ]                                                       }
 
   context 'when other relation has matching directions' do
-    let(:other) { Relation.new([ attribute ], LazyEnumerable.new([ [ 2 ] ])).sort_by(directions) }
+    let(:other)      { other_base.sort_by(directions)                             }
+    let(:other_base) { Relation.new([ attribute ], LazyEnumerable.new([ [ 2 ] ])) }
 
     it { should be_instance_of(described_class) }
 
-    its(:operand) { should be_kind_of(Relation) }
+    its(:operand) { should be_kind_of(Relation::Operation::Deletion) }
+
+    its(:operand) do
+      # test that the expected relations were passed to the insertion
+      subject.left.should equal(relation)
+      subject.right.should equal(other_base)
+    end
 
     its(:directions) { should == directions }
 
