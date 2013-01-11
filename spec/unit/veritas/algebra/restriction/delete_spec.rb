@@ -14,7 +14,14 @@ describe Algebra::Restriction, '#delete' do
   shared_examples_for 'Algebra::Restrict#delete' do
     it { should be_instance_of(described_class) }
 
-    its(:operand) { should be_kind_of(Relation) }
+    its(:operand) { should be_kind_of(Relation::Operation::Deletion) }
+
+    its(:operand) do
+      # test that the expected restriction was passed to the deletion
+      subject.left.should equal(operand)
+      subject.right.should be_kind_of(described_class)
+      subject.right.predicate.should equal(predicate)
+    end
 
     its(:predicate) { should equal(predicate) }
 
