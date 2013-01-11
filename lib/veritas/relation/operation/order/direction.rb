@@ -106,7 +106,7 @@ module Veritas
           #
           # @api private
           def self.coerce(object)
-            object.kind_of?(Direction) ? object : new(object)
+            object.kind_of?(Direction) ? object : new(Attribute.coerce(object))
           end
 
         end # class Direction
