@@ -44,7 +44,7 @@ module Veritas
 
     # Extract the attribute name from the object
     #
-    # @param [#name, #to_ary, #to_sym] object
+    # @param [#name, #to_ary, #to_a] object
     #   the object to extract a name from
     #
     # @return [Symbol]
@@ -53,10 +53,8 @@ module Veritas
     def self.name_from(object)
       if object.respond_to?(:name)
         object.name
-      elsif object.respond_to?(:to_ary)
-        object.to_ary.first
       else
-        object.to_sym
+        Array(object).first.to_sym
       end
     end
 
