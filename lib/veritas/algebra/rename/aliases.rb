@@ -47,14 +47,14 @@ module Veritas
 
         # Initialize rename aliases
         #
-        # @param [#to_hash] aliases
+        # @param [Hash] aliases
         #   the old and new attributes
         #
         # @return [undefined]
         #
         # @api public
         def initialize(aliases)
-          @aliases = freeze_object(aliases.to_hash)
+          @aliases = freeze_object(aliases)
         end
 
         # Lookup the new attribute given the old attribute

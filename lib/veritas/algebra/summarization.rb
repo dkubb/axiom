@@ -134,14 +134,14 @@ module Veritas
 
       # Return the current summaries
       #
-      # @return [Summaries]
+      # @return [Hash]
       #
       # @api private
       def summaries
         header    = summarize_per.header
         summaries = default_summaries
         operand.each { |tuple| summaries.summarize_by(header, tuple) }
-        summaries
+        summaries.to_hash
       end
 
       # Return the default summaries

@@ -81,7 +81,7 @@ module Veritas
     #
     # @param [#to_sym] name
     #   the attribute name
-    # @param [#to_hash] options
+    # @param [Hash] options
     #   the options for the attribute
     # @option options [Boolean] :required (true)
     #   if true, then the value cannot be nil
@@ -91,7 +91,7 @@ module Veritas
     # @api private
     def initialize(name, options = EMPTY_HASH)
       @name     = name.to_sym
-      @options  = freeze_object(options.to_hash)
+      @options  = freeze_object(options)
       @required = @options.fetch(:required, true)
     end
 

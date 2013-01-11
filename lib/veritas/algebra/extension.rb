@@ -19,7 +19,7 @@ module Veritas
       #
       # @param [Relation] operand
       #   the relation to extend
-      # @param [#to_hash] extensions
+      # @param [Hash] extensions
       #   the extensions to add
       #
       # @return [undefined]
@@ -27,7 +27,6 @@ module Veritas
       # @api private
       def initialize(operand, extensions)
         super(operand)
-        extensions  = extensions.to_hash
         keys        = extensions.keys
         @header     = @header.extend(keys)
         @extensions = Hash[@header.project(keys).zip(extensions.values)]
