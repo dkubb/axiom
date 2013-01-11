@@ -12,11 +12,19 @@ describe Aggregate::Mean, '.call' do
   let(:default) { object.default  }
   let(:object)  { described_class }
 
-  context 'when the values are not nil' do
-    let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
+  context 'when the value is 0' do
+    let(:values) { [ 0 ] }
 
     it 'returns the expected count and mean of the values' do
-      should eql([ 6, 3.5 ])
+      should eql([ 1, 0.0 ])
+    end
+  end
+
+  context 'when the values are not nil' do
+    let(:values) { [ -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6 ] }
+
+    it 'returns the expected count and mean of the values' do
+      should eql([ 13, 0.0 ])
     end
   end
 

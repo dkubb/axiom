@@ -24,7 +24,7 @@ module Veritas
         return accumulator if value.nil?
         count, mean = accumulator
         count       = Count.call(count, value)
-        [ count, mean.nil? ? value.to_f : mean + ((value - mean) / count.to_f) ]
+        [ count, mean.nil? ? value.to_f : mean + ((value - mean) / count) ]
       end
 
       # Extract the mean from the accumulator
