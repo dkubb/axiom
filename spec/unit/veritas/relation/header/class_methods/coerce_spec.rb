@@ -3,20 +3,22 @@
 require 'spec_helper'
 
 describe Relation::Header, '.coerce' do
+  let(:object) { described_class                             }
+  let(:header) { object.new([ Attribute::Integer.new(:id) ]) }
+  let(:array)  { [ [ :id, Integer ] ]                        }
+
   context 'with a block' do
     subject { object.coerce(argument, &block) }
 
-    let(:object) { described_class }
-
     context 'when the argument is a Header' do
-      let(:argument) { object.new([ Attribute::Integer.new(:id) ]) }
-      let(:block)    { proc { raise 'should not raise' }           }
+      let(:argument) { header                            }
+      let(:block)    { proc { raise 'should not raise' } }
 
-      it { should equal(argument) }
-   end
+      it { should equal(header) }
+    end
 
     context 'when the argument responds to #to_ary' do
-      let(:argument) { [ [ :id, Integer ] ] }
+      let(:argument) { array }
 
       context 'and the block returns another attribute' do
         let(:block) { lambda { |attribute| other } }
@@ -24,7 +26,7 @@ describe Relation::Header, '.coerce' do
 
         it { should be_instance_of(object) }
 
-        it { should == [ other ] }
+        it { should eql(object.new([ other ])) }
       end
 
       context 'and the block does not match another attribute' do
@@ -32,7 +34,7 @@ describe Relation::Header, '.coerce' do
 
         it { should be_instance_of(object) }
 
-        it { should == argument }
+        it { should eql(header) }
       end
     end
 
@@ -47,20 +49,18 @@ describe Relation::Header, '.coerce' do
   context 'without a block' do
     subject { object.coerce(argument) }
 
-    let(:object) { described_class }
-
     context 'when the argument is a Header' do
-      let(:argument) { object.new([ Attribute::Integer.new(:id) ]) }
+      let(:argument) { header }
 
-      it { should equal(argument) }
+      it { should equal(header) }
     end
 
     context 'when the argument responds to #to_ary' do
-      let(:argument) { [ [ :id, Integer ] ] }
+      let(:argument) { array }
 
       it { should be_instance_of(object) }
 
-      it { should == argument }
+      it { should eql(header) }
     end
 
     context 'when the argument is not a Header and does not respond to #to_ary' do

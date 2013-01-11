@@ -5,36 +5,72 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '.coerce' do
   subject { object.coerce(argument) }
 
-  let(:direction)     { Attribute::Integer.new(:id).desc }
-  let(:directions)    { [ direction ]                    }
-  let(:object)        { described_class                  }
-  let(:direction_set) { object.new(directions)           }
+  let(:object)        { described_class               }
+  let(:direction_set) { object.new([ attribute.asc ]) }
+  let(:array)         { [ [ :id, Integer ] ]          }
+  let(:attribute)     { Attribute::Integer.new(:id)   }
 
-  context 'when the argument is a DirectionSet' do
-    let(:argument) { direction_set }
+  context 'with a block' do
+    subject { object.coerce(argument, &block) }
 
-    it { should equal(argument) }
+    context 'when the argument is a DirectionSet' do
+      let(:argument) { direction_set                     }
+      let(:block)    { proc { raise 'should not raise' } }
+
+      it { should equal(direction_set) }
+    end
+
+    context 'when the argument responds to #to_ary' do
+      let(:argument) { array }
+
+      context 'and the block returns another attribute' do
+        let(:block) { lambda { |attribute| other }   }
+        let(:other) { Attribute::String.new(:id).asc }
+
+        it { should be_instance_of(object) }
+
+        it { should eql(object.new([ other ])) }
+      end
+
+      context 'and the block does not match another attribute' do
+        let(:block) { lambda { |attribute| nil } }
+
+        it { should be_instance_of(object) }
+
+        it { should eql(direction_set) }
+      end
+    end
+
+    context 'when the argument is not a DirectionSet and does not respond to #to_ary' do
+      let(:argument) { Object.new                 }
+      let(:block)    { lambda { |attribute| nil } }
+
+      specify { expect { subject }.to raise_error(NoMethodError) }
+    end
   end
 
-  context 'when the argument is a Direction' do
-    let(:argument) { direction }
+  context 'without a block' do
+    subject { object.coerce(argument) }
 
-    it { should be_instance_of(object) }
+    context 'when the argument is a DirectionSet' do
+      let(:argument) { direction_set }
 
-    it { should == direction_set }
+      it { should equal(direction_set) }
+    end
+
+    context 'when the argument responds to #to_ary' do
+      let(:argument) { array }
+
+      it { should be_instance_of(object) }
+
+      it { should eql(direction_set) }
+    end
+
+    context 'when the argument is not a DirectionSet and does not respond to #to_ary' do
+      let(:argument) { Object.new }
+
+      specify { expect { subject }.to raise_error(NoMethodError) }
+    end
   end
 
-  context 'when the argument responds to #to_ary' do
-    let(:argument) { directions }
-
-    it { should be_instance_of(object) }
-
-    it { should == direction_set }
-  end
-
-  context 'when the argument is not a DirectionSet and does not respond to #to_ary' do
-    let(:argument) { { :id => Integer } }
-
-    specify { expect { subject }.to raise_error(NoMethodError) }
-  end
 end
