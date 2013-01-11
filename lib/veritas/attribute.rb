@@ -196,13 +196,13 @@ module Veritas
 
     # Coerce the object into an Attribute
     #
-    # @param [Attribute, Array] object
+    # @param [Array] args
     #
     # @return [Attribute]
     #
     # @api private
-    def coerce(object)
-      Attribute.coerce(object)
+    def coerce(*args)
+      self.class.coerce(*args)
     end
 
   end # class Attribute
