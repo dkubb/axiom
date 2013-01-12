@@ -3,9 +3,10 @@
 require 'spec_helper'
 
 describe Attribute, '.new' do
-  subject { object.new(name) }
+  subject { object.new(name, options) }
 
-  let(:name) { :id }
+  let(:name)    { :id }
+  let(:options) { {}  }
 
   [
     Attribute::Boolean,
@@ -22,6 +23,11 @@ describe Attribute, '.new' do
   ].each do |described_class|
     context "when called on the Attribute subclass #{described_class}" do
       let(:object) { described_class }
+
+      it 'does not freeze the options' do
+        options.should_not be_frozen
+        expect { subject }.to_not change(options, :frozen?)
+      end
 
       it { should be_instance_of(object) }
     end
