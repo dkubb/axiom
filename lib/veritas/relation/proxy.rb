@@ -60,7 +60,7 @@ module Veritas
       #
       # @api private
       def method_missing(*args, &block)
-        response = relation.send(*args, &block)
+        response = relation.public_send(*args, &block)
         if response.equal?(relation)
           self
         else
