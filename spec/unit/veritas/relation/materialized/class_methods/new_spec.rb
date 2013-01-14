@@ -16,7 +16,10 @@ describe Relation::Materialized, '.new' do
 
     its(:header) { should equal(header) }
 
-    its(:directions) { should == directions }
+    its(:directions) do
+      should be_instance_of(Relation::Operation::Order::DirectionSet)
+      should == directions
+    end
 
     it { should == tuples }
   end
