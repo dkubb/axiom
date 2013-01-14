@@ -19,6 +19,8 @@ describe Relation::Header, '#project' do
     end
 
     its(:to_ary) { should == [ [ :id, Integer ] ] }
+
+    its(:keys) { should eql(Relation::Keys.new([ described_class.coerce([ [ :id, Integer ] ]) ])) }
   end
 
   context 'with Symbol attributes' do
@@ -29,5 +31,16 @@ describe Relation::Header, '#project' do
     its(:to_ary) { should == [ [ :id, Integer ] ] }
 
     its(:keys) { should eql(Relation::Keys.new([ described_class.coerce([ [ :id, Integer ] ]) ])) }
+  end
+
+  context 'when the header has no keys' do
+    let(:keys)       { Relation::Keys.new }
+    let(:attributes) { [ :id ]            }
+
+    it { should be_instance_of(described_class) }
+
+    its(:to_ary) { should == [ [ :id, Integer ] ] }
+
+    its(:keys) { should be_empty }
   end
 end
