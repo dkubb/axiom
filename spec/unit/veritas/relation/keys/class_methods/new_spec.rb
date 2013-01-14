@@ -23,6 +23,11 @@ describe Relation::Keys, '.new' do
     it { should be_instance_of(object) }
 
     it { should == argument }
+
+    it 'does not freeze the argument' do
+      argument.should_not be_frozen
+      expect { subject }.to_not change(argument, :frozen?)
+    end
   end
 
   context 'with an argument that responds to #to_ary and contains reducible keys' do
