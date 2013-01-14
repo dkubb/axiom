@@ -49,9 +49,7 @@ module Veritas
 
     private
 
-      # Proxy the message to the relation
-      #
-      # @param [Symbol] method
+      # Forward the message to the relation
       #
       # @param [Array] args
       #
@@ -61,8 +59,13 @@ module Veritas
       #   return response from all query methods
       #
       # @api private
-      def method_missing(method, *args, &block)
-        forwardable?(method) ? forward(method, *args, &block) : super
+      def method_missing(*args, &block)
+        response = relation.send(*args, &block)
+        if response.equal?(relation)
+          self
+        else
+          response
+        end
       end
 
       # Test if the method can be forwarded to the relation
@@ -74,25 +77,6 @@ module Veritas
       # @api private
       def forwardable?(method)
         relation.respond_to?(method)
-      end
-
-      # Forward the message to the relation
-      #
-      # @param [Array] args
-      #
-      # @return [self]
-      #   return self for all command methods
-      # @return [Object]
-      #   return response from all query methods
-      #
-      # @api private
-      def forward(*args, &block)
-        response = relation.send(*args, &block)
-        if response.equal?(relation)
-          self
-        else
-          response
-        end
       end
 
     end # module Proxy
