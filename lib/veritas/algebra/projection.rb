@@ -182,21 +182,7 @@ module Veritas
         #
         # @api public
         def remove(attributes)
-          project(header - project_header(attributes))
-        end
-
-      private
-
-        # Return a header with only the attributes specified
-        #
-        # @param [#to_ary] attributes
-        #   the attributes to keep in the header
-        #
-        # @return [Header]
-        #
-        # @api private
-        def project_header(attributes)
-          header.project(attributes)
+          project(header - attributes)
         end
 
       end # module Methods
