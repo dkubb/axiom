@@ -13,6 +13,11 @@ describe Relation, '.new' do
     it { should be_instance_of(Relation::Materialized) }
 
     it { should == body.dup }
+
+    it 'does not freeze the body' do
+      body.should_not be_frozen
+      expect { subject }.to_not change(body, :frozen?)
+    end
   end
 
   context 'with an Enumerable that returns nil for #size' do
@@ -23,6 +28,11 @@ describe Relation, '.new' do
     it { should be_instance_of(object) }
 
     it { should == body.dup }
+
+    it 'does not freeze the body' do
+      body.should_not be_frozen
+      expect { subject }.to_not change(body, :frozen?)
+    end
   end
 
   context 'with an Enumerable that returns Float::INFINITY for #size' do
@@ -33,6 +43,11 @@ describe Relation, '.new' do
     it { should be_instance_of(object) }
 
     it { should == body.dup }
+
+    it 'does not freeze the body' do
+      body.should_not be_frozen
+      expect { subject }.to_not change(body, :frozen?)
+    end
   end
 
   context 'with an Enumerable that does not respond to #size' do
@@ -45,5 +60,10 @@ describe Relation, '.new' do
     it { should be_instance_of(object) }
 
     it { should == body.dup }
+
+    it 'does not freeze the body' do
+      body.should_not be_frozen
+      expect { subject }.to_not change(body, :frozen?)
+    end
   end
 end
