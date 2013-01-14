@@ -21,6 +21,22 @@ describe Function::Proposition, '.new' do
     it { should equal(Function::Proposition::Contradiction.instance) }
   end
 
+  context 'with a truthy argument' do
+    subject { object.new(argument) }
+
+    let(:argument) { 1 }
+
+    it { should equal(Function::Proposition::Contradiction.instance) }
+  end
+
+  context 'with a falsey argument' do
+    subject { object.new(argument) }
+
+    let(:argument) { nil }
+
+    it { should equal(Function::Proposition::Contradiction.instance) }
+  end
+
   context 'with no arguments' do
     subject { object.new }
 
