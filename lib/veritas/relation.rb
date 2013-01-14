@@ -217,6 +217,17 @@ module Veritas
       none?
     end
 
+    # Return set of tuples
+    #
+    # @return [Set<Tuple>]
+    #
+    # @api private
+    #
+    def to_set
+      super()
+    end
+    memoize :to_set
+
   private
 
     # Coerce an Enumerable into a Relation
@@ -263,8 +274,6 @@ module Veritas
           "one tuple expected, but set contained #{size} tuples"
       end
     end
-
-    memoize :to_set
 
   end # class Relation
 end # module Veritas
