@@ -190,7 +190,7 @@ module Veritas
           renames = aliases.map do |old_attr, new_attr|
             coerce_alias_pair(header, old_attr, new_attr)
           end
-          new(Hash[renames].freeze)
+          new(Hash[renames])
         end
 
         # Coerce old and new attributes into Attribute objects
