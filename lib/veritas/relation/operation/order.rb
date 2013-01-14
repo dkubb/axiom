@@ -50,7 +50,7 @@ module Veritas
         #
         # @api private
         def self.assert_order_by_full_header(operand, directions)
-          if operand.header.to_set != directions.attributes.to_set
+          if operand.header != directions.attributes
             raise InvalidDirectionsError, 'directions must include every attribute in the header'
           end
         end
