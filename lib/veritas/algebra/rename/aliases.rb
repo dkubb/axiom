@@ -206,7 +206,7 @@ module Veritas
         #
         # @api private
         def self.coerce_alias_pair(attributes, old_attr, new_attr)
-          old_attr = attributes[old_attr]      if old_attr.kind_of?(Symbol)
+          old_attr = attributes[old_attr]
           new_attr = old_attr.rename(new_attr) if new_attr.kind_of?(Symbol)
           [ old_attr, new_attr ]
         end
