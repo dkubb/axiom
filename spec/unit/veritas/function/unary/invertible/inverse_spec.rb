@@ -9,12 +9,18 @@ describe Function::Unary::Invertible, '#inverse' do
   let(:operand)         { mock('Operand').freeze                          }
   let(:object)          { described_class.new(operand)                    }
 
+  let(:inverse_class) do
+    Class.new(Function) do
+      include Function::Unary::Invertible, Function::Unary
+    end
+  end
+
   before do
     described_class.class_eval do
       include Function::Unary::Invertible
 
       def self.inverse
-        self
+        InverseClass
       end
 
       def inspect
@@ -23,11 +29,17 @@ describe Function::Unary::Invertible, '#inverse' do
     end
   end
 
+  before do
+    ::InverseClass = inverse_class
+  end
+
+  after do
+    Object.send(:remove_const, :InverseClass) if defined?(InverseClass)
+  end
+
   it_should_behave_like 'an invertible method'
 
-  it { should be_instance_of(described_class) }
-
-  it { should_not equal(object) }
+  it { should be_instance_of(InverseClass) }
 
   its(:operand) { should equal(operand) }
 end
