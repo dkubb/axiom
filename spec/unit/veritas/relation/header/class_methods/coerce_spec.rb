@@ -3,9 +3,10 @@
 require 'spec_helper'
 
 describe Relation::Header, '.coerce' do
-  let(:object) { described_class                             }
-  let(:header) { object.new([ Attribute::Integer.new(:id) ]) }
-  let(:array)  { [ [ :id, Integer ] ]                        }
+  let(:object)    { described_class             }
+  let(:header)    { object.new([ attribute ])   }
+  let(:attribute) { Attribute::Integer.new(:id) }
+  let(:array)     { [ [ :id, Integer ] ]        }
 
   context 'with a block' do
     subject { object.coerce(argument, &block) }
@@ -27,6 +28,8 @@ describe Relation::Header, '.coerce' do
         it { should be_instance_of(object) }
 
         it { should eql(object.new([ other ])) }
+
+        its(:keys) { should be_empty }
       end
 
       context 'and the block does not match another attribute' do
@@ -35,6 +38,8 @@ describe Relation::Header, '.coerce' do
         it { should be_instance_of(object) }
 
         it { should eql(header) }
+
+        its(:keys) { should be_empty }
       end
     end
 
@@ -61,6 +66,8 @@ describe Relation::Header, '.coerce' do
       it { should be_instance_of(object) }
 
       it { should eql(header) }
+
+      its(:keys) { should be_empty }
     end
 
     context 'when the argument is not a Header and does not respond to #to_ary' do
@@ -68,5 +75,27 @@ describe Relation::Header, '.coerce' do
 
       specify { expect { subject }.to raise_error(NoMethodError) }
     end
+  end
+
+  context 'with an attribute' do
+    subject { object.coerce(attribute) }
+
+    it { should be_instance_of(object) }
+
+    its(:to_a) { should == [ attribute ] }
+
+    its(:keys) { should be_empty }
+  end
+
+  context 'with options' do
+    subject { object.coerce(array, options) }
+
+    let(:options) { { :keys => [ array ] } }
+
+    it { should be_instance_of(object) }
+
+    its(:to_a) { should == array }
+
+    its(:keys) { should == [ array ] }
   end
 end
