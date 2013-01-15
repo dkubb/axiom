@@ -33,7 +33,6 @@ end
 group :metrics do
   gem 'flay',      '~> 1.4.3'
   gem 'flog',      '~> 2.5.3'
-  gem 'reek',      '~> 1.2.8', :github => 'dkubb/reek'
   gem 'roodi',     '~> 2.1.0'
   gem 'yardstick', '~> 0.8.0'
 
