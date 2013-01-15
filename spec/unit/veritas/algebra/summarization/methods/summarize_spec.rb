@@ -20,7 +20,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:summarize_per) { should equal(TABLE_DEE) }
 
-    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
+    its(:summarizers) { should eql(Attribute::Integer.new(:test) => function) }
   end
 
   context 'with a relation' do
@@ -32,7 +32,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:summarize_per) { should equal(summarize_with) }
 
-    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
+    its(:summarizers) { should eql(Attribute::Integer.new(:test) => function) }
   end
 
   context 'with a header' do
@@ -42,9 +42,9 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:operand) { should equal(object) }
 
-    its(:summarize_per) { should == object.project(summarize_with) }
+    its(:summarize_per) { should eql(object.project(summarize_with)) }
 
-    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
+    its(:summarizers) { should eql(Attribute::Integer.new(:test) => function) }
   end
 
   context 'with attributes' do
@@ -54,9 +54,9 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:operand) { should equal(object) }
 
-    its(:summarize_per) { should == object.project(summarize_with) }
+    its(:summarize_per) { should eql(object.project(summarize_with)) }
 
-    its(:summarizers) { should == { Attribute::Integer.new(:test) => function } }
+    its(:summarizers) { should eql(Attribute::Integer.new(:test) => function) }
   end
 
   context 'with summarizers' do
@@ -67,9 +67,9 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     its(:operand) { should equal(object) }
 
-    its(:summarize_per) { should == summarize_with }
+    its(:summarize_per) { should eql(summarize_with) }
 
-    its(:summarizers) { should == summarizers }
+    its(:summarizers) { should eql(summarizers) }
   end
 
   context 'with a header containing an attribute used in the context block' do
