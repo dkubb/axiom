@@ -112,7 +112,7 @@ module Veritas
       #
       # @api private
       def method_missing(name, *args)
-        return super unless respond_to?(name)
+        super unless respond_to?(name)
         ::Kernel.raise ::ArgumentError, "wrong number of arguments (#{args.length} for 0)" unless args.empty?
         self[name]
       end
