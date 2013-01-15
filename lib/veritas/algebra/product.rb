@@ -58,13 +58,10 @@ module Veritas
       # @api public
       def each(&block)
         return to_enum unless block_given?
-        util         = Relation::Operation::Combination
-        right_tuples = right.to_a
-
+        util = Relation::Operation::Combination
         left.each do |left_tuple|
-          util.combine_tuples(header, left_tuple, right_tuples, &block)
+          util.combine_tuples(header, left_tuple, right, &block)
         end
-
         self
       end
 
