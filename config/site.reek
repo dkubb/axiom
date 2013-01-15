@@ -81,7 +81,8 @@ Duplication:
     'Veritas::Function::Unary#rename',
     'Veritas::Relation::Operation::Order::Direction#call',
     'Veritas::Relation::Operation::Order::Direction#rename',
-    'Veritas::Relation::Proxy#forward'
+    'Veritas::Relation::Proxy#forward',
+    'Veritas::Relation::Proxy#method_missing'
   ]
   enabled: true
   max_calls: 1
