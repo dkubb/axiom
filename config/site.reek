@@ -38,7 +38,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule:
   exclude: []
-  enabled: true
+  enabled: false
 UncommunicativeModuleName:
   accept: []
   exclude: []
