@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Algebra::Summarization, '.new' do
   subject { object.new(operand, summarize_per, summarizers) }
 
-  let(:header)      { [ [ :id, Integer ] ]                   }
-  let(:operand)     { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
-  let(:summarizers) { {}                                     }
-  let(:object)      { described_class                        }
+  let(:header)      { [ [ :id, Integer ], [ :name, String ] ]                        }
+  let(:operand)     { Relation.new(header, [ [ 1, 'John Doe' ], [ 2, 'Jane Doe' ] ]) }
+  let(:summarizers) { {}                                                             }
+  let(:object)      { described_class                                                }
 
   context 'with a summarize_per that has a subset of the headers in the operand' do
-    let(:summarize_per) { TABLE_DEE }
+    let(:summarize_per) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
 
     it { should be_instance_of(object) }
   end
