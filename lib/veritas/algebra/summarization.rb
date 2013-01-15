@@ -76,7 +76,7 @@ module Veritas
       def initialize(operand, summarize_per, summarizers)
         super(operand)
         @summarize_per = summarize_per
-        @summarizers   = summarizers.to_hash
+        @summarizers   = summarizers
         @header        = @summarize_per.header | @summarizers.keys
       end
 
@@ -214,7 +214,7 @@ module Veritas
         #
         # @param [#header] summarize_per
         #   the Relation to summarize with
-        # @param [#to_hash] summarizers
+        # @param [Hash] summarizers
         #   optional summarizers
         #
         # @yield [function]
