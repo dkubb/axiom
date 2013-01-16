@@ -264,7 +264,5 @@ module Veritas
       end
     end
 
-    memoize :to_set
-
   end # class Relation
 end # module Veritas
