@@ -104,6 +104,16 @@ describe Relation, '#==' do
     end
   end
 
+  context 'with a different object not responding to #to_set' do
+    let(:other) { Object.new }
+
+    it { should be(false) }
+
+    it 'is symmetric' do
+      should eql(other == object)
+    end
+  end
+
   context 'with a different object having a superset of the headers' do
     let(:other_header) { [ [ :id, Integer ], [ :name, String ] ]       }
     let(:other_body)   { LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])     }
