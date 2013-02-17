@@ -5,7 +5,8 @@ require 'spec_helper'
 describe Algebra::Summarization::Summaries, '#to_hash' do
   subject { object.to_hash }
 
-  let(:object)      { described_class.new(summarizers) }
+  let(:object)      { described_class.new(header, summarizers) }
+  let(:header)      { mock('Header')                           }
   let(:summarizers) { { :count => mock('Summarizer') } }
 
   it 'matches the expected value' do
