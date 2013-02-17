@@ -138,9 +138,8 @@ module Veritas
       #
       # @api private
       def summaries
-        header    = summarize_per.header
         summaries = default_summaries
-        operand.each { |tuple| summaries.summarize_by(header, tuple) }
+        operand.each { |tuple| summaries.summarize_by(tuple) }
         summaries.to_hash
       end
 
@@ -150,7 +149,7 @@ module Veritas
       #
       # @api private
       def default_summaries
-        Summaries.new(summarizers)
+        Summaries.new(summarize_per.header, summarizers)
       end
 
       module Methods
