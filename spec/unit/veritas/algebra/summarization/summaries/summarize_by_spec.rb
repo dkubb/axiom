@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe Algebra::Summarization::Summaries, '#summarize_by' do
-  subject { object.summarize_by(header, tuple) }
+  subject { object.summarize_by(tuple) }
 
-  let(:object)       { described_class.new(summarizers)                                 }
+  let(:object)       { described_class.new(header, summarizers)                         }
   let(:summarizers)  { { :count => summarizer }                                         }
   let(:summarizer)   { mock('Summarizer', :call => 1)                                   }
   let(:header)       { Relation::Header.coerce([ [ :id, Integer ] ])                    }

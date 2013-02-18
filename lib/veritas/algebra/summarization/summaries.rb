@@ -9,12 +9,15 @@ module Veritas
 
         # Initialize Summaries
         #
+        # @param [Relation::Header] header
+        #
         # @param [Hash{Symbol => #call}] summarizers
         #
         # @return [undefined]
         #
         # @api private
-        def initialize(summarizers)
+        def initialize(header, summarizers)
+          @header = header
           @summaries = Hash.new
           summarizers.each do |name, summarizer|
             @summaries[name] = Summary.new(summarizer)
@@ -26,15 +29,13 @@ module Veritas
         # @example
         #   summaries = summaries.summarize_by(header, tuple)
         #
-        # @param [Header] header
-        #
         # @param [Tuple] tuple
         #
         # @return [self]
         #
         # @api public
-        def summarize_by(header, tuple)
-          projection = tuple.project(header)
+        def summarize_by(tuple)
+          projection = tuple.project(@header)
           @summaries.each_value do |summary|
             summary.summarize_by(projection, tuple)
           end
