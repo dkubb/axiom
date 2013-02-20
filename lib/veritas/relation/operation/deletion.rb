@@ -4,7 +4,7 @@ module Veritas
   class Relation
     module Operation
 
-      # A class representing an deletion from a relation
+      # A class representing a deletion from a relation
       class Deletion < Relation
         include Proxy
 
