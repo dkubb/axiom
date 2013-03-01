@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('adamantium',          '~> 0.0.7')
   gem.add_runtime_dependency('descendants_tracker', '~> 0.0.1')
   gem.add_runtime_dependency('equalizer',           '~> 0.0.5')
+  gem.add_runtime_dependency('abstract_type',       '~> 0.0.5')
 
   gem.add_development_dependency('rake',  '~> 10.0.3')
   gem.add_development_dependency('rspec', '~> 1.3.2')
