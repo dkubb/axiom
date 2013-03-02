@@ -1,45 +1,53 @@
 # encoding: utf-8
 
-begin
-  require 'flay'
-  require 'yaml'
+PLATFORM = defined?(RUBY_ENGINE) && RUBY_ENGINE || 'ruby'
 
-  config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
-  threshold   = config.fetch('threshold').to_i
-  total_score = config.fetch('total_score').to_f
-  files       = Flay.expand_dirs_to_files(config.fetch('path', 'lib')).sort
+namespace :metrics do
+  if RUBY_VERSION >= '1.9.3' && PLATFORM == 'ruby'
+    begin
+      require 'flay'
+      require 'yaml'
 
-  namespace :metrics do
-    # original code by Marty Andrews:
-    # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
-    desc 'Analyze for code duplication'
-    task :flay do
-      # run flay once without a threshold to ensure the max mass matches the threshold
-      flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
-      flay.process(*files)
+      config      = YAML.load_file(File.expand_path('../../../config/flay.yml', __FILE__)).freeze
+      threshold   = config.fetch('threshold').to_i
+      total_score = config.fetch('total_score').to_f
+      files       = Flay.expand_dirs_to_files(config.fetch('path', 'lib')).sort
 
-      max = (flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max) || 0
-      unless max >= threshold
-        raise "Adjust flay threshold down to #{max}"
+      # original code by Marty Andrews:
+      # http://blog.martyandrews.net/2009/05/enforcing-ruby-code-quality.html
+      desc 'Analyze for code duplication'
+      task :flay do
+        # run flay once without a threshold to ensure the max mass matches the threshold
+        flay = Flay.new(:fuzzy => false, :verbose => false, :mass => 0)
+        flay.process(*files)
+
+        max = (flay.masses.map { |hash, mass| mass.to_f / flay.hashes[hash].size }.max) || 0
+        unless max >= threshold
+          raise "Adjust flay threshold down to #{max}"
+        end
+
+        total = flay.masses.reduce(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
+        unless total == total_score
+          raise "Flay total is now #{total}, but expected #{total_score}"
+        end
+
+        # run flay a second time with the threshold set
+        flay = Flay.new(:fuzzy => false, :verbose => false, :mass => threshold.succ)
+        flay.process(*files)
+
+        if flay.masses.any?
+          flay.report
+          raise "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
+        end
       end
-
-      total = flay.masses.reduce(0.0) { |total, (hash, mass)| total + (mass.to_f / flay.hashes[hash].size) }
-      unless total == total_score
-        raise "Flay total is now #{total}, but expected #{total_score}"
-      end
-
-      # run flay a second time with the threshold set
-      flay = Flay.new(:fuzzy => false, :verbose => false, :mass => threshold.succ)
-      flay.process(*files)
-
-      if flay.masses.any?
-        flay.report
-        raise "#{flay.masses.size} chunks of code have a duplicate mass > #{threshold}"
+    rescue LoadError
+      task :flay do
+        $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
       end
     end
-  end
-rescue LoadError
-  task :flay do
-    $stderr.puts 'Flay is not available. In order to run flay, you must: gem install flay'
+  else
+    task :flay do
+      $stderr.puts "Flay is disabled under #{PLATFORM}-#{RUBY_VERSION} since it is not score compatible with other implementations"
+    end
   end
 end

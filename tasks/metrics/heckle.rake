@@ -5,27 +5,27 @@ $LOAD_PATH.unshift(File.expand_path('../../../lib', __FILE__))
 # original code by Ashley Moran:
 # http://aviewfromafar.net/2007/11/1/rake-task-for-heckling-your-specs
 
-begin
-  require 'pathname'
-  require 'heckle'
-  require 'mspec'
-  require 'mspec/utils/name_map'
+namespace :metrics do
+  begin
+    require 'pathname'
+    require 'heckle'
+    require 'mspec'
+    require 'mspec/utils/name_map'
 
-  SKIP_METHODS = %w[ blank_slate_method_added ].freeze
+    SKIP_METHODS = %w[ blank_slate_method_added ].freeze
 
-  class NameMap
-    def file_name(method, constant)
-      map  = MAP[method]
-      name = if map
-        map[constant] || map[:default]
-      else
-        method.gsub(/[?!=]\z/, '')
+    class NameMap
+      def file_name(method, constant)
+        map  = MAP[method]
+        name = if map
+          map[constant] || map[:default]
+        else
+          method.gsub(/[?!=]\z/, '')
+        end
+        "#{name}_spec.rb"
       end
-      "#{name}_spec.rb"
     end
-  end
 
-  namespace :metrics do
     desc 'Heckle each module and class'
     task :heckle => :coverage do
       unless Ruby2Ruby::VERSION == '1.2.2'
@@ -261,9 +261,9 @@ begin
         puts 'Well done! Your code withstood a heckling.'
       end
     end
-  end
-rescue LoadError
-  task :heckle => :coverage do
-    $stderr.puts 'Heckle or mspec is not available. In order to run heckle, you must: gem install heckle mspec'
+  rescue LoadError
+    task :heckle => :coverage do
+      $stderr.puts 'Heckle or mspec is not available. In order to run heckle, you must: gem install heckle mspec'
+    end
   end
 end
