@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 gemspec
 
 group :yard do
-  gem 'redcarpet', '~> 2.2.2', :platforms => [ :mri, :rbx ]
+  gem 'kramdown', '~> 0.14.2'
 end
 
 group :guard do
@@ -25,10 +25,10 @@ group :guard do
 end
 
 group :metrics do
-  gem 'flay',      '~> 1.4.3'
-  gem 'flog',      '~> 2.5.3'
-  gem 'roodi',     '~> 2.2.0'
-  gem 'yardstick', '~> 0.9.3'
+  gem 'flay',            '=  1.4.3'
+  gem 'flog',            '=  2.5.3'
+  gem 'metric_fu-roodi', '~> 2.2.1'
+  gem 'yardstick',       '~> 0.9.3'
 
   platforms :ruby_18, :ruby_19 do
     # this indirectly depends on ffi which does not build on ruby-head
