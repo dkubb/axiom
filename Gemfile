@@ -28,7 +28,7 @@ group :metrics do
   gem 'flay',            '=  1.4.3'
   gem 'flog',            '=  2.5.3'
   gem 'metric_fu-roodi', '~> 2.2.1'
-  gem 'yardstick',       '~> 0.9.3'
+  gem 'yardstick',       '~> 0.9.4'
 
   platforms :ruby_18, :ruby_19 do
     # this indirectly depends on ffi which does not build on ruby-head
