@@ -1,5 +1,8 @@
 * TODO:
 
+* Change Algebra::Extension#extensions to be a non-primtive
+  * May also change EvaluationContext#functions to return a set of functions.
+
 * Add key minimization to Header
   * When unioning two keys together it is really simple to end up
     with indexes that overlap and cause an exception.
