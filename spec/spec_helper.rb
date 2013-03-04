@@ -13,7 +13,7 @@ end
 
 require 'veritas'
 require 'spec'
-require 'spec/autorun'
+require 'spec/autorun' if RUBY_VERSION < '1.9'
 
 include Veritas
 
