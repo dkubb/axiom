@@ -38,7 +38,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule:
   exclude: []
-  enabled: false
+  enabled: true
 UncommunicativeModuleName:
   accept: []
   exclude: []
@@ -123,3 +123,9 @@ LongYieldList:
   max_params: 2
   exclude: []
   enabled: true
+UnusedParameters:
+  enabled: true
+  exclude: []
+NilCheck:
+  enabled: false
+  exclude: []
