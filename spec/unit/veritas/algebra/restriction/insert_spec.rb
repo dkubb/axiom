@@ -16,8 +16,8 @@ describe Algebra::Restriction, '#insert' do
 
     its(:operand) { should be_kind_of(Relation::Operation::Insertion) }
 
-    its(:operand) do
-      # test that the expected restriction was passed to the insertion
+    it 'passes expected relations into the insertion' do
+      subject = self.subject.operand
       subject.left.should equal(operand)
       subject.right.should be_kind_of(described_class)
       subject.right.predicate.should equal(predicate)

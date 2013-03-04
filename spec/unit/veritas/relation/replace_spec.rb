@@ -18,8 +18,8 @@ describe Relation, '#replace' do
       should == other
     end
 
-    its(:left) do
-      # test that the operations are applied in the correct sequence
+    it 'applies the left operations in the correct sequence' do
+      subject = self.subject.left
       subject.should be_instance_of(Relation::Operation::Deletion)
       subject.left.should equal(object)
       subject.right.should be_instance_of(Algebra::Difference)
@@ -27,8 +27,8 @@ describe Relation, '#replace' do
       subject.right.right.should eql(other_relation)
     end
 
-    its(:right) do
-      # test that the operations are applied in the correct sequence
+    it 'applies the right operations in the correct sequence' do
+      subject = self.subject.right
       subject.should be_instance_of(Algebra::Difference)
       subject.left.should eql(other_relation)
       subject.right.should equal(object)

@@ -16,8 +16,8 @@ describe Algebra::Restriction, '#delete' do
 
     its(:operand) { should be_kind_of(Relation::Operation::Deletion) }
 
-    its(:operand) do
-      # test that the expected restriction was passed to the deletion
+    it 'passes expected relations into the deletion' do
+      subject = self.subject.operand
       subject.left.should equal(operand)
       subject.right.should be_kind_of(described_class)
       subject.right.predicate.should equal(predicate)

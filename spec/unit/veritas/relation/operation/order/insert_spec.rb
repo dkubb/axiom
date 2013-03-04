@@ -18,8 +18,8 @@ describe Relation::Operation::Order, '#insert' do
 
     its(:operand) { should be_kind_of(Relation::Operation::Insertion) }
 
-    its(:operand) do
-      # test that the expected relations were passed to the insertion
+    it 'passes expected relations into the insertion' do
+      subject = self.subject.operand
       subject.left.should equal(relation)
       subject.right.should equal(other_base)
     end

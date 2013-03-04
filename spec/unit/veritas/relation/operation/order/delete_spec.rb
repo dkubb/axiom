@@ -18,8 +18,8 @@ describe Relation::Operation::Order, '#delete' do
 
     its(:operand) { should be_kind_of(Relation::Operation::Deletion) }
 
-    its(:operand) do
-      # test that the expected relations were passed to the insertion
+    it 'passes expected relations into the deletion' do
+      subject = self.subject.operand
       subject.left.should equal(relation)
       subject.right.should equal(other_base)
     end
