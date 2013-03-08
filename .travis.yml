@@ -1,7 +1,7 @@
 language: ruby
 before_install: gem install bundler
-bundler_args: --without yard guard metrics benchmarks
-script: "bundle exec rake spec"
+bundler_args: --without yard guard benchmarks
+script: "bundle exec rake ci"
 rvm:
   - ree
   - 1.8.7
@@ -18,3 +18,7 @@ notifications:
   irc: "irc.freenode.org#datamapper"
   email:
     - dan.kubb@gmail.com
+matrix:
+  allow_failures:
+    - rvm: 1.9.3
+    - rvm: rbx-19mode

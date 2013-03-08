@@ -21,6 +21,6 @@ describe Aggregate::Variance, '.finalize' do
     let(:mean)           { 3.5  }
     let(:sum_of_squares) { 17.5 }
 
-    it { should be_close(2.91, 0.01) }
+    it { should be_within(2.91).of(0.01) }
   end
 end

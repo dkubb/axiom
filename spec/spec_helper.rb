@@ -1,5 +1,12 @@
 # encoding: utf-8
 
+require 'backports'
+require 'backports/basic_object' unless defined?(::BasicObject)
+require 'devtools'
+require 'ice_nine'
+
+Devtools.init_spec_helper
+
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
 
@@ -12,8 +19,6 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'veritas'
-require 'spec'
-require 'spec/autorun' if RUBY_VERSION < '1.9'
 
 include Veritas
 
@@ -22,7 +27,7 @@ Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
   require file
 end
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
 
   # Record the original Attribute descendants
   config.before do

@@ -21,7 +21,7 @@ describe Aggregate::StandardDeviation, '.finalize' do
     let(:mean)           { 3.5  }
     let(:sum_of_squares) { 17.5 }
 
-    it { should be_close(1.70, 0.01) }
+    it { should be_within(1.70).of(0.01) }
   end
 
   context 'when the variance is 0.0' do
