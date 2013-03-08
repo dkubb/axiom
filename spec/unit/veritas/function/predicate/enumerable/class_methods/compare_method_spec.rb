@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Function::Predicate::Enumerable, '.compare_method' do
   subject { object.compare_method(enumerable) }
 
-  let(:object) { self.class.described_type }
+  let(:object) { self.class.described_class }
 
   context 'the enumerable is a Range' do
     let(:enumerable) { 1..2 }

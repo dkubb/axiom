@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Function::Binary::Invertible, '.included' do
   subject { object }
 
-  let(:object) { self.class.described_type }
-  let(:klass)  { Class.new                 }
+  let(:object) { described_class }
+  let(:klass)  { Class.new       }
 
   before do
     klass.stub(:memoize)

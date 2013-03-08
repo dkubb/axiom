@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Function::Comparable, '.included' do
   subject { object }
 
-  let(:object) { self.class.described_type }
-  let(:klass)  { Class.new                 }
+  let(:object) { described_class }
+  let(:klass)  { Class.new       }
 
   it 'extends the klass' do
-    klass.singleton_class.should_not include(self.class.described_type::ClassMethods)
+    klass.singleton_class.should_not include(described_class::ClassMethods)
     klass.send(:include, subject)
-    klass.singleton_class.should include(self.class.described_type::ClassMethods)
+    klass.singleton_class.should include(described_class::ClassMethods)
   end
 
   it 'delegates to the ancestor' do

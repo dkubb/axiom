@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Function::Unary::Callable, '#call' do
   subject { object.call(value) }
 
-  let(:object)    { mock('object', :operation => :op).extend(self.class.described_type) }
-  let(:value)     { mock('value', :send => response)                                    }
-  let(:response)  { mock('response')                                                    }
+  let(:object)    { mock('object', :operation => :op).extend(self.class.described_class) }
+  let(:value)     { mock('value', :send => response)                                     }
+  let(:response)  { mock('response')                                                     }
 
   it { should equal(response) }
 
