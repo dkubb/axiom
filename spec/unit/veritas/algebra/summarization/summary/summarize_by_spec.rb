@@ -14,7 +14,7 @@ describe Algebra::Summarization::Summary, '#summarize_by' do
   it_should_behave_like 'a command method'
 
   it 'aggregates the value returned by the summarizer' do
-    2.times { instance_eval(&self.class.subject) }  # bypass subject cache
+    2.times { subject; __memoized.delete(:subject) }  # bypass subject cache
     object.call(projection).should eql(2)
   end
 end

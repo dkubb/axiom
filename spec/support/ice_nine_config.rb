@@ -1,6 +1,6 @@
 module IceNine
   class Freezer
-    class Spec < NoFreeze
+    class RSpec < NoFreeze
     end
   end
 end
