@@ -9,16 +9,27 @@ rvm:
   - 1.9.3
   - 2.0.0
   - ruby-head
-  - jruby-18mode
-  - jruby-19mode
   - rbx-18mode
   - rbx-19mode
+  - jruby-18mode
 notifications:
-  irc: "irc.freenode.org#datamapper"
+  irc:
+    channels:
+      - "irc.freenode.org#datamapper"
+    on_success: never
+    on_failure: change
   email:
-    - dan.kubb@gmail.com
+    recipients:
+      - dan.kubb@gmail.com
+    on_success: never
+    on_failure: change
 matrix:
+  include:
+    - rvm: jruby-19mode
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+    - rvm: jruby-head
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
   allow_failures:
-    - rvm: 1.9.3       # mutant coverage needed
-    - rvm: rbx-19mode  # mutant coverage needed
-    - rvm: jruby-head  # yard parser fails
+    # mutant fails
+    - rvm: 1.9.3
+    - rvm: rbx-19mode
