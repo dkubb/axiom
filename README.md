@@ -3,9 +3,17 @@ veritas
 
 Simplifies querying of structured data using relational algebra.
 
-[![Build Status](https://secure.travis-ci.org/dkubb/veritas.png)](http://travis-ci.org/dkubb/veritas)
-[![Dependency Status](https://gemnasium.com/dkubb/veritas.png)](https://gemnasium.com/dkubb/veritas)
-[![Code Climate](https://codeclimate.com/github/dkubb/veritas.png)](https://codeclimate.com/github/dkubb/veritas)
+[![Gem Version](https://badge.fury.io/rb/veritas.png)][gem]
+[![Build Status](https://secure.travis-ci.org/dkubb/veritas.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dkubb/veritas.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dkubb/veritas.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/dkubb/veritas/badge.png?branch=master)][coveralls]
+
+[gem]: https://rubygems.org/gems/veritas
+[travis]: https://travis-ci.org/dkubb/veritas
+[gemnasium]: https://gemnasium.com/dkubb/veritas
+[codeclimate]: https://codeclimate.com/github/dkubb/veritas
+[coveralls]: https://coveralls.io/r/dkubb/veritas
 
 Installation
 ------------
