@@ -23,6 +23,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('abstract_type',       '~> 0.0.5')
 
   gem.add_development_dependency('rake',  '~> 10.0.3')
-  gem.add_development_dependency('rspec', '~> 1.3.2')
-  gem.add_development_dependency('yard',  '~> 0.8.5')
+  gem.add_development_dependency('rspec', '~> 2.13.0')
+  gem.add_development_dependency('yard',  '~> 0.8.5.2')
 end
