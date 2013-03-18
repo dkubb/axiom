@@ -1,4 +1,5 @@
-# Veritas
+veritas
+=======
 
 Simplifies querying of structured data using relational algebra.
 
@@ -6,8 +7,8 @@ Simplifies querying of structured data using relational algebra.
 [![Dependency Status](https://gemnasium.com/dkubb/veritas.png)](https://gemnasium.com/dkubb/veritas)
 [![Code Climate](https://codeclimate.com/github/dkubb/veritas.png)](https://codeclimate.com/github/dkubb/veritas)
 
-
-## Installation
+Installation
+------------
 
 With Rubygems:
 
@@ -29,7 +30,8 @@ $ irb -rubygems
 => true
 ```
 
-## Usage
+Usage
+-----
 
 ```ruby
 relation = Veritas::Relation.new(
@@ -138,7 +140,8 @@ new_relation = relation.replace(other)
 keys = header.keys
 ```
 
-## Goals
+Goals
+-----
 
 The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
 
@@ -150,23 +153,8 @@ The ability to join data from multiple datastores and have it presented in a con
 
 Not only does this work nicely with associations, but it will allow DataMapper to perform mapping in a more powerful way. You'll be able to construct a join from multiple datastores, and set that as the base for your model. Each DM Resource would work as normal, but again writes could be propagated back to the appropriate datastore. You'd be able to split your data up between different datastores, but assemble it into one coherent view.
 
-### Phase 1: In-Memory Operations
-
-The first phase of this project will be to implement all the operations listed below using in-memory data structures. I'm focusing on the API, and making sure the specs ensure the desired results are obtained from each operation.
-
-This is 100% complete.
-
-### Phase 2: RDBMS Engines
-
-The second phase of this project will be to add a RDBMS based engine, and move the in-memory matching to it's own engine. I'll also be working on a system where if the primary engine cannot carry out some operation, that it first look at alternate forms (e.g. using a join instead of an intersection), and then fall-back to in-memory matching. I also want to look at re-arranging queries so that all the operations that can be performed natively are "pushed down" the hierarchy and then the in-memory matching is performed last.
-
-This is 95% complete. I have completed a first pass on [veritas-sql-generator](https://github.com/dkubb/veritas-sql-generator) which is a visitor that walks the AST and produces SQL for every operation. More work is needed to write adapters that use the veritas-sql-generator and manage database connections/execution.
-
-### Phase 3: DataMapper Integration
-
-The third phase of this project will be to add a few NoSQL engines (like [MongoDB](http://www.mongodb.org/) and [CouchDB](http://couchdb.org/)) and then look at writing a DataMapper adapter that translates Query objects into Veritas relations. I want to make sure all the DM specs pass with this adapter and each engine, and if everything goes well I will look at updating DM to work directly on top of Veritas.
-
-## Related Projects
+Related Projects
+----------------
 
 * [veritas-optimizer](https://github.com/dkubb/veritas-optimizer)
 
@@ -180,7 +168,8 @@ This is a visitor class that takes a Veritas relation and generates valid SQL fr
 
 This is a system that manages the database connections and executes the SQL generated from the relations.
 
-## Note on Patches/Pull Requests
+Note on Patches/Pull Requests
+-----------------------------
 
 * If you want your code merged into the mainline, please discuss the proposed changes with me before doing any work on it. This library is still in early development, and the direction it is going may not always be clear. Some features may not be appropriate yet, may need to be deferred until later when the foundation for them is laid, or may be more applicable in a plugin.
 * Fork the project.
@@ -191,6 +180,7 @@ This is a system that manages the database connections and executes the SQL gene
 * Run "rake ci". This must pass and not show any regressions in the metrics for the code to be merged.
 * Send me a pull request. Bonus points for topic branches.
 
-## Copyright
+Copyright
+---------
 
 Copyright &copy; 2009-2013 Dan Kubb. See LICENSE for details.
