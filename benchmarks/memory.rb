@@ -35,11 +35,11 @@ def gc_statistics(description = '', options = {})
 end
 
 puts '-' * 80
-gc_statistics 'veritas lib' do
-  require 'veritas'
+gc_statistics 'axiom lib' do
+  require 'axiom'
 end
 
-include Veritas
+include Axiom
 
 puts '-' * 80
 gc_statistics 'header' do

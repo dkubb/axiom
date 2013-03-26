@@ -22,9 +22,9 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
-require 'veritas'
+require 'axiom'
 
-include Veritas
+include Axiom
 
 # require spec support files and shared behavior
 Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
