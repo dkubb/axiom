@@ -2,10 +2,8 @@
 
 require 'backports'
 require 'backports/basic_object' unless defined?(::BasicObject)
-require 'devtools'
+require 'devtools/spec_helper'
 require 'ice_nine'
-
-Devtools.init_spec_helper
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
