@@ -176,8 +176,8 @@ This is a visitor class that takes a Veritas relation and generates valid SQL fr
 
 This is a system that manages the database connections and executes the SQL generated from the relations.
 
-Note on Patches/Pull Requests
------------------------------
+Contributing
+------------
 
 * If you want your code merged into the mainline, please discuss the proposed changes with me before doing any work on it. This library is still in early development, and the direction it is going may not always be clear. Some features may not be appropriate yet, may need to be deferred until later when the foundation for them is laid, or may be more applicable in a plugin.
 * Fork the project.
