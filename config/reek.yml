@@ -1,131 +1,160 @@
 ---
-UncommunicativeParameterName:
-  accept: []
-  exclude: []
-  enabled: true
-  reject:
-  - !ruby/regexp /^.$/
-  - !ruby/regexp /[0-9]$/
-  - !ruby/regexp /[A-Z]/
-LargeClass:
-  max_methods: 15  # TODO: decrease max_methods to 10-15 or less
-  exclude: []
-  enabled: true
-  max_instance_variables: 4
-UncommunicativeMethodName:
-  accept: []
-  exclude: []
-  enabled: true
-  reject:
-  - !ruby/regexp /^[a-z]$/
-  - !ruby/regexp /[0-9]$/
-  - !ruby/regexp /[A-Z]/
-LongParameterList:
-  max_params: 3  # TODO: decrease max_params to 2
-  exclude: []
-  enabled: true
-  overrides: {}
-FeatureEnvy:
-  exclude: [
-    'Veritas::Algebra::Projection#required_attribute_names'
-  ]
-  enabled: true
-ClassVariable:
-  exclude: []
-  enabled: true
-BooleanParameter:
-  exclude: []
-  enabled: true
-IrresponsibleModule:
-  exclude: []
-  enabled: true
-UncommunicativeModuleName:
-  accept: []
-  exclude: []
-  enabled: true
-  reject:
-  - !ruby/regexp /^.$/
-  - !ruby/regexp /[0-9]$/
-NestedIterators:
-  ignore_iterators: []
-  exclude: [
-    # none of these use nested iterators, they use nested blocks only
-    'Veritas::Equalizer#define_cmp_method',
-    'Veritas::Equalizer#define_hash_method',
-    'Veritas::Equalizer#define_inspect_method',
-    'Veritas::Algebra::Projection#extend_other'
-  ]
-  enabled: true
-  max_allowed_nesting: 1
-LongMethod:
-  max_statements: 7  # TODO: decrease max_statements to 5 or less
-  exclude: []
-  enabled: true
-Duplication:
-  allow_calls: []
-  exclude: [
-    'Veritas::Aggregate::Sum#default',
-    'Veritas::Algebra::Difference#delete',
-    'Veritas::Algebra::Difference#insert',
-    'Veritas::Algebra::Join#delete_left',
-    'Veritas::Algebra::Join#delete_right',
-    'Veritas::Algebra::Join#insert_left',
-    'Veritas::Algebra::Join#insert_right',
-    'Veritas::Algebra::Rename#delete',
-    'Veritas::Algebra::Rename#insert',
-    'Veritas::Algebra::Restriction#delete',
-    'Veritas::Algebra::Restriction#insert',
-    'Veritas::Algebra::Restriction::Methods#coerce_to_predicate',
-    'Veritas::Function::Binary#rename',
-    'Veritas::Function::Binary#rename',
-    'Veritas::Function::Unary#rename',
-    'Veritas::Relation::Operation::Order::Direction#call',
-    'Veritas::Relation::Operation::Order::Direction#rename',
-    'Veritas::Relation::Proxy#forward',
-    'Veritas::Relation::Proxy#method_missing'
-  ]
-  enabled: true
-  max_calls: 1
-UtilityFunction:
-  max_helper_calls: 1
-  exclude: []
-  enabled: true
 Attribute:
-  exclude: []
-  enabled: false
-UncommunicativeVariableName:
-  accept: []
-  exclude: []
   enabled: true
-  reject:
-  - !ruby/regexp /^.$/
-  - !ruby/regexp /[0-9]$/
-  - !ruby/regexp /[A-Z]/
-SimulatedPolymorphism:
-  exclude: []
+  exclude:
+    - Veritas::Algebra::Extension
+    - Veritas::Algebra::Join
+    - Veritas::Algebra::Rename
+    - Veritas::Algebra::Restriction
+    - Veritas::Algebra::Summarization
+    - Veritas::Attribute
+    - Veritas::Attribute::Numeric
+    - Veritas::Attribute::String
+    - Veritas::Evaluator::Context
+    - Veritas::Operation::Binary
+    - Veritas::Operation::Unary
+    - Veritas::Relation
+    - Veritas::Relation::Base
+    - Veritas::Relation::Header
+    - Veritas::Relation::Materialized
+    - Veritas::Relation::Operation::Limit
+    - Veritas::Relation::Operation::Offset
+    - Veritas::Relation::Operation::Order
+    - Veritas::Relation::Operation::Order::Direction
+    - Veritas::Relation::Proxy
+    - Veritas::Tuple
+BooleanParameter:
   enabled: true
-  max_ifs: 1
+  exclude: []
+ClassVariable:
+  enabled: true
+  exclude: []
+ControlParameter:
+  enabled: true
+  exclude: []
 DataClump:
-  exclude: [
+  enabled: true
+  exclude:
     # all of these classes have utility class methods that are
     # incorrectly identified as instance methods
-    'Veritas::Relation::Operation::Binary::ClassMethods',
-    'Veritas::Relation::Operation::Set::ClassMethods',
-    'Veritas::Immutable'
-  ]
-  enabled: true
+    - Veritas::Immutable
+    - Veritas::Relation::Operation::Binary::ClassMethods
+    - Veritas::Relation::Operation::Set::ClassMethods
   max_copies: 1
   min_clump_size: 2
-ControlCouple:
-  exclude: []
+DuplicateMethodCall:
   enabled: true
+  exclude:
+    - Veritas::Aggregate::Sum#default
+    - Veritas::Algebra::Difference#delete
+    - Veritas::Algebra::Difference#insert
+    - Veritas::Algebra::Join#delete_left
+    - Veritas::Algebra::Join#delete_right
+    - Veritas::Algebra::Join#insert_left
+    - Veritas::Algebra::Join#insert_right
+    - Veritas::Algebra::Rename#delete
+    - Veritas::Algebra::Rename#insert
+    - Veritas::Algebra::Restriction#delete
+    - Veritas::Algebra::Restriction#insert
+    - Veritas::Algebra::Restriction::Methods#coerce_to_predicate
+    - Veritas::Function::Binary#rename
+    - Veritas::Function::Binary#rename
+    - Veritas::Function::Unary#rename
+    - Veritas::Relation::Operation::Order::Direction#call
+    - Veritas::Relation::Operation::Order::Direction#rename
+    - Veritas::Relation::Proxy#forward
+    - Veritas::Relation::Proxy#method_missing
+  max_calls: 1
+  allow_calls: []
+FeatureEnvy:
+  enabled: true
+  exclude:
+    - Veritas::Algebra::Projection#required_attribute_names
+IrresponsibleModule:
+  enabled: true
+  exclude: []
+LongParameterList:
+  enabled: true
+  exclude: []
+  max_params: 3  # TODO: decrease max_params to 2
+  overrides: {}
 LongYieldList:
-  max_params: 2
-  exclude: []
   enabled: true
+  exclude: []
+  max_params: 2
+NestedIterators:
+  enabled: true
+  exclude:
+    - Veritas::Algebra::Projection#extend_other
+    - Veritas::Equalizer#define_cmp_method
+    - Veritas::Equalizer#define_hash_method
+    - Veritas::Equalizer#define_inspect_method
+  max_allowed_nesting: 1
+  ignore_iterators: []
+NilCheck:
+  enabled: true
+  exclude:
+    - Veritas::Aggregate::Count#self.call
+    - Veritas::Aggregate::Maximum#self.call
+    - Veritas::Aggregate::Mean#self.call
+    - Veritas::Aggregate::Minimum#self.call
+    - Veritas::Aggregate::Sum#self.call
+    - Veritas::Aggregate::Variance#self.call
+    - Veritas::Attribute#valid_or_optional?
+    - Veritas::Relation::Operation::Limit#self.assert_valid_limit
+    - Veritas::Relation::Operation::Offset#self.assert_valid_offset
+RepeatedConditional:
+  enabled: true
+  exclude: []
+  max_ifs: 1
+TooManyInstanceVariables:
+  enabled: true
+  exclude: []
+  max_instance_variables: 4
+TooManyMethods:
+  enabled: true
+  exclude: []
+  max_methods: 15  # TODO: decrease max_methods to 10-15 or less
+TooManyStatements:
+  enabled: true
+  exclude:
+    - each
+  max_statements: 7  # TODO: decrease max_statements to 5 or less
+UncommunicativeMethodName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^[a-z]$/
+    - !ruby/regexp /[0-9]$/
+    - !ruby/regexp /[A-Z]/
+  accept: []
+UncommunicativeModuleName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^.$/
+    - !ruby/regexp /[0-9]$/
+  accept: []
+UncommunicativeParameterName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^.$/
+    - !ruby/regexp /[0-9]$/
+    - !ruby/regexp /[A-Z]/
+  accept: []
+UncommunicativeVariableName:
+  enabled: true
+  exclude: []
+  reject:
+    - !ruby/regexp /^.$/
+    - !ruby/regexp /[0-9]$/
+    - !ruby/regexp /[A-Z]/
+  accept: []
 UnusedParameters:
   enabled: true
   exclude: []
-NilCheck:
-  enabled: false
+UtilityFunction:
+  enabled: true
   exclude: []
+  max_helper_calls: 1
