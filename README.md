@@ -1,19 +1,19 @@
-veritas
-=======
+axiom
+=====
 
 Simplifies querying of structured data using relational algebra.
 
-[![Gem Version](https://badge.fury.io/rb/veritas.png)][gem]
-[![Build Status](https://secure.travis-ci.org/dkubb/veritas.png?branch=master)][travis]
-[![Dependency Status](https://gemnasium.com/dkubb/veritas.png)][gemnasium]
-[![Code Climate](https://codeclimate.com/github/dkubb/veritas.png)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/dkubb/veritas/badge.png?branch=master)][coveralls]
+[![Gem Version](https://badge.fury.io/rb/axiom.png)][gem]
+[![Build Status](https://secure.travis-ci.org/dkubb/axiom.png?branch=master)][travis]
+[![Dependency Status](https://gemnasium.com/dkubb/axiom.png)][gemnasium]
+[![Code Climate](https://codeclimate.com/github/dkubb/axiom.png)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/dkubb/axiom/badge.png?branch=master)][coveralls]
 
-[gem]: https://rubygems.org/gems/veritas
-[travis]: https://travis-ci.org/dkubb/veritas
-[gemnasium]: https://gemnasium.com/dkubb/veritas
-[codeclimate]: https://codeclimate.com/github/dkubb/veritas
-[coveralls]: https://coveralls.io/r/dkubb/veritas
+[gem]: https://rubygems.org/gems/axiom
+[travis]: https://travis-ci.org/dkubb/axiom
+[gemnasium]: https://gemnasium.com/dkubb/axiom
+[codeclimate]: https://codeclimate.com/github/dkubb/axiom
+[coveralls]: https://coveralls.io/r/dkubb/axiom
 
 Installation
 ------------
@@ -21,20 +21,20 @@ Installation
 With Rubygems:
 
 ```bash
-$ gem install veritas
+$ gem install axiom
 $ irb -rubygems
->> require 'veritas'
+>> require 'axiom'
 => true
 ```
 
 With git and local working copy:
 
 ```bash
-$ git clone git://github.com/dkubb/veritas.git
-$ cd veritas
+$ git clone git://github.com/dkubb/axiom.git
+$ cd axiom
 $ rake install
 $ irb -rubygems
->> require 'veritas'
+>> require 'axiom'
 => true
 ```
 
@@ -42,7 +42,7 @@ Usage
 -----
 
 ```ruby
-relation = Veritas::Relation.new(
+relation = Axiom::Relation.new(
   [ [ :id, String ], [ :name, String ], [ :color, String ], [ :weight, Float ], [ :city, String ] ],
   [
     [ 'P1', 'Nut',   'Red',   12.0, 'London' ],
@@ -157,22 +157,22 @@ Most of the design is heavily inspired from [koios](https://github.com/carllerch
 
 I should note though that I don't plan to just re-implement those systems with a different API, or different internals, I plan to make something that surpasses them in several areas. For example, I want to be able to join information from multiple datastores and represent it as a single relation. I want to be able to insert, update or delete from that relation and have those changes propagated back to the right datastore. This is not an easy feat, since it is basically the updatable view problem that RDBMS' struggle with. While I do think there are some cases where relations will become read-only, I think it will be possible to propagate writes properly in this manner. I certainly think for the current use cases in DataMapper this should work quite well.
 
-The ability to join data from multiple datastores and have it presented in a consistent manner will solve one of the longest standing problems in DataMapper, namely how do we do cross repository joins. It should be possible to construct one query for one datastore, and then another query for another datastore and then join them. Since they are using different engines Veritas will know to perform each query *natively* and then join the results in-memory seamlessly. It should also be possible to reorganize the queries so that as much work as possible is done natively as opposed to in-memory, which is considered the last resort.
+The ability to join data from multiple datastores and have it presented in a consistent manner will solve one of the longest standing problems in DataMapper, namely how do we do cross repository joins. It should be possible to construct one query for one datastore, and then another query for another datastore and then join them. Since they are using different engines Axiom will know to perform each query *natively* and then join the results in-memory seamlessly. It should also be possible to reorganize the queries so that as much work as possible is done natively as opposed to in-memory, which is considered the last resort.
 
 Not only does this work nicely with associations, but it will allow DataMapper to perform mapping in a more powerful way. You'll be able to construct a join from multiple datastores, and set that as the base for your model. Each DM Resource would work as normal, but again writes could be propagated back to the appropriate datastore. You'd be able to split your data up between different datastores, but assemble it into one coherent view.
 
 Related Projects
 ----------------
 
-* [veritas-optimizer](https://github.com/dkubb/veritas-optimizer)
+* [axiom-optimizer](https://github.com/dkubb/axiom-optimizer)
 
-This is an optimizer that takes a Veritas relation, scalar or aggregate function and will transform it into something equivalent but simpler in structure to the original.
+This is an optimizer that takes a Axiom relation, scalar or aggregate function and will transform it into something equivalent but simpler in structure to the original.
 
-* [veritas-sql-generator](https://github.com/dkubb/veritas-sql-generator)
+* [axiom-sql-generator](https://github.com/dkubb/axiom-sql-generator)
 
-This is a visitor class that takes a Veritas relation and generates valid SQL from it.
+This is a visitor class that takes a Axiom relation and generates valid SQL from it.
 
-* [veritas-do-adapter](https://github.com/dkubb/veritas-do-adapter)
+* [axiom-do-adapter](https://github.com/dkubb/axiom-do-adapter)
 
 This is a system that manages the database connections and executes the SQL generated from the relations.
 
