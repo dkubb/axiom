@@ -2,27 +2,27 @@
 Attribute:
   enabled: true
   exclude:
-  - Veritas::Algebra::Extension
-  - Veritas::Algebra::Join
-  - Veritas::Algebra::Rename
-  - Veritas::Algebra::Restriction
-  - Veritas::Algebra::Summarization
-  - Veritas::Attribute
-  - Veritas::Attribute::Numeric
-  - Veritas::Attribute::String
-  - Veritas::Evaluator::Context
-  - Veritas::Operation::Binary
-  - Veritas::Operation::Unary
-  - Veritas::Relation
-  - Veritas::Relation::Base
-  - Veritas::Relation::Header
-  - Veritas::Relation::Materialized
-  - Veritas::Relation::Operation::Limit
-  - Veritas::Relation::Operation::Offset
-  - Veritas::Relation::Operation::Order
-  - Veritas::Relation::Operation::Order::Direction
-  - Veritas::Relation::Proxy
-  - Veritas::Tuple
+  - Axiom::Algebra::Extension
+  - Axiom::Algebra::Join
+  - Axiom::Algebra::Rename
+  - Axiom::Algebra::Restriction
+  - Axiom::Algebra::Summarization
+  - Axiom::Attribute
+  - Axiom::Attribute::Numeric
+  - Axiom::Attribute::String
+  - Axiom::Evaluator::Context
+  - Axiom::Operation::Binary
+  - Axiom::Operation::Unary
+  - Axiom::Relation
+  - Axiom::Relation::Base
+  - Axiom::Relation::Header
+  - Axiom::Relation::Materialized
+  - Axiom::Relation::Operation::Limit
+  - Axiom::Relation::Operation::Offset
+  - Axiom::Relation::Operation::Order
+  - Axiom::Relation::Operation::Order::Direction
+  - Axiom::Relation::Proxy
+  - Axiom::Tuple
 BooleanParameter:
   enabled: true
   exclude: []
@@ -35,48 +35,48 @@ ControlParameter:
 DataClump:
   enabled: true
   exclude:
-  - Veritas::Immutable
-  - Veritas::Relation::Operation::Binary::ClassMethods
-  - Veritas::Relation::Operation::Set::ClassMethods
+  - Axiom::Immutable
+  - Axiom::Relation::Operation::Binary::ClassMethods
+  - Axiom::Relation::Operation::Set::ClassMethods
   max_copies: 1
   min_clump_size: 2
 DuplicateMethodCall:
   enabled: true
   exclude:
-  - Veritas::Aggregate::Sum#default
-  - Veritas::Algebra::Difference#delete
-  - Veritas::Algebra::Difference#insert
-  - Veritas::Algebra::Join#delete_left
-  - Veritas::Algebra::Join#delete_right
-  - Veritas::Algebra::Join#insert_left
-  - Veritas::Algebra::Join#insert_right
-  - Veritas::Algebra::Rename#delete
-  - Veritas::Algebra::Rename#insert
-  - Veritas::Algebra::Restriction#delete
-  - Veritas::Algebra::Restriction#insert
-  - Veritas::Algebra::Restriction::Methods#coerce_to_predicate
-  - Veritas::Function::Binary#rename
-  - Veritas::Function::Binary#rename
-  - Veritas::Function::Unary#rename
-  - Veritas::Relation::Operation::Order::Direction#call
-  - Veritas::Relation::Operation::Order::Direction#rename
-  - Veritas::Relation::Proxy#forward
-  - Veritas::Relation::Proxy#method_missing
+  - Axiom::Aggregate::Sum#default
+  - Axiom::Algebra::Difference#delete
+  - Axiom::Algebra::Difference#insert
+  - Axiom::Algebra::Join#delete_left
+  - Axiom::Algebra::Join#delete_right
+  - Axiom::Algebra::Join#insert_left
+  - Axiom::Algebra::Join#insert_right
+  - Axiom::Algebra::Rename#delete
+  - Axiom::Algebra::Rename#insert
+  - Axiom::Algebra::Restriction#delete
+  - Axiom::Algebra::Restriction#insert
+  - Axiom::Algebra::Restriction::Methods#coerce_to_predicate
+  - Axiom::Function::Binary#rename
+  - Axiom::Function::Binary#rename
+  - Axiom::Function::Unary#rename
+  - Axiom::Relation::Operation::Order::Direction#call
+  - Axiom::Relation::Operation::Order::Direction#rename
+  - Axiom::Relation::Proxy#forward
+  - Axiom::Relation::Proxy#method_missing
   max_calls: 1
   allow_calls: []
 FeatureEnvy:
   enabled: true
   exclude:
-  - Veritas::Algebra::Projection#required_attribute_names
+  - Axiom::Algebra::Projection#required_attribute_names
 IrresponsibleModule:
   enabled: true
   exclude: []
 LongParameterList:
   enabled: true
   exclude:
-  - Veritas::Algebra::Rename::Aliases#self.coerce_alias_pair
-  - Veritas::Algebra::Summarization#self.new
-  - Veritas::Relation::Operation::Combination#self.combine_tuples
+  - Axiom::Algebra::Rename::Aliases#self.coerce_alias_pair
+  - Axiom::Algebra::Summarization#self.new
+  - Axiom::Relation::Operation::Combination#self.combine_tuples
   max_params: 2
   overrides:
     initialize:
@@ -88,24 +88,24 @@ LongYieldList:
 NestedIterators:
   enabled: true
   exclude:
-  - Veritas::Algebra::Projection#extend_other
-  - Veritas::Equalizer#define_cmp_method
-  - Veritas::Equalizer#define_hash_method
-  - Veritas::Equalizer#define_inspect_method
+  - Axiom::Algebra::Projection#extend_other
+  - Axiom::Equalizer#define_cmp_method
+  - Axiom::Equalizer#define_hash_method
+  - Axiom::Equalizer#define_inspect_method
   max_allowed_nesting: 1
   ignore_iterators: []
 NilCheck:
   enabled: true
   exclude:
-  - Veritas::Aggregate::Count#self.call
-  - Veritas::Aggregate::Maximum#self.call
-  - Veritas::Aggregate::Mean#self.call
-  - Veritas::Aggregate::Minimum#self.call
-  - Veritas::Aggregate::Sum#self.call
-  - Veritas::Aggregate::Variance#self.call
-  - Veritas::Attribute#valid_or_optional?
-  - Veritas::Relation::Operation::Limit#self.assert_valid_limit
-  - Veritas::Relation::Operation::Offset#self.assert_valid_offset
+  - Axiom::Aggregate::Count#self.call
+  - Axiom::Aggregate::Maximum#self.call
+  - Axiom::Aggregate::Mean#self.call
+  - Axiom::Aggregate::Minimum#self.call
+  - Axiom::Aggregate::Sum#self.call
+  - Axiom::Aggregate::Variance#self.call
+  - Axiom::Attribute#valid_or_optional?
+  - Axiom::Relation::Operation::Limit#self.assert_valid_limit
+  - Axiom::Relation::Operation::Offset#self.assert_valid_offset
 RepeatedConditional:
   enabled: true
   exclude: []
@@ -113,22 +113,22 @@ RepeatedConditional:
 TooManyInstanceVariables:
   enabled: true
   exclude:
-  - Veritas::Relation::Header
+  - Axiom::Relation::Header
   max_instance_variables: 3
 TooManyMethods:
   enabled: true
   exclude:
-  - Veritas::Algebra::Join
-  - Veritas::Relation
-  - Veritas::Relation::Header
-  - Veritas::Relation::Keys
+  - Axiom::Algebra::Join
+  - Axiom::Relation
+  - Axiom::Relation::Header
+  - Axiom::Relation::Keys
   max_methods: 10
 TooManyStatements:
   enabled: true
   exclude:
-  - Veritas::Aggregate::Variance#self.call
-  - Veritas::Algebra::Rename::Aliases#union
-  - Veritas::Attribute#self.coerce
+  - Axiom::Aggregate::Variance#self.call
+  - Axiom::Algebra::Rename::Aliases#union
+  - Axiom::Attribute#self.coerce
   - each
   max_statements: 5
 UncommunicativeMethodName:
