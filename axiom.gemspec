@@ -3,13 +3,14 @@
 require File.expand_path('../lib/axiom/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.name             = 'axiom'
-  gem.version          = Axiom::VERSION.dup
-  gem.authors          = ['Dan Kubb']
-  gem.email            = 'dan.kubb@gmail.com'
-  gem.description      = 'Simplifies querying of structured data using relational algebra'
-  gem.summary          = 'Ruby Relational Algebra'
-  gem.homepage         = 'https://github.com/dkubb/axiom'
+  gem.name        = 'axiom'
+  gem.version     = Axiom::VERSION.dup
+  gem.authors     = ['Dan Kubb']
+  gem.email       = 'dan.kubb@gmail.com'
+  gem.description = 'Simplifies querying of structured data using relational algebra'
+  gem.summary     = 'Ruby Relational Algebra'
+  gem.homepage    = 'https://github.com/dkubb/axiom'
+  gem.licenses    = %w[MIT]
 
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split($/)
