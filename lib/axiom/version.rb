@@ -1,5 +1,8 @@
 # encoding: utf-8
 
 module Axiom
-  VERSION = '0.0.8'
+
+  # Gem version
+  VERSION = '0.1.0'.freeze
+
 end # module Axiom
