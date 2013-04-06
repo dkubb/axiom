@@ -200,8 +200,9 @@ module Axiom
     #
     # @api public
     def ==(other)
-      other = coerce(other)
-      header == other.header &&
+      other = coerce(other) if other.kind_of?(Enumerable)
+      other.kind_of?(Relation) &&
+      header == other.header   &&
       to_set == other.to_set
     end
 

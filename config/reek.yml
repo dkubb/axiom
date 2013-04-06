@@ -68,6 +68,7 @@ FeatureEnvy:
   enabled: true
   exclude:
   - Axiom::Algebra::Projection#required_attribute_names
+  - Axiom::Relation#==
 IrresponsibleModule:
   enabled: true
   exclude: []
