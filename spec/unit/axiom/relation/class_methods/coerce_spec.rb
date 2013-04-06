@@ -20,4 +20,10 @@ describe Relation, '.coerce' do
 
     it { should eql(relation) }
   end
+
+  context 'when the argument is not Enumerable' do
+    let(:argument) { Object.new }
+
+    it { should equal(argument) }
+  end
 end

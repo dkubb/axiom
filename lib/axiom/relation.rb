@@ -200,7 +200,7 @@ module Axiom
     #
     # @api public
     def ==(other)
-      other = coerce(other) if other.kind_of?(Enumerable)
+      other = coerce(other)
       other.kind_of?(Relation) &&
       header == other.header   &&
       to_set == other.to_set
@@ -243,7 +243,11 @@ module Axiom
     #
     # @api private
     def self.coerce(header, object)
-      object.kind_of?(Relation) ? object : Relation.new(header, object)
+      if object.kind_of?(Relation) || ! object.kind_of?(Enumerable)
+        object
+      else
+        Relation.new(header, object)
+      end
     end
 
     # Assert exactly one tuple is returned
