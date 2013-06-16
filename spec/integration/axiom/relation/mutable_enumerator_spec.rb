@@ -2,44 +2,50 @@
 
 require 'spec_helper'
 
-# tests that tuple enumerators do not get frozen
+# Test that tuple enumerators are not frozen
 
 class MutableEnumerator < Enumerator
   attr_reader :mutable_array
-  def initialize(tuple_source)
+
+  def initialize(tuples)
     @mutable_array = []
-    super() do |y|
-      @mutable_array << Date.new
-      tuple_source.each do |t|
-        y << t
+    super() do |yielder|
+      tuples.each do |tuple|
+        @mutable_array << tuple
+        yielder << tuple
       end
     end
   end
 end
 
 describe Relation do
-  context 'Relations do not freeze tuple enumerators' do
-    let(:tuple_enumerator) do
-      MutableEnumerator.new([ [ 1, 'John Doe' ], [ 2, 'Jane Doe' ], [ 3, 'Jane Roe' ] ])
-    end
-    let(:relation) do
-      Relation.new(
-        [ [ :id, Integer ], [ :name, String, { :required => false } ] ],
-        tuple_enumerator
-      )
+  context 'with a tuple enumerator' do
+    let(:relation)   { Relation.new([ [ :id, Integer ] ], enumerator) }
+    let(:enumerator) { MutableEnumerator.new(tuples)                  }
+    let(:tuples)     { [ [ 1 ], [ 2 ] ]                               }
+
+    context 'when the enumerator is materialized' do
+      it 'does not freeze the enumerator' do
+        expect { relation.materialize }.
+          to_not change(enumerator, :frozen?).from(false)
+      end
+
+      it 'allows the array to be mutated' do
+        expect { relation.materialize }.
+          to change(enumerator, :mutable_array).from([]).to(tuples)
+      end
     end
 
-    it 'Relation tuples can be marshalled to array' do
-      tuples = relation.to_a
-      tuples.length.should == 3
-      tuple_enumerator.mutable_array.length.should == 3
-    end
+    context 'when the enumerator is materialized and restricted' do
+      it 'does not freeze the enumerator' do
+        expect { relation.restrict(:id => 1).materialize }.
+          to_not change(enumerator, :frozen?).from(false)
+      end
 
-    it 'Relation enumerator mutability survives restriction' do
-      tuples = relation.restrict { |r| r.name.match(/^Jane/) }.to_a
-      tuples.length.should == 2
-      tuple_enumerator.mutable_array.length.should == 3
+      it 'allows the array to be mutated' do
+        expect { relation.restrict(:id => 1).materialize }.
+          to change(enumerator, :mutable_array).from([]).to(tuples)
+      end
     end
-
   end
 end
