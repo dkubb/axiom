@@ -4,7 +4,7 @@ module Axiom
 
   # Abstract base class for Relation operations
   class Relation
-    include Enumerable, Visitable
+    include Enumerable, Visitable, Adamantium::Flat
     include Equalizer.new(:header, :to_set)
 
     # The relation header
@@ -71,7 +71,7 @@ module Axiom
     # @api private
     def initialize(header, tuples)
       @header = Header.coerce(header)
-      @tuples = freeze_object(tuples)
+      @tuples = tuples
     end
 
     # Lookup an Attribute in the header given an attribute name
