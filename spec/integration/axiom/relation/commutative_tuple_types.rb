@@ -8,9 +8,9 @@ describe "Axiom::Relation" do
     end
   end
 
-  let(:header_ary)      { header_ary = [[:index, Integer]] }
+  let(:header_ary)      { [[:index, Integer]] }
   let(:control_tuples)  { [ [ 0 ] ]                        }
-  let(:header)          { header = Axiom::Relation::Header.coerce(header_ary) }
+  let(:header)          { Axiom::Relation::Header.coerce(header_ary) }
   let(:axiom_rel)       { Axiom::Relation.new(header, control_tuples) }
 
   it "should produce one row when natural joined with cloned tuples" do
