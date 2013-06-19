@@ -68,7 +68,7 @@ module Axiom
     def self.infer_type(operand)
       case operand
       when Attribute, Function, Aggregate then operand.type
-      when FalseClass                     then Boolean
+      when ::FalseClass                   then Boolean
       else
         type = operand.class
         descendants.detect { |descendant| type <= descendant.primitive }

@@ -18,7 +18,7 @@ require 'spec_helper'
     context 'with a block' do
       subject { object.send(method, other, &block) }
 
-      let(:other) { described_class.new([ Attribute::Boolean.new(:active) ], [ [ true ] ]) }
+      let(:other) { described_class.new([ [ :active, TrueClass ] ], [ [ true ] ]) }
       let(:block) do
         lambda do |relation|
           relation[:id].eq(1).and(relation[:active].eq(true))

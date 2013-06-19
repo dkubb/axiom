@@ -18,7 +18,7 @@ module Axiom
       #
       # @api public
       def self.primitive
-        TrueClass
+        ::TrueClass
       end
 
       # Test if the value is a boolean
@@ -33,9 +33,14 @@ module Axiom
       #
       # @api public
       def valid_value?(value)
-        valid_or_optional?(value) { super || value.kind_of?(FalseClass) }
+        valid_or_optional?(value) { super || value.kind_of?(::FalseClass) }
       end
 
     end # class Boolean
+
+    # Add aliases for Boolean
+    TrueClass  = Boolean
+    FalseClass = Boolean
+
   end # class Attribute
 end # module Axiom
