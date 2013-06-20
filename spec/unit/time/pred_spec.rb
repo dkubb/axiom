@@ -14,6 +14,6 @@ describe Time, '#pred' do
   end
 
   it 'is the inverse of #succ' do
-    subject.succ.should eql(object)
+    (subject + 1).should eql(object)
   end
 end
