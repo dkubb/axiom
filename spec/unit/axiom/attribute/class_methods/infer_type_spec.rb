@@ -31,7 +31,7 @@ describe Attribute, '.infer_type' do
     end
   end
 
-  context 'when the operand is a TrueClass' do
+  pending 'when the operand is a TrueClass' do
     let(:operand) { true }
 
     it 'returns a Boolean type' do
@@ -39,7 +39,7 @@ describe Attribute, '.infer_type' do
     end
   end
 
-  context 'when the operand is a FalseClass' do
+  pending 'when the operand is a FalseClass' do
     let(:operand) { false }
 
     it 'returns a Boolean type' do
