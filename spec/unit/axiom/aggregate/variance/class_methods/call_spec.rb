@@ -23,11 +23,11 @@ describe Aggregate::Variance, '.call' do
     end
 
     it 'returns the expected mean' do
-      subject.fetch(1).should eql(mean)
+      subject.fetch(1).should == mean
     end
 
     it 'returns the expected sum of squares' do
-      subject.fetch(2).should eql(sum_of_squares)
+      subject.fetch(2).should == sum_of_squares
     end
   end
 
@@ -42,11 +42,11 @@ describe Aggregate::Variance, '.call' do
     end
 
     it 'returns the default mean' do
-      subject.fetch(1).should eql(mean)
+      subject.fetch(1).should == mean
     end
 
     it 'returns the default sum of squares' do
-      subject.fetch(2).should eql(sum_of_squares)
+      subject.fetch(2).should == sum_of_squares
     end
   end
 end

@@ -24,7 +24,7 @@ module Axiom
         return accumulator if value.nil?
         count, mean = accumulator
         count       = Count.call(count, value)
-        [ count, mean.nil? ? value.to_f : mean + ((value - mean) / count) ]
+        [ count, mean.nil? ? Rational(value) : mean + Rational(value - mean, count) ]
       end
 
       # Extract the mean from the accumulator

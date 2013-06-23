@@ -23,4 +23,12 @@ describe Aggregate::Variance, '.finalize' do
 
     it { should be_within(2.91).of(0.01) }
   end
+
+  context 'when the sum of squares is infinte' do
+    let(:count)          { 1               }
+    let(:mean)           { nil             }
+    let(:sum_of_squares) { Float::INFINITY }
+
+    it { should eql(Float::INFINITY) }
+  end
 end
