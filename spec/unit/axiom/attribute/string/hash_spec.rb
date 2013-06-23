@@ -13,9 +13,9 @@ describe Attribute::String, '#hash' do
 
   let(:options) do
     {
-      :required   => required,
-      :min_length => min_length,
-      :max_length => max_length,
+      required:   required,
+      min_length: min_length,
+      max_length: max_length,
     }
   end
 

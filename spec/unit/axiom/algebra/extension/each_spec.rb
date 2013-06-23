@@ -7,7 +7,7 @@ describe Algebra::Extension, '#each' do
 
   let(:object)     { described_class.new(operand, extensions)             }
   let(:operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
+  let(:extensions) { { test: lambda { |tuple| 1 } }                       }
   let(:yields)     { []                                                   }
 
   it_should_behave_like 'an #each method'

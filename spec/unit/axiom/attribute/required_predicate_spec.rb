@@ -13,14 +13,14 @@ describe Attribute, '#required?' do
     it { should be(true) }
   end
 
-  context 'with :required => true option passed to constructor' do
-    let(:object) { described_class.new(:name, :required => true) }
+  context 'with required: true option passed to constructor' do
+    let(:object) { described_class.new(:name, required: true) }
 
     it { should be(true) }
   end
 
-  context 'with :required => false option passed to constructor' do
-    let(:object) { described_class.new(:name, :required => false) }
+  context 'with required: false option passed to constructor' do
+    let(:object) { described_class.new(:name, required: false) }
 
     it { should be(false) }
   end

@@ -13,7 +13,7 @@ require 'spec_helper'
     end
 
     context 'with :size option passed to constructor' do
-      let(:object) { described_class.new(:id, :size => 1.0..100.0) }
+      let(:object) { described_class.new(:id, size: 1.0..100.0) }
 
       it { should eql(1.0..100.0) }
     end

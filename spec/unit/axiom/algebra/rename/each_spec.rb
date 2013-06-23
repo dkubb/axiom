@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Rename, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)   { described_class.new(relation, :id => :other_id) }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])   }
-  let(:yields)   { []                                              }
+  let(:object)   { described_class.new(relation, id: :other_id)  }
+  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:yields)   { []                                            }
 
   it_should_behave_like 'an #each method'
 

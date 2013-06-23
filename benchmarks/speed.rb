@@ -20,9 +20,9 @@ product  = Relation.new([ [ :age, Integer ] ], [ [ 35 ] ])
 ordered  = relation.sort_by { |r| [ r.id, r.name ] }
 
 RBench.run(TIMES) do
-  column :ruby,  :title => 'Ruby'
-  column :axiom, :title => 'Axiom'
-  column :diff,  :title => 'Diff', :compare => [ :ruby, :axiom ]
+  column :ruby,  title: 'Ruby'
+  column :axiom, title: 'Axiom'
+  column :diff,  title: 'Diff', compare: [ :ruby, :axiom ]
 
   report 'each' do
     ruby  { array.each {}    }

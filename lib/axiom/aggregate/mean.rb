@@ -60,8 +60,8 @@ module Axiom
         extend Aliasable
 
         inheritable_alias(
-          :average => :mean,
-          :avg     => :mean
+          average: :mean,
+          avg:     :mean
         )
 
         # Return a mean aggregate function

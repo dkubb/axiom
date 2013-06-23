@@ -44,7 +44,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
   context 'with a Hash' do
     subject { object.restrict(predicate) }
 
-    let(:predicate) { { :id => 1, :name => 'Dan Kubb' } }
+    let(:predicate) { { id: 1, name: 'Dan Kubb' } }
 
     it { should be_instance_of(Algebra::Restriction) }
 

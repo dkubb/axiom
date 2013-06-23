@@ -6,7 +6,7 @@ describe Algebra::Extension, '#eql?' do
   subject { object.eql?(other) }
 
   let(:operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
+  let(:extensions) { { test: lambda { |tuple| 1 } }                       }
   let(:object)     { described_class.new(operand, extensions)             }
 
   context 'with the same object' do
@@ -53,7 +53,7 @@ describe Algebra::Extension, '#eql?' do
 
   context 'with an object having different extensions' do
     let(:other_operand)    { operand                                              }
-    let(:other_extensions) { { :text => lambda { |tuple| 2 } }                    }
+    let(:other_extensions) { { text: lambda { |tuple| 2 } }                       }
     let(:other)            { described_class.new(other_operand, other_extensions) }
 
     it { should be(false) }

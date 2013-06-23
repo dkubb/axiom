@@ -7,7 +7,7 @@ describe Algebra::Summarization::Summaries, '#to_hash' do
 
   let(:object)      { described_class.new(header, summarizers) }
   let(:header)      { mock('Header')                           }
-  let(:summarizers) { { :count => mock('Summarizer') }         }
+  let(:summarizers) { { count: mock('Summarizer') }            }
 
   it 'matches the expected value' do
     key, value = subject.first

@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Header, '#hash' do
   subject { object.hash }
 
-  let(:object)    { described_class.new([ attribute ], :keys => keys) }
-  let(:attribute) { Attribute::Integer.new(:id)                       }
-  let(:keys)      { Relation::Keys.new                                }
+  let(:object)    { described_class.new([ attribute ], keys: keys) }
+  let(:attribute) { Attribute::Integer.new(:id)                    }
+  let(:keys)      { Relation::Keys.new                             }
 
   it_should_behave_like 'a hash method'
 

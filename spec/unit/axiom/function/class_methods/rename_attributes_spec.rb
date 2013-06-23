@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Function, '.rename_attributes' do
   subject { object.rename_attributes(operand, aliases) }
 
-  let(:object)  { described_class                                           }
-  let(:header)  { Relation::Header.coerce([ [ :id, Integer ] ])             }
-  let(:aliases) { Algebra::Rename::Aliases.coerce(header, :id => :other_id) }
+  let(:object)  { described_class                                        }
+  let(:header)  { Relation::Header.coerce([ [ :id, Integer ] ])          }
+  let(:aliases) { Algebra::Rename::Aliases.coerce(header, id: :other_id) }
 
   context 'with an attribute' do
     let(:operand) { header[:id] }

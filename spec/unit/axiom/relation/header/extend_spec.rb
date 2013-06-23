@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation::Header, '#extend' do
   subject { object.extend(attributes) }
 
-  let(:object) { described_class.coerce([ [ :id, Integer ] ], :keys => keys) }
-  let(:keys)   { Relation::Keys.new([ described_class.new ])                 }
+  let(:object) { described_class.coerce([ [ :id, Integer ] ], keys: keys) }
+  let(:keys)   { Relation::Keys.new([ described_class.new ])              }
 
   context 'with attribute objects' do
     let(:attributes) { [ attribute ]                }

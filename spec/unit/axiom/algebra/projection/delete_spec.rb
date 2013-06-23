@@ -43,7 +43,7 @@ describe Algebra::Projection, '#delete' do
   context 'when optional attributes are removed' do
     let(:operand)     { Relation.new(base_header, LazyEnumerable.new([ [ 1, 'John Doe' ] ])) }
     let(:other)       { Relation.new(header,      LazyEnumerable.new([ [ 2             ] ])) }
-    let(:base_header) { [ [ :id, Integer ], [ :name, String, { :required => false } ] ]      }
+    let(:base_header) { [ [ :id, Integer ], [ :name, String, { required: false } ] ]         }
 
     it_should_behave_like 'Algebra::Projection#delete'
   end
@@ -51,7 +51,7 @@ describe Algebra::Projection, '#delete' do
   context 'when the other header does not match the projection' do
     let(:operand)     { Relation.new(base_header, LazyEnumerable.new([ [ 1, 'John Doe' ] ])) }
     let(:other)       { Relation.new(base_header, LazyEnumerable.new([ [ 2, 'Jane Doe' ] ])) }
-    let(:base_header) { [ [ :id, Integer ], [ :name, String, { :required => false } ] ]      }
+    let(:base_header) { [ [ :id, Integer ], [ :name, String, { required: false } ] ]         }
 
     specify { expect { subject }.to raise_error(InvalidHeaderError, 'the headers must be equivalent') }
   end

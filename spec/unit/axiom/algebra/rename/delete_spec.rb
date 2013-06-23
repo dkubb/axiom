@@ -8,7 +8,7 @@ describe Algebra::Rename, '#delete' do
   let(:object)         { described_class.new(operand, aliases)                                    }
   let(:operand)        { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ], [ 2 ] ])) }
   let(:other_relation) { Relation.new(header,               LazyEnumerable.new([ [ 2 ]        ])) }
-  let(:aliases)        { described_class::Aliases.coerce(operand.header, :id => :other_id)        }
+  let(:aliases)        { described_class::Aliases.coerce(operand.header, id: :other_id)           }
   let(:header)         { [ [ :other_id, Integer ] ]                                               }
 
   shared_examples_for 'Algebra::Rename#delete' do

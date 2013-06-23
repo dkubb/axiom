@@ -48,7 +48,7 @@ module Axiom
         module Methods
           extend Aliasable
 
-          inheritable_alias(:sqrt => :square_root)
+          inheritable_alias(sqrt: :square_root)
 
           # Return a square root function
           #

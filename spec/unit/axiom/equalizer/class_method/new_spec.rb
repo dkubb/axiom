@@ -12,7 +12,7 @@ describe Axiom::Equalizer, '.new' do
 
     before do
       # specify the class #name method
-      klass.stub(:name => name)
+      klass.stub(name: name)
       klass.send(:include, subject)
     end
 
@@ -84,7 +84,7 @@ describe Axiom::Equalizer, '.new' do
 
     before do
       # specify the class #inspect method
-      klass.stub(:name => nil, :inspect => name)
+      klass.stub(name: nil, inspect: name)
       klass.send(:include, subject)
     end
 

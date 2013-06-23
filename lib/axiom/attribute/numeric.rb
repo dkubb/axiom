@@ -11,7 +11,7 @@ module Axiom
 
       DEFAULT_SIZE = (-::Float::INFINITY..::Float::INFINITY).freeze
 
-      inheritable_alias(:range => :size)
+      inheritable_alias(range: :size)
 
       # The Numeric range for a valid value
       #
