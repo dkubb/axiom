@@ -2,6 +2,7 @@
 
 require 'bigdecimal'
 require 'date'
+require 'rational'
 require 'set'
 require 'singleton'
 
