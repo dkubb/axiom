@@ -41,7 +41,7 @@ group :metrics do
   end
 
   platforms :ruby_19, :ruby_20 do
-    gem 'mutant', '~> 0.3.beta4'
+    gem 'mutant', '~> 0.3.0.beta2'
   end
 
   platforms :rbx do
