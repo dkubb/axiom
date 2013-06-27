@@ -146,6 +146,18 @@ module Axiom
       @required
     end
 
+    # Test if the attribute is optional
+    #
+    # @example
+    #   attribute.optional?  # => true or false
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def optional?
+      ! required?
+    end
+
     # Test if a value is the correct primitive type
     #
     # @example
