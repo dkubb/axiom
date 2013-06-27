@@ -6,6 +6,7 @@ require 'rational'
 require 'set'
 require 'singleton'
 
+require 'axiom-types'
 require 'abstract_type'
 require 'adamantium'
 require 'backports'
