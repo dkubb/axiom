@@ -201,7 +201,7 @@ module Axiom
     #
     # @api private
     def valid_or_optional?(value)
-      value.nil? ? ! required? : yield
+      value.nil? ? optional? : yield
     end
 
     # Coerce the object into an Attribute
