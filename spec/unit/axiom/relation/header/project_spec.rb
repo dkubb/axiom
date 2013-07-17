@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Header, '#project' do
   subject { object.project(attributes) }
 
-  let(:object) { described_class.coerce([ [ :id, Integer ], [ :name, String ] ], :keys => keys)          }
+  let(:object) { described_class.coerce([ [ :id, Integer ], [ :name, String ] ], keys: keys)             }
   let(:keys)   { Relation::Keys.new([ described_class.coerce([ [ :id, Integer ], [ :name, String ] ]) ]) }
 
   context 'with attribute objects' do

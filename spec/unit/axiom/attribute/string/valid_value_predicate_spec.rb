@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Attribute::String, '#valid_value?' do
   subject { object.valid_value?(value) }
 
-  let(:object) { described_class.new(:string, :min_length => 1, :max_length => 50) }
+  let(:object) { described_class.new(:string, min_length: 1, max_length: 50) }
 
   context 'with a string value' do
     context 'that is within the allowed length range' do

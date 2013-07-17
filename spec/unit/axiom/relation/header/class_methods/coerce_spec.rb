@@ -90,7 +90,7 @@ describe Relation::Header, '.coerce' do
   context 'with options' do
     subject { object.coerce(array, options) }
 
-    let(:options) { { :keys => [ array ] } }
+    let(:options) { { keys: [ array ] } }
 
     it { should be_instance_of(object) }
 

@@ -23,7 +23,7 @@ module Axiom
         module Methods
           extend Aliasable
 
-          inheritable_alias(:abs => :absolute)
+          inheritable_alias(abs: :absolute)
 
           # Return an absolute function
           #

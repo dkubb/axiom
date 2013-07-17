@@ -7,7 +7,7 @@ describe Algebra::Summarization, '#each' do
 
   let(:object)      { described_class.new(operand, operand.project([]), summarizers) }
   let(:operand)     { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])           }
-  let(:summarizers) { { :count => lambda { |acc, tuple| acc.to_i + 1 } }             }
+  let(:summarizers) { { count: lambda { |acc, tuple| acc.to_i + 1 } }                }
   let(:yields)      { []                                                             }
 
   it_should_behave_like 'an #each method'

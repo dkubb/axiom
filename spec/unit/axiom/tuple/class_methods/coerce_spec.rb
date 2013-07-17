@@ -24,7 +24,7 @@ describe Tuple, '.coerce' do
   end
 
   context 'when the argument is not a Tuple and does not respond to #to_ary' do
-    let(:argument) { { :id => 1 } }
+    let(:argument) { { id: 1 } }
 
     specify { expect { subject }.to raise_error(NoMethodError) }
   end

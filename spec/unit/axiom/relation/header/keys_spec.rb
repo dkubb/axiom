@@ -9,8 +9,8 @@ describe Relation::Header, '#keys' do
   let(:keys_class) { Relation::Keys                          }
 
   context 'with explicit keys' do
-    let(:object) { described_class.coerce(attributes, :keys => keys) }
-    let(:keys)   { [ [ :id ] ]                                       }
+    let(:object) { described_class.coerce(attributes, keys: keys) }
+    let(:keys)   { [ [ :id ] ]                                    }
 
     it { should be_instance_of(keys_class) }
 

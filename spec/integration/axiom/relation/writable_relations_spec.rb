@@ -6,13 +6,13 @@ describe Relation do
   context 'Relations are writable' do
     let(:relation) do
       Relation.new(
-        [ [ :id, Integer ], [ :name, String, { :required => false } ] ],
+        [ [ :id, Integer ], [ :name, String, { required: false } ] ],
         [ [ 1, 'John Doe' ], [ 2, 'Jane Doe' ], [ 3, 'Jane Roe' ] ]
       )
     end
 
     it 'Rename#insert and #delete of a disjoint relation are symmetrical' do
-      rename = relation.rename(:id => :other_id)
+      rename = relation.rename(id: :other_id)
       other  = [ [ 4, 'John Doe' ] ]
       rename.insert(other).delete(other).should == rename
     end

@@ -6,7 +6,7 @@ describe Algebra::Rename, '#directions' do
   subject { object.directions }
 
   let(:relation) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new) }
-  let(:object)   { described_class.new(operand, :id => :other_id)         }
+  let(:object)   { described_class.new(operand, id: :other_id)            }
 
   context 'containing a relation' do
     let(:operand) { relation }

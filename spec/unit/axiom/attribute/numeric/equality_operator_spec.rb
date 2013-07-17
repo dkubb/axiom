@@ -50,7 +50,7 @@ describe Attribute::Numeric, '#==' do
   end
 
   context 'with an object having a different required option' do
-    let(:other) { described_class.new(name, :required => false) }
+    let(:other) { described_class.new(name, required: false) }
 
     it { should be(false) }
 
@@ -60,7 +60,7 @@ describe Attribute::Numeric, '#==' do
   end
 
   context 'with an object having a different size' do
-    let(:other) { described_class.new(name, :size => 0..100) }
+    let(:other) { described_class.new(name, size: 0..100) }
 
     it { should be(false) }
 

@@ -50,7 +50,7 @@ describe Attribute::String, '#==' do
   end
 
   context 'with an object having a different required option' do
-    let(:other) { described_class.new(name, :required => false) }
+    let(:other) { described_class.new(name, required: false) }
 
     it { should be(false) }
 
@@ -60,7 +60,7 @@ describe Attribute::String, '#==' do
   end
 
   context 'with an object having a different min_length' do
-    let(:other) { described_class.new(name, :min_length => 1) }
+    let(:other) { described_class.new(name, min_length: 1) }
 
     it { should be(false) }
 
@@ -70,7 +70,7 @@ describe Attribute::String, '#==' do
   end
 
   context 'with an object having a different max_length' do
-    let(:other) { described_class.new(name, :max_length => 100) }
+    let(:other) { described_class.new(name, max_length: 100) }
 
     it { should be(false) }
 

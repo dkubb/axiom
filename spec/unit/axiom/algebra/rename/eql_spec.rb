@@ -6,7 +6,7 @@ describe Algebra::Rename, '#eql?' do
   subject { object.eql?(other) }
 
   let(:operand) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:aliases) { { :id => :other_id }                          }
+  let(:aliases) { { id: :other_id }                             }
   let(:object)  { described_class.new(operand, aliases)         }
 
   context 'with the same object' do
@@ -53,7 +53,7 @@ describe Algebra::Rename, '#eql?' do
 
   context 'with an object having different aliases' do
     let(:other_operand) { operand                                           }
-    let(:other_aliases) { { :id => :another_id }                            }
+    let(:other_aliases) { { id: :another_id }                               }
     let(:other)         { described_class.new(other_operand, other_aliases) }
 
     it { should be(false) }

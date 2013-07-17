@@ -45,7 +45,7 @@ require 'spec_helper'
 
     context 'when the keys are equivalent' do
       let(:other_attributes) { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
-      let(:options)          { { :keys => keys }                                          }
+      let(:options)          { { keys: keys }                                             }
 
       it { should be_instance_of(described_class) }
 
@@ -56,8 +56,8 @@ require 'spec_helper'
 
     context 'when the keys intersect' do
       let(:other_attributes) { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
-      let(:options)          { { :keys => keys }                                          }
-      let(:other_options)    { { :keys => other_keys }                                    }
+      let(:options)          { { keys: keys }                                             }
+      let(:other_options)    { { keys: other_keys }                                       }
 
       let(:other_keys) do
         Relation::Keys.coerce([
@@ -75,8 +75,8 @@ require 'spec_helper'
 
     context 'when the keys do not intersect' do
       let(:other_attributes) { [ [ :id, Integer ], [ :name, String ], [ :age, Integer ] ] }
-      let(:options)          { { :keys => keys }                                          }
-      let(:other_options)    { { :keys => other_keys }                                    }
+      let(:options)          { { keys: keys }                                             }
+      let(:other_options)    { { keys: other_keys }                                       }
 
       let(:other_keys) do
         Relation::Keys.coerce([ [ [ :name, String ], [ :age, Integer ] ] ])

@@ -38,12 +38,12 @@ describe Relation do
 
     context 'when the enumerator is materialized and restricted' do
       it 'does not freeze the enumerator' do
-        expect { relation.restrict(:id => 1).materialize }.
+        expect { relation.restrict(id: 1).materialize }.
           to_not change(enumerator, :frozen?).from(false)
       end
 
       it 'allows the array to be mutated' do
-        expect { relation.restrict(:id => 1).materialize }.
+        expect { relation.restrict(id: 1).materialize }.
           to change(enumerator, :mutable_array).from([]).to(tuples)
       end
     end

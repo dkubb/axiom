@@ -65,7 +65,7 @@ module Axiom
       module Methods
         extend Aliasable
 
-        inheritable_alias(:var => :variance)
+        inheritable_alias(var: :variance)
 
         # Return a variance aggregate function
         #

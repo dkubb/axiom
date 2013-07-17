@@ -50,7 +50,7 @@ describe Attribute, '#eql?' do
   end
 
   context 'with an object having a different required option' do
-    let(:other) { described_class.new(name, :required => false) }
+    let(:other) { described_class.new(name, required: false) }
 
     it { should be(false) }
 

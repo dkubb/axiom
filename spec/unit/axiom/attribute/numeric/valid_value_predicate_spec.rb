@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Attribute::Numeric, '#valid_value?' do
   subject { object.valid_value?(value) }
 
-  let(:object) { described_class.new(:numeric, :size => 1..50) }
+  let(:object) { described_class.new(:numeric, size: 1..50) }
 
   context 'with a numeric value' do
     context 'that is within the allowed size range' do

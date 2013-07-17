@@ -39,7 +39,7 @@ module Axiom
       module Methods
         extend Aliasable
 
-        inheritable_alias(:stddev => :standard_deviation)
+        inheritable_alias(stddev: :standard_deviation)
 
         # Return a standard deviation aggregate function
         #

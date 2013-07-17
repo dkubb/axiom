@@ -6,7 +6,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Aliasable, '#inheritable_alias' do
   subject { object.inheritable_alias(aliases) }
 
-  let(:aliases)   { { :other => :test }               }
+  let(:aliases)   { { other: :test }                  }
   let(:object)    { Class.new(AliasableSpecs::Object) }
   let(:aliasable) { object.new                        }
 

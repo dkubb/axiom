@@ -35,7 +35,7 @@ describe Relation do
     end
 
     it '#rename should be efficient' do
-      renamed = relation.rename(:id => :other_id)
+      renamed = relation.rename(id: :other_id)
       sample(renamed).should == [ [ 0 ], [ 1 ], [ 2 ], [ 3 ], [ 4 ] ]
     end
 
