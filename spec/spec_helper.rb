@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'backports'
-require 'backports/basic_object' unless defined?(::BasicObject)
 require 'devtools/spec_helper'
 require 'ice_nine'
 

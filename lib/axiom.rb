@@ -8,8 +8,6 @@ require 'singleton'
 
 require 'abstract_type'
 require 'adamantium'
-require 'backports'
-require 'backports/basic_object' unless defined?(::BasicObject)
 require 'descendants_tracker'
 require 'equalizer'
 
