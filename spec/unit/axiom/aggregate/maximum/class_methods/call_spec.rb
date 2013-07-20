@@ -28,8 +28,8 @@ describe Aggregate::Maximum, '.call' do
   end
 
   context 'when the value is nil' do
-    let(:value)   { nil             }
-    let(:maximum) { mock('Maximum') }
+    let(:value)   { nil               }
+    let(:maximum) { double('Maximum') }
 
     it { should equal(maximum) }
   end

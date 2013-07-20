@@ -20,7 +20,7 @@ describe Aliasable, '#inheritable_alias' do
 
   it 'aliases #other to #test' do
     subject
-    retval = mock('Return Value')
+    retval = double('Return Value')
     aliasable.should_receive(:test).and_return(retval)
     aliasable.other.should equal(retval)
   end

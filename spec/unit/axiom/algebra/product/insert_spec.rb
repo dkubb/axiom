@@ -6,7 +6,7 @@ describe Algebra::Product, '#insert' do
   subject { object.insert(other) }
 
   let(:object) { described_class.new(left, right)                        }
-  let(:other)  { stub('other')                                           }
+  let(:other)  { double('other')                                         }
   let(:left)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ])           }
   let(:right)  { Relation.new([ [ :name, String ] ], [ [ 'John Doe' ] ]) }
 

@@ -20,7 +20,7 @@ describe Relation::Empty, '#each' do
   end
 
   context 'with an empty relation having tuples' do
-    let(:tuples) { mock('Tuples')                      }
+    let(:tuples) { double('Tuples')                    }
     let(:object) { described_class.new(header, tuples) }
 
     it_should_behave_like 'an #each method'

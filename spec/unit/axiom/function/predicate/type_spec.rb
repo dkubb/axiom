@@ -7,8 +7,8 @@ describe Function::Predicate, '#type' do
 
   let(:described_class) { Class.new(Function::Predicate)   }
   let(:object)          { described_class.new(left, right) }
-  let(:left)            { mock('Left')                     }
-  let(:right)           { mock('Right')                    }
+  let(:left)            { double('Left')                   }
+  let(:right)           { double('Right')                  }
 
   it { should equal(Attribute::Boolean) }
 end

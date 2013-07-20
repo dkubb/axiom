@@ -10,7 +10,7 @@ describe Aggregate, '#default' do
   let(:attribute)       { Attribute::Integer.new(:id)    }
 
   it 'delegates to self.class.default' do
-    return_value = mock('Return Value')
+    return_value = double('Return Value')
     described_class.should_receive(:default).with(no_args).and_return(return_value)
     should equal(return_value)
   end

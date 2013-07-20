@@ -8,7 +8,7 @@ require 'spec_helper'
 
     let(:described_class) { Class.new { include Function::Numeric::Modulo::Methods } }
     let(:object)          { described_class.new.freeze                               }
-    let(:other)           { mock('Other').freeze                                     }
+    let(:other)           { double('Other').freeze                                   }
 
     it { should be_instance_of(Function::Numeric::Modulo) }
 

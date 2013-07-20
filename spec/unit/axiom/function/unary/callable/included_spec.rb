@@ -7,7 +7,7 @@ describe Function::Unary::Callable, '#included' do
 
   let(:object)     { Class.new(superklass).extend(self.class.described_class) }
   let(:superklass) { Class.new                                                }
-  let(:descendant) { mock('descendant')                                       }
+  let(:descendant) { double('descendant')                                     }
 
   it_should_behave_like 'a command method'
 

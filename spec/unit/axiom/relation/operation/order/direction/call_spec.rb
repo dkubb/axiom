@@ -12,7 +12,7 @@ describe Relation::Operation::Order::Direction, '#call' do
   let(:object)          { described_class.new(header[:id])                 }
 
   it 'sends the tuple value to self.class.call' do
-    response = mock('#call response')
+    response = double('#call response')
     described_class.should_receive(:call).with(1, 2).and_return(response)
     should equal(response)
   end

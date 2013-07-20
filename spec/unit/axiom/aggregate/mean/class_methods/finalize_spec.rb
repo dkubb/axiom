@@ -7,8 +7,8 @@ describe Aggregate::Mean, '.finalize' do
 
   let(:object)      { described_class }
   let(:accumulator) { [ count, mean ] }
-  let(:count)       { mock('Count')   }
-  let(:mean)        { mock('Mean')    }
+  let(:count)       { double('Count') }
+  let(:mean)        { double('Mean')  }
 
   it_should_behave_like 'an idempotent method'
 

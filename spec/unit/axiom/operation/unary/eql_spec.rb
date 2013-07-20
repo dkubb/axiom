@@ -6,7 +6,7 @@ describe Operation::Unary, '#eql?' do
   subject { object.eql?(other) }
 
   let(:described_class) { Class.new { include Operation::Unary } }
-  let(:operand)         { mock('Operand')                        }
+  let(:operand)         { double('Operand')                      }
   let(:object)          { described_class.new(operand)           }
 
   context 'with the same object' do
@@ -40,7 +40,7 @@ describe Operation::Unary, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand) { mock('Other Operand')              }
+    let(:other_operand) { double('Other Operand')            }
     let(:other)         { described_class.new(other_operand) }
 
     it { should be(false) }

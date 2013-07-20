@@ -17,7 +17,7 @@ describe Function::Predicate::Enumerable, '#call' do
     let(:object) { described_class.new(header[:id], [ 1 ]) }
 
     it 'sends the left and right value to self.class.call' do
-      response = mock('#call response')
+      response = double('#call response')
       described_class.should_receive(:call).with(1, [ 1 ]).and_return(response)
       should equal(response)
     end
@@ -28,7 +28,7 @@ describe Function::Predicate::Enumerable, '#call' do
     let(:object)   { described_class.new(header[:id], [ callable ]) }
 
     it 'sends the left and right value to self.class.call' do
-      response = mock('#call response')
+      response = double('#call response')
       described_class.should_receive(:call).with(1, [ 1 ]).and_return(response)
       should equal(response)
     end

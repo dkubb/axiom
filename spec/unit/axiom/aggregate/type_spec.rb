@@ -7,7 +7,7 @@ describe Aggregate, '#type' do
 
   let(:described_class) { Class.new(Aggregate)         }
   let(:object)          { described_class.new(operand) }
-  let(:operand)         { mock('Operand')              }
+  let(:operand)         { double('Operand')            }
 
   specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#type is not implemented") }
 end

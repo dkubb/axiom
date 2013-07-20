@@ -19,7 +19,7 @@ describe Relation::Empty, '.new' do
   context 'with a header and tuples' do
     subject { object.new(header, tuples) }
 
-    let(:tuples) { [ mock('Tuple') ] }
+    let(:tuples) { [ double('Tuple') ] }
 
     it { should be_instance_of(object) }
 

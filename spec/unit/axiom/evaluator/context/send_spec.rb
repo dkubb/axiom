@@ -9,7 +9,7 @@ describe Evaluator::Context, '#send' do
   let(:header)    { Relation::Header.new([ attribute ]) }
   let(:object)    { described_class.new(header) {}      }
   let(:method)    { :test                               }
-  let(:args)      { mock('Arguments')                   }
+  let(:args)      { double('Arguments')                 }
   let(:block)     { proc {}                             }
 
   before do

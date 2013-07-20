@@ -28,8 +28,8 @@ describe Aggregate::Minimum, '.call' do
   end
 
   context 'when the value is nil' do
-    let(:value)   { nil             }
-    let(:minimum) { mock('Minimum') }
+    let(:value)   { nil               }
+    let(:minimum) { double('Minimum') }
 
     it { should equal(minimum) }
   end

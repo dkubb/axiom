@@ -10,7 +10,7 @@ describe Function::Unary, '#call' do
   let(:header)          { Relation::Header.coerce([ [ :id, Integer ] ]) }
   let(:operand)         { header[:id].eq(1)                             }
   let(:tuple)           { Tuple.new(header, [ 1 ])                      }
-  let(:response)        { mock('#call response')                        }
+  let(:response)        { double('#call response')                      }
   let(:object)          { described_class.new(operand)                  }
 
   before do

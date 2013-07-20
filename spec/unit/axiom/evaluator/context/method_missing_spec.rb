@@ -16,7 +16,7 @@ describe Evaluator::Context, '#method_missing' do
   context 'with a valid attribute and extra arguments' do
     subject { object.id(args) }
 
-    let(:args) { mock('Arguments') }
+    let(:args) { double('Arguments') }
 
     specify { expect { subject }.to raise_error(ArgumentError, 'wrong number of arguments (1 for 0)') }
   end

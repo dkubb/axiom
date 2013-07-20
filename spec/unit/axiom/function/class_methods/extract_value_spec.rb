@@ -16,7 +16,7 @@ describe Function, '.extract_value' do
   end
 
   context 'when the operand does not respond to #call' do
-    let(:operand) { mock('Value') }
+    let(:operand) { double('Value') }
 
     it { should equal(operand) }
   end

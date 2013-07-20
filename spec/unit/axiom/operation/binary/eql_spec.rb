@@ -6,8 +6,8 @@ describe Operation::Binary, '#eql?' do
   subject { object.eql?(other) }
 
   let(:described_class) { Class.new { include Operation::Binary } }
-  let(:left)            { mock('Left')                            }
-  let(:right)           { mock('Right')                           }
+  let(:left)            { double('Left')                          }
+  let(:right)           { double('Right')                         }
   let(:object)          { described_class.new(left, right)        }
 
   context 'with the same object' do
@@ -41,7 +41,7 @@ describe Operation::Binary, '#eql?' do
   end
 
   context 'with an object having a different left operand' do
-    let(:other_left)  { mock('Other Left')                           }
+    let(:other_left)  { double('Other Left')                         }
     let(:other_right) { right                                        }
     let(:other)       { described_class.new(other_left, other_right) }
 
@@ -54,7 +54,7 @@ describe Operation::Binary, '#eql?' do
 
   context 'with an object having a different right operand' do
     let(:other_left)  { left                                         }
-    let(:other_right) { mock('Other Right')                          }
+    let(:other_right) { double('Other Right')                        }
     let(:other)       { described_class.new(other_left, other_right) }
 
     it { should be(false) }

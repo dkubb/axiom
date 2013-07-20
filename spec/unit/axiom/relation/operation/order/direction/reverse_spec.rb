@@ -7,8 +7,8 @@ describe Relation::Operation::Order::Direction, '#reverse' do
 
   let(:described_class) { Class.new(Relation::Operation::Order::Direction) }
   let(:attribute)       { Attribute::Integer.new(:id)                      }
-  let(:reverse_class)   { mock('Reverse Class', :new => reverse)           }
-  let(:reverse)         { mock('Reverse Instance')                         }
+  let(:reverse_class)   { double('Reverse Class', :new => reverse)         }
+  let(:reverse)         { double('Reverse Instance')                       }
   let(:object)          { described_class.new(attribute)                   }
 
   before do

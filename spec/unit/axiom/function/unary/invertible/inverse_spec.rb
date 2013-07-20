@@ -6,7 +6,7 @@ describe Function::Unary::Invertible, '#inverse' do
   subject { object.inverse }
 
   let(:described_class) { Class.new(Function) { include Function::Unary } }
-  let(:operand)         { mock('Operand').freeze                          }
+  let(:operand)         { double('Operand').freeze                        }
   let(:object)          { described_class.new(operand)                    }
 
   let(:inverse_class) do

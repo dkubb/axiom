@@ -112,7 +112,7 @@ describe Attribute, '.infer_type' do
   end
 
   context 'when the operand is an unhandled type' do
-    let(:operand) { mock('Unhandled') }
+    let(:operand) { double('Unhandled') }
 
     it 'returns an Object type' do
       should equal(Attribute::Object)

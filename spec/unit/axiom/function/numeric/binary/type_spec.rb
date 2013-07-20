@@ -7,7 +7,7 @@ describe Function::Numeric::Binary, '#type' do
 
   let(:described_class) { Class.new(Function::Numeric) { include Function::Numeric::Binary } }
   let(:object)          { described_class.new(operand, operand)                              }
-  let(:operand)         { mock('Operand')                                                    }
+  let(:operand)         { double('Operand')                                                  }
 
   before do
     operand.stub(:freeze => operand, :frozen? => true)
@@ -15,7 +15,7 @@ describe Function::Numeric::Binary, '#type' do
 
   context 'when the operands are from the same class' do
     it 'delegates to Attribute.infer_type' do
-      type = mock('Type')
+      type = double('Type')
       Attribute.should_receive(:infer_type).with(operand).twice.and_return(type)
       should equal(type)
     end
@@ -23,8 +23,8 @@ describe Function::Numeric::Binary, '#type' do
 
   context 'when the operands are from a different class class' do
     it 'delegates to Attribute.infer_type' do
-      type_a = mock('Type A')
-      type_b = mock('Type B')
+      type_a = double('Type A')
+      type_b = double('Type B')
       Attribute.should_receive(:infer_type).with(operand).ordered.and_return(type_a)
       Attribute.should_receive(:infer_type).with(operand).ordered.and_return(type_b)
       should equal(Attribute::Numeric)
