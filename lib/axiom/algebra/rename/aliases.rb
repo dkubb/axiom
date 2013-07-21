@@ -87,12 +87,12 @@ module Axiom
           other_aliases = other.to_hash.dup
           inverted      = other_aliases.invert
 
+          # Remove aliases that cancel out, and preserve different aliases
           each do |old_attribute, new_attribute|
             old_attribute = inverted.fetch(old_attribute, old_attribute)
+            other_aliases.delete(old_attribute)
 
-            if old_attribute.eql?(new_attribute)
-              other_aliases.delete(new_attribute)
-            else
+            unless old_attribute.eql?(new_attribute)
               other_aliases[old_attribute] = new_attribute
             end
           end
