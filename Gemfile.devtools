@@ -43,10 +43,6 @@ group :metrics do
     gem 'yard-spellcheck', '~> 0.1.5'
   end
 
-  platforms :ruby_19 do
-    gem 'json', '~> 1.8.0'
-  end
-
   platforms :rbx do
     gem 'pelusa', '~> 0.2.2'
   end
