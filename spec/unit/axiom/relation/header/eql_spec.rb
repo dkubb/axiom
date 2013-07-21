@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Header, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:attributes) { [ [ :id, Integer ] ]               }
+  let(:attributes) { [[:id, Integer]]                   }
   let(:object)     { described_class.coerce(attributes) }
 
   context 'with the same object' do
@@ -39,7 +39,7 @@ describe Relation::Header, '#eql?' do
   end
 
   context 'with an object having different attributes' do
-    let(:other_attributes) { [ [ :name, String ] ]                    }
+    let(:other_attributes) { [[:name, String]]                        }
     let(:other)            { described_class.coerce(other_attributes) }
 
     it { should be(false) }
@@ -50,10 +50,10 @@ describe Relation::Header, '#eql?' do
   end
 
   context 'with an object having equivalent attributes in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                                 }
-    let(:attribute2) { [ :name, String  ]                                 }
-    let(:object)     { described_class.coerce([ attribute1, attribute2 ]) }
-    let(:other)      { described_class.coerce([ attribute2, attribute1 ]) }
+    let(:attribute1) { [:id,   Integer]                                 }
+    let(:attribute2) { [:name, String]                                  }
+    let(:object)     { described_class.coerce([attribute1, attribute2]) }
+    let(:other)      { described_class.coerce([attribute2, attribute1]) }
 
     it { should be(true) }
 

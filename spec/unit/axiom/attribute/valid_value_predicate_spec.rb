@@ -25,7 +25,7 @@ describe Attribute, '#valid_value?' do
     end
 
     context 'and the attribute not required' do
-      let(:object) { described_class.new(:name, :required => false) }
+      let(:object) { described_class.new(:name, required: false) }
 
       it { should be(true) }
     end

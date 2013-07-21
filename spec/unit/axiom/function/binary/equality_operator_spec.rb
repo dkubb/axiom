@@ -6,12 +6,12 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Function::Binary, '#==' do
   subject { object == other }
 
-  let(:described_class) { BinarySpecs::Object                    }
-  let(:attribute)       { Attribute::Integer.new(:id)            }
-  let(:header)          { Relation::Header.coerce([ attribute ]) }
-  let(:left)            { attribute.eq(1)                        }
-  let(:right)           { attribute.eq(2)                        }
-  let(:object)          { described_class.new(left, right)       }
+  let(:described_class) { BinarySpecs::Object                  }
+  let(:attribute)       { Attribute::Integer.new(:id)          }
+  let(:header)          { Relation::Header.coerce([attribute]) }
+  let(:left)            { attribute.eq(1)                      }
+  let(:right)           { attribute.eq(2)                      }
+  let(:object)          { described_class.new(left, right)     }
 
   context 'with the same object' do
     let(:other) { object }

@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation, '#replace' do
   subject { object.replace(other) }
 
-  let(:object)         { described_class.new(header, [ [ 1 ] ]) }
-  let(:other_relation) { described_class.new(header, [ [ 2 ] ]) }
-  let(:header)         { [ [ :id, Integer ] ]                   }
+  let(:object)         { described_class.new(header, [[1]]) }
+  let(:other_relation) { described_class.new(header, [[2]]) }
+  let(:header)         { [[:id, Integer]]                   }
 
   shared_examples_for 'Relation#replace' do
     it { should be_instance_of(Relation::Operation::Insertion) }

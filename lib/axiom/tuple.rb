@@ -70,7 +70,7 @@ module Axiom
     # Append values to the tuple and return a new tuple
     #
     # @example
-    #   new_tuple = tuple.join(header, [ 1, 2, 3 ])
+    #   new_tuple = tuple.join(header, [1, 2, 3])
     #
     # @param [Header] header
     #   the attributes to include in the tuple
@@ -87,7 +87,7 @@ module Axiom
     # Extend a tuple with function results
     #
     # @example
-    #   new_tuple = tuple.extend(header, [ func1, func2 ])
+    #   new_tuple = tuple.extend(header, [func1, func2])
     #
     # @param [Header] header
     #   the attributes to include in the tuple

@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Rename, '#delete' do
   subject { object.delete(other) }
 
-  let(:object)         { described_class.new(operand, aliases)                                    }
-  let(:operand)        { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ], [ 2 ] ])) }
-  let(:other_relation) { Relation.new(header,               LazyEnumerable.new([ [ 2 ]        ])) }
-  let(:aliases)        { described_class::Aliases.coerce(operand.header, :id => :other_id)        }
-  let(:header)         { [ [ :other_id, Integer ] ]                                               }
+  let(:object)         { described_class.new(operand, aliases)                          }
+  let(:operand)        { Relation.new([[:id, Integer]], LazyEnumerable.new([[1], [2]])) }
+  let(:other_relation) { Relation.new(header,               LazyEnumerable.new([[2]]))  }
+  let(:aliases)        { described_class::Aliases.coerce(operand.header, id: :other_id) }
+  let(:header)         { [[:other_id, Integer]]                                         }
 
   shared_examples_for 'Algebra::Rename#delete' do
     it { should be_instance_of(described_class) }
@@ -21,7 +21,7 @@ describe Algebra::Rename, '#delete' do
     its(:aliases) { should eql(aliases) }
 
     it 'deletes the tuples' do
-      should == [ [ 1 ] ]
+      should == [[1]]
     end
   end
 

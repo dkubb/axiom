@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Function::Unary::Callable, '#call' do
   subject { object.call(value) }
 
-  let(:object)    { double('object', :operation => :op).extend(self.class.described_class) }
-  let(:value)     { double('value', :send => response)                                     }
-  let(:response)  { double('response')                                                     }
+  let(:object)    { double('object', operation: :op).extend(self.class.described_class) }
+  let(:value)     { double('value', send: response)                                     }
+  let(:response)  { double('response')                                                  }
 
   it { should equal(response) }
 

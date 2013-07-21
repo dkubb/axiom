@@ -6,9 +6,9 @@ require File.expand_path('../../fixtures/classes', __FILE__)
 describe Relation::Operation::Binary::ClassMethods, '#new' do
   subject { object.new(left, right) }
 
-  let(:original_left)  { Relation.new([ [ :id,   Integer ] ], [ [ 1 ] ])          }
-  let(:original_right) { Relation.new([ [ :name, String  ] ], [ [ 'Dan Kubb' ] ]) }
-  let(:object)         { BinaryRelationOperationSpecs::Object                     }
+  let(:original_left)  { Relation.new([[:id,   Integer]], [[1]])          }
+  let(:original_right) { Relation.new([[:name, String]],  [['Dan Kubb']]) }
+  let(:object)         { BinaryRelationOperationSpecs::Object             }
 
   context 'with left and right ordered' do
     let(:left)  { original_left.sort_by  { |r| r.id   } }

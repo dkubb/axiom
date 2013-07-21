@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Summarization, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:operand)      { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ])    }
+  let(:operand)      { Relation.new([[:id, Integer]], [[1], [2]])              }
   let(:summarize_by) { operand.project([])                                     }
-  let(:summarizers)  { { :count => lambda { |acc, tuple| acc.to_i + 1 } }      }
+  let(:summarizers)  { { count: ->(acc, tuple) { acc.to_i + 1 } }              }
   let(:object)       { described_class.new(operand, summarize_by, summarizers) }
 
   context 'with the same object' do
@@ -41,7 +41,7 @@ describe Algebra::Summarization, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand)      { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ])                             }
+    let(:other_operand)      { Relation.new([[:id, Integer]], [[3]])                                     }
     let(:other_summarize_by) { summarize_by                                                              }
     let(:other_summarizers)  { summarizers                                                               }
     let(:other)              { described_class.new(other_operand, other_summarize_by, other_summarizers) }

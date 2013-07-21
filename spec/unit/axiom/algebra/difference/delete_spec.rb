@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Difference, '#delete' do
   subject { object.delete(other) }
 
-  let(:object)         { described_class.new(left, right)              }
-  let(:left)           { Relation.new(header, [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:right)          { Relation.new(header, [ [ 1 ] ])               }
-  let(:other_relation) { Relation.new(header, [ [ 2 ] ])               }
-  let(:header)         { [ [ :id, Integer ] ]                          }
+  let(:object)         { described_class.new(left, right)      }
+  let(:left)           { Relation.new(header, [[1], [2], [3]]) }
+  let(:right)          { Relation.new(header, [[1]])           }
+  let(:other_relation) { Relation.new(header, [[2]])           }
+  let(:header)         { [[:id, Integer]]                      }
 
   shared_examples_for 'Algebra::Difference#delete' do
     it { should be_instance_of(described_class) }
@@ -20,7 +20,7 @@ describe Algebra::Difference, '#delete' do
     its(:header) { should == header }
 
     it 'deletes the tuples' do
-      should == [ [ 3 ] ]
+      should == [[3]]
     end
   end
 

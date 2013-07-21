@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :standard_deviation, :stddev ].each do |method|
+[:standard_deviation, :stddev].each do |method|
   describe Aggregate::StandardDeviation::Methods, "##{method}" do
     subject { object.send(method) }
 

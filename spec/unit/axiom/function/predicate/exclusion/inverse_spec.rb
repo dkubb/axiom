@@ -6,7 +6,7 @@ describe Function::Predicate::Exclusion, '#inverse' do
   subject { object.inverse }
 
   let(:attribute)  { Attribute::Integer.new(:id)                }
-  let(:enumerable) { [ 1 ].freeze                               }
+  let(:enumerable) { [1].freeze                                 }
   let(:object)     { described_class.new(attribute, enumerable) }
 
   it_should_behave_like 'an invertible method'

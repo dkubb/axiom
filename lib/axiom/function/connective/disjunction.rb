@@ -43,8 +43,8 @@ module Axiom
         #
         # @api public
         def inverse
-          Conjunction.new(Negation.new(left), Negation.new(right)).
-            memoize(:inverse, self)
+          Conjunction.new(Negation.new(left), Negation.new(right))
+            .memoize(:inverse, self)
         end
 
         module Methods

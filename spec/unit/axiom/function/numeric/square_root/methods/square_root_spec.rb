@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :square_root, :sqrt ].each do |method|
+[:square_root, :sqrt].each do |method|
   describe Function::Numeric::SquareRoot::Methods, "##{method}" do
     subject { object.send(method) }
 

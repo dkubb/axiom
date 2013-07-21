@@ -11,7 +11,7 @@ describe Relation::Operation::Order::DirectionSet, '.new' do
   let(:object) { described_class                  }
 
   context 'with an argument that responds to #to_ary and do not contain duplicates' do
-    let(:argument) { [ id, name ] }
+    let(:argument) { [id, name] }
 
     it { should be_instance_of(object) }
 
@@ -19,7 +19,7 @@ describe Relation::Operation::Order::DirectionSet, '.new' do
   end
 
   context 'with an argument that responds to #to_ary and contain duplicates' do
-    let(:argument) { [ id, id, name, name, age ] }
+    let(:argument) { [id, id, name, name, age] }
 
     specify { expect { subject }.to raise_error(DuplicateNameError, 'duplicate names: [:id, :name]') }
   end

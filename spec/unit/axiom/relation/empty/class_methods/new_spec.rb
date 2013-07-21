@@ -3,15 +3,15 @@
 require 'spec_helper'
 
 describe Relation::Empty, '.new' do
-  let(:object) { described_class      }
-  let(:header) { [ [ :id, Integer ] ] }
+  let(:object) { described_class  }
+  let(:header) { [[:id, Integer]] }
 
   context 'with a header' do
     subject { object.new(header) }
 
     it { should be_instance_of(object) }
 
-    its(:header){ should == header }
+    its(:header) { should == header }
 
     its(:tuples) { should == [] }
   end
@@ -19,11 +19,11 @@ describe Relation::Empty, '.new' do
   context 'with a header and tuples' do
     subject { object.new(header, tuples) }
 
-    let(:tuples) { [ double('Tuple') ] }
+    let(:tuples) { [double('Tuple')] }
 
     it { should be_instance_of(object) }
 
-    its(:header){ should == header }
+    its(:header) { should == header }
 
     its(:tuples) { should eql(tuples) }
   end

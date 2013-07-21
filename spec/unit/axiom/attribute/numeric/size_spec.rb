@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :size, :range ].each do |method|
+[:size, :range].each do |method|
   describe Attribute::Numeric, "##{method}" do
     subject { object.send(method) }
 
@@ -15,7 +15,7 @@ require 'spec_helper'
     end
 
     context 'with a :size option passed to constructor that is inclusive' do
-      let(:object) { described_class.new(:id, :size => 1..100) }
+      let(:object) { described_class.new(:id, size: 1..100) }
 
       it_should_behave_like 'an idempotent method'
 
@@ -23,7 +23,7 @@ require 'spec_helper'
     end
 
     context 'with a :size option passed to constructor that is exclusive' do
-      let(:object) { described_class.new(:id, :size => 1...101) }
+      let(:object) { described_class.new(:id, size: 1...101) }
 
       it_should_behave_like 'an idempotent method'
 

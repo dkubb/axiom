@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Header, '#==' do
   subject { object == other }
 
-  let(:attributes) { [ [ :id, Integer ] ]               }
+  let(:attributes) { [[:id, Integer]]                   }
   let(:object)     { described_class.coerce(attributes) }
 
   context 'with the same object' do
@@ -39,7 +39,7 @@ describe Relation::Header, '#==' do
   end
 
   context 'with an object having different attributes' do
-    let(:other_attributes) { [ [ :name, String ] ]                    }
+    let(:other_attributes) { [[:name, String]]                        }
     let(:other)            { described_class.coerce(other_attributes) }
 
     it { should be(false) }
@@ -50,10 +50,10 @@ describe Relation::Header, '#==' do
   end
 
   context 'with an object having equivalent attributes in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                                 }
-    let(:attribute2) { [ :name, String  ]                                 }
-    let(:object)     { described_class.coerce([ attribute1, attribute2 ]) }
-    let(:other)      { described_class.coerce([ attribute2, attribute1 ]) }
+    let(:attribute1) { [:id,   Integer]                                 }
+    let(:attribute2) { [:name, String]                                  }
+    let(:object)     { described_class.coerce([attribute1, attribute2]) }
+    let(:other)      { described_class.coerce([attribute2, attribute1]) }
 
     it { should be(true) }
 
@@ -73,7 +73,7 @@ describe Relation::Header, '#==' do
   end
 
   context 'with an equivalent object with no type responding to #to_ary' do
-    let(:other) { [ :id ] }
+    let(:other) { [:id] }
 
     it { should be(true) }
 
@@ -83,7 +83,7 @@ describe Relation::Header, '#==' do
   end
 
   context 'with a different object responding to #to_ary' do
-    let(:other) { [ [ :name, String ] ] }
+    let(:other) { [[:name, String]] }
 
     it { should be(false) }
 

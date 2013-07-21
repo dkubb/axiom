@@ -19,7 +19,7 @@ describe Relation::Header, '.new' do
   context 'with attributes' do
     subject { object.new(attributes) }
 
-    let(:attributes) { [ id, name ] }
+    let(:attributes) { [id, name] }
 
     it { should be_instance_of(object) }
 
@@ -34,8 +34,8 @@ describe Relation::Header, '.new' do
   context 'with attributes and options' do
     subject { object.new(attributes, options) }
 
-    let(:attributes) { [ id, name ] }
-    let(:options)    { {}           }
+    let(:attributes) { [id, name] }
+    let(:options)    { {}         }
 
     it { should be_instance_of(object) }
 
@@ -53,7 +53,7 @@ describe Relation::Header, '.new' do
   end
 
   context 'with attributes that contain duplicates' do
-    subject { object.new([ id, id, name, name, name, age ]) }
+    subject { object.new([id, id, name, name, name, age]) }
 
     specify { expect { subject }.to raise_error(DuplicateNameError, 'duplicate names: [:id, :name]') }
   end

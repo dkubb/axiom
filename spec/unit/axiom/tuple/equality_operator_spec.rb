@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Tuple, '#==' do
   subject { object == other }
 
-  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
-  let(:data)   { [ 1 ]                                         }
-  let(:object) { described_class.new(header, data)             }
+  let(:header) { Relation::Header.coerce([[:id, Integer]]) }
+  let(:data)   { [1]                                       }
+  let(:object) { described_class.new(header, data)         }
 
   context 'with the same object' do
     let(:other) { object }
@@ -40,7 +40,7 @@ describe Tuple, '#==' do
   end
 
   context 'with an object having a different header' do
-    let(:other_header) { Relation::Header.coerce([ [ :id, Numeric ] ]) }
+    let(:other_header) { Relation::Header.coerce([[:id, Numeric]])     }
     let(:other_data)   { data                                          }
     let(:other)        { described_class.new(other_header, other_data) }
 
@@ -53,7 +53,7 @@ describe Tuple, '#==' do
 
   context 'with an object having different data' do
     let(:other_header) { header                                        }
-    let(:other_data)   { [ 2 ]                                         }
+    let(:other_data)   { [2]                                           }
     let(:other)        { described_class.new(other_header, other_data) }
 
     it { should be(false) }
@@ -74,7 +74,7 @@ describe Tuple, '#==' do
   end
 
   context 'with a different object responding to #to_ary' do
-    let(:other) { [ 2 ] }
+    let(:other) { [2] }
 
     it { should be(false) }
 

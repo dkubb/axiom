@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Extension, '#hash' do
   subject { object.hash }
 
-  let(:operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:extensions) { { Attribute::Integer.new(:test) => 1 }               }
-  let(:object)     { described_class.new(operand, extensions)             }
+  let(:operand)    { Relation.new([[:id, Integer]], [[1], [2]]) }
+  let(:extensions) { { Attribute::Integer.new(:test) => 1 }     }
+  let(:object)     { described_class.new(operand, extensions)   }
 
   it_should_behave_like 'a hash method'
 

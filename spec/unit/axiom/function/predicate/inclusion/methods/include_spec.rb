@@ -7,7 +7,7 @@ describe Function::Predicate::Inclusion::Methods, '#include' do
   subject { object.include(other) }
 
   let(:described_class) { InclusionMethodsSpecs::Object }
-  let(:other)           { [ true, false ]               }
+  let(:other)           { [true, false]                 }
   let(:object)          { described_class.new           }
 
   it { should be_instance_of(Function::Predicate::Inclusion) }

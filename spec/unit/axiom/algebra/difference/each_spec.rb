@@ -6,8 +6,8 @@ describe Algebra::Difference, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
   let(:object) { described_class.new(left, right) }
-  let(:header) { [ [ :id, Integer ] ]             }
-  let(:left)   { Relation.new(header, [ [ 1 ] ])  }
+  let(:header) { [[:id, Integer]]                 }
+  let(:left)   { Relation.new(header, [[1]])      }
   let(:yields) { []                               }
 
   context 'with relations having similar bodies' do
@@ -22,7 +22,7 @@ describe Algebra::Difference, '#each' do
   end
 
   context 'with relations having different bodies' do
-    let(:right) { Relation.new(header, [ [ 2 ] ]) }
+    let(:right) { Relation.new(header, [[2]]) }
 
     it_should_behave_like 'an #each method'
 
@@ -37,9 +37,9 @@ describe Algebra::Difference, '#each' do
     end
 
     it 'yields only tuples with the expected data' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ [ 1 ] ])
+      expect { subject }.to change { yields.dup }
+        .from([])
+        .to([[1]])
     end
   end
 end

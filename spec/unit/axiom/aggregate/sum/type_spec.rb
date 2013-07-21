@@ -9,7 +9,7 @@ describe Aggregate::Sum, '#type' do
   let(:operand) { double('Unhandled')          }
 
   before do
-    operand.stub(:freeze => operand, :frozen? => true)
+    operand.stub(freeze: operand, :frozen? => true)
   end
 
   it 'delegates to Attribute.infer_type' do

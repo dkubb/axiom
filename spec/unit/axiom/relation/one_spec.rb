@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation, '#one' do
   subject { object.one }
 
-  let(:object) { described_class.new(header, body)             }
-  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
+  let(:object) { described_class.new(header, body)         }
+  let(:header) { Relation::Header.coerce([[:id, Integer]]) }
 
   context 'with a relation having no tuples' do
     let(:body) { LazyEnumerable.new }
@@ -17,17 +17,17 @@ describe Relation, '#one' do
   end
 
   context 'with a relation having one tuple' do
-    let(:body) { LazyEnumerable.new([ [ 1 ] ]) }
+    let(:body) { LazyEnumerable.new([[1]]) }
 
     it { should be_instance_of(Tuple) }
 
     it 'returns the expected tuple' do
-      should == [ 1 ]
+      should == [1]
     end
   end
 
   context 'with a relation having many tuples' do
-    let(:body) { LazyEnumerable.new([ [ 1 ], [ 2 ] ]) }
+    let(:body) { LazyEnumerable.new([[1], [2]]) }
 
     specify { expect { subject }.to raise_error(ManyTuplesError, 'one tuple expected, but set contained 2 tuples') }
 

@@ -6,7 +6,7 @@ module Axiom
     # The variance of a sequence of numbers
     class Variance < Aggregate
 
-      DEFAULT = [ 0, nil, Rational(0) ].freeze
+      DEFAULT = [0, nil, Rational(0)].freeze
 
       # Return the count, mean, and sum of squares for a sequence of numbers
       #
@@ -26,7 +26,7 @@ module Axiom
         delta                 = mean.nil? ? value : value - mean
         count, new_mean       = Mean.call(accumulator, value)
         sum_of_squares       += delta * (value - new_mean)
-        [ count, new_mean, sum_of_squares ]
+        [count, new_mean, sum_of_squares]
       end
 
       # Calculate the variance from the accumulator
@@ -65,7 +65,7 @@ module Axiom
       module Methods
         extend Aliasable
 
-        inheritable_alias(:var => :variance)
+        inheritable_alias(var: :variance)
 
         # Return a variance aggregate function
         #

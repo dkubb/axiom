@@ -12,17 +12,17 @@ include Axiom
 
 TIMES = 5_000
 
-header   = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
-array    = (1..100).map { |n| Tuple.new(header, [ n, 'Dan Kubb' ]) }
+header   = Relation::Header.new([[:id, Integer], [:name, String]])
+array    = (1..100).map { |n| Tuple.new(header, [n, 'Dan Kubb']) }
 relation = Relation.new(header, array)
-join     = Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 35 ] ])
-product  = Relation.new([ [ :age, Integer ] ], [ [ 35 ] ])
-ordered  = relation.sort_by { |r| [ r.id, r.name ] }
+join     = Relation.new([[:id, Integer], [:age, Integer]], [[1, 35]])
+product  = Relation.new([[:age, Integer]], [[35]])
+ordered  = relation.sort_by { |r| [r.id, r.name] }
 
 RBench.run(TIMES) do
-  column :ruby,  :title => 'Ruby'
-  column :axiom, :title => 'Axiom'
-  column :diff,  :title => 'Diff', :compare => [ :ruby, :axiom ]
+  column :ruby,  title: 'Ruby'
+  column :axiom, title: 'Axiom'
+  column :diff,  title: 'Diff', compare: [:ruby, :axiom]
 
   report 'each' do
     ruby  { array.each {}    }
@@ -30,13 +30,13 @@ RBench.run(TIMES) do
   end
 
   report 'projection' do
-    ruby  { array.map { |tuple| [ tuple[:id] ] }.each {} }
-    axiom { relation.project([ :id ]).each {}            }
+    ruby  { array.map { |tuple| [tuple[:id]] }.each {} }
+    axiom { relation.project([:id]).each {}            }
   end
 
   report 'removal' do
-    ruby  { array.map { |tuple| [ tuple[:id] ] }.each {} }
-    axiom { relation.remove([ :name ]).each {}           }
+    ruby  { array.map { |tuple| [tuple[:id]] }.each {} }
+    axiom { relation.remove([:name]).each {}           }
   end
 
   report 'restriction' do
@@ -69,8 +69,8 @@ RBench.run(TIMES) do
   end
 
   report 'order' do
-    ruby  { array.sort_by { |tuple| [ -tuple[:id], tuple[:name] ] }.each {} }
-    axiom { relation.sort_by { |r| [ r.id.desc, r.name ] }.each {}          }
+    ruby  { array.sort_by { |tuple| [-tuple[:id], tuple[:name]] }.each {} }
+    axiom { relation.sort_by { |r| [r.id.desc, r.name] }.each {}          }
   end
 
   report 'take' do

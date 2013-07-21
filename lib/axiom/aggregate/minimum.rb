@@ -40,7 +40,7 @@ module Axiom
       module Methods
         extend Aliasable
 
-        inheritable_alias(:min => :minimum)
+        inheritable_alias(min: :minimum)
 
         # Return a minimum aggregate function
         #

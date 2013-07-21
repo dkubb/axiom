@@ -12,7 +12,7 @@ describe Axiom::Equalizer::Methods, '#eql?' do
       include Axiom::Equalizer::Methods
 
       def cmp?(comparator, other)
-        !!(comparator and other)
+        !!(comparator && other)
       end
     end
   end

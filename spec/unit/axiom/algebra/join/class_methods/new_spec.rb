@@ -5,12 +5,12 @@ require 'spec_helper'
 describe Algebra::Join, '.new' do
   subject { object.new(left, right) }
 
-  let(:header) { [ [ :id, Integer ] ]                   }
-  let(:left)   { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
-  let(:object) { described_class                        }
+  let(:header) { [[:id, Integer]]                 }
+  let(:left)   { Relation.new(header, [[1], [2]]) }
+  let(:object) { described_class                  }
 
   context 'with relations having headers with common attributes' do
-    let(:right) { Relation.new([ [ :id, Integer ], [ :name, String ] ], [ [ 2, 'Dan Kubb' ] ]) }
+    let(:right) { Relation.new([[:id, Integer], [:name, String]], [[2, 'Dan Kubb']]) }
 
     it { should be_instance_of(object) }
   end
@@ -22,7 +22,7 @@ describe Algebra::Join, '.new' do
   end
 
   context 'with relations having different headers' do
-    let(:right) { Relation.new([ [ :name, String ] ], [ [ 'Dan Kubb' ] ]) }
+    let(:right) { Relation.new([[:name, String]], [['Dan Kubb']]) }
 
     it { should be_instance_of(object) }
   end

@@ -147,7 +147,7 @@ module Axiom
           # Return an ordered relation
           #
           # @example with a block
-          #   order = relation.sort_by { |r| [ r.a.desc, r.b ] }
+          #   order = relation.sort_by { |r| [r.a.desc, r.b] }
           #
           # @example with directions
           #   order = relation.sort_by(directions)

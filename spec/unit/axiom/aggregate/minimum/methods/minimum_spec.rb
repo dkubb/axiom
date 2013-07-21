@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :minimum, :min ].each do |method|
+[:minimum, :min].each do |method|
   describe Aggregate::Minimum::Methods, "##{method}" do
     subject { object.send(method) }
 

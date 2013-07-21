@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Algebra::Extension, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)     { described_class.new(operand, extensions)             }
-  let(:operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:extensions) { { :test => lambda { |tuple| 1 } }                    }
-  let(:yields)     { []                                                   }
+  let(:object)     { described_class.new(operand, extensions)   }
+  let(:operand)    { Relation.new([[:id, Integer]], [[1], [2]]) }
+  let(:extensions) { { test: ->(tuple) { 1 } }                  }
+  let(:yields)     { []                                         }
 
   it_should_behave_like 'an #each method'
 
@@ -23,8 +23,8 @@ describe Algebra::Extension, '#each' do
   end
 
   it 'yields only tuples with the expected data' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to([ [ 1, 1 ], [ 2, 1 ] ])
+    expect { subject }.to change { yields.dup }
+      .from([])
+      .to([[1, 1], [2, 1]])
   end
 end

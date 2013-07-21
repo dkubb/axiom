@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 describe Evaluator::Context, '#add' do
-  let(:attribute) { Attribute::Integer.new(:id)         }
-  let(:header)    { Relation::Header.new([ attribute ]) }
+  let(:attribute) { Attribute::Integer.new(:id)       }
+  let(:header)    { Relation::Header.new([attribute]) }
 
   context 'when an aggregate is provided' do
     subject { described_class.new(header) { |object| object.add(:aggregate, aggregate) } }
@@ -31,11 +31,11 @@ describe Evaluator::Context, '#add' do
   end
 
   context 'when a proc is provided' do
-    subject { described_class.new(header) { |object| object.add(:proc, proc) } }
+    subject { described_class.new(header) { |object| object.add(:block, block) } }
 
-    let(:proc) { Proc.new {} }
+    let(:block) { proc {} }
 
-    its(:functions) { should eql(Attribute::Object.new(:proc) => proc) }
+    its(:functions) { should eql(Attribute::Object.new(:block) => block) }
 
     it 'returns self' do
       subject.yield.equal?(subject).should be(true)

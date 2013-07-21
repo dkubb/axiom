@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Rename, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)         { described_class.new(operand, aliases)                             }
-  let(:operand)        { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
-  let(:other_relation) { Relation.new(header,               LazyEnumerable.new([ [ 2 ] ])) }
-  let(:aliases)        { described_class::Aliases.coerce(operand.header, :id => :other_id) }
-  let(:header)         { [ [ :other_id, Integer ] ]                                        }
+  let(:object)         { described_class.new(operand, aliases)                          }
+  let(:operand)        { Relation.new([[:id, Integer]], LazyEnumerable.new([[1]]))      }
+  let(:other_relation) { Relation.new(header,               LazyEnumerable.new([[2]]))  }
+  let(:aliases)        { described_class::Aliases.coerce(operand.header, id: :other_id) }
+  let(:header)         { [[:other_id, Integer]]                                         }
 
   shared_examples_for 'Algebra::Rename#insert' do
     it { should be_instance_of(described_class) }
@@ -21,7 +21,7 @@ describe Algebra::Rename, '#insert' do
     its(:aliases) { should eql(aliases) }
 
     it 'inserts the tuples' do
-      should == [ [ 1 ], [ 2 ] ]
+      should == [[1], [2]]
     end
   end
 

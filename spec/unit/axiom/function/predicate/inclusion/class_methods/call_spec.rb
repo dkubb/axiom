@@ -8,15 +8,15 @@ describe Function::Predicate::Inclusion, '.call' do
   let(:object) { described_class }
 
   context 'when left is included in right' do
-    let(:left)  { 1     }
-    let(:right) { [ 1 ] }
+    let(:left)  { 1   }
+    let(:right) { [1] }
 
     it { should be(true) }
   end
 
   context 'when left is not included in right' do
-    let(:left)  { 1     }
-    let(:right) { [ 0 ] }
+    let(:left)  { 1   }
+    let(:right) { [0] }
 
     it { should be(false) }
   end

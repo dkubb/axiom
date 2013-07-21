@@ -104,7 +104,7 @@ module Axiom
         #  restriction = relation.restrict(id: 1)
         #
         # @example restriction using an Array
-        #  restriction = relation.restrict([ [ :id, 1 ] ])
+        #  restriction = relation.restrict([[:id, 1]])
         #
         # @param [Array] args
         #   optional arguments

@@ -6,10 +6,10 @@ describe Algebra::Union, '#insert' do
   subject { object.insert(other) }
 
   let(:object)         { described_class.new(left, right) }
-  let(:left)           { Relation.new(header, [ [ 1 ] ])  }
-  let(:right)          { Relation.new(header, [ [ 2 ] ])  }
-  let(:other_relation) { Relation.new(header, [ [ 3 ] ])  }
-  let(:header)         { [ [ :id, Integer ] ]             }
+  let(:left)           { Relation.new(header, [[1]])      }
+  let(:right)          { Relation.new(header, [[2]])      }
+  let(:other_relation) { Relation.new(header, [[3]])      }
+  let(:header)         { [[:id, Integer]]                 }
 
   shared_examples_for 'Algebra::Union#insert' do
     it { should be_instance_of(described_class) }
@@ -20,7 +20,7 @@ describe Algebra::Union, '#insert' do
     its(:header) { should == header }
 
     it 'inserts the tuples' do
-      should == [ [ 1 ], [ 2 ], [ 3 ] ]
+      should == [[1], [2], [3]]
     end
   end
 

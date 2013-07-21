@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :eql?, :== ].each do |method|
+[:eql?, :==].each do |method|
   describe Relation::Operation::Order::Direction, "##{method}" do
     subject { object.send(method, other) }
 

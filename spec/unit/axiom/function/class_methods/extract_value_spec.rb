@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Function, '.extract_value' do
   subject { object.extract_value(operand, tuple) }
 
-  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
-  let(:tuple)  { Tuple.new(header, [ 1 ])                      }
-  let(:object) { described_class                               }
+  let(:header) { Relation::Header.coerce([[:id, Integer]]) }
+  let(:tuple)  { Tuple.new(header, [1])                    }
+  let(:object) { described_class                           }
 
   context 'when the operand responds to #call' do
     let(:operand) { header[:id] }

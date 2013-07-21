@@ -18,7 +18,7 @@ describe Relation::Keys, '.new' do
   end
 
   context 'with an argument that responds to #to_ary and contains irreducible keys' do
-    let(:argument) { [ Relation::Header.new([ id ]) ] }
+    let(:argument) { [Relation::Header.new([id])] }
 
     it { should be_instance_of(object) }
 
@@ -31,11 +31,11 @@ describe Relation::Keys, '.new' do
   end
 
   context 'with an argument that responds to #to_ary and contains reducible keys' do
-    let(:argument)        { [ reducible_key, irreducible_key ] }
-    let(:reducible_key)   { Relation::Header.new([ id, name ]) }
-    let(:irreducible_key) { Relation::Header.new([ id ])       }
+    let(:argument)        { [reducible_key, irreducible_key] }
+    let(:reducible_key)   { Relation::Header.new([id, name]) }
+    let(:irreducible_key) { Relation::Header.new([id])       }
 
-    specify { expect { subject }.to raise_error(ReducibleKeyError, "reducible keys: #{[ reducible_key.to_set ].inspect}") }
+    specify { expect { subject }.to raise_error(ReducibleKeyError, "reducible keys: #{[reducible_key.to_set].inspect}") }
   end
 
   context 'when the argument is not a Keys and does not respond to #to_ary' do

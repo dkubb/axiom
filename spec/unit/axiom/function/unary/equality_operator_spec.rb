@@ -6,11 +6,11 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Function::Unary, '#==' do
   subject { object == other }
 
-  let(:described_class) { UnarySpecs::Object                     }
-  let(:attribute)       { Attribute::Integer.new(:id)            }
-  let(:header)          { Relation::Header.coerce([ attribute ]) }
-  let(:operand)         { attribute.eq(1)                        }
-  let(:object)          { described_class.new(operand)           }
+  let(:described_class) { UnarySpecs::Object                   }
+  let(:attribute)       { Attribute::Integer.new(:id)          }
+  let(:header)          { Relation::Header.coerce([attribute]) }
+  let(:operand)         { attribute.eq(1)                      }
+  let(:object)          { described_class.new(operand)         }
 
   context 'with the same object' do
     let(:other) { object }

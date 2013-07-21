@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Relation::Proxy, '#hash' do
   subject { object.hash }
 
-  let(:object)          { described_class.new(relation)            }
-  let(:described_class) { Class.new(Relation)                      }
-  let(:relation)        { Relation.new([ [ :id, Integer ] ], body) }
-  let(:body)            { [ [ 1 ], [ 2 ] ]                         }
+  let(:object)          { described_class.new(relation)        }
+  let(:described_class) { Class.new(Relation)                  }
+  let(:relation)        { Relation.new([[:id, Integer]], body) }
+  let(:body)            { [[1], [2]]                           }
 
   before do
     described_class.class_eval do

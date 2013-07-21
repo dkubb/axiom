@@ -3,11 +3,11 @@
 require 'spec_helper'
 
 describe Algebra::Restriction::Methods, '#restrict' do
-  let(:object)          { described_class.new(header, body)                             }
-  let(:header)          { [ [ :id, Integer ], [ :name, String ] ]                       }
-  let(:body)            { LazyEnumerable.new([ [ 1, 'Dan Kubb' ], [ 2, 'Alex Kubb' ] ]) }
-  let(:described_class) { Relation                                                      }
-  let(:tautology)       { Function::Proposition::Tautology.instance                     }
+  let(:object)          { described_class.new(header, body)                       }
+  let(:header)          { [[:id, Integer], [:name, String]]                       }
+  let(:body)            { LazyEnumerable.new([[1, 'Dan Kubb'], [2, 'Alex Kubb']]) }
+  let(:described_class) { Relation                                                }
+  let(:tautology)       { Function::Proposition::Tautology.instance               }
 
   context 'with a predicate' do
     subject { object.restrict(predicate) }
@@ -44,7 +44,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
   context 'with a Hash' do
     subject { object.restrict(predicate) }
 
-    let(:predicate) { { :id => 1, :name => 'Dan Kubb' } }
+    let(:predicate) { { id: 1, name: 'Dan Kubb' } }
 
     it { should be_instance_of(Algebra::Restriction) }
 
@@ -53,14 +53,14 @@ describe Algebra::Restriction::Methods, '#restrict' do
     end
 
     it 'behaves the same as Enumerable#select' do
-      should == object.select { |tuple| tuple[:id] == 1 and tuple[:name] == 'Dan Kubb' }
+      should == object.select { |tuple| tuple[:id] == 1 && tuple[:name] == 'Dan Kubb' }
     end
   end
 
   context 'with an Array' do
     subject { object.restrict(predicate) }
 
-    let(:predicate) { [ [ :id, 1 ], [ :name, 'Dan Kubb' ] ] }
+    let(:predicate) { [[:id, 1], [:name, 'Dan Kubb']] }
 
     it { should be_instance_of(Algebra::Restriction) }
 
@@ -69,7 +69,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
     end
 
     it 'behaves the same as Enumerable#select' do
-      should == object.select { |tuple| tuple[:id] == 1 and tuple[:name] == 'Dan Kubb' }
+      should == object.select { |tuple| tuple[:id] == 1 && tuple[:name] == 'Dan Kubb' }
     end
   end
 end

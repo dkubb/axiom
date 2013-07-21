@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :add, :+ ].each do |method|
+[:add, :+].each do |method|
   describe Function::Numeric::Addition::Methods, "##{method}" do
     subject { object.send(method, other) }
 

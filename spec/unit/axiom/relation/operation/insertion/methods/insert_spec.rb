@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Relation::Operation::Insertion::Methods, '#insert' do
   subject { object.insert(other) }
 
-  let(:object) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:tuples) { [ [ 2 ] ]                                     }
+  let(:object) { Relation.new([[:id, Integer]], [[1]]) }
+  let(:tuples) { [[2]]                                 }
 
   context 'when other is a Relation' do
-    let(:other) { Relation.new([ [ :id, Integer ] ], tuples) }
+    let(:other) { Relation.new([[:id, Integer]], tuples) }
 
     it { should be_instance_of(Relation::Operation::Insertion) }
 
@@ -18,7 +18,7 @@ describe Relation::Operation::Insertion::Methods, '#insert' do
     its(:right) { should be(other) }
 
     it 'returns the expected tuples' do
-      should == [ [ 1 ], [ 2 ] ]
+      should == [[1], [2]]
     end
   end
 
@@ -36,7 +36,7 @@ describe Relation::Operation::Insertion::Methods, '#insert' do
     its(:right) { should == other }
 
     it 'returns the expected tuples' do
-      should == [ [ 1 ], [ 2 ] ]
+      should == [[1], [2]]
     end
   end
 end

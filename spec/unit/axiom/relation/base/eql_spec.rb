@@ -6,8 +6,8 @@ describe Relation::Base, '#eql?' do
   subject { object.eql?(other) }
 
   let(:name)   { 'users'.freeze                          }
-  let(:header) { [ [ :id, Integer ] ]                    }
-  let(:body)   { LazyEnumerable.new([ [ 1 ] ])           }
+  let(:header) { [[:id, Integer]]                        }
+  let(:body)   { LazyEnumerable.new([[1]])               }
   let(:object) { described_class.new(name, header, body) }
 
   before do
@@ -59,7 +59,7 @@ describe Relation::Base, '#eql?' do
 
   context 'with an object having a different header' do
     let(:other_name)   { name                                                      }
-    let(:other_header) { [ [ :id, Numeric ] ]                                      }
+    let(:other_header) { [[:id, Numeric]]                                          }
     let(:other_body)   { body                                                      }
     let(:other)        { described_class.new(other_name, other_header, other_body) }
 
@@ -73,7 +73,7 @@ describe Relation::Base, '#eql?' do
   context 'with an object having a different body' do
     let(:other_name)   { name                                                      }
     let(:other_header) { header                                                    }
-    let(:other_body)   { LazyEnumerable.new([ [ 2 ] ])                             }
+    let(:other_body)   { LazyEnumerable.new([[2]])                                 }
     let(:other)        { described_class.new(other_name, other_header, other_body) }
 
     it { should be(false) }
@@ -84,12 +84,12 @@ describe Relation::Base, '#eql?' do
   end
 
   context 'with an object having an equivalent header in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                                                            }
-    let(:attribute2) { [ :name, String  ]                                                            }
-    let(:header1)    { [ attribute1, attribute2 ]                                                    }
-    let(:header2)    { [ attribute2, attribute1 ]                                                    }
-    let(:object)     { described_class.new(name, header1, LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
-    let(:other)      { described_class.new(name, header2, LazyEnumerable.new([ [ 'Dan Kubb', 1 ] ])) }
+    let(:attribute1) { [:id,   Integer]                                                          }
+    let(:attribute2) { [:name, String]                                                           }
+    let(:header1)    { [attribute1, attribute2]                                                  }
+    let(:header2)    { [attribute2, attribute1]                                                  }
+    let(:object)     { described_class.new(name, header1, LazyEnumerable.new([[1, 'Dan Kubb']])) }
+    let(:other)      { described_class.new(name, header2, LazyEnumerable.new([['Dan Kubb', 1]])) }
 
     it { should be(true) }
 

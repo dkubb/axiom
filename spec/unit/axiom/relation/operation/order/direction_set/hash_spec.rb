@@ -6,7 +6,7 @@ describe Relation::Operation::Order::DirectionSet, '#hash' do
   subject { object.hash }
 
   let(:attribute)  { Attribute::Integer.new(:id)     }
-  let(:directions) { [ attribute.asc ]               }
+  let(:directions) { [attribute.asc]                 }
   let(:object)     { described_class.new(directions) }
 
   it_should_behave_like 'a hash method'

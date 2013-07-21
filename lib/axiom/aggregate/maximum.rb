@@ -40,7 +40,7 @@ module Axiom
       module Methods
         extend Aliasable
 
-        inheritable_alias(:max => :maximum)
+        inheritable_alias(max: :maximum)
 
         # Return a maximum aggregate function
         #

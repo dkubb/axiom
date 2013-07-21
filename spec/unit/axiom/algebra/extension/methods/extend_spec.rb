@@ -3,10 +3,10 @@
 require 'spec_helper'
 
 describe Algebra::Extension::Methods, '#extend' do
-  let(:object)          { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ] ])) }
-  let(:described_class) { Relation                                                                 }
-  let(:extensions)      { { :test => function }                                                    }
-  let(:function)        { object[:id]                                                              }
+  let(:object)          { described_class.new([[:id, Integer]], LazyEnumerable.new([[1]])) }
+  let(:described_class) { Relation                                                         }
+  let(:extensions)      { { test: function }                                               }
+  let(:function)        { object[:id]                                                      }
 
   context 'with extensions' do
     subject { object.extend(extensions) }

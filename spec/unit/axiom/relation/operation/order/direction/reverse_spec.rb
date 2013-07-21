@@ -7,12 +7,12 @@ describe Relation::Operation::Order::Direction, '#reverse' do
 
   let(:described_class) { Class.new(Relation::Operation::Order::Direction) }
   let(:attribute)       { Attribute::Integer.new(:id)                      }
-  let(:reverse_class)   { double('Reverse Class', :new => reverse)         }
+  let(:reverse_class)   { double('Reverse Class', new: reverse)            }
   let(:reverse)         { double('Reverse Instance')                       }
   let(:object)          { described_class.new(attribute)                   }
 
   before do
-    described_class.stub(:reverse => reverse_class)
+    described_class.stub(reverse: reverse_class)
   end
 
   it 'calls .reverse on the class' do

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :absolute, :abs ].each do |method|
+[:absolute, :abs].each do |method|
   describe Function::Numeric::Absolute::Methods, "##{method}" do
     subject { object.send(method) }
 

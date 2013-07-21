@@ -8,7 +8,7 @@ describe Relation::Header, '#empty?' do
   let(:object) { described_class.new(attributes) }
 
   context 'with attributes' do
-    let(:attributes) { [ Attribute::Integer.new(:id) ] }
+    let(:attributes) { [Attribute::Integer.new(:id)] }
 
     it { should be(false) }
   end

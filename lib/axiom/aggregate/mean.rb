@@ -6,12 +6,12 @@ module Axiom
     # The mean of a sequence of numbers
     class Mean < Aggregate
 
-      DEFAULT = [ 0, nil ].freeze
+      DEFAULT = [0, nil].freeze
 
       # Return the count and mean for a sequence of numbers
       #
       # @example
-      #   count, mean = Mean.call([ count, mean ], value)
+      #   count, mean = Mean.call([count, mean], value)
       #
       # @param [Array(Integer, Numeric)] accumulator
       #
@@ -24,7 +24,7 @@ module Axiom
         return accumulator if value.nil?
         count, mean = accumulator
         count       = Count.call(count, value)
-        [ count, mean ? Rational(value - mean, count) + mean : Rational(value) ]
+        [count, mean ? Rational(value - mean, count) + mean : Rational(value)]
       end
 
       # Extract the mean from the accumulator
@@ -60,8 +60,8 @@ module Axiom
         extend Aliasable
 
         inheritable_alias(
-          :average => :mean,
-          :avg     => :mean
+          average: :mean,
+          avg:     :mean
         )
 
         # Return a mean aggregate function

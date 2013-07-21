@@ -34,16 +34,16 @@ module Axiom
     # Instantiate a new Relation
     #
     # @example of a materialized Array based relation
-    #   array    = [ [ 1 ], [ 2 ], [ 3 ] ]
-    #   relation = Relation.new([ [ :id, Integer ] ], array)
+    #   array    = [[1], [2], [3]]
+    #   relation = Relation.new([[:id, Integer]], array)
     #
     # @example of a materialized Set based relation
-    #   set      = Set[ [ 1 ], [ 2 ], [ 3 ] ]
-    #   relation = Relation.new([ [ :id, Integer ] ], set)
+    #   set      = Set[[1], [2], [3]]
+    #   relation = Relation.new([[:id, Integer]], set)
     #
     # @example of a non-materialized Enumerator based relation
-    #   enumerator = [ [ 1 ], [ 2 ], [ 3 ] ].each
-    #   relation   = Relation.new([ [ :id, Integer ] ], enumerator)
+    #   enumerator = [[1], [2], [3]].each
+    #   relation   = Relation.new([[:id, Integer]], enumerator)
     #
     # @param [Array(Header, Enumerable)] args
     #
@@ -105,7 +105,7 @@ module Axiom
     # @api public
     def each
       return to_enum unless block_given?
-      seen = Hash.new
+      seen = {}
       tuples.each do |tuple|
         tuple = Tuple.coerce(header, tuple)
         yield seen[tuple] = tuple unless seen.key?(tuple)
@@ -264,8 +264,10 @@ module Axiom
       if size.zero?
         raise NoTuplesError, 'one tuple expected, but was an empty set'
       elsif size > 1
-        raise ManyTuplesError,
+        raise(
+          ManyTuplesError,
           "one tuple expected, but set contained #{size} tuples"
+        )
       end
     end
 

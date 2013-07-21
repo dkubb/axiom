@@ -39,7 +39,7 @@ module Axiom
 
           inheritable_alias(
             :**  => :exponent,
-            :pow => :exponent
+            pow: :exponent
           )
 
           # Return an exponential function

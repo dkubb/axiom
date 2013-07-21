@@ -14,7 +14,7 @@ describe Function::Predicate::Enumerable, '.compare_method' do
   end
 
   context 'the enumerable is an Array' do
-    let(:enumerable) { [ 1, 2 ] }
+    let(:enumerable) { [1, 2] }
 
     it { should == :include? }
   end

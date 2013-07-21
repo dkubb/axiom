@@ -13,7 +13,7 @@ describe Aggregate::Count, '.call' do
   let(:object)  { described_class }
 
   context 'when the values are not nil' do
-    let(:values) { [ 1, 2, 3, 4, 5, 6 ] }
+    let(:values) { [1, 2, 3, 4, 5, 6] }
 
     it 'returns the expected count the values' do
       should eql(6)
@@ -21,7 +21,7 @@ describe Aggregate::Count, '.call' do
   end
 
   context 'when the values are nil' do
-    let(:values) { [ nil ] }
+    let(:values) { [nil] }
 
     it 'returns the default' do
       should equal(default)

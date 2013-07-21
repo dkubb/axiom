@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Keys, '#each' do
   subject { object.each { |key| yields << key } }
 
-  let(:object) { described_class.coerce([ header ]) }
-  let(:header) { [ [ :id ] ]                        }
-  let(:yields) { []                                 }
+  let(:object) { described_class.coerce([header]) }
+  let(:header) { [[:id]]                          }
+  let(:yields) { []                               }
 
   it_should_behave_like 'an #each method'
 
@@ -17,9 +17,9 @@ describe Relation::Keys, '#each' do
   end
 
   it 'yields only headers with the expected data' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to([ header ])
+    expect { subject }.to change { yields.dup }
+      .from([])
+      .to([header])
   end
 end
 

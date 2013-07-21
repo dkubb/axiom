@@ -71,10 +71,10 @@ module Axiom
   Undefined = Object.new.freeze
 
   # An empty Hash to use as for default options
-  EMPTY_HASH = Hash.new.freeze
+  EMPTY_HASH = {}.freeze
 
   # An empty Array to use for a default value
-  EMPTY_ARRAY = Array.new.freeze
+  EMPTY_ARRAY = [].freeze
 
   # Error message constants for inserted and deleted messages
   INSERTED = 'inserted'.freeze
@@ -210,6 +210,6 @@ module Axiom
   TABLE_DUM = Relation::Empty.new(Relation::Header::EMPTY)
 
   # Represent a relation with an empty header and a single tuple
-  TABLE_DEE = Relation.new(Relation::Header::EMPTY, [ EMPTY_ARRAY ])
+  TABLE_DEE = Relation.new(Relation::Header::EMPTY, [EMPTY_ARRAY])
 
 end # module Axiom

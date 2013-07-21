@@ -10,7 +10,7 @@ describe Function::Numeric::Binary, '#type' do
   let(:operand)         { double('Operand')                                                  }
 
   before do
-    operand.stub(:freeze => operand, :frozen? => true)
+    operand.stub(freeze: operand, :frozen? => true)
   end
 
   context 'when the operands are from the same class' do

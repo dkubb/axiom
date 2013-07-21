@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :divide, :/ ].each do |method|
+[:divide, :/].each do |method|
   describe Function::Numeric::Division::Methods, "##{method}" do
     subject { object.send(method, other) }
 

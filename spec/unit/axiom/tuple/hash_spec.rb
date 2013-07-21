@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Tuple, '#hash' do
   subject { object.hash }
 
-  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
-  let(:data)   { [ 1 ]                                         }
-  let(:object) { described_class.new(header, data)             }
+  let(:header) { Relation::Header.coerce([[:id, Integer]]) }
+  let(:data)   { [1]                                       }
+  let(:object) { described_class.new(header, data)         }
 
   it_should_behave_like 'a hash method'
 

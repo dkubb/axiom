@@ -19,11 +19,11 @@ describe Function::Binary::Invertible, '.included' do
 
   it 'delegates to the ancestor' do
     included_ancestor = false
-    subject.extend Module.new {
+    mod = Module.new do
       define_method(:included) { |_| included_ancestor = true }
-    }
-    expect {
-      klass.send(:include, subject)
-    }.to change { included_ancestor }.from(false).to(true)
+    end
+    subject.extend mod
+    expect { klass.send(:include, subject) }
+      .to change { included_ancestor }.from(false).to(true)
   end
 end

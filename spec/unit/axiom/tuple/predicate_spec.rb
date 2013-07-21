@@ -17,8 +17,8 @@ describe Tuple, '#predicate' do
   end
 
   context 'when the header contains one attribute' do
-    let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
-    let(:object) { described_class.new(header, [ 1 ])            }
+    let(:header) { Relation::Header.coerce([[:id, Integer]]) }
+    let(:object) { described_class.new(header, [1])          }
 
     it_should_behave_like 'an idempotent method'
 
@@ -30,8 +30,8 @@ describe Tuple, '#predicate' do
   end
 
   context 'when the header contains two or more attribute' do
-    let(:header) { Relation::Header.coerce([ [ :id, Integer ], [ :name, String ] ]) }
-    let(:object) { described_class.new(header, [ 1, 'Dan Kubb' ])                   }
+    let(:header) { Relation::Header.coerce([[:id, Integer], [:name, String]]) }
+    let(:object) { described_class.new(header, [1, 'Dan Kubb'])               }
 
     it_should_behave_like 'an idempotent method'
 

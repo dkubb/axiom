@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Relation::Proxy, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)          { described_class.new(relation)            }
-  let(:described_class) { Class.new(Relation)                      }
-  let(:relation)        { Relation.new([ [ :id, Integer ] ], body) }
-  let(:body)            { [ [ 1 ], [ 2 ] ]                         }
-  let(:yields)          { []                                       }
+  let(:object)          { described_class.new(relation)        }
+  let(:described_class) { Class.new(Relation)                  }
+  let(:relation)        { Relation.new([[:id, Integer]], body) }
+  let(:body)            { [[1], [2]]                           }
+  let(:yields)          { []                                   }
 
   before do
     described_class.class_eval do
@@ -34,8 +34,8 @@ describe Relation::Proxy, '#each' do
   end
 
   it 'yields only tuples with the expected data' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to(body)
+    expect { subject }.to change { yields.dup }
+      .from([])
+      .to(body)
   end
 end

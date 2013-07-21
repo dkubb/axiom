@@ -11,7 +11,7 @@ module Axiom
         # Test an enumerable to see if a value is excluded
         #
         # @example
-        #   Exclusion.call(1, [ 1, 2, 3 ])  # => false
+        #   Exclusion.call(1, [1, 2, 3])  # => false
         #
         # @param [Object] left
         #   the object to test for in the Enumerable
@@ -42,7 +42,7 @@ module Axiom
           # Compare the left to see if it is excluded from the right
           #
           # @example
-          #   exclusion = attribute.exclude([ 1, 2, 3 ])
+          #   exclusion = attribute.exclude([1, 2, 3])
           #
           # @param [Function] other
           #

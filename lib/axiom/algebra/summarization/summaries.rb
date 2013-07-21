@@ -17,8 +17,8 @@ module Axiom
         #
         # @api private
         def initialize(header, summarizers)
-          @header = header
-          @summaries = Hash.new
+          @header    = header
+          @summaries = {}
           summarizers.each do |name, summarizer|
             @summaries[name] = Summary.new(summarizer)
           end

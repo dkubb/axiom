@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :unary_minus, :-@ ].each do |method|
+[:unary_minus, :-@].each do |method|
   describe Function::Numeric::UnaryMinus::Methods, "##{method}" do
     subject { object.send(method) }
 

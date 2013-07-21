@@ -8,7 +8,7 @@ describe Attribute, '#hash' do
   let(:described_class) { Class.new(Attribute)               }
   let(:name)            { :name                              }
   let(:required)        { true                               }
-  let(:options)         { { :required => required }          }
+  let(:options)         { { required: required }             }
   let(:object)          { described_class.new(name, options) }
 
   it_should_behave_like 'a hash method'

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :variance, :var ].each do |method|
+[:variance, :var].each do |method|
   describe Aggregate::Variance::Methods, "##{method}" do
     subject { object.send(method) }
 

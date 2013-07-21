@@ -3,8 +3,8 @@
 require 'spec_helper'
 
 describe Relation::Operation::Order::Methods, '#sort_by' do
-  let(:described_class) { Relation                                                                        }
-  let(:object)          { described_class.new([ [ :id, Integer ] ], LazyEnumerable.new([ [ 1 ], [ 2 ] ])) }
+  let(:described_class) { Relation                                                              }
+  let(:object)          { described_class.new([[:id, Integer]], LazyEnumerable.new([[1], [2]])) }
 
   context 'with no block' do
     subject { object.sort_by }
@@ -15,7 +15,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
   context 'with a block' do
     subject { object.sort_by(&block) }
 
-    let(:block) { lambda { |relation| [ relation[:id].desc ] } }
+    let(:block) { ->(relation) { [relation[:id].desc] } }
 
     it { should be_instance_of(Relation::Operation::Order) }
 

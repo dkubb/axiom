@@ -143,8 +143,8 @@ module Axiom
         #
         # @api public
         def inverse
-          self.class.new(@aliases.invert).
-            memoize(:inverse, self)
+          self.class.new(@aliases.invert)
+            .memoize(:inverse, self)
         end
 
         # Compare the aliases with other aliases for equivalency
@@ -208,7 +208,7 @@ module Axiom
         def self.coerce_alias_pair(attributes, old_attr, new_attr)
           old_attr = attributes[old_attr]
           new_attr = old_attr.rename(new_attr) if new_attr.kind_of?(Symbol)
-          [ old_attr, new_attr ]
+          [old_attr, new_attr]
         end
 
         private_class_method :coerce_alias_pair

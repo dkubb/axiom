@@ -11,7 +11,7 @@ unless GC.respond_to?(:enable_stats)
   exit 1
 end
 
-COUNTS    = [ 1, 10, 100, 1_000, 10_000, 100_000 ].freeze
+COUNTS    = [1, 10, 100, 1_000, 10_000, 100_000].freeze
 NAME      = 'Dan Kubb'.freeze
 RELATIONS = {}
 
@@ -43,12 +43,12 @@ include Axiom
 
 puts '-' * 80
 gc_statistics 'header' do
-  HEADER = Relation::Header.new([ [ :id, Integer ], [ :name, String ] ])
+  HEADER = Relation::Header.new([[:id, Integer], [:name, String]])
 end
 
 puts '-' * 80
 gc_statistics 'tuple' do
-  TUPLE = Tuple.new(HEADER, [ 1, NAME ])
+  TUPLE = Tuple.new(HEADER, [1, NAME])
 end
 
 puts '-' * 80
@@ -60,7 +60,7 @@ end
 COUNTS.each do |count|
   RELATIONS[count] = Relation.new(
     HEADER,
-    (1..count).map { |n| Tuple.new(HEADER, [ n, NAME ]) }
+    (1..count).map { |n| Tuple.new(HEADER, [n, NAME]) }
   )
 end
 
@@ -80,13 +80,13 @@ end
 
 each_count do |array, relation, count|
   gc_statistics "projection (#{count} tuples)" do
-    relation.project([ :id ]).each {}
+    relation.project([:id]).each {}
   end
 end
 
 each_count do |array, relation, count|
   gc_statistics "removal (#{count} tuples)" do
-    relation.remove([ :name ]).each {}
+    relation.remove([:name]).each {}
   end
 end
 
@@ -98,13 +98,13 @@ end
 
 each_count do |array, relation, count|
   gc_statistics "join (#{count} tuples)" do
-    relation.join(Relation.new([ [ :id, Integer, ], [ :age, Integer ] ], [ [ 1, 35 ] ])).each {}
+    relation.join(Relation.new([[:id, Integer], [:age, Integer]], [[1, 35]])).each {}
   end
 end
 
 each_count do |array, relation, count|
   gc_statistics "product (#{count} tuples)" do
-    relation.product(Relation.new([ [ :age, Integer ] ], [ [ 35 ] ])).each {}
+    relation.product(Relation.new([[:age, Integer]], [[35]])).each {}
   end
 end
 
@@ -128,12 +128,12 @@ end
 
 each_count do |array, relation, count|
   gc_statistics "order (#{count} tuples)" do
-    relation.sort_by { |r| [ r.id.desc, r.name ] }.each {}
+    relation.sort_by { |r| [r.id.desc, r.name] }.each {}
   end
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r.id, r.name ] }
+  relation = relation.sort_by { |r| [r.id, r.name] }
 
   gc_statistics "take (#{count} tuples)" do
     relation.take(count).each {}
@@ -141,7 +141,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r.id, r.name ] }
+  relation = relation.sort_by { |r| [r.id, r.name] }
 
   gc_statistics "drop (#{count} tuples)" do
     relation.drop(1).each {}
@@ -149,7 +149,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r.id, r.name ] }
+  relation = relation.sort_by { |r| [r.id, r.name] }
 
   gc_statistics "first (#{count} tuples)" do
     relation.first(count).each {}
@@ -157,7 +157,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r.id, r.name ] }
+  relation = relation.sort_by { |r| [r.id, r.name] }
 
   gc_statistics "last (#{count} tuples)" do
     relation.last(count).each {}
@@ -165,7 +165,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  relation = relation.sort_by { |r| [ r.id, r.name ] }
+  relation = relation.sort_by { |r| [r.id, r.name] }
 
   gc_statistics "reverse (#{count} tuples)" do
     relation.reverse.each {}

@@ -43,25 +43,25 @@ Usage
 
 ```ruby
 relation = Axiom::Relation.new(
-  [ [ :id, String ], [ :name, String ], [ :color, String ], [ :weight, Float ], [ :city, String ] ],
+  [[:id, String], [:name, String], [:color, String], [:weight, Float], [:city, String]],
   [
-    [ 'P1', 'Nut',   'Red',   12.0, 'London' ],
-    [ 'P2', 'Bolt',  'Green', 17.0, 'Paris'  ],
-    [ 'P3', 'Screw', 'Blue',  17.0, 'Oslo'   ],
-    [ 'P4', 'Screw', 'Red',   14.0, 'London' ],
-    [ 'P5', 'Cam',   'Blue',  12.0, 'Paris'  ],
-    [ 'P6', 'Cog',   'Red',   19.0, 'London' ],
-  ]
+    ['P1', 'Nut',   'Red',   12.0, 'London'],
+    ['P2', 'Bolt',  'Green', 17.0, 'Paris' ],
+    ['P3', 'Screw', 'Blue',  17.0, 'Oslo'  ],
+    ['P4', 'Screw', 'Red',   14.0, 'London'],
+    ['P5', 'Cam',   'Blue',  12.0, 'Paris' ],
+    ['P6', 'Cog',   'Red',   19.0, 'London'],
+ ]
 )
 
 # Relational Operators
 # --------------------
 
 # projection
-new_relation = relation.project([ :id ])
+new_relation = relation.project([:id])
 
 # removal
-new_relation = relation.remove([ :name ])
+new_relation = relation.remove([:name])
 
 # rename
 new_relation = relation.rename(id: :other_id, name: :other_name)
@@ -70,7 +70,7 @@ new_relation = relation.rename(id: :other_id, name: :other_name)
 new_relation = relation.restrict { |r| r.name.eq('Screw').or(r.city.eq('London')) }
 new_relation = relation.restrict(relation.name.eq('Screw'))
 new_relation = relation.restrict(name: 'Screw')
-new_relation = relation.restrict([ [ :name, 'Screw' ] ])
+new_relation = relation.restrict([[:name, 'Screw']])
 
 # natural join
 new_relation = relation.join(other)        # OR relation + other
@@ -97,8 +97,8 @@ new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
 new_relation = relation.extend { |r| r.add(:pounds) { |t| t[:weight] * 2.2 } }
 
 # summarize
-new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count, r.id.count) }
-new_relation = relation.summarize(relation.project([ :city ])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
+new_relation = relation.summarize(relation.project([:city])) { |r| r.add(:count, r.id.count) }
+new_relation = relation.summarize(relation.project([:city])) { |r| r.add(:count) { |acc, t| acc.to_i + 1 } }
 
 # Non-Relational Operators
 # ------------------------
@@ -110,7 +110,7 @@ header = relation.header
 relation = relation.each { |tuple| ... }
 
 # order by attribute and direction
-ordered = relation.sort_by { |r| [ r.city.desc, r.name, r.color, r.id, r.weight ] }
+ordered = relation.sort_by { |r| [r.city.desc, r.name, r.color, r.id, r.weight] }
 
 # reverse the relation (only allowed if ordered)
 new_relation = ordered.reverse

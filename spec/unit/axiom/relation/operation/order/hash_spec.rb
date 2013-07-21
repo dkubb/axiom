@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Operation::Order, '#hash' do
   subject { object.hash }
 
-  let(:operand)    { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
+  let(:operand)    { Relation.new([[:id, Integer]], [[1], [2]])           }
   let(:directions) { described_class::DirectionSet.coerce(operand.header) }
   let(:object)     { described_class.new(operand, directions)             }
 

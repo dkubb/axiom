@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Restriction, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)   { described_class.new(relation, predicate)      }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:yields)   { []                                            }
+  let(:object)   { described_class.new(relation, predicate) }
+  let(:relation) { Relation.new([[:id, Integer]], [[1]])    }
+  let(:yields)   { []                                       }
 
   context 'when predicate is a Proc' do
     let(:predicate) { proc { true } }
@@ -25,9 +25,9 @@ describe Algebra::Restriction, '#each' do
     end
 
     it 'yields only tuples with the expected data' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ [ 1 ] ])
+      expect { subject }.to change { yields.dup }
+        .from([])
+        .to([[1]])
     end
   end
 
@@ -47,9 +47,9 @@ describe Algebra::Restriction, '#each' do
     end
 
     it 'yields only tuples with the expected data' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ [ 1 ] ])
+      expect { subject }.to change { yields.dup }
+        .from([])
+        .to([[1]])
     end
   end
 
@@ -69,9 +69,9 @@ describe Algebra::Restriction, '#each' do
     end
 
     it 'yields only tuples with the expected data' do
-      expect { subject }.to change { yields.dup }.
-        from([]).
-        to([ [ 1 ] ])
+      expect { subject }.to change { yields.dup }
+        .from([])
+        .to([[1]])
     end
   end
 

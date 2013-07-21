@@ -12,7 +12,7 @@ describe Axiom::Equalizer, '.new' do
 
     before do
       # specify the class #name method
-      klass.stub(:name => name)
+      klass.stub(name: name)
       klass.send(:include, subject)
     end
 
@@ -21,7 +21,7 @@ describe Axiom::Equalizer, '.new' do
     it { should be_instance_of(object) }
 
     it 'defines #hash and #inspect methods dynamically' do
-      subject.public_instance_methods(false).map(&:to_s).should =~ %w[ hash inspect ]
+      subject.public_instance_methods(false).map(&:to_s).should =~ %w[hash inspect]
     end
 
     describe '#eql?' do
@@ -68,9 +68,9 @@ describe Axiom::Equalizer, '.new' do
   context 'with keys' do
     subject { object.new(*keys) }
 
-    let(:keys)       { [ :first_name ].freeze }
-    let(:first_name) { 'John'                 }
-    let(:instance)   { klass.new(first_name)  }
+    let(:keys)       { [:first_name].freeze  }
+    let(:first_name) { 'John'                }
+    let(:instance)   { klass.new(first_name) }
 
     let(:klass) do
       ::Class.new do
@@ -84,14 +84,14 @@ describe Axiom::Equalizer, '.new' do
 
     before do
       # specify the class #inspect method
-      klass.stub(:name => nil, :inspect => name)
+      klass.stub(name: nil, inspect: name)
       klass.send(:include, subject)
     end
 
     it { should be_instance_of(object) }
 
     it 'defines #hash and #inspect methods dynamically' do
-      subject.public_instance_methods(false).map(&:to_s).should =~ %w[ hash inspect ]
+      subject.public_instance_methods(false).map(&:to_s).should =~ %w[hash inspect]
     end
 
     describe '#eql?' do

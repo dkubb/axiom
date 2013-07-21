@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation, '#directions' do
   subject { object.directions }
 
-  let(:body)   { LazyEnumerable.new                              }
-  let(:object) { described_class.new([ [ :id, Integer ] ], body) }
+  let(:body)   { LazyEnumerable.new                          }
+  let(:object) { described_class.new([[:id, Integer]], body) }
 
   before do
     object.should be_instance_of(described_class)

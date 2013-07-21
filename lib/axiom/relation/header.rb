@@ -43,7 +43,7 @@ module Axiom
           # Find the attribute with the block if possible, then fallback
           # to the default coercion method.
           block = lambda do |attribute|
-            block_given? and yield(attribute) or coerce_attribute(attribute)
+            block_given? && yield(attribute) || coerce_attribute(attribute)
           end
           new(Array(object).map(&block), options)
         end
@@ -114,7 +114,7 @@ module Axiom
       # Initialize a Header
       #
       # @example
-      #   header = Header.new(attributes, :keys => [ [ :id ] ])
+      #   header = Header.new(attributes, keys: [[:id]])
       #
       # @param [Array] attributes
       #
@@ -163,8 +163,10 @@ module Axiom
       # @api public
       def call(name)
         @attribute_for.fetch(Attribute.name_from(name)) do |attribute_name|
-          raise UnknownAttributeError,
+          raise(
+            UnknownAttributeError,
             "the attribute #{attribute_name} is unknown"
+          )
         end
       end
 
@@ -183,7 +185,7 @@ module Axiom
       #
       # @api public
       def project(attributes)
-        coerce(attributes, :keys => keys.project(attributes))
+        coerce(attributes, keys: keys.project(attributes))
       end
 
       # Return a header with the new attributes added
@@ -201,7 +203,7 @@ module Axiom
       #
       # @api public
       def extend(attributes)
-        new(to_ary + coerce(attributes), :keys => keys)
+        new(to_ary + coerce(attributes), keys: keys)
       end
 
       # Return a header with the attributes renamed
@@ -221,7 +223,7 @@ module Axiom
       def rename(aliases)
         new(
           map { |attribute| aliases[attribute] },
-          :keys => keys.rename(aliases)
+          keys: keys.rename(aliases)
         )
       end
 
@@ -241,7 +243,7 @@ module Axiom
       def intersect(other)
         other      = coerce(other)
         attributes = to_ary & other
-        new(attributes, :keys => (keys | other.keys).project(attributes))
+        new(attributes, keys: (keys | other.keys).project(attributes))
       end
 
       # Return the union of the header with another header
@@ -259,7 +261,7 @@ module Axiom
       # @api public
       def union(other)
         other = coerce(other)
-        new(to_ary | other, :keys => keys & other.keys)
+        new(to_ary | other, keys: keys & other.keys)
       end
 
       # Return the difference of the header with another header
@@ -277,7 +279,7 @@ module Axiom
       # @api public
       def difference(other)
         other = coerce(other)
-        new(to_ary - other, :keys => keys - other.keys)
+        new(to_ary - other, keys: keys - other.keys)
       end
 
       # Convert the Header into an Array

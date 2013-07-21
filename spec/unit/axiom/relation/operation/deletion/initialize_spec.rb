@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation::Operation::Deletion, '#initialize' do
   subject { described_class.new(base, other) }
 
-  let(:base)  { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:other) { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
+  let(:base)  { Relation.new([[:id, Integer]], [[1]]) }
+  let(:other) { Relation.new([[:id, Integer]], [[1]]) }
 
   it { should be_instance_of(described_class) }
 

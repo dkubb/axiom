@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Aggregate::StandardDeviation, '.finalize' do
   subject { object.finalize(accumulator) }
 
-  let(:object)      { described_class                 }
-  let(:accumulator) { [ count, mean, sum_of_squares ] }
+  let(:object)      { described_class               }
+  let(:accumulator) { [count, mean, sum_of_squares] }
 
   context 'when the variance is 0.0' do
     let(:count)          { 0   }

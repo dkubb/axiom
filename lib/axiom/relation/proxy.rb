@@ -9,8 +9,8 @@ module Axiom
 
       # Relation methods to proxy
       ENUMERABLE_METHODS = Enumerable.public_instance_methods.map(&:to_s).freeze
-      PROXY_METHODS      = %w[ header each empty? materialized? ].freeze
-      RELATION_METHODS   = %w[ take drop sort_by ].freeze
+      PROXY_METHODS      = %w[header each empty? materialized?].freeze
+      RELATION_METHODS   = %w[take drop sort_by].freeze
 
       # Hook called when module is included
       #

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :modulo, :mod, :% ].each do |method|
+[:modulo, :mod, :%].each do |method|
   describe Function::Numeric::Modulo::Methods, "##{method}" do
     subject { object.send(method, other) }
 

@@ -23,7 +23,7 @@ describe Relation::Operation::Order::Direction, '.coerce' do
   end
 
   context 'when the argument is an Array' do
-    let(:argument) { [ :id, Integer ] }
+    let(:argument) { [:id, Integer] }
 
     it { should be_instance_of(object) }
 

@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Relation::Operation::Offset, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)   { described_class.new(order, 1)                               }
-  let(:relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ], [ 3 ] ]) }
-  let(:order)    { relation.sort_by { |r| r.id }                               }
-  let(:yields)   { []                                                          }
+  let(:object)   { described_class.new(order, 1)                   }
+  let(:relation) { Relation.new([[:id, Integer]], [[1], [2], [3]]) }
+  let(:order)    { relation.sort_by { |r| r.id }                   }
+  let(:yields)   { []                                              }
 
   it_should_behave_like 'an #each method'
 
@@ -23,8 +23,8 @@ describe Relation::Operation::Offset, '#each' do
   end
 
   it 'yields only tuples with the expected data' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to([ [ 2 ], [ 3 ] ])
+    expect { subject }.to change { yields.dup }
+      .from([])
+      .to([[2], [3]])
   end
 end

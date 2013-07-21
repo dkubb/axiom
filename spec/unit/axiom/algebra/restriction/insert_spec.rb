@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Restriction, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)         { described_class.new(operand, predicate)                           }
-  let(:operand)        { Relation.new([ attribute ], LazyEnumerable.new([ [ 1 ] ]))        }
-  let(:other_relation) { Relation.new([ attribute ], LazyEnumerable.new([ [ 0 ], [ 2 ] ])) }
-  let(:attribute)      { Attribute::Integer.new(:id)                                       }
-  let(:predicate)      { attribute.gte(1)                                                  }
+  let(:object)         { described_class.new(operand, predicate)                   }
+  let(:operand)        { Relation.new([attribute], LazyEnumerable.new([[1]]))      }
+  let(:other_relation) { Relation.new([attribute], LazyEnumerable.new([[0], [2]])) }
+  let(:attribute)      { Attribute::Integer.new(:id)                               }
+  let(:predicate)      { attribute.gte(1)                                          }
 
   shared_examples_for 'Algebra::Restrict#insert' do
     it { should be_instance_of(described_class) }
@@ -26,7 +26,7 @@ describe Algebra::Restriction, '#insert' do
     its(:predicate) { should equal(predicate) }
 
     it 'filters out tuples from the other relation not matching the predicate' do
-      should == [ [ 1 ], [ 2 ] ]
+      should == [[1], [2]]
     end
   end
 

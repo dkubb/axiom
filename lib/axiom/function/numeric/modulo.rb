@@ -25,7 +25,7 @@ module Axiom
 
           inheritable_alias(
             :%   => :modulo,
-            :mod => :modulo
+            mod: :modulo
           )
 
           # Return a modulo function

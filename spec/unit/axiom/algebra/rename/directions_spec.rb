@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Algebra::Rename, '#directions' do
   subject { object.directions }
 
-  let(:relation) { Relation.new([ [ :id, Integer ] ], LazyEnumerable.new) }
-  let(:object)   { described_class.new(operand, :id => :other_id)         }
+  let(:relation) { Relation.new([[:id, Integer]], LazyEnumerable.new) }
+  let(:object)   { described_class.new(operand, id: :other_id)        }
 
   context 'containing a relation' do
     let(:operand) { relation }
@@ -19,12 +19,12 @@ describe Algebra::Rename, '#directions' do
   end
 
   context 'containing an ordered relation' do
-    let(:operand) { relation.sort_by { [ relation[:id] ] } }
+    let(:operand) { relation.sort_by { [relation[:id]] } }
 
     it_should_behave_like 'an idempotent method'
 
     it { should be_instance_of(Relation::Operation::Order::DirectionSet) }
 
-    it { should == [ Attribute::Integer.new(:other_id).asc ] }
+    it { should == [Attribute::Integer.new(:other_id).asc] }
   end
 end

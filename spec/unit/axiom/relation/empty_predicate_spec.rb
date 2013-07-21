@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation, '#empty?' do
   subject { object.empty? }
 
-  let(:header) { [ [ :id, Integer ] ]              }
+  let(:header) { [[:id, Integer]]                  }
   let(:object) { described_class.new(header, body) }
 
   before do
@@ -19,7 +19,7 @@ describe Relation, '#empty?' do
   end
 
   context 'with a body containing an entry' do
-    let(:body) { LazyEnumerable.new([ [ 1 ] ]) }
+    let(:body) { LazyEnumerable.new([[1]]) }
 
     it { should be(false) }
   end

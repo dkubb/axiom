@@ -14,7 +14,7 @@ describe Attribute, '.coerce' do
   end
 
   context 'when the argument responds to #to_ary and does not include options' do
-    let(:argument) { [ :id, Integer ] }
+    let(:argument) { [:id, Integer] }
 
     it { should be_instance_of(Attribute::Integer) }
 
@@ -22,7 +22,7 @@ describe Attribute, '.coerce' do
   end
 
   context 'when the argument responds to #to_ary and includes options' do
-    let(:argument) { [ :id, Integer, { :required => false } ] }
+    let(:argument) { [:id, Integer, { required: false }] }
 
     it { should be_instance_of(Attribute::Integer) }
 
@@ -58,7 +58,7 @@ describe Attribute::Boolean, '.coerce' do
   end
 
   context 'when the argument responds to #to_ary and does not include options' do
-    let(:argument) { [ :id, Integer ] }
+    let(:argument) { [:id, Integer] }
 
     it { should be_instance_of(Attribute::Integer) }
 
@@ -66,7 +66,7 @@ describe Attribute::Boolean, '.coerce' do
   end
 
   context 'when the argument responds to #to_ary and includes options' do
-    let(:argument) { [ :id, Integer, { :required => false } ] }
+    let(:argument) { [:id, Integer, { required: false }] }
 
     it { should be_instance_of(Attribute::Integer) }
 

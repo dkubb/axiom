@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :maximum, :max ].each do |method|
+[:maximum, :max].each do |method|
   describe Aggregate::Maximum::Methods, "##{method}" do
     subject { object.send(method) }
 

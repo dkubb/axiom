@@ -14,7 +14,7 @@ describe Attribute, '.name_from' do
   end
 
   context 'argument that responds to #to_ary' do
-    let(:argument) { [ :id, Integer ] }
+    let(:argument) { [:id, Integer] }
 
     it { should equal(:id) }
   end

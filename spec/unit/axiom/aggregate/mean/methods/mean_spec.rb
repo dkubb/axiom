@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :mean, :average, :avg ].each do |method|
+[:mean, :average, :avg].each do |method|
   describe Aggregate::Mean::Methods, "##{method}" do
     subject { object.send(method) }
 

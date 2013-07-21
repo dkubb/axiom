@@ -6,16 +6,16 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Aliasable, '#inheritable_alias' do
   subject { object.inheritable_alias(aliases) }
 
-  let(:aliases)   { { :other => :test }               }
+  let(:aliases)   { { other: :test }                  }
   let(:object)    { Class.new(AliasableSpecs::Object) }
   let(:aliasable) { object.new                        }
 
   it_should_behave_like 'a command method'
 
   it 'creates a method #other' do
-    expect { subject }.to change { aliasable.respond_to?(:other) }.
-      from(false).
-      to(true)
+    expect { subject }.to change { aliasable.respond_to?(:other) }
+      .from(false)
+      .to(true)
   end
 
   it 'aliases #other to #test' do

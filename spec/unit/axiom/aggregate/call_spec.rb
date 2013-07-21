@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Aggregate, '#call' do
   subject { object.call(nil, tuple) }
 
-  let(:described_class) { Class.new(Aggregate)                }
-  let(:object)          { described_class.new(attribute)      }
-  let(:attribute)       { Attribute::Integer.new(:id)         }
-  let(:header)          { Relation::Header.new([ attribute ]) }
-  let(:tuple)           { Tuple.new(header, [ 1 ])            }
+  let(:described_class) { Class.new(Aggregate)              }
+  let(:object)          { described_class.new(attribute)    }
+  let(:attribute)       { Attribute::Integer.new(:id)       }
+  let(:header)          { Relation::Header.new([attribute]) }
+  let(:tuple)           { Tuple.new(header, [1])            }
 
   context 'when operand is an attribute' do
     before do

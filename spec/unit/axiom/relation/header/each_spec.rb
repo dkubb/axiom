@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Header, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:attribute) { Attribute::Integer.new(:id)        }
-  let(:object)    { described_class.new([ attribute ]) }
-  let(:yields)    { []                                 }
+  let(:attribute) { Attribute::Integer.new(:id)      }
+  let(:object)    { described_class.new([attribute]) }
+  let(:yields)    { []                               }
 
   it_should_behave_like 'an #each method'
 
@@ -17,9 +17,9 @@ describe Relation::Header, '#each' do
   end
 
   it 'yields each attribute' do
-    expect { subject }.to change { yields.dup }.
-      from([]).
-      to([ attribute ])
+    expect { subject }.to change { yields.dup }
+      .from([])
+      .to([attribute])
   end
 end
 

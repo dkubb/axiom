@@ -39,7 +39,7 @@ module Axiom
       # @api public
       def each
         return to_enum unless block_given?
-        seen = Hash.new
+        seen = {}
         operand.each do |tuple|
           tuple = tuple.project(header)
           yield seen[tuple] = tuple unless seen.key?(tuple)
@@ -158,7 +158,7 @@ module Axiom
         # Return a relation with only the attributes specified
         #
         # @example
-        #   projection = relation.project([ :a, :b, :c ])
+        #   projection = relation.project([:a, :b, :c])
         #
         # @param [#to_ary] attributes
         #   the attributes to keep in the header
@@ -173,7 +173,7 @@ module Axiom
         # Return a relation with attributes not specified
         #
         # @example
-        #   projection = relation.remove([ :a, b, c ])
+        #   projection = relation.remove([:a, b, c])
         #
         # @param [#to_ary] attributes
         #   the attributes to remove from the header

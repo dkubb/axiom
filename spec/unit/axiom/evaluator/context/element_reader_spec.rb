@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Evaluator::Context, '#[]' do
   subject { object[name] }
 
-  let(:name)      { :id                                 }
-  let(:attribute) { Attribute::Integer.new(name)        }
-  let(:header)    { Relation::Header.new([ attribute ]) }
-  let(:object)    { described_class.new(header) {}      }
+  let(:name)      { :id                               }
+  let(:attribute) { Attribute::Integer.new(name)      }
+  let(:header)    { Relation::Header.new([attribute]) }
+  let(:object)    { described_class.new(header) {}    }
 
   it { should equal(attribute) }
 end

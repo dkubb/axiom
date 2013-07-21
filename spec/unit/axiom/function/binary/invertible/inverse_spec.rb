@@ -16,7 +16,7 @@ describe Function::Binary::Invertible, '#inverse' do
     end
   end
 
- before do
+  before do
     described_class.class_eval do
       include Function::Binary::Invertible
 

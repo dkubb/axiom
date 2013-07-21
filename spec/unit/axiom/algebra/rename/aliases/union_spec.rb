@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :union, :| ].each do |method|
+[:union, :|].each do |method|
   describe Algebra::Rename::Aliases, "##{method}" do
     subject { object.send(method, other) }
 

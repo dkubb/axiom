@@ -11,5 +11,5 @@ describe Aggregate::Mean, '.default' do
 
   it { should be_frozen }
 
-  it { should eql([ 0, nil ]) }
+  it { should eql([0, nil]) }
 end

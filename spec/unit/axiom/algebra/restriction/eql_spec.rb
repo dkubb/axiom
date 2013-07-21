@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Algebra::Restriction, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:operand)   { Relation.new([ [ :id, Integer ] ], [ [ 1 ] ]) }
-  let(:predicate) { proc { true }                                 }
-  let(:object)    { described_class.new(operand, predicate)       }
+  let(:operand)   { Relation.new([[:id, Integer]], [[1]])   }
+  let(:predicate) { proc { true }                           }
+  let(:object)    { described_class.new(operand, predicate) }
 
   context 'with the same object' do
     let(:other) { object }
@@ -40,7 +40,7 @@ describe Algebra::Restriction, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand)   { Relation.new([ [ :id, Integer ] ], [ [ 2 ] ])       }
+    let(:other_operand)   { Relation.new([[:id, Integer]], [[2]])               }
     let(:other_predicate) { predicate                                           }
     let(:other)           { described_class.new(other_operand, other_predicate) }
 

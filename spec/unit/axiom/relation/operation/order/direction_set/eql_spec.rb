@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Operation::Order::DirectionSet, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:attributes) { [ Attribute::Integer.new(:id) ]    }
+  let(:attributes) { [Attribute::Integer.new(:id)]      }
   let(:object)     { described_class.coerce(attributes) }
 
   context 'with the same object' do
@@ -39,7 +39,7 @@ describe Relation::Operation::Order::DirectionSet, '#eql?' do
   end
 
   context 'with an object having different attributes' do
-    let(:other_attributes) { [ Attribute::Integer.new(:other_id) ] }
+    let(:other_attributes) { [Attribute::Integer.new(:other_id)]   }
     let(:other)            { described_class.new(other_attributes) }
 
     it { should be(false) }

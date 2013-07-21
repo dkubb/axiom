@@ -2,23 +2,23 @@
 
 require 'spec_helper'
 
-[ :call, :[] ].each do |method|
+[:call, :[]].each do |method|
   describe Relation::Header, "##{method}" do
     subject { object.send(method, name) }
 
-    let(:object)    { described_class.coerce([ attribute ]) }
-    let(:attribute) { Attribute::Integer.new(:id)           }
+    let(:object)    { described_class.coerce([attribute]) }
+    let(:attribute) { Attribute::Integer.new(:id)         }
 
     context 'with a known attribute' do
       let(:name) { attribute }
 
-      it { should == [ :id, Integer ] }
+      it { should == [:id, Integer] }
     end
 
     context 'with a known attribute name' do
       let(:name) { :id }
 
-      it { should == [ :id, Integer ] }
+      it { should == [:id, Integer] }
     end
 
     context 'with an unknown attribute' do

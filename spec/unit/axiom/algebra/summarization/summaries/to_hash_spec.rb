@@ -7,7 +7,7 @@ describe Algebra::Summarization::Summaries, '#to_hash' do
 
   let(:object)      { described_class.new(header, summarizers) }
   let(:header)      { double('Header')                         }
-  let(:summarizers) { { :count => double('Summarizer') }       }
+  let(:summarizers) { { count: double('Summarizer') }          }
 
   it 'matches the expected value' do
     key, value = subject.first

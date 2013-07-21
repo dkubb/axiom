@@ -6,7 +6,7 @@ describe Aggregate::Mean, '.finalize' do
   subject { object.finalize(accumulator) }
 
   let(:object)      { described_class }
-  let(:accumulator) { [ count, mean ] }
+  let(:accumulator) { [count, mean]   }
   let(:count)       { double('Count') }
   let(:mean)        { double('Mean')  }
 

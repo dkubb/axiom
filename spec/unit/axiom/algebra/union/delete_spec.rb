@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Union, '#delete' do
   subject { object.delete(other) }
 
-  let(:object)         { described_class.new(left, right)       }
-  let(:left)           { Relation.new(header, [ [ 1 ], [ 2 ] ]) }
-  let(:right)          { Relation.new(header, [ [ 2 ], [ 3 ] ]) }
-  let(:other_relation) { Relation.new(header, [ [ 2 ] ])        }
-  let(:header)         { [ [ :id, Integer ] ]                   }
+  let(:object)         { described_class.new(left, right) }
+  let(:left)           { Relation.new(header, [[1], [2]]) }
+  let(:right)          { Relation.new(header, [[2], [3]]) }
+  let(:other_relation) { Relation.new(header, [[2]])      }
+  let(:header)         { [[:id, Integer]]                 }
 
   shared_examples_for 'Algebra::Union#delete' do
     it { should be_instance_of(described_class) }
@@ -20,7 +20,7 @@ describe Algebra::Union, '#delete' do
     its(:header) { should == header }
 
     it 'deletes the tuples' do
-      should == [ [ 1 ], [ 3 ] ]
+      should == [[1], [3]]
     end
   end
 

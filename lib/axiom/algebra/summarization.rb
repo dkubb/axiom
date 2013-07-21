@@ -162,17 +162,17 @@ module Axiom
         #   end
         #
         # @example with a relation
-        #   summarization = relation.summarize(relation.project([ :name ])) do |context|
+        #   summarization = relation.summarize(relation.project([:name])) do |context|
         #     context.add(:count, context[:id].count)
         #   end
         #
         # @example with a header
-        #   summarization = relation.summarize([ :name ]) do |context|
+        #   summarization = relation.summarize([:name]) do |context|
         #     context.add(:count, context[:id].count)
         #   end
         #
         # @example with summarizers
-        #   summarization = relation.summarize([ :name ], summarizers)
+        #   summarization = relation.summarize([:name], summarizers)
         #
         # @param [Relation, Header, #to_ary] summarize_with
         #
@@ -225,11 +225,10 @@ module Axiom
         # @return [#to_hash]
         #
         # @api private
-        def coerce_to_summarizers(summarize_per, summarizers = Undefined)
+        def coerce_to_summarizers(summarize_per, summarizers = Undefined, &block)
           if summarizers.equal?(Undefined)
-            Evaluator::Context.new(header - summarize_per.header) { |context|
-              yield context
-            }.functions
+            Evaluator::Context.new(header - summarize_per.header, &block)
+              .functions
           else
             summarizers
           end

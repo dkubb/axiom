@@ -31,7 +31,7 @@ module Axiom
         if object.kind_of?(self)
           object
         else
-          block ||= lambda { |attributes| coerce_attributes(attributes) }
+          block ||= ->(attributes) { coerce_attributes(attributes) }
           new(object.map(&block))
         end
       end
@@ -92,8 +92,8 @@ module Axiom
       #
       # @api private
       def self.reducible_keys(keys)
-        keys.permutation(2).select { |key, other| key.proper_superset?(other) }.
-          transpose.first
+        keys.permutation(2).select { |key, other| key.proper_superset?(other) }
+          .transpose.first
       end
 
       private_class_method :coerce_attributes, :assert_irreducible_keys, :reducible_keys
@@ -101,7 +101,7 @@ module Axiom
       # Initialize Keys
       #
       # @example
-      #   keys = Keys.new([ [ :id ] ])
+      #   keys = Keys.new([[:id]])
       #
       # @param [Array<Header>] keys
       #

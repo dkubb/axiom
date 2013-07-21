@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[ :exponent, :**, :pow ].each do |method|
+[:exponent, :**, :pow].each do |method|
   describe Function::Numeric::Exponentiation::Methods, "##{method}" do
     subject { object.send(method, other) }
 

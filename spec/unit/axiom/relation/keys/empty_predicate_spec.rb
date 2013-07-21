@@ -8,7 +8,7 @@ describe Relation::Keys, '#empty?' do
   let(:object) { described_class.coerce(keys) }
 
   context 'with keys' do
-    let(:keys) { [ [ [ :id ] ] ] }
+    let(:keys) { [[[:id]]] }
 
     it { should be(false) }
   end

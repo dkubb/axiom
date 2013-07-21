@@ -5,13 +5,13 @@ require 'spec_helper'
 describe Function::Proposition, '#inverse' do
   subject { object.inverse }
 
-  let(:described_class)  { Class.new(Function::Proposition)                       }
-  let(:inverse_class)    { double('Inverse Class', :instance => inverse_instance) }
-  let(:inverse_instance) { double('Inverse Instance')                             }
-  let(:object)           { described_class.new                                    }
+  let(:described_class)  { Class.new(Function::Proposition)                    }
+  let(:inverse_class)    { double('Inverse Class', instance: inverse_instance) }
+  let(:inverse_instance) { double('Inverse Instance')                          }
+  let(:object)           { described_class.new                                 }
 
   before do
-    described_class.stub(:inverse => inverse_class)
+    described_class.stub(inverse: inverse_class)
   end
 
   it 'calls .inverse on the class' do

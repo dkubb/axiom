@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Summarization::Methods, '#summarize' do
   subject { object.summarize(summarize_with, &block) }
 
-  let(:object)          { described_class.new([ [ :id, Integer ], [ :name, String ] ], LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
-  let(:described_class) { Relation                                                                                                }
-  let(:block)           { lambda { |r| r.add(:test, r.id.count) }                                                                 }
-  let(:summarizers)     { [ :test, function ]                                                                                     }
-  let(:function)        { object[:id].count                                                                                       }
+  let(:object)          { described_class.new([[:id, Integer], [:name, String]], LazyEnumerable.new([[1, 'Dan Kubb']])) }
+  let(:described_class) { Relation                                                                                      }
+  let(:block)           { ->(r) { r.add(:test, r.id.count) }                                                            }
+  let(:summarizers)     { [:test, function]                                                                             }
+  let(:function)        { object[:id].count                                                                             }
 
   context 'with no arguments' do
     subject { object.summarize(&block) }
@@ -48,7 +48,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
   end
 
   context 'with attributes' do
-    let(:summarize_with) { [ :name ] }
+    let(:summarize_with) { [:name] }
 
     it { should be_instance_of(Algebra::Summarization) }
 
@@ -73,8 +73,8 @@ describe Algebra::Summarization::Methods, '#summarize' do
   end
 
   context 'with a header containing an attribute used in the context block' do
-    let(:summarize_with) { object.project([ :id ])                  }
-    let(:block)          { lambda { |r| r.add(:count, r.id.count) } }
+    let(:summarize_with) { object.project([:id])               }
+    let(:block)          { ->(r) { r.add(:count, r.id.count) } }
 
     specify { expect { subject }.to raise_error(NoMethodError) }
   end

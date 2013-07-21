@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe Relation::Base, '.new' do
-  let(:name)   { 'users'.freeze                                }
-  let(:header) { Relation::Header.coerce([ [ :id, Integer ] ]) }
-  let(:object) { described_class                               }
+  let(:name)   { 'users'.freeze                            }
+  let(:header) { Relation::Header.coerce([[:id, Integer]]) }
+  let(:object) { described_class                           }
 
   context 'when no tuples are provided' do
     subject { object.new(name, header) }
@@ -22,7 +22,7 @@ describe Relation::Base, '.new' do
   context 'when tuples are provided' do
     subject { object.new(name, header, tuples) }
 
-    let(:tuples) { LazyEnumerable.new([ [ 1 ] ]) }
+    let(:tuples) { LazyEnumerable.new([[1]]) }
 
     it { should be_instance_of(described_class) }
 

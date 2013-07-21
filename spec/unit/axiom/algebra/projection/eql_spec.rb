@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Algebra::Projection, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:body)       { [ [ 1, 'Dan Kubb' ], [ 2, 'Dan Kubb' ], [ 2, 'Alex Kubb'] ] }
-  let(:operand)    { Relation.new([ [ :id, Integer ], [ :name, String ] ], body) }
-  let(:attributes) { [ :id ]                                                     }
-  let(:object)     { described_class.new(operand, attributes)                    }
+  let(:body)       { [[1, 'Dan Kubb'], [2, 'Dan Kubb'], [2, 'Alex Kubb']]  }
+  let(:operand)    { Relation.new([[:id, Integer], [:name, String]], body) }
+  let(:attributes) { [:id]                                                 }
+  let(:object)     { described_class.new(operand, attributes)              }
 
   context 'with the same object' do
     let(:other) { object }
@@ -41,7 +41,7 @@ describe Algebra::Projection, '#eql?' do
   end
 
   context 'with an object having a different operand' do
-    let(:other_operand)    { Relation.new([ [ :id, Integer ] ], [ [ 3 ] ])        }
+    let(:other_operand)    { Relation.new([[:id, Integer]], [[3]])                }
     let(:other_attributes) { attributes                                           }
     let(:other)            { described_class.new(other_operand, other_attributes) }
 

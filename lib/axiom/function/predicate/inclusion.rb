@@ -11,7 +11,7 @@ module Axiom
         # Test an enumerable to see if a value is included
         #
         # @example
-        #   Inclusion.call(1, [ 1, 2, 3 ])  # => true
+        #   Inclusion.call(1, [1, 2, 3])  # => true
         #
         # @param [Object] left
         #   the object to test for in the Enumerable
@@ -42,7 +42,7 @@ module Axiom
           # Compare the left to see if it is included in the right
           #
           # @example
-          #   inclusion = attribute.include([ 1, 2, 3 ])
+          #   inclusion = attribute.include([1, 2, 3])
           #
           # @param [Function] other
           #

@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation::Operation::Limit, '.new' do
   subject { object.new(relation, limit) }
 
-  let(:original_relation) { Relation.new([ [ :id, Integer ] ], [ [ 1 ], [ 2 ] ]) }
-  let(:object)            { described_class                                      }
+  let(:original_relation) { Relation.new([[:id, Integer]], [[1], [2]]) }
+  let(:object)            { described_class                            }
 
   context 'with an ordered relation' do
     let(:relation) { original_relation.sort_by { |r| r.id } }

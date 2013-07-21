@@ -8,17 +8,17 @@ describe Relation::Keys, '.coerce' do
   let(:object) { described_class }
 
   context 'when the arguments are Keys' do
-    let(:argument) { object.new([ [ [ :id ] ] ]) }
+    let(:argument) { object.new([[[:id]]]) }
 
     it { should equal(argument) }
   end
 
   context 'when the argument responds to #to_ary' do
-    let(:argument) { [ [ [ :id ] ] ] }
+    let(:argument) { [[[:id]]] }
 
     it { should be_instance_of(object) }
 
-    it { should == [ Relation::Header.coerce([ :id ]) ] }
+    it { should == [Relation::Header.coerce([:id])] }
   end
 
   context 'when the argument is not a Keys and does not respond to #to_ary' do

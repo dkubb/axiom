@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation::Empty, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:header) { [ [ :id, Integer ] ] }
-  let(:yields) { []                   }
+  let(:header) { [[:id, Integer]] }
+  let(:yields) { []               }
 
   context 'with an empty relation having no tuples' do
     let(:object) { described_class.new(header) }

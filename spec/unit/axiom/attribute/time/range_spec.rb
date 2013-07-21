@@ -7,5 +7,5 @@ describe Attribute::Time, '#range' do
 
   let(:object) { described_class.new(:time) }
 
-  it { should == (Time.at(0)..Time.at(2**31-1)) }
+  it { should == (Time.at(0)..Time.at(2**31 - 1)) }
 end

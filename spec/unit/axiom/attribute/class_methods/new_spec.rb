@@ -20,7 +20,7 @@ describe Attribute, '.new' do
     Attribute::Object,
     Attribute::String,
     Attribute::Time,
-  ].each do |described_class|
+ ].each do |described_class|
     context "when called on the Attribute subclass #{described_class}" do
       let(:object) { described_class }
 

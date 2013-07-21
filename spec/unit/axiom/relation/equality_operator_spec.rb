@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Relation, '#==' do
   subject { object == other }
 
-  let(:header) { [ [ :id, Integer ] ]              }
-  let(:body)   { LazyEnumerable.new([ [ 1 ] ])     }
+  let(:header) { [[:id, Integer]]                  }
+  let(:body)   { LazyEnumerable.new([[1]])         }
   let(:object) { described_class.new(header, body) }
 
   before do
@@ -44,7 +44,7 @@ describe Relation, '#==' do
   end
 
   context 'with an object having a different header' do
-    let(:other_header) { [ [ :id, Numeric ] ]                          }
+    let(:other_header) { [[:id, Numeric]]                              }
     let(:other_body)   { body                                          }
     let(:other)        { described_class.new(other_header, other_body) }
 
@@ -57,7 +57,7 @@ describe Relation, '#==' do
 
   context 'with an object having a different body' do
     let(:other_header) { header                                        }
-    let(:other_body)   { LazyEnumerable.new([ [ 2 ] ])                 }
+    let(:other_body)   { LazyEnumerable.new([[2]])                     }
     let(:other)        { described_class.new(other_header, other_body) }
 
     it { should be(false) }
@@ -68,12 +68,12 @@ describe Relation, '#==' do
   end
 
   context 'with an object having an equivalent header in a different order' do
-    let(:attribute1) { [ :id,   Integer ]                                                      }
-    let(:attribute2) { [ :name, String  ]                                                      }
-    let(:header1)    { [ attribute1, attribute2 ]                                              }
-    let(:header2)    { [ attribute2, attribute1 ]                                              }
-    let(:object)     { described_class.new(header1, LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])) }
-    let(:other)      { described_class.new(header2, LazyEnumerable.new([ [ 'Dan Kubb', 1 ] ])) }
+    let(:attribute1) { [:id,   Integer]                                                    }
+    let(:attribute2) { [:name, String]                                                     }
+    let(:header1)    { [attribute1, attribute2]                                            }
+    let(:header2)    { [attribute2, attribute1]                                            }
+    let(:object)     { described_class.new(header1, LazyEnumerable.new([[1, 'Dan Kubb']])) }
+    let(:other)      { described_class.new(header2, LazyEnumerable.new([['Dan Kubb', 1]])) }
 
     it { should be(true) }
 
@@ -83,7 +83,7 @@ describe Relation, '#==' do
   end
 
   context 'with an equivalent object responding to #to_set' do
-    let(:other) { Set[ [ 1 ] ] }
+    let(:other) { Set[[1]] }
 
     it { should be(true) }
 
@@ -95,7 +95,7 @@ describe Relation, '#==' do
   end
 
   context 'with a different object responding to #to_set' do
-    let(:other) { Set[ [ 2 ] ] }
+    let(:other) { Set[[2]] }
 
     it { should be(false) }
 
@@ -115,8 +115,8 @@ describe Relation, '#==' do
   end
 
   context 'with a different object having a superset of the headers' do
-    let(:other_header) { [ [ :id, Integer ], [ :name, String ] ]       }
-    let(:other_body)   { LazyEnumerable.new([ [ 1, 'Dan Kubb' ] ])     }
+    let(:other_header) { [[:id, Integer], [:name, String]]             }
+    let(:other_body)   { LazyEnumerable.new([[1, 'Dan Kubb']])         }
     let(:other)        { described_class.new(other_header, other_body) }
 
     it { should be(false) }

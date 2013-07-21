@@ -2,14 +2,14 @@
 
 require 'spec_helper'
 
-[ :intersect, :& ].each do |method|
+[:intersect, :&].each do |method|
   describe Algebra::Intersection::Methods, "##{method}" do
     subject { object.send(method, other) }
 
-    let(:described_class) { Relation                                                   }
-    let(:header)          { [ [ :id, Integer ] ]                                       }
-    let(:object)          { described_class.new(header, LazyEnumerable.new([ [ 1 ] ])) }
-    let(:other)           { described_class.new(header, LazyEnumerable.new([ [ 2 ] ])) }
+    let(:described_class) { Relation                                               }
+    let(:header)          { [[:id, Integer]]                                       }
+    let(:object)          { described_class.new(header, LazyEnumerable.new([[1]])) }
+    let(:other)           { described_class.new(header, LazyEnumerable.new([[2]])) }
 
     it { should be_instance_of(Algebra::Intersection) }
 

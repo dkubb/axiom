@@ -13,10 +13,10 @@ describe Aggregate::Variance, '.call' do
   let(:object)  { described_class }
 
   context 'when the values are not nil' do
-    let(:values)         { [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6 ] }
-    let(:count)          { values.count                                   }
-    let(:mean)           { 0.0                                            }
-    let(:sum_of_squares) { values.map { |value| value ** 2.0 }.reduce(:+) }
+    let(:values)         { [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6] }
+    let(:count)          { values.count                                  }
+    let(:mean)           { 0.0                                           }
+    let(:sum_of_squares) { values.map { |value| value**2.0 }.reduce(:+)  }
 
     it 'returns the expected count' do
       subject.fetch(0).should be(count)
@@ -32,7 +32,7 @@ describe Aggregate::Variance, '.call' do
   end
 
   context 'when the values are nil' do
-    let(:values)         { [ nil ]          }
+    let(:values)         { [nil]            }
     let(:count)          { default.fetch(0) }
     let(:mean)           { default.fetch(1) }
     let(:sum_of_squares) { default.fetch(2) }
