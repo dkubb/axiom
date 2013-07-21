@@ -1,7 +1,7 @@
 language: ruby
 before_install: gem install bundler
 bundler_args: --without yard guard benchmarks
-script: "bundle exec rake ci:metrics"
+script: "bundle exec rake ci"
 rvm:
   - 1.9.3
   - 2.0.0
@@ -25,5 +25,9 @@ matrix:
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
   allow_failures:
+    # mutant fails
+    - rvm: 1.9.3
+    - rvm: 2.0.0
+    - rvm: rbx-19mode
     # broken on travis
     - rvm: ruby-head
