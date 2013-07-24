@@ -15,31 +15,8 @@ Simplifies querying of structured data using relational algebra.
 [codeclimate]: https://codeclimate.com/github/dkubb/axiom
 [coveralls]: https://coveralls.io/r/dkubb/axiom
 
-Installation
-------------
-
-With Rubygems:
-
-```bash
-$ gem install axiom
-$ irb -rubygems
->> require 'axiom'
-=> true
-```
-
-With git and local working copy:
-
-```bash
-$ git clone git://github.com/dkubb/axiom.git
-$ cd axiom
-$ rake install
-$ irb -rubygems
->> require 'axiom'
-=> true
-```
-
-Usage
------
+Examples
+--------
 
 ```ruby
 relation = Axiom::Relation.new(
