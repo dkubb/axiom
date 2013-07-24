@@ -51,12 +51,12 @@ module Axiom
     #
     # @api public
     def self.new(*args)
-      last = args.last
-      if superclass.equal?(Object) && last.respond_to?(:size) && last.size.kind_of?(Integer)
-        Materialized.new(*args)
-      else
-        super
+      if superclass.equal?(Object)
+        tuples = args[1]
+        return Empty.new(*args)        if tuples.nil?
+        return Materialized.new(*args) if tuples.respond_to?(:size) && tuples.size.kind_of?(Integer)
       end
+      super
     end
 
     # Initialize a Relation

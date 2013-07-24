@@ -9,7 +9,15 @@ describe Relation, '.new' do
   let(:object) { described_class                           }
   let(:body)   { [[1]]                                     }
 
-  context 'with an Enumerable responding to #size' do
+  context 'with no body' do
+    subject { object.new(header) }
+
+    it { should be_instance_of(Relation::Empty) }
+
+    it { should be_empty }
+  end
+
+  context 'with a body responding to #size' do
     it { should be_instance_of(Relation::Materialized) }
 
     it { should == body.dup }
@@ -20,7 +28,7 @@ describe Relation, '.new' do
     end
   end
 
-  context 'with an Enumerable that returns nil for #size' do
+  context 'with a body that returns nil for #size' do
     before do
       body.should_receive(:size).and_return(nil)
     end
@@ -35,7 +43,7 @@ describe Relation, '.new' do
     end
   end
 
-  context 'with an Enumerable that returns Float::INFINITY for #size' do
+  context 'with a body that returns Float::INFINITY for #size' do
     before do
       body.should_receive(:size).and_return(Float::INFINITY)
     end
@@ -50,7 +58,7 @@ describe Relation, '.new' do
     end
   end
 
-  context 'with an Enumerable that does not respond to #size' do
+  context 'with a body that does not respond to #size' do
     before do
       class << body
         undef_method(:size)

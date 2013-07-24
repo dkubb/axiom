@@ -104,6 +104,7 @@ NilCheck:
   - Axiom::Aggregate::Sum#self.call
   - Axiom::Aggregate::Variance#self.call
   - Axiom::Attribute#valid_or_optional?
+  - Axiom::Relation#self.new
   - Axiom::Relation::Operation::Limit#self.assert_valid_limit
   - Axiom::Relation::Operation::Offset#self.assert_valid_offset
 RepeatedConditional:
