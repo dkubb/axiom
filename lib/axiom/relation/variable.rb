@@ -3,14 +3,14 @@
 module Axiom
   class Relation
 
-    # A variable relation
+    # A relation variable
     class Variable < Relation
       include Adamantium::Mutable, Proxy
 
-      # Instantiate a new variable relation
+      # Instantiate a new relation variable
       #
       # @example
-      #   relval = Relation::Variable.new(relation)
+      #   relvar = Relation::Variable.new(relation)
       #
       # @param [Relation] relation
       #
@@ -25,7 +25,7 @@ module Axiom
         end
       end
 
-      # Initialize a variable relation
+      # Initialize a relation variable
       #
       # @param [Relation] relation
       #
@@ -36,10 +36,10 @@ module Axiom
         @relation = relation
       end
 
-      # Insert tuples into the variable relation
+      # Insert tuples into the relation variable
       #
       # @example
-      #   relation.insert(other)
+      #   relvar.insert(other)
       #
       # @param [Enumerable] _other
       #
@@ -51,10 +51,10 @@ module Axiom
         self
       end
 
-      # Delete tuples from the variable relation
+      # Delete tuples from the relation variable
       #
       # @example
-      #   relation.delete(other)
+      #   relvar.delete(other)
       #
       # @param [Enumerable] _other
       #
@@ -68,7 +68,7 @@ module Axiom
 
     private
 
-      # Apply the mutation operation to the relation
+      # Mutate the relation variable
       #
       # @param [Symbol] method
       # @param [Enumerable] other
@@ -80,12 +80,12 @@ module Axiom
         @relation = relation.public_send(*args)
       end
 
-      # A materialized variable relation
+      # A materialized relation variable
       class Materialized < self
 
       private
 
-        # Apply the mutation operation to the relation and materialize it
+        # Mutate and materialize the relation variable
         #
         # @return [undefined]
         #
