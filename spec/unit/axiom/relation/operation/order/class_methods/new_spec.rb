@@ -23,12 +23,20 @@ describe Relation::Operation::Order, '.new' do
   context 'without no attributes specified in the directions' do
     let(:directions) { [] }
 
-    specify { expect { subject }.to raise_error(InvalidDirectionsError, 'directions must include every attribute in the header') }
+    it { should be_instance_of(object) }
+
+    its(:operand) { should equal(relation) }
+
+    its(:directions) { should == [relation[:id].asc, relation[:name].asc] }
   end
 
   context 'without all attributes specified in the directions' do
-    let(:directions) { [relation[:id]] }
+    let(:directions) { [relation[:name].desc] }
 
-    specify { expect { subject }.to raise_error(InvalidDirectionsError, 'directions must include every attribute in the header') }
+    it { should be_instance_of(object) }
+
+    its(:operand) { should equal(relation) }
+
+    its(:directions) { should == [relation[:name].desc, relation[:id].asc] }
   end
 end

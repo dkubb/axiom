@@ -24,9 +24,6 @@ module Axiom
   # Raised when the offset is not a positive integer
   class InvalidOffsetError < ArgumentError; end
 
-  # Raised when the order does not include every attribute in the header
-  class InvalidDirectionsError < ArgumentError; end
-
   # Raised when a method requiring ordering is called on an unordered relation
   class OrderedRelationRequiredError < StandardError; end
 

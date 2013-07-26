@@ -12,6 +12,6 @@ describe Relation::Operation::Reverse, '#directions' do
   it_should_behave_like 'an idempotent method'
 
   it 'reverses the directions' do
-    should equal(ordered.directions.reverse)
+    should eql(ordered.directions.reverse)
   end
 end

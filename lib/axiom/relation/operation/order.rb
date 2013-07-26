@@ -31,31 +31,9 @@ module Axiom
         # @api public
         def self.new(operand, directions)
           directions = DirectionSet.coerce(directions)
-          assert_order_by_full_header(operand, directions)
+          directions |= operand.header - directions.attributes
           super
         end
-
-        # Assert the full header is sorted on
-        #
-        # Sorting on the full header ensures deterministic results,
-        # which is necessary for ordering to be useful.
-        #
-        # @param [Relation] operand
-        # @param [#attributes] directions
-        #
-        # @return [undefined]
-        #
-        # @raise [InvalidDirectionsError]
-        #   raised if the full header is not sorted on
-        #
-        # @api private
-        def self.assert_order_by_full_header(operand, directions)
-          if operand.header != directions.attributes
-            raise InvalidDirectionsError, 'directions must include every attribute in the header'
-          end
-        end
-
-        private_class_method :assert_order_by_full_header
 
         # Initialize an Order
         #

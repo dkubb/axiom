@@ -33,7 +33,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
 
     it { should be_instance_of(Relation::Operation::Order) }
 
-    its(:directions) { should equal(directions) }
+    its(:directions) { should eql(directions) }
 
     it 'behaves the same as Array#sort_by' do
       subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
