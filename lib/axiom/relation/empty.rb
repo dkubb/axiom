@@ -5,7 +5,6 @@ module Axiom
 
     # An empty relation
     class Empty < Materialized
-      ZERO_TUPLE = EMPTY_ARRAY
 
       # Initialize an empty Relation
       #

@@ -5,6 +5,7 @@ module Axiom
 
     # A materialized relation
     class Materialized < Relation
+      ZERO_TUPLE = EMPTY_ARRAY
 
       # The relation sort order
       #
@@ -25,7 +26,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def initialize(header, tuples, directions = Operation::Order::DirectionSet::EMPTY)
+      def initialize(header, tuples = ZERO_TUPLE, directions = Operation::Order::DirectionSet::EMPTY)
         super(header, tuples)
         @directions = Operation::Order::DirectionSet.coerce(directions)
       end

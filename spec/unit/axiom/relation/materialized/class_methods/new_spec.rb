@@ -35,4 +35,16 @@ describe Relation::Materialized, '.new' do
 
     it { should == tuples }
   end
+
+  context 'with no tuples or directions' do
+    subject { object.new(header) }
+
+    it { should be_instance_of(object) }
+
+    its(:header) { should equal(header) }
+
+    its(:directions) { should equal(Relation::Operation::Order::DirectionSet::EMPTY) }
+
+    it { should be_empty }
+  end
 end

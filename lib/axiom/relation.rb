@@ -51,13 +51,27 @@ module Axiom
     #
     # @api public
     def self.new(*args)
-      if superclass.equal?(Object)
-        tuples = args[1]
-        return Empty.new(*args)        if tuples.nil?
-        return Materialized.new(*args) if tuples.respond_to?(:size) && tuples.size.kind_of?(Integer)
+      if superclass.equal?(Object) && materialized?(args[1])
+        Materialized.new(*args)
+      else
+        super
       end
-      super
     end
+
+    # Test if the tuples are materialized
+    #
+    # When tuples are nil, it means there are no tuples so it is the equivalent
+    # of specifying [] for the tuples.
+    #
+    # @param [Enumerable, nil] tuples
+    #
+    # @return [Boolean]
+    #
+    # @api private
+    def self.materialized?(tuples)
+      tuples.nil? || tuples.respond_to?(:size) && tuples.size.kind_of?(Integer)
+    end
+    private_class_method :materialized?
 
     # Initialize a Relation
     #
