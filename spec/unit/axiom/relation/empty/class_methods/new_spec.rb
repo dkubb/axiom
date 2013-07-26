@@ -6,25 +6,11 @@ describe Relation::Empty, '.new' do
   let(:object) { described_class  }
   let(:header) { [[:id, Integer]] }
 
-  context 'with a header' do
-    subject { object.new(header) }
+  subject { object.new(header) }
 
-    it { should be_instance_of(object) }
+  it { should be_instance_of(object) }
 
-    its(:header) { should == header }
+  its(:header) { should == header }
 
-    its(:tuples) { should == [] }
-  end
-
-  context 'with a header and tuples' do
-    subject { object.new(header, tuples) }
-
-    let(:tuples) { [double('Tuple')] }
-
-    it { should be_instance_of(object) }
-
-    its(:header) { should == header }
-
-    its(:tuples) { should eql(tuples) }
-  end
+  its(:tuples) { should be_empty }
 end
