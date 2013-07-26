@@ -133,9 +133,11 @@ require 'axiom/relation'
 
 require 'axiom/relation/proxy'
 
-require 'axiom/relation/base'
 require 'axiom/relation/keys'
 require 'axiom/relation/header'
+
+require 'axiom/relation/base'
+require 'axiom/relation/variable'
 
 require 'axiom/relation/materialized'
 require 'axiom/relation/empty'
