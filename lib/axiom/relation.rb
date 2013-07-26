@@ -51,7 +51,7 @@ module Axiom
     #
     # @api public
     def self.new(*args)
-      if superclass.equal?(Object) && materialized?(args[1])
+      if equal?(Relation) && materialized?(args[1])
         Materialized.new(*args)
       else
         super
