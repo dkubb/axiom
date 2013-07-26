@@ -42,10 +42,6 @@ group :metrics do
     gem 'mutant', git: 'https://github.com/mbj/mutant.git'
     gem 'yard-spellcheck', '~> 0.1.5'
   end
-
-  platforms :rbx do
-    gem 'pelusa', '~> 0.2.2'
-  end
 end
 
 group :benchmarks do
