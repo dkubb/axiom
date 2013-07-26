@@ -7,6 +7,24 @@ module Axiom
     class Variable < Relation
       include Adamantium::Mutable, Proxy
 
+      # Instantiate a new variable relation
+      #
+      # @example
+      #   relval = Relation::Variable.new(relation)
+      #
+      # @param [Relation] relation
+      #
+      # @return [Relation::Variable]
+      #
+      # @api public
+      def self.new(relation)
+        if equal?(Variable) && relation.materialized?
+          Materialized.new(relation)
+        else
+          super
+        end
+      end
+
       # Initialize a variable relation
       #
       # @param [Relation] relation
@@ -15,8 +33,7 @@ module Axiom
       #
       # @api private
       def initialize(relation)
-        @relation     = relation
-        @materialized = @relation.materialized?
+        @relation = relation
       end
 
       # Insert tuples into the variable relation
@@ -31,6 +48,7 @@ module Axiom
       # @api public
       def insert(other)
         mutate_relation(__method__, other)
+        self
       end
 
       # Delete tuples from the variable relation
@@ -45,6 +63,7 @@ module Axiom
       # @api public
       def delete(other)
         mutate_relation(__method__, other)
+        self
       end
 
     private
@@ -54,15 +73,29 @@ module Axiom
       # @param [Symbol] method
       # @param [Enumerable] other
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       def mutate_relation(*args)
         @relation = relation.public_send(*args)
-        @relation = @relation.materialize if @materialized
-        self
       end
 
+      # A materialized variable relation
+      class Materialized < self
+
+      private
+
+        # Apply the mutation operation to the relation and materialize it
+        #
+        # @return [undefined]
+        #
+        # @api private
+        def mutate_relation(*)
+          super
+          @relation = relation.materialize
+        end
+
+      end # class Materialized
     end # class Variable
   end # class Relation
 end # module Axiom
