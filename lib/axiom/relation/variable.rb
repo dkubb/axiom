@@ -34,6 +34,7 @@ module Axiom
       # @api private
       def initialize(relation)
         @relation = relation
+        @mutex    = Mutex.new
       end
 
       # Insert tuples into the relation variable
@@ -47,7 +48,7 @@ module Axiom
       #
       # @api public
       def insert(other)
-        mutate_relation(__method__, other)
+        @mutex.synchronize { mutate_relation(__method__, other) }
         self
       end
 
@@ -62,7 +63,7 @@ module Axiom
       #
       # @api public
       def delete(other)
-        mutate_relation(__method__, other)
+        @mutex.synchronize { mutate_relation(__method__, other) }
         self
       end
 
@@ -77,7 +78,7 @@ module Axiom
       #
       # @api public
       def replace(other)
-        mutate_relation(__method__, other)
+        @mutex.synchronize { mutate_relation(__method__, other) }
         self
       end
 
