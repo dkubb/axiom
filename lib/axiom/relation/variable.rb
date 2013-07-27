@@ -66,6 +66,21 @@ module Axiom
         self
       end
 
+      # Replace the relation variable with new tuples
+      #
+      # @example
+      #   relvar.replace(other)
+      #
+      # @param [Enumerable] other
+      #
+      # @return [self]
+      #
+      # @api public
+      def replace(other)
+        mutate_relation(__method__, other)
+        self
+      end
+
     private
 
       # Mutate the relation variable
