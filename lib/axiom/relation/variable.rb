@@ -41,7 +41,7 @@ module Axiom
       # @example
       #   relvar.insert(other)
       #
-      # @param [Enumerable] _other
+      # @param [Enumerable] other
       #
       # @return [self]
       #
@@ -56,7 +56,7 @@ module Axiom
       # @example
       #   relvar.delete(other)
       #
-      # @param [Enumerable] _other
+      # @param [Enumerable] other
       #
       # @return [self]
       #
