@@ -12,5 +12,5 @@ describe Aggregate::Mean, '.finalize' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(mean) }
+  it { should be(mean) }
 end

@@ -10,5 +10,5 @@ describe Function::Predicate, '#type' do
   let(:left)            { double('Left')                   }
   let(:right)           { double('Right')                  }
 
-  it { should equal(Attribute::Boolean) }
+  it { should be(Attribute::Boolean) }
 end

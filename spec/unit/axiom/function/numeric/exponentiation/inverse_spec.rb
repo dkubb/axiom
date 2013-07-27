@@ -13,6 +13,6 @@ describe Function::Numeric::Exponentiation, '#inverse' do
 
   it { should be_instance_of(Function::Numeric::Exponentiation) }
 
-  its(:left)  { should equal(left)                                    }
+  its(:left)  { should be(left)                                       }
   its(:right) { should eql(Function::Numeric::Division.new(1, right)) }
 end

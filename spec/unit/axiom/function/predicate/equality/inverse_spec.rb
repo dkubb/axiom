@@ -12,7 +12,7 @@ describe Function::Predicate::Equality, '#inverse' do
 
   it { should be_instance_of(Function::Predicate::Inequality) }
 
-  its(:left) { should equal(attribute) }
+  its(:left) { should be(attribute) }
 
   its(:right) { should == 1 }
 end

@@ -12,5 +12,5 @@ describe Relation::Base, '#name' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(name) }
+  it { should be(name) }
 end

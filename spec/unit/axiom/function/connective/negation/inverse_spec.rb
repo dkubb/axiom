@@ -12,7 +12,7 @@ describe Function::Connective::Negation, '#inverse' do
   it_should_behave_like 'an idempotent method'
 
   it 'returns the operand' do
-    should equal(operand)
+    should be(operand)
   end
 
   it 'is not invertible' do

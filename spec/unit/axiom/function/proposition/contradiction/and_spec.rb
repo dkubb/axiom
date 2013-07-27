@@ -8,5 +8,5 @@ describe Function::Proposition::Contradiction, '#and' do
   let(:other)  { double('other')          }
   let(:object) { described_class.instance }
 
-  it { should equal(object) }
+  it { should be(object) }
 end

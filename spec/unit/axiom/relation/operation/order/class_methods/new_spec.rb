@@ -15,7 +15,7 @@ describe Relation::Operation::Order, '.new' do
 
     it { should be_instance_of(object) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     its(:directions) { should == [relation[:id].asc, relation[:name].asc] }
   end
@@ -25,7 +25,7 @@ describe Relation::Operation::Order, '.new' do
 
     it { should be_instance_of(object) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     its(:directions) { should == [relation[:id].asc, relation[:name].asc] }
   end
@@ -35,7 +35,7 @@ describe Relation::Operation::Order, '.new' do
 
     it { should be_instance_of(object) }
 
-    its(:operand) { should equal(relation) }
+    its(:operand) { should be(relation) }
 
     its(:directions) { should == [relation[:name].desc, relation[:id].asc] }
   end

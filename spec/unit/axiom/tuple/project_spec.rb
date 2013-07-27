@@ -11,7 +11,7 @@ describe Tuple, '#project' do
 
   it { should be_instance_of(described_class) }
 
-  its(:header) { should equal(reversed_header) }
+  its(:header) { should be(reversed_header) }
 
   its(:to_ary) { should == [1, 'Dan Kubb'] }
 end

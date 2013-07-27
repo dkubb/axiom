@@ -11,13 +11,13 @@ describe Operation::Unary, '#operand' do
   context 'when operand is frozen' do
     let(:operand) { 'Operand'.freeze }
 
-    it { should equal(operand) }
+    it { should be(operand) }
   end
 
   context 'when operand is not frozen' do
     let(:operand) { 'Operand' }
 
-    it { should_not equal(operand) }
+    it { should_not be(operand) }
 
     it { should be_frozen }
 

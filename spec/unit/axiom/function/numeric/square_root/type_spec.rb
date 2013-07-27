@@ -7,5 +7,5 @@ describe Function::Numeric::SquareRoot, '#type' do
 
   let(:object) { described_class.new(4) }
 
-  it { should equal(Attribute::Float) }
+  it { should be(Attribute::Float) }
 end

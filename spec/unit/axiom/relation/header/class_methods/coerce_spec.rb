@@ -15,7 +15,7 @@ describe Relation::Header, '.coerce' do
       let(:argument) { header                            }
       let(:block)    { proc { raise 'should not raise' } }
 
-      it { should equal(header) }
+      it { should be(header) }
     end
 
     context 'when the argument responds to #to_ary' do
@@ -57,7 +57,7 @@ describe Relation::Header, '.coerce' do
     context 'when the argument is a Header' do
       let(:argument) { header }
 
-      it { should equal(header) }
+      it { should be(header) }
     end
 
     context 'when the argument responds to #to_ary' do

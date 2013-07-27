@@ -9,5 +9,5 @@ describe Attribute::Class, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(Class) }
+  it { should be(Class) }
 end

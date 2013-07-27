@@ -9,5 +9,5 @@ describe Relation::Operation::Order::Direction, '#attribute' do
   let(:attribute)       { Attribute::Integer.new(:id)                      }
   let(:object)          { described_class.new(attribute)                   }
 
-  it { should equal(attribute) }
+  it { should be(attribute) }
 end

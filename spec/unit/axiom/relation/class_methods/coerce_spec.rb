@@ -12,7 +12,7 @@ describe Relation, '.coerce' do
   context 'when the argument is a Relation' do
     let(:argument) { relation }
 
-    it { should equal(relation) }
+    it { should be(relation) }
   end
 
   context 'when the argument is an Array' do
@@ -24,6 +24,6 @@ describe Relation, '.coerce' do
   context 'when the argument is not Enumerable' do
     let(:argument) { Object.new }
 
-    it { should equal(argument) }
+    it { should be(argument) }
   end
 end

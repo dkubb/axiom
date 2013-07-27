@@ -22,6 +22,6 @@ describe Relation::Materialized, '#directions' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should equal(Relation::Operation::Order::DirectionSet::EMPTY) }
+    it { should be(Relation::Operation::Order::DirectionSet::EMPTY) }
   end
 end

@@ -7,5 +7,5 @@ describe Function::String::Length, '#type' do
 
   let(:object) { described_class.new('string') }
 
-  it { should equal(Attribute::Integer) }
+  it { should be(Attribute::Integer) }
 end

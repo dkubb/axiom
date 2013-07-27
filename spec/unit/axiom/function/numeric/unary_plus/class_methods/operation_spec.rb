@@ -7,5 +7,5 @@ describe Function::Numeric::UnaryPlus, '.operation' do
 
   let(:object) { described_class }
 
-  it { should equal(:+@) }
+  it { should be(:+@) }
 end

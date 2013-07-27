@@ -7,5 +7,5 @@ describe Function::Predicate::LessThanOrEqualTo, '.reverse' do
 
   let(:object) { described_class }
 
-  it { should equal(Function::Predicate::GreaterThanOrEqualTo) }
+  it { should be(Function::Predicate::GreaterThanOrEqualTo) }
 end

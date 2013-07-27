@@ -32,7 +32,7 @@ describe Function::Binary, '#rename' do
 
     its(:left) { should == other.eq(1) }
 
-    its(:right) { should equal(right) }
+    its(:right) { should be(right) }
   end
 
   context 'right is renamed' do
@@ -41,7 +41,7 @@ describe Function::Binary, '#rename' do
 
     it { should be_instance_of(described_class) }
 
-    its(:left) { should equal(left) }
+    its(:left) { should be(left) }
 
     its(:right) { should == other.eq(2) }
   end
@@ -50,6 +50,6 @@ describe Function::Binary, '#rename' do
     let(:left)  { other.eq(1) }
     let(:right) { other.eq(2) }
 
-    it { should equal(object) }
+    it { should be(object) }
   end
 end

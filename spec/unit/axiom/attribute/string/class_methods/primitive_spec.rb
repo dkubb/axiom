@@ -9,5 +9,5 @@ describe Attribute::String, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(String) }
+  it { should be(String) }
 end

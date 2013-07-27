@@ -12,8 +12,8 @@ require 'spec_helper'
 
     it { should be_instance_of(Function::Numeric::Division) }
 
-    its(:left) { should equal(object) }
+    its(:left) { should be(object) }
 
-    its(:right) { should equal(other) }
+    its(:right) { should be(other) }
   end
 end

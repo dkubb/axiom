@@ -9,7 +9,7 @@ describe Relation::Operation::Order::DirectionSet, '#project' do
   let(:attributes) { [header[:id]]                                              }
   let(:object)     { described_class.coerce(header)                             }
 
-  it { should_not equal(object) }
+  it { should_not be(object) }
 
   it { should be_instance_of(described_class) }
 

@@ -24,6 +24,6 @@ describe Function::Unary, '#rename' do
   context 'operand is not renamed' do
     let(:operand) { other.eq(1) }
 
-    it { should equal(object) }
+    it { should be(object) }
   end
 end

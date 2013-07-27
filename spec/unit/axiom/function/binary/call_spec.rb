@@ -18,5 +18,5 @@ describe Function::Binary, '#call' do
     described_class.should_receive(:call).with(true, false).and_return(response)
   end
 
-  it { should equal(response) }
+  it { should be(response) }
 end

@@ -7,5 +7,5 @@ describe Relation::Operation::Order::Ascending, '.reverse' do
 
   let(:object) { described_class }
 
-  it { should equal(Relation::Operation::Order::Descending) }
+  it { should be(Relation::Operation::Order::Descending) }
 end

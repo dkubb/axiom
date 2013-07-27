@@ -22,7 +22,7 @@ describe Aliasable, '#inheritable_alias' do
     subject
     retval = double('Return Value')
     aliasable.should_receive(:test).and_return(retval)
-    aliasable.other.should equal(retval)
+    aliasable.other.should be(retval)
   end
 
   specification = proc do

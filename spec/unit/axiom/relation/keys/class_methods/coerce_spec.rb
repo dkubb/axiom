@@ -10,7 +10,7 @@ describe Relation::Keys, '.coerce' do
   context 'when the arguments are Keys' do
     let(:argument) { object.new([[[:id]]]) }
 
-    it { should equal(argument) }
+    it { should be(argument) }
   end
 
   context 'when the argument responds to #to_ary' do

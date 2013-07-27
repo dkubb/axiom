@@ -10,5 +10,5 @@ describe Aggregate::Count::Methods, '#count' do
 
   it { should be_instance_of(Aggregate::Count) }
 
-  its(:operand) { should equal(object) }
+  its(:operand) { should be(object) }
 end

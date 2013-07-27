@@ -8,5 +8,5 @@ describe Aggregate::Count, '#type' do
   let(:object)  { described_class.new(operand) }
   let(:operand) { Attribute::Integer.new(:id)  }
 
-  it { should equal(Attribute::Integer) }
+  it { should be(Attribute::Integer) }
 end

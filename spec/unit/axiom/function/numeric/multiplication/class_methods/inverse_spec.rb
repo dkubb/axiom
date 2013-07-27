@@ -9,5 +9,5 @@ describe Function::Numeric::Multiplication, '.inverse' do
 
   it_should_behave_like 'an invertible method'
 
-  it { should equal(Function::Numeric::Division) }
+  it { should be(Function::Numeric::Division) }
 end

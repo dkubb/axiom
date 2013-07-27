@@ -12,7 +12,7 @@ describe Tuple, '#predicate' do
     it_should_behave_like 'an idempotent method'
 
     it 'returns a tautology' do
-      should equal(Function::Proposition::Tautology.instance)
+      should be(Function::Proposition::Tautology.instance)
     end
   end
 

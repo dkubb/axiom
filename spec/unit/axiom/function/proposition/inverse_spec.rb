@@ -24,5 +24,5 @@ describe Function::Proposition, '#inverse' do
     subject
   end
 
-  it { should equal(inverse_instance) }
+  it { should be(inverse_instance) }
 end

@@ -11,5 +11,5 @@ describe Algebra::Summarization, '#summarize_per' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(TABLE_DEE) }
+  it { should be(TABLE_DEE) }
 end

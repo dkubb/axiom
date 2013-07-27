@@ -17,7 +17,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
     it { should be_instance_of(Algebra::Restriction) }
 
     it 'sets the predicate' do
-      subject.predicate.should equal(predicate)
+      subject.predicate.should be(predicate)
     end
 
     it 'behaves the same as Enumerable#select' do

@@ -7,5 +7,5 @@ describe Function::Numeric::Absolute, '.operation' do
 
   let(:object) { described_class }
 
-  it { should equal(:abs) }
+  it { should be(:abs) }
 end

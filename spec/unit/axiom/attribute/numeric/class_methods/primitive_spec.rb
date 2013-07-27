@@ -9,5 +9,5 @@ describe Attribute::Numeric, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(Numeric) }
+  it { should be(Numeric) }
 end

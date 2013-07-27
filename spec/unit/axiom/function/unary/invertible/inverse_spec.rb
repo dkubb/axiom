@@ -41,5 +41,5 @@ describe Function::Unary::Invertible, '#inverse' do
 
   it { should be_instance_of(InverseClass) }
 
-  its(:operand) { should equal(operand) }
+  its(:operand) { should be(operand) }
 end

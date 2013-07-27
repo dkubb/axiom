@@ -12,9 +12,9 @@ describe Relation::Base, '.new' do
 
     it { should be_instance_of(described_class) }
 
-    its(:name) { should equal(name) }
+    its(:name) { should be(name) }
 
-    its(:header) { should equal(header) }
+    its(:header) { should be(header) }
 
     it { should be_empty }
   end
@@ -26,9 +26,9 @@ describe Relation::Base, '.new' do
 
     it { should be_instance_of(described_class) }
 
-    its(:name) { should equal(name) }
+    its(:name) { should be(name) }
 
-    its(:header) { should equal(header) }
+    its(:header) { should be(header) }
 
     it { should == tuples }
   end

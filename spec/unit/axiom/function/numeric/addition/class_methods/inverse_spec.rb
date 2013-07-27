@@ -9,5 +9,5 @@ describe Function::Numeric::Addition, '.inverse' do
 
   it_should_behave_like 'an invertible method'
 
-  it { should equal(Function::Numeric::Subtraction) }
+  it { should be(Function::Numeric::Subtraction) }
 end

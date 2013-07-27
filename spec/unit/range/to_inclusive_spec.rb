@@ -35,7 +35,7 @@ describe Range, '#to_inclusive' do
     let(:exclusive)   { false }
 
     it 'returns self' do
-      should equal(object)
+      should be(object)
     end
   end
 end

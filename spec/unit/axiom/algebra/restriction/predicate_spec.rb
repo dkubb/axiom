@@ -11,5 +11,5 @@ describe Algebra::Restriction, '#predicate' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(predicate) }
+  it { should be(predicate) }
 end

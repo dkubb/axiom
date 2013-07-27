@@ -15,6 +15,6 @@ describe Aggregate::Maximum, '#type' do
   it 'delegates to Attribute.infer_type' do
     return_value = double('Return Value')
     Attribute.should_receive(:infer_type).with(operand).and_return(return_value)
-    should equal(return_value)
+    should be(return_value)
   end
 end

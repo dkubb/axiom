@@ -20,8 +20,8 @@ describe Relation::Operation::Order, '#insert' do
 
     it 'passes expected relations into the insertion' do
       subject = self.subject.operand
-      subject.left.should equal(relation)
-      subject.right.should equal(other_base)
+      subject.left.should be(relation)
+      subject.right.should be(other_base)
     end
 
     its(:directions) { should == directions }

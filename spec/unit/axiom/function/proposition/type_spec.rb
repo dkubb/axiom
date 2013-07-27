@@ -8,5 +8,5 @@ describe Function::Proposition, '#type' do
   let(:described_class) { Class.new(Function::Proposition) }
   let(:object)          { described_class.new              }
 
-  it { should equal(Attribute::Boolean) }
+  it { should be(Attribute::Boolean) }
 end

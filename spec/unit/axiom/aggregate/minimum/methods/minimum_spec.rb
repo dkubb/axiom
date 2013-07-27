@@ -11,6 +11,6 @@ require 'spec_helper'
 
     it { should be_instance_of(Aggregate::Minimum) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
   end
 end

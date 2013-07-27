@@ -13,7 +13,7 @@ describe Function::Predicate::Match, '#inverse' do
 
   it { should be_instance_of(Function::Predicate::NoMatch) }
 
-  its(:left) { should equal(attribute) }
+  its(:left) { should be(attribute) }
 
-  its(:right) { should equal(regexp) }
+  its(:right) { should be(regexp) }
 end

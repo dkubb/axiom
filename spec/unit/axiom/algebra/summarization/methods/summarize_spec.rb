@@ -16,9 +16,9 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     it { should be_instance_of(Algebra::Summarization) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
-    its(:summarize_per) { should equal(TABLE_DEE) }
+    its(:summarize_per) { should be(TABLE_DEE) }
 
     its(:summarizers) { should eql(Attribute::Integer.new(:test) => function) }
   end
@@ -28,9 +28,9 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     it { should be_instance_of(Algebra::Summarization) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
-    its(:summarize_per) { should equal(summarize_with) }
+    its(:summarize_per) { should be(summarize_with) }
 
     its(:summarizers) { should eql(Attribute::Integer.new(:test) => function) }
   end
@@ -40,7 +40,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     it { should be_instance_of(Algebra::Summarization) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
     its(:summarize_per) { should eql(object.project(summarize_with)) }
 
@@ -52,7 +52,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
 
     it { should be_instance_of(Algebra::Summarization) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
     its(:summarize_per) { should eql(object.project(summarize_with)) }
 
@@ -65,7 +65,7 @@ describe Algebra::Summarization::Methods, '#summarize' do
     let(:summarize_with) { object.project([])                           }
     let(:summarizers)    { { Attribute::Object.new(:test) => function } }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
     its(:summarize_per) { should eql(summarize_with) }
 

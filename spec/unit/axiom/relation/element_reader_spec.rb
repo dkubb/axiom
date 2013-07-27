@@ -13,5 +13,5 @@ describe Relation, '#[]' do
     object.should be_instance_of(described_class)
   end
 
-  it { should equal(attribute) }
+  it { should be(attribute) }
 end

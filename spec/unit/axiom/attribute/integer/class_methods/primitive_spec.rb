@@ -9,5 +9,5 @@ describe Attribute::Integer, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(Integer) }
+  it { should be(Integer) }
 end

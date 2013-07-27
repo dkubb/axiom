@@ -10,5 +10,5 @@ describe Function::String::Length::Methods, '#length' do
 
   it { should be_instance_of(Function::String::Length) }
 
-  its(:operand) { should equal(object) }
+  its(:operand) { should be(object) }
 end

@@ -9,5 +9,5 @@ describe Algebra::Rename, '#aliases' do
   let(:aliases)  { described_class::Aliases.new(relation[:id] => relation[:id].rename(:other_id)) }
   let(:object)   { described_class.new(relation, aliases)                                         }
 
-  it { should equal(aliases) }
+  it { should be(aliases) }
 end

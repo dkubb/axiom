@@ -21,9 +21,9 @@ describe Relation, '#replace' do
     it 'applies the left operations in the correct sequence' do
       subject = self.subject.left
       subject.should be_instance_of(Relation::Operation::Deletion)
-      subject.left.should equal(object)
+      subject.left.should be(object)
       subject.right.should be_instance_of(Algebra::Difference)
-      subject.right.left.should equal(object)
+      subject.right.left.should be(object)
       subject.right.right.should eql(other_relation)
     end
 
@@ -31,7 +31,7 @@ describe Relation, '#replace' do
       subject = self.subject.right
       subject.should be_instance_of(Algebra::Difference)
       subject.left.should eql(other_relation)
-      subject.right.should equal(object)
+      subject.right.should be(object)
     end
   end
 

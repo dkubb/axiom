@@ -14,7 +14,7 @@ describe Algebra::Rename::Aliases, '.coerce' do
     let(:new_attr) { attribute.rename(:other_id)      }
     let(:aliases)  { object.new(old_attr => new_attr) }
 
-    it { should equal(aliases) }
+    it { should be(aliases) }
   end
 
   context 'the old and new attributes are Symbols' do

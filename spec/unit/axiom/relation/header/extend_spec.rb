@@ -15,12 +15,12 @@ describe Relation::Header, '#extend' do
     it { should be_instance_of(described_class) }
 
     it 'uses the attribute object' do
-      subject[:name].should equal(attribute)
+      subject[:name].should be(attribute)
     end
 
     its(:to_ary) { should == [[:id, Integer], [:name, String]] }
 
-    its(:keys) { should equal(keys) }
+    its(:keys) { should be(keys) }
   end
 
   context 'with Symbol attributes' do
@@ -30,6 +30,6 @@ describe Relation::Header, '#extend' do
 
     its(:to_ary) { should == [[:id, Integer], [:name, Object]] }
 
-    its(:keys) { should equal(keys) }
+    its(:keys) { should be(keys) }
   end
 end

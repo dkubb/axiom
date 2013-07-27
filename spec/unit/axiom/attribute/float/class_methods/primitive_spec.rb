@@ -9,5 +9,5 @@ describe Attribute::Float, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(Float) }
+  it { should be(Float) }
 end

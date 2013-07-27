@@ -13,7 +13,7 @@ describe Algebra::Extension::Methods, '#extend' do
 
     it { should be_instance_of(Algebra::Extension) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
     its(:extensions) { should == { Attribute::Object.new(:test) => function } }
   end
@@ -27,7 +27,7 @@ describe Algebra::Extension::Methods, '#extend' do
 
     it { should be_instance_of(Algebra::Extension) }
 
-    its(:operand) { should equal(object) }
+    its(:operand) { should be(object) }
 
     its(:extensions) { should == { Attribute::Integer.new(:test) => function } }
   end

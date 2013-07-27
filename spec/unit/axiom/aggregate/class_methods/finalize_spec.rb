@@ -8,5 +8,5 @@ describe Aggregate, '.finalize' do
   let(:object)      { described_class       }
   let(:accumulator) { double('Accumulator') }
 
-  it { should equal(accumulator) }
+  it { should be(accumulator) }
 end

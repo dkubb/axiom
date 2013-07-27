@@ -8,5 +8,5 @@ describe Aggregate, '#type' do
   let(:described_class) { Class.new(Attribute)       }
   let(:object)          { described_class.new(:name) }
 
-  it { should equal(described_class) }
+  it { should be(described_class) }
 end

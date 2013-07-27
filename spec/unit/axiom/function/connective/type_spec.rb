@@ -8,5 +8,5 @@ describe Function::Connective, '#type' do
   let(:described_class) { Class.new(Function::Connective) }
   let(:object)          { described_class.new             }
 
-  it { should equal(Attribute::Boolean) }
+  it { should be(Attribute::Boolean) }
 end

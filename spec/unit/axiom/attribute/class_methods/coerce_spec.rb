@@ -10,7 +10,7 @@ describe Attribute, '.coerce' do
   context 'when the argument is an Attribute' do
     let(:argument) { Attribute::Integer.new(:id) }
 
-    it { should equal(argument) }
+    it { should be(argument) }
   end
 
   context 'when the argument responds to #to_ary and does not include options' do
@@ -54,7 +54,7 @@ describe Attribute::Boolean, '.coerce' do
   context 'when the argument is an Attribute' do
     let(:argument) { Attribute::Integer.new(:id) }
 
-    it { should equal(argument) }
+    it { should be(argument) }
   end
 
   context 'when the argument responds to #to_ary and does not include options' do

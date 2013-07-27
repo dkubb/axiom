@@ -13,7 +13,7 @@ describe Algebra::Rename::Aliases, '#to_hash' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should equal(aliases) }
+    it { should be(aliases) }
   end
 
   context 'when aliases is not frozen' do
@@ -21,7 +21,7 @@ describe Algebra::Rename::Aliases, '#to_hash' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should_not equal(aliases) }
+    it { should_not be(aliases) }
 
     it { should be_instance_of(Hash) }
 

@@ -19,7 +19,7 @@ describe Function::Predicate::Enumerable, '#call' do
     it 'sends the left and right value to self.class.call' do
       response = double('#call response')
       described_class.should_receive(:call).with(1, [1]).and_return(response)
-      should equal(response)
+      should be(response)
     end
   end
 
@@ -30,7 +30,7 @@ describe Function::Predicate::Enumerable, '#call' do
     it 'sends the left and right value to self.class.call' do
       response = double('#call response')
       described_class.should_receive(:call).with(1, [1]).and_return(response)
-      should equal(response)
+      should be(response)
     end
   end
 end

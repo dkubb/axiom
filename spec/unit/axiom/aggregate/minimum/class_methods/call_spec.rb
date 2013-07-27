@@ -31,6 +31,6 @@ describe Aggregate::Minimum, '.call' do
     let(:value)   { nil               }
     let(:minimum) { double('Minimum') }
 
-    it { should equal(minimum) }
+    it { should be(minimum) }
   end
 end

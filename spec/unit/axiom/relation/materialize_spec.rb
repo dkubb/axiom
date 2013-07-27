@@ -14,7 +14,7 @@ describe Relation, '#materialize' do
 
   it { should be_instance_of(Relation::Materialized) }
 
-  its(:header) { should equal(header) }
+  its(:header) { should be(header) }
 
   its(:directions) { should == header }
 

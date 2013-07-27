@@ -31,6 +31,6 @@ describe Aggregate::Maximum, '.call' do
     let(:value)   { nil               }
     let(:maximum) { double('Maximum') }
 
-    it { should equal(maximum) }
+    it { should be(maximum) }
   end
 end

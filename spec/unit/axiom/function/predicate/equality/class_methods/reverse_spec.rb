@@ -7,5 +7,5 @@ describe Function::Predicate::Equality, '.reverse' do
 
   let(:object) { described_class }
 
-  it { should equal(object) }
+  it { should be(object) }
 end

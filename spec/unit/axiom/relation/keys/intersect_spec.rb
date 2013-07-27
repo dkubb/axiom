@@ -13,7 +13,7 @@ require 'spec_helper'
     context 'when the attributes overlap' do
       let(:other_header) { header.dup }
 
-      it { should equal(object) }
+      it { should be(object) }
     end
 
     context 'when the attributes do not overlap' do

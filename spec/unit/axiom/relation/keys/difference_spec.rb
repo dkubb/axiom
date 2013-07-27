@@ -21,7 +21,7 @@ require 'spec_helper'
     context 'when the attributes do not overlap' do
       let(:other_header) { [[:name, String]] }
 
-      it { should equal(object) }
+      it { should be(object) }
     end
   end
 end

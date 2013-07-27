@@ -11,5 +11,5 @@ describe Algebra::Extension, '#operand' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(operand) }
+  it { should be(operand) }
 end

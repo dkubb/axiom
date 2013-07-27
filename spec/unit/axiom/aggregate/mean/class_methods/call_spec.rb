@@ -32,7 +32,7 @@ describe Aggregate::Mean, '.call' do
     let(:values) { [nil] }
 
     it 'returns the default' do
-      should equal(default)
+      should be(default)
     end
   end
 end

@@ -18,6 +18,6 @@ describe Function, '.extract_value' do
   context 'when the operand does not respond to #call' do
     let(:operand) { double('Value') }
 
-    it { should equal(operand) }
+    it { should be(operand) }
   end
 end

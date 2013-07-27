@@ -15,7 +15,7 @@ describe Relation::Header, '#project' do
     it { should be_instance_of(described_class) }
 
     it 'uses the attribute object' do
-      subject[:id].should equal(attribute)
+      subject[:id].should be(attribute)
     end
 
     its(:to_ary) { should == [[:id, Integer]] }

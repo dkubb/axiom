@@ -10,5 +10,5 @@ describe Evaluator::Context, '#[]' do
   let(:header)    { Relation::Header.new([attribute]) }
   let(:object)    { described_class.new(header) {}    }
 
-  it { should equal(attribute) }
+  it { should be(attribute) }
 end

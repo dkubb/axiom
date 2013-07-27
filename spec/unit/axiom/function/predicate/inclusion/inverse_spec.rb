@@ -13,7 +13,7 @@ describe Function::Predicate::Inclusion, '#inverse' do
 
   it { should be_instance_of(Function::Predicate::Exclusion) }
 
-  its(:left) { should equal(attribute) }
+  its(:left) { should be(attribute) }
 
-  its(:right) { should equal(enumerable) }
+  its(:right) { should be(enumerable) }
 end

@@ -7,5 +7,5 @@ describe Relation::Materialized, '#materialize' do
 
   let(:object) { described_class.new([[:id, Integer]], [[1]]) }
 
-  it { should equal(object) }
+  it { should be(object) }
 end

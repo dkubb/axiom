@@ -11,7 +11,7 @@ describe Attribute, '#name' do
   context 'when name is a Symbol' do
     let(:name) { :name }
 
-    it { should equal(name) }
+    it { should be(name) }
   end
 
   context 'when name is a String' do

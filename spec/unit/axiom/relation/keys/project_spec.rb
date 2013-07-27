@@ -13,7 +13,7 @@ describe Relation::Keys, '#project' do
   context 'with attributes that do not change the keys' do
     let(:attributes) { [id, name] }
 
-    it { should equal(object) }
+    it { should be(object) }
   end
 
   context 'with attributes that change the keys' do

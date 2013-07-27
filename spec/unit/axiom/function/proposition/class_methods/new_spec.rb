@@ -10,7 +10,7 @@ describe Function::Proposition, '.new' do
 
     let(:argument) { true }
 
-    it { should equal(Function::Proposition::Tautology.instance) }
+    it { should be(Function::Proposition::Tautology.instance) }
   end
 
   context 'with false argument' do
@@ -18,7 +18,7 @@ describe Function::Proposition, '.new' do
 
     let(:argument) { false }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
   end
 
   context 'with a truthy argument' do
@@ -26,7 +26,7 @@ describe Function::Proposition, '.new' do
 
     let(:argument) { 1 }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
   end
 
   context 'with a falsey argument' do
@@ -34,7 +34,7 @@ describe Function::Proposition, '.new' do
 
     let(:argument) { nil }
 
-    it { should equal(Function::Proposition::Contradiction.instance) }
+    it { should be(Function::Proposition::Contradiction.instance) }
   end
 
   context 'with no arguments' do

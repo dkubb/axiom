@@ -17,7 +17,7 @@ describe Function::Numeric::Binary, '#type' do
     it 'delegates to Attribute.infer_type' do
       type = double('Type')
       Attribute.should_receive(:infer_type).with(operand).twice.and_return(type)
-      should equal(type)
+      should be(type)
     end
   end
 
@@ -27,7 +27,7 @@ describe Function::Numeric::Binary, '#type' do
       type_b = double('Type B')
       Attribute.should_receive(:infer_type).with(operand).ordered.and_return(type_a)
       Attribute.should_receive(:infer_type).with(operand).ordered.and_return(type_b)
-      should equal(Attribute::Numeric)
+      should be(Attribute::Numeric)
     end
   end
 end

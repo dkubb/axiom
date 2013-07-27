@@ -11,5 +11,5 @@ describe Algebra::Summarization, '#summarizers' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(summarizers) }
+  it { should be(summarizers) }
 end

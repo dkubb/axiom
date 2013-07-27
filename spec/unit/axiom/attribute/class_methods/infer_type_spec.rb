@@ -11,7 +11,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Attribute::Integer.new(:id) }
 
     it 'returns the type of the attribute' do
-      should equal(operand.type)
+      should be(operand.type)
     end
   end
 
@@ -19,7 +19,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Attribute::String.new(:name).length }
 
     it 'returns the type of the function' do
-      should equal(operand.type)
+      should be(operand.type)
     end
   end
 
@@ -27,7 +27,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Attribute::Integer.new(:id).sum }
 
     it 'returns the type of the function' do
-      should equal(operand.type)
+      should be(operand.type)
     end
   end
 
@@ -35,7 +35,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { true }
 
     it 'returns a Boolean type' do
-      should equal(Attribute::Boolean)
+      should be(Attribute::Boolean)
     end
   end
 
@@ -43,7 +43,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { false }
 
     it 'returns a Boolean type' do
-      should equal(Attribute::Boolean)
+      should be(Attribute::Boolean)
     end
   end
 
@@ -51,7 +51,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Class.new }
 
     it 'returns a Class type' do
-      should equal(Attribute::Class)
+      should be(Attribute::Class)
     end
   end
 
@@ -59,7 +59,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { DateTime.now }
 
     it 'returns a DateTime type' do
-      should equal(Attribute::DateTime)
+      should be(Attribute::DateTime)
     end
   end
 
@@ -67,7 +67,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Date.today }
 
     it 'returns a Date type' do
-      should equal(Attribute::Date)
+      should be(Attribute::Date)
     end
   end
 
@@ -75,7 +75,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { BigDecimal('1') }
 
     it 'returns a Decimal type' do
-      should equal(Attribute::Decimal)
+      should be(Attribute::Decimal)
     end
   end
 
@@ -83,7 +83,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { 1.0 }
 
     it 'returns a Float type' do
-      should equal(Attribute::Float)
+      should be(Attribute::Float)
     end
   end
 
@@ -91,7 +91,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { 1 }
 
     it 'returns an Integer type' do
-      should equal(Attribute::Integer)
+      should be(Attribute::Integer)
     end
   end
 
@@ -99,7 +99,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { 'string' }
 
     it 'returns an String type' do
-      should equal(Attribute::String)
+      should be(Attribute::String)
     end
   end
 
@@ -107,7 +107,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Time.now }
 
     it 'returns an Time type' do
-      should equal(Attribute::Time)
+      should be(Attribute::Time)
     end
   end
 
@@ -115,7 +115,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { double('Unhandled') }
 
     it 'returns an Object type' do
-      should equal(Attribute::Object)
+      should be(Attribute::Object)
     end
   end
 end

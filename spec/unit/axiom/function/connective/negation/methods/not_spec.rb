@@ -21,7 +21,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
       it { should be_instance_of(Function::Connective::Negation) }
 
-      its(:operand) { should equal(object) }
+      its(:operand) { should be(object) }
     end
 
     context 'when a function is provided' do
@@ -31,7 +31,7 @@ require File.expand_path('../fixtures/classes', __FILE__)
 
       it { should be_instance_of(Function::Connective::Conjunction) }
 
-      its(:left) { should equal(object) }
+      its(:left) { should be(object) }
 
       its(:right) { should eql(Function::Connective::Negation.new(predicate)) }
     end

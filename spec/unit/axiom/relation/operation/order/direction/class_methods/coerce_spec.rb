@@ -11,7 +11,7 @@ describe Relation::Operation::Order::Direction, '.coerce' do
   context 'when the argument is a Direction' do
     let(:argument) { Relation::Operation::Order::Ascending.new(attribute) }
 
-    it { should equal(argument) }
+    it { should be(argument) }
   end
 
   context 'when the argument is an Attribute' do
@@ -19,7 +19,7 @@ describe Relation::Operation::Order::Direction, '.coerce' do
 
     it { should be_instance_of(object) }
 
-    its(:attribute) { should equal(attribute) }
+    its(:attribute) { should be(attribute) }
   end
 
   context 'when the argument is an Array' do

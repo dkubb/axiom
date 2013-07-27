@@ -42,6 +42,6 @@ describe Function::Binary::Invertible, '#inverse' do
 
   it { should be_instance_of(InverseClass) }
 
-  its(:left)  { should equal(left)  }
-  its(:right) { should equal(right) }
+  its(:left)  { should be(left)  }
+  its(:right) { should be(right) }
 end

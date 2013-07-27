@@ -11,5 +11,5 @@ describe Relation::Operation::Limit, '#directions' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(ordered.directions) }
+  it { should be(ordered.directions) }
 end

@@ -10,7 +10,7 @@ describe Evaluator::Context, '#method_missing' do
   context 'with a valid attribute' do
     subject { object.id }
 
-    it { should equal(attribute) }
+    it { should be(attribute) }
   end
 
   context 'with a valid attribute and extra arguments' do

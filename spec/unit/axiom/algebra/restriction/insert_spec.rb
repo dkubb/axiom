@@ -18,12 +18,12 @@ describe Algebra::Restriction, '#insert' do
 
     it 'passes expected relations into the insertion' do
       subject = self.subject.operand
-      subject.left.should equal(operand)
+      subject.left.should be(operand)
       subject.right.should be_kind_of(described_class)
-      subject.right.predicate.should equal(predicate)
+      subject.right.predicate.should be(predicate)
     end
 
-    its(:predicate) { should equal(predicate) }
+    its(:predicate) { should be(predicate) }
 
     it 'filters out tuples from the other relation not matching the predicate' do
       should == [[1], [2]]

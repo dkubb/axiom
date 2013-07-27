@@ -14,6 +14,6 @@ describe Relation::Operation::Order::Direction, '#call' do
   it 'sends the tuple value to self.class.call' do
     response = double('#call response')
     described_class.should_receive(:call).with(1, 2).and_return(response)
-    should equal(response)
+    should be(response)
   end
 end

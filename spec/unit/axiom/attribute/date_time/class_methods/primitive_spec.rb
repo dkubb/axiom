@@ -9,5 +9,5 @@ describe Attribute::DateTime, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(DateTime) }
+  it { should be(DateTime) }
 end

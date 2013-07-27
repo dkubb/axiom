@@ -10,5 +10,5 @@ describe Evaluator::Context, '#yield' do
   let(:return_value) { double('Return Value')                       }
   let(:object)       { described_class.new(header) { return_value } }
 
-  it { should equal(return_value) }
+  it { should be(return_value) }
 end

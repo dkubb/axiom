@@ -13,5 +13,5 @@ describe Relation::Operation::Set, '#header' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(left.header) }
+  it { should be(left.header) }
 end

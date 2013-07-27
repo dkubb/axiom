@@ -9,5 +9,5 @@ describe Function::Proposition::Contradiction, '.inverse' do
 
   it_should_behave_like 'an invertible method'
 
-  it { should equal(Function::Proposition::Tautology) }
+  it { should be(Function::Proposition::Tautology) }
 end

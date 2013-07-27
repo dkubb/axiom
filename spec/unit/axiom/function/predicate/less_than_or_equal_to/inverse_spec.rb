@@ -12,7 +12,7 @@ describe Function::Predicate::LessThanOrEqualTo, '#inverse' do
 
   it { should be_instance_of(Function::Predicate::GreaterThan) }
 
-  its(:left) { should equal(attribute) }
+  its(:left) { should be(attribute) }
 
   its(:right) { should == 1 }
 end

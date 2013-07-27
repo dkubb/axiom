@@ -8,5 +8,5 @@ describe Function::Proposition::Tautology, '#or' do
   let(:other)  { double('other')          }
   let(:object) { described_class.instance }
 
-  it { should equal(object) }
+  it { should be(object) }
 end

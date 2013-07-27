@@ -9,5 +9,5 @@ describe Function::Numeric::UnaryMinus, '.inverse' do
 
   it_should_behave_like 'an invertible method'
 
-  it { should equal(Function::Numeric::UnaryPlus) }
+  it { should be(Function::Numeric::UnaryPlus) }
 end

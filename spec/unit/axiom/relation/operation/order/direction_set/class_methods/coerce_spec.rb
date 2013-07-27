@@ -17,7 +17,7 @@ describe Relation::Operation::Order::DirectionSet, '.coerce' do
       let(:argument) { direction_set                     }
       let(:block)    { proc { raise 'should not raise' } }
 
-      it { should equal(direction_set) }
+      it { should be(direction_set) }
     end
 
     context 'when the argument responds to #to_ary' do
@@ -55,7 +55,7 @@ describe Relation::Operation::Order::DirectionSet, '.coerce' do
     context 'when the argument is a DirectionSet' do
       let(:argument) { direction_set }
 
-      it { should equal(direction_set) }
+      it { should be(direction_set) }
     end
 
     context 'when the argument responds to #to_ary' do

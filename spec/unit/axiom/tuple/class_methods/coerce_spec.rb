@@ -12,7 +12,7 @@ describe Tuple, '.coerce' do
   context 'when the argument is a Tuple' do
     let(:argument) { tuple }
 
-    it { should equal(argument) }
+    it { should be(argument) }
   end
 
   context 'when the argument responds to #to_ary' do

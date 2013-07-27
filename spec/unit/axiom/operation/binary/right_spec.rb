@@ -12,13 +12,13 @@ describe Operation::Binary, '#right' do
   context 'when right operand is frozen' do
     let(:right) { 'Right'.freeze }
 
-    it { should equal(right) }
+    it { should be(right) }
   end
 
   context 'when right operand is not frozen' do
     let(:right) { 'Right' }
 
-    it { should_not equal(right) }
+    it { should_not be(right) }
 
     it { should be_frozen }
 

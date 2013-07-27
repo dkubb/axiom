@@ -14,7 +14,7 @@ describe Relation::Materialized, '.new' do
 
     it { should be_instance_of(object) }
 
-    its(:header) { should equal(header) }
+    its(:header) { should be(header) }
 
     its(:directions) do
       should be_instance_of(Relation::Operation::Order::DirectionSet)
@@ -29,9 +29,9 @@ describe Relation::Materialized, '.new' do
 
     it { should be_instance_of(object) }
 
-    its(:header) { should equal(header) }
+    its(:header) { should be(header) }
 
-    its(:directions) { should equal(Relation::Operation::Order::DirectionSet::EMPTY) }
+    its(:directions) { should be(Relation::Operation::Order::DirectionSet::EMPTY) }
 
     it { should == tuples }
   end
@@ -41,9 +41,9 @@ describe Relation::Materialized, '.new' do
 
     it { should be_instance_of(object) }
 
-    its(:header) { should equal(header) }
+    its(:header) { should be(header) }
 
-    its(:directions) { should equal(Relation::Operation::Order::DirectionSet::EMPTY) }
+    its(:directions) { should be(Relation::Operation::Order::DirectionSet::EMPTY) }
 
     it { should be_empty }
   end

@@ -23,6 +23,6 @@ describe Relation::Operation::Order::Direction, '#rename' do
     let(:other_header)    { Relation::Header.new([other_attribute])                          }
     let(:aliases)         { Algebra::Rename::Aliases.coerce(other_header, name: :other_name) }
 
-    it { should equal(object) }
+    it { should be(object) }
   end
 end

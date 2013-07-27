@@ -25,5 +25,5 @@ describe Relation::Operation::Order::Direction, '#reverse' do
     subject
   end
 
-  it { should equal(reverse) }
+  it { should be(reverse) }
 end

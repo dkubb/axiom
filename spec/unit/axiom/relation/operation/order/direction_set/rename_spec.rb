@@ -10,7 +10,7 @@ describe Relation::Operation::Order::DirectionSet, '#rename' do
   let(:aliases)   { Algebra::Rename::Aliases.coerce(header, id: :other_id) }
   let(:object)    { described_class.coerce([attribute])                    }
 
-  it { should_not equal(object) }
+  it { should_not be(object) }
 
   it { should be_instance_of(described_class) }
 

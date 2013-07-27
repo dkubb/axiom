@@ -9,5 +9,5 @@ describe Attribute::Decimal, '.primitive' do
 
   it_should_behave_like 'an idempotent method'
 
-  it { should equal(BigDecimal) }
+  it { should be(BigDecimal) }
 end

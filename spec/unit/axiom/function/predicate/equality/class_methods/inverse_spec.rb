@@ -9,5 +9,5 @@ describe Function::Predicate::Equality, '.inverse' do
 
   it_should_behave_like 'an invertible method'
 
-  it { should equal(Function::Predicate::Inequality) }
+  it { should be(Function::Predicate::Inequality) }
 end

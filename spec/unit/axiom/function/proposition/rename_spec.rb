@@ -11,6 +11,6 @@ describe Function::Proposition, '#rename' do
   let(:object)          { described_class.new              }
 
   it 'returns self' do
-    should equal(object)
+    should be(object)
   end
 end

@@ -10,5 +10,5 @@ describe Relation::Operation::Order::Ascending, '#reverse' do
 
   it { should be_instance_of(Relation::Operation::Order::Descending) }
 
-  its(:attribute) { should equal(attribute) }
+  its(:attribute) { should be(attribute) }
 end

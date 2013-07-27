@@ -8,5 +8,5 @@ describe Aggregate::Mean, '#type' do
   let(:object)  { described_class.new(operand) }
   let(:operand) { Attribute::Integer.new(:id)  }
 
-  it { should equal(Attribute::Float) }
+  it { should be(Attribute::Float) }
 end

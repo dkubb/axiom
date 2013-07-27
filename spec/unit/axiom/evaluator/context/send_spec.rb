@@ -19,10 +19,10 @@ describe Evaluator::Context, '#send' do
   end
 
   it 'delegates the arguments to the method' do
-    subject[0].should equal(args)
+    subject[0].should be(args)
   end
 
   it 'delegates the block to the method' do
-    subject[1].should equal(block)
+    subject[1].should be(block)
   end
 end

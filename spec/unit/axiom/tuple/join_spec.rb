@@ -12,7 +12,7 @@ describe Tuple, '#join' do
 
   it { should be_instance_of(described_class) }
 
-  its(:header) { should equal(new_header) }
+  its(:header) { should be(new_header) }
 
   its(:to_ary) { should == [1, 'Dan Kubb'] }
 end

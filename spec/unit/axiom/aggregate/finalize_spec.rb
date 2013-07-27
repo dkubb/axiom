@@ -13,6 +13,6 @@ describe Aggregate, '#finalize' do
   it 'delegates to self.class.finalize' do
     return_value = double('Return Value')
     described_class.should_receive(:finalize).with(accumulator).and_return(return_value)
-    should equal(return_value)
+    should be(return_value)
   end
 end

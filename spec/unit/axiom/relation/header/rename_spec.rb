@@ -11,7 +11,7 @@ describe Relation::Header, '#rename' do
 
   it { should be_instance_of(described_class) }
 
-  it { should_not equal(object) }
+  it { should_not be(object) }
 
   its(:to_ary) { should == [[:other_id, Integer], [:name, String]] }
 

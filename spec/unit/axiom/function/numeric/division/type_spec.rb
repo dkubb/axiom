@@ -7,5 +7,5 @@ describe Function::Numeric::Division, '#type' do
 
   let(:object) { described_class.new(1, 1) }
 
-  it { should equal(Attribute::Float) }
+  it { should be(Attribute::Float) }
 end

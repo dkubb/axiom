@@ -9,7 +9,7 @@ describe Function::Unary::Callable, '#call' do
   let(:value)     { double('value', send: response)                                     }
   let(:response)  { double('response')                                                  }
 
-  it { should equal(response) }
+  it { should be(response) }
 
   it 'uses the operation from the object' do
     object.should_receive(:operation)

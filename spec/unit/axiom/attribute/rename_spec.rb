@@ -11,7 +11,7 @@ describe Attribute, '#rename' do
   context 'when the new name is the same' do
     let(:name) { object.name }
 
-    it { should equal(object) }
+    it { should be(object) }
   end
 
   context 'when the new name is different' do
@@ -19,9 +19,9 @@ describe Attribute, '#rename' do
 
     it { should be_instance_of(described_class) }
 
-    it { should_not equal(object) }
+    it { should_not be(object) }
 
-    its(:name) { should equal(name) }
+    its(:name) { should be(name) }
 
     its(:required?) { should be(false) }
   end
