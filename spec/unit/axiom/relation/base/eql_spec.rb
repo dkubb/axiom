@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Base, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:name)   { 'users'.freeze                          }
+  let(:name)   { :users                                  }
   let(:header) { [[:id, Integer]]                        }
   let(:body)   { LazyEnumerable.new([[1]])               }
   let(:object) { described_class.new(name, header, body) }
@@ -45,7 +45,7 @@ describe Relation::Base, '#eql?' do
   end
 
   context 'with an object having a different name' do
-    let(:other_name)   { 'other_users'.freeze                                      }
+    let(:other_name)   { :other_users                                              }
     let(:other_header) { header                                                    }
     let(:other_body)   { body                                                      }
     let(:other)        { described_class.new(other_name, other_header, other_body) }

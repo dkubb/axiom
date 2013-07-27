@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Relation::Variable, '#insert' do
   subject { object.insert(other) }
 
-  let(:object)   { described_class.new(relation)              }
-  let(:relation) { Relation::Base.new('users', header, [[1]]) }
-  let(:other)    { [[2]]                                      }
-  let(:header)   { [[:id, Integer]]                           }
+  let(:object)   { described_class.new(relation)             }
+  let(:relation) { Relation::Base.new(:users, header, [[1]]) }
+  let(:other)    { [[2]]                                     }
+  let(:header)   { [[:id, Integer]]                          }
 
   it { should be_instance_of(described_class) }
 

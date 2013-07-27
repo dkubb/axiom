@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Relation::Base, '.new' do
-  let(:name)   { 'users'.freeze                            }
+  let(:name)   { :users                                    }
   let(:header) { Relation::Header.coerce([[:id, Integer]]) }
   let(:object) { described_class                           }
 

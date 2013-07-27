@@ -22,7 +22,7 @@ describe Relation::Variable, '.new' do
   end
 
   context 'with a non-materialized relation' do
-    let(:relation) { Relation::Base.new('users', header, body) }
+    let(:relation) { Relation::Base.new(:users, header, body) }
 
     it { should be_instance_of(described_class) }
 

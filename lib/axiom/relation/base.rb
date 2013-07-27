@@ -12,14 +12,14 @@ module Axiom
       # @example
       #   name = base.name
       #
-      # @return [#to_s]
+      # @return [Symbol]
       #
       # @api public
       attr_reader :name
 
       # Initialize a base relation
       #
-      # @param [#to_s] name
+      # @param [Symbol] name
       #   the relation name
       # @param [Header, #to_ary] header
       #   the relation header
@@ -31,7 +31,7 @@ module Axiom
       # @api private
       def initialize(name, header, tuples = Empty::ZERO_TUPLE)
         super(header, tuples)
-        @name = freeze_object(name.to_s)
+        @name = name
       end
 
     end # class Base
