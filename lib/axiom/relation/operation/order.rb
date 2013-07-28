@@ -30,8 +30,11 @@ module Axiom
         #
         # @api public
         def self.new(operand, directions)
-          directions = DirectionSet.coerce(directions)
-          directions |= operand.header - directions.attributes
+          header     = operand.header
+          directions = DirectionSet.coerce(directions) do |direction|
+            header[direction] unless direction.kind_of?(Direction)
+          end
+          directions |= header - directions.attributes
           super
         end
 

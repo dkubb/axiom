@@ -43,7 +43,7 @@ module Axiom
           # Find the attribute with the block if possible, then fallback
           # to the default coercion method.
           block = lambda do |attribute|
-            block_given? && yield(attribute) || coerce_attribute(attribute)
+            coerce_attribute(block_given? && yield(attribute) || attribute)
           end
           new(Array(object).map(&block), options)
         end
