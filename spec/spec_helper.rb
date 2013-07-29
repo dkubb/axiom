@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'devtools/spec_helper'
-require 'ice_nine'
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
@@ -23,11 +22,6 @@ end
 require 'axiom'
 
 include Axiom
-
-# require spec support files and shared behavior
-Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each do |file|
-  require file
-end
 
 RSpec.configure do |config|
 
