@@ -10,11 +10,11 @@ Gem::Specification.new do |gem|
   gem.description = 'Simplifies querying of structured data using relational algebra'
   gem.summary     = 'Ruby Relational Algebra'
   gem.homepage    = 'https://github.com/dkubb/axiom'
-  gem.licenses    = %w[MIT]
+  gem.licenses    = 'MIT'
 
   gem.require_paths    = %w[lib]
-  gem.files            = `git ls-files`.split($/)
-  gem.test_files       = `git ls-files -- spec/{unit,integration}`.split($/)
+  gem.files            = `git ls-files`.split("\n")
+  gem.test_files       = `git ls-files -- spec/{unit,integration}`.split("\n")
   gem.extra_rdoc_files = %w[LICENSE README.md CONTRIBUTING.md TODO]
 
   gem.add_runtime_dependency('abstract_type',       '~> 0.0.5')
