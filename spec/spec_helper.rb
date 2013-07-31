@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-require 'devtools/spec_helper'
-
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
   require 'coveralls'
@@ -20,6 +18,7 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'axiom'
+require 'devtools/spec_helper'
 
 include Axiom
 
