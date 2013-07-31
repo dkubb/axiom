@@ -20,7 +20,6 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'axiom'
-
 include Axiom
 
 RSpec.configure do |config|
