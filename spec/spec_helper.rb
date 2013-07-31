@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'axiom'
 require 'devtools/spec_helper'
 
 if ENV['COVERAGE'] == 'true'
@@ -18,8 +19,6 @@ if ENV['COVERAGE'] == 'true'
     minimum_coverage 100
   end
 end
-
-require 'axiom'
 
 include Axiom
 
