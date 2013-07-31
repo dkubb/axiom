@@ -2,11 +2,22 @@ language: ruby
 before_install: gem install bundler
 bundler_args: --without yard guard benchmarks
 script: "bundle exec rake ci"
-rvm:
-  - 1.9.3
-  - 2.0.0
-  - ruby-head
-  - rbx-19mode
+matrix:
+  include:
+    - rvm: 1.9.3
+    - rvm: 2.0.0
+    - rvm: ruby-head
+    - rvm: rbx-19mode
+    - rvm: jruby-19mode
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+    - rvm: jruby-head
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+  allow_failures:
+    - rvm: 1.9.3       # mutant fails
+    - rvm: 2.0.0       # mutant fails
+    - rvm: ruby-head   # travis broken
+    - rvm: rbx-19mode  # mutant fails
+    # broken on travis
 notifications:
   irc:
     channels:
@@ -18,16 +29,3 @@ notifications:
       - dan.kubb@gmail.com
     on_success: never
     on_failure: change
-matrix:
-  include:
-    - rvm: jruby-19mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
-    - rvm: jruby-head
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
-  allow_failures:
-    # mutant fails
-    - rvm: 1.9.3
-    - rvm: 2.0.0
-    - rvm: rbx-19mode
-    # broken on travis
-    - rvm: ruby-head
