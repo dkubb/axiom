@@ -17,7 +17,6 @@ matrix:
     - rvm: 2.0.0       # mutant fails
     - rvm: ruby-head   # travis broken
     - rvm: rbx-19mode  # mutant fails
-    # broken on travis
 notifications:
   irc:
     channels:
