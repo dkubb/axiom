@@ -26,6 +26,9 @@ require 'devtools/spec_helper'
 include Axiom
 
 RSpec.configure do |config|
+  config.expect_with :rspec do |expect_with|
+    expect_with.syntax = [:expect, :should]
+  end
 
   # Record the original Attribute descendants
   config.before do
