@@ -23,8 +23,3 @@ notifications:
       - irc.freenode.org#rom-rb
     on_success: never
     on_failure: change
-  email:
-    recipients:
-      - dan.kubb@gmail.com
-    on_success: never
-    on_failure: change
