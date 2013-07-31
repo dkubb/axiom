@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-require 'axiom'
 require 'devtools/spec_helper'
 
 if ENV['COVERAGE'] == 'true'
@@ -20,6 +19,7 @@ if ENV['COVERAGE'] == 'true'
   end
 end
 
+require 'axiom'
 include Axiom
 
 RSpec.configure do |config|
