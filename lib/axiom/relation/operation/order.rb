@@ -23,7 +23,7 @@ module Axiom
         #
         # @param [Relation] operand
         #   the relation to sort
-        # @param [DirectionSet, Array<Direction, Attribute>] directions
+        # @param [DirectionSet, Header, Array<Direction, Attribute>] directions
         #   the directions to sort tuples in
         #
         # @return [Order]
