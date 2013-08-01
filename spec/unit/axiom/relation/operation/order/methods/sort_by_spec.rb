@@ -143,13 +143,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
     context 'with no arguments' do
       subject { object.sort_by }
 
-      it { should be_instance_of(Relation::Operation::Order) }
-
-      its(:directions) { should eql(directions) }
-
-      it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
-      end
+      specify { expect { subject }.to raise_error }
     end
   end
 end

@@ -167,8 +167,12 @@ module Axiom
           # @return [DirectionSet, Array<Direction>, Header]
           #
           # @api private
-          def coerce_to_directions(directions = header, &block)
-            block ? header.context(&block).yield : directions
+          def coerce_to_directions(directions = Undefined, &block)
+            if directions.equal?(Undefined)
+              header.context(&block).yield
+            else
+              directions
+            end
           end
 
         end # module Methods
