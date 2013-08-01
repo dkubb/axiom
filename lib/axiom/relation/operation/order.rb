@@ -167,9 +167,9 @@ module Axiom
           # @return [DirectionSet, Array<Direction>, Header]
           #
           # @api private
-          def coerce_to_directions(directions = Undefined)
-            if directions.equal?(Undefined)
-              Evaluator::Context.new(header) { |context| yield context }.yield
+          def coerce_to_directions(directions = header, &block)
+            if block
+              Evaluator::Context.new(header, &block).yield
             else
               directions
             end
