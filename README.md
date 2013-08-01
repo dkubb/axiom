@@ -111,6 +111,7 @@ new_relation = ordered.last(5)
 
 # get a tuple from a relation containing exactly one tuple
 tuple = relation.one
+tuple = relation.one { ... }
 
 # Updatable Views
 # ---------------
