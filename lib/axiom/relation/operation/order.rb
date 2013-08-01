@@ -159,7 +159,7 @@ module Axiom
           #
           # @api public
           def sort
-            Order.new(self, header)
+            Order.new(self, EMPTY_ARRAY)
           end
 
         private
