@@ -150,6 +150,18 @@ module Axiom
             Order.new(self, coerce_to_directions(*args, &block))
           end
 
+          # Return an ordered relation
+          #
+          # @example
+          #   order = relation.sort
+          #
+          # @return [Order]
+          #
+          # @api public
+          def sort
+            Order.new(self, header)
+          end
+
         private
 
           # Coerce the arguments and block into directions

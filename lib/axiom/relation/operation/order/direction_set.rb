@@ -68,7 +68,7 @@ module Axiom
           #
           # @api private
           def sort_tuples(tuples)
-            tuples.sort { |left, right| cmp_tuples(left, right) }
+            tuples.to_a.sort { |left, right| cmp_tuples(left, right) }
           end
 
         private

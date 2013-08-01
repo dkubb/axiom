@@ -86,6 +86,9 @@ header = relation.header
 # a relation is Enumerable
 relation = relation.each { |tuple| ... }
 
+# order by attributes in the header
+ordered = relation.sort
+
 # order by attribute and direction
 ordered = relation.sort_by { |r| [r.city.desc, r.name, r.color, r.id, r.weight] }
 
