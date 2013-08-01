@@ -41,6 +41,10 @@ LineLength:
 Documentation:
   Enabled: false
 
+# Do not always use &&/|| instead of and/or.
+AndOr:
+  Enabled: false
+
 # Do not favor modifier if/unless usage when you have a single-line body
 IfUnlessModifier:
   Enabled: false

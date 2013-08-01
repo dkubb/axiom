@@ -8,7 +8,7 @@ describe Relation::Operation::Limit::Methods, '#one' do
   let(:object) { Relation.new(header, body).sort           }
   let(:header) { Relation::Header.coerce([[:id, Integer]]) }
 
-  context 'with a relation having no tuples' do
+  context 'with a relation having no tuples without a block' do
     let(:body) { LazyEnumerable.new }
 
     specify do
@@ -20,6 +20,21 @@ describe Relation::Operation::Limit::Methods, '#one' do
     end
 
     specify { expect { subject }.to raise_error(SetSizeError) }
+  end
+
+  context 'with a relation having no tuples with a block' do
+    subject { object.one { tuple } }
+
+    let(:body)  { LazyEnumerable.new }
+    let(:tuple) { double('tuple')    }
+
+    it 'returns the block return value' do
+      expect(subject).to be(tuple)
+    end
+
+    it 'yields the block' do
+      expect { |block| object.one(&block) }.to yield_with_no_args
+    end
   end
 
   context 'with a relation having one tuple' do
@@ -39,7 +54,7 @@ describe Relation::Operation::Limit::Methods, '#one' do
       expect { subject }
         .to raise_error(
           ManyTuplesError,
-          'one tuple expected, but set contained more than one tuple'
+          'one tuple expected, but set contained 2 tuples'
         )
     end
 

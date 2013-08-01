@@ -150,6 +150,9 @@ module Axiom
 
         module Methods
 
+          # Maximum number of tuples to take in #one
+          ONE_LIMIT = 2
+
           # Return a relation with n tuples
           #
           # @example
@@ -203,8 +206,13 @@ module Axiom
 
           # Return a tuple if the relation contains exactly one tuple
           #
-          # @example
+          # @example without a block
           #   tuple = relation.one
+          #
+          # @example with a block
+          #   tuple = relation.one { ... }
+          #
+          # @yieldreturn [Object]
           #
           # @return [Tuple]
           #
@@ -214,31 +222,29 @@ module Axiom
           #   raised if more than one tuple is returned
           #
           # @api public
-          def one
-            tuples = take(2).to_a
-            assert_exactly_one_tuple(tuples.size)
-            tuples.first
+          def one(&block)
+            block ||= -> {}
+            tuples = take(ONE_LIMIT).to_a
+            assert_no_more_than_one_tuple(tuples.size)
+            tuples.first or block.yield or
+              raise NoTuplesError, 'one tuple expected, but was an empty set'
           end
 
         private
 
-          # Assert exactly one tuple is returned
+          # Assert no more than one tuple is returned
           #
           # @return [undefined]
           #
-          # @raise [NoTuplesError]
-          #   raised if no tuples are returned
           # @raise [ManyTuplesError]
           #   raised if more than one tuple is returned
           #
           # @api private
-          def assert_exactly_one_tuple(size)
-            if size.zero?
-              raise NoTuplesError, 'one tuple expected, but was an empty set'
-            elsif size > 1
+          def assert_no_more_than_one_tuple(size)
+            if size > 1
               raise(
                 ManyTuplesError,
-                'one tuple expected, but set contained more than one tuple'
+                "one tuple expected, but set contained #{count} tuples"
               )
             end
           end
