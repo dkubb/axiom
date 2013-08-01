@@ -150,6 +150,9 @@ module Axiom
 
         module Methods
 
+          # Default block used in #one
+          DEFAULT_ONE_BLOCK = -> { }
+
           # Maximum number of tuples to take in #one
           ONE_LIMIT = 2
 
@@ -223,7 +226,7 @@ module Axiom
           #
           # @api public
           def one(&block)
-            block ||= -> {}
+            block ||= DEFAULT_ONE_BLOCK
             tuples = take(ONE_LIMIT).to_a
             assert_no_more_than_one_tuple(tuples.size)
             tuples.first or block.yield or
