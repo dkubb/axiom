@@ -282,6 +282,21 @@ module Axiom
         new(to_ary - other, keys: keys - other.keys)
       end
 
+      # Evaluate a block within the context of the header
+      #
+      # @yield [context]
+      #
+      # @yieldparam [Evaluator::Context] context
+      #
+      # @yieldreturn [Evaluator::Context]
+      #
+      # @return [Header]
+      #
+      # @api private
+      def context(&block)
+        Evaluator::Context.new(self, &block)
+      end
+
       # Convert the Header into an Array
       #
       # @example

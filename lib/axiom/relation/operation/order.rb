@@ -168,11 +168,7 @@ module Axiom
           #
           # @api private
           def coerce_to_directions(directions = header, &block)
-            if block
-              Evaluator::Context.new(header, &block).yield
-            else
-              directions
-            end
+            block ? header.context(&block).yield : directions
           end
 
         end # module Methods

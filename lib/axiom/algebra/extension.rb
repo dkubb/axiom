@@ -157,9 +157,9 @@ module Axiom
         # @return [Extension]
         #
         # @api private
-        def coerce_to_extensions(extensions = Undefined)
+        def coerce_to_extensions(extensions = Undefined, &block)
           if extensions.equal?(Undefined)
-            Evaluator::Context.new(header) { |context| yield context }.functions
+            header.context(&block).functions
           else
             extensions
           end

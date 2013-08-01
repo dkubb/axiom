@@ -227,8 +227,7 @@ module Axiom
         # @api private
         def coerce_to_summarizers(summarize_per, summarizers = Undefined, &block)
           if summarizers.equal?(Undefined)
-            Evaluator::Context.new(header - summarize_per.header, &block)
-              .functions
+            (header - summarize_per.header).context(&block).functions
           else
             summarizers
           end
