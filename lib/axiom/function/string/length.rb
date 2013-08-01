@@ -24,6 +24,9 @@ module Axiom
 
         # Return the type returned from #call
         #
+        # @example
+        #   type = length.type
+        #
         # @return [Class<Attribute::Integer>]
         #
         # @api public

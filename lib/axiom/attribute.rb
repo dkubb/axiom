@@ -127,6 +127,9 @@ module Axiom
 
     # Return the type returned from #call
     #
+    # @example
+    #   type = attribute.type
+    #
     # @return [Class<Attribute>]
     #
     # @api public

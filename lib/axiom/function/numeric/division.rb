@@ -34,6 +34,9 @@ module Axiom
 
         # Return the type returned from #call
         #
+        # @example
+        #   type = division.type
+        #
         # @return [Class<Attribute::Float>]
         #
         # @api public

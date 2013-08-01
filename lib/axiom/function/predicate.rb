@@ -14,6 +14,9 @@ module Axiom
 
       # Return the type returned from #call
       #
+      # @example
+      #   type = predicate.type
+      #
       # @return [Class<Attribute::Boolean>]
       #
       # @api public

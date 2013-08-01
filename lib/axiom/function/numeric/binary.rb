@@ -10,6 +10,9 @@ module Axiom
 
         # Return the type returned from #call
         #
+        # @example
+        #   type = binary.type
+        #
         # @return [Class<Attribute::Numeric>]
         #
         # @api public

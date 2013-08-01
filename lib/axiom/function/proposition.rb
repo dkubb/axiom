@@ -85,6 +85,9 @@ module Axiom
 
       # Return the type returned from #call
       #
+      # @example
+      #   type = proposition.type
+      #
       # @return [Class<Attribute::Boolean>]
       #
       # @api public
