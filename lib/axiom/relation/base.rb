@@ -19,7 +19,7 @@ module Axiom
 
       # Initialize a base relation
       #
-      # @param [Symbol] name
+      # @param [#to_sym] name
       #   the relation name
       # @param [Header, #to_ary] header
       #   the relation header
@@ -31,7 +31,7 @@ module Axiom
       # @api private
       def initialize(name, header, tuples = Empty::ZERO_TUPLE)
         super(header, tuples)
-        @name = name
+        @name = name.to_sym
       end
 
     end # class Base
