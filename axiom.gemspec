@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.extra_rdoc_files = %w[LICENSE README.md CONTRIBUTING.md TODO]
 
   gem.add_runtime_dependency('abstract_type',       '~> 0.0.5')
-  gem.add_runtime_dependency('adamantium',          '~> 0.0.8')
+  gem.add_runtime_dependency('adamantium',          '~> 0.0.11')
   gem.add_runtime_dependency('descendants_tracker', '~> 0.0.1')
   gem.add_runtime_dependency('equalizer',           '~> 0.0.5')
 
