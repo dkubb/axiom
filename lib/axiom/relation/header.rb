@@ -125,9 +125,8 @@ module Axiom
       # @api public
       def initialize(attributes, options)
         @attributes    = freeze_object(attributes)
-        @options       = freeze_object(options)
         @attribute_for = Hash[@attributes.map(&:name).zip(@attributes)]
-        @keys          = coerce_keys
+        @keys          = coerce_keys(options.fetch(:keys, EMPTY_ARRAY))
       end
 
       # Iterate over each attribute in the header
@@ -336,13 +335,13 @@ module Axiom
 
       # Coerce the keys into an Array of Headers
       #
+      # @return [Array]
+      #
       # @return [Array<Header>]
       #
       # @api private
-      def coerce_keys
-        Keys.coerce(@options.fetch(:keys, EMPTY_ARRAY)) do |attributes|
-          coerce(attributes)
-        end
+      def coerce_keys(keys)
+        Keys.coerce(keys) { |attributes| coerce(attributes) }
       end
 
       # Coerce the object into a Header
