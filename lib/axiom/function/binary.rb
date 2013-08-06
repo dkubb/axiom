@@ -56,6 +56,8 @@ module Axiom
 
       # Return the type returned from #call
       #
+      # Find the lowest common ancestor between the types.
+      #
       # @example
       #   type = binary.type  # => Axiom::Types::Object
       #
