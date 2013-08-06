@@ -6,16 +6,16 @@ module Axiom
     # Represents an Integer value in a relation tuple
     class Integer < Numeric
 
-      # The Integer primitive
+      # The attribute type
       #
       # @example
-      #   Integer.primitive  # => ::Integer
+      #   type = Axiom::Attribute::Integer.type  # => Axiom::Types::Integer
       #
-      # @return [Class<::Integer>]
+      # @return [Class<Types::Integer>]
       #
       # @api public
-      def self.primitive
-        ::Integer
+      def self.type
+        Types::Integer
       end
 
     end # class Integer

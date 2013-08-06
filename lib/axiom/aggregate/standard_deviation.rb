@@ -28,12 +28,13 @@ module Axiom
       #
       # @example
       #   type = Axiom::Aggregate::StandardDeviation.type
+      #   # => Axiom::Types::Float
       #
-      # @return [Class<Attribute::Float>]
+      # @return [Class<Types::Float>]
       #
       # @api public
-      def type
-        Attribute::Float
+      def self.type
+        Types::Float
       end
 
       module Methods

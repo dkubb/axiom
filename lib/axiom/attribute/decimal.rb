@@ -6,16 +6,16 @@ module Axiom
     # Represents a Decimal value in a relation tuple
     class Decimal < Numeric
 
-      # The Decimal primitive
+      # The attribute type
       #
       # @example
-      #   Decimal.primitive  # => BigDecimal
+      #   type = Axiom::Attribute::Decimal.type  # => Axiom::Types::Decimal
       #
-      # @return [Class<BigDecimal>]
+      # @return [Class<Types::Decimal>]
       #
       # @api public
-      def self.primitive
-        BigDecimal
+      def self.type
+        Types::Decimal
       end
 
     end # class Decimal

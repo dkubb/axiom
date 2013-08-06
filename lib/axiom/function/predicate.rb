@@ -15,13 +15,13 @@ module Axiom
       # Return the type returned from #call
       #
       # @example
-      #   type = predicate.type
+      #   type = Axiom::Function::Predicate.type  # => Axiom::Types::Boolean
       #
-      # @return [Class<Attribute::Boolean>]
+      # @return [Class<Types::Boolean>]
       #
       # @api public
-      def type
-        Attribute::Boolean
+      def self.type
+        Types::Boolean
       end
 
     end # class Predicate

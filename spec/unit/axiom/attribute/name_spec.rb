@@ -8,6 +8,10 @@ describe Attribute, '#name' do
   let(:described_class) { Class.new(Attribute)      }
   let(:object)          { described_class.new(name) }
 
+  before do
+    described_class.stub(type: Types::Object)
+  end
+
   context 'when name is a Symbol' do
     let(:name) { :name }
 

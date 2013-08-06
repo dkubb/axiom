@@ -86,6 +86,18 @@ module Axiom
           end
         end
 
+        # Return the type returned from #call
+        #
+        # @example
+        #   type = unary.type  # => Axiom::Types::Numeric
+        #
+        # @return [Class<Types::Numeric>]
+        #
+        # @api public
+        def type
+          Attribute.infer_type(operand)
+        end
+
         # Mixin for invertable unary functions
         module Invertible
 

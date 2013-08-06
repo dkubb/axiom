@@ -32,12 +32,23 @@ RSpec.configure do |config|
 
   # Record the original Attribute descendants
   config.before do
-    @original_descendants = Attribute.descendants.dup
+    @original_attribute_descendants = Attribute.descendants.dup
   end
 
   # Reset the Attribute descendants
   config.after do
-    Attribute.descendants.replace(@original_descendants)
+    Attribute.descendants.replace(@original_attribute_descendants)
   end
 
+  # Record the original Type descendants
+  config.before do
+    Axiom::Types.finalize
+    @original_type_descendants = Axiom::Types::Type.descendants.dup
+  end
+
+  # Reset the Type descendants
+  config.after do
+    Axiom::Types::Type.descendants.replace(@original_type_descendants)
+    Axiom::Types.instance_variable_get(:@inference_cache).clear
+  end
 end

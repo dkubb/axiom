@@ -10,13 +10,13 @@ module Axiom
       # Return the type returned from #call
       #
       # @example
-      #   type = connective.type
+      #   type = Axiom::Function::Connective.type  # => Axiom::Types::Boolean
       #
-      # @return [Class<Attribute::Boolean>]
+      # @return [Class<Types::Boolean>]
       #
       # @api public
-      def type
-        Attribute::Boolean
+      def self.type
+        Types::Boolean
       end
 
     end # class Connective

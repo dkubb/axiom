@@ -11,7 +11,11 @@ describe Attribute, '#hash' do
   let(:options)         { { required: required }             }
   let(:object)          { described_class.new(name, options) }
 
+  before do
+    described_class.stub(type: Types::Object)
+  end
+
   it_should_behave_like 'a hash method'
 
-  it { should == described_class.hash ^ name.hash ^ required.hash }
+  it { should == described_class.hash ^ name.hash ^ object.type.hash ^ required.hash }
 end
