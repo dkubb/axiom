@@ -9,6 +9,10 @@ describe Attribute, '#eql?' do
   let(:name)            { :name                     }
   let(:object)          { described_class.new(name) }
 
+  before do
+    described_class.stub(type: Types::Object)
+  end
+
   context 'with the same object' do
     let(:other) { object }
 

@@ -90,15 +90,6 @@ require 'axiom/support/evaluator'
 require 'axiom/support/operation/binary'
 require 'axiom/support/operation/unary'
 
-require 'axiom/aggregate'
-require 'axiom/aggregate/count'
-require 'axiom/aggregate/maximum'
-require 'axiom/aggregate/mean'
-require 'axiom/aggregate/minimum'
-require 'axiom/aggregate/sum'
-require 'axiom/aggregate/variance'
-require 'axiom/aggregate/standard_deviation'
-
 require 'axiom/function'
 require 'axiom/function/binary'
 require 'axiom/function/unary'
@@ -125,6 +116,15 @@ require 'axiom/function/predicate/match'
 require 'axiom/function/proposition'
 require 'axiom/function/proposition/contradiction'
 require 'axiom/function/proposition/tautology'
+
+require 'axiom/aggregate'
+require 'axiom/aggregate/count'
+require 'axiom/aggregate/maximum'
+require 'axiom/aggregate/mean'
+require 'axiom/aggregate/minimum'
+require 'axiom/aggregate/sum'
+require 'axiom/aggregate/variance'
+require 'axiom/aggregate/standard_deviation'
 
 require 'axiom/relation'
 
@@ -183,8 +183,6 @@ require 'axiom/attribute/time'
 require 'axiom/attribute/string'
 
 require 'axiom/function/numeric'
-require 'axiom/function/numeric/binary'
-require 'axiom/function/numeric/unary'
 
 require 'axiom/function/numeric/absolute'
 require 'axiom/function/numeric/addition'
@@ -201,6 +199,8 @@ require 'axiom/function/string/length'
 
 require 'axiom/tuple'
 require 'axiom/version'
+
+require 'axiom-types'
 
 module Axiom
 

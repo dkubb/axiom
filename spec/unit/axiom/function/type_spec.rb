@@ -8,6 +8,13 @@ describe Function, '#type' do
 
   let(:described_class) { FunctionSpecs::Object }
   let(:object)          { described_class.new   }
+  let(:type)            { double('type')        }
 
-  specify { expect { subject }.to raise_error(NotImplementedError, "#{described_class}#type is not implemented") }
+  before do
+    described_class.should_receive(:type).and_return(type)
+  end
+
+  it 'delegates to the class type' do
+    should be(type)
+  end
 end

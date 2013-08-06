@@ -8,91 +8,44 @@ module Axiom
       include Comparable,
               Function::Predicate::Match::Methods,
               Function::Predicate::NoMatch::Methods
-      include Equalizer.new(:name, :required?, :min_length, :max_length)
 
-      DEFAULT_MIN_LENGTH = 0
-      DEFAULT_MAX_LENGTH = 50
-
-      # The minimum string length for a valid value
+      # The attribute type
       #
       # @example
-      #   string.min_length  # => 0
+      #   type = Axiom::Attribute::String.type  # => Axiom::Types::String
       #
-      # @return [::Integer]
-      #
-      # @api public
-      attr_reader :min_length
-
-      # The maximum string length for a valid value
-      #
-      # @example
-      #   string.max_length  # => 50
-      #
-      # @return [::Integer]
+      # @return [Class<Types::String>]
       #
       # @api public
-      attr_reader :max_length
-
-      # The String primitive
-      #
-      # @example
-      #   String.primitive  # => ::String
-      #
-      # @return [Class<::String>]
-      #
-      # @api public
-      def self.primitive
-        ::String
+      def self.type
+        Types::String
       end
 
       # Initialize a String Attribute
       #
       # @param [#to_sym] _name
       #   the attribute name
-      # @param [#to_hash] _options
+      # @param [#to_hash] options
       #   the options for the attribute
       # @option options [Boolean] :required (true)
       #   if true, then the value cannot be nil
-      # @option options [::Integer] :min_length
+      # @option options [::Integer] :minimum_length
       #   The minimum string length for a valid value
-      # @option options [::Integer] :mmax_length
+      # @option options [::Integer] :maximum_length
       #   The maximum string length for a valid value
       #
       # @return [undefined]
       #
       # @api private
-      def initialize(_name, _options = EMPTY_HASH)
+      def initialize(_name, options = EMPTY_HASH)
         super
-        @min_length = @options.fetch(:min_length, DEFAULT_MIN_LENGTH)
-        @max_length = @options.fetch(:max_length, DEFAULT_MAX_LENGTH)
-      end
-
-      # Test if the value matches the attribute constraints
-      #
-      # @example
-      #   string.valid_value?(value)  # => true or false
-      #
-      # @param [Object] value
-      #   the value to test
-      #
-      # @return [Boolean]
-      #
-      # @api public
-      def valid_value?(value)
-        valid_or_optional?(value) { super && valid_length?(value) }
-      end
-
-    private
-
-      # Test if the value is the correct length
-      #
-      # @param [String] value
-      #
-      # @return [Boolean]
-      #
-      # @api private
-      def valid_length?(value)
-        value.length.between?(min_length, max_length)
+        min, max = options.values_at(:minimum_length, :maximum_length)
+        if min || max
+          @type = type.new do
+            minimum_length(min) if min
+            maximum_length(max) if max
+          end
+        end
       end
 
     end # class String

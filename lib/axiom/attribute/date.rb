@@ -7,30 +7,16 @@ module Axiom
     class Date < Object
       include Comparable
 
-      DEFAULT_RANGE = (::Date.new..::Date::Infinity.new).freeze
-
-      # The Date primitive
+      # The attribute type
       #
       # @example
-      #   Date.primitive  # => ::Date
+      #   type = Axiom::Attribute::Date.type  # => Axiom::Types::Date
       #
-      # @return [Class<::Date>]
-      #
-      # @api public
-      def self.primitive
-        ::Date
-      end
-
-      # The Date range for a valid value
-      #
-      # @example
-      #   Date.range  # => ::Date.new(*from)..::Date.new(*to)
-      #
-      # @return [Range<::Date>]
+      # @return [Class<Types::Date>]
       #
       # @api public
-      def range
-        DEFAULT_RANGE
+      def self.type
+        Types::Date
       end
 
     end # class Date

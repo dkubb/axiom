@@ -35,7 +35,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { true }
 
     it 'returns a Boolean type' do
-      should be(Attribute::Boolean)
+      should be(Types::Boolean)
     end
   end
 
@@ -43,7 +43,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { false }
 
     it 'returns a Boolean type' do
-      should be(Attribute::Boolean)
+      should be(Types::Boolean)
     end
   end
 
@@ -51,7 +51,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Class.new }
 
     it 'returns a Class type' do
-      should be(Attribute::Class)
+      should be(Types::Class)
     end
   end
 
@@ -59,7 +59,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { DateTime.now }
 
     it 'returns a DateTime type' do
-      should be(Attribute::DateTime)
+      should be(Types::DateTime)
     end
   end
 
@@ -67,7 +67,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Date.today }
 
     it 'returns a Date type' do
-      should be(Attribute::Date)
+      should be(Types::Date)
     end
   end
 
@@ -75,7 +75,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { BigDecimal('1') }
 
     it 'returns a Decimal type' do
-      should be(Attribute::Decimal)
+      should be(Types::Decimal)
     end
   end
 
@@ -83,7 +83,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { 1.0 }
 
     it 'returns a Float type' do
-      should be(Attribute::Float)
+      should be(Types::Float)
     end
   end
 
@@ -91,7 +91,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { 1 }
 
     it 'returns an Integer type' do
-      should be(Attribute::Integer)
+      should be(Types::Integer)
     end
   end
 
@@ -99,7 +99,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { 'string' }
 
     it 'returns an String type' do
-      should be(Attribute::String)
+      should be(Types::String)
     end
   end
 
@@ -107,7 +107,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { Time.now }
 
     it 'returns an Time type' do
-      should be(Attribute::Time)
+      should be(Types::Time)
     end
   end
 
@@ -115,7 +115,7 @@ describe Attribute, '.infer_type' do
     let(:operand) { double('Unhandled') }
 
     it 'returns an Object type' do
-      should be(Attribute::Object)
+      should be(Types::Object)
     end
   end
 end

@@ -27,13 +27,13 @@ module Axiom
       # Return the type returned from #call
       #
       # @example
-      #   type = Axiom::Aggregate::Count.type
+      #   type = Axiom::Aggregate::Count.type  # => Axiom::Types::Integer
       #
-      # @return [Class<Attribute::Integer>]
+      # @return [Class<Types::Integer>]
       #
       # @api public
-      def type
-        Attribute::Integer
+      def self.type
+        Types::Integer
       end
 
       module Methods

@@ -24,6 +24,19 @@ module Axiom
           Math.sqrt(value)
         end
 
+        # Return the type returned from #call
+        #
+        # @example
+        #   type = Axiom::Function::Numeric::SquareRoot.type
+        #   # => Axiom::Types::Float
+        #
+        # @return [Class<Types::Float>]
+        #
+        # @api public
+        def self.type
+          Types::Float
+        end
+
         # Return the inverse function
         #
         # @example
@@ -39,13 +52,13 @@ module Axiom
         # Return the type returned from #call
         #
         # @example
-        #   type = square_root.type
+        #   type = square_root.type  # => Axiom::Types::Float
         #
-        # @return [Class<Attribute::Float>]
+        # @return [Class<Types::Float>]
         #
         # @api public
         def type
-          Attribute::Float
+          self.class.type
         end
 
         module Methods

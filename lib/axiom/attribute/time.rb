@@ -7,30 +7,16 @@ module Axiom
     class Time < Object
       include Comparable
 
-      DEFAULT_RANGE = (::Time.at(0)..::Time.at(2**31 - 1)).freeze
-
-      # The Time primitive
+      # The attribute type
       #
       # @example
-      #   Time.primitive  # => ::Time
+      #   type = Axiom::Attribute::Time.type  # => Axiom::Types::Time
       #
-      # @return [Class<::Time>]
-      #
-      # @api public
-      def self.primitive
-        ::Time
-      end
-
-      # The Time range for a valid value
-      #
-      # @example
-      #   Time.range  # => ::Time.utc(*from)..::Time.utc(*to)
-      #
-      # @return [Range<::Time>]
+      # @return [Class<Types::Time>]
       #
       # @api public
-      def range
-        DEFAULT_RANGE
+      def self.type
+        Types::Time
       end
 
     end # class Time

@@ -8,6 +8,10 @@ describe Attribute, '#rename' do
   let(:described_class) { Class.new(Attribute)                        }
   let(:object)          { described_class.new(:name, required: false) }
 
+  before do
+    described_class.stub(type: Types::Object)
+  end
+
   context 'when the new name is the same' do
     let(:name) { object.name }
 

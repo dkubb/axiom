@@ -35,13 +35,26 @@ module Axiom
         # Return the type returned from #call
         #
         # @example
-        #   type = division.type
+        #   type = Axiom::Function::Numeric::Division.type
+        #   # => Axiom::Types::Float
         #
-        # @return [Class<Attribute::Float>]
+        # @return [Class<Types::Float>]
+        #
+        # @api public
+        def self.type
+          Types::Float
+        end
+
+        # Return the type returned from #call
+        #
+        # @example
+        #   type = division.type  # => Axiom::Types::Float
+        #
+        # @return [Class<Types::Float>]
         #
         # @api public
         def type
-          Attribute::Float
+          self.class.type
         end
 
         module Methods

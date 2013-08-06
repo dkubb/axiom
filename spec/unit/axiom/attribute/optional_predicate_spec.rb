@@ -7,6 +7,10 @@ describe Attribute, '#optional?' do
 
   let(:described_class) { Class.new(Attribute) }
 
+  before do
+    described_class.stub(type: Types::Object)
+  end
+
   context 'without :required option passed to constructor' do
     let(:object) { described_class.new(:name) }
 
