@@ -6,16 +6,16 @@ module Axiom
     # Represents a Class value in a relation tuple
     class Class < Object
 
-      # The Class primitive
+      # The attribute type
       #
       # @example
-      #   Class.primitive  # => ::Class
+      #   type = Axiom::Attribute::Class.type  # => Axiom::Types::Class
       #
-      # @return [Class<::Class>]
+      # @return [Class<Types::Class>]
       #
       # @api public
-      def self.primitive
-        ::Class
+      def self.type
+        Types::Class
       end
 
     end # class Class

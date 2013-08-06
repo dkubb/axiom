@@ -11,16 +11,16 @@ module Axiom
               Function::Predicate::Inclusion::Methods,
               Aggregate::Count::Methods
 
-      # The Object primitive
+      # The attribute type
       #
       # @example
-      #   Object.primitive  # => ::Object
+      #   type = Axiom::Attribute::Object.type  # => Axiom::Types::Object
       #
-      # @return [Class<::Object>]
+      # @return [Class<Types::Object>]
       #
       # @api public
-      def self.primitive
-        ::Object
+      def self.type
+        Types::Object
       end
 
     end # class Object

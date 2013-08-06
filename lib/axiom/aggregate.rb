@@ -3,12 +3,9 @@
 module Axiom
 
   # Abstract class for aggregate functions
-  class Aggregate
-    include AbstractType, Visitable, Operation::Unary
+  class Aggregate < Function
+    include Operation::Unary
     include Equalizer.new(:operand)
-
-    abstract_singleton_method :call
-    abstract_method :type
 
     # Return the default accumulator
     #

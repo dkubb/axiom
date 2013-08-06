@@ -6,18 +6,16 @@ module Axiom
     # Represents a Float value in a relation tuple
     class Float < Numeric
 
-      DEFAULT_SIZE = (-::Float::MAX..::Float::MAX).freeze
-
-      # The Float primitive
+      # The attribute type
       #
       # @example
-      #   Float.primitive  # => ::Float
+      #   type = Axiom::Attribute::Float.type  # => Axiom::Types::Float
       #
-      # @return [Class<::Float>]
+      # @return [Class<Types::Float>]
       #
       # @api public
-      def self.primitive
-        ::Float
+      def self.type
+        Types::Float
       end
 
     end # class Float

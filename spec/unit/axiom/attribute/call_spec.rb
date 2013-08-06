@@ -10,5 +10,9 @@ describe Attribute, '#call' do
   let(:header)          { Relation::Header.new([object]) }
   let(:tuple)           { Tuple.new(header, [1])         }
 
+  before do
+    described_class.stub(type: Types::Object)
+  end
+
   it { should == 1 }
 end

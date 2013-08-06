@@ -12,6 +12,18 @@ module Axiom
               Function::Connective::Negation::Methods
       include Equalizer.new
 
+      # Return the type returned from #call
+      #
+      # @example
+      #   type = Axiom::Function::Proposition.type  # => Axiom::Types::Boolean
+      #
+      # @return [Class<Types::Boolean>]
+      #
+      # @api public
+      def self.type
+        Types::Boolean
+      end
+
       # Instantiate a new Proposition
       #
       # @example using a true value
@@ -81,18 +93,6 @@ module Axiom
       # @api public
       def inverse
         self.class.inverse.instance
-      end
-
-      # Return the type returned from #call
-      #
-      # @example
-      #   type = proposition.type
-      #
-      # @return [Class<Attribute::Boolean>]
-      #
-      # @api public
-      def type
-        Attribute::Boolean
       end
 
     end # class Proposition

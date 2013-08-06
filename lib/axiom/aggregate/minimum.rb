@@ -28,9 +28,9 @@ module Axiom
       # Return the type returned from #call
       #
       # @example
-      #   type = Axiom::Aggregate::Minimum.type
+      #   type = aggregate.type  # => Axiom::Types::Numeric
       #
-      # @return [Class<Attribute::Numeric>]
+      # @return [Class<Types::Numeric>]
       #
       # @api public
       def type

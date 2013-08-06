@@ -9,31 +9,16 @@ module Axiom
               Function::Connective::Disjunction::Methods,
               Function::Connective::Negation::Methods
 
-      # The Boolean primitive
+      # The attribute type
       #
       # @example
-      #   Boolean.primitive  # => TrueClass
+      #   type = Axiom::Attribute::Boolean.type  # => Axiom::Types::Boolean
       #
-      # @return [Class<TrueClass>]
-      #
-      # @api public
-      def self.primitive
-        ::TrueClass
-      end
-
-      # Test if the value is a boolean
-      #
-      # @example
-      #   boolean.valid_value?(value)  # => true or false
-      #
-      # @param [Object] value
-      #   the value to test
-      #
-      # @return [Boolean]
+      # @return [Class<Types::Boolean>]
       #
       # @api public
-      def valid_value?(value)
-        valid_or_optional?(value) { super || value.kind_of?(::FalseClass) }
+      def self.type
+        Types::Boolean
       end
 
     end # class Boolean

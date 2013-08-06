@@ -7,30 +7,16 @@ module Axiom
     class DateTime < Object
       include Comparable
 
-      DEFAULT_RANGE = (::DateTime.new..::DateTime::Infinity.new).freeze
-
-      # The DateTime primitive
+      # The attribute type
       #
       # @example
-      #   DateTime.primitive  # => ::DateTime
+      #   type = Axiom::Attribute::DateTime.type  # => Axiom::Types::DateTime
       #
-      # @return [Class<::DateTime>]
-      #
-      # @api public
-      def self.primitive
-        ::DateTime
-      end
-
-      # The DateTime range for a valid value
-      #
-      # @example
-      #   DateTime.range  # => ::DateTime.new(*from)..::DateTime.new(*to)
-      #
-      # @return [Range<::DateTime>]
+      # @return [Class<Types::DateTime>]
       #
       # @api public
-      def range
-        DEFAULT_RANGE
+      def self.type
+        Types::DateTime
       end
 
     end # class DateTime

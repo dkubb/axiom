@@ -59,7 +59,10 @@ module Axiom
       def add(attribute, object = Undefined, &block)
         object = block if object.equal?(Undefined)
         type   = Attribute.infer_type(object)
-        functions[type.coerce(attribute)] = object
+        klass  = Attribute.descendants.detect do |descendant|
+          descendant.type >= type
+        end
+        functions[klass.coerce(attribute)] = object
         self
       end
 

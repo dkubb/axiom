@@ -54,6 +54,23 @@ module Axiom
         end
       end
 
+      # Return the type returned from #call
+      #
+      # Find the lowest common ancestor between the types.
+      #
+      # @example
+      #   type = binary.type  # => Axiom::Types::Object
+      #
+      # @return [Class<Types::Numeric>]
+      #
+      # @api public
+      def type
+        base = super.singleton_class
+        [left, right].map do |operand|
+          Attribute.infer_type(operand).ancestors.grep(base)
+        end.inject(:&).first
+      end
+
       # Mixin for invertable binary functions
       module Invertible
 

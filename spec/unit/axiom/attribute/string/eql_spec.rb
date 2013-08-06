@@ -59,8 +59,8 @@ describe Attribute::String, '#eql?' do
     end
   end
 
-  context 'with an object having a different min_length' do
-    let(:other) { described_class.new(name, min_length: 1) }
+  context 'with an object having a different minimum_length' do
+    let(:other) { described_class.new(name, minimum_length: 1) }
 
     it { should be(false) }
 
@@ -69,8 +69,8 @@ describe Attribute::String, '#eql?' do
     end
   end
 
-  context 'with an object having a different max_length' do
-    let(:other) { described_class.new(name, max_length: 100) }
+  context 'with an object having a different maximum_length' do
+    let(:other) { described_class.new(name, maximum_length: 100) }
 
     it { should be(false) }
 

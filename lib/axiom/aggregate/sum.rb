@@ -42,8 +42,8 @@ module Axiom
       #
       # @api public
       def default
-        if    type.equal?(Attribute::Float)   then super.to_f
-        elsif type.equal?(Attribute::Decimal) then BigDecimal(super.to_s)
+        if    type <= Types::Float   then super.to_f
+        elsif type <= Types::Decimal then BigDecimal(super)
         else
           super
         end
@@ -52,9 +52,9 @@ module Axiom
       # Return the type returned from #call
       #
       # @example
-      #   type = Axiom::Aggregate::Sum.type
+      #   type = aggregate.type  # => Axiom::Types::Numeric
       #
-      # @return [Class<Attribute::Numeric>]
+      # @return [Class<Types::Numeric>]
       #
       # @api public
       def type

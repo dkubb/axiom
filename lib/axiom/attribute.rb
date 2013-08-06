@@ -6,7 +6,9 @@ module Axiom
   class Attribute
     extend Aliasable, DescendantsTracker
     include AbstractType, ::Comparable, Visitable
-    include Equalizer.new(:name, :required?)
+    include Equalizer.new(:name, :type, :required?)
+
+    abstract_singleton_method :type
 
     # The attribute name
     #
@@ -15,13 +17,12 @@ module Axiom
     # @api private
     attr_reader :name
 
-    # The attribute options
+    # The attribute type
     #
-    # @return [Hash]
+    # @return [Class<Types::Object>]
     #
     # @api private
-    attr_reader :options
-    private :options
+    attr_reader :type
 
     # Coerce an object into an Attribute
     #
@@ -66,12 +67,10 @@ module Axiom
     #
     # @api private
     def self.infer_type(operand)
-      case operand
-      when Attribute, Function, Aggregate then operand.type
-      when ::FalseClass                   then Boolean
+      if operand.respond_to?(:type)
+        operand.type
       else
-        type = operand.class
-        descendants.detect { |descendant| type <= descendant.primitive }
+        Types::Type.descendants.detect { |type| type.include?(operand) }
       end
     end
 
@@ -89,8 +88,8 @@ module Axiom
     # @api private
     def initialize(name, options = EMPTY_HASH)
       @name     = name.to_sym
-      @options  = freeze_object(options)
-      @required = @options.fetch(:required, true)
+      @required = options.fetch(:required, true)
+      @type     = self.class.type
     end
 
     # Extract the value corresponding to this attribute from a tuple
@@ -122,19 +121,11 @@ module Axiom
     #
     # @api public
     def rename(new_name)
-      name.equal?(new_name) ? self : self.class.new(new_name, options)
-    end
-
-    # Return the type returned from #call
-    #
-    # @example
-    #   type = attribute.type
-    #
-    # @return [Class<Attribute>]
-    #
-    # @api public
-    def type
-      self.class
+      if name.equal?(new_name)
+        self
+      else
+        self.class.new(new_name, required: required?)
+      end
     end
 
     # Test if the attribute is required
@@ -161,25 +152,10 @@ module Axiom
       ! required?
     end
 
-    # Test if a value is the correct primitive type
-    #
-    # @example
-    #   attribute.valid_primitive?(value)  # => true or false
-    #
-    # @param [Object] value
-    #   the value to test
-    #
-    # @return [Boolean]
-    #
-    # @api public
-    def valid_primitive?(value)
-      value.kind_of?(self.class.primitive)
-    end
-
     # Test if the value matches the attribute constraints
     #
     # @example
-    #   attribute.valid_value?(value)  # => true or false
+    #   attribute.include?(value)  # => true or false
     #
     # @param [Object] value
     #   the value to test
@@ -187,8 +163,8 @@ module Axiom
     # @return [Boolean]
     #
     # @api public
-    def valid_value?(value)
-      valid_or_optional?(value) { valid_primitive?(value) }
+    def include?(value)
+      valid_or_optional?(value, &type.method(:include?))
     end
 
   private
@@ -204,7 +180,7 @@ module Axiom
     #
     # @api private
     def valid_or_optional?(value)
-      value.nil? ? optional? : yield
+      value.nil? ? optional? : yield(value)
     end
 
     # Coerce the object into an Attribute

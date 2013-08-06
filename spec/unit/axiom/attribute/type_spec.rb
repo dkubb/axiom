@@ -2,11 +2,11 @@
 
 require 'spec_helper'
 
-describe Aggregate, '#type' do
+describe Attribute, '#type' do
   subject { object.type }
 
-  let(:described_class) { Class.new(Attribute)       }
-  let(:object)          { described_class.new(:name) }
+  let(:described_class) { Class.new(Attribute) }
+  let(:object)          { described_class      }
 
-  it { should be(described_class) }
+  specify { expect { subject }.to raise_error(NotImplementedError, "#{object}.type is not implemented") }
 end

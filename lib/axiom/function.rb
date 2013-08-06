@@ -6,8 +6,8 @@ module Axiom
   class Function
     include AbstractType, Adamantium, Visitable
 
-    abstract_singleton_method :call
-    abstract_method :rename, :type
+    abstract_singleton_method :call, :type
+    abstract_method :rename
 
     # Rename the attribute(s) inside the function
     #
@@ -40,6 +40,18 @@ module Axiom
     # @api private
     def self.extract_value(operand, tuple)
       operand.respond_to?(:call) ? operand.call(tuple) : operand
+    end
+
+    # Return the function type
+    #
+    # @example
+    #   type = function.type  # => Axiom::Types::Object
+    #
+    # @return [Class<Types::Object>]
+    #
+    # @api public
+    def type
+      self.class.type
     end
 
   end # class Function

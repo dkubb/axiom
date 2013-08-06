@@ -53,13 +53,13 @@ module Axiom
       # Return the type returned from #call
       #
       # @example
-      #   type = Axiom::Aggregate::Variance.type
+      #   type = Axiom::Aggregate::Variance.type  # => Axiom::Types::Float
       #
-      # @return [Class<Attribute::Float>]
+      # @return [Class<Types::Float>]
       #
       # @api public
-      def type
-        Attribute::Float
+      def self.type
+        Types::Float
       end
 
       module Methods
