@@ -10,12 +10,19 @@ module Axiom
     # @return [undefined]
     #
     # @api private
-    def initialize(*)
-      super
+    #
+    # TODO: this monkey-patches equalizer and should be removed
+    def initialize(*keys)
+      @keys = keys
+      define_methods
+      include_comparison_methods
+
       module_eval do
         include Adamantium
         memoize :hash
       end
+
+      freeze
     end
 
   end # class Equalizer
