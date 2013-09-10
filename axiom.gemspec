@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- spec/{unit,integration}`.split("\n")
   gem.extra_rdoc_files = %w[LICENSE README.md CONTRIBUTING.md TODO]
 
-  gem.add_dependency('abstract_type',       '~> 0.0.5')
+  gem.add_dependency('abstract_type',       '~> 0.0.6')
   gem.add_dependency('adamantium',          '~> 0.1')
   gem.add_dependency('axiom-types',         '~> 0.0.3')
   gem.add_dependency('descendants_tracker', '~> 0.0.1')
