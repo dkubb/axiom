@@ -1,5 +1,4 @@
-axiom
-=====
+# axiom
 
 Simplifies querying of structured data using relational algebra.
 
@@ -15,8 +14,7 @@ Simplifies querying of structured data using relational algebra.
 [codeclimate]: https://codeclimate.com/github/dkubb/axiom
 [coveralls]: https://coveralls.io/r/dkubb/axiom
 
-Examples
---------
+## Examples
 
 ```ruby
 relation = Axiom::Relation.new(
@@ -129,8 +127,7 @@ new_relation = relation.replace(other)
 keys = header.keys
 ```
 
-Goals
------
+## Goals
 
 The purpose of this project is to expand my knowledge of relational algebra by attempting to implement a simple query system using the primitive operations defined in relational algebra.
 
@@ -142,8 +139,7 @@ The ability to join data from multiple datastores and have it presented in a con
 
 Not only does this work nicely with associations, but it will allow DataMapper to perform mapping in a more powerful way. You'll be able to construct a join from multiple datastores, and set that as the base for your model. Each DM Resource would work as normal, but again writes could be propagated back to the appropriate datastore. You'd be able to split your data up between different datastores, but assemble it into one coherent view.
 
-Related Projects
-----------------
+## Related Projects
 
 * [axiom-optimizer](https://github.com/dkubb/axiom-optimizer)
 
@@ -157,12 +153,10 @@ This is a visitor class that takes a Axiom relation and generates valid SQL from
 
 This is a system that manages the database connections and executes the SQL generated from the relations.
 
-Contributing
-------------
+## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
-Copyright
----------
+## Copyright
 
 Copyright &copy; 2009-2013 Dan Kubb. See LICENSE for details.
