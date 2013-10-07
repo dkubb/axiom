@@ -99,8 +99,6 @@ module Axiom
       # A materialized relation variable
       class Materialized < self
 
-      private
-
         # Mutate and materialize the relation variable
         #
         # @return [undefined]
@@ -110,6 +108,7 @@ module Axiom
           super
           @relation = relation.materialize
         end
+        private :mutate_relation
 
       end # class Materialized
     end # class Variable

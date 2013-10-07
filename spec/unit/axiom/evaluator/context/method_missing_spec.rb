@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe Evaluator::Context, '#method_missing' do
-  let(:attribute) { Attribute::Integer.new(:id)       }
-  let(:header)    { Relation::Header.new([attribute]) }
-  let(:object)    { described_class.new(header) {}    }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:header)    { Relation::Header.new([attribute])        }
+  let(:object)    { described_class.new(header, &EMPTY_PROC) }
 
   context 'with a valid attribute' do
     subject { object.id }

@@ -33,7 +33,7 @@ describe Evaluator::Context, '#add' do
   context 'when a proc is provided' do
     subject { described_class.new(header) { |object| object.add(:block, block) } }
 
-    let(:block) { proc {} }
+    let(:block) { EMPTY_PROC }
 
     its(:functions) { should eql(Attribute::Object.new(:block) => block) }
 
@@ -45,7 +45,7 @@ describe Evaluator::Context, '#add' do
   context 'when a block is provided' do
     subject { described_class.new(header) { |object| object.add(:block, &block) } }
 
-    let(:block) { proc {} }
+    let(:block) { EMPTY_PROC }
 
     its(:functions) { should eql(Attribute::Object.new(:block) => block) }
 

@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Evaluator::Context, '#respond_to?' do
   subject { object.respond_to?(method, include_private) }
 
-  let(:attribute) { Attribute::Integer.new(:id)       }
-  let(:header)    { Relation::Header.new([attribute]) }
-  let(:object)    { described_class.new(header) {}    }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:header)    { Relation::Header.new([attribute])        }
+  let(:object)    { described_class.new(header, &EMPTY_PROC) }
 
   context 'when the method is an attribute name and include_private is true' do
     let(:method)          { attribute.name }
