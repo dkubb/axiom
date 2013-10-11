@@ -145,6 +145,7 @@ require 'axiom/relation/operation/binary'
 require 'axiom/relation/operation/combination'
 
 require 'axiom/relation/operation/limit'
+require 'axiom/relation/operation/nest'
 require 'axiom/relation/operation/offset'
 require 'axiom/relation/operation/order'
 require 'axiom/relation/operation/order/direction'
