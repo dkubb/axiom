@@ -142,13 +142,14 @@ require 'axiom/relation/empty'
 require 'axiom/relation/operation/unary'
 require 'axiom/relation/operation/binary'
 require 'axiom/relation/operation/combination'
-require 'axiom/relation/operation/set'
+
+require 'axiom/relation/operation/limit'
 require 'axiom/relation/operation/offset'
 require 'axiom/relation/operation/order'
 require 'axiom/relation/operation/order/direction'
 require 'axiom/relation/operation/order/direction_set'
-require 'axiom/relation/operation/limit'
 require 'axiom/relation/operation/reverse'
+require 'axiom/relation/operation/set'
 
 require 'axiom/algebra/difference'
 require 'axiom/algebra/extension'
@@ -167,11 +168,14 @@ require 'axiom/algebra/union'
 require 'axiom/relation/operation/deletion'
 require 'axiom/relation/operation/insertion'
 
+require 'axiom-types'
+
 require 'axiom/attribute/comparable'
 
 require 'axiom/attribute'
 require 'axiom/attribute/object'
 require 'axiom/attribute/numeric'
+
 require 'axiom/attribute/boolean'
 require 'axiom/attribute/class'
 require 'axiom/attribute/date'
@@ -179,8 +183,8 @@ require 'axiom/attribute/date_time'
 require 'axiom/attribute/decimal'
 require 'axiom/attribute/float'
 require 'axiom/attribute/integer'
-require 'axiom/attribute/time'
 require 'axiom/attribute/string'
+require 'axiom/attribute/time'
 
 require 'axiom/function/numeric'
 
@@ -199,8 +203,6 @@ require 'axiom/function/string/length'
 
 require 'axiom/tuple'
 require 'axiom/version'
-
-require 'axiom-types'
 
 module Axiom
 
