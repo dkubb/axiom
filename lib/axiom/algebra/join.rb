@@ -189,9 +189,9 @@ module Axiom
         # @return [Join, Restriction]
         #
         # @api public
-        def join(other)
+        def join(other, &block)
           relation = Join.new(self, other)
-          relation = relation.restrict { |context| yield context } if block_given?
+          relation = relation.restrict(&block) if block
           relation
         end
 
