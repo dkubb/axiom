@@ -170,6 +170,7 @@ require 'axiom/relation/operation/deletion'
 require 'axiom/relation/operation/insertion'
 
 require 'axiom-types'
+require 'axiom/types/relation'
 
 require 'axiom/attribute/comparable'
 
