@@ -92,6 +92,7 @@ NestedIterators:
   - Axiom::Equalizer#define_cmp_method
   - Axiom::Equalizer#define_hash_method
   - Axiom::Equalizer#define_inspect_method
+  - Axiom::Relation::Operation::Unnest#each
   max_allowed_nesting: 1
   ignore_iterators: []
 NilCheck:

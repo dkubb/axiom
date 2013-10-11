@@ -5,6 +5,7 @@ script: "bundle exec rake ci:metrics"
 rvm:
   - 1.9.3
   - 2.0.0
+  - ruby-head
   - rbx-19mode
 matrix:
   include:
@@ -13,10 +14,8 @@ matrix:
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
   allow_failures:
-    - rvm: 1.9.3       # mutant fails
-    - rvm: 2.0.0       # mutant fails
+    - rvm: jruby-head  # travis broken
     - rvm: ruby-head   # travis broken
-    - rvm: rbx-19mode  # mutant fails
 notifications:
   irc:
     channels:

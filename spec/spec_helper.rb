@@ -44,13 +44,13 @@ RSpec.configure do |config|
 
   # Record the original Type descendants
   config.before do
-    Axiom::Types.finalize
-    @original_type_descendants = Axiom::Types::Type.descendants.dup
+    Types.finalize
+    @original_type_descendants = Types::Type.descendants.dup
   end
 
   # Reset the Type descendants
   config.after do
-    Axiom::Types::Type.descendants.replace(@original_type_descendants)
-    Axiom::Types.instance_variable_get(:@inference_cache).clear
+    Types::Type.descendants.replace(@original_type_descendants)
+    Types.instance_variable_get(:@inference_cache).clear
   end
 end
