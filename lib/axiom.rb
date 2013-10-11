@@ -185,6 +185,7 @@ require 'axiom/attribute/date_time'
 require 'axiom/attribute/decimal'
 require 'axiom/attribute/float'
 require 'axiom/attribute/integer'
+require 'axiom/attribute/relation'
 require 'axiom/attribute/string'
 require 'axiom/attribute/time'
 
