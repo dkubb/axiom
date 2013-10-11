@@ -52,8 +52,6 @@
     and instead wrap materialized relations in the Order object
     if any.
 
-* Add Relation#nest and Relation#unnest
-
 * Update Attributes so that constraints are modelled using predicates,
   so that when "join-ability" is tested, the predicates can just be
   compared for equality.
