@@ -11,7 +11,7 @@ describe Relation::Header, '#context' do
   let(:context)   { double('context')                   }
 
   before do
-    Axiom::Evaluator::Context.should_receive(:new).with(object)
+    Evaluator::Context.should_receive(:new).with(object)
       .and_yield(context)
       .and_return(context)
   end
