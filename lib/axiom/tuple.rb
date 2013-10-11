@@ -127,6 +127,30 @@ module Axiom
       data.values_at(*header).freeze
     end
 
+    # Coerce the tuple into a Hash
+    #
+    # @example
+    #   tuple.to_hash  # => data as a Hash
+    #
+    # @return [Hash{Symbol => Object}]
+    #
+    # @api public
+    def to_hash
+      Hash[data.map { |attribute, value| [attribute.name, value] }]
+    end
+
+    # Display the tuple data in a human readable form
+    #
+    # @example
+    #   tuple.inspect  # => data as a String
+    #
+    # @return [String]
+    #
+    # @api public
+    def inspect
+      to_hash.inspect
+    end
+
   private
 
     # Coerce an Array-like object into a Tuple
@@ -155,7 +179,7 @@ module Axiom
       object.kind_of?(Tuple) ? object : new(header, object.to_ary)
     end
 
-    memoize :predicate, :to_ary
+    memoize :predicate, :to_ary, :to_hash, :inspect
 
   end # class Tuple
 end # module Axiom

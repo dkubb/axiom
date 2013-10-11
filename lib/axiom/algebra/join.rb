@@ -47,12 +47,9 @@ module Axiom
         return to_enum unless block_given?
         util  = Relation::Operation::Combination
         index = build_index
-
         left.each do |left_tuple|
-          right_tuples = index[join_tuple(left_tuple)]
-          util.combine_tuples(header, left_tuple, right_tuples, &block)
+          util.combine_tuples(header, left_tuple, index[left_tuple], &block)
         end
-
         self
       end
 
@@ -94,27 +91,7 @@ module Axiom
       #
       # @api private
       def build_index
-        index = Hash.new { |hash, tuple| hash[tuple] = Set.new }
-        right.each { |tuple| index[join_tuple(tuple)] << disjoint_tuple(tuple) }
-        index
-      end
-
-      # Generate a tuple with the join attributes between relations
-      #
-      # @return [Tuple]
-      #
-      # @api private
-      def join_tuple(tuple)
-        tuple.project(join_header)
-      end
-
-      # Generate a tuple with the disjoint attributes between relations
-      #
-      # @return [Tuple]
-      #
-      # @api private
-      def disjoint_tuple(tuple)
-        tuple.project(@disjoint_header)
+        Index.new(join_header, @disjoint_header).merge(right)
       end
 
       # Insert the other relation into the left operand
@@ -189,9 +166,9 @@ module Axiom
         # @return [Join, Restriction]
         #
         # @api public
-        def join(other)
+        def join(other, &block)
           relation = Join.new(self, other)
-          relation = relation.restrict { |context| yield context } if block_given?
+          relation = relation.restrict(&block) if block
           relation
         end
 

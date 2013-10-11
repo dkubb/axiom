@@ -1,0 +1,14 @@
+# encoding: utf-8
+
+require 'spec_helper'
+
+describe Tuple, '#to_hash' do
+  subject { object.to_hash }
+
+  let(:header) { Relation::Header.coerce([[:id, Integer]]) }
+  let(:object) { described_class.new(header, [1])          }
+
+  it_should_behave_like 'an idempotent method'
+
+  it { should eql(id: 1) }
+end
