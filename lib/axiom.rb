@@ -132,6 +132,7 @@ require 'axiom/relation/proxy'
 
 require 'axiom/relation/keys'
 require 'axiom/relation/header'
+require 'axiom/relation/index'
 
 require 'axiom/relation/base'
 require 'axiom/relation/variable'
