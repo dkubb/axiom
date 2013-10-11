@@ -36,7 +36,7 @@ module Axiom
       # @api private
       def self.assert_disjointed_headers(left, right)
         if (left.header & right.header).any?
-          raise InvalidHeaderError, 'the headers must be disjointed'
+          fail InvalidHeaderError, 'the headers must be disjointed'
         end
       end
 
@@ -77,7 +77,7 @@ module Axiom
       #
       # @api public
       def insert(*)
-        raise ImmutableRelationError, 'inserting into a product is impossible'
+        fail ImmutableRelationError, 'inserting into a product is impossible'
       end
 
       # Raise an exception when deleting from the Product
@@ -92,7 +92,7 @@ module Axiom
       #
       # @api public
       def delete(*)
-        raise ImmutableRelationError, 'deleting from a product is impossible'
+        fail ImmutableRelationError, 'deleting from a product is impossible'
       end
 
       module Methods

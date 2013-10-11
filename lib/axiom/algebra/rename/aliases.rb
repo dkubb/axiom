@@ -39,7 +39,7 @@ module Axiom
         # @api private
         def self.assert_unique_aliases(aliases)
           if aliases.values.uniq!
-            raise DuplicateAliasError, 'the aliases must be unique'
+            fail DuplicateAliasError, 'the aliases must be unique'
           end
         end
 

@@ -149,7 +149,7 @@ module Axiom
     #
     # @api public
     def optional?
-      ! required?
+      !required?
     end
 
     # Test if the value matches the attribute constraints

@@ -66,7 +66,7 @@ module Axiom
           # @api private
           def assert_ordered_match(left, right)
             if left.directions.empty? != right.directions.empty?
-              raise RelationMismatchError, 'both relations must be ordered or neither may be ordered'
+              fail RelationMismatchError, 'both relations must be ordered or neither may be ordered'
             end
           end
 

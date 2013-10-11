@@ -57,7 +57,7 @@ module Axiom
         # @api private
         def self.assert_ordered_operand(operand)
           if operand.header.to_ary.size != operand.directions.to_ary.size
-            raise OrderedRelationRequiredError, 'can only offset an ordered operand'
+            fail OrderedRelationRequiredError, 'can only offset an ordered operand'
           end
         end
 
@@ -73,7 +73,7 @@ module Axiom
         # @api private
         def self.assert_valid_offset(offset)
           if offset.nil? || offset < 0
-            raise InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
+            fail InvalidOffsetError, "offset must be greater than or equal to 0, but was #{offset.inspect}"
           end
         end
 
@@ -129,7 +129,7 @@ module Axiom
         #
         # @api public
         def insert(*)
-          raise ImmutableRelationError, 'inserting into an offset is impossible'
+          fail ImmutableRelationError, 'inserting into an offset is impossible'
         end
 
         # Raise an exception when deleting from the Offset
@@ -144,7 +144,7 @@ module Axiom
         #
         # @api public
         def delete(*)
-          raise ImmutableRelationError, 'deleting from an offset is impossible'
+          fail ImmutableRelationError, 'deleting from an offset is impossible'
         end
 
         module Methods

@@ -57,7 +57,7 @@ module Axiom
         # @api private
         def self.assert_ordered_operand(operand)
           if operand.header.to_ary.size != operand.directions.to_ary.size
-            raise OrderedRelationRequiredError, 'can only limit an ordered operand'
+            fail OrderedRelationRequiredError, 'can only limit an ordered operand'
           end
         end
 
@@ -73,7 +73,7 @@ module Axiom
         # @api private
         def self.assert_valid_limit(limit)
           if limit.nil? || limit < 0
-            raise InvalidLimitError, "limit must be greater than or equal to 0, but was #{limit.inspect}"
+            fail InvalidLimitError, "limit must be greater than or equal to 0, but was #{limit.inspect}"
           end
         end
 
@@ -130,7 +130,7 @@ module Axiom
         #
         # @api public
         def insert(*)
-          raise ImmutableRelationError, 'inserting into a limit is impossible'
+          fail ImmutableRelationError, 'inserting into a limit is impossible'
         end
 
         # Raise an exception when deleting from the Limit
@@ -145,7 +145,7 @@ module Axiom
         #
         # @api public
         def delete(*)
-          raise ImmutableRelationError, 'deleting from a limit is impossible'
+          fail ImmutableRelationError, 'deleting from a limit is impossible'
         end
 
         module Methods
@@ -230,7 +230,7 @@ module Axiom
             tuples = take(ONE_LIMIT).to_a
             assert_no_more_than_one_tuple(tuples.size)
             tuples.first or block.yield or
-              raise NoTuplesError, 'one tuple expected, but was an empty set'
+              fail NoTuplesError, 'one tuple expected, but was an empty set'
           end
 
         private
@@ -245,7 +245,7 @@ module Axiom
           # @api private
           def assert_no_more_than_one_tuple(size)
             if size > 1
-              raise(
+              fail(
                 ManyTuplesError,
                 "one tuple expected, but set contained #{count} tuples"
               )

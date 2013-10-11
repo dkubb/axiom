@@ -12,8 +12,8 @@ describe Relation::Header, '.coerce' do
     subject { object.coerce(argument, &block) }
 
     context 'when the argument is a Header' do
-      let(:argument) { header                            }
-      let(:block)    { proc { raise 'should not raise' } }
+      let(:argument) { header                          }
+      let(:block)    { proc { fail 'should not fail' } }
 
       it { should be(header) }
     end

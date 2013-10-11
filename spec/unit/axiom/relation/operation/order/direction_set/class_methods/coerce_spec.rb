@@ -14,8 +14,8 @@ describe Relation::Operation::Order::DirectionSet, '.coerce' do
     subject { object.coerce(argument, &block) }
 
     context 'when the argument is a DirectionSet' do
-      let(:argument) { direction_set                     }
-      let(:block)    { proc { raise 'should not raise' } }
+      let(:argument) { direction_set                   }
+      let(:block)    { proc { fail 'should not fail' } }
 
       it { should be(direction_set) }
     end

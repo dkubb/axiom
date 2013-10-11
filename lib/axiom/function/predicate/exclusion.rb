@@ -22,7 +22,7 @@ module Axiom
         #
         # @api public
         def self.call(left, right)
-          ! right.send(Enumerable.compare_method(right), left)
+          !right.send(Enumerable.compare_method(right), left)
         end
 
         # Return the inverse predicate class

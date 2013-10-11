@@ -34,7 +34,7 @@ module Axiom
         # @api private
         def self.assert_ordered_operand(operand)
           if operand.header.to_ary.size != operand.directions.to_ary.size
-            raise OrderedRelationRequiredError, 'can only reverse an ordered operand'
+            fail OrderedRelationRequiredError, 'can only reverse an ordered operand'
           end
         end
 

@@ -55,7 +55,7 @@ module Axiom
       # @api private
       def self.assert_subset_headers(operand, summarize_per)
         unless summarize_per.header.to_set.proper_subset?(operand.header.to_set)
-          raise InvalidHeaderError, 'the summarize_per header must be a proper subset of the operand header'
+          fail InvalidHeaderError, 'the summarize_per header must be a proper subset of the operand header'
         end
       end
 
@@ -112,7 +112,7 @@ module Axiom
       #
       # @api public
       def insert(*)
-        raise ImmutableRelationError, 'inserting into a summarization is impossible'
+        fail ImmutableRelationError, 'inserting into a summarization is impossible'
       end
 
       # Raise an exception when deleting from a Summarization
@@ -127,7 +127,7 @@ module Axiom
       #
       # @api public
       def delete(*)
-        raise ImmutableRelationError, 'deleting from a summarization is impossible'
+        fail ImmutableRelationError, 'deleting from a summarization is impossible'
       end
 
     private

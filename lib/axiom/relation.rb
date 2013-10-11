@@ -238,7 +238,7 @@ module Axiom
     #
     # @api private
     def self.coerce(header, object)
-      if object.kind_of?(Relation) || ! object.kind_of?(Enumerable)
+      if object.kind_of?(Relation) || !object.kind_of?(Enumerable)
         object
       else
         Relation.new(header, object)

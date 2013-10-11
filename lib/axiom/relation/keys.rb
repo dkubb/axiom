@@ -80,7 +80,7 @@ module Axiom
       def self.assert_irreducible_keys(keys)
         reducible_keys = reducible_keys(keys)
         if reducible_keys
-          raise ReducibleKeyError, "reducible keys: #{reducible_keys.inspect}"
+          fail ReducibleKeyError, "reducible keys: #{reducible_keys.inspect}"
         end
       end
 

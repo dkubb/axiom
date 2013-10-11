@@ -36,7 +36,7 @@ module Axiom
         #
         # @api public
         def self.call(operand)
-          ! operand
+          !operand
         end
 
         # Return the operand

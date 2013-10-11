@@ -90,7 +90,7 @@ module Axiom
       def self.assert_unique_names(names)
         duplicates = duplicate_names(names)
         if duplicates
-          raise DuplicateNameError, "duplicate names: #{duplicates.inspect}"
+          fail DuplicateNameError, "duplicate names: #{duplicates.inspect}"
         end
       end
 
@@ -162,7 +162,7 @@ module Axiom
       # @api public
       def call(name)
         @attribute_for.fetch(Attribute.name_from(name)) do |attribute_name|
-          raise(
+          fail(
             UnknownAttributeError,
             "the attribute #{attribute_name} is unknown"
           )

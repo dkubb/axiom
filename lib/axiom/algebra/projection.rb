@@ -102,7 +102,7 @@ module Axiom
       def assert_removed_attributes_optional
         names = required_attribute_names
         if names.any?
-          raise RequiredAttributesError, "required attributes #{names.inspect} have been removed"
+          fail RequiredAttributesError, "required attributes #{names.inspect} have been removed"
         end
       end
 
@@ -118,7 +118,7 @@ module Axiom
       # @api private
       def assert_equivalent_headers(other)
         if header != other.header
-          raise InvalidHeaderError, 'the headers must be equivalent'
+          fail InvalidHeaderError, 'the headers must be equivalent'
         end
       end
 

@@ -119,7 +119,7 @@ module Axiom
         # @api private
         def assert_matching_directions(other, event)
           unless other.kind_of?(self.class) && directions.eql?(other.directions)
-            raise OrderMismatchError, "other relation must have matching directions to be #{event}"
+            fail OrderMismatchError, "other relation must have matching directions to be #{event}"
           end
         end
 
