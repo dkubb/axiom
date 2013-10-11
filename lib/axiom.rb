@@ -152,6 +152,7 @@ require 'axiom/relation/operation/order/direction'
 require 'axiom/relation/operation/order/direction_set'
 require 'axiom/relation/operation/reverse'
 require 'axiom/relation/operation/set'
+require 'axiom/relation/operation/unnest'
 
 require 'axiom/algebra/difference'
 require 'axiom/algebra/extension'
