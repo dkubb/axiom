@@ -1,5 +1,6 @@
+--backtrace
 --color
 --format progress
+--order random
 --profile
 --warnings
---order random
