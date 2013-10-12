@@ -39,6 +39,15 @@ module Axiom
         Axiom::Relation::Operation::Order::Descending.new(self)
       end
 
+      # The range for the objects
+      #
+      # @return [Range]
+      #
+      # @api public
+      def range
+        type.range
+      end
+
     end # module Comparable
   end # class Attribute
 end # module Axiom
