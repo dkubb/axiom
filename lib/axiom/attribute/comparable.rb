@@ -3,7 +3,7 @@
 module Axiom
   class Attribute
 
-    # A mixin for attributes that have comparable values
+    # A mixin for attributes that have comparable objects
     module Comparable
       include Function::Predicate::GreaterThan::Methods,
               Function::Predicate::GreaterThanOrEqualTo::Methods,
