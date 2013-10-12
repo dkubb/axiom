@@ -34,7 +34,8 @@ module Axiom
           directions = DirectionSet.coerce(directions) do |direction|
             header[direction] unless direction.kind_of?(Direction)
           end
-          directions |= header - directions.attributes
+          new_directions = directions | header - directions.attributes
+          directions     = new_directions if new_directions != directions
           super
         end
 

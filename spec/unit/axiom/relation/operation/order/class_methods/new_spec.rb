@@ -108,7 +108,7 @@ describe Relation::Operation::Order, '.new' do
 
       its(:operand) { should be(relation) }
 
-      its(:directions) { should == [relation[:id].desc, relation[:name].desc] }
+      its(:directions) { should be(directions) }
     end
 
     context 'partial header' do
