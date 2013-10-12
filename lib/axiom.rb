@@ -175,6 +175,8 @@ require 'axiom-types'
 require 'axiom/types/relation'
 
 require 'axiom/attribute/comparable'
+require 'axiom/attribute/length_comparable'
+require 'axiom/attribute/value_comparable'
 
 require 'axiom/attribute'
 require 'axiom/attribute/object'

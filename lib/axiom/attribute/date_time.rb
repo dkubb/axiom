@@ -5,7 +5,7 @@ module Axiom
 
     # Represents a DateTime value in a relation tuple
     class DateTime < Object
-      include Comparable
+      include ValueComparable
 
       # The attribute type
       #

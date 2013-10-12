@@ -5,7 +5,7 @@ module Axiom
 
     # Represents a Time value in a relation tuple
     class Time < Object
-      include Comparable
+      include ValueComparable
 
       # The attribute type
       #
