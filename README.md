@@ -63,9 +63,10 @@ new_relation = relation.union(other)       # OR relation | other
 new_relation = relation.difference(other)  # OR relation - other
 
 # theta-join
+#
+# NOTE: theta-join is effectively restricting a product of the relations
 new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
 
-# NOTE: theta-join is effectively restricting a product of the relations
 
 # extend
 new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
