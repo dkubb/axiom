@@ -81,6 +81,9 @@ new_relation = relation.summarize(relation.project([:city])) { |r| r.add(:count)
 # returns a set that represents the relation header
 header = relation.header
 
+# each subset of unique keys as header objects
+key_headers = header.keys
+
 # a relation is Enumerable
 relation = relation.each { |tuple| ... }
 
@@ -122,9 +125,6 @@ new_relation = relation.delete(other)
 
 # replace a relation variable with another set
 new_relation = relation.replace(other)
-
-# each subset of unique keys as header objects
-keys = header.keys
 ```
 
 ## Goals
