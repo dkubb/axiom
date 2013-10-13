@@ -61,15 +61,15 @@ module Axiom
           # Return a unnested relation
           #
           # @example
-          #   unnested = relation.unnest(:location)
+          #   unnested = relation.unnest(:location, :names)
           #
-          # @param [#to_sym] name
+          # @param [Enumerable<#to_sym>] names
           #
           # @return [Unnest]
           #
           # @api public
-          def unnest(name)
-            Unnest.new(self, name)
+          def unnest(*names)
+            names.reduce(self, &Unnest.method(:new))
           end
 
         end # module Methods

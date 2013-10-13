@@ -68,10 +68,10 @@ new_relation = relation.difference(other)  # OR relation - other
 new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
 
 # nest
-nested = relation.nest(:location, [:latitude, :longitude])
+nested = relation.nest(location: [:latitude, :longitude], names: [:name])
 
 # unnest
-unnested = relation.unnest(:location)
+unnested = relation.unnest(:location, :names)
 
 # extend
 new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }

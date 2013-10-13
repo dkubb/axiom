@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Relation::Operation::Unnest::Methods, '#unnest' do
   subject { object.unnest(name) }
 
-  let(:object)          { relation.nest(name, attributes)   }
+  let(:object)          { relation.nest(name => attributes) }
   let(:described_class) { Relation                          }
   let(:relation)        { described_class.new(header, body) }
   let(:header)          { [[:id, Integer], [:name, String]] }

@@ -74,16 +74,17 @@ module Axiom
           # Return a nested relation
           #
           # @example
-          #   nested = relation.nest(:location, [:latitude, :longitude])
+          #   nested = relation.nest(location: [:latitude, :longitude])
           #
-          # @param [#to_sym] name
-          # @param [Enumerable<Axiom::Attribute>] attributes
+          # @param [Hash{#to_sym => Enumerable<Axiom::Attribute] nesting
           #
           # @return [Nest]
           #
           # @api public
-          def nest(name, attributes)
-            Nest.new(self, name, attributes)
+          def nest(nesting)
+            nesting.reduce(self) do |operation, pair|
+              Nest.new(operation, *pair)
+            end
           end
 
         end # module Methods

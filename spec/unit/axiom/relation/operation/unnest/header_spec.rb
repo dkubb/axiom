@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Operation::Unnest, '#header' do
   subject { object.header }
 
-  let(:object)   { described_class.new(relation, :names)          }
-  let(:relation) { Relation.new(header, []).nest(:names, [:name]) }
-  let(:header)   { [[:id, Integer], [:name, String]]              }
+  let(:object)   { described_class.new(relation, :names)         }
+  let(:relation) { Relation.new(header, []).nest(names: [:name]) }
+  let(:header)   { [[:id, Integer], [:name, String]]             }
 
   it_should_behave_like 'an idempotent method'
 

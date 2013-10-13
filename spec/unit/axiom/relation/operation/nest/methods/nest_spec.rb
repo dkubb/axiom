@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Relation::Operation::Nest::Methods, '#nest' do
-  subject { object.nest(name, attributes) }
+  subject { object.nest(name => attributes) }
 
   let(:object)          { described_class.new(header, body) }
   let(:described_class) { Relation                          }

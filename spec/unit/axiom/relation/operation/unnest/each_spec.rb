@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Relation::Operation::Unnest, '#each' do
   subject { object }
 
-  let(:object)   { described_class.new(relation, :names)            }
-  let(:relation) { Relation.new(header, body).nest(:names, [:name]) }
-  let(:header)   { [[:id, Integer], [:name, String]]                }
-  let(:body)     { [[1, 'John Doe']]                                }
+  let(:object)   { described_class.new(relation, :names)           }
+  let(:relation) { Relation.new(header, body).nest(names: [:name]) }
+  let(:header)   { [[:id, Integer], [:name, String]]               }
+  let(:body)     { [[1, 'John Doe']]                               }
 
   it_should_behave_like 'an #each method'
 
