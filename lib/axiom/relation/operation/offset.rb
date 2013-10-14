@@ -21,7 +21,7 @@ module Axiom
 
         # The relation sort order
         #
-        # @return [Operation::Order::DirectionSet]
+        # @return [Operation::Sorted::DirectionSet]
         #
         # @api private
         attr_reader :directions
@@ -40,24 +40,24 @@ module Axiom
         #
         # @api public
         def self.new(operand, offset)
-          assert_ordered_operand(operand)
+          assert_sorted_operand(operand)
           assert_valid_offset(offset)
           super
         end
 
-        # Assert the operand is ordered
+        # Assert the operand is sorted
         #
         # @param [Relation] operand
         #
         # @return [undefined]
         #
-        # @raise [OrderedRelationRequiredError]
-        #   raised if the operand is unordered
+        # @raise [SortededRelationRequiredError]
+        #   raised if the operand is unsorted
         #
         # @api private
-        def self.assert_ordered_operand(operand)
+        def self.assert_sorted_operand(operand)
           if operand.header.to_ary.size != operand.directions.to_ary.size
-            fail OrderedRelationRequiredError, 'can only offset an ordered operand'
+            fail SortededRelationRequiredError, 'can only offset an sorted operand'
           end
         end
 
@@ -77,7 +77,7 @@ module Axiom
           end
         end
 
-        private_class_method :assert_ordered_operand, :assert_valid_offset
+        private_class_method :assert_sorted_operand, :assert_valid_offset
 
         # Initialize an Offset
         #

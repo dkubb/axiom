@@ -24,11 +24,11 @@ module Axiom
 
     # The relation sort order
     #
-    # @return [Operation::Order::DirectionSet]
+    # @return [Operation::Sorted::DirectionSet]
     #
     # @api private
     def directions
-      Operation::Order::DirectionSet::EMPTY
+      Operation::Sorted::DirectionSet::EMPTY
     end
 
     # Instantiate a new Relation

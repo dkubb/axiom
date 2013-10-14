@@ -5,7 +5,7 @@ module Axiom
     module Operation
 
       # A class representing a reverse sorted relation
-      class Reverse < Order
+      class Reverse < Sorted
 
         # Instantiate a new Reverse relation
         #
@@ -18,27 +18,27 @@ module Axiom
         #
         # @api public
         def self.new(operand)
-          assert_ordered_operand(operand)
+          assert_sorted_operand(operand)
           super(operand, operand.directions.reverse)
         end
 
-        # Assert the operand is ordered
+        # Assert the operand is sorted
         #
         # @param [Relation] operand
         #
         # @return [undefined]
         #
-        # @raise [OrderedRelationRequiredError]
-        #   raise if the operand is unordered
+        # @raise [SortededRelationRequiredError]
+        #   raise if the operand is unsorted
         #
         # @api private
-        def self.assert_ordered_operand(operand)
+        def self.assert_sorted_operand(operand)
           if operand.header.to_ary.size != operand.directions.to_ary.size
-            fail OrderedRelationRequiredError, 'can only reverse an ordered operand'
+            fail SortededRelationRequiredError, 'can only reverse an sorted operand'
           end
         end
 
-        private_class_method :assert_ordered_operand
+        private_class_method :assert_sorted_operand
 
         # Iterate over each tuple in the set
         #

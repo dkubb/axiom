@@ -9,5 +9,5 @@ describe Attribute::Comparable, '#asc' do
   let(:described_class) { ComparableSpecs::Object }
   let(:object)          { described_class.new     }
 
-  it { should be_instance_of(Relation::Operation::Order::Ascending) }
+  it { should be_instance_of(Relation::Operation::Sorted::Ascending) }
 end

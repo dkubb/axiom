@@ -127,7 +127,7 @@ each_count do |array, relation, count|
 end
 
 each_count do |array, relation, count|
-  gc_statistics "order (#{count} tuples)" do
+  gc_statistics "sort_by (#{count} tuples)" do
     relation.sort_by { |r| [r.id.desc, r.name] }.each {}
   end
 end

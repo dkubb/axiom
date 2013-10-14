@@ -6,10 +6,10 @@ describe Relation::Operation::Limit, '#directions' do
   subject { object.directions }
 
   let(:relation) { Relation.new([[:id, Integer]], LazyEnumerable.new) }
-  let(:object)   { described_class.new(ordered, 1)                    }
-  let(:ordered)  { relation.sort_by { |r| r.id }                      }
+  let(:object)   { described_class.new(sorted, 1)                     }
+  let(:sorted)   { relation.sort_by { |r| r.id }                      }
 
   it_should_behave_like 'an idempotent method'
 
-  it { should be(ordered.directions) }
+  it { should be(sorted.directions) }
 end

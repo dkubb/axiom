@@ -15,11 +15,11 @@ module Axiom
       # @example
       #   ascending = attribute.asc
       #
-      # @return [Axiom::Relation::Operation::Order::Ascending]
+      # @return [Axiom::Relation::Operation::Sorted::Ascending]
       #
       # @api public
       def asc
-        Axiom::Relation::Operation::Order::Ascending.new(self)
+        Axiom::Relation::Operation::Sorted::Ascending.new(self)
       end
 
       # Sort the attribute in descending order
@@ -27,11 +27,11 @@ module Axiom
       # @example
       #   descending = attribute.desc
       #
-      # @return [Axiom::Relation::Operation::Order::Descending]
+      # @return [Axiom::Relation::Operation::Sorted::Descending]
       #
       # @api public
       def desc
-        Axiom::Relation::Operation::Order::Descending.new(self)
+        Axiom::Relation::Operation::Sorted::Descending.new(self)
       end
 
       # The range for the objects

@@ -94,27 +94,27 @@ key_headers = header.keys
 relation = relation.each { |tuple| ... }
 
 # order by attributes in the header
-ordered = relation.sort
+sorted = relation.sort
 
 # order by attribute and direction
-ordered = relation.sort_by { |r| [r.city.desc, r.name, r.color, r.id, r.weight] }
+sorted = relation.sort_by { |r| [r.city.desc, r.name, r.color, r.id, r.weight] }
 
-# reverse the relation (only allowed if ordered)
-new_relation = ordered.reverse
+# reverse the relation (only allowed if sorted)
+new_relation = sorted.reverse
 
-# offset (only allowed if ordered)
-new_relation = ordered.drop(5)
+# offset (only allowed if sorted)
+new_relation = sorted.drop(5)
 
-# limiting (only allowed if ordered)
-new_relation = ordered.take(10)
+# limiting (only allowed if sorted)
+new_relation = sorted.take(10)
 
-# get the first n tuples (only allowed if ordered)
-new_relation = ordered.first     # default is 1
-new_relation = ordered.first(5)
+# get the first n tuples (only allowed if sorted)
+new_relation = sorted.first     # default is 1
+new_relation = sorted.first(5)
 
-# get the last n tuples (only allowed if ordered)
-new_relation = ordered.last      # default is 1
-new_relation = ordered.last(5)
+# get the last n tuples (only allowed if sorted)
+new_relation = sorted.last      # default is 1
+new_relation = sorted.last(5)
 
 # get a tuple from a relation containing exactly one tuple
 tuple = relation.one

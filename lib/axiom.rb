@@ -24,10 +24,10 @@ module Axiom
   # Raised when the offset is not a positive integer
   class InvalidOffsetError < ArgumentError; end
 
-  # Raised when a method requiring ordering is called on an unordered relation
-  class OrderedRelationRequiredError < StandardError; end
+  # Raised when a method requiring ordering is called on an unsorted relation
+  class SortededRelationRequiredError < StandardError; end
 
-  # Raised when a binary operation mixes ordered and unordered relations
+  # Raised when a binary operation mixes sorted and unsorted relations
   class RelationMismatchError < StandardError; end
 
   # Raised when a name is a duplicate of another name in a set
@@ -49,7 +49,7 @@ module Axiom
   class ExtensionMismatchError < WriteError; end
 
   # Raised when inserting into an order with a mismatching relation
-  class OrderMismatchError < WriteError; end
+  class SortedMismatchError < WriteError; end
 
   # Raised when inserting into an immutable relation
   class ImmutableRelationError < WriteError; end
@@ -147,9 +147,9 @@ require 'axiom/relation/operation/combination'
 require 'axiom/relation/operation/limit'
 require 'axiom/relation/operation/nest'
 require 'axiom/relation/operation/offset'
-require 'axiom/relation/operation/order'
-require 'axiom/relation/operation/order/direction'
-require 'axiom/relation/operation/order/direction_set'
+require 'axiom/relation/operation/sorted'
+require 'axiom/relation/operation/sorted/direction'
+require 'axiom/relation/operation/sorted/direction_set'
 require 'axiom/relation/operation/reverse'
 require 'axiom/relation/operation/set'
 require 'axiom/relation/operation/unnest'
