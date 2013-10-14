@@ -20,8 +20,8 @@ describe Relation::Operation::Order, '#delete' do
 
     it 'passes expected relations into the deletion' do
       subject = self.subject.operand
-      subject.left.should be(relation)
-      subject.right.should be(other_base)
+      expect(subject.left).to be(relation)
+      expect(subject.right).to be(other_base)
     end
 
     its(:directions) { should == directions }

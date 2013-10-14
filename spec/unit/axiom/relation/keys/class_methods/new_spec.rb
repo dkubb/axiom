@@ -25,7 +25,7 @@ describe Relation::Keys, '.new' do
     it { should == argument }
 
     it 'does not freeze the argument' do
-      argument.should_not be_frozen
+      expect(argument).not_to be_frozen
       expect { subject }.to_not change(argument, :frozen?)
     end
   end

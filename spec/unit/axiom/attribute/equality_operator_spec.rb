@@ -10,7 +10,7 @@ describe Attribute, '#==' do
   let(:object)          { described_class.new(name) }
 
   before do
-    described_class.stub(type: Types::Object)
+    allow(described_class).to receive(:type).and_return(Types::Object)
   end
 
   context 'with the same object' do

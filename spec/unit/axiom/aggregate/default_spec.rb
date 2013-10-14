@@ -11,7 +11,7 @@ describe Aggregate, '#default' do
 
   it 'delegates to self.class.default' do
     return_value = double('Return Value')
-    described_class.should_receive(:default).with(no_args).and_return(return_value)
+    expect(described_class).to receive(:default).with(no_args).and_return(return_value)
     should be(return_value)
   end
 end

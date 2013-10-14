@@ -13,7 +13,7 @@ describe Relation::Operation::Order::Direction, '#call' do
 
   it 'sends the tuple value to self.class.call' do
     response = double('#call response')
-    described_class.should_receive(:call).with(1, 2).and_return(response)
+    expect(described_class).to receive(:call).with(1, 2).and_return(response)
     should be(response)
   end
 end

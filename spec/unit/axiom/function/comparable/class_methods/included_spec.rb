@@ -9,9 +9,9 @@ describe Function::Comparable, '.included' do
   let(:klass)  { Class.new       }
 
   it 'extends the klass' do
-    klass.singleton_class.should_not include(described_class::ClassMethods)
+    expect(klass.singleton_class).not_to include(described_class::ClassMethods)
     klass.send(:include, subject)
-    klass.singleton_class.should include(described_class::ClassMethods)
+    expect(klass.singleton_class).to include(described_class::ClassMethods)
   end
 
   it 'delegates to the ancestor' do

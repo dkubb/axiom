@@ -10,7 +10,7 @@ describe Function::Proposition, '#call' do
 
   it 'calls self.class.call' do
     response = double('#call response')
-    described_class.should_receive(:call).and_return(response)
+    expect(described_class).to receive(:call).and_return(response)
     should be(response)
   end
 end

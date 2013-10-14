@@ -17,7 +17,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
     it { should be_instance_of(Algebra::Restriction) }
 
     it 'sets the predicate' do
-      subject.predicate.should be(predicate)
+      expect(subject.predicate).to be(predicate)
     end
 
     it 'behaves the same as Enumerable#select' do
@@ -33,7 +33,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
     it { should be_instance_of(Algebra::Restriction) }
 
     it 'sets the predicate' do
-      subject.predicate.should eql(object[:id].eq(1))
+      expect(subject.predicate).to eql(object[:id].eq(1))
     end
 
     it 'behaves the same as Enumerable#select' do
@@ -49,7 +49,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
     it { should be_instance_of(Algebra::Restriction) }
 
     it 'sets the predicate' do
-      subject.predicate.should eql(tautology.and(object[:id].eq(1).and(object[:name].eq('Dan Kubb'))))
+      expect(subject.predicate).to eql(tautology.and(object[:id].eq(1).and(object[:name].eq('Dan Kubb'))))
     end
 
     it 'behaves the same as Enumerable#select' do
@@ -65,7 +65,7 @@ describe Algebra::Restriction::Methods, '#restrict' do
     it { should be_instance_of(Algebra::Restriction) }
 
     it 'sets the predicate' do
-      subject.predicate.should eql(tautology.and(object[:id].eq(1).and(object[:name].eq('Dan Kubb'))))
+      expect(subject.predicate).to eql(tautology.and(object[:id].eq(1).and(object[:name].eq('Dan Kubb'))))
     end
 
     it 'behaves the same as Enumerable#select' do

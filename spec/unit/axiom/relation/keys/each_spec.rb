@@ -13,7 +13,7 @@ describe Relation::Keys, '#each' do
 
   it 'yields only headers' do
     subject
-    yields.each { |header| header.should be_instance_of(Relation::Header) }
+    yields.each { |header| expect(header).to be_instance_of(Relation::Header) }
   end
 
   it 'yields only headers with the expected data' do
@@ -31,6 +31,6 @@ describe Relation::Keys do
   it { should be_kind_of(Enumerable) }
 
   it 'case matches Enumerable' do
-    (Enumerable === subject).should be(true)
+    expect(Enumerable === subject).to be(true)
   end
 end

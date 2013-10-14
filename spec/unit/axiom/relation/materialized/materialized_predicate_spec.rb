@@ -8,7 +8,7 @@ describe Relation::Materialized, '#materialized?' do
   let(:object) { described_class.new([[:id, Integer]], [[1]]) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it { should be(true) }

@@ -12,7 +12,7 @@ describe Axiom::Equalizer, '.new' do
 
     before do
       # specify the class #name method
-      klass.stub(name: name)
+      allow(klass).to receive(:name).and_return(name)
       klass.send(:include, subject)
     end
 
@@ -21,20 +21,20 @@ describe Axiom::Equalizer, '.new' do
     it { should be_instance_of(object) }
 
     it 'defines #hash and #inspect methods dynamically' do
-      subject.public_instance_methods(false).map(&:to_s).should =~ %w[hash inspect]
+      expect(subject.public_instance_methods(false).map(&:to_s)).to match_array(%w[hash inspect])
     end
 
     describe '#eql?' do
       context 'when the objects are similar' do
         let(:other) { instance.dup }
 
-        it { instance.eql?(other).should be(true) }
+        it { expect(instance.eql?(other)).to be(true) }
       end
 
       context 'when the objects are different' do
         let(:other) { double('other') }
 
-        it { instance.eql?(other).should be(false) }
+        it { expect(instance.eql?(other)).to be(false) }
       end
     end
 
@@ -42,26 +42,26 @@ describe Axiom::Equalizer, '.new' do
       context 'when the objects are similar' do
         let(:other) { instance.dup }
 
-        it { (instance == other).should be(true) }
+        it { expect(instance == other).to be(true) }
       end
 
       context 'when the objects are different' do
         let(:other) { double('other') }
 
-        it { (instance == other).should be(false) }
+        it { expect(instance == other).to be(false) }
       end
     end
 
     describe '#hash' do
-      it { instance.hash.should eql(klass.hash) }
+      it { expect(instance.hash).to eql(klass.hash) }
 
       it 'memoizes the hash code' do
-        instance.hash.should eql(instance.memoized(:hash))
+        expect(instance.hash).to eql(instance.memoized(:hash))
       end
     end
 
     describe '#inspect' do
-      it { instance.inspect.should eql('#<User>') }
+      it { expect(instance.inspect).to eql('#<User>') }
     end
   end
 
@@ -84,27 +84,28 @@ describe Axiom::Equalizer, '.new' do
 
     before do
       # specify the class #inspect method
-      klass.stub(name: nil, inspect: name)
+      allow(klass).to receive(:name).and_return(nil)
+      allow(klass).to receive(:inspect).and_return(name)
       klass.send(:include, subject)
     end
 
     it { should be_instance_of(object) }
 
     it 'defines #hash and #inspect methods dynamically' do
-      subject.public_instance_methods(false).map(&:to_s).should =~ %w[hash inspect]
+      expect(subject.public_instance_methods(false).map(&:to_s)).to match_array(%w[hash inspect])
     end
 
     describe '#eql?' do
       context 'when the objects are similar' do
         let(:other) { instance.dup }
 
-        it { instance.eql?(other).should be(true) }
+        it { expect(instance.eql?(other)).to be(true) }
       end
 
       context 'when the objects are different' do
         let(:other) { double('other') }
 
-        it { instance.eql?(other).should be(false) }
+        it { expect(instance.eql?(other)).to be(false) }
       end
     end
 
@@ -112,26 +113,26 @@ describe Axiom::Equalizer, '.new' do
       context 'when the objects are similar' do
         let(:other) { instance.dup }
 
-        it { (instance == other).should be(true) }
+        it { expect(instance == other).to be(true) }
       end
 
       context 'when the objects are different' do
         let(:other) { double('other') }
 
-        it { (instance == other).should be(false) }
+        it { expect(instance == other).to be(false) }
       end
     end
 
     describe '#hash' do
-      it { instance.hash.should eql(klass.hash ^ first_name.hash) }
+      it { expect(instance.hash).to eql(klass.hash ^ first_name.hash) }
 
       it 'memoizes the hash code' do
-        instance.hash.should eql(instance.memoized(:hash))
+        expect(instance.hash).to eql(instance.memoized(:hash))
       end
     end
 
     describe '#inspect' do
-      it { instance.inspect.should eql('#<User first_name="John">') }
+      it { expect(instance.inspect).to eql('#<User first_name="John">') }
     end
   end
 end

@@ -11,7 +11,7 @@ describe Function, '#type' do
   let(:type)            { double('type')        }
 
   before do
-    described_class.should_receive(:type).and_return(type)
+    expect(described_class).to receive(:type).and_return(type)
   end
 
   it 'delegates to the class type' do

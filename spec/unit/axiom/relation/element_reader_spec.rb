@@ -10,7 +10,7 @@ describe Relation, '#[]' do
   let(:object)    { described_class.new([attribute], LazyEnumerable.new) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it { should be(attribute) }

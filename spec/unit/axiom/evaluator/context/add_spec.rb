@@ -14,7 +14,7 @@ describe Evaluator::Context, '#add' do
     its(:functions) { should eql(Attribute::Integer.new(:aggregate) => aggregate) }
 
     it 'returns self' do
-      subject.yield.equal?(subject).should be(true)
+      expect(subject.yield.equal?(subject)).to be(true)
     end
   end
 
@@ -26,7 +26,7 @@ describe Evaluator::Context, '#add' do
     its(:functions) { should eql(Attribute::Integer.new(:function) => function) }
 
     it 'returns self' do
-      subject.yield.equal?(subject).should be(true)
+      expect(subject.yield.equal?(subject)).to be(true)
     end
   end
 
@@ -38,7 +38,7 @@ describe Evaluator::Context, '#add' do
     its(:functions) { should eql(Attribute::Object.new(:block) => block) }
 
     it 'returns self' do
-      subject.yield.equal?(subject).should be(true)
+      expect(subject.yield.equal?(subject)).to be(true)
     end
   end
 
@@ -50,7 +50,7 @@ describe Evaluator::Context, '#add' do
     its(:functions) { should eql(Attribute::Object.new(:block) => block) }
 
     it 'returns self' do
-      subject.yield.equal?(subject).should be(true)
+      expect(subject.yield.equal?(subject)).to be(true)
     end
   end
 
@@ -60,7 +60,7 @@ describe Evaluator::Context, '#add' do
     its(:functions) { should eql(Attribute::Integer.new(:literal) => 1) }
 
     it 'returns self' do
-      subject.yield.equal?(subject).should be(true)
+      expect(subject.yield.equal?(subject)).to be(true)
     end
   end
 end

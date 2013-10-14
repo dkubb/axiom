@@ -9,7 +9,7 @@ describe Relation, '#header' do
   let(:object) { described_class.new(header, LazyEnumerable.new) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it_should_behave_like 'an idempotent method'

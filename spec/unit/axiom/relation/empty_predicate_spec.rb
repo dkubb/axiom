@@ -9,7 +9,7 @@ describe Relation, '#empty?' do
   let(:object) { described_class.new(header, body) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   context 'with a body containing no entries' do

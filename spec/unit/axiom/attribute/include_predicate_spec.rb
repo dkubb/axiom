@@ -8,7 +8,7 @@ describe Attribute, '#include?' do
   let(:described_class) { Class.new(Attribute) }
 
   before do
-    described_class.stub(type: Types::Integer)
+    allow(described_class).to receive(:type).and_return(Types::Integer)
   end
 
   context 'when value is nil' do

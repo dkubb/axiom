@@ -9,7 +9,7 @@ describe Attribute, '#rename' do
   let(:object)          { described_class.new(:name, required: false) }
 
   before do
-    described_class.stub(type: Types::Object)
+    allow(described_class).to receive(:type).and_return(Types::Object)
   end
 
   context 'when the new name is the same' do

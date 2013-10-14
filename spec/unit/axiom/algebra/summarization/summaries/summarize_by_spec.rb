@@ -15,14 +15,14 @@ describe Algebra::Summarization::Summaries, '#summarize_by' do
   it_should_behave_like 'a command method'
 
   it 'passes the tuple to the aggregate function' do
-    summarizer.should_receive(:call).with(nil, tuple)
+    expect(summarizer).to receive(:call).with(nil, tuple)
     subject
   end
 
   it 'aggregates the value returned by the summarizer' do
     key, value = subject.to_hash.first
-    key.should eql(:count)
-    value.should be_instance_of(Algebra::Summarization::Summary)
-    value.call(tuple.project(header)).should eql(1)
+    expect(key).to eql(:count)
+    expect(value).to be_instance_of(Algebra::Summarization::Summary)
+    expect(value.call(tuple.project(header))).to eql(1)
   end
 end

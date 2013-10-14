@@ -18,9 +18,9 @@ describe Algebra::Restriction, '#delete' do
 
     it 'passes expected relations into the deletion' do
       subject = self.subject.operand
-      subject.left.should be(operand)
-      subject.right.should be_kind_of(described_class)
-      subject.right.predicate.should be(predicate)
+      expect(subject.left).to be(operand)
+      expect(subject.right).to be_kind_of(described_class)
+      expect(subject.right.predicate).to be(predicate)
     end
 
     its(:predicate) { should be(predicate) }

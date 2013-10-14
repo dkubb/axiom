@@ -9,11 +9,11 @@ describe Function::Binary::Invertible, '.included' do
   let(:klass)  { Class.new       }
 
   before do
-    klass.stub(:memoize)
+    allow(klass).to receive(:memoize)
   end
 
   it 'memoizes the inverse method' do
-    klass.should_receive(:memoize).with(:inverse)
+    expect(klass).to receive(:memoize).with(:inverse)
     klass.send(:include, subject)
   end
 

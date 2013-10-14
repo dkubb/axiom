@@ -12,7 +12,7 @@ describe Visitable, '#accept' do
   it_should_behave_like 'a command method'
 
   it 'sends self to visitor#visit' do
-    visitor.should_receive(:visit).with(object)
+    expect(visitor).to receive(:visit).with(object)
     subject
   end
 end

@@ -11,7 +11,7 @@ describe Relation::Header, '#context' do
   let(:context)   { double('context')                   }
 
   before do
-    Evaluator::Context.should_receive(:new).with(object)
+    expect(Evaluator::Context).to receive(:new).with(object)
       .and_yield(context)
       .and_return(context)
   end

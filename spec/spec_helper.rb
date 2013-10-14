@@ -29,7 +29,7 @@ RSpec.configure do |config|
   EMPTY_PROC = proc { }.freeze
 
   config.expect_with :rspec do |expect_with|
-    expect_with.syntax = [:expect, :should]
+    expect_with.syntax = :expect
   end
 
   # Record the original Attribute descendants

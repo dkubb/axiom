@@ -11,7 +11,7 @@ describe Relation::Base, '#eql?' do
   let(:object) { described_class.new(name, header, body) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   context 'with the same object' do

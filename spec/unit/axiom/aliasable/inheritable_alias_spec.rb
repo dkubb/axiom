@@ -21,8 +21,8 @@ describe Aliasable, '#inheritable_alias' do
   it 'aliases #other to #test' do
     subject
     retval = double('Return Value')
-    aliasable.should_receive(:test).and_return(retval)
-    aliasable.other.should be(retval)
+    expect(aliasable).to receive(:test).and_return(retval)
+    expect(aliasable.other).to be(retval)
   end
 
   specification = proc do
@@ -36,8 +36,8 @@ describe Aliasable, '#inheritable_alias' do
 
     file, line = aliasable.other.first.split(':')[0, 2]
 
-    File.expand_path(file).should eql(File.expand_path('../../../../../lib/axiom/support/aliasable.rb', __FILE__))
-    line.to_i.should be(38)
+    expect(File.expand_path(file)).to eql(File.expand_path('../../../../../lib/axiom/support/aliasable.rb', __FILE__))
+    expect(line.to_i).to be(38)
   end
 
   it 'sets the file and line number properly' do

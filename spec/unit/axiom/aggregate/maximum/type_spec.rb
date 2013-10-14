@@ -9,12 +9,13 @@ describe Aggregate::Maximum, '#type' do
   let(:operand) { double('Unhandled')          }
 
   before do
-    operand.stub(freeze: operand, :frozen? => true)
+    allow(operand).to receive(:freeze).and_return(operand)
+    allow(operand).to receive(:frozen?).and_return(true)
   end
 
   it 'delegates to Attribute.infer_type' do
     return_value = double('Return Value')
-    Attribute.should_receive(:infer_type).with(operand).and_return(return_value)
+    expect(Attribute).to receive(:infer_type).with(operand).and_return(return_value)
     should be(return_value)
   end
 end

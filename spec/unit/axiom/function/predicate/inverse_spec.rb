@@ -11,7 +11,7 @@ describe Function::Predicate, '#inverse' do
   specify { expect { subject }.to raise_error(NoMethodError) }
 
   it 'calls the class inverse method' do
-    described_class.should_receive(:inverse).and_return(described_class)
+    expect(described_class).to receive(:inverse).and_return(described_class)
     should eql(object)
   end
 end

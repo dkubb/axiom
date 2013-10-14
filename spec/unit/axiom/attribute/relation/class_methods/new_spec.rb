@@ -15,7 +15,7 @@ describe Attribute::Relation, '.new' do
     it { should be_instance_of(described_class) }
 
     it 'does not freeze the options' do
-      options.should_not be_frozen
+      expect(options).not_to be_frozen
       expect { subject }.to_not change(options, :frozen?)
     end
 
@@ -31,7 +31,7 @@ describe Attribute::Relation, '.new' do
     it { should be_instance_of(described_class) }
 
     it 'does not freeze the options' do
-      options.should_not be_frozen
+      expect(options).not_to be_frozen
       expect { subject }.to_not change(options, :frozen?)
     end
 

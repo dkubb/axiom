@@ -9,7 +9,7 @@ describe Relation, '#directions' do
   let(:object) { described_class.new([[:id, Integer]], body) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it_should_behave_like 'an idempotent method'

@@ -12,16 +12,16 @@ describe Relation::Operation::Order::Direction, '#reverse' do
   let(:object)          { described_class.new(attribute)                   }
 
   before do
-    described_class.stub(reverse: reverse_class)
+    allow(described_class).to receive(:reverse).and_return(reverse_class)
   end
 
   it 'calls .reverse on the class' do
-    described_class.should_receive(:reverse).with(no_args)
+    expect(described_class).to receive(:reverse).with(no_args)
     subject
   end
 
   it 'calls .new on the reverse class' do
-    reverse_class.should_receive(:new).with(attribute)
+    expect(reverse_class).to receive(:new).with(attribute)
     subject
   end
 

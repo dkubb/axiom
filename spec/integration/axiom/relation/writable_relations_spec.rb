@@ -14,55 +14,55 @@ describe Relation do
     it 'Rename#insert and #delete of a disjoint relation are symmetrical' do
       rename = relation.rename(id: :other_id)
       other  = [[4, 'John Doe']]
-      rename.insert(other).delete(other).should == rename
+      expect(rename.insert(other).delete(other)).to eq(rename)
     end
 
     it 'Projection#insert and #delete of a disjoint relation are symmetrical' do
       projection = relation.project([:id])
       other      = [[4]]
-      projection.insert(other).delete(other).should == projection
+      expect(projection.insert(other).delete(other)).to eq(projection)
     end
 
     it 'Extension#insert and #delete of a disjoint relation are symmetrical' do
       extension = relation.extend { |r| r.add(:age, 30) }
       other     = Relation.new(relation.header, [[4, 'John Doe']]).extend(extension.extensions)
-      extension.insert(other).delete(other).should == extension
+      expect(extension.insert(other).delete(other)).to eq(extension)
     end
 
     it 'Restriction#insert and #delete of a disjoint relation are symmetrical' do
       restriction = relation.restrict { |r| r.id.gte(1) }
       other       = [[4, 'John Doe']]
-      restriction.insert(other).delete(other).should == restriction
+      expect(restriction.insert(other).delete(other)).to eq(restriction)
     end
 
     it 'Join#insert and #delete of a disjoint relation are symmetrical' do
       join  = relation + Relation.new([[:id, Integer]], [[1]])
       other = [[4, 'John Doe']]
-      join.insert(other).delete(other).should == join
+      expect(join.insert(other).delete(other)).to eq(join)
     end
 
     it 'Difference#insert and #delete of a disjoint relation are symmetrical' do
       difference = relation - relation
       other      = [[4, 'John Doe']]
-      difference.insert(other).delete(other).should == difference
+      expect(difference.insert(other).delete(other)).to eq(difference)
     end
 
     it 'Union#insert and #delete of a disjoint relation are symmetrical' do
       union  = relation | relation
       other  = [[4, 'John Doe']]
-      union.insert(other).delete(other).should == union
+      expect(union.insert(other).delete(other)).to eq(union)
     end
 
     it 'Intersection#insert and #delete of a disjoint relation are symmetrical' do
       intersection = relation & relation
       other        = [[4, 'John Doe']]
-      intersection.insert(other).delete(other).should == intersection
+      expect(intersection.insert(other).delete(other)).to eq(intersection)
     end
 
     it 'Order#insert and #delete of a disjoint relation are symmetrical' do
       order = relation.sort_by(relation.header)
       other = Relation.new(relation.header, [[4, 'John Doe']]).sort_by(relation.header)
-      order.insert(other).delete(other).should == order
+      expect(order.insert(other).delete(other)).to eq(order)
     end
   end
 end

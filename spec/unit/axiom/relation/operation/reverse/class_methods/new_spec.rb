@@ -14,7 +14,7 @@ describe Relation::Operation::Reverse, '.new' do
     it { should be_instance_of(object) }
 
     it 'reverses the directions' do
-      subject.directions.should eql(relation.directions.reverse)
+      expect(subject.directions).to eql(relation.directions.reverse)
     end
   end
 
@@ -24,7 +24,7 @@ describe Relation::Operation::Reverse, '.new' do
     it { should be_instance_of(object) }
 
     it 'reverses the directions' do
-      subject.directions.should eql(relation.directions.reverse)
+      expect(subject.directions).to eql(relation.directions.reverse)
     end
   end
 

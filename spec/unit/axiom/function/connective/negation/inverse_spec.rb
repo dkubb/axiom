@@ -16,6 +16,6 @@ describe Function::Connective::Negation, '#inverse' do
   end
 
   it 'is not invertible' do
-    subject.inverse.should_not eql(object)
+    expect(subject.inverse).not_to eql(object)
   end
 end

@@ -18,6 +18,6 @@ describe Algebra::Summarization::Summary, '#summarize_by' do
       subject
       __memoized.delete(:subject)  # bypass subject cache
     end
-    object.call(projection).should eql(2)
+    expect(object.call(projection)).to eql(2)
   end
 end

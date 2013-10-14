@@ -14,6 +14,6 @@ describe Date, '#pred' do
   end
 
   it 'is the inverse of #succ' do
-    (subject + 1).should eql(object)
+    expect(subject + 1).to eql(object)
   end
 end

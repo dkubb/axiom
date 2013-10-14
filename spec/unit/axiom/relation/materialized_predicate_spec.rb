@@ -8,7 +8,7 @@ describe Relation, '#materialized?' do
   let(:object) { described_class.new([[:id, Integer]], LazyEnumerable.new) }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it { should be(false) }

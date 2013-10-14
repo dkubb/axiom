@@ -15,7 +15,7 @@ describe Relation::Header, '#extend' do
     it { should be_instance_of(described_class) }
 
     it 'uses the attribute object' do
-      subject[:name].should be(attribute)
+      expect(subject[:name]).to be(attribute)
     end
 
     its(:to_ary) { should == [[:id, Integer], [:name, String]] }

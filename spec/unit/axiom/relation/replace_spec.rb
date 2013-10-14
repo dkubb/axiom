@@ -20,18 +20,18 @@ describe Relation, '#replace' do
 
     it 'applies the left operations in the correct sequence' do
       subject = self.subject.left
-      subject.should be_instance_of(Relation::Operation::Deletion)
-      subject.left.should be(object)
-      subject.right.should be_instance_of(Algebra::Difference)
-      subject.right.left.should be(object)
-      subject.right.right.should eql(other_relation)
+      expect(subject).to be_instance_of(Relation::Operation::Deletion)
+      expect(subject.left).to be(object)
+      expect(subject.right).to be_instance_of(Algebra::Difference)
+      expect(subject.right.left).to be(object)
+      expect(subject.right.right).to eql(other_relation)
     end
 
     it 'applies the right operations in the correct sequence' do
       subject = self.subject.right
-      subject.should be_instance_of(Algebra::Difference)
-      subject.left.should eql(other_relation)
-      subject.right.should be(object)
+      expect(subject).to be_instance_of(Algebra::Difference)
+      expect(subject.left).to eql(other_relation)
+      expect(subject.right).to be(object)
     end
   end
 

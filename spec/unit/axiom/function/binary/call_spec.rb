@@ -15,7 +15,7 @@ describe Function::Binary, '#call' do
   let(:object)          { described_class.new(left, right)                  }
 
   before do
-    described_class.should_receive(:call).with(true, false).and_return(response)
+    expect(described_class).to receive(:call).with(true, false).and_return(response)
   end
 
   it { should be(response) }

@@ -17,7 +17,7 @@ describe Algebra::Difference, '#each' do
 
     it 'yields no tuples' do
       subject
-      yields.should be_empty
+      expect(yields).to be_empty
     end
   end
 
@@ -28,12 +28,12 @@ describe Algebra::Difference, '#each' do
 
     it 'yields only tuples' do
       subject
-      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+      yields.each { |tuple| expect(tuple).to be_instance_of(Tuple) }
     end
 
     it 'yields only tuples with the expected header' do
       subject
-      yields.each { |tuple| tuple.header.should be(object.header) }
+      yields.each { |tuple| expect(tuple.header).to be(object.header) }
     end
 
     it 'yields only tuples with the expected data' do

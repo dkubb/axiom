@@ -18,7 +18,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 
@@ -32,7 +32,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 
@@ -46,7 +46,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions.reverse) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] }.reverse)
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] }.reverse)
       end
     end
 
@@ -60,7 +60,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 
@@ -74,7 +74,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
   end
@@ -88,7 +88,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 
@@ -100,7 +100,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 
@@ -112,7 +112,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions.reverse) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] }.reverse)
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] }.reverse)
       end
     end
 
@@ -124,7 +124,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 
@@ -136,7 +136,7 @@ describe Relation::Operation::Order::Methods, '#sort_by' do
       its(:directions) { should eql(directions) }
 
       it 'behaves the same as Array#sort_by' do
-        subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+        expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
       end
     end
 

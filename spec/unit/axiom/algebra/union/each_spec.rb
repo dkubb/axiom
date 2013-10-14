@@ -17,12 +17,12 @@ describe Algebra::Union, '#each' do
 
     it 'yields only tuples' do
       subject
-      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+      yields.each { |tuple| expect(tuple).to be_instance_of(Tuple) }
     end
 
     it 'yields only tuples with the expected header' do
       subject
-      yields.each { |tuple| tuple.header.should eql(object.header) }
+      yields.each { |tuple| expect(tuple.header).to eql(object.header) }
     end
 
     it 'yields only tuples with the expected data' do
@@ -39,12 +39,12 @@ describe Algebra::Union, '#each' do
 
     it 'yields only tuples' do
       subject
-      yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+      yields.each { |tuple| expect(tuple).to be_instance_of(Tuple) }
     end
 
     it 'yields only tuples with the expected header' do
       subject
-      yields.each { |tuple| tuple.header.should eql(object.header) }
+      yields.each { |tuple| expect(tuple.header).to eql(object.header) }
     end
 
     it 'yields only tuples with the expected data' do

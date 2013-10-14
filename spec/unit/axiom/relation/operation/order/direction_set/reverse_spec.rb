@@ -18,6 +18,6 @@ describe Relation::Operation::Order::DirectionSet, '#reverse' do
   end
 
   it 'does not reverse the attribute order' do
-    subject.attributes.should eql([attribute1, attribute2])
+    expect(subject.attributes).to eql([attribute1, attribute2])
   end
 end

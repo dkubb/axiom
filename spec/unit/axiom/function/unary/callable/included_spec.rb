@@ -12,12 +12,12 @@ describe Function::Unary::Callable, '#included' do
   it_should_behave_like 'a command method'
 
   it 'delegates to the superclass #included method' do
-    superklass.should_receive(:included).with(descendant)
+    expect(superklass).to receive(:included).with(descendant)
     subject
   end
 
   it 'extends the descendant with Callable' do
-    descendant.should_receive(:extend).with(self.class.described_class)
+    expect(descendant).to receive(:extend).with(self.class.described_class)
     subject
   end
 end

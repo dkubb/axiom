@@ -26,17 +26,17 @@ describe Relation do
 
     it '#project should be efficient' do
       projected = relation.project([:id])
-      sample(projected).should == [[0], [1], [2], [3], [4]]
+      expect(sample(projected)).to eq([[0], [1], [2], [3], [4]])
     end
 
     it '#restrict should be efficient' do
       restricted = relation.restrict { |r| r.id.gt(5) }
-      sample(restricted).should == [[6], [7], [8], [9], [10]]
+      expect(sample(restricted)).to eq([[6], [7], [8], [9], [10]])
     end
 
     it '#rename should be efficient' do
       renamed = relation.rename(id: :other_id)
-      sample(renamed).should == [[0], [1], [2], [3], [4]]
+      expect(sample(renamed)).to eq([[0], [1], [2], [3], [4]])
     end
 
     describe '#join should be efficient' do
@@ -45,13 +45,13 @@ describe Relation do
       it 'has an infinite left relation' do
         pending 'Change #join to handle infinite sets'
         join = other.join(relation)
-        sample(join).should == [[1, 'Dan Kubb']]
+        expect(sample(join)).to eq([[1, 'Dan Kubb']])
       end
 
       it 'has an infinite right relation' do
         pending 'Change #join to handle infinite sets'
         join = relation.join(other)
-        sample(join).should == [[1, 'Dan Kubb']]
+        expect(sample(join)).to eq([[1, 'Dan Kubb']])
       end
     end
 
@@ -60,24 +60,24 @@ describe Relation do
 
       it 'has an infinite left relation' do
         product = relation.product(other)
-        sample(product).should == [[0, 'Dan Kubb'], [1, 'Dan Kubb'], [2, 'Dan Kubb'], [3, 'Dan Kubb'], [4, 'Dan Kubb']]
+        expect(sample(product)).to eq([[0, 'Dan Kubb'], [1, 'Dan Kubb'], [2, 'Dan Kubb'], [3, 'Dan Kubb'], [4, 'Dan Kubb']])
       end
 
       it 'has an infinite right relation' do
         pending 'Change #product to handle infinite sets'
         product = other.product(relation)
-        sample(product).should == [[0, 'Dan Kubb'], [1, 'Dan Kubb'], [2, 'Dan Kubb'], [3, 'Dan Kubb'], [4, 'Dan Kubb']]
+        expect(sample(product)).to eq([[0, 'Dan Kubb'], [1, 'Dan Kubb'], [2, 'Dan Kubb'], [3, 'Dan Kubb'], [4, 'Dan Kubb']])
       end
     end
 
     it '#difference should be efficient' do
       difference = relation.difference(Relation.new(relation.header, [[1]]))
-      sample(difference).should == [[0], [2], [3], [4], [5]]
+      expect(sample(difference)).to eq([[0], [2], [3], [4], [5]])
     end
 
     it '#union should be efficient' do
       union = relation.union(Relation.new(relation.header, [[1]]))
-      sample(union).should == [[0], [1], [2], [3], [4]]
+      expect(sample(union)).to eq([[0], [1], [2], [3], [4]])
     end
   end
 end

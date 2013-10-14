@@ -13,7 +13,7 @@ describe Relation::Header, '#each' do
 
   it 'yields only attributes' do
     subject
-    yields.each { |attribute| attribute.should be_kind_of(Attribute) }
+    yields.each { |attribute| expect(attribute).to be_kind_of(Attribute) }
   end
 
   it 'yields each attribute' do
@@ -31,6 +31,6 @@ describe Relation::Header do
   it { should be_kind_of(Enumerable) }
 
   it 'case matches Enumerable' do
-    (Enumerable === subject).should be(true)
+    expect(Enumerable === subject).to be(true)
   end
 end

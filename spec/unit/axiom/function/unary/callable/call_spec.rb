@@ -12,12 +12,12 @@ describe Function::Unary::Callable, '#call' do
   it { should be(response) }
 
   it 'uses the operation from the object' do
-    object.should_receive(:operation)
+    expect(object).to receive(:operation)
     subject
   end
 
   it 'delegates the operation to the value' do
-    value.should_receive(:send).with(:op)
+    expect(value).to receive(:send).with(:op)
     subject
   end
 end

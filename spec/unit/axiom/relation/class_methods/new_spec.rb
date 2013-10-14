@@ -23,14 +23,14 @@ describe Relation, '.new' do
     it { should == body.dup }
 
     it 'does not freeze the body' do
-      body.should_not be_frozen
+      expect(body).not_to be_frozen
       expect { subject }.to_not change(body, :frozen?)
     end
   end
 
   context 'with a body that returns nil for #size' do
     before do
-      body.should_receive(:size).and_return(nil)
+      expect(body).to receive(:size).and_return(nil)
     end
 
     it { should be_instance_of(object) }
@@ -38,14 +38,14 @@ describe Relation, '.new' do
     it { should == body.dup }
 
     it 'does not freeze the body' do
-      body.should_not be_frozen
+      expect(body).not_to be_frozen
       expect { subject }.to_not change(body, :frozen?)
     end
   end
 
   context 'with a body that returns Float::INFINITY for #size' do
     before do
-      body.should_receive(:size).and_return(Float::INFINITY)
+      expect(body).to receive(:size).and_return(Float::INFINITY)
     end
 
     it { should be_instance_of(object) }
@@ -53,7 +53,7 @@ describe Relation, '.new' do
     it { should == body.dup }
 
     it 'does not freeze the body' do
-      body.should_not be_frozen
+      expect(body).not_to be_frozen
       expect { subject }.to_not change(body, :frozen?)
     end
   end
@@ -70,7 +70,7 @@ describe Relation, '.new' do
     it { should == body.dup }
 
     it 'does not freeze the body' do
-      body.should_not be_frozen
+      expect(body).not_to be_frozen
       expect { subject }.to_not change(body, :frozen?)
     end
   end

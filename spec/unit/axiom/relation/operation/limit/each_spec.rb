@@ -14,12 +14,12 @@ describe Relation::Operation::Limit, '#each' do
 
   it 'yields only tuples' do
     subject
-    yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    yields.each { |tuple| expect(tuple).to be_instance_of(Tuple) }
   end
 
   it 'yields only tuples with the expected header' do
     subject
-    yields.each { |tuple| tuple.header.should be(object.header) }
+    yields.each { |tuple| expect(tuple.header).to be(object.header) }
   end
 
   it 'yields only tuples with the expected data' do

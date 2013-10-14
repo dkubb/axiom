@@ -14,6 +14,6 @@ describe Relation::Operation::Order::Methods, '#sort' do
   its(:directions) { should eql(directions) }
 
   it 'behaves the same as Array#sort_by' do
-    subject.to_a.should eql(object.to_a.sort_by { |tuple| tuple[:id] })
+    expect(subject.to_a).to eql(object.to_a.sort_by { |tuple| tuple[:id] })
   end
 end

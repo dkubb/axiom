@@ -26,7 +26,7 @@ describe Relation::Header, '.new' do
     it { should == attributes }
 
     it 'does not freeze the attributes' do
-      attributes.should_not be_frozen
+      expect(attributes).not_to be_frozen
       expect { subject }.to_not change(attributes, :frozen?)
     end
   end
@@ -42,12 +42,12 @@ describe Relation::Header, '.new' do
     it { should == attributes }
 
     it 'does not freeze the attributes' do
-      attributes.should_not be_frozen
+      expect(attributes).not_to be_frozen
       expect { subject }.to_not change(attributes, :frozen?)
     end
 
     it 'does not freeze the options' do
-      options.should_not be_frozen
+      expect(options).not_to be_frozen
       expect { subject }.to_not change(options, :frozen?)
     end
   end

@@ -9,7 +9,7 @@ describe Relation, '#materialize' do
   let(:object) { described_class.new(header, LazyEnumerable.new([[1]])).sort_by { |r| r.id } }
 
   before do
-    object.should be_kind_of(described_class)
+    expect(object).to be_kind_of(described_class)
   end
 
   it { should be_instance_of(Relation::Materialized) }

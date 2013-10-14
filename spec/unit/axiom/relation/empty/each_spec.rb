@@ -13,6 +13,6 @@ describe Relation::Empty, '#each' do
 
   it 'yields no tuples' do
     subject
-    yields.should be_empty
+    expect(yields).to be_empty
   end
 end

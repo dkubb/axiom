@@ -11,19 +11,19 @@ describe Relation, '#each' do
   let(:yields) { []                                  }
 
   before do
-    object.should be_instance_of(described_class)
+    expect(object).to be_instance_of(described_class)
   end
 
   it_should_behave_like 'an #each method'
 
   it 'yields only tuples' do
     subject
-    yields.each { |tuple| tuple.should be_instance_of(Tuple) }
+    yields.each { |tuple| expect(tuple).to be_instance_of(Tuple) }
   end
 
   it 'yields only tuples with the expected header' do
     subject
-    yields.each { |tuple| tuple.header.should be(object.header) }
+    yields.each { |tuple| expect(tuple.header).to be(object.header) }
   end
 
   it 'yields only tuples with the expected data' do
@@ -41,12 +41,12 @@ describe Relation do
   let(:object) { described_class           }
 
   before do
-    subject.should be_instance_of(object)
+    expect(subject).to be_instance_of(object)
   end
 
   it { should be_kind_of(Enumerable) }
 
   it 'case matches Enumerable' do
-    (Enumerable === subject).should be(true)
+    expect(Enumerable === subject).to be(true)
   end
 end

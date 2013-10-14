@@ -25,7 +25,7 @@ describe Attribute, '.new' do
       let(:object) { described_class }
 
       it 'does not freeze the options' do
-        options.should_not be_frozen
+        expect(options).not_to be_frozen
         expect { subject }.to_not change(options, :frozen?)
       end
 
