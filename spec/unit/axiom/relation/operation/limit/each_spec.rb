@@ -5,9 +5,9 @@ require 'spec_helper'
 describe Relation::Operation::Limit, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)   { described_class.new(order, 1)                   }
+  let(:object)   { described_class.new(sorted, 1)                  }
   let(:relation) { Relation.new([[:id, Integer]], [[1], [2], [3]]) }
-  let(:order)    { relation.sort_by { |r| r.id }                   }
+  let(:sorted)   { relation.sort_by { |r| r.id }                   }
   let(:yields)   { []                                              }
 
   it_should_behave_like 'an #each method'

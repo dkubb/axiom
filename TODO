@@ -34,7 +34,7 @@
     * Use a class variable to store each "Tuple class" so that anything with a
       similar header will be reused.
 
-* Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
+* Remove Sorted, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
     value (assuming it's a Relation) in a copy of itself.
@@ -42,10 +42,10 @@
     all the Relation classes. Only the Ranking classes will need to know
     about directions.
   * The Reverse class will probably not be needed either. All we need is
-    for the #reverse method to create a new Order with the directions
+    for the #reverse method to create a new Sorted with the directions
     reversed.
   * Remove the knowledge of directions from materialized relations
-    and instead wrap materialized relations in the Order object
+    and instead wrap materialized relations in the Sorted object
     if any.
 
 * Update Attributes so that constraints are modelled using predicates,
@@ -87,8 +87,3 @@
   * many?
   * include? / member?
   * min / max / minmax (when the tuples are sorted)
-
-* Rename Order to Sorted
-  * In other languages, "ordered" implies that the order tuples are added to the
-    relation is tracked, while "sorted" means that they are sorted according to
-    some criteria. The latter is closer to what is meant.

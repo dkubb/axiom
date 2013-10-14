@@ -9,7 +9,7 @@ module Axiom
 
       # The relation sort order
       #
-      # @return [Operation::Order::DirectionSet]
+      # @return [Operation::Sorted::DirectionSet]
       #
       # @api private
       attr_reader :directions
@@ -20,15 +20,15 @@ module Axiom
       #   the relation header
       # @param [Enumerable] tuples
       #   the relation tuples
-      # @param [Operation::Order::DirectionSet] directions
+      # @param [Operation::Sorted::DirectionSet] directions
       #   optional directions to sort the relation by
       #
       # @return [undefined]
       #
       # @api private
-      def initialize(header, tuples = ZERO_TUPLE, directions = Operation::Order::DirectionSet::EMPTY)
+      def initialize(header, tuples = ZERO_TUPLE, directions = Operation::Sorted::DirectionSet::EMPTY)
         super(header, tuples)
-        @directions = Operation::Order::DirectionSet.coerce(directions)
+        @directions = Operation::Sorted::DirectionSet.coerce(directions)
       end
 
       # A noop for Materialized relations

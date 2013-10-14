@@ -19,8 +19,8 @@ Attribute:
   - Axiom::Relation::Materialized
   - Axiom::Relation::Operation::Limit
   - Axiom::Relation::Operation::Offset
-  - Axiom::Relation::Operation::Order
-  - Axiom::Relation::Operation::Order::Direction
+  - Axiom::Relation::Operation::Sorted
+  - Axiom::Relation::Operation::Sorted::Direction
   - Axiom::Relation::Proxy
   - Axiom::Tuple
 BooleanParameter:
@@ -57,9 +57,9 @@ DuplicateMethodCall:
   - Axiom::Algebra::Restriction::Methods#coerce_to_predicate
   - Axiom::Function::Binary#rename
   - Axiom::Function::Unary#rename
-  - Axiom::Relation::Operation::Order::Direction#call
-  - Axiom::Relation::Operation::Order::Direction#rename
-  - Axiom::Relation::Operation::Order::Methods#coerce_to_directions
+  - Axiom::Relation::Operation::Sorted::Direction#call
+  - Axiom::Relation::Operation::Sorted::Direction#rename
+  - Axiom::Relation::Operation::Sorted::Methods#coerce_to_directions
   - Axiom::Relation::Proxy#forward
   - Axiom::Relation::Proxy#method_missing
   max_calls: 1

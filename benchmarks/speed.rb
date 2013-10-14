@@ -17,7 +17,7 @@ array    = (1..100).map { |n| Tuple.new(header, [n, 'Dan Kubb']) }
 relation = Relation.new(header, array)
 join     = Relation.new([[:id, Integer], [:age, Integer]], [[1, 35]])
 product  = Relation.new([[:age, Integer]], [[35]])
-ordered  = relation.sort_by { |r| [r.id, r.name] }
+sorted   = relation.sort_by { |r| [r.id, r.name] }
 
 RBench.run(TIMES) do
   column :ruby,  title: 'Ruby'
@@ -68,33 +68,33 @@ RBench.run(TIMES) do
     axiom { relation.difference(relation).each {} }
   end
 
-  report 'order' do
+  report 'sort_by' do
     ruby  { array.sort_by { |tuple| [-tuple[:id], tuple[:name]] }.each {} }
     axiom { relation.sort_by { |r| [r.id.desc, r.name] }.each {}          }
   end
 
   report 'take' do
     ruby  { array.take(1).each {}   }
-    axiom { ordered.take(1).each {} }
+    axiom { sorted.take(1).each {} }
   end
 
   report 'drop' do
     ruby  { array.drop(1).each {}   }
-    axiom { ordered.drop(1).each {} }
+    axiom { sorted.drop(1).each {} }
   end
 
   report 'first' do
     ruby  { array.first(1).each {}   }
-    axiom { ordered.first(1).each {} }
+    axiom { sorted.first(1).each {} }
   end
 
   report 'last' do
     ruby  { array.last(1).each {}   }
-    axiom { ordered.last(1).each {} }
+    axiom { sorted.last(1).each {} }
   end
 
   report 'reverse' do
     ruby  { array.reverse.each {}   }
-    axiom { ordered.reverse.each {} }
+    axiom { sorted.reverse.each {} }
   end
 end

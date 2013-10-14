@@ -6,9 +6,9 @@ describe Relation::Operation::Limit, '#limit' do
   subject { object.limit }
 
   let(:relation) { Relation.new([[:id, Integer]], [[1], [2], [3]]) }
-  let(:order)    { relation.sort_by { |r| r.id }                   }
+  let(:sorted)   { relation.sort_by { |r| r.id }                   }
   let(:limit)    { 1                                               }
-  let(:object)   { described_class.new(order, limit)               }
+  let(:object)   { described_class.new(sorted, limit)              }
 
   it { should == limit }
 end

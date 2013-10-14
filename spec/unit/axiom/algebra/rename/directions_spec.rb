@@ -13,17 +13,17 @@ describe Algebra::Rename, '#directions' do
 
     it_should_behave_like 'an idempotent method'
 
-    it { should be_instance_of(Relation::Operation::Order::DirectionSet) }
+    it { should be_instance_of(Relation::Operation::Sorted::DirectionSet) }
 
     it { should be_empty }
   end
 
-  context 'containing an ordered relation' do
+  context 'containing an sorted relation' do
     let(:operand) { relation.sort_by { [relation[:id]] } }
 
     it_should_behave_like 'an idempotent method'
 
-    it { should be_instance_of(Relation::Operation::Order::DirectionSet) }
+    it { should be_instance_of(Relation::Operation::Sorted::DirectionSet) }
 
     it { should == [Attribute::Integer.new(:other_id).asc] }
   end

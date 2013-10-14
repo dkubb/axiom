@@ -17,7 +17,7 @@ module Axiom
 
       # The relation sort order
       #
-      # @return [Operation::Order::DirectionSet]
+      # @return [Operation::Sorted::DirectionSet]
       #
       # @api private
       attr_reader :directions

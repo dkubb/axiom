@@ -47,13 +47,13 @@ module Axiom
           #
           # @api public
           def new(left, right)
-            assert_ordered_match(left, right)
+            assert_sorted_match(left, right)
             super
           end
 
         private
 
-          # Assert that ordered and unordered relations are not mixed
+          # Assert that sorted and unsorted relations are not mixed
           #
           # @param [Relation] left
           # @param [Relation] right
@@ -61,12 +61,12 @@ module Axiom
           # @return [undefined]
           #
           # @raise [RelationMismatchError]
-          #   raised if one relation is ordered and the other is not
+          #   raised if one relation is sorted and the other is not
           #
           # @api private
-          def assert_ordered_match(left, right)
+          def assert_sorted_match(left, right)
             if left.directions.empty? != right.directions.empty?
-              fail RelationMismatchError, 'both relations must be ordered or neither may be ordered'
+              fail RelationMismatchError, 'both relations must be sorted or neither may be sorted'
             end
           end
 

@@ -10,31 +10,31 @@ describe Relation::Operation::Binary::ClassMethods, '#new' do
   let(:original_right) { Relation.new([[:name, String]],  [['Dan Kubb']]) }
   let(:object)         { BinaryRelationOperationSpecs::Object             }
 
-  context 'with left and right ordered' do
+  context 'with left and right sorted' do
     let(:left)  { original_left.sort_by  { |r| r.id   } }
     let(:right) { original_right.sort_by { |r| r.name } }
 
     it { should be_instance_of(object) }
   end
 
-  context 'with left and right unordered' do
+  context 'with left and right unsorted' do
     let(:left)  { original_left  }
     let(:right) { original_right }
 
     it { should be_instance_of(object) }
   end
 
-  context 'with left ordered, and right unordered' do
+  context 'with left sorted, and right unsorted' do
     let(:left)  { original_left.sort_by { |r| r.id } }
     let(:right) { original_right                     }
 
-    specify { expect { subject }.to raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
+    specify { expect { subject }.to raise_error(RelationMismatchError, 'both relations must be sorted or neither may be sorted') }
   end
 
-  context 'with right ordered, and left unordered' do
+  context 'with right sorted, and left unsorted' do
     let(:left)  { original_left                         }
     let(:right) { original_right.sort_by { |r| r.name } }
 
-    specify { expect { subject }.to raise_error(RelationMismatchError, 'both relations must be ordered or neither may be ordered') }
+    specify { expect { subject }.to raise_error(RelationMismatchError, 'both relations must be sorted or neither may be sorted') }
   end
 end

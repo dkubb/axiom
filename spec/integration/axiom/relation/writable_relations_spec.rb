@@ -59,10 +59,10 @@ describe Relation do
       expect(intersection.insert(other).delete(other)).to eq(intersection)
     end
 
-    it 'Order#insert and #delete of a disjoint relation are symmetrical' do
-      order = relation.sort_by(relation.header)
-      other = Relation.new(relation.header, [[4, 'John Doe']]).sort_by(relation.header)
-      expect(order.insert(other).delete(other)).to eq(order)
+    it 'Sorted#insert and #delete of a disjoint relation are symmetrical' do
+      sorted = relation.sort_by(relation.header)
+      other  = Relation.new(relation.header, [[4, 'John Doe']]).sort_by(relation.header)
+      expect(sorted.insert(other).delete(other)).to eq(sorted)
     end
   end
 end
