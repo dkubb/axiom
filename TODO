@@ -56,13 +56,6 @@
     caller. This will allow a "complex" predicate to set the errors
     on tuples, while still allowing all the same objects to be used.
 
-* Update memoization to take into account the arguments passed into
-  the method. It should memoize differently for different
-  methods. Perhaps it could have a special case for methods
-  with a 0-arity vs n-arity methods, but it needs to handle cases
-  like with #hash that accept no args, and #optimize that accepts
-  1 arg.
-
 * Within the restriction context, make sure the attributes have aliases for:
   * Alias #== to #eq (may break alot)
   * Alias #!= to #ne (in 1.9 only)
