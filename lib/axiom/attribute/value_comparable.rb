@@ -5,7 +5,12 @@ module Axiom
 
     # A mixin for attributes that have comparable values
     module ValueComparable
-      include Comparable
+      include Comparable,
+              Aggregate::Minimum::Methods,
+              Aggregate::Maximum::Methods,
+              Aggregate::Mean::Methods,
+              Aggregate::Variance::Methods,
+              Aggregate::StandardDeviation::Methods
 
       # Initialize a value comparable attribute
       #

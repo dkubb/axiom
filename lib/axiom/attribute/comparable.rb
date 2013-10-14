@@ -8,12 +8,7 @@ module Axiom
       include Function::Predicate::GreaterThan::Methods,
               Function::Predicate::GreaterThanOrEqualTo::Methods,
               Function::Predicate::LessThan::Methods,
-              Function::Predicate::LessThanOrEqualTo::Methods,
-              Aggregate::Minimum::Methods,
-              Aggregate::Maximum::Methods,
-              Aggregate::Mean::Methods,
-              Aggregate::Variance::Methods,
-              Aggregate::StandardDeviation::Methods
+              Function::Predicate::LessThanOrEqualTo::Methods
 
       # Sort the attribute in ascending order
       #

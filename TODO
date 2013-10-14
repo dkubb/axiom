@@ -34,10 +34,6 @@
     * Use a class variable to store each "Tuple class" so that anything with a
       similar header will be reused.
 
-* Remove mean/variance/stddev modules from Virtus::Attribute::Comparable
-  * It makes no sense for comparable objects to be "averaged", what would it
-    mean to get the average string?
-
 * Remove Order, Reverse, Limit and Offset from the Relation inheritance chain
   * Instead make it so they are proxy classes that wrap Relations, but
     proxy method calls to the Relation methods, and then wrap the return
