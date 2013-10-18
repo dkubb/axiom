@@ -130,6 +130,7 @@ TooManyStatements:
   - Axiom::Aggregate::Variance#self.call
   - Axiom::Algebra::Rename::Aliases#union
   - Axiom::Attribute#self.coerce
+  - Axiom::Equalizer#initialize
   - each
   max_statements: 5
 UncommunicativeMethodName:
