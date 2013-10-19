@@ -34,6 +34,21 @@ module Axiom
         @name = name.to_sym
       end
 
+      # Compare the base relation with other relation for equivalency
+      #
+      # @example
+      #   base == other  # => true or false
+      #
+      # @param [Relation] other
+      #   the other relation to compare with
+      #
+      # @return [Boolean]
+      #
+      # @api public
+      def ==(other)
+        super && (!other.respond_to?(:name) || name == other.name)
+      end
+
     end # class Base
   end # class Relation
 end # module Axiom
