@@ -139,7 +139,7 @@ module Axiom
           #
           # @api private
           def self.call(left, right)
-            left <=> right
+            left <=> right || (1 if left.nil?) || (-1 if right.nil?)
           end
 
         end # class Ascending
@@ -172,7 +172,7 @@ module Axiom
           #
           # @api private
           def self.call(left, right)
-            right <=> left
+            right <=> left || (1 if right.nil?) || (-1 if left.nil?)
           end
 
         end # class Descending

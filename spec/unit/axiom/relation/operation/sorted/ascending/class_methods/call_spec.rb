@@ -27,4 +27,25 @@ describe Relation::Operation::Sorted::Ascending, '.call' do
 
     it { should be(-1) }
   end
+
+  context 'when left and right are nil' do
+    let(:left)  { nil }
+    let(:right) { nil }
+
+    it { should be(0) }
+  end
+
+  context 'when left is nil' do
+    let(:left)  { nil }
+    let(:right) { 2   }
+
+    it { should be(1) }
+  end
+
+  context 'when right is nil' do
+    let(:left)  { 1   }
+    let(:right) { nil }
+
+    it { should be(-1) }
+  end
 end

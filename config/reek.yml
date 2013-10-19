@@ -108,6 +108,8 @@ NilCheck:
   - Axiom::Relation#self.materialized?
   - Axiom::Relation::Operation::Limit#self.assert_valid_limit
   - Axiom::Relation::Operation::Offset#self.assert_valid_offset
+  - Axiom::Relation::Operation::Sorted::Ascending#self.call
+  - Axiom::Relation::Operation::Sorted::Descending#self.call
 RepeatedConditional:
   enabled: true
   exclude: []
