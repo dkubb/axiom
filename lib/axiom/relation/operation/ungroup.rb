@@ -4,19 +4,19 @@ module Axiom
   class Relation
     module Operation
 
-      # A class representing a unnested relation
-      class Unnest < Relation
+      # A class representing an ungrouped relation
+      class Ungroup < Relation
         include Unary
         include Equalizer.new(:operand, :attribute)
 
-        # The nested attribute
+        # The grouped attribute
         #
         # @return [Attribute::Relation]
         #
         # @api private
         attr_reader :attribute
 
-        # Initialize a unnested relation
+        # Initialize an ungrouped relation
         #
         # @param [Relation] operand
         # @param [#to_sym] name
@@ -34,8 +34,8 @@ module Axiom
         # Iterate over each tuple in the set
         #
         # @example
-        #   unnested = Unnest.new(left, right)
-        #   unnested.each { |tuple| ... }
+        #   ungrouped = Ungroup.new(left, right)
+        #   ungrouped.each { |tuple| ... }
         #
         # @yield [tuple]
         #
@@ -58,25 +58,25 @@ module Axiom
 
         module Methods
 
-          # Return a unnested relation
+          # Return an ungrouped relation
           #
           # @example
-          #   unnested = relation.unnest(:location, :names)
+          #   ungrouped = relation.ungroup(:location, :names)
           #
           # @param [Enumerable<#to_sym>] names
           #
-          # @return [Unnest]
+          # @return [Ungroup]
           #
           # @api public
-          def unnest(*names)
-            names.reduce(self, &Unnest.method(:new))
+          def ungroup(*names)
+            names.reduce(self, &Ungroup.method(:new))
           end
 
         end # module Methods
 
         Relation.class_eval { include Methods }
 
-      end # class Unnest
+      end # class Ungroup
     end # module Operation
   end # class Relation
 end # module Axiom

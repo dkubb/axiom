@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Relation::Operation::Nest, '#each' do
+describe Relation::Operation::Group, '#each' do
   subject { object }
 
   let(:object)   { described_class.new(relation, :names, [:name]) }

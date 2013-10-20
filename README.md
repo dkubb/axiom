@@ -67,11 +67,11 @@ new_relation = relation.difference(other)  # OR relation - other
 # NOTE: theta-join is effectively restricting a product of the relations
 new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
 
-# nest
-nested = relation.nest(location: [:latitude, :longitude], names: [:name])
+# group
+grouped = relation.group(location: [:latitude, :longitude], names: [:name])
 
-# unnest
-unnested = relation.unnest(:location, :names)
+# ungroup
+ungrouped = relation.ungroup(:location, :names)
 
 # extend
 new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }

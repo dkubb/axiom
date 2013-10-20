@@ -4,19 +4,19 @@ module Axiom
   class Relation
     module Operation
 
-      # A class representing a nested relation
-      class Nest < Relation
+      # A class representing a grouped relation
+      class Group < Relation
         include Unary
         include Equalizer.new(:operand, :attribute)
 
-        # The nested attribute
+        # The grouped attribute
         #
         # @return [Attribute::Relation]
         #
         # @api private
         attr_reader :attribute
 
-        # Initialize a nested relation
+        # Initialize a grouped relation
         #
         # @param [Relation] operand
         # @param [#to_sym] name
@@ -36,8 +36,8 @@ module Axiom
         # Iterate over each tuple in the set
         #
         # @example
-        #   nested = Nest.new(left, right)
-        #   nested.each { |tuple| ... }
+        #   grouped = Group.new(left, right)
+        #   grouped.each { |tuple| ... }
         #
         # @yield [tuple]
         #
@@ -71,19 +71,19 @@ module Axiom
 
         module Methods
 
-          # Return a nested relation
+          # Return a grouped relation
           #
           # @example
-          #   nested = relation.nest(location: [:latitude, :longitude])
+          #   grouped = relation.group(location: [:latitude, :longitude])
           #
-          # @param [Hash{#to_sym => Enumerable<Axiom::Attribute] nesting
+          # @param [Hash{#to_sym => Enumerable<Axiom::Attribute>] grouping
           #
-          # @return [Nest]
+          # @return [Group]
           #
           # @api public
-          def nest(nesting)
-            nesting.reduce(self) do |operation, pair|
-              Nest.new(operation, *pair)
+          def group(grouping)
+            grouping.reduce(self) do |operation, pair|
+              Group.new(operation, *pair)
             end
           end
 
@@ -91,7 +91,7 @@ module Axiom
 
         Relation.class_eval { include Methods }
 
-      end # class Nest
+      end # class Group
     end # module Operation
   end # class Relation
 end # module Axiom

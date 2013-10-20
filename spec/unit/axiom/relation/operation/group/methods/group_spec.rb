@@ -2,8 +2,8 @@
 
 require 'spec_helper'
 
-describe Relation::Operation::Nest::Methods, '#nest' do
-  subject { object.nest(name => attributes) }
+describe Relation::Operation::Group::Methods, '#group' do
+  subject { object.group(name => attributes) }
 
   let(:object)          { described_class.new(header, body) }
   let(:described_class) { Relation                          }
@@ -12,7 +12,7 @@ describe Relation::Operation::Nest::Methods, '#nest' do
   let(:name)            { :names                            }
   let(:attributes)      { [:name]                           }
 
-  it { should be_instance_of(Relation::Operation::Nest) }
+  it { should be_instance_of(Relation::Operation::Group) }
 
   its(:header) do
     should == [
