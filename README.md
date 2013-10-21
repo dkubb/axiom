@@ -68,10 +68,16 @@ new_relation = relation.difference(other)  # OR relation - other
 new_relation = relation.join(other) { |r| r.id.gte(r.other_id) }
 
 # group
-grouped = relation.group(location: [:latitude, :longitude], names: [:name])
+grouped = relation.group(products: [:product_name])
 
 # ungroup
-ungrouped = relation.ungroup(:location, :names)
+ungrouped = relation.ungroup(:products)
+
+# wrap
+grouped = relation.wrap(address: [:street, :city, :state, :zip, :country])
+
+# unwrap
+grouped = relation.unwrap(:address)
 
 # extend
 new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
