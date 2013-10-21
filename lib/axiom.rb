@@ -213,6 +213,7 @@ require 'axiom/types/relation'
 require 'axiom/types/tuple'
 
 require 'axiom/attribute/relation'
+require 'axiom/attribute/tuple'
 
 module Axiom
 
