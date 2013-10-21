@@ -14,6 +14,10 @@ describe Attribute::Relation, '.new' do
 
     it { should be_instance_of(described_class) }
 
+    it 'sets the name' do
+      expect(subject.name).to be(name)
+    end
+
     it 'does not freeze the options' do
       expect(options).not_to be_frozen
       expect { subject }.to_not change(options, :frozen?)
@@ -29,6 +33,10 @@ describe Attribute::Relation, '.new' do
     let(:header)  { [[:id, Integer]]   }
 
     it { should be_instance_of(described_class) }
+
+    it 'sets the name' do
+      expect(subject.name).to be(name)
+    end
 
     it 'does not freeze the options' do
       expect(options).not_to be_frozen
