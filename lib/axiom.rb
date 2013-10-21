@@ -210,6 +210,7 @@ require 'axiom/version'
 require 'axiom-types'
 
 require 'axiom/types/relation'
+require 'axiom/types/tuple'
 
 require 'axiom/attribute/relation'
 
