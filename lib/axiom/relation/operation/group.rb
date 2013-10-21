@@ -50,10 +50,8 @@ module Axiom
         def each
           return to_enum unless block_given?
           build_index.each do |outer_tuple, inner_tuples|
-            yield outer_tuple.extend(
-              header,
-              [attribute.new_relation(inner_tuples)]
-            )
+            inner_relation = attribute.new_relation(inner_tuples)
+            yield outer_tuple.extend(header, [inner_relation])
           end
           self
         end
