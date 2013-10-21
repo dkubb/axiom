@@ -220,10 +220,8 @@ module Axiom
       #
       # @api public
       def rename(aliases)
-        new(
-          map { |attribute| aliases[attribute] },
-          keys: keys.rename(aliases)
-        )
+        aliases = Algebra::Rename::Aliases.coerce(self, aliases)
+        new(map(&aliases.method(:[])), keys: keys.rename(aliases))
       end
 
       # Return the intersection of the header with another header
