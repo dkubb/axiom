@@ -36,7 +36,7 @@ module Axiom
         # Iterate over each tuple in the set
         #
         # @example
-        #   grouped = Group.new(left, right)
+        #   grouped = Group.new(operand, name, attributes)
         #   grouped.each { |tuple| ... }
         #
         # @yield [tuple]

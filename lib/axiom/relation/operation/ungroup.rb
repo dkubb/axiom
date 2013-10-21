@@ -34,7 +34,7 @@ module Axiom
         # Iterate over each tuple in the set
         #
         # @example
-        #   ungrouped = Ungroup.new(left, right)
+        #   ungrouped = Ungroup.new(operand, name)
         #   ungrouped.each { |tuple| ... }
         #
         # @yield [tuple]
