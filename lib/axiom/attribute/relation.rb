@@ -28,7 +28,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def initialize(_name, options = EMPTY_HASH)
+      def initialize(_name, options)
         super
         @header = Axiom::Relation::Header.coerce(options.fetch(:header))
       end
