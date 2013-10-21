@@ -10,7 +10,7 @@ module Axiom
       include Equalizer.new(:to_set, :keys)
 
       inheritable_alias(
-        :[] => :call,
+        :[] => :fetch,
         :&  => :intersect,
         :|  => :union,
         :-  => :difference
@@ -160,7 +160,7 @@ module Axiom
       #   the attribute when the name is known
       #
       # @api public
-      def call(name)
+      def fetch(name)
         @attribute_for.fetch(Attribute.name_from(name)) do |attribute_name|
           fail(
             UnknownAttributeError,

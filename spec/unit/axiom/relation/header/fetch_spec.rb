@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[:call, :[]].each do |method|
+[:fetch, :[]].each do |method|
   describe Relation::Header, "##{method}" do
     subject { object.send(method, name) }
 

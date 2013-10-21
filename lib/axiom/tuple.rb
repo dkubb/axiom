@@ -49,7 +49,7 @@ module Axiom
     #
     # @api public
     def fetch(attribute)
-      data.fetch(header.call(attribute))
+      data.fetch(header.fetch(attribute))
     end
 
     # Return a tuple with only the specified attributes
