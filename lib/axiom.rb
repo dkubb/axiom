@@ -153,6 +153,8 @@ require 'axiom/relation/operation/sorted/direction_set'
 require 'axiom/relation/operation/reverse'
 require 'axiom/relation/operation/set'
 require 'axiom/relation/operation/ungroup'
+require 'axiom/relation/operation/unwrap'
+require 'axiom/relation/operation/wrap'
 
 require 'axiom/algebra/difference'
 require 'axiom/algebra/extension'
@@ -210,8 +212,10 @@ require 'axiom/version'
 require 'axiom-types'
 
 require 'axiom/types/relation'
+require 'axiom/types/tuple'
 
 require 'axiom/attribute/relation'
+require 'axiom/attribute/tuple'
 
 module Axiom
 
