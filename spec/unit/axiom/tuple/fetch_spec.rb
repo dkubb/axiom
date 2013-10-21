@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-[:call, :[]].each do |method|
+[:fetch, :[]].each do |method|
   describe Tuple, "##{method}" do
     subject { object.send(method, attribute) }
 

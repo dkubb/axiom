@@ -7,7 +7,7 @@ module Axiom
     extend Aliasable
     include Equalizer.new(:data)
 
-    inheritable_alias(:[] => :call)
+    inheritable_alias(:[] => :fetch)
 
     # The tuple header
     #
@@ -48,7 +48,7 @@ module Axiom
     # @return [Object]
     #
     # @api public
-    def call(attribute)
+    def fetch(attribute)
       data.fetch(header.call(attribute))
     end
 

@@ -104,7 +104,7 @@ module Axiom
     #
     # @api public
     def call(tuple)
-      tuple.call(self)
+      tuple[self]
     end
 
     # Rename an attribute
