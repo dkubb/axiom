@@ -50,7 +50,7 @@ module Axiom
           operand.each do |tuple|
             outer_tuple = tuple.project(@outer)
             tuple[attribute].each do |inner_tuple|
-              yield outer_tuple.extend(header, inner_tuple.to_ary)
+              yield outer_tuple.join(header, inner_tuple)
             end
           end
           self
