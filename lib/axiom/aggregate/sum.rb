@@ -43,7 +43,7 @@ module Axiom
       # @api public
       def default
         if    type <= Types::Float   then super.to_f
-        elsif type <= Types::Decimal then BigDecimal(super)
+        elsif type <= Types::Decimal then super.to_d
         else
           super
         end

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require 'bigdecimal'
+require 'bigdecimal/util'
 require 'date'
 require 'set'
 require 'singleton'
