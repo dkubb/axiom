@@ -112,7 +112,8 @@ NilCheck:
   - Axiom::Relation::Operation::Sorted::Descending#self.call
 RepeatedConditional:
   enabled: true
-  exclude: []
+  exclude:
+  - Axiom::Aggregate::Mean
   max_ifs: 1
 TooManyInstanceVariables:
   enabled: true

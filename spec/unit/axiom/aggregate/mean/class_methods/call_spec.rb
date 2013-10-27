@@ -16,7 +16,7 @@ describe Aggregate::Mean, '.call' do
     let(:values) { [0] }
 
     it 'returns the expected count and mean of the values' do
-      should == [1, 0.0]
+      should eql([1, 0.to_r])
     end
   end
 
@@ -24,7 +24,7 @@ describe Aggregate::Mean, '.call' do
     let(:values) { [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6] }
 
     it 'returns the expected count and mean of the values' do
-      should == [13, 0.0]
+      should eql([13, 0.to_r])
     end
   end
 

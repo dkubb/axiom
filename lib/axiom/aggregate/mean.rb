@@ -17,14 +17,14 @@ module Axiom
       #
       # @param [Numeric] value
       #
-      # @return [Array(Integer, Numeric)]
+      # @return [Array(Integer, Rational)]
       #
       # @api public
       def self.call(accumulator, value)
         return accumulator if value.nil?
         count, mean = accumulator
         count       = Count.call(count, value)
-        [count, mean ? Rational(value - mean, count) + mean : Rational(value)]
+        [count, mean ? Rational(value - mean, count) + mean : value.to_r]
       end
 
       # Extract the mean from the accumulator
@@ -41,7 +41,8 @@ module Axiom
       #
       # @api public
       def self.finalize(accumulator)
-        accumulator.last
+        mean = accumulator.last
+        mean.to_f if mean
       end
 
       # Return the type returned from #call

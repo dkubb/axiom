@@ -8,9 +8,16 @@ describe Aggregate::Mean, '.finalize' do
   let(:object)      { described_class }
   let(:accumulator) { [count, mean]   }
   let(:count)       { double('Count') }
-  let(:mean)        { double('Mean')  }
 
-  it_should_behave_like 'an idempotent method'
+  context 'when the accumulator mean is nil' do
+    let(:mean) { nil }
 
-  it { should be(mean) }
+    it { should be_nil }
+  end
+
+  context 'when the accumulator mean is not nil' do
+    let(:mean) { 1.to_r }
+
+    it { should eql(1.0) }
+  end
 end
