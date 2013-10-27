@@ -5,7 +5,12 @@ require 'spec_helper'
 describe Aggregate, '.default' do
   subject { object.default }
 
-  let(:object) { described_class }
+  let(:object)  { Class.new(described_class) }
+  let(:default) { double('default')          }
 
-  specify { expect { subject }.to raise_error(NameError) }
+  before do
+    object.const_set(:DEFAULT, default)
+  end
+
+  it { should be(default) }
 end
