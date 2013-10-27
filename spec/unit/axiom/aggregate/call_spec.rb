@@ -3,21 +3,19 @@
 require 'spec_helper'
 
 describe Aggregate, '#call' do
-  subject { object.call(nil, tuple) }
+  subject { object.call(accumulator, tuple) }
 
-  let(:described_class) { Class.new(Aggregate)              }
   let(:object)          { described_class.new(attribute)    }
+  let(:described_class) { Class.new(Aggregate)              }
+  let(:accumulator)     { double('accumulator')             }
   let(:attribute)       { Attribute::Integer.new(:id)       }
   let(:header)          { Relation::Header.new([attribute]) }
   let(:tuple)           { Tuple.new(header, [1])            }
 
   context 'when operand is an attribute' do
     before do
-      described_class.class_eval do
-        def self.call(accumulator, value)
-          value
-        end
-      end
+      expect(described_class).to receive(:call).with(accumulator, 1)
+        .and_return(1)
     end
 
     it { should eql(1) }
@@ -27,11 +25,8 @@ describe Aggregate, '#call' do
     let(:object) { described_class.new(2) }
 
     before do
-      described_class.class_eval do
-        def self.call(accumulator, value)
-          value
-        end
-      end
+      expect(described_class).to receive(:call).with(accumulator, 2)
+        .and_return(2)
     end
 
     it { should eql(2) }
