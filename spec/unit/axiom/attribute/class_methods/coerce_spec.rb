@@ -5,87 +5,93 @@ require 'spec_helper'
 describe Attribute, '.coerce' do
   subject { object.coerce(argument) }
 
-  let(:object) { described_class }
+  describe 'with the class' do
+    let(:object) { described_class }
 
-  context 'when the argument is an Attribute' do
-    let(:argument) { Attribute::Integer.new(:id) }
+    context 'when the argument is an Attribute' do
+      let(:argument) { Attribute::Integer.new(:id) }
 
-    it { should be(argument) }
+      it { should be(argument) }
+    end
+
+    context 'when the argument responds to #to_ary and does not include options' do
+      let(:argument) { [:id, Integer] }
+
+      it { should be_instance_of(Attribute::Integer) }
+
+      its(:name) { should == :id }
+    end
+
+    context 'when the argument responds to #to_ary and includes options' do
+      let(:argument) { [:id, Integer, { required: false }] }
+
+      it { should be_instance_of(Attribute::Integer) }
+
+      its(:name) { should == :id }
+
+      its(:required?) { should be(false) }
+    end
+
+    context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
+      let(:argument) { :id }
+
+      it { should be_instance_of(Attribute::Object) }
+
+      its(:name) { should == :id }
+    end
+
+    context 'when the argument does not respond to #to_ary or #to_sym' do
+      let(:argument) { Integer }
+
+      specify { expect { subject }.to raise_error(NoMethodError) }
+    end
   end
 
-  context 'when the argument responds to #to_ary and does not include options' do
-    let(:argument) { [:id, Integer] }
+  describe 'with a subclass' do
+    subject { object.coerce(argument) }
 
-    it { should be_instance_of(Attribute::Integer) }
+    let(:object) { Class.new(described_class) }
 
-    its(:name) { should == :id }
-  end
+    context 'when the argument is an Attribute' do
+      let(:argument) { Attribute::Integer.new(:id) }
 
-  context 'when the argument responds to #to_ary and includes options' do
-    let(:argument) { [:id, Integer, { required: false }] }
+      it { should be(argument) }
+    end
 
-    it { should be_instance_of(Attribute::Integer) }
+    context 'when the argument responds to #to_ary and does not include options' do
+      let(:argument) { [:id, Integer] }
 
-    its(:name) { should == :id }
+      it { should be_instance_of(Attribute::Integer) }
 
-    its(:required?) { should be(false) }
-  end
+      its(:name) { should == :id }
+    end
 
-  context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
-    let(:argument) { :id }
+    context 'when the argument responds to #to_ary and includes options' do
+      let(:argument) { [:id, Integer, { required: false }] }
 
-    it { should be_instance_of(Attribute::Object) }
+      it { should be_instance_of(Attribute::Integer) }
 
-    its(:name) { should == :id }
-  end
+      its(:name) { should == :id }
 
-  context 'when the argument does not respond to #to_ary or #to_sym' do
-    let(:argument) { Integer }
+      its(:required?) { should be(false) }
+    end
 
-    specify { expect { subject }.to raise_error(NoMethodError) }
-  end
-end
+    context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
+      let(:argument) { :id }
 
-describe Attribute::Boolean, '.coerce' do
-  subject { object.coerce(argument) }
+      before do
+        allow(object).to receive(:type)
+      end
 
-  let(:object) { described_class }
+      it { should be_instance_of(object) }
 
-  context 'when the argument is an Attribute' do
-    let(:argument) { Attribute::Integer.new(:id) }
+      its(:name) { should == :id }
+    end
 
-    it { should be(argument) }
-  end
+    context 'when the argument does not respond to #to_ary or #to_sym' do
+      let(:argument) { Integer }
 
-  context 'when the argument responds to #to_ary and does not include options' do
-    let(:argument) { [:id, Integer] }
-
-    it { should be_instance_of(Attribute::Integer) }
-
-    its(:name) { should == :id }
-  end
-
-  context 'when the argument responds to #to_ary and includes options' do
-    let(:argument) { [:id, Integer, { required: false }] }
-
-    it { should be_instance_of(Attribute::Integer) }
-
-    its(:name) { should == :id }
-
-    its(:required?) { should be(false) }
-  end
-
-  context 'when the argument does not respond to #to_ary, but does respond to #to_sym' do
-    let(:argument) { :id }
-
-    it { should be_instance_of(described_class) }
-
-    its(:name) { should == :id }
-  end
-
-  context 'when the argument does not respond to #to_ary or #to_sym' do
-    let(:argument) { Integer }
-
-    specify { expect { subject }.to raise_error(NoMethodError) }
+      specify { expect { subject }.to raise_error(NoMethodError) }
+    end
   end
 end

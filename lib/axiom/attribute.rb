@@ -35,10 +35,11 @@ module Axiom
     def self.coerce(object)
       if object.kind_of?(Attribute)
         object
+      elsif equal?(Attribute)
+        Object.coerce(object)
       else
         name, type, options = object
-        klass = equal?(Attribute) ? Object : self
-        klass = const_get(type.name) if type
+        klass = type ? const_get(type.name) : self
         klass.new(name, options || EMPTY_HASH)
       end
     end
