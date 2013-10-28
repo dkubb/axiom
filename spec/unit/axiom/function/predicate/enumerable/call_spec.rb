@@ -33,4 +33,14 @@ describe Function::Predicate::Enumerable, '#call' do
       should be(response)
     end
   end
+
+  context 'with an enumerable of attributes' do
+    let(:object)   { described_class.new(header[:id], [header[:id]]) }
+
+    it 'sends the left and right value to self.class.call' do
+      response = double('#call response')
+      expect(described_class).to receive(:call).with(1, [1]).and_return(response)
+      should be(response)
+    end
+  end
 end

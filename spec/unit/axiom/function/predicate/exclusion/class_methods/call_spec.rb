@@ -6,18 +6,47 @@ describe Function::Predicate::Exclusion, '.call' do
   subject { object.call(left, right) }
 
   let(:object) { described_class }
+  let(:left)   { 1               }
 
-  context 'when left is excluded from right' do
-    let(:left)  { 1   }
-    let(:right) { [0] }
+  context 'when right responds to #cover?' do
+    # Create class that only delegates #cover?
+    let(:coverable) do
+      Class.new do
+        def initialize(object)
+          @object = object
+        end
 
-    it { should be(true) }
+        def cover?(value)
+          @object.cover?(value)
+        end
+      end
+    end
+
+    context 'when left is excluded in right' do
+      let(:right) { coverable.new(1..1) }
+
+      it { should be(false) }
+    end
+
+    context 'when left is not excluded in right' do
+      let(:right) { coverable.new(0..0) }
+
+      it { should be(true) }
+    end
   end
 
-  context 'when left is not excluded from right' do
-    let(:left)  { 1   }
-    let(:right) { [1] }
+  context 'when right responds to #include?' do
 
-    it { should be(false) }
+    context 'when left is excluded in right' do
+      let(:right) { [1] }
+
+      it { should be(false) }
+    end
+
+    context 'when left is not excluded in right' do
+      let(:right) { [0] }
+
+      it { should be(true) }
+    end
   end
 end

@@ -18,20 +18,6 @@ module Axiom
           enumerable.respond_to?(:cover?) ? :cover? : :include?
         end
 
-        # Initialize an Enumerable predicate
-        #
-        # @param [Object] left
-        #   the attribute or object to test for in the Enumerable
-        # @param [Enumerable] right
-        #   the enumerable to test
-        #
-        # @return [undefined]
-        #
-        # @api private
-        def initialize(left, right)
-          super(left, freeze_object(right))
-        end
-
         # Evaluate the enumerable function using the tuple
         #
         # @example
