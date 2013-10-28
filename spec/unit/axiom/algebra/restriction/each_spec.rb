@@ -5,9 +5,10 @@ require 'spec_helper'
 describe Algebra::Restriction, '#each' do
   subject { object.each { |tuple| yields << tuple } }
 
-  let(:object)   { described_class.new(relation, predicate) }
-  let(:relation) { Relation.new([[:id, Integer]], [[1]])    }
-  let(:yields)   { []                                       }
+  let(:object)    { described_class.new(relation, predicate) }
+  let(:relation)  { Relation.new([attribute], [[1]])         }
+  let(:attribute) { Attribute::Integer.new(:id)              }
+  let(:yields)    { []                                       }
 
   context 'when predicate is a Proc' do
     let(:predicate) { proc { true } }
@@ -32,7 +33,7 @@ describe Algebra::Restriction, '#each' do
   end
 
   context 'when predicate is a Function' do
-    let(:predicate) { Function::Proposition::Tautology.instance }
+    let(:predicate) { attribute.eq(1) }
 
     it_should_behave_like 'an #each method'
 
