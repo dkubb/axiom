@@ -36,7 +36,7 @@ module Axiom
         #
         # @api public
         def call(value)
-          value.send(operation)
+          value.public_send(operation)
         end
 
       end # module Callable

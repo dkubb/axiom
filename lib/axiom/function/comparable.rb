@@ -35,7 +35,7 @@ module Axiom
         #
         # @api public
         def call(left, right)
-          left.send(operation, right)
+          left.public_send(operation, right)
         end
 
       end # module Classmethods
