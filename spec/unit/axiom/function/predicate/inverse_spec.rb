@@ -6,7 +6,8 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Function::Predicate, '#inverse' do
   subject { object.inverse }
 
-  let(:object) { described_class.new(1, 1) }
+  let(:object)          { described_class.new(1, 1)      }
+  let(:described_class) { Class.new(Function::Predicate) }
 
   specify { expect { subject }.to raise_error(NoMethodError) }
 

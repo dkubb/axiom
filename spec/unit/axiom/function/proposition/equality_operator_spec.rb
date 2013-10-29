@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Function::Proposition, '#==' do
   subject { object == other }
 
+  let(:object)          { described_class.instance         }
   let(:described_class) { Class.new(Function::Proposition) }
-  let(:object)          { described_class.new              }
 
   context 'with the same object' do
     let(:other) { object }
@@ -19,7 +19,7 @@ describe Function::Proposition, '#==' do
   end
 
   context 'with an equivalent object of a subclass' do
-    let(:other) { Class.new(described_class).new }
+    let(:other) { Class.new(described_class).instance }
 
     it { should be(true) }
 
@@ -29,7 +29,7 @@ describe Function::Proposition, '#==' do
   end
 
   context 'with a different class' do
-    let(:other) { Class.new(Function::Proposition).new }
+    let(:other) { Class.new(Function::Proposition).instance }
 
     it { should be(false) }
 

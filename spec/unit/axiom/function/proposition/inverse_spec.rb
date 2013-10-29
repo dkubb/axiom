@@ -5,10 +5,10 @@ require 'spec_helper'
 describe Function::Proposition, '#inverse' do
   subject { object.inverse }
 
+  let(:object)           { described_class.instance                            }
   let(:described_class)  { Class.new(Function::Proposition)                    }
   let(:inverse_class)    { double('Inverse Class', instance: inverse_instance) }
   let(:inverse_instance) { double('Inverse Instance')                          }
-  let(:object)           { described_class.new                                 }
 
   before do
     allow(described_class).to receive(:inverse).and_return(inverse_class)

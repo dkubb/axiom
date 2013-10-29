@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Function::Proposition, '#call' do
   subject { object.call(tuple) }
 
-  let(:object)          { described_class.new                       }
+  let(:object)          { described_class.instance                  }
   let(:described_class) { Class.new(Function::Proposition)          }
   let(:header)          { Relation::Header.coerce([[:id, Integer]]) }
   let(:tuple)           { Tuple.new(header, [1])                    }

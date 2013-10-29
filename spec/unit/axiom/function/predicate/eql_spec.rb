@@ -6,9 +6,10 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Function::Predicate, '#eql?' do
   subject { object.eql?(other) }
 
-  let(:left)   { Attribute::Integer.new(:id)      }
-  let(:right)  { 1                                }
-  let(:object) { described_class.new(left, right) }
+  let(:object)          { described_class.new(left, right) }
+  let(:described_class) { Class.new(Function::Predicate)   }
+  let(:left)            { Attribute::Integer.new(:id)      }
+  let(:right)           { 1                                }
 
   context 'with the same object' do
     let(:other) { object }

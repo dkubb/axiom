@@ -5,8 +5,7 @@ module Axiom
 
     # Abstract base class for logical propositions
     class Proposition < Function
-      include AbstractType,
-              Singleton,
+      include Singleton,
               Function::Connective::Conjunction::Methods,
               Function::Connective::Disjunction::Methods,
               Function::Connective::Negation::Methods
@@ -24,36 +23,24 @@ module Axiom
         Types::Boolean
       end
 
-      # Instantiate a new Proposition
+      # Coerce a boolean into a proposition
       #
-      # @example using a true value
-      #   tautology = Proposition.new(true)
-      #
-      # @example using a false value
-      #   contradiction = Proposition.new(false)
+      # @param [Object] object
       #
       # @return [Proposition]
+      #   returned twhen the object can be coerced into a proposition
       #
-      # @overload self.new(true)
-      #   Return the Tautology singleton instance
-      #
-      #   @param [Array(true)] args
-      #
-      #   @return [Tautology]
-      #
-      # @overload self.new(false)
-      #   Return the Contradiction singleton instance
-      #
-      #   @param [Array(false)] args
-      #
-      #   @return [Contradiction]
+      # @raise [ArgumentError]
+      #   raised when the object cannot be coerced into a proposition
       #
       # @api public
-      def self.new(*args)
-        if args.empty?
-          super
+      def self.coerce(object)
+        case object
+        when Proposition then object
+        when true        then Tautology.instance
+        when false       then Contradiction.instance
         else
-          (args.first.equal?(true) ? Tautology : Contradiction).instance
+          fail ArgumentError, "Invalid object #{object.inspect}"
         end
       end
 
