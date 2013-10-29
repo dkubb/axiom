@@ -31,7 +31,7 @@ module Axiom
         if object.kind_of?(self)
           object
         else
-          block ||= ->(attributes) { coerce_attributes(attributes) }
+          block ||= method(:coerce_attributes)
           new(object.map(&block))
         end
       end
