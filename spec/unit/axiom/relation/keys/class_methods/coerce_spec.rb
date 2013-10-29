@@ -16,9 +16,26 @@ describe Relation::Keys, '.coerce' do
   context 'when the argument responds to #to_ary' do
     let(:argument) { [[[:id]]] }
 
-    it { should be_instance_of(object) }
+    context 'with a block' do
+      subject { object.coerce(argument, &block) }
 
-    it { should == [Relation::Header.coerce([:id])] }
+      let(:block) { ->(attributes) { Relation::Header.coerce(attributes) } }
+
+      it { should be_instance_of(object) }
+
+      it { should == [Relation::Header.coerce([:id])] }
+
+      it 'yields the attributes' do
+        expect { |block| object.coerce(argument, &block) }
+          .to yield_successive_args(*argument)
+      end
+    end
+
+    context 'without a block' do
+      it { should be_instance_of(object) }
+
+      it { should == [Relation::Header.coerce([:id])] }
+    end
   end
 
   context 'when the argument is not a Keys and does not respond to #to_ary' do
