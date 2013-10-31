@@ -61,7 +61,7 @@ module Axiom
       # @return [Header]
       #
       # @api public
-      def self.new(attributes = EMPTY_ARRAY, _options = EMPTY_HASH)
+      def self.new(attributes = EMPTY_ARRAY, *)
         assert_unique_names(attributes.map(&:name))
         super
       end
@@ -90,7 +90,7 @@ module Axiom
       def self.assert_unique_names(names)
         duplicates = duplicate_names(names)
         if duplicates
-          fail DuplicateNameError, "duplicate names: #{duplicates.inspect}"
+          fail DuplicateNameError, "duplicate names: #{duplicates}"
         end
       end
 
@@ -123,7 +123,7 @@ module Axiom
       # @return [undefined]
       #
       # @api public
-      def initialize(attributes, options)
+      def initialize(attributes, options = EMPTY_HASH)
         @attributes    = freeze_object(attributes)
         @attribute_for = Hash[@attributes.map(&:name).zip(@attributes)]
         @keys          = coerce_keys(options.fetch(:keys, EMPTY_ARRAY))
