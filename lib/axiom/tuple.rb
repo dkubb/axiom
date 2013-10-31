@@ -115,6 +115,20 @@ module Axiom
       )
     end
 
+    # Rename a tuple to use a new header
+    #
+    # @example
+    #   new_tuple = tuple.rename(header)
+    #
+    # @param [Header] header
+    #
+    # @return [Tuple]
+    #
+    # @api public
+    def rename(header)
+      self.class.new(header, to_ary)
+    end
+
     # Return the predicate matching the tuple
     #
     # @return [Function]

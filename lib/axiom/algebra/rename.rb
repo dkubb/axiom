@@ -55,7 +55,7 @@ module Axiom
       # @api public
       def each
         return to_enum unless block_given?
-        operand.each { |tuple| yield Tuple.new(header, tuple) }
+        operand.each { |tuple| yield tuple.rename(header) }
         self
       end
 
