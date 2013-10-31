@@ -78,23 +78,6 @@ module Axiom
       self.class.new(header, data.values_at(*header))
     end
 
-    # Append values to the tuple and return a new tuple
-    #
-    # @example
-    #   new_tuple = tuple.join(header, [1, 2, 3])
-    #
-    # @param [Header] header
-    #   the attributes to include in the tuple
-    # @param [Array] values
-    #   the values to append
-    #
-    # @return [Tuple]
-    #
-    # @api public
-    def join(header, values)
-      self.class.new(header, to_ary + values)
-    end
-
     # Extend a tuple with function results
     #
     # @example
@@ -127,6 +110,23 @@ module Axiom
     # @api public
     def rename(header)
       self.class.new(header, to_ary)
+    end
+
+    # Append values to the tuple and return a new tuple
+    #
+    # @example
+    #   new_tuple = tuple.join(header, [1, 2, 3])
+    #
+    # @param [Header] header
+    #   the attributes to include in the tuple
+    # @param [Array] values
+    #   the values to append
+    #
+    # @return [Tuple]
+    #
+    # @api public
+    def join(header, values)
+      self.class.new(header, to_ary + values)
     end
 
     # Return the predicate matching the tuple
