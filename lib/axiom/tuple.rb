@@ -23,6 +23,16 @@ module Axiom
     # @api private
     attr_reader :data
 
+    # Convert the Tuple into an Array
+    #
+    # @example
+    #   array = tuple.to_ary
+    #
+    # @return [Array]
+    #
+    # @api public
+    attr_reader :to_ary
+
     # Initialize a Tuple
     #
     # @param [Header] header
@@ -35,7 +45,8 @@ module Axiom
     # @api private
     def initialize(header, data)
       @header = header
-      @data   = Hash[header.zip(data)]
+      @to_ary = freeze_object(data)
+      @data   = Hash[header.zip(@to_ary)]
     end
 
     # Lookup a value in the tuple given an attribute
@@ -115,18 +126,6 @@ module Axiom
       end
     end
 
-    # Convert the Tuple into an Array
-    #
-    # @example
-    #   array = tuple.to_ary
-    #
-    # @return [Array]
-    #
-    # @api public
-    def to_ary
-      data.values_at(*header).freeze
-    end
-
     # Coerce the tuple into a Hash
     #
     # @example
@@ -179,7 +178,7 @@ module Axiom
       object.kind_of?(Tuple) ? object : new(header, object.to_ary)
     end
 
-    memoize :predicate, :to_ary, :to_hash, :inspect
+    memoize :predicate, :to_hash, :inspect
 
   end # class Tuple
 end # module Axiom

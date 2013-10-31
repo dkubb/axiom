@@ -5,8 +5,9 @@ require 'spec_helper'
 describe Tuple, '#to_ary' do
   subject { object.to_ary }
 
+  let(:object) { described_class.new(header, body)         }
   let(:header) { Relation::Header.coerce([[:id, Integer]]) }
-  let(:object) { described_class.new(header, [1])          }
+  let(:body)   { [1]                                       }
 
   it_should_behave_like 'an idempotent method'
 
