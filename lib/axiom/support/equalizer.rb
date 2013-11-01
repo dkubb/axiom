@@ -5,8 +5,6 @@ module Axiom
   # Define equality, equivalence and inspection methods
   class Equalizer < ::Equalizer
 
-  private
-
     # Include Adamanitium and memoize #hash
     #
     # @return [undefined]
@@ -19,6 +17,8 @@ module Axiom
         memoize :hash
       end
     end
+
+    private :include_comparison_methods
 
   end # class Equalizer
 end # module Axiom
