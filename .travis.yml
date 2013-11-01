@@ -13,6 +13,8 @@ matrix:
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+  allow_failures:
+    - rvm: jruby-19mode  # bug in old version (1.7.4)
 notifications:
   irc:
     channels:
