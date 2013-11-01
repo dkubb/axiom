@@ -7,14 +7,14 @@ describe Axiom::Equalizer, '.new' do
   let(:name)   { 'User'          }
   let(:klass)  { ::Class.new     }
 
+  before do
+    # specify the class #name method
+    allow(klass).to receive(:name).and_return(name)
+    klass.send(:include, subject)
+  end
+
   context 'with no keys' do
     subject { object.new }
-
-    before do
-      # specify the class #name method
-      allow(klass).to receive(:name).and_return(name)
-      klass.send(:include, subject)
-    end
 
     let(:instance) { klass.new }
 
@@ -25,8 +25,8 @@ describe Axiom::Equalizer, '.new' do
     end
 
     describe '#eql?' do
-      context 'when the objects are similar' do
-        let(:other) { instance.dup }
+      context 'when the objects are equivalent' do
+        let(:other) { klass.new }
 
         it { expect(instance.eql?(other)).to be(true) }
       end
@@ -39,8 +39,8 @@ describe Axiom::Equalizer, '.new' do
     end
 
     describe '#==' do
-      context 'when the objects are similar' do
-        let(:other) { instance.dup }
+      context 'when the objects are equivalent' do
+        let(:other) { klass.new }
 
         it { expect(instance == other).to be(true) }
       end
@@ -82,13 +82,6 @@ describe Axiom::Equalizer, '.new' do
       end
     end
 
-    before do
-      # specify the class #inspect method
-      allow(klass).to receive(:name).and_return(nil)
-      allow(klass).to receive(:inspect).and_return(name)
-      klass.send(:include, subject)
-    end
-
     it { should be_instance_of(object) }
 
     it 'defines #hash and #inspect methods dynamically' do
@@ -96,8 +89,8 @@ describe Axiom::Equalizer, '.new' do
     end
 
     describe '#eql?' do
-      context 'when the objects are similar' do
-        let(:other) { instance.dup }
+      context 'when the objects are equivalent' do
+        let(:other) { klass.new(first_name) }
 
         it { expect(instance.eql?(other)).to be(true) }
       end
@@ -110,8 +103,8 @@ describe Axiom::Equalizer, '.new' do
     end
 
     describe '#==' do
-      context 'when the objects are similar' do
-        let(:other) { instance.dup }
+      context 'when the objects are equivalent' do
+        let(:other) { klass.new(first_name) }
 
         it { expect(instance == other).to be(true) }
       end
