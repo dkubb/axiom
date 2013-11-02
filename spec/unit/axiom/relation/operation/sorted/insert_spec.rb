@@ -42,4 +42,10 @@ describe Relation::Operation::Sorted, '#insert' do
 
     specify { expect { subject }.to raise_error(SortedMismatchError, 'other relation must have matching directions to be inserted') }
   end
+
+  context 'when other object is not a relation' do
+    let(:other) { LazyEnumerable.new([[2]]) }
+
+    specify { expect { subject }.to raise_error(SortedMismatchError, 'other relation must have matching directions to be inserted') }
+  end
 end

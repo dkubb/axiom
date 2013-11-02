@@ -119,7 +119,7 @@ module Axiom
         #
         # @api private
         def assert_matching_directions(other, event)
-          unless other.kind_of?(self.class) && directions.eql?(other.directions)
+          unless other.respond_to?(:directions) && directions.eql?(other.directions)
             fail SortedMismatchError, "other relation must have matching directions to be #{event}"
           end
         end
