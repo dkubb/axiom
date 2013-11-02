@@ -9,11 +9,27 @@ describe Tuple, '#to_ary' do
   let(:header) { Relation::Header.coerce([[:id, Integer]]) }
   let(:body)   { [1]                                       }
 
-  it_should_behave_like 'an idempotent method'
+  context 'when the body is frozen' do
+    let(:body) { super().freeze }
 
-  it { should be_instance_of(Array) }
+    it_should_behave_like 'an idempotent method'
 
-  it { should be_frozen }
+    it { should be_instance_of(Array) }
 
-  it { should == [1] }
+    it { should be_frozen }
+
+    it { should be(body) }
+  end
+
+  context 'when the body is frozen' do
+    it_should_behave_like 'an idempotent method'
+
+    it { should be_instance_of(Array) }
+
+    it { should be_frozen }
+
+    it { should_not be(body) }
+
+    it { should eql(body) }
+  end
 end
