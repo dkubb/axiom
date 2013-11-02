@@ -7,10 +7,10 @@ module Axiom
     module Proxy
       include Equalizer.new(:relation)
 
-      # Relation methods to proxy
-      ENUMERABLE_METHODS = Enumerable.public_instance_methods.map(&:to_s).freeze
       PROXY_METHODS      = %w[header each empty? materialized?].freeze
-      RELATION_METHODS   = %w[take drop sort_by].freeze
+      ENUMERABLE_METHODS = Enumerable.public_instance_methods.map(&:to_s).freeze
+      RELATION_METHODS   = Relation.public_instance_methods.map(&:to_s).freeze
+      REMOVE_METHODS     = PROXY_METHODS | (ENUMERABLE_METHODS - RELATION_METHODS)
 
       # Hook called when module is included
       #
@@ -21,9 +21,7 @@ module Axiom
       #
       # @api private
       def self.included(descendant)
-        descendant.class_eval do
-          undef_method(*PROXY_METHODS | ENUMERABLE_METHODS - RELATION_METHODS)
-        end
+        descendant.class_eval { undef_method(*REMOVE_METHODS) }
       end
 
       private_class_method :included

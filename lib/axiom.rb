@@ -129,14 +129,11 @@ require 'axiom/aggregate/standard_deviation'
 
 require 'axiom/relation'
 
-require 'axiom/relation/proxy'
-
 require 'axiom/relation/keys'
 require 'axiom/relation/header'
 require 'axiom/relation/index'
 
 require 'axiom/relation/base'
-require 'axiom/relation/variable'
 
 require 'axiom/relation/materialized'
 require 'axiom/relation/empty'
@@ -171,6 +168,8 @@ require 'axiom/algebra/summarization/summaries'
 require 'axiom/algebra/summarization/summary'
 require 'axiom/algebra/union'
 
+require 'axiom/relation/proxy'
+require 'axiom/relation/variable'
 require 'axiom/relation/operation/deletion'
 require 'axiom/relation/operation/insertion'
 
