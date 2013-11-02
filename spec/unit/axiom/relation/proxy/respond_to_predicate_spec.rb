@@ -3,8 +3,6 @@
 require 'spec_helper'
 
 describe Relation::Proxy, '#respond_to?' do
-  subject { object.respond_to?(method) }
-
   let(:object)          { described_class.new(relation)        }
   let(:described_class) { Class.new(Relation)                  }
   let(:relation)        { Relation.new([[:id, Integer]], body) }
@@ -20,21 +18,59 @@ describe Relation::Proxy, '#respond_to?' do
     end
   end
 
-  context 'with a known method in the proxy' do
-    let(:method) { :header }
+  context 'with include_all as false (the default)' do
+    subject { object.respond_to?(method) }
 
-    it { should be(true) }
+    context 'with a known method in the proxy' do
+      let(:method) { :header }
+
+      it { should be(true) }
+    end
+
+    context 'with a known method in the relation' do
+      let(:method) { :each }
+
+      it { should be(true) }
+    end
+
+    context 'with an unknown method' do
+      let(:method) { :unknown }
+
+      it { should be(false) }
+    end
+
+    context 'with a private method' do
+      let(:method) { :initialize }
+
+      it { should be(false) }
+    end
   end
 
-  context 'with a known method in the relation' do
-    let(:method) { :each }
+  context 'with include_all as true' do
+    subject { object.respond_to?(method, true) }
 
-    it { should be(true) }
-  end
+    context 'with a known method in the proxy' do
+      let(:method) { :header }
 
-  context 'with an unknown method' do
-    let(:method) { :unknown }
+      it { should be(true) }
+    end
 
-    it { should be(false) }
+    context 'with a known method in the relation' do
+      let(:method) { :each }
+
+      it { should be(true) }
+    end
+
+    context 'with an unknown method' do
+      let(:method) { :unknown }
+
+      it { should be(false) }
+    end
+
+    context 'with a private method' do
+      let(:method) { :initialize }
+
+      it { should be(true) }
+    end
   end
 end
