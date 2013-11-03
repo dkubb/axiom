@@ -15,12 +15,18 @@ describe Tuple, '.coerce' do
     it { should be(argument) }
   end
 
-  context 'when the argument responds to #to_ary' do
+  context 'when the argument responds to #to_ary and is the same size as the header' do
     let(:argument) { [1] }
 
     it { should be_instance_of(object) }
 
     it { should eql(tuple) }
+  end
+
+  context 'when the argument responds to #to_ary and is not the same size as the header' do
+    let(:argument) { [1, 2] }
+
+    it { should be(argument) }
   end
 
   context 'when the argument is not a Tuple and does not respond to #to_ary' do
