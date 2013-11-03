@@ -100,21 +100,7 @@ module Axiom
 
       # Mixin for invertable unary functions
       module Invertible
-
-        # Hook called when module is included
-        #
-        # @param [Module] descendant
-        #   the module or class including Invertible
-        #
-        # @return [undefined]
-        #
-        # @api private
-        def self.included(descendant)
-          super
-          descendant.memoize :inverse
-        end
-
-        private_class_method :included
+        include Adamantium
 
         # Return the inverse function
         #
@@ -123,12 +109,12 @@ module Axiom
         #
         # @return [Function]
         #
-        # @todo move this to classes that use it
-        #
         # @api public
         def inverse
           self.class.inverse.new(operand).memoize(:inverse, self)
         end
+
+        memoize :inverse
 
       end # module Invertible
     end # module Unary

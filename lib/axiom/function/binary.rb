@@ -73,21 +73,7 @@ module Axiom
 
       # Mixin for invertable binary functions
       module Invertible
-
-        # Hook called when module is included
-        #
-        # @param [Module] descendant
-        #   the module or class including Invertible
-        #
-        # @return [undefined]
-        #
-        # @api private
-        def self.included(descendant)
-          super
-          descendant.memoize :inverse
-        end
-
-        private_class_method :included
+        include Adamantium
 
         # Return the inverse function
         #
@@ -100,6 +86,8 @@ module Axiom
         def inverse
           self.class.inverse.new(left, right).memoize(:inverse, self)
         end
+
+        memoize :inverse
 
       end # module Invertible
     end # module Binary
