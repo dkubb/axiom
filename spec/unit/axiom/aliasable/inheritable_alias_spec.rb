@@ -6,7 +6,14 @@ require File.expand_path('../fixtures/classes', __FILE__)
 describe Aliasable, '#inheritable_alias' do
   subject { object.inheritable_alias(aliases) }
 
-  let(:aliases)   { { other: :test }                  }
+  let(:aliases) do
+    {
+      other: :test,
+      other_with_arguments: :test_with_arguments,
+      other_with_block:     :test_with_block
+    }
+  end
+
   let(:object)    { Class.new(AliasableSpecs::Object) }
   let(:aliasable) { object.new                        }
 
@@ -52,5 +59,16 @@ describe Aliasable, '#inheritable_alias' do
     else
       instance_eval(&specification)
     end
+  end
+
+  it 'forwards arguments' do
+    subject
+    expect(aliasable.other_with_arguments(:foo, :bar)).to eql([:foo, :bar])
+  end
+
+  it 'forwards block' do
+    subject
+    block = proc { }
+    expect(aliasable.other_with_block(&block)).to eql(block)
   end
 end
