@@ -12,12 +12,12 @@ describe Relation::Operation::Combination, '.combine_tuples' do
     )
   end
 
-  let(:left_header)  { Relation::Header.coerce([[:id,   Integer]]) }
-  let(:right_header) { Relation::Header.coerce([[:name, String]])  }
+  let(:object)       { self.class.described_class                  }
+  let(:header)       { left_header | right_header                  }
   let(:left_tuple)   { Tuple.new(left_header,  [1])                }
   let(:right_tuples) { [Tuple.new(right_header, ['Dan Kubb'])]     }
-  let(:header)       { left_header | right_header                  }
-  let(:object)       { self.class.described_class                  }
+  let(:left_header)  { Relation::Header.coerce([[:id,   Integer]]) }
+  let(:right_header) { Relation::Header.coerce([[:name, String]])  }
   let(:yields)       { []                                          }
 
   it 'yields each combined tuple' do
