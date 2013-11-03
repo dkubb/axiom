@@ -160,7 +160,7 @@ module Axiom
           #
           # @api public
           def sort
-            Sorted.new(self, EMPTY_ARRAY)
+            Sorted.new(self, nil)
           end
 
         private
