@@ -51,7 +51,10 @@ module Axiom
       #
       # @api private
       def self.empty?(tuples)
-        tuples.nil? || tuples.size && tuples.size.zero?
+        tuples.nil? || begin
+          size = tuples.size
+          size && size.zero?
+        end
       end
       private_class_method :empty?
 
