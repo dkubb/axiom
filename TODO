@@ -17,9 +17,8 @@
   * When unioning two keys together it is really simple to end up
     with indexes that overlap and cause an exception.
 
-* Add Header#size
-  * Replace code that coerces the Header to an Array in order to get the size
-    with Header#size.
+* Add Header#size and Tuple#size
+  * Replace code that coerces the object to an Array in order to get the size
 
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.
