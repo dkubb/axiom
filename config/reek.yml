@@ -106,6 +106,7 @@ NilCheck:
   - Axiom::Aggregate::Variance#self.call
   - Axiom::Attribute#valid_or_optional?
   - Axiom::Relation#self.materialized?
+  - Axiom::Relation::Materialized#self.empty?
   - Axiom::Relation::Operation::Limit#self.assert_valid_limit
   - Axiom::Relation::Operation::Offset#self.assert_valid_offset
   - Axiom::Relation::Operation::Sorted::Ascending#self.call
