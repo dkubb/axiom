@@ -126,7 +126,7 @@ module Axiom
 
         module Methods
 
-          # Return an sorted relation
+          # Return a sorted relation
           #
           # @example with a block
           #   sorted = relation.sort_by { |r| [r.a.desc, r.b] }
@@ -151,7 +151,7 @@ module Axiom
             Sorted.new(self, coerce_to_directions(*args, &block))
           end
 
-          # Return an sorted relation
+          # Return a sorted relation
           #
           # @example
           #   sorted = relation.sort

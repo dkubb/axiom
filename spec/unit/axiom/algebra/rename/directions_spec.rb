@@ -18,7 +18,7 @@ describe Algebra::Rename, '#directions' do
     it { should be_empty }
   end
 
-  context 'containing an sorted relation' do
+  context 'containing a sorted relation' do
     let(:operand) { relation.sort_by { [relation[:id]] } }
 
     it_should_behave_like 'an idempotent method'

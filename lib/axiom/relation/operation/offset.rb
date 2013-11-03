@@ -57,7 +57,7 @@ module Axiom
         # @api private
         def self.assert_sorted_operand(operand)
           if operand.header.to_ary.size != operand.directions.to_ary.size
-            fail SortededRelationRequiredError, 'can only offset an sorted operand'
+            fail SortededRelationRequiredError, 'can only offset a sorted operand'
           end
         end
 

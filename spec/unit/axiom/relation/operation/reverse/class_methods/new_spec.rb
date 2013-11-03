@@ -8,7 +8,7 @@ describe Relation::Operation::Reverse, '.new' do
   let(:original_relation) { Relation.new([[:id, Integer]], [[1], [2]]) }
   let(:object)            { described_class                            }
 
-  context 'with an sorted relation' do
+  context 'with a sorted relation' do
     let(:relation) { original_relation.sort_by { |r| r.id } }
 
     it { should be_instance_of(object) }
@@ -18,7 +18,7 @@ describe Relation::Operation::Reverse, '.new' do
     end
   end
 
-  context 'with an sorted relation having an empty header' do
+  context 'with a sorted relation having an empty header' do
     let(:relation) { original_relation.sort_by { |r| r.id }.project([]) }
 
     it { should be_instance_of(object) }
@@ -28,9 +28,9 @@ describe Relation::Operation::Reverse, '.new' do
     end
   end
 
-  context 'without an sorted relation' do
+  context 'without a sorted relation' do
     let(:relation) { original_relation }
 
-    specify { expect { subject }.to raise_error(SortededRelationRequiredError, 'can only reverse an sorted operand') }
+    specify { expect { subject }.to raise_error(SortededRelationRequiredError, 'can only reverse a sorted operand') }
   end
 end
