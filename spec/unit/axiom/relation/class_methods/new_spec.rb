@@ -12,7 +12,7 @@ describe Relation, '.new' do
   context 'with no body' do
     subject { object.new(header) }
 
-    it { should be_instance_of(Relation::Materialized) }
+    it { should be_instance_of(Relation::Empty) }
 
     it { should be_empty }
   end

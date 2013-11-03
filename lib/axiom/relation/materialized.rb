@@ -14,6 +14,47 @@ module Axiom
       # @api private
       attr_reader :directions
 
+      # Instantiate a materialized Relation
+      #
+      # @example of a materialized Array based relation
+      #   array    = [[1], [2], [3]]
+      #   relation = Relation::Materialized.new([[:id, Integer]], array)
+      #
+      # @example of a materialized Set based relation
+      #   set      = Set[[1], [2], [3]]
+      #   relation = Relation::Materialized.new([[:id, Integer]], set)
+      #
+      # @example of a materialized empty relation
+      #   relation = Relation::Materialized.new([[:id, Integer]])
+      #
+      # @param [Array(Header, Enumerable)] args
+      #
+      # @return [Relation]
+      #
+      # @api public
+      def self.new(*args)
+        if equal?(Materialized) && empty?(args[1])
+          Empty.new(args.first)
+        else
+          super
+        end
+      end
+
+      # Test if the tuples are empty
+      #
+      # When tuples are nil, it means there are no tuples so it is the equivalent
+      # of specifying [] for the tuples.
+      #
+      # @param [nil, #size] tuples
+      #
+      # @return [Boolean]
+      #
+      # @api private
+      def self.empty?(tuples)
+        tuples.nil? || tuples.size && tuples.size.zero?
+      end
+      private_class_method :empty?
+
       # Initialize a materialized Relation
       #
       # @param [Header, #to_ary] header
@@ -26,7 +67,7 @@ module Axiom
       # @return [undefined]
       #
       # @api private
-      def initialize(header, tuples = ZERO_TUPLE, directions = Operation::Sorted::DirectionSet::EMPTY)
+      def initialize(header, tuples, directions = Operation::Sorted::DirectionSet::EMPTY)
         super(header, tuples)
         @directions = Operation::Sorted::DirectionSet.coerce(directions)
       end

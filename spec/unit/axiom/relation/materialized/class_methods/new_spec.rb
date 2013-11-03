@@ -36,10 +36,36 @@ describe Relation::Materialized, '.new' do
     it { should == tuples }
   end
 
+  context 'with empty tuples and no directions' do
+    subject { object.new(header, tuples) }
+
+    let(:tuples) { [] }
+
+    it { should be_instance_of(Relation::Empty) }
+
+    its(:header) { should be(header) }
+
+    its(:directions) { should be(Relation::Operation::Sorted::DirectionSet::EMPTY) }
+
+    it { should be_empty }
+  end
+
   context 'with no tuples or directions' do
     subject { object.new(header) }
 
-    it { should be_instance_of(object) }
+    it { should be_instance_of(Relation::Empty) }
+
+    its(:header) { should be(header) }
+
+    its(:directions) { should be(Relation::Operation::Sorted::DirectionSet::EMPTY) }
+
+    it { should be_empty }
+  end
+
+  context 'with no tuples or directions' do
+    subject { object.new(header) }
+
+    it { should be_instance_of(Relation::Empty) }
 
     its(:header) { should be(header) }
 
