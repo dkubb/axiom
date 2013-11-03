@@ -33,11 +33,9 @@ module Axiom
     #
     # @api private
     def define_inheritable_alias_method(new_method, original_method)
-      class_eval <<-RUBY, __FILE__, __LINE__ + 1
-        def #{new_method}(*args, &block)          # def |(*args, &block)
-          self.#{original_method}(*args, &block)  #   self.union(*args, &block)
-        end                                       # end
-      RUBY
+      define_method(new_method) do |*args, &block|
+        public_send(original_method, *args, &block)
+      end
     end
 
   end # module Aliasable

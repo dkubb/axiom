@@ -37,7 +37,7 @@ describe Aliasable, '#inheritable_alias' do
     file, line = aliasable.other.first.split(':')[0, 2]
 
     expect(File.expand_path(file)).to eql(File.expand_path('../../../../../lib/axiom/support/aliasable.rb', __FILE__))
-    expect(line.to_i).to be(38)
+    expect(line.to_i).to be(37)
   end
 
   it 'sets the file and line number properly' do
