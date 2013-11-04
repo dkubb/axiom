@@ -90,7 +90,7 @@ module Axiom
           # @api private
           def cmp_tuples(left, right)
             reduce(0) do |cmp, direction|
-              break cmp if cmp.nonzero?
+              return cmp if cmp.nonzero?
               direction.call(left, right)
             end
           end
