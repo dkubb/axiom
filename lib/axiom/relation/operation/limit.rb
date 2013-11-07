@@ -56,7 +56,7 @@ module Axiom
         #
         # @api private
         def self.assert_sorted_operand(operand)
-          if operand.header.to_ary.size != operand.directions.to_ary.size
+          if operand.header.size != operand.directions.size
             fail SortededRelationRequiredError, 'can only limit a sorted operand'
           end
         end

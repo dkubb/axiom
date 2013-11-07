@@ -33,7 +33,7 @@ module Axiom
         #
         # @api private
         def self.assert_sorted_operand(operand)
-          if operand.header.to_ary.size != operand.directions.to_ary.size
+          if operand.header.size != operand.directions.size
             fail SortededRelationRequiredError, 'can only reverse a sorted operand'
           end
         end

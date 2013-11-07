@@ -189,7 +189,7 @@ module Axiom
     #
     # @api private
     def self.coerce(header, object)
-      if object.kind_of?(Tuple) || header.count != object.to_ary.size
+      if object.kind_of?(Tuple) || header.size != object.to_ary.size
         object
       else
         new(header, object)
