@@ -1,8 +1,5 @@
 * TODO:
 
-* Add Header#size and Tuple#size
-  * Replace code that coerces the object to an Array in order to get the size
-
 * Create a module to allow methods to be added to existing Attribute objects
   in such a way that the same methods can be easily mixed into other
   things, like functions or relations.
