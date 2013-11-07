@@ -152,6 +152,15 @@ module Axiom
       Hash[data.map { |attribute, value| [attribute.name, value] }]
     end
 
+    # The number of attributes
+    #
+    # @return [Integer]
+    #
+    # @api public
+    def size
+      header.size
+    end
+
     # Display the tuple data in a human readable form
     #
     # @example
