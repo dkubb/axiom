@@ -93,3 +93,13 @@
   * many?
   * include? / member?
   * min / max / minmax (when the tuples are sorted)
+
+* Add Axiom::Relation aggregate methods:
+  * count
+  * count(attribute)
+  * sum(attribute)
+  * minimum(attribute)
+  * maximum(attribute)
+  * mean(attribute)
+  * standard_deviation(attribute)
+  * variance(attribute)
