@@ -1,5 +1,8 @@
 * TODO:
 
+* Add Header#size and Tuple#size
+  * Replace code that coerces the object to an Array in order to get the size
+
 * Create a module to allow methods to be added to existing Attribute objects
   in such a way that the same methods can be easily mixed into other
   things, like functions or relations.
@@ -16,9 +19,6 @@
 * Add key minimization to Header
   * When unioning two keys together it is really simple to end up
     with indexes that overlap and cause an exception.
-
-* Add Header#size and Tuple#size
-  * Replace code that coerces the object to an Array in order to get the size
 
 * Make Equalizer handle subclasses without having to specify the attribtues
   again in each descendant.

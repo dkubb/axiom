@@ -306,6 +306,15 @@ module Axiom
         @attributes
       end
 
+      # The number of attributes
+      #
+      # @return [Integer]
+      #
+      # @api public
+      def size
+        to_ary.size
+      end
+
       # Test if there are no attributes
       #
       # @example
