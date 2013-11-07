@@ -23,6 +23,16 @@ module Axiom
       # @api private
       attr_reader :keys
 
+      # Convert the Header into an Array
+      #
+      # @example
+      #   array = header.to_ary
+      #
+      # @return [Array]
+      #
+      # @api public
+      attr_reader :to_ary
+
       # Coerce an Array-like object into a Header
       #
       # @param [Header, #to_ary] object
@@ -124,8 +134,8 @@ module Axiom
       #
       # @api public
       def initialize(attributes, options = EMPTY_HASH)
-        @attributes    = freeze_object(attributes)
-        @attribute_for = Hash[@attributes.map(&:name).zip(@attributes)]
+        @to_ary        = freeze_object(attributes)
+        @attribute_for = Hash[@to_ary.map(&:name).zip(@to_ary)]
         @keys          = coerce_keys(options.fetch(:keys, EMPTY_ARRAY))
       end
 
@@ -292,18 +302,6 @@ module Axiom
       # @api private
       def context(&block)
         Evaluator::Context.new(self, &block)
-      end
-
-      # Convert the Header into an Array
-      #
-      # @example
-      #   array = header.to_ary
-      #
-      # @return [Array]
-      #
-      # @api public
-      def to_ary
-        @attributes
       end
 
       # The number of attributes
