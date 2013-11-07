@@ -357,9 +357,7 @@ module Axiom
       #
       # @api private
       def coerce(*args)
-        self.class.coerce(*args) do |attribute|
-          @attribute_for[attribute]
-        end
+        self.class.coerce(*args, &@attribute_for.method(:[]))
       end
 
       # Represent an empty set of attributes
