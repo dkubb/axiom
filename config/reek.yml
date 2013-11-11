@@ -127,6 +127,7 @@ TooManyMethods:
   - Axiom::Relation
   - Axiom::Relation::Header
   - Axiom::Relation::Keys
+  - Axiom::Tuple
   max_methods: 10
 TooManyStatements:
   enabled: true
