@@ -13,7 +13,17 @@ describe Function::Unary, '#type' do
   end
 
   context 'when the operand has a type' do
-    let(:operand) { double(type: Types::Integer, frozen?: true) }
+    let(:operand) { operand_class.new(Types::Integer) }
+
+    let(:operand_class) do
+      Class.new do
+        attr_reader :type
+
+        def initialize(type)
+          @type = type
+        end
+      end
+    end
 
     it { should be(Types::Integer) }
   end

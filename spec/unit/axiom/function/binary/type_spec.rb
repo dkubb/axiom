@@ -5,11 +5,18 @@ require 'spec_helper'
 describe Function::Binary, '#type' do
   subject { object.type }
 
-  let(:object)          { described_class.new(*operands) }
-  let(:described_class) { Class.new(Function::Numeric)   }
+  let(:object)          { described_class.new(*operands)         }
+  let(:described_class) { Class.new(Function::Numeric)           }
+  let(:operands)        { types.map(&operand_class.method(:new)) }
 
-  let(:operands) do
-    types.map { |type| double(type: type, frozen?: true) }
+  let(:operand_class) do
+    Class.new do
+      attr_reader :type
+
+      def initialize(type)
+        @type = type
+      end
+    end
   end
 
   before do
@@ -41,12 +48,7 @@ describe Function::Binary, '#type' do
   end
 
   context 'when an operand is a primitive' do
-    let(:operands) do
-      [
-        double(type: Types::Integer, frozen?: true),
-        1,
-      ]
-    end
+    let(:operands) { [operand_class.new(Types::Integer), 1] }
 
     it { should be(Types::Integer) }
   end
