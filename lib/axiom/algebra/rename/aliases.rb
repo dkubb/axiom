@@ -54,7 +54,7 @@ module Axiom
         #
         # @api public
         def initialize(aliases)
-          @aliases = freeze_object(aliases)
+          @aliases = self.class.freezer.call(aliases)
         end
 
         # Lookup the new attribute given the old attribute

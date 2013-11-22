@@ -109,7 +109,7 @@ module Axiom
       #
       # @api public
       def initialize(keys)
-        @keys = freeze_object(keys)
+        @keys = self.class.freezer.call(keys)
       end
 
       # Iterate over each key in the Keys

@@ -45,7 +45,7 @@ module Axiom
     # @api private
     def initialize(header, data)
       @header = header
-      @to_ary = freeze_object(data)
+      @to_ary = self.class.freezer.call(data)
       @data   = Hash[header.zip(@to_ary)]
     end
 

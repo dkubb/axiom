@@ -24,7 +24,7 @@ module Axiom
       #
       # @api private
       def initialize(operand)
-        @operand = freeze_object(operand)
+        @operand = self.class.freezer.call(operand)
       end
 
     end # module Unary

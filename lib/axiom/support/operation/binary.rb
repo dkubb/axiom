@@ -36,8 +36,9 @@ module Axiom
       #
       # @api private
       def initialize(left, right)
-        @left  = freeze_object(left)
-        @right = freeze_object(right)
+        freezer = self.class.freezer
+        @left   = freezer.call(left)
+        @right  = freezer.call(right)
       end
 
     end # module Binary

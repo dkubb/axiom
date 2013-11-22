@@ -134,7 +134,7 @@ module Axiom
       #
       # @api public
       def initialize(attributes, options = EMPTY_HASH)
-        @to_ary        = freeze_object(attributes)
+        @to_ary        = self.class.freezer.call(attributes)
         @attribute_for = Hash[@to_ary.map(&:name).zip(@to_ary)]
         @keys          = coerce_keys(options.fetch(:keys, EMPTY_ARRAY))
       end
