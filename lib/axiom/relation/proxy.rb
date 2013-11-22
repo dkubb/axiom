@@ -21,6 +21,7 @@ module Axiom
       #
       # @api private
       def self.included(descendant)
+        super
         descendant.class_eval { undef_method(*REMOVE_METHODS) }
       end
 
