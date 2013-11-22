@@ -1,20 +1,17 @@
 language: ruby
-before_install: gem install bundler
 bundler_args: --without yard guard benchmarks
 script: "bundle exec rake ci:metrics"
 rvm:
   - 1.9.3
   - 2.0.0
   - ruby-head
-  - rbx-19mode
+  - rbx
 matrix:
   include:
     - rvm: jruby-19mode
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug"
-  allow_failures:
-    - rvm: jruby-19mode  # bug in old version (1.7.4)
 notifications:
   irc:
     channels:
