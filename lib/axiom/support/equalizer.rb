@@ -5,20 +5,23 @@ module Axiom
   # Define equality, equivalence and inspection methods
   class Equalizer < ::Equalizer
 
-    # Include Adamanitium and memoize #hash
+    # Hook called when module is included
     #
-    # @return [undefined]
+    # @param [Module] descendant
+    #   the module or class including Equalizer
+    #
+    # @return [self]
     #
     # @api private
-    def include_comparison_methods
+    def included(descendant)
       super
-      module_eval do
+      descendant.module_eval do
         include Adamantium
         memoize :hash
       end
     end
 
-    private :include_comparison_methods
+    private :included
 
   end # class Equalizer
 end # module Axiom

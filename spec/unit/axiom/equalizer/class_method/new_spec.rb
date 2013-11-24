@@ -54,10 +54,6 @@ describe Axiom::Equalizer, '.new' do
 
     describe '#hash' do
       it { expect(instance.hash).to eql(klass.hash) }
-
-      it 'memoizes the hash code' do
-        expect(instance.hash).to eql(instance.memoized(:hash))
-      end
     end
 
     describe '#inspect' do
@@ -118,10 +114,6 @@ describe Axiom::Equalizer, '.new' do
 
     describe '#hash' do
       it { expect(instance.hash).to eql(klass.hash ^ first_name.hash) }
-
-      it 'memoizes the hash code' do
-        expect(instance.hash).to eql(instance.memoized(:hash))
-      end
     end
 
     describe '#inspect' do

@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby -Ku
-
 # encoding: utf-8
 
 # benchmark speed of relation operations

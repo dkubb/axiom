@@ -11,7 +11,7 @@ describe Relation::Index, '#each' do
 
   context 'with a block' do
     it 'returns an index' do
-      expect(subject.each { }).to be_instance_of(described_class)
+      expect(subject.each {}).to be_instance_of(described_class)
     end
 
     it 'yields each key and tuples' do

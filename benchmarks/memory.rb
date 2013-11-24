@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby -Ku
-
 # encoding: utf-8
 
 # benchmark memory usage of lib, core object init and relation operations

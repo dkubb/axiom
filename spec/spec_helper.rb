@@ -26,7 +26,7 @@ require 'axiom'
 include Axiom
 
 RSpec.configure do |config|
-  EMPTY_PROC = proc { }.freeze
+  EMPTY_PROC = proc {}.freeze
 
   config.expect_with :rspec do |expect_with|
     expect_with.syntax = :expect

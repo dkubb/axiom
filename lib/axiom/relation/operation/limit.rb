@@ -151,7 +151,7 @@ module Axiom
         module Methods
 
           # Default block used in #one
-          DEFAULT_ONE_BLOCK = -> { }
+          DEFAULT_ONE_BLOCK = -> {}
 
           # Maximum number of tuples to take in #one
           ONE_LIMIT = 2
