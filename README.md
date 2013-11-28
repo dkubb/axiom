@@ -74,10 +74,10 @@ grouped = relation.group(products: [:product_name])
 ungrouped = relation.ungroup(:products)
 
 # wrap
-grouped = relation.wrap(address: [:street, :city, :state, :zip, :country])
+wrapped = relation.wrap(address: [:street, :city, :state, :zip, :country])
 
 # unwrap
-grouped = relation.unwrap(:address)
+unwrapped = relation.unwrap(:address)
 
 # extend
 new_relation = relation.extend { |r| r.add(:pounds, r.weight * 2.2) }
