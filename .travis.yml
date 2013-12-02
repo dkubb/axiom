@@ -9,9 +9,9 @@ rvm:
 matrix:
   include:
     - rvm: jruby-19mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
     - rvm: jruby-head
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
 notifications:
   irc:
     channels:
