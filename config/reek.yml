@@ -31,7 +31,12 @@ ClassVariable:
   exclude: []
 ControlParameter:
   enabled: true
-  exclude: []
+  exclude:
+  - Axiom::Aggregate::Count#self.call
+  - Axiom::Function::Connective::Conjunction#self.call
+  - Axiom::Function::Connective::Disjunction#self.call
+  - Axiom::Function::Predicate::Enumerable#self.compare_method
+  - Axiom::Relation::Operation::Limit::Methods#assert_no_more_than_one_tuple
 DataClump:
   enabled: true
   exclude:

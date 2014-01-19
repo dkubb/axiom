@@ -111,7 +111,7 @@ module Axiom
         #
         # @api public
         def inverse
-          self.class.inverse.new(operand).memoize(:inverse, self)
+          self.class.inverse.new(operand).memoize(inverse: self)
         end
 
         memoize :inverse

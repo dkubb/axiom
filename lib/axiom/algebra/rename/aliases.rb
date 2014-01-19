@@ -144,7 +144,7 @@ module Axiom
         # @api public
         def inverse
           self.class.new(@aliases.invert)
-            .memoize(:inverse, self)
+            .memoize(inverse: self)
         end
 
         # Compare the aliases with other aliases for equivalency

@@ -44,7 +44,7 @@ module Axiom
         # @api public
         def inverse
           Disjunction.new(Negation.new(left), Negation.new(right))
-            .memoize(:inverse, self)
+            .memoize(inverse: self)
         end
 
         module Methods
