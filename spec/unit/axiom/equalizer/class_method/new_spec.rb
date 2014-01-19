@@ -20,10 +20,6 @@ describe Axiom::Equalizer, '.new' do
 
     it { should be_instance_of(object) }
 
-    it 'defines #hash and #inspect methods dynamically' do
-      expect(subject.public_instance_methods(false).map(&:to_s)).to match_array(%w[hash inspect])
-    end
-
     describe '#eql?' do
       context 'when the objects are equivalent' do
         let(:other) { klass.new }
@@ -50,10 +46,6 @@ describe Axiom::Equalizer, '.new' do
 
         it { expect(instance == other).to be(false) }
       end
-    end
-
-    describe '#hash' do
-      it { expect(instance.hash).to eql(klass.hash) }
     end
 
     describe '#inspect' do
@@ -80,10 +72,6 @@ describe Axiom::Equalizer, '.new' do
 
     it { should be_instance_of(object) }
 
-    it 'defines #hash and #inspect methods dynamically' do
-      expect(subject.public_instance_methods(false).map(&:to_s)).to match_array(%w[hash inspect])
-    end
-
     describe '#eql?' do
       context 'when the objects are equivalent' do
         let(:other) { klass.new(first_name) }
@@ -110,10 +98,6 @@ describe Axiom::Equalizer, '.new' do
 
         it { expect(instance == other).to be(false) }
       end
-    end
-
-    describe '#hash' do
-      it { expect(instance.hash).to eql(klass.hash ^ first_name.hash) }
     end
 
     describe '#inspect' do
