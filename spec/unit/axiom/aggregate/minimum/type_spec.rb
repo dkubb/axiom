@@ -6,12 +6,7 @@ describe Aggregate::Minimum, '#type' do
   subject { object.type }
 
   let(:object)  { described_class.new(operand) }
-  let(:operand) { double('Unhandled')          }
-
-  before do
-    allow(operand).to receive(:freeze).and_return(operand)
-    allow(operand).to receive(:frozen?).and_return(true)
-  end
+  let(:operand) { Object.new.freeze            }
 
   it 'delegates to Attribute.infer_type' do
     return_value = double('Return Value')
