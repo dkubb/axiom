@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'adamantium',  '~> 0.1.0', git: 'https://github.com/dkubb/adamantium.git'
 gem 'axiom-types', '~> 0.0.5', git: 'https://github.com/dkubb/axiom-types.git'
 
 platform :rbx do

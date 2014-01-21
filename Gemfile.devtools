@@ -15,7 +15,7 @@ group :yard do
 end
 
 group :guard do
-  gem 'guard',         '~> 2.2.4'
+  gem 'guard',         '~> 2.3.0'
   gem 'guard-bundler', '~> 2.0.0'
   gem 'guard-rspec',   '~> 4.2.0'
   gem 'guard-rubocop', '~> 1.0.0'
