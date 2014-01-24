@@ -9,7 +9,7 @@ describe Aggregate::Sum, '#default' do
 
   # This is needed to test the contract that the DEFAULT constant is
   # used for the identity. Subclasses of this function may rely on this.
-  def self.set_default_value(value)
+  def self.default_value(value)
     before do
       stub_const("#{described_class}::DEFAULT", value)
     end
@@ -23,7 +23,7 @@ describe Aggregate::Sum, '#default' do
     end
 
     context 'with a default value other than 0' do
-      set_default_value(1)
+      default_value(1)
 
       it { should be(1) }
     end
@@ -37,7 +37,7 @@ describe Aggregate::Sum, '#default' do
     end
 
     context 'with the default value other than 0' do
-      set_default_value(1)
+      default_value(1)
 
       it { should eql(1.0) }
     end
@@ -51,7 +51,7 @@ describe Aggregate::Sum, '#default' do
     end
 
     context 'with the default value other than 0' do
-      set_default_value(1)
+      default_value(1)
 
       it { should eql(BigDecimal('1')) }
     end
