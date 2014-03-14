@@ -17,7 +17,7 @@ describe Relation::Operation::Group::Methods, '#group' do
   its(:header) do
     should == [
       Attribute::Integer.new(:id),
-      Attribute::Relation.new(:names, header: [[:name, String]]),
+      Attribute::Relation.new(:names, header: [[:name, String]])
     ]
   end
 

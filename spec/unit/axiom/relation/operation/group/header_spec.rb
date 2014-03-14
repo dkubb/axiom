@@ -16,7 +16,7 @@ describe Relation::Operation::Group, '#header' do
   it 'returns the expected attributes' do
     should == [
       Attribute::Integer.new(:id),
-      Attribute::Relation.new(:names, header: [[:name, String]]),
+      Attribute::Relation.new(:names, header: [[:name, String]])
     ]
   end
 end
