@@ -16,7 +16,7 @@ describe Relation::Operation::Wrap, '#header' do
   it 'returns the expected attributes' do
     should == [
       Attribute::Integer.new(:id),
-      Attribute::Tuple.new(:names, header: [[:name, String]]),
+      Attribute::Tuple.new(:names, header: [[:name, String]])
     ]
   end
 end

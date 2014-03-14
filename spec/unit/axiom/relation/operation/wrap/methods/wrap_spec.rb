@@ -17,7 +17,7 @@ describe Relation::Operation::Wrap::Methods, '#wrap' do
   its(:header) do
     should == [
       Attribute::Integer.new(:id),
-      Attribute::Tuple.new(:names, header: [[:name, String]]),
+      Attribute::Tuple.new(:names, header: [[:name, String]])
     ]
   end
 

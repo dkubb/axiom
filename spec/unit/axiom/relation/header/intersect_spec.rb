@@ -62,7 +62,7 @@ require 'spec_helper'
       let(:other_keys) do
         Relation::Keys.coerce([
           [[:id,  Integer]],
-          [[:age, Integer]],
+          [[:age, Integer]]
         ])
       end
 
