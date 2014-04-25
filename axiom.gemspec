@@ -24,5 +24,5 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('descendants_tracker', '~> 0.0.3')
   gem.add_runtime_dependency('equalizer',           '~> 0.0.9')
 
-  gem.add_development_dependency('bundler', '~> 1.5', '>= 1.5.2')
+  gem.add_development_dependency('bundler', '~> 1.6')
 end
