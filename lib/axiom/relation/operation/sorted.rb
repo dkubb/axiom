@@ -104,6 +104,10 @@ module Axiom
           operand.delete(other.operand).sort_by(directions)
         end
 
+        def to_ast
+          s(:sorted, operand.to_ast, directions.to_ast)
+        end
+
       private
 
         # Assert that the other relation has matching directions

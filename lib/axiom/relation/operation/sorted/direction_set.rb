@@ -7,6 +7,7 @@ module Axiom
 
         # A class that represents a tuple sort order for a set of attributes
         class DirectionSet < Header
+          include AST::Sexp
           include Equalizer.new(:to_ary)
 
           # Coerce the attribute into a Direction
@@ -69,6 +70,10 @@ module Axiom
           # @api private
           def sort_tuples(tuples)
             tuples.to_a.sort { |left, right| cmp_tuples(left, right) }
+          end
+
+          def to_ast
+            s(:directions, *map(&:to_ast))
           end
 
         private
