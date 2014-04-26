@@ -1,18 +1,15 @@
-# encoding: utf-8
-
 require 'spec_helper'
 
-describe Relation, '#header' do
-  subject { object.header }
+describe Relation::Header do
+  subject(:header) { Relation::Header.coerce([[:id, Integer], [:name, String]]) }
 
-  let(:header) { Relation::Header.coerce([[:id, Integer]])       }
-  let(:object) { described_class.new(header, LazyEnumerable.new) }
+  describe '#to_ast' do
+    let(:ast) do
+      s(:header, s(:attr, :id, Types::Integer), s(:attr, :name, Types::String))
+    end
 
-  before do
-    expect(object).to be_instance_of(described_class)
+    it 'returns an ast node representing the header' do
+      expect(header.to_ast).to eql(ast)
+    end
   end
-
-  it_should_behave_like 'an idempotent method'
-
-  it { should be(header) }
 end

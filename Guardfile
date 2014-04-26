@@ -17,12 +17,13 @@ guard :rspec, cli: File.read('.rspec').split.push('--fail-fast').join(' '), keep
   watch(%r{\Aspec/(?:fixtures|lib|support|shared)/.+\.rb\z}) { 'spec' }
 
   # Run unit specs if associated lib code is modified
-  watch(%r{\Alib/(.+)\.rb\z})                                         { |m| Dir["spec/unit/#{m[1]}*"]         }
-  watch(%r{\Alib/(.+)/support/(.+)\.rb\z})                            { |m| Dir["spec/unit/#{m[1]}/#{m[2]}*"] }
-  watch("lib/#{File.basename(File.expand_path('../', __FILE__))}.rb") { 'spec'                                }
+  watch(%r{\Alib/(.+)\.rb\z}) { |m| Dir["spec/unit/#{m[1]}_spec.rb"] }
+  watch(%r{\Alib/(.+)\.rb\z}) { |m| Dir["spec/unit/#{m[1]}*"] }
+  watch(%r{\Alib/(.+)/support/(.+)\.rb\z}) { |m| Dir["spec/unit/#{m[1]}/#{m[2]}*"] }
+  watch("lib/#{File.basename(File.expand_path('../', __FILE__))}.rb") { 'spec' }
 
   # Run a spec if it is modified
-  watch(%r{\Aspec/(?:unit|integration)/.+_spec\.rb\z})
+  watch(%r{\Aspec/.+_spec\.rb\z})
 end
 
 guard :rubocop, cli: %w[--config config/rubocop.yml] do

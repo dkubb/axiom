@@ -49,6 +49,10 @@ module Axiom
         super && (!other.respond_to?(:name) || name == other.name)
       end
 
+      def to_ast
+        s(:base, name, header.to_ast)
+      end
+
     end # class Base
   end # class Relation
 end # module Axiom

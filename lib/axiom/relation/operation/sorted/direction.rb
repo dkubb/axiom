@@ -8,7 +8,9 @@ module Axiom
         # Abstract base class for attribute sorting
         class Direction
           extend Aliasable
+
           include AbstractType
+          include AST::Sexp
           include Equalizer.new(:attribute)
 
           inheritable_alias(:== => :eql?)
@@ -142,6 +144,10 @@ module Axiom
             left <=> right || (1 if left.nil?) || (-1 if right.nil?)
           end
 
+          def to_ast
+            s(:direction, attribute.name, :asc)
+          end
+
         end # class Ascending
 
         # Represent an attribute sorted descending
@@ -173,6 +179,10 @@ module Axiom
           # @api private
           def self.call(left, right)
             right <=> left || (1 if right.nil?) || (-1 if left.nil?)
+          end
+
+          def to_ast
+            s(:direction, attribute.name, :desc)
           end
 
         end # class Descending
