@@ -5,7 +5,7 @@ module Axiom
   # Abstract base class representing a type of data in a relation tuple
   class Attribute
     extend Aliasable, DescendantsTracker
-    include AbstractType, ::Comparable, Visitable
+    include AbstractType, ::Comparable, Visitable, AST::Sexp
     include Equalizer.new(:name, :type, :required?)
 
     abstract_singleton_method :type
@@ -166,6 +166,10 @@ module Axiom
     # @api public
     def include?(value)
       valid_or_optional?(value, &type.method(:include?))
+    end
+
+    def to_ast
+      s(:attr, name, type)
     end
 
   private

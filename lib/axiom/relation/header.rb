@@ -327,7 +327,7 @@ module Axiom
       end
 
       def to_ast
-        s(:header, *map { |attr| s(:attr, attr.name, attr.type) })
+        s(:header, *map(&:to_ast))
       end
 
     private
