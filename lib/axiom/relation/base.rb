@@ -50,7 +50,7 @@ module Axiom
       end
 
       def to_ast
-        s(:base, name, s(:header, *header.map { |a| s(:attr, a.name, a.type) }))
+        s(:base, name, header.to_ast)
       end
 
     end # class Base

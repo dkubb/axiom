@@ -7,6 +7,7 @@ module Axiom
     class Header
       extend Aliasable
       include Enumerable
+      include AST::Sexp
       include Equalizer.new(:to_set, :keys)
 
       inheritable_alias(
@@ -323,6 +324,10 @@ module Axiom
       # @api public
       def empty?
         to_ary.empty?
+      end
+
+      def to_ast
+        s(:header, *map { |attr| s(:attr, attr.name, attr.type) })
       end
 
     private
