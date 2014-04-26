@@ -6,6 +6,7 @@ require 'date'
 require 'set'
 require 'singleton'
 
+require 'ast'
 require 'abstract_type'
 require 'adamantium'
 require 'descendants_tracker'

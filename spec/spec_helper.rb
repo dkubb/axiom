@@ -53,4 +53,6 @@ RSpec.configure do |config|
     Types::Type.descendants.replace(@original_type_descendants)
     Types.instance_variable_get(:@inference_cache).clear
   end
+
+  config.include(AST::Sexp)
 end

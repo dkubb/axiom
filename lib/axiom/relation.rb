@@ -4,7 +4,7 @@ module Axiom
 
   # Abstract base class for Relation operations
   class Relation
-    include Enumerable, Visitable, Adamantium::Flat
+    include Enumerable, Visitable, Adamantium::Flat, AST::Sexp
     include Equalizer.new(:header, :to_set)
 
     # The relation header
