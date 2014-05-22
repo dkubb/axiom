@@ -8,7 +8,7 @@ Devtools.init_rake_tasks
 task('metrics:mutant').clear
 
 namespace :metrics do
-  allowed_versions = %w(mri-1.9.3 mri-2.0.0 mri-2.1.0 rbx-1.9.3)
+  allowed_versions = %w[mri-1.9.3 mri-2.0.0 mri-2.1.0 rbx-1.9.3]
 
   enabled = begin
     require 'mutant'
@@ -19,10 +19,10 @@ namespace :metrics do
   config    = Devtools.project.mutant
   enabled &&= config.enabled? && allowed_versions.include?(Devtools.rvm)
 
-  zombify = %w(
+  zombify = %w[
     adamantium equalizer ice_nine infecto anima concord abstract_type
     descendants_tracker parser rspec unparser mutant
-  ).include?(config.name)
+  ].include?(config.name)
 
   if enabled && !ENV['DEVTOOLS_SELF']
     desc 'Measure mutation coverage'
