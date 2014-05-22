@@ -4,7 +4,7 @@ module AliasableSpecs
   class Object
     extend Aliasable
 
-    def test(arguments, &block)
+    def test(_arguments, &_block)
     end
 
   end # class Object

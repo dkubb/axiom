@@ -53,7 +53,7 @@ describe Relation::Operation::Sorted::Methods, '#sort_by' do
     context 'returning a header' do
       subject { object.sort_by(&block) }
 
-      let(:block) { ->(relation) { header } }
+      let(:block) { ->(_relation) { header } }
 
       it { should be_instance_of(Relation::Operation::Sorted) }
 
@@ -67,7 +67,7 @@ describe Relation::Operation::Sorted::Methods, '#sort_by' do
     context 'returning a direction set' do
       subject { object.sort_by(&block) }
 
-      let(:block) { ->(relation) { directions } }
+      let(:block) { ->(_relation) { directions } }
 
       it { should be_instance_of(Relation::Operation::Sorted) }
 

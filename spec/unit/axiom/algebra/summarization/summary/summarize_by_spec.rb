@@ -5,11 +5,11 @@ require 'spec_helper'
 describe Algebra::Summarization::Summary, '#summarize_by' do
   subject { object.summarize_by(projection, tuple) }
 
-  let(:object)     { described_class.new(summarizer)                  }
-  let(:summarizer) { ->(accumulator, tuple) { accumulator.to_i.succ } }
-  let(:header)     { Relation::Header.coerce([[:id, Integer]])        }
-  let(:tuple)      { Tuple.new(header, [1])                           }
-  let(:projection) { tuple.project([])                                }
+  let(:object)     { described_class.new(summarizer)                   }
+  let(:summarizer) { ->(accumulator, _tuple) { accumulator.to_i.succ } }
+  let(:header)     { Relation::Header.coerce([[:id, Integer]])         }
+  let(:tuple)      { Tuple.new(header, [1])                            }
+  let(:projection) { tuple.project([])                                 }
 
   it_should_behave_like 'a command method'
 

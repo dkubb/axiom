@@ -91,10 +91,8 @@ module Axiom
           each do |old_attribute, new_attribute|
             old_attribute = inverted.fetch(old_attribute, old_attribute)
             other_aliases.delete(old_attribute)
-
-            unless old_attribute.eql?(new_attribute)
-              other_aliases[old_attribute] = new_attribute
-            end
+            next if old_attribute.eql?(new_attribute)
+            other_aliases[old_attribute] = new_attribute
           end
 
           self.class.new(other_aliases)

@@ -101,9 +101,8 @@ module Axiom
       # @api private
       def assert_removed_attributes_optional
         names = required_attribute_names
-        if names.any?
-          fail RequiredAttributesError, "required attributes #{names} have been removed"
-        end
+        return if names.empty?
+        fail RequiredAttributesError, "required attributes #{names} have been removed"
       end
 
       # Assert that other relation header is equivalent
@@ -117,9 +116,8 @@ module Axiom
       #
       # @api private
       def assert_equivalent_headers(other)
-        if header != other.header
-          fail InvalidHeaderError, 'the headers must be equivalent'
-        end
+        return if header == other.header
+        fail InvalidHeaderError, 'the headers must be equivalent'
       end
 
       # Names of the required attributes that were removed

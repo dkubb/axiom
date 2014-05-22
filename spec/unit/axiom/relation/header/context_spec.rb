@@ -7,7 +7,7 @@ describe Relation::Header, '#context' do
 
   let(:object)    { described_class.coerce([attribute]) }
   let(:attribute) { Attribute::Integer.new(:id)         }
-  let(:block)     { ->(context) {}                      }
+  let(:block)     { ->(_context) {}                     }
   let(:context)   { double('context')                   }
 
   before do

@@ -7,7 +7,7 @@ describe Algebra::Summarization, '#eql?' do
 
   let(:operand)      { Relation.new([[:id, Integer]], [[1], [2]])              }
   let(:summarize_by) { operand.project([])                                     }
-  let(:summarizers)  { { count: ->(acc, tuple) { acc.to_i + 1 } }              }
+  let(:summarizers)  { { count: ->(acc, _tuple) { acc.to_i + 1 } }             }
   let(:object)       { described_class.new(operand, summarize_by, summarizers) }
 
   context 'with the same object' do

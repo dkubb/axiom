@@ -108,9 +108,8 @@ module Axiom
       #
       # @api private
       def assert_matching_extensions(other, event)
-        unless other.kind_of?(self.class) && extensions.eql?(other.extensions)
-          fail ExtensionMismatchError, "other relation must have matching extensions to be #{event}"
-        end
+        return if other.kind_of?(self.class) && extensions.eql?(other.extensions)
+        fail ExtensionMismatchError, "other relation must have matching extensions to be #{event}"
       end
 
       module Methods

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 require File.expand_path('../lib/axiom/version', __FILE__)
+require 'English'
 
 Gem::Specification.new do |gem|
   gem.name        = 'axiom'
@@ -13,8 +14,8 @@ Gem::Specification.new do |gem|
   gem.license     = 'MIT'
 
   gem.require_paths    = %w[lib]
-  gem.files            = `git ls-files`.split($/)
-  gem.test_files       = `git ls-files -- spec/{unit,integration}`.split($/)
+  gem.files            = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
+  gem.test_files       = `git ls-files -- spec/{unit,integration}`.split($INPUT_RECORD_SEPARATOR)
   gem.extra_rdoc_files = %w[LICENSE README.md CONTRIBUTING.md TODO]
 
   gem.add_runtime_dependency('abstract_type',       '~> 0.0.7')

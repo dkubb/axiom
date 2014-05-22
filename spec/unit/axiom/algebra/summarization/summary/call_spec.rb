@@ -10,7 +10,7 @@ describe Algebra::Summarization::Summary, '#call' do
   let(:tuple)  { Tuple.new(header, [1])                    }
 
   context 'when the summarizer is a Proc' do
-    let(:summarizer) { ->(accumulator, tuple) { accumulator.to_i.succ } }
+    let(:summarizer) { ->(accumulator, _tuple) { accumulator.to_i.succ } }
 
     context 'when there is no summary' do
       it { should be_nil }

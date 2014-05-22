@@ -27,13 +27,12 @@ namespace :metrics do
   if enabled && !ENV['DEVTOOLS_SELF']
     desc 'Measure mutation coverage'
     task mutant: :coverage do
-      namespace =
-        if zombify
-          Mutant::Zombifier.zombify
-          Zombie::Mutant
-        else
-          Mutant
-        end
+      namespace = if zombify
+        Mutant::Zombifier.zombify
+        Zombie::Mutant
+      else
+        Mutant
+      end
 
       namespaces = Array(config.namespace).map { |n| "::#{n}*" }
       arguments  = %W[

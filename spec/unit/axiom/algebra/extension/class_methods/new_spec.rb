@@ -9,7 +9,7 @@ describe Algebra::Extension, '.new' do
   let(:object)  { described_class                                                                     }
 
   context 'with a unique attribute name provided' do
-    let(:extensions) { { unique: ->(tuple) { 1 } } }
+    let(:extensions) { { unique: ->(_tuple) { 1 } } }
 
     it { should be_instance_of(object) }
   end

@@ -26,11 +26,10 @@ module Axiom
       def initialize(_name, options = EMPTY_HASH)
         super
         min, max = options.values_at(:minimum_length, :maximum_length)
-        if min || max
-          @type = type.new do
-            minimum_length(min) if min
-            maximum_length(max) if max
-          end
+        return unless min || max
+        @type = type.new do
+          minimum_length(min) if min
+          maximum_length(max) if max
         end
       end
 

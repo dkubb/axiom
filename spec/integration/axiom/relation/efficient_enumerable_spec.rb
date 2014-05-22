@@ -8,7 +8,7 @@ require 'timeout'
 class InfiniteList
   include Enumerable
 
-  def each(&block)
+  def each
     0.upto(Float::INFINITY) { |index| yield [index] }
     self
   end

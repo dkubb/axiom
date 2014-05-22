@@ -67,9 +67,8 @@ module Axiom
           #
           # @api private
           def assert_equivalent_headers(left, right)
-            if left.header != right.header
-              fail InvalidHeaderError, 'the headers must be equivalent'
-            end
+            return if left.header == right.header
+            fail InvalidHeaderError, 'the headers must be equivalent'
           end
 
         end # module ClassMethods

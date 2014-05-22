@@ -29,11 +29,10 @@ module Axiom
       def initialize(_name, options = EMPTY_HASH)
         super
         size = options[:size]
-        if size
-          @type = type.new do
-            minimum(size.first)
-            maximum(size.last)
-          end
+        return unless size
+        @type = type.new do
+          minimum(size.first)
+          maximum(size.last)
         end
       end
 

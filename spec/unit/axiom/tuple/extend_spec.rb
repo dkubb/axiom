@@ -10,7 +10,7 @@ describe Tuple, '#extend' do
   let(:object)     { described_class.new(header, [1, 'Dan Kubb'])               }
 
   context 'when the extension is a Proc' do
-    let(:extensions) { [->(tuple) { 1 }] }
+    let(:extensions) { [->(_tuple) { 1 }] }
 
     it { should be_instance_of(described_class) }
 

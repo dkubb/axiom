@@ -65,9 +65,8 @@ module Axiom
           #
           # @api private
           def assert_sorted_match(left, right)
-            if left.directions.empty? != right.directions.empty?
-              fail RelationMismatchError, 'both relations must be sorted or neither may be sorted'
-            end
+            return if left.directions.empty? == right.directions.empty?
+            fail RelationMismatchError, 'both relations must be sorted or neither may be sorted'
           end
 
         end # module ClassMethods

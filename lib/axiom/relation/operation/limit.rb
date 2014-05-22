@@ -244,12 +244,11 @@ module Axiom
           #
           # @api private
           def assert_no_more_than_one_tuple(size)
-            if size > 1
-              fail(
-                ManyTuplesError,
-                "one tuple expected, but set contained #{count} tuples"
-              )
-            end
+            return if size <= 1
+            fail(
+              ManyTuplesError,
+              "one tuple expected, but set contained #{count} tuples"
+            )
           end
 
         end # module Methods

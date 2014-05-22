@@ -22,7 +22,7 @@ describe Relation::Header, '.coerce' do
       let(:argument) { array }
 
       context 'and the block returns another attribute' do
-        let(:block) { ->(attribute) { other }    }
+        let(:block) { ->(_attribute) { other }   }
         let(:other) { Attribute::Object.new(:id) }
 
         it { should be_instance_of(object) }
@@ -33,7 +33,7 @@ describe Relation::Header, '.coerce' do
       end
 
       context 'and the block does not match another attribute' do
-        let(:block) { ->(attribute) { nil } }
+        let(:block) { ->(_attribute) { nil } }
 
         it { should be_instance_of(object) }
 
@@ -44,8 +44,8 @@ describe Relation::Header, '.coerce' do
     end
 
     context 'when the argument is not a Header and does not respond to #to_ary' do
-      let(:argument) { Object.new            }
-      let(:block)    { ->(attribute) { nil } }
+      let(:argument) { Object.new             }
+      let(:block)    { ->(_attribute) { nil } }
 
       specify { expect { subject }.to raise_error(NoMethodError) }
     end
