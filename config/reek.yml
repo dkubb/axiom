@@ -140,7 +140,11 @@ TooManyStatements:
   - Axiom::Aggregate::Variance#self.call
   - Axiom::Algebra::Rename::Aliases#union
   - Axiom::Attribute#self.coerce
+  - Axiom::Attribute::LengthComparable#initialize
+  - Axiom::Attribute::ValueComparable#initialize
   - Axiom::Equalizer#initialize
+  - Axiom::Evaluator::Context#add
+  - Axiom::Relation::Operation::Sorted#self.new
   - each
   max_statements: 5
 UncommunicativeMethodName:
