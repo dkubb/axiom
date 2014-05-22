@@ -5,21 +5,21 @@ script: "bundle exec rake ci:metrics"
 rvm:
   - 1.9.3
   - 2.0.0
-  - 2.1.0
+  - 2.1.2
   - ruby-head
   - rbx
 matrix:
   include:
-    - rvm: jruby-19mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
-    - rvm: jruby-20mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
-    - rvm: jruby-21mode
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
+    - rvm: jruby
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --1.9"  # for simplecov
+    - rvm: jruby
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.0"  # for simplecov
+    - rvm: jruby
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.1"  # for simplecov
     - rvm: jruby-head
-      env: JRUBY_OPTS="$JRUBY_OPTS --debug"  # for simplecov
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.1"  # for simplecov
   allow_failures:
-    - rvm: 2.1.0  # buggy runtime
+    - rvm: ruby-head
   fast_finish: true
 notifications:
   irc:
