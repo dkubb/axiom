@@ -42,14 +42,12 @@ describe Relation do
     describe '#join should be efficient' do
       let(:other) { Relation.new([[:id, Integer], [:name, String]], [[1, 'Dan Kubb']]) }
 
-      it 'has an infinite left relation' do
-        pending 'Change #join to handle infinite sets'
+      it 'has an infinite left relation', skip: 'Change #join to handle infinite sets' do
         join = other.join(relation)
         expect(sample(join)).to eq([[1, 'Dan Kubb']])
       end
 
-      it 'has an infinite right relation' do
-        pending 'Change #join to handle infinite sets'
+      it 'has an infinite right relation', skip: 'Change #join to handle infinite sets' do
         join = relation.join(other)
         expect(sample(join)).to eq([[1, 'Dan Kubb']])
       end
@@ -63,8 +61,7 @@ describe Relation do
         expect(sample(product)).to eq([[0, 'Dan Kubb'], [1, 'Dan Kubb'], [2, 'Dan Kubb'], [3, 'Dan Kubb'], [4, 'Dan Kubb']])
       end
 
-      it 'has an infinite right relation' do
-        pending 'Change #product to handle infinite sets'
+      it 'has an infinite right relation', skip: 'Change #product to handle infinite sets' do
         product = other.product(relation)
         expect(sample(product)).to eq([[0, 'Dan Kubb'], [1, 'Dan Kubb'], [2, 'Dan Kubb'], [3, 'Dan Kubb'], [4, 'Dan Kubb']])
       end

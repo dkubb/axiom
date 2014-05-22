@@ -22,6 +22,7 @@ end
 
 require 'axiom'
 require 'devtools/spec_helper'
+require 'rspec/its'
 
 include Axiom
 

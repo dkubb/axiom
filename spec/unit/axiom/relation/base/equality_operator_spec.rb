@@ -97,10 +97,8 @@ describe Relation::Base, '#==' do
 
     it { should be(true) }
 
-    it 'is symmetric' do
-      pending 'Set#== should call to_set on other' do
-        should eql(other == object)
-      end
+    it 'is symmetric', pending: 'Set#== should call to_set on other' do
+      should eql(other == object)
     end
   end
 
