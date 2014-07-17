@@ -198,7 +198,11 @@ module Axiom
     #
     # @api private
     def self.coerce(header, object)
-      if object.kind_of?(Tuple) || header.size != object.to_ary.size
+      if object.kind_of?(Tuple)
+        object
+      elsif !object.respond_to?(:to_ary)
+        nil
+      elsif header.size != object.to_ary.size
         object
       else
         new(header, object)

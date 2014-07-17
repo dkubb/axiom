@@ -8,7 +8,7 @@ require 'spec_helper'
 
     let(:described_class) { Class.new { include Function::Numeric::Exponentiation::Methods } }
     let(:object)          { described_class.new.freeze                                       }
-    let(:other)           { double('Other').freeze                                           }
+    let(:other)           { Object.new.freeze                                                }
 
     it { should be_instance_of(Function::Numeric::Exponentiation) }
 

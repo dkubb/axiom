@@ -30,7 +30,7 @@ module Axiom
       def self.coerce(object, &block)
         if object.kind_of?(self)
           object
-        else
+        elsif object.respond_to?(:to_ary)
           block ||= method(:coerce_attributes)
           new(object.map(&block))
         end

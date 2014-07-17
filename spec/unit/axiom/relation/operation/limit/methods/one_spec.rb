@@ -31,10 +31,6 @@ describe Relation::Operation::Limit::Methods, '#one' do
     it 'returns the block return value' do
       expect(subject).to be(tuple)
     end
-
-    it 'yields the block' do
-      expect { |block| object.one(&block) }.to yield_with_no_args
-    end
   end
 
   context 'with a relation having one tuple' do

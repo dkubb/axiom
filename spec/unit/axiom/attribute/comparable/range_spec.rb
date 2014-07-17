@@ -16,5 +16,5 @@ describe Attribute::Comparable, '#range' do
     end
   end
 
-  it { should eql(Types::NegativeInfinity.instance..Types::Infinity.instance) }
+  it { should eq(Types::NegativeInfinity.instance..Types::Infinity.instance) }
 end

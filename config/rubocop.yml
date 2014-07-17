@@ -78,3 +78,20 @@ PercentLiteralDelimiters:
 # Align if/else blocks with the variable assignment
 EndAlignment:
   AlignWith: variable
+
+# Do not always align parameters when it is easier to read
+AlignParameters:
+  Exclude:
+    - spec/**/*_spec.rb
+
+# Do not prefer %i[...] for an array of symbols
+SymbolArray:
+  Enabled: false
+
+# Prefer #kind_of? over #is_a?
+ClassCheck:
+  EnforcedStyle: kind_of?
+
+# Do not prefer double quotes to be used when %q or %Q is more appropriate
+UnneededPercentQ:
+  Enabled: false

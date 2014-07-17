@@ -6,8 +6,8 @@ describe Function::Binary::Invertible, '#inverse' do
   subject { object.inverse }
 
   let(:described_class) { Class.new(Function) { include Function::Binary } }
-  let(:left)            { double('Left').freeze                            }
-  let(:right)           { double('Right').freeze                           }
+  let(:left)            { Object.new.freeze                                }
+  let(:right)           { Object.new.freeze                                }
   let(:object)          { described_class.new(left, right)                 }
 
   let(:inverse_class) do
