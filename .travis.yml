@@ -10,9 +10,9 @@ rvm:
   - rbx-2.2.10
 matrix:
   include:
-    - rvm: jruby
+    - rvm: jruby-1.7.13
       env: JRUBY_OPTS="$JRUBY_OPTS --debug --1.9"  # for simplecov
-    - rvm: jruby
+    - rvm: jruby-1.7.13
       env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.0"  # for simplecov
     - rvm: jruby-head
       env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.0"  # for simplecov
