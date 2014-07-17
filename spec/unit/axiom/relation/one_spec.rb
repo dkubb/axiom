@@ -2,10 +2,10 @@
 
 require 'spec_helper'
 
-describe Relation::Operation::Limit::Methods, '#one' do
+describe Relation, '#one' do
   subject { object.one }
 
-  let(:object) { Relation.new(header, body).sort           }
+  let(:object) { Relation.new(header, body)                }
   let(:header) { Relation::Header.coerce([[:id, Integer]]) }
 
   context 'with a relation having no tuples without a block' do
