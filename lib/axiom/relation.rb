@@ -7,6 +7,12 @@ module Axiom
     include Enumerable, Visitable, Adamantium::Flat
     include Equalizer.new(:header, :to_set)
 
+    # Default block used in #one
+    DEFAULT_ONE_BLOCK = -> {}
+
+    # Maximum number of tuples to take in #one
+    ONE_LIMIT = 2
+
     # The relation header
     #
     # @return [Header]
@@ -145,6 +151,32 @@ module Axiom
       delete(difference(other)).insert(other.difference(self))
     end
 
+    # Return a tuple if the relation contains exactly one tuple
+    #
+    # @example without a block
+    #   tuple = relation.one
+    #
+    # @example with a block
+    #   tuple = relation.one { ... }
+    #
+    # @yieldreturn [Object]
+    #
+    # @return [Tuple]
+    #
+    # @raise [NoTuplesError]
+    #   raised if no tuples are returned
+    # @raise [ManyTuplesError]
+    #   raised if more than one tuple is returned
+    #
+    # @api public
+    def one(&block)
+      block ||= DEFAULT_ONE_BLOCK
+      tuples = sort.take(ONE_LIMIT).to_a
+      assert_no_more_than_one_tuple(tuples.size)
+      tuples.first or block.yield or
+        fail NoTuplesError, 'one tuple expected, but was an empty set'
+    end
+
     # Return a relation with each tuple materialized
     #
     # @example
@@ -243,6 +275,22 @@ module Axiom
       else
         Relation.new(header, object)
       end
+    end
+
+    # Assert no more than one tuple is returned
+    #
+    # @return [undefined]
+    #
+    # @raise [ManyTuplesError]
+    #   raised if more than one tuple is returned
+    #
+    # @api private
+    def assert_no_more_than_one_tuple(size)
+      return if size <= 1
+      fail(
+        ManyTuplesError,
+        "one tuple expected, but set contained #{count} tuples"
+      )
     end
 
   end # class Relation

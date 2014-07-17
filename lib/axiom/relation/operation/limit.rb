@@ -150,12 +150,6 @@ module Axiom
 
         module Methods
 
-          # Default block used in #one
-          DEFAULT_ONE_BLOCK = -> {}
-
-          # Maximum number of tuples to take in #one
-          ONE_LIMIT = 2
-
           # Return a relation with n tuples
           #
           # @example
@@ -205,50 +199,6 @@ module Axiom
           # @api public
           def last(limit = 1)
             reverse.take(limit).reverse
-          end
-
-          # Return a tuple if the relation contains exactly one tuple
-          #
-          # @example without a block
-          #   tuple = relation.one
-          #
-          # @example with a block
-          #   tuple = relation.one { ... }
-          #
-          # @yieldreturn [Object]
-          #
-          # @return [Tuple]
-          #
-          # @raise [NoTuplesError]
-          #   raised if no tuples are returned
-          # @raise [ManyTuplesError]
-          #   raised if more than one tuple is returned
-          #
-          # @api public
-          def one(&block)
-            block ||= DEFAULT_ONE_BLOCK
-            tuples = take(ONE_LIMIT).to_a
-            assert_no_more_than_one_tuple(tuples.size)
-            tuples.first or block.yield or
-              fail NoTuplesError, 'one tuple expected, but was an empty set'
-          end
-
-        private
-
-          # Assert no more than one tuple is returned
-          #
-          # @return [undefined]
-          #
-          # @raise [ManyTuplesError]
-          #   raised if more than one tuple is returned
-          #
-          # @api private
-          def assert_no_more_than_one_tuple(size)
-            return if size <= 1
-            fail(
-              ManyTuplesError,
-              "one tuple expected, but set contained #{count} tuples"
-            )
           end
 
         end # module Methods
